@@ -1,0 +1,50 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: provability-quantifiers
+
+% verification of properties of provability needed for maximally
+% consistent sets in the completeness chapter.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{axd}{qpr}
+
+\olsection{\usetoken{S}{derivability} en de kwantoren}
+
+\begin{explain}
+  De volledigheidsstelling vereist ook dat axiomatische afleidingen de
+  in deze paragraaf vastgestelde feiten over~$\Proves$ opleveren.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:strong-generalization} Als $c$ een !!a{constant} is die niet
+voorkomt in $\Gamma$ of $!A(x)$ en $\Gamma \Proves !A(c)$, dan geldt
+$\Gamma \Proves \lforall[x][!A(x)]$.
+\end{thm}
+
+\begin{proof}
+Volgens de deductiestelling geldt $\Gamma \Proves \ltrue \lif !A(c)$.
+Omdat $c$ niet voorkomt in $\Gamma$ of~$\top$, krijgen we
+$\Gamma \Proves \ltrue \lif \lforall[x][!A(x)]$. Opnieuw volgens de
+deductiestelling geldt $\Gamma \Proves \lforall[x][!A(x)]$.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$!A(t) \Proves \lexists[x][!A(x)]$.}{}
+
+\tagitem{prvAll}{$\lforall[x][!A(x)] \Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{Volgens \olref[qua]{ax:q2} en de deductiestelling.}{}
+\tagitem{prvAll}{Volgens \olref[qua]{ax:q1} en de deductiestelling.}{}
+\end{tagenumerate}
+\end{proof}
+
+\end{document}

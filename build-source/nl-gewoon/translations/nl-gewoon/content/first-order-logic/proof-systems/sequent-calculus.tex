@@ -1,0 +1,68 @@
+% Part: first-order-logic
+% Chapter: proof-systems
+% Section: seqeunt-calculus
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{prf}{seq}}
+      {\olfileid{pl}{prf}{seq}}
+
+\olsection{De sequentencalculus}
+
+Veel stelsels van afleidingsregels werken met !!{sentence}s die op een
+bepaalde manier bij elkaar staan. De sequentencalculus werkt met
+\emph{sequenten}. Een sequent is een uitdrukking van deze vorm:
+\[
+!A_1, \dots, !A_m \Sequent !B_1, \dots, !B_m,
+\]
+Links en rechts staat een rij !!{sentence}s. Het sequententeken
+$\Sequent$ scheidt de twee rijen van elkaar. Elk van beide rijen mag
+leeg zijn. !!^a{derivation} in de sequentencalculus vormt een boom van
+sequenten. De sequenten bovenaan hebben een bijzondere vorm. Ze heten
+``beginsequenten'' of ``axioma's''. Elke andere sequent volgt met een
+afleidingsregel uit de sequenten die er direct boven staan. Zo'n regel
+kan links of rechts !!{sentence}s toevoegen, weghalen of verplaatsen.
+Een regel kan ook in zijn conclusie een samengestelde !!{formula}
+invoeren. Met $\LeftR{\land}$ mogen we bijvoorbeeld van $!A, \Gamma
+\Sequent \Delta$ naar $!A \land !B, \Gamma \Sequent \Delta$ gaan. Met
+$\RightR{\lif}$ mogen we van $!A, \Gamma \Sequent \Delta, !B$ naar
+$\Gamma \Sequent \Delta, !A \lif !B$ gaan. Dit geldt voor alle
+$\Gamma$, $\Delta$, $!A$ en~$!B$. (Daarbij mogen ook $\Gamma$
+en~$\Delta$ leeg zijn.)
+
+Voor de sequentencalculus definiëren we de relatie $\Proves$ als
+volgt. $\Gamma \Proves !A$ geldt precies als er een rij $\Gamma_0$
+bestaat met twee eigenschappen. Elke $!A$ in $\Gamma_0$ behoort
+tot~$\Gamma$, en er bestaat een !!{derivation} met de
+sequent~$\Gamma_0 \Sequent !A$ onderaan, aan de wortel van de boom.
+$!A$ is een stelling in de sequentencalculus als de
+sequent~$\Sequent !A$ !!a{derivation} heeft. De volgende
+!!a{derivation} laat bijvoorbeeld zien dat $\Proves (!A \land !B) \lif
+!A$:
+\begin{prooftree}
+  \Axiom$!A \fCenter !A$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!A \land !B \fCenter !A$
+  \RightLabel{\RightR{\lif}}
+  \UnaryInf$\fCenter (!A \land !B) \lif !A$
+\end{prooftree}
+
+Een verzameling $\Gamma$ is inconsistent in de sequentencalculus als
+er !!a{derivation} van $\Gamma_0 \Sequent$ bestaat. Daarbij behoort
+elke $!A \in \Gamma_0$ tot~$\Gamma$ en is de rechterkant van de
+sequent leeg. Met de regel \RightR{\Weakening} kan uit een
+inconsistente verzameling elke !!{sentence} worden !!{derive}d.
+
+Gerhard Gentzen vond de sequentencalculus in de jaren dertig van de
+twintigste eeuw uit. De opzet is systematisch en symmetrisch. Daardoor
+is dit systeem heel geschikt om een theorie over !!{derivation}s op te
+bouwen.
+Het is vrij gemakkelijk om in de sequentencalculus een
+!!{derivation} te vinden. Zo'n !!{derivation} is vaak wel moeilijk te
+lezen. Ook is niet altijd duidelijk hoe hij samenhangt met een bewijs.
+Toch is de sequentencalculus een zeer elegante aanpak gebleken, en voor
+veel logica's bestaat een sequentencalculus.
+\end{document}

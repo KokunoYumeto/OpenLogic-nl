@@ -1,0 +1,143 @@
+% Part:sets-functions-relations
+% Chapter: sets
+% Section: reduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{red}
+
+\olsection{Reductie}
+
+\begin{editorial}
+  Deze paragraaf bewijst overaftelbaarheid met een reductie en sluit aan bij
+  de resultaten in \olref[nen]{sec}. Een andere, iets kortere versie die
+  aansluit bij de resultaten in
+  \olref[nen-alt]{sec}, staat in \olref[red-alt]{sec}.
+\end{editorial}
+
+Met een diagonaalargument hebben we aangetoond dat $\Pow{\PosInt}$
+!!{nonenumerable} is. We hadden al een bewijs dat $\Bin^\omega$, de
+verzameling van alle oneindige rijen van $0$'en en $1$'en,
+!!{nonenumerable} is. We kunnen ook op een andere manier bewijzen dat
+$\Pow{\PosInt}$ !!{nonenumerable} is: toon aan dat \emph{als
+$\Pow{\PosInt}$ !!{enumerable} is, dan $\Bin^\omega$ eveneens
+!!{enumerable} is}. Omdat we weten dat $\Bin^\omega$ niet
+!!{enumerable} is, kan $\Pow{\PosInt}$ dat evenmin zijn. Dit heet het
+ene probleem tot het andere \emph{reduceren}---in dit geval reduceren we
+het probleem om $\Bin^\omega$ op te sommen tot het probleem om
+$\Pow{\PosInt}$ op te sommen. Een oplossing van het laatste---een
+opsomming van $\Pow{\PosInt}$---zou een oplossing van het eerste---een
+opsomming van $\Bin^\omega$---opleveren.
+
+Hoe reduceren we het probleem om een verzameling~$B$ op te sommen tot
+het probleem om een verzameling~$A$ op te sommen? We geven een manier
+om een opsomming van~$A$ om te zetten in een opsomming van~$B$. Het
+eenvoudigst is een surjectieve functie $f\colon A \to B$ te
+definiëren. Als $x_1$, $x_2$, \dots{} een opsomming van~$A$ vormen,
+dan zouden $f(x_1)$, $f(x_2)$, \dots{} de verzameling~$B$ opsommen. In
+ons geval zoeken we een surjectieve functie $f\colon \Pow{\PosInt} \to
+\Bin^\omega$.
+
+\begin{prob}
+Toon aan dat als er een injectieve functie $g\colon B \to A$ bestaat
+en $B$~!!{nonenumerable} is, ook~$A$ !!{nonenumerable} is. Laat daartoe
+zien hoe met~$g$ een opsomming van~$A$ kan worden omgezet in een
+opsomming van~$B$.
+\end{prob}
+
+\begin{proof}[Bewijs van {\olref[nen]{thm:nonenum-pownat}} door reductie]
+Stel dat $\Pow{\PosInt}$ !!{enumerable} was en dat er dus een
+opsomming van bestond, $Z_{1}$, $Z_{2}$, $Z_{3}$, \dots
+
+Definieer de functie $f \colon \Pow{\PosInt} \to \Bin^\omega$ door
+$f(Z)$ de rij $s_{k}$ te laten zijn waarvoor $s_{k}(n) = 1$ precies
+dan als $n \in Z$, en waarvoor $s_k(n) = 0$ in alle andere gevallen.
+Dit definieert inderdaad een functie, want als $Z \subseteq \PosInt$,
+is elke $n \in \PosInt$ ofwel !!a{element} van $Z$, ofwel niet. Zo
+wordt bijvoorbeeld de verzameling $2\PosInt = \{2, 4, 6, \dots\}$ van
+positieve even getallen afgebeeld op de rij $010101\dots$, de lege
+verzameling op $0000\dots$ en de verzameling $\PosInt$ zelf op
+$1111\dots$.
+
+De functie is ook !!{surjective}: elke rij van $0$'en en $1$'en bepaalt
+een verzameling positieve gehele getallen, namelijk de indexen waarop de
+rij een~$1$ heeft. Meer precies, neem $s \in \Bin^\omega$. Definieer
+$Z \subseteq \PosInt$ door:
+\[
+Z = \Setabs{n \in \PosInt}{s(n) = 1}
+\]
+Dan geldt $f(Z) = s$, zoals uit de definitie van~$f$ volgt.
+
+Beschouw nu de lijst
+\[
+f(Z_1), f(Z_2), f(Z_3), \dots
+\]
+Omdat $f$ !!{surjective} is, moet elk element van $\Bin^\omega$ voor
+enig argument als waarde van~$f$ optreden en dus in de lijst voorkomen.
+Deze lijst somt daarom heel~$\Bin^\omega$ op.
+
+Als $\Pow{\PosInt}$ dus !!{enumerable} was, zou $\Bin^\omega$
+!!{enumerable} zijn. Maar $\Bin^\omega$ is !!{nonenumerable}
+(\olref[nen]{thm:nonenum-bin-omega}). Dus is $\Pow{\PosInt}$
+!!{nonenumerable}.
+\end{proof}
+
+\begin{explain}
+De richting van een reductie kan gemakkelijk verwarrend zijn. Zo toont
+een surjectieve functie $g \colon
+\Bin^\omega \to B$ 
+\emph{niet} aan dat $B$ !!{nonenumerable} is. (Beschouw $g \colon
+\Bin^\omega \to \Bin$ gedefinieerd door $g(s) = s(1)$, de functie die
+een rij van $0$'en en $1$'en afbeeldt op haar eerste !!{element}. Deze
+functie is !!{surjective}, omdat sommige rijen met $0$ beginnen en
+andere met $1$. Maar $\Bin$ is eindig.) Merk ook op dat de functie~$f$
+!!{surjective} moet zijn, want anders gaat het argument niet op:
+$f(x_1)$, $f(x_2)$, \dots{} zouden dan niet noodzakelijk alle
+!!{element}en van~$B$ bevatten. Zo definieert bijvoorbeeld
+\[
+h(n) = \underbrace{000\dots0}_{\text{$n$ keer $0$}}
+\]
+een functie $h\colon \PosInt \to \Bin^\omega$, maar $\PosInt$ is
+!!{enumerable}.
+\end{explain}
+
+\begin{prob}
+Toon met een reductieargument aan dat de verzameling van alle
+\emph{verzamelingen van} paren positieve gehele getallen
+!!{nonenumerable} is.
+\end{prob}
+
+\begin{prob}\label{sfr:siz:red:prob:nat-nat}
+  Toon met een reductieargument aan dat de verzameling~$X$ van alle
+  functies $f\colon \Nat \to \Nat$ !!{nonenumerable} is (Aanwijzing:
+  geef een surjectieve functie van $X$ naar~$\Bin^\omega$.)
+\end{prob}
+
+\begin{prob}
+Toon met een reductieargument aan dat $\Nat^\omega$, de verzameling van
+oneindige rijen natuurlijke getallen, !!{nonenumerable} is.
+\end{prob}
+
+\begin{prob}
+Laat $P$ de verzameling zijn van functies van de verzameling positieve
+gehele getallen naar de verzameling $\{0\}$, en laat $Q$ de verzameling
+zijn van \emph{partiële} functies van de verzameling positieve gehele
+getallen naar de verzameling $\{0\}$. Toon aan dat $P$~!!{enumerable}
+is en $Q$~niet. (Aanwijzing: reduceer het probleem om $\Bin^\omega$ op
+te sommen tot het probleem om~$Q$ op te sommen.)
+\end{prob}
+
+\begin{prob}
+Laat $S$ de verzameling zijn van alle surjectieve functies van de
+verzameling positieve gehele getallen naar de verzameling \{0,1\}, dat
+wil zeggen: $S$ bestaat uit alle surjectieve functies~$f\colon
+\PosInt \to \Bin$. Toon aan dat $S$ !!{nonenumerable} is.
+\end{prob}
+
+\begin{prob}
+Toon aan dat de verzameling~$\Real$ van alle reële getallen
+!!{nonenumerable} is.
+\end{prob}
+\end{document}

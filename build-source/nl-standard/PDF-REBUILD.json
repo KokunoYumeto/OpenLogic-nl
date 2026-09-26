@@ -1,0 +1,68 @@
+{
+  "bundled_dependencies": {
+    "external_tools": [
+      "Python 3.11 or newer with lxml and pypdf",
+      "latexmk",
+      "pdfTeX/pdflatex",
+      "BibTeX as selected by latexmk",
+      "a TeX distribution satisfying the packages imported by the bundled Open Logic styles"
+    ],
+    "manifest": "SOURCE-MANIFEST.json",
+    "project_specific": [
+      "OpenLogic-NL-Standard-Partial-OLP-0001--OLP-0128.tex",
+      "upstream/open-logic-config.sty",
+      "upstream/open-logic-envs.sty",
+      "upstream/open-logic-locale.sty",
+      "upstream/sty/",
+      "upstream/bib/",
+      "upstream/assets/",
+      "upstream/locale/nl/open-logic-locale.sty"
+    ]
+  },
+  "commands": [
+    [
+      "latexmk",
+      "-norc",
+      "-gg",
+      "-pdf",
+      "-pdflatex=pdflatex %O -interaction=nonstopmode -halt-on-error -file-line-error -recorder %S",
+      "-outdir=pdf-replay-1",
+      "OpenLogic-NL-Standard-Partial-OLP-0001--OLP-0128.tex"
+    ],
+    [
+      "latexmk",
+      "-norc",
+      "-gg",
+      "-pdf",
+      "-pdflatex=pdflatex %O -interaction=nonstopmode -halt-on-error -file-line-error -recorder %S",
+      "-outdir=pdf-replay-2",
+      "OpenLogic-NL-Standard-Partial-OLP-0001--OLP-0128.tex"
+    ]
+  ],
+  "driver": "latexmk",
+  "engine": "pdflatex",
+  "environment": {
+    "FORCE_SOURCE_DATE": "1",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "SOURCE_DATE_EPOCH": "1790380800",
+    "TZ": "UTC"
+  },
+  "input": "OpenLogic-NL-Standard-Partial-OLP-0001--OLP-0128.tex",
+  "machine_serialization": {
+    "named_mutex": "Global\\InterlanguageTeXSlotV1",
+    "platform": "Windows",
+    "process_capture": [
+      "CREATE_SUSPENDED",
+      "AssignProcessToJobObject",
+      "ResumeThread"
+    ],
+    "scope": "hold continuously around both complete latexmk process trees"
+  },
+  "repeatability_requirement": {
+    "comparison": "exact PDF byte equality",
+    "runs": 2
+  },
+  "schema": "openlogic-partial-reader-pdf-rebuild-v1",
+  "working_directory": "root of this extracted source tree"
+}

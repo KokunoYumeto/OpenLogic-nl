@@ -1,0 +1,76 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{seq}{rul}}
+      {\olfileid{pl}{seq}{rul}}
+
+\olsection{Regels en \usetoken{P}{derivation}}
+
+Hierna staan $\Gamma, \Delta, \Pi, \Lambda$ voor eindige rijen
+!!{sentence}s.
+
+\begin{defn}[Sequent]
+Een \emph{sequent} is een uitdrukking van deze vorm:
+\[
+\Gamma \Sequent \Delta
+\]
+$\Gamma$ en $\Delta$ zijn eindige rijen !!{sentence}s van de taal
+$\Lang L$. Elk van beide rijen mag leeg zijn. De rij links,
+$\Gamma$, heet het \emph{antecedent}. De rij rechts, $\Delta$, heet het
+\emph{succedent}.
+\end{defn}
+
+\begin{explain}
+Een sequent geeft het volgende idee weer. Als alle !!{sentence}s in het
+antecedent gelden, dan geldt ten minste een van de !!{sentence}s in het
+succedent. Stel dat $\Gamma = \tuple{!A_1, \dots, !A_m}$ en $\Delta =
+\tuple{!B_1, \dots, !B_n}$. Dan geldt $\Gamma \Sequent \Delta$ precies
+als
+\[
+(!A_1 \land \cdots \land !A_m) \lif (!B_1 \lor \cdots \lor
+!B_n)
+\]
+geldt. Er zijn twee bijzondere gevallen: $\Gamma$ is leeg of $\Delta$
+is leeg. Als $\Gamma$ leeg is, dan is $m = 0$, en $\quad \Sequent
+\Delta$ geldt precies als $!B_1 \lor \dots \lor !B_n$ geldt. Als
+$\Delta$ leeg is, dan is $n = 0$, en $\Gamma \Sequent \quad$ geldt
+precies als $\lnot(!A_1 \land \dots \land !A_m)$ geldt. Een sequent heet
+geldig precies als de !!{sentence} die erbij hoort geldig is.
+\end{explain}
+
+Laat $\Gamma$ een rij !!{sentence}s zijn. Met $\Gamma, !A$ bedoelen we
+dan de rij waarin $!A$ rechts achter~$\Gamma$ is gezet. Met $!A,
+\Gamma$ bedoelen we de rij waarin $!A$ links voor~$\Gamma$ is gezet.
+Als ook $\Delta$ een rij !!{sentence}s is, dan betekent $\Gamma,
+\Delta$ dat we beide rijen achter elkaar zetten. De rij die zo ontstaat
+heet hun concatenatie.
+
+\begin{defn}[Beginsequent]
+Een sequent heet een \emph{beginsequent} als hij
+\iftag{prvFalse,prvTrue}{een van de volgende vormen heeft:
+  \begin{enumerate}
+    \item $!A \Sequent !A$
+    \tagitem{prvTrue}{$\quad \Sequent \ltrue$}{}
+    \tagitem{prvFalse}{$\lfalse \Sequent \quad$}{}
+  \end{enumerate}}
+{de vorm $!A \Sequent !A$ heeft}. Dit geldt voor elke !!{sentence} $!A$
+van de taal.
+\end{defn}
+
+!!^{derivation}s in de sequentencalculus zijn bepaalde bomen van
+sequenten. Bovenaan staan beginsequenten. Als een sequent onder een of
+twee andere sequenten staat, moet hij daaruit correct volgen met een
+afleidingsregel. De regels voor $\Log{LK}$ vallen in twee hoofdgroepen:
+\emph{logische} regels en \emph{structurele} regels. Elke logische regel
+is genoemd naar de !!{main operator} van de !!{sentence} met $!A$
+en/of $!B$ in de onderste sequent. Zo'n regel heeft twee versies. De
+ene versie leidt een sequent af waarin de !!{sentence} met de
+!!{operator} links staat. Bij de andere versie staat die !!{sentence}
+rechts.
+\end{document}

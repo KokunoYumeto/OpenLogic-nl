@@ -1,0 +1,81 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: structural-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{seq}{srl}}
+      {\olfileid{pl}{seq}{srl}}
+
+\olsection{Structurele regels}
+
+We hebben ook enkele regels nodig waarmee we !!{sentence}s aan de
+linker- en rechterkant van een sequent kunnen herschikken. Omdat de
+logische regels vereisen dat de !!{sentence}s in de premisse waarop de
+regel wordt toegepast geheel links of geheel rechts staan, is een
+``verwisselingsregel'' nodig om !!{sentence}s naar de juiste plaats te
+verplaatsen. Soms moeten we bovendien twee gelijke !!{sentence}s tot
+één kunnen samentrekken en aan een van beide kanten !!a{sentence}
+kunnen toevoegen.
+
+\subsection{Verzwakking}
+
+\begin{defish}
+\Axiom$ \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !A, \Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A$
+\DisplayProof
+\end{defish}
+
+\subsection{Contractie}
+
+\begin{defish}
+\Axiom$ !A, !A, \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\Contraction}}
+\UnaryInf$ !A, \Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A, !A$
+\RightLabel{\RightR{\Contraction}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A$
+\DisplayProof
+\end{defish}
+
+\subsection{Verwisseling}
+
+\begin{defish}
+\Axiom$ \Gamma, !A, !B, \Pi \fCenter \Delta $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ \Gamma, !B, !A, \Pi \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A, !B, \Lambda$
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ \Gamma \fCenter \Delta, !B, !A, \Lambda$
+\DisplayProof
+\end{defish}
+
+Een reeks toepassingen van verzwakking, contractie en verwisseling
+wordt vaak met dubbele afleidingslijnen aangeduid.
+
+De volgende regel, de ``snederegel'', is strikt genomen niet nodig,
+maar maakt het veel eenvoudiger om !!{derivation}s te hergebruiken en
+te combineren.
+\begin{defish}
+\[
+\Axiom$ \Gamma \fCenter \Delta, !A$
+\Axiom$ !A, \Pi \fCenter \Lambda $
+\RightLabel{\Cut}
+\BinaryInf$ \Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+\end{defish}
+\end{document}

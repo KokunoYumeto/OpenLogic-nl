@@ -1,0 +1,92 @@
+% Part: sets-functions-relations
+% Chapter: infinite
+% Section: dedekind-induction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{infinite}{induction}
+\olsection[Volledige inductie]{Dedekindalgebra's en volledige inductie}
+
+Nu komt het belangrijkste punt: een Dedekindalgebra---\emph{elke}
+Dedekindalgebra---kan de rol van de natuurlijke getallen overnemen. Dat
+volgt meteen uit dit eenvoudige resultaat:
+
+\begin{thm}[Volledige inductie]\ollabel{thm:dedinfiniteinduction}
+Laat $N, s, o$ samen een Dedekindalgebra vormen. Neem een willekeurige
+verzameling $X$. Dan geldt:
+	\begin{center}
+		als $o \in X$ en $(\forall {n} \in N \cap X){s}({n}) \in X$, {dan} $N \subseteq X$.
+	\end{center}
+\end{thm}
+
+\begin{proof}
+Volgens de definitie van een Dedekindalgebra is $N =
+\closureofunder{s}{o}$. Stel nu dat ${o} \in X$ en $(\forall {n} \in
+N)(n \in X \lif {s}({n}) \in X)$. Het gekozen element ligt ook in
+de verzameling van de algebra, en dus geldt ${o} \in N \cap X$.
+Neem nu ${n} \in N \cap X$.
+Volgens de aanname geldt ${s}({n}) \in X$. Ook geldt
+${s}({n}) \in N$, omdat $s \colon N \to N$. Dus is $N \cap X$
+$s$-gesloten. Deze verzameling bevat het gekozen element. Zij bevat dus
+ook de kleinste gesloten verzameling met dat element. Daarom is $N =
+\closureofunder{s}{o} \subseteq X$.
+\end{proof}
+
+Inductie is een kenmerkende eigenschap van de natuurlijke getallen.
+Daarom kunnen we van elke Dedekind-oneindige verzameling een
+Dedekindalgebra maken en die algebra de rol van de natuurlijke getallen
+laten spelen.
+
+\olref{thm:dedinfiniteinduction} beschrijft inductie met
+\emph{verzamelingstheoretische} begrippen. We kunnen dezelfde regel
+ook in een bekende vorm opschrijven:
+
+\begin{cor}\ollabel{natinductionschema}
+Laat $N, s, o$ samen een Dedekindalgebra vormen. Neem een formule
+$\phi(x)$ waarin parameters mogen voorkomen. Dan geldt:
+\begin{center}
+	als $\phi(o)$ en $(\forall {n} \in N)(\phi(n)\lif
+	\phi({s}({n})))$, {dan} $(\forall n \in N)\phi(n)$
+\end{center}
+\end{cor}
+
+\begin{proof}
+Neem $X = \Setabs{n \in N}{\phi(n)}$ en gebruik nu
+\olref{thm:dedinfiniteinduction}.
+\end{proof}
+
+Hierboven zeiden we dat een formule ``parameters mag hebben''. Grofweg
+betekent dit dat we voor elke keuze van objecten $c_1, \ldots, c_k$
+mogen werken met $\phi(x, c_1, \ldots, c_k)$. We kunnen hetzelfde ook
+precies opschrijven zonder het woord ``parameters''. Neem een formule
+$\phi(x, v_1, \ldots, v_k)$ en schrijf al haar vrije variabelen erbij.
+Dan geldt:
+	\begin{align*}
+			\forall v_1 \ldots \forall v_k((&\phi(o, v_1,\ldots, v_k) \land {}\\
+			&	(\forall x \in N)(\phi(x,v_1, \ldots, v_k) \lif \phi(s(x), v_1,\ldots, v_k))) \lif {}\\
+			&\hspace{3em} (\forall x \in N)\phi(x, v_1,\ldots, v_k))
+	\end{align*}
+De woorden ``met parameters'' maken dit duidelijk veel makkelijker te
+lezen. (In \olref[sth][][]{part} zullen we deze manier van spreken vaak
+gebruiken.)
+
+Terug naar Dedekindalgebra's. Voor elke Dedekindalgebra kunnen we ook
+de gewone rekenfuncties voor optellen, vermenigvuldigen en
+machtsverheffen vastleggen. Dat is niet eenvoudig. We hebben daarvoor
+de techniek van de \emph{recursieve definitie} nodig. Die techniek
+leggen we pas veel later uit en rechtvaardigen we daar in een veel
+algemenere situatie. (Wie nieuwsgierig is, kan dit deel na
+\olref[sth][ord-arithmetic][]{chap} nog eens lezen, of een andere uitleg
+bekijken, zoals \citealt[pp.~95--8]{Potter2004}.) Als $N, s, o$ samen
+een Dedekindalgebra vormen, kunnen we uiteindelijk deze regels
+vastleggen:
+\begin{align*}
+	{a} + {o} &= {a} & & & {a} \times {o} &= {o} & & & {a}^{o} &= s(o)\\
+{a} + {s}({b}) &= {s}({a}+{b}) &&& {a} \times {s}({b}) &= ({a}\times {b}) + {a}  & & & {a}^{{s}({b})} &= {a}^{b} \times {a}
+\end{align*}
+Daarna kunnen we laten zien dat deze rekenfuncties werken zoals we
+verwachten.
+
+\end{document}

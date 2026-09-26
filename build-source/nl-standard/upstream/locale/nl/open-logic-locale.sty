@@ -1,0 +1,207 @@
+% Generated locale placement for the partial reader.
+% Terminology derives byte-for-byte apart from the Babel locale-key
+% substitution from editions/<register>/support/open-logic-reader-locale.tex.
+% Scholarly Netherlands-Dutch reader overlay for Open Logic.
+% Load after open-logic.sty and all722-support.tex.  The frozen driver loads
+% Babel's `english` locale only, so this overlay deliberately replaces that
+% active locale slot.  It does not define \ollangid: doing so would redirect
+% source-module imports to a non-existent vendor locale tree.
+
+% Locale captions (same key inventory as the frozen English vendor locale).
+\setlocalecaption{dutch}{photocredits}{Fotocredits}
+\setlocalecaption{dutch}{history}{Historische opmerkingen}
+\setlocalecaption{dutch}{reading}{Aanvullende literatuur}
+\setlocalecaption{dutch}{appendix}{Bijlage}
+\setlocalecaption{dutch}{appendices}{Bijlagen}
+\setlocalecaption{dutch}{theorem}{Stelling}
+\setlocalecaption{dutch}{example}{Voorbeeld}
+\setlocalecaption{dutch}{definition}{Definitie}
+\setlocalecaption{dutch}{lemma}{Lemma}
+\setlocalecaption{dutch}{proposition}{Propositie}
+\setlocalecaption{dutch}{corollary}{Gevolg}
+\setlocalecaption{dutch}{problem}{Opgave}
+\setlocalecaption{dutch}{problems}{Opgaven}
+\setlocalecaption{dutch}{remark}{Opmerking}
+\setlocalecaption{dutch}{axiom}{Axioma}
+\setlocalecaption{dutch}{note}{Noot}
+\setlocalecaption{dutch}{case}{Geval}
+\setlocalecaption{dutch}{convention}{Conventie}
+\setlocalecaption{dutch}{OLP}{Open Logic Project}
+\setlocalecaption{dutch}{OLT}{The Open Logic Text}
+\setlocalecaption{dutch}{OLTlink}{https://github.com/OpenLogicProject/OpenLogic}
+\setlocalecaption{dutch}{license}{Creative Commons Naamsvermelding 4.0 Internationaal-licentie}
+\setlocalecaption{dutch}{instigator}{Initiatiefnemer}
+\setlocalecaption{dutch}{editorialboard}{Redactieraad}
+\setlocalecaption{dutch}{contributors}{Medewerkers}
+
+% Cross-reference names.  These are registered in the active Babel slot and
+% therefore take effect when Babel selects English at \begin{document}.
+\addto\extrasdutch{%
+  \Crefname{page}{p.}{pp.}%
+  \Crefname{thm}{Stelling}{Stellingen}%
+  \Crefname{ex}{Voorbeeld}{Voorbeelden}%
+  \Crefname{defn}{Definitie}{Definities}%
+  \Crefname{lem}{Lemma}{Lemma's}%
+  \Crefname{prop}{Propositie}{Proposities}%
+  \Crefname{prob}{Opgave}{Opgaven}%
+  \Crefname{rem}{Opmerking}{Opmerkingen}%
+  \Crefname{cor}{Gevolg}{Gevolgen}%
+  \Crefname{axiom}{Axioma}{Axioma's}%
+  \Crefname{note}{Noot}{Noten}%
+  \Crefname{case}{Geval}{Gevallen}%
+  \Crefname{conv}{Conventie}{Conventies}%
+  \Crefname{figure}{Figuur}{Figuren}%
+  \Crefname{table}{Tabel}{Tabellen}%
+}
+
+% Dutch has the invariant indefinite article `een`; do not reuse the English
+% a/an heuristic stored by open-logic-tokenize.sty.
+\renewcommand*{\article}[1]{een}
+\renewcommand*{\Article}[1]{Een}
+
+% Text tokens.  Keys, source order, starred forms, and the duplicated
+% `complete` assignment match the frozen vendor configuration.
+\settexttoken{height}{hoogte}{hoogten}
+\settexttoken{hp}{hp}{hp}
+\settexttoken{depth}{diepte}{diepten}
+\settexttoken{language}{taal}{talen}
+\settexttoken{formula}{formule}{formules}
+\settexttoken{subformula}{subformule}{subformules}
+\settexttoken{sentence}{zin}{zinnen}
+\settexttoken{variable}{variabele}{variabelen}
+\settexttoken{propositional variable}{propositievariabele}{propositievariabelen}
+\settexttoken{constant}{constantsymbool}{constantsymbolen}
+\settexttoken{predicate}{predicaatsymbool}{predicaatsymbolen}
+\settexttoken{function}{functiesymbool}{functiesymbolen}
+\settexttoken{operator}{logische operator}{logische operatoren}
+\settexttoken{main operator}{hoofdoperator}{hoofdoperatoren}
+\settexttoken{free for}{vrij voor}{vrij voor}
+\settexttoken{identity}*{identiteitspredicaat}{identiteitspredicaten}
+\settexttoken{conditional}{conditionele formule}{conditionele formules}
+\settexttoken{biconditional}{biconditionele formule}{biconditionele formules}
+\settexttoken{falsity}{falsum}{falsa}
+\settexttoken{truth}{verum}{vera}
+\settexttoken{structure}{structuur}{structuren}
+\settexttoken{valuation}{valuatie}{valuaties}
+\settexttoken{domain}{domein}{domeinen}
+\settexttoken{value}{waarde}{waarden}
+\settexttoken{relational model}{relationeel model}{relationele modellen}
+\settexttoken{derivation}{afleiding}{afleidingen}
+\settexttoken{derive}{afleiden}{leidt af}
+\settexttoken{derivable}{afleidbaar}{afleidbaar}
+\settexttoken{derivability}{afleidbaarheid}{afleidbaarheden}
+\settexttoken{nonderivability}{niet-afleidbaarheid}{niet-afleidbaarheden}
+\settexttoken{proof}{bewijs}{bewijzen}
+\settexttoken{prove}{bewijzen}{bewijst}
+\settexttoken{proving}{bewijzen}{bewijzen}
+\settexttoken{provable}{bewijsbaar}{bewijsbaar}
+\settexttoken{provability}{bewijsbaarheid}{bewijsbaarheden}
+\settexttoken{nonprovability}{niet-bewijsbaarheid}{niet-bewijsbaarheden}
+\settexttoken{introduction}*{introductie}{introducties}
+\settexttoken{elimination}*{eliminatie}{eliminaties}
+\settexttoken{tableau}{tableau}{tableaus}
+\settexttoken{signed formula}{formule met waarheidswaardeteken}{formules met waarheidswaardeteken}
+\settexttoken{complete}{volledig}{volledig}
+\settexttoken{axiomatizable}*{axiomatiseerbaar}{axiomatiseerbaar}
+\settexttoken{axiomatized}*{geaxiomatiseerd}{geaxiomatiseerd}
+\settexttoken{axiomatizability}*{axiomatiseerbaarheid}{axiomatiseerbaarheid}
+\settexttoken{represents}{representeert}{representeren}
+\settexttoken{representable}{representeerbaar}{representeerbaar}
+\settexttoken{discharge}{opheffen}{heft op}
+\settexttoken{discharged}{opgeheven}{opgeheven}
+\settexttoken{undischarged}*{niet opgeheven}{niet opgeheven}
+\settexttoken{complete}{volledig}{volledig}
+\settexttoken{enumerable}*{aftelbaar}{aftelbaar}
+\settexttoken{nonenumerable}{overaftelbaar}{overaftelbaar}
+\settexttoken{denumerable}{aftelbaar oneindig}{aftelbaar oneindig}
+\settexttoken{element}*{element}{elementen}
+\settexttoken{injective}*{injectief}{injectief}
+\settexttoken{injection}*{injectie}{injecties}
+\settexttoken{surjective}{surjectief}{surjectief}
+\settexttoken{surjection}{surjectie}{surjecties}
+\settexttoken{bijective}{bijectief}{bijectief}
+\settexttoken{bijection}{bijectie}{bijecties}
+\settexttoken{decidable}{beslisbaar}{beslisbaar}
+\settexttoken{computably enumerable}{recursief opsombaar}{recursief opsombaar}
+\settexttoken{c.e.}{c.e.\@}{c.e.\@}
+\settexttoken{argument}*{argument}{argumenten}
+\settexttoken{parameter}{parameter}{parameters}
+\settexttoken{lambda define}{$\lambd$-definiëren}{$\lambd$-definieert}[$\lambd$-Definiëren][$\lambd$-Definieert]
+\settexttoken{lambda defined}{$\lambd$-gedefinieerd}{$\lambd$-gedefinieerd}[$\lambd$-Gedefinieerd]
+\settexttoken{lambda definable}{$\lambd$-definieerbaar}{$\lambd$-definieerbaar}[$\lambd$-Definieerbaar]
+\settexttoken{colorC}{rood}{rood}
+\settexttoken{colorD}{blauw}{blauw}
+\settexttoken{colorE}{groen}{groen}
+
+% License, attribution, and colophon boilerplate.  Command arities and all
+% upstream links are preserved exactly.
+\renewcommand*{\ollicensetext}[3]{%
+  \textit{#1} van #2 valt onder een #3.}
+\renewcommand*{\olshortlicensetext}[1]{%
+  \textit{\href{\OLTlinkname}{\jobname}}
+  \ifgitinfo\ 
+  van #1 /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\renewcommand*{\oluselicensetext}{%
+  Deze uitgave is gebaseerd op
+  \textit{\href{\OLTlinkname}{\OLTname}}
+  van het \href{http://openlogicproject.org/}{\OLPname}, en wordt gebruikt
+  onder de \href{http://creativecommons.org/licenses/by/4.0/}{\licensename}.}
+\renewcommand*{\olshortuselicensetext}[2]{%
+  \textit{#1}
+  van #2, gebaseerd op
+  \href{http://openlogicproject.org/}{OLP} /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\renewcommand*{\olremixedby}{%
+  Opnieuw samengesteld door \OLPauthor}
+\renewcommand*{\olacknowledgements}{%
+  Het Open Logic Project dankt het
+  \href{https://taylorinstitute.ucalgary.ca/}{Taylor Institute of Teaching and
+  Learning} van de University of Calgary en het Alberta Open Educational
+  Resources (ABOER) Initiative voor hun ruimhartige steun. Het ABOER-initiatief
+  wordt mogelijk gemaakt door een investering van de regering van Alberta.}
+\renewcommand*{\olillustrations}{%
+  De omslagillustraties zijn vervaardigd door
+  \href{http://mattleadbeater.com}{Matthew Leadbeater} en worden gebruikt onder
+  \href{https://creativecommons.org/licenses/by-nc/4.0/}{Creative Commons
+  Naamsvermelding-NietCommercieel 4.0 Internationaal-licentie}.}
+\renewcommand*{\olcolophon}{%
+  Door \LaTeX{} gezet in Baskervald X en Nimbus Sans.}
+\renewcommand*{\olbookrevision}{%
+  Deze versie van \emph{\OLPbooktitle} is revisie \gitAbbrevHash{}
+  (\gitAuthorDate), met inhoud die is gegenereerd uit revisie \OLPrevision{}
+  van \emph{Open Logic Text}. Gratis te downloaden via:\\[.5ex]
+  \url{\OLPsourcelink}}
+
+% Reader-level strings.  The current frozen drivers contain these strings as
+% literals; the report supplies the exact, deliberately unperformed hook patch.
+\newcommand*{\olreaderpdflang}{nl-NL}
+\newcommand*{\olreaderpdftitle}{The Open Logic Text -- volledige reader met 722 broneenheden}
+\newcommand*{\olreaderpdfauthor}{Open Logic Project}
+\newcommand*{\olreaderpdfsubject}{Brongetrouwe samenstelling van alle 722 vastgezette Open Logic-broneenheden}
+\newcommand*{\olreaderpdfkeywords}{logica, metawiskunde, bewijstheorie, berekenbaarheid, verzamelingenleer}
+\newcommand*{\olreadertitle}{Volledige reader met 722 broneenheden}
+\newcommand*{\olreaderedition}{Nederlandstalige wetenschappelijke editie}
+\newcommand*{\olreaderdate}{5 september 2026}
+\newcommand*{\olreaderprovenancetitle}{Technische herkomst}
+\newcommand{\olreaderprovenancetext}{%
+  Deze reader assembleert alle 722 broneenheden in de vastgezette Open
+  Logic-bronboom.\par\medskip
+  De normale inhoudsgraaf levert 642 verschillende broneenheden. De overige
+  80 eenheden worden toegevoegd in een afzonderlijk supplement, zodat de
+  volledige broninventaris controleerbaar aanwezig is.\par\medskip
+  Alternatieve readerdrivers zijn voor deze uitgave niet als broninhoud
+  meegeteld.}
+\newcommand*{\olreadersourcerepositorylabel}{Gezaghebbende bronrepository:}
+\newcommand*{\olreaderfrozenrevisionlabel}{Vastgezette bronrevisie:}
+\newcommand*{\olreadermanifesttext}{Het volledige bronmanifest met SHA-256-hashes staat in de bij deze editie behorende machineleesbare bestanden.}
+\newcommand*{\allmodulesourcelabel}{Bronmodule}
+
+% The hook is loaded after the frozen driver's English metadata block.
+\hypersetup{%
+  pdflang={\olreaderpdflang},%
+  pdftitle={\olreaderpdftitle},%
+  pdfauthor={\olreaderpdfauthor},%
+  pdfsubject={\olreaderpdfsubject},%
+  pdfkeywords={\olreaderpdfkeywords}%
+}

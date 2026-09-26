@@ -1,0 +1,137 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: enumerations-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{enm-alt}
+
+\olsection{Opsommingen en \usetoken{S}{enumerable} verzamelingen}
+
+\begin{editorial}
+  Deze paragraaf definieert opsommingen als bijecties met
+  (beginstukken van) $\Nat$, zoals gebruikelijk in de
+  verzamelingenleer. Daardoor wijkt zij enigszins af van de definities
+  in \olref[enm]{sec} en herhaalt zij alle voorbeelden daar. Zij is
+  ook wat beknopter dan die paragraaf.
+\end{editorial}
+
+We kunnen een eindige verzameling eenvoudig opgeven door haar
+!!{element}s op te sommen. Dat doen we wanneer we een verzameling als
+volgt definiëren:
+\[
+  A = \{a_1, a_2, \ldots, a_n\}.
+\]
+Als de !!{element}s $a_1$, \dots, $a_n$ allemaal verschillend zijn,
+levert dit !!a{bijection} op tussen $A$ en de eerste $n$ natuurlijke
+getallen $0$, \dots, $n-1$. Omgekeerd heeft iedere eindige
+verzameling slechts eindig veel !!{element}s en kan zij dus in zo'n
+correspondentie worden gebracht. Met andere woorden: als $A$ eindig
+is, bestaat er !!a{bijection} tussen $A$ en $\{0, \dots, n-1\}$,
+waarbij $n$ het aantal !!{element}s van~$A$ is.
+
+Als we bepaalde soorten oneindige verzamelingen toestaan, kunnen ook
+sommige oneindige verzamelingen worden opgesomd. Dit kunnen we precies
+formuleren door te zeggen dat een oneindige verzameling wordt
+opgesomd door !!a{bijection} tussen die verzameling en heel~$\Nat$.
+
+\begin{defn}[Opsomming, verzamelingstheoretisch]
+Een \emph{opsomming} van een verzameling $A$ is !!a{bijection} met
+beeld $A$ en met als domein een beginstuk van de natuurlijke getallen
+$\{0, 1, \ldots, n\}$ {of} de gehele verzameling natuurlijke
+getallen~$\Nat$.
+\end{defn}
+
+\begin{explain}
+Het woord \emph{opsomming} past intuïtief bij deze definitie. Zeggen
+dat we een verzameling $A$ hebben opgesomd, betekent immers dat er
+!!a{bijection} $f$ bestaat waarmee we de elementen van de verzameling
+$A$ één voor één kunnen tellen. Het $0$-de element is $f(0)$, het
+eerste is $f(1)$, \ldots het $n$-de is $f(n)$\ldots.\footnote{We
+tellen inderdaad vanaf $0$. We zouden uiteraard ook bij~$1$ kunnen
+beginnen. Dat zou nauwelijks verschil maken: we zouden alleen~$\Nat$
+door~$\PosInt$ moeten vervangen.} De reden voor deze definitie wordt
+nog duidelijker met de volgende aanvulling:
+\end{explain}
+
+\begin{defn}
+  \ollabel{defn:enumerable}
+  Een verzameling~$A$ is !!{enumerable} dan en slechts dan als $A =
+  \emptyset$ of er een opsomming van~$A$ bestaat. We noemen $A$
+  !!{nonenumerable} dan en slechts dan als $A$ niet !!{enumerable} is.
+\end{defn}
+
+\begin{explain}
+Een verzameling is dus !!{enumerable} dan en slechts dan als zij leeg
+is of als haar !!{element}s met een opsomming één voor één kunnen
+worden geteld.
+\end{explain}
+
+\begin{ex}
+De identiteitsfunctie $\Id{\Nat} \colon \Nat \to \Nat$, gegeven door
+$\Id{\Nat}(n) = n$, somt de natuurlijke getallen op. De functie die de
+\emph{positieve} natuurlijke getallen $\Nat^+ = \Nat \setminus
+\{0\}$ opsomt, is de functie $g(n) = n + 1$, dus de opvolgerfunctie.
+\end{ex}
+
+\begin{prob}
+Bewijs dat een verzameling $A$ !!{enumerable} is dan en slechts dan
+als $A = \emptyset$ of er !!a{surjection} $f\colon \Nat \to A$
+bestaat. Bewijs dat $A$ !!{enumerable} is dan en slechts dan als er
+!!a{injection} $g\colon A \to \Nat$ bestaat.
+\end{prob}
+
+\begin{ex}
+De functies $f\colon \Nat \to \Nat$ en $g \colon \Nat \to \Nat$,
+gegeven door
+\begin{align*}
+  f(n) & = 2n \text{ en}\\
+  g(n) & = 2n+1
+\end{align*}
+sommen respectievelijk de even en de oneven natuurlijke getallen op.
+Geen van beide is echter !!{surjective}; geen van beide is dus een
+opsomming van $\Nat$.
+\end{ex}
+
+\begin{prob}
+Definieer een opsomming van de kwadraatgetallen $1$, $4$, $9$, $16$,
+\dots
+\end{prob}
+
+\begin{ex}
+Laat $\lceil x \rceil$ de \emph{plafondfunctie} zijn, die $x$ naar
+boven afrondt op het dichtstbijzijnde gehele getal. Dan somt de functie
+$f \colon \Nat \to \Int$, gegeven door
+\[
+  f(n) = (-1)^{n} \left\lceil\tfrac{n}{2}\right\rceil
+\]
+de gehele getallen~$\Int$ als volgt op:
+\[
+\begin{array}{c c c c c c c c}
+f(0) & f(1) & f(2) & f(3) & f(4) & f(5) & f(6) & \dots \\ \\
+\big\lceil \tfrac{0}{2} \big\rceil & -\big\lceil \tfrac{1}{2}\big\rceil &  \big\lceil \tfrac{2}{2} \big\rceil & -\big\lceil \tfrac{3}{2} \big\rceil & \big\lceil \tfrac{4}{2} \big\rceil  & -\big\lceil \tfrac{5}{2}\big\rceil & \big\lceil \tfrac{6}{2} \big\rceil & \dots \\ \\
+0 & -1 & 1 & -2 & 2 & -3 & 3& \dots
+\end{array}
+\]
+Merk op hoe $f$ de waarden van $\Int$ geeft door heen en weer te
+‘springen’ tussen positieve en negatieve gehele getallen. We kunnen
+$f$ ook als volgt stuksgewijs definiëren:
+\[
+f(n) = \begin{cases}
+  \frac{n}{2} & \text{als $n$ even is}\\
+  -\frac{n+1}{2} & \text{als $n$ oneven is}
+  \end{cases}
+\]
+\end{ex}
+
+\begin{prob}
+Bewijs dat als $A$ en $B$ !!{enumerable} zijn, ook $A \cup B$ dat is.
+\end{prob}
+
+\begin{prob}
+Bewijs met inductie naar $n$ dat als $A_1$, $A_2$, \dots, $A_n$
+allemaal !!{enumerable} zijn, ook $A_1 \cup \dots \cup A_n$ dat is.
+\end{prob}
+\end{document}

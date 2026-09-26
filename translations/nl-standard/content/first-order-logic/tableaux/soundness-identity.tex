@@ -1,0 +1,47 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: soundness-identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{tab}{sid}
+
+\olsection{Correctheid met \usetoken{S}{identity}}
+
+\begin{prop}
+!!^{tableau}s met regels voor identiteit zijn correct: geen gesloten
+!!{tableau} is vervulbaar.
+\end{prop}
+
+\begin{proof}
+Net als eerder hoeven we alleen aan te tonen dat, als !!a{tableau} een
+vervulbare tak heeft, de tak die ontstaat door er een van de regels
+voor~$\eq$ op toe te passen ook vervulbaar is. Laat $\Gamma$ de
+verzameling !!{signed formula}s op de tak zijn en laat $\Struct{M}$
+!!a{structure} zijn die~$\Gamma$ vervult.
+
+Stel dat de tak met~$\eq$ wordt uitgebreid, dat wil zeggen door de
+!!{signed formula}~$\sFmla{\True}{\eq[t][t]}$ toe te voegen.
+Vanzelfsprekend geldt $\Sat{M}{\eq[t][t]}$, zodat $\Struct{M}$ ook
+$\Gamma \cup \{\sFmla{\True}{\eq[t][t]}\}$ vervult.
+
+Als de tak met $\TRule{\True}{\eq}$ wordt uitgebreid, voegen we een
+!!{signed formula}~$\sFmla{S}{!A(t_2)}$ toe, maar $\Gamma$ bevat zowel
+$\sFmla{\True}{\eq[t_1][t_2]}$ als $\sFmla{\True}{!A(t_1)}$. Er geldt
+dus $\Sat{M}{\eq[t_1][t_2]}$ en $\Sat{M}{!A(t_1)}$. Laat $s$ een
+bedeling zijn waarvoor $s(x) = \Value{t_1}{M}$. Volgens
+\olref[syn][ass]{prop:sentence-sat-true} geldt
+$\Sat{M}{!A(t_1)}[s]$. Omdat $\varAssign{s}{s}{x}$, geldt volgens
+\olref[syn][ext]{prop:ext-formulas} dat $\Sat{M}{!A(x)}[s]$. Omdat
+$\Sat{M}{\eq[t_1][t_2]}$, geldt
+$\Value{t_1}{M} = \Value{t_2}{M}$ en dus $s(x) = \Value{t_2}{M}$.
+Door \olref[syn][ext]{prop:ext-formulas} nogmaals toe te passen,
+krijgen we ook $\Sat{M}{!A(t_2)}[s]$. Volgens
+\olref[syn][ass]{prop:sentence-sat-true} geldt
+$\Sat{M}{!A(t_2)}$. Het geval van $\TRule{\False}{\eq}$ wordt op
+dezelfde wijze behandeld.
+\end{proof}
+
+\end{document}

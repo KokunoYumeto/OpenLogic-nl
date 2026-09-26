@@ -1,0 +1,80 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: reflections
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{rel}{ref}
+\olsection{Filosofische beschouwingen}
+
+In \olref[set]{sec} hebben we relaties gedefinieerd als bepaalde
+verzamelingen. Het is goed om even stil te staan bij een filosofische
+vraag: wat \emph{doet} zo'n definitie? Het is zeer de vraag of we
+willen zeggen dat we daarmee hebben \emph{ontdekt} welke dingen
+metafysisch gezien identiek zijn; bijvoorbeeld dat de ordeningsrelatie op $\Nat$
+\emph{bleek} samen te vallen met de verzameling $R=
+\Setabs{\tuple{n,m}}{n, m \in \Nat\text{ en } n < m}$ die we in
+\olref[set]{sec} hebben gedefinieerd. Daarvoor zijn drie redenen.
+
+Ten eerste hebben we in \olref[set][pai]{wienerkuratowski} gedefinieerd
+dat $\tuple{a, b} = \{\{a\}, \{a, b\}\}$. Beschouw in plaats daarvan de
+definitie $\lVert a, b\rVert = \{\{b\}, \{a, b\}\} = \tuple{b,a}$. Als
+$a \neq b$, dan geldt $\tuple{a, b} \neq \lVert a,b\rVert$. We hadden
+echter net zo goed $\lVert a,b\rVert$ in plaats van $\tuple{a,b}$ als
+definitie van een geordend paar kunnen kiezen. Beide definities zouden
+even goed hebben gewerkt. Er zijn dus twee even geschikte
+verzamelingen die als de ordeningsrelatie op de natuurlijke getallen
+zouden kunnen gelden:
+\begin{align*}
+		R &= \Setabs{\tuple{n,m}}{n, m \in \Nat \text{ en }n < m}\\
+		S &= \Setabs{\lVert n,m\rVert}{n, m \in \Nat \text{ en }n < m}.
+\end{align*}
+Omdat $R \neq S$, kunnen ze volgens het extensionaliteitsbeginsel niet
+\emph{allebei} identiek zijn aan de ordeningsrelatie op~$\Nat$. Het zou
+echter volstrekt willekeurig, en daardoor nogal ongemakkelijk, zijn om
+te beweren dat $R$ in plaats van $S$ (of omgekeerd) feitelijk de
+ordeningsrelatie \emph{is}. (Dit is een zeer eenvoudig geval van een
+argument tegen het reduceren van zulke objecten tot verzamelingen, dat
+Benacerraf in \citeyear{Benacerraf1965} bekend heeft gemaakt. We komen
+er nog enkele keren op terug.)
+
+Ten tweede: als we menen dat \emph{elke} relatie met een verzameling
+moet worden geïdentificeerd, dan moet ook de elementrelatie zelf,
+$\in$, een bepaalde verzameling zijn. Dat zou de verzameling
+$\Setabs{\tuple{x,y}}{x \in y}$ moeten zijn. Maar bestaat die
+verzameling? In het licht van Russells paradox is het allerminst
+vanzelfsprekend dat ze bestaat. Sterker nog,
+\oliflabeldef{cumul:::part}{de verzamelingenleer die we in
+\olref[cumul][][]{part} ontwikkelen, zal het bestaan van deze
+verzameling \emph{ontkennen}.\footnote{We lopen op de tekst vooruit;
+dit is de reden. Neem ter tegenspraak aan dat $I =
+\Setabs{\tuple{x,y}}{x \in y}$ bestaat. Dan is $\bigcup \bigcup I$ de
+universele verzameling, in strijd met
+\olref[sfr][z][sep]{thm:NoUniversalSet}.}}{het mogelijk is de
+verzamelingenleer nauwkeurig als een axiomatische theorie op te bouwen,
+en ook die theorie zal het bestaan van deze verzameling ontkennen.}
+Ook als we sommige relaties dus als verzamelingen kunnen behandelen,
+blijft de elementrelatie een bijzonder geval.
+
+Ten derde: toen we relaties met verzamelingen ``identificeerden'',
+spraken we af dat we $Rxy$ mochten schrijven voor $\tuple{x,y} \in R$.
+Dat kan zolang we de elementrelatie, ``$\in$'', \emph{als} predicaat
+behandelen. Maar als ``$\in$'' zelf een of andere verzameling aanduidt,
+bestaat de uitdrukking ``$\tuple{x,y} \in R$'' slechts uit drie
+singuliere termen die verzamelingen aanduiden: ``$\tuple{x,y}$'',
+``$\in$'' en ``$R$''. Met zo'n rij namen kan men evenmin een uitspraak
+uitdrukken als met de onzinreeks ``het kopje pennenhouder de tafel''.
+Ook hier geldt dat sommige relaties weliswaar als verzamelingen kunnen
+worden behandeld, maar dat de elementrelatie een bijzonder geval moet
+blijven. (Hier worden een eenvoudige versie van Freges paradox van het
+begrip \emph{paard} en een bekend bezwaar dat Wittgenstein ooit tegen
+Russell inbracht, samengenomen.)
+
+Wat volgt hieruit? Er is niets \emph{mis} mee om te zeggen dat relaties
+op de getallen verzamelingen zijn. We moeten alleen begrijpen hoe die
+uitspraak bedoeld is. We doen geen uitspraak over welke dingen
+metafysisch gezien identiek zijn. We merken slechts op dat we in bepaalde contexten bepaalde
+relaties als bepaalde verzamelingen kunnen en zullen \emph{behandelen}.
+\end{document}

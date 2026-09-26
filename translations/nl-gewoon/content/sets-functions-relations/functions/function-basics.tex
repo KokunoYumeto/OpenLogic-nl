@@ -1,0 +1,136 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: basics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{fun}{bas}
+\olsection{De basis}
+
+\begin{explain}
+Een \emph{functie} koppelt elk !!{element} uit een bepaalde verzameling aan
+één bepaald !!{element} uit een andere verzameling, of soms uit dezelfde.
+Optellen met~$1$ geeft bijvoorbeeld een functie: bij elk getal~$n$ hoort
+precies één getal~$n+1$.
+  
+De invoer van een functie kan ook een paar, een drietal of iets met nog meer
+delen zijn. Daar geeft de functie dan een uitvoer bij. Veel functies kennen we
+al van gewoon rekenen.
+Optellen en vermenigvuldigen zijn er voorbeelden van: je voert twee getallen
+in en krijgt één getal als uitkomst.
+
+Als wiskundig, abstract begrip is een functie een \emph{zwarte doos}. Het gaat
+er alleen om welke uitvoer bij welke invoer hoort. Hoe je die uitvoer berekent,
+doet er niet toe.
+\end{explain}
+
+\begin{defn}[Functie]
+Een \emph{functie} $f \colon A \to B$ koppelt elk !!{element} van~$A$ aan
+precies één !!{element} van~$B$.
+
+$A$ heet het \emph{domein} van~$f$: daar komen de invoeren vandaan. $B$ heet
+het \emph{codomein} van~$f$: daarin liggen de mogelijke uitkomsten. De
+!!{element}en van~$A$ heten invoeren of \emph{argumenten}
+van~$f$. Het !!{element} van~$B$ dat bij een argument~$x$ hoort volgens~$f$,
+heet de \emph{waarde van~$f$} bij argument~$x$. We schrijven die als~$f(x)$.
+
+Het \emph{bereik} $\ran{f}$ van~$f$ is het deel van het codomein waarin de
+waarden van~$f$ staan die bij minstens één argument horen; $\ran{f} =
+\Setabs{f(x)}{x \in A}$.
+\end{defn}
+
+Het plaatje in \olref{fig:function} kan helpen. De ellips links is het
+\emph{domein} van de functie en de ellips rechts is het \emph{codomein}.
+Een pijl gaat van een \emph{argument} in het domein naar de \emph{waarde} die
+er in het codomein bij hoort.
+
+\begin{figure}
+  \olasset{assets/diagrams/function.tikz}
+  \caption{Een functie koppelt elk !!{element} van de ene verzameling aan
+    !!a{element} van een andere. Een pijl gaat van een argument in het
+    domein naar de waarde die er in het codomein bij hoort.}
+  \ollabel{fig:function}
+\end{figure}
+
+\begin{ex}
+Bij vermenigvuldigen voer je twee natuurlijke getallen in en krijg je een
+natuurlijk getal terug. Dit is dus een functie van $\Nat \times \Nat$ (het
+domein) naar $\Nat$ (het codomein). Het bereik is ook $\Nat$, want elke
+$n \in \Nat$ is gelijk aan $n \times 1$.
+\end{ex}
+
+\begin{ex}
+Vermenigvuldigen is een functie: bij elke invoer---elk paar natuurlijke
+getallen---hoort maar één uitvoer: $\times \colon \Nat^2 \to
+\Nat$. Koppel je een natuurlijk getal~$n$ aan een reëel getal~$x$ waarvoor
+$x^2 = n$, dan krijg je geen functie. Elk positief geheel getal~$n$ heeft
+namelijk twee vierkantswortels: $\sqrt{n}$ en~$-\sqrt{n}$. We kunnen er een
+functie van maken door alleen de niet-negatieve vierkantswortel terug te geven:
+$\sqrt{\phantom{X}} \colon \Nat \to \Real$.
+\end{ex}
+
+\begin{ex}
+Koppel je elke leerling in een klas aan het eindcijfer dat die leerling in die
+klas krijgt, dan krijg je een functie. Een leerling kan binnen dezelfde klas
+geen twee verschillende eindcijfers krijgen. Koppel je elke leerling aan de
+ouders van die leerling, dan krijg je geen functie: een leerling kan nul, twee
+of meer ouders hebben.
+\end{ex}
+
+\begin{explain}
+Om precies te zeggen welke functie we bedoelen, moeten we voor elke mogelijke
+invoer aangeven welke waarde erbij hoort. Dat kan met een formule, met een
+manier om de waarde uit te rekenen of met een lijst waarin voor elke invoer de
+waarde staat.
+Welke manier we ook kiezen, bij elke invoer moet één, en maar één, waarde staan.
+\end{explain}
+
+
+\begin{ex}
+Definieer $f \colon \Nat \to \Nat$ met $f(x) = x+1$. Daarmee hebben we een
+functie $f$ die natuurlijke getallen binnenkrijgt en natuurlijke getallen
+teruggeeft. Voer je een natuurlijk getal~$x$ in, dan geeft $f$ de opvolger,
+het volgende getal~$x+1$. Het codomein $\Nat$ is hier niet het bereik van~$f$:
+het natuurlijke getal~$0$ komt nooit uit deze functie, want het volgt op geen enkel
+natuurlijk getal. Het bereik van~$f$ bestaat uit alle positieve gehele
+getallen, $\Int^{+}$.
+\end{ex}
+
+\begin{ex}\ollabel{examplefunext}
+Definieer $g \colon \Nat \to \Nat$ met $g(x) = x+2-1$. Dit is een functie
+$g$ die natuurlijke getallen binnenkrijgt en natuurlijke getallen teruggeeft.
+Bij een natuurlijk getal~$x$ geeft $g$ de uitkomst die je krijgt door vanaf
+$x$ twee stappen vooruit en één stap terug te gaan, dus $x+1$.
+\end{ex}
+
+\begin{explain}
+We hebben nu twee functies, $f$ en $g$, met verschillende \emph{definities}.
+Toch zijn het \emph{dezelfde functie}. Voor elk natuurlijk getal~$n$ geldt
+namelijk $f(n) = n+1 = n+2-1 = g(n)$. Anders gezegd: de definities van $f$
+en~$g$ gebruiken verschillende vergelijkingen, maar leggen dezelfde koppeling
+vast. Daarachter zit het extensionaliteitsbeginsel voor functies: twee functies
+zijn gelijk als ze bij elke invoer dezelfde waarde geven. In symbolen:
+\[
+  \text{als }\forall x\, f(x) = g(x)\text{, dan }f = g
+\]
+Dit geldt alleen als $f$ en~$g$ hetzelfde domein én hetzelfde codomein hebben.
+\end{explain}
+
+\begin{ex}
+We kunnen een functie ook geval voor geval beschrijven: per geval geven we aan
+welke regel geldt. Zo kunnen we $h \colon \Nat \to \Nat$ definiëren:
+\[
+h(x) =
+\begin{cases}
+  \frac{x}{2} & \text{als $x$ even is} \\
+  \frac{x+1}{2} & \text{als $x$ oneven is.}
+\end{cases}
+\]
+Elk natuurlijk getal is even of oneven, dus de uitvoer van deze functie is
+altijd een natuurlijk getal. Let er bij zo'n beschrijving op dat elke mogelijke
+invoer in precies één geval valt. Soms moet je bewijzen dat elke mogelijke
+invoer in een van de gevallen valt en nooit in twee gevallen tegelijk.
+\end{ex}
+\end{document}

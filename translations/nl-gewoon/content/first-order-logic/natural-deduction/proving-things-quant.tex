@@ -1,0 +1,251 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: proving-things-quant
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{ntd}{prq}
+
+\olsection{\usetoken{P}{derivation} met kwantoren}
+
+\begin{ex}
+Bij kwantoren moeten we erop letten dat we de
+eigenvariabelevoorwaarde niet schenden. Deze voorwaarde bepaalt dat een
+nieuw gekozen symbool niet al op de verboden plaatsen mag voorkomen.
+Soms moeten we daarom de volgorde van bepaalde inferenties aanpassen.
+Het helpt om de regels met deze voorwaarde het eerst te behandelen. In
+het voltooide bewijs staan die regels lager.
+
+We bekijken hoe we !!a{derivation} maken van de !!{formula}
+$\lexists[x][\lnot !A(x)] \lif \lnot \lforall[x][!A(x)]$.
+Zoals altijd beginnen we met:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+Eerst schrijven we op wat we nodig hebben om de laatste stap met de
+regel \Intro{\lif} te verantwoorden.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\DeduceC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+Er is geen duidelijke regel die we meteen op
+$\lnot \lforall[x][!A(x)]$ kunnen toepassen. Daarom zetten we de
+!!{derivation} zo op dat we \Elim{\lexists} kunnen gebruiken. Nu
+moeten we op de eigenvariabelevoorwaarde letten. We kiezen een
+constante die niet voorkomt in $\lexists[x][!A(x)]$ of in een aanname
+waarvan deze formule afhangt. (Er komen hier geen !!{constant}s voor,
+dus elke keuze is goed.)
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\AxiomC{$\Discharge{\lnot !A(a)}{2}$}
+\DeduceC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)] \lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+Om $\lnot \lforall[x][!A(x)]$ af te leiden, proberen we
+\Intro{\lnot}. Daarvoor moeten we een tegenspraak afleiden. We mogen
+$\lforall[x][!A(x)]$ daarbij als extra aanname gebruiken. De
+tegenspraak mag ook afhangen van de aanname $\lnot !A(a)$. De
+\Elim{\lexists}-inferentie zal die aanname later opheffen. We zetten
+de afleiding zo op:
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\AxiomC{$\Discharge{\lnot !A(a)}{2}, \Discharge{\lforall[x][!A(x)]}{3}$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{3}
+\UnaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+We zijn bijna bij een tegenspraak. De gemakkelijkste regel is
+\Elim{\lforall}; daarvoor geldt geen eigenvariabelevoorwaarde. We
+mogen de universeel gekwantificeerde~$x$ door elke term vervangen.
+Daarom gebruiken we opnieuw~$a$, zodat we een tegenspraak krijgen.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\AxiomC{$\Discharge{\lnot !A(a)}{2}$}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{3}$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!A(a)$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{3}
+\UnaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+
+Vooral bij kwantoren moeten we nu nog eens controleren of de
+eigenvariabelevoorwaarde nergens is geschonden. De enige toegepaste
+regel met die voorwaarde was \Elim{\exists}. De eigenvariabele~$a$
+komt niet voor in een aanname waarvan de betreffende formule afhangt.
+Dit is dus een correcte !!{derivation}.
+\end{ex}
+
+\begin{ex}
+Soms leiden we !!a{formula} af uit andere !!{formula}s. Dan kunnen er
+aannamen overblijven die niet zijn opgeheven. We moeten zowel die
+aannamen als het einddoel blijven bijhouden.
+
+We bekijken hoe we !!a{derivation} maken van de !!{formula}
+$\lexists[x][!C(x,b)]$ uit de aannamen $\lexists[x][(!A(x) 
+\land !B(x))]$ en $\lforall[x][(!B(x) \lif !C(x,b))]$.
+Zoals altijd schrijven we de conclusie onderaan.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+
+We hebben twee uitgangsformules. Om de eerste te gebruiken, zoeken we
+!!a{derivation} van $\lexists[x][!C(x, b)]$ uit
+$\lexists[x][(!A(x) \land !B(x))]$. Daarvoor gebruiken we
+\Elim{\lexists}. Bij die regel hoort een eigenvariabelevoorwaarde, dus
+we passen hem als eerste toe. Dat geeft:
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
+\AxiomC{$\Discharge{!A(a) \land !B(a)}{1}$}
+\DeduceC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+In beide aannamen komt~$!B$ voor. Daarom is het nuttig nu
+\Elim{\land} toe te passen en~$!B(a)$ apart te verkrijgen.
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x)])$}
+\AxiomC{$\Discharge{!A(a) 
+\land !B(a)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B(a)$}
+\DeduceC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+
+De tweede aanname is~$\lforall[x][(!B(x) \lif !C(x,b))]$. Hier geldt
+geen eigenvariabelevoorwaarde. Met \Elim{\lforall} mogen we dus voor
+$x$ de !!{constant}~$a$ invullen. Zo krijgen we
+$!B(a) \lif !C(a, b)$. We hebben nu zowel $!B(a) \lif !C(a,b)$ als
+$!B(a)$. De volgende stap is eenvoudig: pas \Elim{\lif} toe.
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
+\AxiomC{$\lforall[x][(!B(x) \lif !C(x,b))]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(a) \lif !C(a,b)$}
+\AxiomC{$\Discharge{!A(a) 
+\land !B(a)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B(a)$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C(a,b)$}
+\DeduceC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\insertBetweenHyps{\hspace{-5em}}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+We zijn er bijna!{} Nog één toepassing van \Intro{\lexists} en we
+hebben ons doel bereikt.
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
+\AxiomC{$\lforall[x][(!B(x) \lif !C(x,b))]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(a) \lif !C(a,b)$}
+\AxiomC{$\Discharge{!A(a) 
+\land !B(a)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B(a)$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C(a,b)$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\insertBetweenHyps{\hspace{-5em}}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+Bij elke stap hebben we gecontroleerd dat de
+eigenvariabelevoorwaarden niet werden geschonden. Daarom weten we dat
+dit een correcte !!{derivation} is.
+\end{ex}
+
+\begin{ex}
+Geef !!a{derivation} van de !!{formula}
+$\lnot\lforall[x][!A(x)]$ uit de aannamen $\lforall[x][!A(x)] 
+\lif \lexists[y][!B(y)]$ en $\lnot\lexists[y][!B(y)]$.
+Zoals altijd schrijven we de beoogde !!{formula} onderaan.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+De laatste regel van de !!{derivation} is een ontkenning. Daarom
+proberen we \Intro{\lnot}. We moeten dan uitzoeken hoe we een
+tegenspraak kunnen !!{derive}.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+Tot zover gaat het goed. We kunnen \Elim{\lforall} gebruiken, maar het
+is niet duidelijk of dat ons dichter bij het doel brengt. Daarom
+gebruiken we een van de aannamen.
+$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$ maakt samen met
+$\lforall[x][!A(x)]$ een toepassing van \Elim{\lif} mogelijk.
+\begin{prooftree}
+\AxiomC{$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$\lexists[y][!B(y)]$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+Er blijft nog één aanname over. Daarmee bereiken we via
+\Elim{\lnot} een tegenspraak.
+\begin{prooftree}
+\AxiomC{$\lnot\lexists[y][!B(y)]$}
+\AxiomC{$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$\lexists[y][!B(y)]$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+\end{ex}
+
+\begin{prob}
+Geef !!{derivation}s die het volgende laten zien:
+\begin{enumerate}
+\item $\Proves (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) \lif
+\lforall[z][(!A(z) \land !B(z))]$.
+\item $\Proves (\lexists[x][!A(x)] \lor \lexists[y][!B(y)]) \lif
+\lexists[z][(!A(z) \lor !B(z))]$.
+\item $\lforall[x][(!A(x) \lif !B)] \Proves \lexists[y][!A(y)] \lif !B$.
+\item $\lforall[x][\lnot !A(x)] \Proves \lnot\lexists[x][!A(x)]$.
+\item $\Proves \lnot\lexists[x][!A(x)] \lif \lforall[x][\lnot !A(x)]$.
+\item $\Proves \lnot\lexists[x][\lforall[y][((!A(x,y) \lif \lnot
+!A(y,y)) \land (\lnot !A(y,y) \lif !A(x,y)))]]$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Geef !!{derivation}s die het volgende laten zien:
+\begin{enumerate}
+\item $\Proves \lnot\lforall[x][!A(x)] \lif \lexists[x][\lnot!A(x)]$.
+\item $(\lforall[x][!A(x)] \lif !B) \Proves \lexists[y][(!A(y) \lif !B)]$.
+\item $\Proves \lexists[x][(!A(x) \lif \lforall[y][!A(y)])]$.
+\end{enumerate}
+(Hiervoor is steeds de regel $\FalseCl$ nodig.)
+\end{prob}
+\end{document}

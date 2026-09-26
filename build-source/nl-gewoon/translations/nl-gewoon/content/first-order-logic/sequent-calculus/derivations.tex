@@ -1,0 +1,122 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: derivations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{seq}{der}}
+      {\olfileid{pl}{seq}{der}}
+
+\olsection{\usetoken{P}{derivation}}
+
+\begin{explain}
+We weten nu hoe een beginsequent eruitziet en welke afleidingsregels er
+zijn. Vanuit die onderdelen bouwen we de !!^{derivation}s in de
+sequentenrekening stap voor stap op. Dat heet inductief opbouwen. Een
+!!{derivation} bestaat óf alleen uit een beginsequent, óf uit één of
+twee !!{derivation}s met daarna één afleidingsstap.
+\end{explain}
+
+\begin{defn}[$\Log{LK}$ !!{derivation}]
+Een \emph{$\Log{LK}$-!!{derivation}} van een sequent~$S$ is een boom
+met eindig veel sequenten. Die boom moet aan de volgende voorwaarden
+voldoen:
+\begin{enumerate}
+\item Bovenaan in de boom staan beginsequenten.
+\item De onderste sequent van de boom is~$S$.
+\item Elke sequent in de boom behalve $S$ is een uitgangspunt voor een
+  correct toegepaste afleidingsregel. De conclusie van die regel staat
+  direct onder die sequent in de boom.
+\end{enumerate}
+We noemen $S$ dan de \emph{eindsequent} van de !!{derivation}. Ook
+zeggen we dat $S$ \emph{!!{derivable} is in $\Log{LK}$} (of
+$\Log{LK}$-!!{derivable}).
+\end{defn}
+
+\begin{ex}
+Elke beginsequent is zelf al !!a{derivation}. Dat geldt bijvoorbeeld
+voor $!C \Sequent !C$. We krijgen daaruit een nieuwe !!{derivation} als
+we bijvoorbeeld de regel $\LeftR{\Weakening}$ toepassen:
+\begin{prooftree}
+\Axiom$ \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !A, \Gamma \fCenter \Delta$
+\end{prooftree}
+Deze regel is algemeen: voor $!A$ mogen we elke !!{sentence} invullen,
+dus ook~$!D$. We willen de premisse laten samenvallen met onze
+beginsequent $!C \Sequent !C$. Daarom vullen we voor zowel $\Gamma$ als
+$\Delta$ precies~$!C$ in. De conclusie wordt dan $!D, !C \Sequent !C$.
+Het volgende is dus !!a{derivation}:
+\begin{prooftree}
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\end{prooftree}
+Nu kunnen we nog een regel toepassen. Met $\LeftR{\Exchange}$ mogen we
+twee !!{sentence}s aan de linkerkant van plaats laten wisselen. Het
+volgende is dus ook een correcte !!{derivation}:
+\begin{prooftree}
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !C, !D \fCenter !C$
+\end{prooftree}
+De gebruikte regel heeft de volgende algemene vorm:
+\begin{prooftree}
+\Axiom$ \Gamma, !A, !B, \Pi \fCenter \Delta $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ \Gamma, !B, !A, \Pi \fCenter \Delta,$
+\end{prooftree}
+In onze toepassing zijn $\Gamma$ en $\Pi$ allebei leeg en is $\Delta$
+gelijk aan $!C$. Voor $!A$ en $!B$ vullen we respectievelijk $!D$ en
+$!C$ in. Vrijwel op dezelfde manier zien we dat
+\begin{prooftree}
+\Axiom$ !D \fCenter !D $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !C, !D \fCenter !D$
+\end{prooftree}
+!!a{derivation} is. We kunnen deze twee !!{derivation}s nu combineren
+met $\RightR{\land}$. Die regel heeft de vorm
+\begin{prooftree}
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$ \Gamma \fCenter \Delta, !B$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ \Gamma \fCenter \Delta, !A \land !B $
+\end{prooftree}
+De premissen van deze regel moeten precies gelijk zijn aan de laatste
+sequenten van de twee !!{derivation}s. Daarom is $\Gamma$ hier $!C,
+!D$, is $\Delta$ leeg, is $!A$ gelijk aan $!C$ en is $!B$ gelijk aan
+$!D$. Alleen dan klopt de afleidingsstap. De conclusie is dus $!C, !D
+\Sequent !C \land !D$.
+\begin{prooftree}
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !C, !D \fCenter !C$
+\Axiom$ !D \fCenter !D $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !C, !D \fCenter !D$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ !C, !D \fCenter !C \land !D $
+\end{prooftree}
+We kunnen de twee premissen ook omdraaien. Dan is $!A$ gelijk aan $!D$
+en $!B$ aan~$!C$.
+\begin{prooftree}
+\Axiom$ !D \fCenter !D $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !C, !D \fCenter !D$
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !C, !D \fCenter !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ !C, !D \fCenter !D \land !C $
+\end{prooftree}
+\end{ex}
+\end{document}

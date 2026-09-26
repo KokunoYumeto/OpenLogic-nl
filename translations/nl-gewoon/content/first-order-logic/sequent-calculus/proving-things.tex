@@ -1,0 +1,343 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: proving-things
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{seq}{pro}}
+      {\olfileid{pl}{seq}{pro}}
+
+\olsection{Voorbeelden: zo bouw je \usetoken{P}{derivation}}
+
+\begin{ex}
+Maak een $\Log{LK}$-!!{derivation} van de sequent $!A \land !B \Sequent !A$.
+
+We zetten eerst de gewenste eindsequent onderaan de !!{derivation}.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$!A\land !B \fCenter !A$
+\end{prooftree}
+Nu moeten we uitzoeken welke afleidingsstap deze onderste sequent kan
+hebben opgeleverd. Dat kan een structurele regel zijn. Toch is het
+handig om eerst naar een logische regel te kijken. In de onderste
+sequent komt maar één logisch connectief voor: $\land$. We hebben dus
+een $\land$-regel nodig. Het $\land$-teken staat in het antecedent,
+oftewel aan de linkerkant van de sequent. Daarom nemen we de regel
+\LeftR{\land}.
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A\land !B \fCenter !A$
+\end{prooftree}
+Boven deze toepassing van \LeftR{\land} kan een van twee sequenten
+staan: $!A \Sequent !A$ of $!B \Sequent !A$. De eerste sequent, $!A
+\Sequent !A$, is een beginsequent; dat is precies wat we zoeken. De
+tweede, $!B \Sequent !A$, is in het algemeen niet afleidbaar. We vullen
+daarom de eerste sequent in:
+\begin{prooftree}
+\Axiom$!A \fCenter !A$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A\land !B \fCenter !A$
+\end{prooftree}
+Daarmee hebben we een correcte $\Log{LK}$-!!{derivation} van de
+sequent $!A \land !B \Sequent !A$.
+\end{ex}
+
+\begin{ex}
+Maak een $\Log{LK}$-!!{derivation} van de sequent $\lnot !A \lor !B
+\Sequent !A \lif !B$.
+
+Begin weer onderaan de !!{derivation} en schrijf daar de gewenste
+eindsequent.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lnot !A \lor !B \fCenter !A \lif !B$
+\end{prooftree}
+Om te zien welke logische regel als laatste kan zijn gebruikt,
+bekijken we de logische tekens in de eindsequent: $\lnot$, $\lor$ en
+$\lif$. Op dit moment tellen alleen $\lor$ en $\lif$. Dat zijn de
+!!{main operator}s van !!{sentence}s in de eindsequent. Het
+$\lnot$-teken staat binnen het bereik van een ander connectief; dat
+handelen we later af. Voor de laatste stap kunnen we dus \LeftR{\lor}
+of \RightR{\lif} kiezen. Allebei kan. We nemen \RightR{\lif}, want dan
+hoeven we de afleiding nog niet meteen in twee takken te splitsen. Om
+de gegeven onderste sequent met \RightR{\lif} te krijgen, moet de
+afleiding er zo uitzien:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}} \UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+
+We kunnen de regel \LeftR{\lor} toepassen zodra $\lnot !A \lor !B$
+helemaal links in het antecedent staat. Volgens het regelschema splitst
+de afleiding dan in de volgende twee bovenste sequenten:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lnot !A, !A \fCenter !B$
+\AxiomC{}
+\UnaryInf$!B, !A \fCenter !B$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$ \lnot !A \lor !B, !A \fCenter !B $
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+We werken van onder naar boven en willen bij beginsequenten uitkomen.
+De rechtertak is al bijna klaar: na één verzwakking en één verwisseling
+staat er bovenaan een beginsequent.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lnot !A, !A \fCenter !B$
+\Axiom$!B \fCenter !B$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!A, !B \fCenter !B$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!B, !A \fCenter !B$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor !B, !A \fCenter !B $
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+
+Kijk nu naar de linkertak. Het enige logische connectief in
+!!{sentence} is daar $\lnot$. De !!{sentence}s met dat teken staan in
+het antecedent. Daarom gebruiken we de regel \LeftR{\lnot}.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ !A \fCenter !B, !A$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A, !A \fCenter !B$
+\Axiom$!B \fCenter !B$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!A, !B \fCenter !B$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!B, !A \fCenter !B$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor !B, !A \fCenter !B $
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+Ook de linkertak is dan bijna klaar. Net als rechts zijn nog één
+verzwakking en één verwisseling nodig om op een beginsequent uit te
+komen.
+\begin{prooftree}
+\Axiom$!A \fCenter !A$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$ !A \fCenter !A, !B$
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ !A \fCenter !B, !A$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A, !A \fCenter !B$
+\Axiom$!B \fCenter !B$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!A, !B \fCenter !B$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!B, !A \fCenter !B$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor !B, !A \fCenter !B $
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+\end{ex}
+
+\begin{ex}
+Maak een $\Log{LK}$-!!{derivation} van de sequent $\lnot !A \lor \lnot !B
+\Sequent \lnot (!A \land !B)$.
+
+We gebruiken dezelfde aanpak als hierboven en schrijven eerst de
+gewenste eindsequent onderaan.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B) $
+\end{prooftree}
+De hoofdconnectieven van de !!{sentence}s in de eindsequent zijn
+$\lor$ en $\lnot$. We kunnen hier met \LeftR{\lor} of met
+\RightR{\lnot} beginnen. We nemen \RightR{\lnot}; dan hoeven we de
+afleiding nog even niet in twee takken te splitsen.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+Nu kunnen we verder met \LeftR{\land} of met \LeftR{\lor}. We proberen
+eerst \LeftR{\land}. Daarboven kan dan $!A, \lnot !A \lor !B \Sequent
+\quad$ of $!B, \lnot !A \lor !B \Sequent \quad$ staan. De
+!!{derivation} werkt voor $!A$ en $!B$ op dezelfde manier, dus kiezen
+we de eerste sequent:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$!A, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+Als we de !!{derivation} verder invullen, zien we het probleem:
+\begin{prooftree}
+\Axiom$!A \fCenter !A$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$ \lnot !A, !A \fCenter$
+\AxiomC{}
+\RightLabel{?}
+\UnaryInf$!A \fCenter !B$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$ \lnot !B, !A \fCenter$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor \lnot !B, !A \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!A, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+De sequent bovenaan de rechtertak kan niet verder worden aangepakt.
+Ook met structurele regels kunnen we er geen beginsequent van maken.
+Dit pad loopt dus dood. De keuze voor \LeftR{\land} was verkeerd. We
+gaan terug naar de vorige tussenstand en gebruiken daar \LeftR{\lor}
+in plaats van die regel. Dan krijgen we
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lnot !A, !A \land !B \fCenter $
+
+\AxiomC{}
+\UnaryInf$\lnot !B, !A \land !B \fCenter $
+
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor \lnot !B, !A \land !B \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+We maken beide takken af zoals we eerder hebben gedaan. Het resultaat
+is
+\begin{prooftree}
+\Axiom$ !A \fCenter!A$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A \land !B \fCenter !A$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A, !A \land !B \fCenter $
+
+\Axiom$ !B \fCenter !B$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A \land !B \fCenter !B$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !B, !A \land !B \fCenter $
+
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor \lnot !B, !A \land !B \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+(We hadden bij deze stappen de $\land$-regels ook lager dan de
+$\lnot$-regels kunnen zetten. Ook dan hadden we een correcte
+!!{derivation} gekregen.)
+\end{ex}
+
+\begin{ex}
+Tot nu toe hebben we de contractieregel niet gebruikt, maar soms
+hebben we hem wel nodig. Stel dat we $\quad \Sequent !A \lor \lnot !A$
+willen bewijzen. Als we $\RightR{\lor}$ van onder naar boven toepassen,
+krijgen we een van deze twee !!{derivation}s:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \fCenter !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \fCenter !A \lor \lnot !A$
+\DisplayProof\qquad\bottomAlignProof
+\AxiomC{}
+\UnaryInf$!A \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \fCenter \lnot !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \fCenter !A \lor \lnot !A$
+\end{prooftree}
+Geen van beide komt bovenaan uit op een beginsequent. De oplossing is
+om de contractieregel van onder naar boven te lezen. Van boven naar
+beneden voegt die regel twee voorkomens van !!a{sentence} samen tot één
+voorkomen. Als we van onder naar boven een bewijs zoeken, mogen we dus
+in de premisse een extra voorkomen van $!A \lor \lnot !A$ laten staan.
+Dat kan bijvoorbeeld zo:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \fCenter !A \lor \lnot !A, !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \fCenter !A \lor \lnot !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\Contraction}}
+\UnaryInf$ \fCenter !A \lor \lnot !A$
+\end{prooftree}
+Nu kunnen we $\RightR{\lor}$ nog een keer toepassen en ook $\lnot !A$
+krijgen. Daarmee wordt de !!{derivation} volledig.
+\begin{prooftree}
+\Axiom$!A \fCenter !A$
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\fCenter !A, \lnot !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$\fCenter !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ \fCenter !A \lor \lnot !A, !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \fCenter !A \lor \lnot !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\Contraction}}
+\UnaryInf$ \fCenter !A \lor \lnot !A$
+\end{prooftree}
+\end{ex}
+
+\begin{prob}
+Maak !!{derivation}s van de volgende sequenten:
+\begin{enumerate}
+\item $!A \land (!B \land !C) \Sequent (!A \land !B) \land !C$.
+\item $!A \lor (!B \lor !C) \Sequent (!A \lor !B) \lor !C$.
+\item $!A \lif (!B \lif !C) \Sequent !B \lif (!A \lif !C)$.
+\item $!A \Sequent \lnot\lnot !A$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Maak !!{derivation}s van de volgende sequenten:
+\begin{enumerate}
+\item $(!A \lor !B) \lif !C \Sequent !A \lif !C$.
+\item $(!A \lif !C) \land (!B \lif !C) \Sequent (!A \lor !B) \lif !C$.
+\item $\Sequent \lnot(!A \land \lnot !A)$.
+\item $!B \lif !A \Sequent \lnot !A \lif \lnot !B$.
+\item $\Sequent (!A \lif \lnot !A) \lif \lnot !A$.
+\item $\Sequent \lnot(!A \lif !B) \lif \lnot !B$.
+\item $!A \lif !C \Sequent \lnot (!A \land \lnot !C)$.
+\item $!A \land \lnot !C \Sequent \lnot (!A \lif !C)$.
+\item $!A \lor !B, \lnot !B \Sequent !A$.
+\item $\lnot !A \lor \lnot !B \Sequent \lnot(!A \land !B)$.
+\item $\Sequent (\lnot !A \land \lnot !B) \lif\lnot(!A \lor !B)$.
+\item $\Sequent \lnot(!A \lor !B) \lif (\lnot !A \land \lnot !B)$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Maak !!{derivation}s van de volgende sequenten:
+\begin{enumerate}
+\item $\lnot(!A \lif !B) \Sequent !A$.
+\item $\lnot(!A \land !B) \Sequent \lnot !A \lor \lnot !B$.
+\item $!A \lif !B \Sequent \lnot !A \lor !B$.
+\item $\Sequent \lnot \lnot !A \lif !A$.
+\item $!A \lif !B, \lnot !A \lif !B \Sequent !B$.
+\item $(!A \land !B) \lif !C \Sequent (!A \lif !C) \lor (!B \lif !C)$.
+\item $(!A \lif !B) \lif !A \Sequent !A$.
+\item $\Sequent (!A \lif !B) \lor (!B \lif !C)$.
+\end{enumerate}
+(Voor al deze opgaven is de regel $\RightR{\Contraction}$ nodig.)
+\end{prob}
+\end{document}

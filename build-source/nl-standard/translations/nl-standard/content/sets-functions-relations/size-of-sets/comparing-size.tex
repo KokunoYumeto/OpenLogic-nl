@@ -1,0 +1,153 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: comparing-sizes
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{car}
+
+\olsection{Verzamelingen van verschillende grootte en de stelling van Cantor}
+
+\begin{explain}
+We hebben precies vastgelegd wat het betekent dat twee verzamelingen
+even groot zijn. We kunnen ook precies vastleggen wat het betekent dat de
+ene verzameling kleiner is dan de andere. Voor onze definitie van ``kleiner
+dan (of gelijkmachtig met)'' is, in plaats van !!a{bijection} tussen de
+verzamelingen, !!a{injection} van de eerste verzameling naar de tweede nodig.
+Als zo'n functie bestaat, is de grootte van de eerste verzameling kleiner
+dan of gelijk aan die van de tweede. Intuïtief garandeert !!a{injection} van
+de ene verzameling naar de andere dat het beeld van de functie minstens
+evenveel !!{element}s bevat als het domein, omdat geen twee !!{element}s van
+het domein op hetzelfde !!{element} van het beeld worden afgebeeld.
+\end{explain}
+
+\begin{defn}
+$A$ is \emph{niet groter dan}~$B$, geschreven als $\cardle{A}{B}$, precies
+dan wanneer er !!a{injection} $f \colon A \to B$ bestaat.
+\end{defn}
+
+Deze relatie is duidelijk reflexief en transitief, maar niet symmetrisch
+(dit laten we als opgave). We kunnen ook een begrip invoeren waarmee we
+uitdrukken dat de ene verzameling (strikt) kleiner is dan de andere. 
+
+\begin{defn}
+$A$ is \emph{kleiner dan}~$B$, geschreven als $\cardless{A}{B}$, precies dan
+wanneer er !!a{injection}~$f\colon A \to B$ bestaat, maar geen
+!!{bijection}~$g\colon A \to B$, oftewel $\cardle{A}{B}$ en
+$\cardneq{A}{B}$.
+\end{defn}
+
+Ook deze relatie is duidelijk irreflexief en transitief. (Dit laten we als
+opgave.) Met deze notatie kunnen we zeggen dat een verzameling $A$
+!!{enumerable} is precies dan wanneer $\cardle{A}{\Nat}$, en dat $A$
+!!{nonenumerable} is precies dan wanneer $\cardless{\Nat}{A}$. Hiermee
+kunnen we
+\oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{%
+\olref[sfr][siz][nen-alt]{thm:nonenum-pownat}
+opnieuw formuleren als de vaststelling dat
+$\cardless{\Nat}{\Pow{\Nat}}$}{%
+\olref[sfr][siz][nen]{thm:nonenum-pownat}
+opnieuw formuleren als de vaststelling dat
+$\cardless{\PosInt}{\Pow{\PosInt}}$}. Sterker nog, \citet{Cantor1892}
+bewees dat deze laatste uitspraak \emph{volkomen algemeen} geldt:
+
+\begin{thm}[Cantor]\ollabel{thm:cantor}
+$\cardless{A}{\Pow{A}}$, voor elke verzameling $A$.
+\end{thm}
+
+\begin{proof}
+De afbeelding $f(x) = \{x\}$ is !!a{injection} $f \colon A \to \Pow{A}$,
+want als $x \neq y$, dan geldt wegens extensionaliteit ook
+$\{x\} \neq \{y\}$, en dus $f(x) \neq f(y)$. Bijgevolg geldt
+$\cardle{A}{\Pow{A}}$. 
+
+\begin{editorial}
+We geven het uitvoerige bewijs als \olref[nen]{sec} aanwezig is, en anders
+het kortere bewijs dat aansluit bij \olref[nen-alt]{sec}.
+\end{editorial}
+
+\oliflabeldef{sfr:siz:nen:sec}{% 
+  We tonen nu aan dat er geen surjectieve functie~$g\colon A \to
+  \Pow{A}$ kan bestaan, laat staan een bijectieve functie, en dus dat
+  $\cardneq{A}{\Pow{A}}$. Stel namelijk dat $g\colon A \to \Pow{A}$.
+  Omdat $g$ totaal is, wordt elke $x \in A$ afgebeeld op een deelverzameling
+  $g(x) \subseteq A$. We kunnen aantonen dat $g$ niet surjectief kan zijn.
+  Daartoe definiëren we een deelverzameling~$\overline{A} \subseteq A$ die
+  volgens haar definitie niet tot het beeld van~$g$ kan behoren. Stel
+  \[
+  \overline{A} = \Setabs{x \in A}{x \notin g(x)}.
+  \]
+  Omdat $g(x)$ voor elke $x \in A$ gedefinieerd is, is $\overline{A}$
+  duidelijk een welgedefinieerde deelverzameling van~$A$. Toch kan zij niet
+  tot het beeld van~$g$ behoren. Neem een willekeurige $x \in A$; we zullen
+  aantonen dat $\overline{A} \neq g(x)$. Als $x \in g(x)$, dan geldt
+  $x \notin g(x)$ niet, en dus volgt uit de definitie van~$\overline{A}$
+  dat $x \notin \overline{A}$. Als $x \notin g(x)$, dan wordt, omdat
+  $x \in A$, voldaan aan de definiërende eigenschap van~$\overline{A}$,
+  en dus geldt $x \in \overline{A}$. Uit beide gevallen volgt voor de
+  verzameling~$\overline{A}$ en elke $x \in A$ dat $x \in g(x)$ precies dan wanneer
+  $x \notin \overline{A}$, en dus $g(x) \neq \overline{A}$. Met andere
+  woorden, $\overline{A}$ kan niet tot het beeld van~$g$ behoren, in
+  tegenspraak met de aanname dat~$g$ surjectief is.}{Rest nog aan te tonen
+  dat $\cardneq{A}{\Pow{A}}$. Neem voor een bewijs uit het ongerijmde aan dat
+  $\cardeq{A}{\Pow{A}}$, oftewel dat er een !!{bijection}
+  $g \colon A \to \Pow{A}$ bestaat. Beschouw nu:
+  \[
+    D = \Setabs{x \in A}{x \notin g(x)}
+  \]
+  Merk op dat $D \subseteq A$, zodat $D \in \Pow{A}$. Omdat $g$
+  !!a{bijection} is, bestaat er een $y \in A$ waarvoor $g(y) = D$. Maar nu
+  geldt:
+  \[
+    y \in g(y) \text{ precies dan wanneer } y \in D
+      \text{ precies dan wanneer } y \notin g(y).
+  \]
+  Dit is een tegenspraak; dus $\cardneq{A}{\Pow{A}}$.}{}
+\end{proof}
+
+\begin{explain}
+\oliflabeldef{sfr:siz:nen:thm:nonenum-pownat}{Het is verhelderend om het
+  bewijs van \olref{thm:cantor} te vergelijken met dat van
+  \olref[nen]{thm:nonenum-pownat}. Daar hebben we aangetoond dat men bij elke
+  lijst $Z_1$, $Z_2$, \dots, van deelverzamelingen van~$\PosInt$ een
+  verzameling~$\overline{Z}$ van getallen kan construeren die gegarandeerd
+  niet op de lijst voorkomt. Zij komt gegarandeerd niet op de lijst voor,
+  omdat voor elke $n \in \PosInt$ geldt dat $n \in Z_n$ precies dan wanneer
+  $n \notin \overline{Z}$. Er is zo steeds een getal dat !!a{element} is van
+  een van $Z_n$ en $\overline{Z}$, maar geen !!{element} van de andere. Hier
+  volgen we hetzelfde idee, met dit verschil dat de indices~$n$ nu
+  !!{element}s van~$A$ zijn in plaats van~$\PosInt$. De verzameling
+  $\overline{A}$ is zo gedefinieerd dat zij van~$g(x)$ verschilt voor elke
+  $x \in A$, omdat $x \in g(x)$ precies dan wanneer $x \notin
+  \overline{A}$. Ook nu is er steeds !!a{element} van~$A$ dat !!a{element}
+  is van een van $g(x)$ en $\overline{A}$, maar niet van de andere. En zoals
+  $\overline{Z}$ daarom niet op de lijst $Z_1$, $Z_2$, \dots, kan voorkomen,
+  zo kan $\overline{A}$ niet tot het beeld van~$g$ behoren.}{}
+
+\oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{Het is verhelderend om het
+  bewijs van \olref{thm:cantor} te vergelijken met dat van
+  \olref[nen-alt]{thm:nonenum-pownat}. Daar hebben we aangetoond dat we bij
+  elke lijst $N_0$, $N_1$, $N_2$, \dots, van deelverzamelingen van~$\Nat$
+  een verzameling~$D$ van getallen kunnen construeren die gegarandeerd niet
+  op de lijst voorkomt. Zij komt gegarandeerd niet op de lijst voor omdat
+  $n \in N_n$ precies dan wanneer $n \notin D$, voor elke $n \in \Nat$. Hier
+  volgen we hetzelfde idee, met dit verschil dat de indices~$n$ nu
+  !!{element}s van~$A$ zijn in plaats van~$\Nat$. De verzameling $D$ is zo
+  gedefinieerd dat zij van~$g(x)$ verschilt voor elke $x \in A$, omdat
+  $x \in g(x)$ precies dan wanneer $x \notin D$.}{}
+
+Dit bewijs kan ook goed worden vergeleken met het bewijs van de paradox van
+Russell, \olref[sfr][set][rus]{thm:russells-paradox}. De stelling van Cantor
+vormde namelijk de inspiratie voor Russells eigen paradox.
+\end{explain}
+
+\begin{prob}
+  Toon aan dat er geen !!a{injection} $g\colon \Pow{A} \to A$ kan bestaan,
+  ongeacht de verzameling~$A$. Aanwijzing: stel dat
+  $g\colon \Pow{A} \to A$ !!{injective} is. Beschouw
+  $D = \Setabs{g(B)}{B \subseteq A \text{ en } g(B) \notin B}$. Stel
+  $x = g(D)$. Leid een tegenspraak af uit het feit dat $g$ !!{injective} is. 
+\end{prob}
+\end{document}

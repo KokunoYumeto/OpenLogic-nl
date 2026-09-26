@@ -1,0 +1,76 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: operations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{rel}{ops}
+\olsection{Wat je met relaties kunt doen}
+
+Soms willen we relaties veranderen of met elkaar combineren. In
+\olref[sfr][rel][ord]{prop:stricttopartial} hebben we relaties \emph{verenigd}.
+Daarvoor bekijken we twee relaties als verzamelingen van paren en voegen we die
+verzamelingen samen. In \olref[sfr][rel][ord]{prop:partialtostrict} hebben we
+op dezelfde manier het relatieve verschil van relaties bekeken. Nu volgen
+enkele andere dingen die we met relaties kunnen doen.
+
+\begin{defn}\ollabel{relationoperations} 
+Neem twee relaties $R$ en $S$, en een willekeurige verzameling $A$.
+
+De \emph{inverse relatie} van $R$ is $R^{-1} = \Setabs{\tuple{y, x}}{\tuple{x,
+    y} \in R}$. Daarin is elk paar omgedraaid.
+
+De \emph{samenstelling} van $R$ en $S$ is $(R \mid S) =
+\{\tuple{x, z} : \exists y(Rxy \land Syz)\}$. Je gaat dus eerst via de
+eerste relatie naar een element in het midden en daarna via de tweede relatie
+naar het laatste element.
+
+De \emph{restrictie} van $R$ tot $A$ is $\funrestrictionto{R}{A}= R
+\cap A^2$. Je houdt daarmee alleen de paren uit die relatie over waarvan
+beide delen in de opgegeven verzameling liggen.
+
+Het door $R$ bepaalde \emph{beeld} van $A$ is $\funimage{R}{A} = \{y :
+(\exists x \in A)Rxy\}$. Dit is de verzameling van alle tweede elementen die
+via de relatie bij minstens één element uit de opgegeven verzameling horen.
+\end{defn}
+
+\begin{ex}
+Neem de opvolgerrelatie $S \subseteq \Int^2$ op~$\Int$. Dat wil zeggen:
+$S = \Setabs{\tuple{x, y} \in \Int^2}{x + 1 = y}$. Dus $Sxy$ geldt precies
+als $x + 1 = y$.
+
+$S^{-1}$ is de voorgangerrelatie op $\Int$, dus
+$\Setabs{\tuple{x,y}\in\Int^2}{x -1 =y}$.
+
+$S\mid S$ is
+$ \Setabs{\tuple{x,y}\in\Int^2}{x + 2 =y}$
+
+$\funrestrictionto{S}{\Nat}$ is de opvolgerrelatie op~$\Nat$.
+
+$\funimage{S}{\{1,2,3\}}$ is $\{2, 3, 4\}$.
+\end{ex}
+
+\begin{defn}[Transitieve afsluiting]Neem een binaire relatie $R \subseteq A^2$.
+	
+De \emph{transitieve afsluiting} van~$R$ is $R^+ = \bigcup_{0 < n \in
+\Nat} R^n$. De machten bouwen we stap voor stap op: $R^1 = R$ en
+$R^{n+1} = R^n \mid R$.
+
+De \emph{reflexief-transitieve afsluiting} van $R$ is $R^* = R^+ \cup
+\Id{A}$. Daarmee voeg je ook alle paren toe van elementen uit de opgegeven
+verzameling waarin het eerste en het tweede element hetzelfde zijn.
+\end{defn}
+
+\begin{ex}
+Neem de opvolgerrelatie $S \subseteq \Int^2$. $S^2xy$ geldt precies als
+$x + 2 = y$, $S^3xy$ precies als $x + 3 = y$, enzovoort. $S^+xy$ geldt dus
+precies als $x + n = y$ voor een bepaalde $n \geq 1$. Of korter: $S^+xy$
+geldt precies als $x < y$, en $S^*xy$ precies als $x \le y$.
+\end{ex}
+
+\begin{prob}
+Laat zien dat de transitieve afsluiting van $R$ inderdaad transitief is.
+\end{prob}
+\end{document}

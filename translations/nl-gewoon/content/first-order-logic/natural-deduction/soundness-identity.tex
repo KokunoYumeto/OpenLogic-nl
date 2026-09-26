@@ -1,0 +1,53 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: soundness-identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{ntd}{sid}
+
+\olsection{Correctheid met \usetoken{S}{identity}}
+
+\begin{prop}
+Natuurlijke deductie blijft correct als we regels voor $\eq$
+toevoegen.
+\end{prop}
+
+\begin{proof}
+Elke !!{formula} van de vorm $\eq[t][t]$ is geldig. In elke
+!!{structure}~$\Struct M$ geldt namelijk $\Sat{M}{\eq[t][t]}$. We
+nemen aan dat de term $t$ gesloten is, dus geen variabelen bevat.
+Welke objecten we aan variabelen toekennen, maakt daarom geen verschil.
+
+Stel dat de laatste stap in !!a{derivation} \Elim{\eq} is. Dan ziet de
+!!{derivation} er zo uit:
+\begin{prooftree}
+  \AxiomC{$\Gamma_1$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$\eq[t_1][t_2]$}
+  \AxiomC{$\Gamma_2$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A(t_1)$}
+  \RightLabel{\Elim{\eq}}
+  \BinaryInfC{$!A(t_2)$}
+\end{prooftree}
+De uitgangsformules $\eq[t_1][t_2]$ en $!A(t_1)$ zijn !!{derive}d uit
+de !!{undischarged} aannamen~$\Gamma_1$ en $\Gamma_2$, in die
+volgorde.
+We willen laten zien dat $!A(t_2)$ volgt uit $\Gamma_1 \cup
+\Gamma_2$. Neem
+!!a{structure}~$\Struct{M}$ waarvoor $\Sat{M}{\Gamma_1 \cup
+  \Gamma_2}$. De inductiehypothese geeft dan
+$\Sat{M}{!A(t_1)}$ en $\Sat{M}{\eq[t_1][t_2]}$. Dus
+$\Value{t_1}{M} = \Value{t_2}{M}$. Kies een willekeurige toekenning
+$s$ van objecten aan variabelen en stel
+$m = \Value{t_1}{M} = \Value{t_2}{M}$. Volgens
+\olref[fol][syn][ext]{prop:ext-formulas} geldt
+$\Sat{M}{!A(t_1)}[s]$ precies dan als
+$\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$, en dit geldt precies dan als
+$\Sat{M}{!A(t_2)}[s]$. We weten dat $\Sat{M}{!A(t_1)}$. Daarom geldt
+ook $\Sat{M}{!A(t_2)}$.
+\end{proof}
+\end{document}

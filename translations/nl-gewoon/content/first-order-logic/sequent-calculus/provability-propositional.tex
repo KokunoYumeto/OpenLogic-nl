@@ -1,0 +1,142 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: provability-propositional
+
+% verification of properties of provability needed for maximally
+% consistent sets in the completeness chapter.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{seq}{ppr}}
+      {\olfileid{pl}{seq}{ppr}}
+
+\olsection{\usetoken{S}{derivability} en de propositionele connectieven}
+
+\begin{explain}
+  We laten zien dat de !!{derivability}srelatie~$\Proves$ van de
+  sequentenrekening sterk genoeg is om met de propositionele
+  connectieven te werken. Zo gelden $!A \land !B
+  \Proves !A$ en $!A, !A \lif !B \Proves !B$; dat tweede patroon heet
+  modus ponens. We hebben deze feiten later nodig om de
+  volledigheidsstelling te bewijzen.
+\end{explain}
+
+\begin{prop}\ollabel{prop:provability-land}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-land-left} Zowel $!A \land !B
+    \Proves !A$ als $!A \land !B \Proves !B$.
+  \item \ollabel{prop:provability-land-right} $!A, !B \Proves !A \land
+    !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item De sequenten $!A \land !B \Sequent !A$ en $!A \land !B
+    \Sequent !B$ zijn allebei !!{derivable}; dat blijkt uit deze
+    afleidingen:
+    \begin{prooftree}
+      \Axiom$!A \fCenter !A$
+      \RightLabel{\LeftR{\land}}
+      \UnaryInf$!A \land !B \fCenter !A$
+      \DisplayProof\qquad\bottomAlignProof
+      \Axiom$!B \fCenter !B$
+      \RightLabel{\LeftR{\land}}
+      \UnaryInf$!A \land !B \fCenter !B$
+    \end{prooftree}
+    \item Hier staat !!a{derivation} van de sequent $!A, !B \Sequent
+      !A \land !B$:
+    \begin{prooftree}
+      \Axiom$!A \fCenter !A$
+      \Axiom$!B \fCenter !B$
+      \RightLabel{\RightR{\land}}
+      \BinaryInf$!A, !B \fCenter !A \land !B$
+    \end{prooftree}
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lor}
+  \begin{enumerate}
+  \item $!A \lor !B, \lnot !A, \lnot !B$ is inconsistent.
+  \item Zowel $!A \Proves !A \lor !B$ als $!B \Proves !A \lor !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Om het eerste punt te bewijzen, geven we !!a{derivation} van
+    de sequent $!A \lor !B, \lnot !A, \lnot !B \Sequent$:
+    \begin{prooftree}
+      \Axiom$!A \fCenter !A$
+      \RightLabel{\LeftR{\lnot}}
+      \UnaryInf$\lnot !A, !A \fCenter$
+      \doubleLine
+      \UnaryInf$!A, \lnot !A, \lnot !B \fCenter$
+      \Axiom$!B \fCenter !B$
+      \RightLabel{\LeftR{\lnot}}
+      \UnaryInf$\lnot !B, !B \fCenter$
+      \doubleLine
+      \UnaryInf$!B, \lnot !A, \lnot !B \fCenter$
+      \RightLabel{\LeftR{\lor}}
+      \BinaryInf$ !A \lor !B, \lnot !A, \lnot !B \fCenter $
+    \end{prooftree}
+    (Een dubbele afleidingslijn staat voor meerdere stappen met
+    verzwakking, contractie en verwisseling.)
+  \item Het tweede punt volgt uit !!{derivation}s van de twee
+    sequenten $!A \Sequent !A \lor !B$ en $!B \Sequent !A \lor !B$:
+    \begin{prooftree}
+      \Axiom$!A \fCenter !A$
+      \RightLabel{\RightR{\lor}}
+      \UnaryInf$!A \fCenter !A \lor !B$
+      \DisplayProof\qquad\bottomAlignProof
+      \Axiom$!B \fCenter !B$
+      \RightLabel{\RightR{\lor}}
+      \UnaryInf$!B \fCenter !A \lor !B$
+    \end{prooftree}
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lif}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-lif-left}  $!A, !A \lif !B \Proves !B$.
+  \item \ollabel{prop:provability-lif-right}
+    Zowel $\lnot !A \Proves !A \lif !B$ als $!B \Proves !A \lif !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item De sequent $!A \lif !B, !A \Sequent !B$ is !!{derivable};
+      de afleiding staat hieronder:
+      \begin{prooftree}
+        \Axiom$!A \fCenter !A$
+        \Axiom$!B \fCenter !B$
+        \RightLabel{\LeftR{\lif}}
+        \BinaryInf$!A \lif !B, !A  \fCenter !B$
+      \end{prooftree}
+    \item De sequenten $\lnot !A \Sequent !A \lif !B$ en $!B
+      \Sequent !A \lif !B$ zijn beide !!{derivable}. Dit zijn de twee
+      afleidingen:
+      \begin{prooftree}
+        \Axiom$!A \fCenter !A$
+        \RightLabel{\LeftR{\lnot}}
+        \UnaryInf$\lnot !A, !A \fCenter$
+        \RightLabel{\LeftR{\Exchange}}
+        \UnaryInf$!A, \lnot !A \fCenter$
+        \RightLabel{\RightR{\Weakening}}
+        \UnaryInf$!A, \lnot !A \fCenter !B$
+        \RightLabel{\RightR{\lif}}
+        \UnaryInf$\lnot !A \fCenter !A \lif !B$
+        \DisplayProof\qquad\bottomAlignProof
+        \Axiom$!B \fCenter !B$
+        \RightLabel{\LeftR{\Weakening}}
+        \UnaryInf$!A, !B \fCenter !B$
+        \RightLabel{\RightR{\lif}}
+        \UnaryInf$!B \fCenter !A \lif !B$
+      \end{prooftree}
+  \end{enumerate}
+\end{proof}
+\end{document}

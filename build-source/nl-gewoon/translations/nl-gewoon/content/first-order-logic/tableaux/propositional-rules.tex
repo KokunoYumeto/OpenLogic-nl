@@ -1,0 +1,94 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: propositional-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{tab}{prl}}
+      {\olfileid{pl}{tab}{prl}}
+
+\olsection{Regels voor propositionele logische tekens}
+
+\subsection{Regels voor $\lnot$ (niet)}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{\lnot !A}}
+\RightLabel{\TRule{\True}{\lnot}}
+\UnaryInfC{\sFmla{\False}{!A}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{\lnot !A}}
+\RightLabel{\TRule{\False}{\lnot}}
+\UnaryInfC{\sFmla{\True}{!A}}
+\DisplayProof
+\end{defish}
+
+\subsection{Regels voor $\land$ (en)}
+
+\begin{defish}\noindent
+\AxiomC{\sFmla{\True}{!A \land !B}}
+\RightLabel{\TRule{\True}{\land}}
+\UnaryInfC{\sFmla{\True}{!A}}
+\noLine
+\UnaryInfC{\sFmla{\True}{!B}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{!A \land !B}}
+\RightLabel{\TRule{\False}{\land}}
+\UnaryInfC{$\sFmla{\False}{!A} \quad \mid \quad \sFmla{\False}{!B}$}
+\DisplayProof
+\end{defish}
+
+\subsection{Regels voor $\lor$ (of)}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{!A \lor !B}}
+\RightLabel{\TRule{\True}{\lor}}
+\UnaryInfC{$\sFmla{\True}{!A} \quad \mid \quad \sFmla{\True}{!B}$}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{!A \lor !B}}
+\RightLabel{\TRule{\False}{\lor}}
+\UnaryInfC{\sFmla{\False}{!A}}
+\noLine
+\UnaryInfC{\sFmla{\False}{!B}}
+\DisplayProof
+\end{defish}
+
+\subsection{Regels voor $\lif$ (als--dan)}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{!A \lif !B}}
+\RightLabel{\TRule{\True}{\lif}}
+\UnaryInfC{$\sFmla{\False}{!A} \quad \mid \quad \sFmla{\True}{!B}$}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{!A \lif !B}}
+\RightLabel{\TRule{\False}{\lif}}
+\UnaryInfC{\sFmla{\True}{!A}}
+\noLine
+\UnaryInfC{\sFmla{\False}{!B}}
+\DisplayProof
+\end{defish}
+
+\subsection{De snederegel}
+
+\begin{defish}
+\AxiomC{}
+\RightLabel{\Cut}
+\UnaryInfC{$\sFmla{\True}{!A} \quad \mid \quad \sFmla{\False}{!A}$}
+\DisplayProof
+\end{defish}
+
+Je past de regel \Cut{} niet ``op'' een eerdere !!{signed formula} toe.
+De regel splitst in plaats daarvan elke tak van !!a{tableau} in twee
+takken. De ene nieuwe tak bevat $\sFmla{\True}{!A}$, de andere
+$\sFmla{\False}{!A}$. We hebben de regel niet nodig: als een verzameling
+!!{signed formula}s een gesloten !!{tableau} heeft, dan bestaat er ook
+zo'n gesloten tableau zonder \Cut. Met de regel kunnen we !!{tableau}s
+wel gemakkelijk samenvoegen.
+
+\end{document}

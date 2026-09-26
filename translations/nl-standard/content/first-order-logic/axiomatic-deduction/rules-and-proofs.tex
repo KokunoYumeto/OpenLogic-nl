@@ -1,0 +1,97 @@
+% Part: first-order-logic 
+% Chapter: axiomatic-deduction 
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{axd}{rul}}
+      {\olfileid{pl}{axd}{rul}}
+
+\olsection{Regels en \usetoken{P}{derivation}}
+
+\begin{explain}
+  Axiomatische !!{derivation}s vormen wellicht het eenvoudigste
+  !!{derivation}ssysteem voor de logica. !!^a{derivation} is eenvoudigweg
+  een rij !!{formula}s. Om als !!a{derivation} te gelden, moet elke
+  !!{formula} in de rij ofwel een instantie van een axioma zijn, ofwel
+  volgens een afleidingsregel volgen uit een of meer !!{formula}s die
+  eerder in de rij staan. !!^a{derivation} !!{derive}s haar laatste
+  !!{formula}.
+\end{explain}
+
+\begin{defn}[!!^{derivability}]
+Als $\Gamma$ een verzameling !!{formula}s van $\Lang L$ is, dan is
+een \emph{!!{derivation}} uit~$\Gamma$ een eindige rij $!A_1$,
+\dots,~$!A_n$ van !!{formula}s waarvoor bij elke $i \le n$ een van de
+volgende gevallen geldt:
+\begin{enumerate}
+\item $!A_i \in \Gamma$; of
+\item $!A_i$ is een axioma; of
+\item $!A_i$ volgt volgens een afleidingsregel uit zekere $!A_j$ (en
+  $!A_k$), waarbij $j < i$ (en $k < i$).
+\end{enumerate}
+\end{defn}
+
+Wat als een correcte !!{derivation} geldt, hangt af van de toegestane
+afleidingsregels (en uiteraard van wat als axioma geldt). Een
+afleidingsregel is een als-dan-uitspraak die aangeeft onder welke
+voorwaarden een stap~$A_i$ in !!a{derivation} een correcte
+afleidingsstap is.
+
+\begin{defn}[Afleidingsregel]
+Een \emph{afleidingsregel} geeft een voldoende voorwaarde waaronder een
+stap als een correcte afleidingsstap in !!a{derivation} uit~$\Gamma$
+geldt.
+\end{defn}
+
+Elke rij van één formule $!A$ met $!A \in \Gamma$ geldt bijvoorbeeld
+zonder meer als !!a{derivation}. De volgende regel zou daarom een zeer
+eenvoudige afleidingsregel kunnen zijn:
+\begin{quote}
+  Als $!A \in \Gamma$, dan is $!A$ altijd een correcte afleidingsstap
+  in elke !!{derivation} uit~$\Gamma$.
+\end{quote}
+Evenzo is $!A$ op zichzelf !!a{derivation} als $!A$ een van de
+axioma's is. Ook het volgende is dus een afleidingsregel:
+\begin{quote}
+  Als $!A$ een axioma is, dan is $!A$ een correcte afleidingsstap.
+\end{quote}
+Interessanter zijn afleidingsregels die een beroep doen op
+!!{formula}s die vóór de beschouwde stap staan. De volgende regel heet
+\emph{modus ponens}:
+\begin{quote}
+  Als $!B \lif !A$ en $!B$ eerder in de !!{derivation} voorkomen,
+  dan is~$!A$ een correcte afleidingsstap.
+\end{quote}
+Als dit de enige afleidingsregel is, komt de bovenstaande definitie
+hierop neer: $!A_1$, \dots,~$!A_n$ is !!a{derivation} dan en slechts
+dan als bij elke $i \le n$ een van de volgende gevallen geldt:
+\begin{enumerate}
+\item $!A_i \in \Gamma$; of
+\item $!A_i$ is een axioma; of
+\item voor zekere $j < i$ is $!A_j$ gelijk aan $!B \lif !A_i$, en voor
+  zekere $k < i$ is $!A_k$ gelijk aan~$!B$.
+\end{enumerate}
+De laatste clausule zegt dat $!A_i$ door modus ponens volgt
+uit~$!A_j$ ($!B \lif !A_i$) en $!A_k$ ($!B$). Als we van $1$ tot~$n$
+kunnen nagaan dat elke !!a{formula}~$!A_i$ in~$\Gamma$ staat, een
+axioma is of volgens een afleidingsregel een correcte afleidingsstap
+is, dan geldt de gehele rij als een correcte !!{derivation}.
+
+\begin{defn}[!!^{derivability}]
+Een !!{formula}~$!A$ is \emph{!!{derivable}} uit $\Gamma$, genoteerd
+als $\Gamma \Proves !A$, als er !!a{derivation} uit $\Gamma$ bestaat
+die eindigt in $!A$.
+\end{defn}
+
+\begin{defn}[Stellingen]
+!!^a{formula}~$!A$ is een \emph{stelling} als er !!a{derivation}
+van~$!A$ uit de lege verzameling bestaat. We schrijven $\Proves !A$
+als $!A$ een stelling is en $\Proves/ !A$ als zij dat niet is.
+\end{defn}
+
+
+\end{document}

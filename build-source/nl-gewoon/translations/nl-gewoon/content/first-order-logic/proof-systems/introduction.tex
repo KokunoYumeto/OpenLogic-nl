@@ -1,0 +1,107 @@
+% Part: first-order-logic
+% Chapter: proof-systems
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{prf}{int}}
+      {\olfileid{pl}{prf}{int}}
+
+\olsection{Inleiding}
+
+Een logica heeft meestal zowel een semantiek als
+!!a{derivation}ssysteem. De semantiek gaat over begrippen als waarheid,
+vervulbaarheid, geldigheid en semantisch gevolg. Een
+!!{derivation}ssysteem geeft een methode die alleen naar de vorm van de
+symbolen kijkt. Met zo'n methode kunnen we semantisch gevolg en
+geldigheid vaststellen. Het systeem is zuiver syntactisch: elke
+!!a{derivation} erin is een eindig syntactisch object. Meestal is dat
+een rij, of een andere eindige rangschikking, van !!{sentence}s of
+!!{formula}s. Bij een goed !!{derivation}ssysteem kan een vaste
+procedure van elke gegeven rij of rangschikking van !!{sentence}s of
+!!{formula}s controleren of die ``correct'' is.
+
+De eenvoudigste !!{derivation}ssystemen voor de eerste-ordelogica waren
+ook de eerste die historisch werden gebruikt. Ze waren
+\emph{axiomatisch}. In zo'n systeem geldt een rij !!{formula}s als
+!!a{derivation} als elke afzonderlijke !!{formula} aan een van twee
+voorwaarden voldoet. Ofwel staat de formule in een vaste verzameling
+``axioma's'', ofwel volgt zij met een van een vast aantal
+``afleidingsregels'' uit eerdere !!{formula}s in de rij. Een vaste
+procedure moet bovendien kunnen controleren of !!a{formula} een axioma
+is en of zij volgens een afleidingsregel correct uit andere
+!!{formula}s volgt. Axiomatische !!{derivation}ssystemen zijn eenvoudig
+te beschrijven en ook eenvoudig te bestuderen als systemen op zichzelf,
+dus metatheoretisch. De !!{derivation}s
+zelf zijn echter moeilijk te lezen en te begrijpen. Ze zijn ook
+moeilijk op te stellen.
+
+Andere !!{derivation}ssystemen zijn bedoeld om !!{derivation}s
+gemakkelijker op te stellen of om een voltooide !!{derivation}
+gemakkelijker te begrijpen. Voorbeelden zijn natuurlijke deductie,
+waarheidsbomen, die ook tableaubewijzen heten, en de sequentencalculus.
+Sommige !!{derivation}ssystemen zijn speciaal ontworpen om door een
+machine te worden gebruikt. De resolutiemethode is bijvoorbeeld
+gemakkelijk in software uit te voeren, al zijn de !!{derivation}s
+ervan vrijwel niet te begrijpen. De meeste van deze andere
+!!{derivation}ssystemen geven een !!{derivation} weer als een boom van
+!!{formula}s en niet als een rij. In zo'n boom kun je gemakkelijker
+zien welke delen van de !!a{derivation} afhangen van welke andere
+delen.
+
+Voor één logica, bijvoorbeeld de eerste-ordelogica, kunnen de
+verschillende !!{derivation}ssystemen dus elk op hun eigen manier
+vastleggen wanneer !!a{sentence} een \emph{stelling} is en wanneer
+!!a{sentence} uit andere zinnen !!{derivable} is. Dat kan gebeuren met
+axiomatische !!{derivation}s, natuurlijke deducties,
+sequent!!{derivation}s, waarheidsbomen of resolutieweerleggingen. Welke
+methode we ook kiezen, deze relaties moeten passen bij de semantische
+begrippen geldigheid en semantisch gevolg. We schrijven $\Proves !A$
+voor ``$!A$~is een stelling'' en ``$\Gamma \Proves !A$'' voor
+``$!A$~is uit~$\Gamma$ !!{derivable}.'' Hoe we $\Proves$ ook
+definiëren, het teken moet hetzelfde verband weergeven als $\Entails$:
+\begin{enumerate}
+\item $\Proves !A$ dan en slechts dan als $\Entails !A$
+\item $\Gamma \Proves !A$ dan en slechts dan als $\Gamma \Entails !A$
+\end{enumerate}
+De richting ``alleen als'' heet \emph{correctheid}. Een
+!!^a{derivation}ssysteem is correct als uit !!{derivability} altijd
+semantisch gevolg (of geldigheid) volgt. Elk deugdelijk
+!!{derivation}ssysteem moet correct zijn. Aan een incorrect
+!!{derivation}ssysteem heb je niets. Het doel van !!a{derivation} is
+immers juist een syntactische garantie van geldigheid of semantisch
+gevolg te geven. Voor de !!{derivation}ssystemen die we behandelen,
+zullen we de correctheid bewijzen.
+
+De omgekeerde richting, ``als'', is ook belangrijk. Deze richting heet
+\emph{volledigheid}. Een volledig !!{derivation}ssysteem is sterk
+genoeg om te laten zien dat $!A$~een stelling is zodra $!A$~geldig is.
+Het kan ook laten zien dat $\Gamma \Proves !A$ zodra
+$\Gamma \Entails !A$. Volledigheid is moeilijker te bewijzen. Sommige
+logica's hebben geen volledig !!{derivation}ssysteem, maar de
+eerste-ordelogica wel. Kurt G\"odel bewees in zijn proefschrift uit
+1929 als eerste de volledigheid voor !!a{derivation}ssysteem voor de
+eerste-ordelogica.
+
+Bij !!{derivation}ssystemen hoort nog een begrip:
+\emph{consistentie}. Een verzameling !!{sentence}s heet inconsistent
+als werkelijk alles eruit kan worden !!{derive}d. Anders heet de
+verzameling consistent. Inconsistentie is de syntactische tegenhanger
+van onvervulbaarheid. Net als onvervulbare verzamelingen zijn
+inconsistente verzamelingen !!{sentence}s geen goede theorieën: er is
+iets fundamenteel mis mee. Consistente verzamelingen !!{sentence}s
+hoeven niet waar of bruikbaar te zijn. Ze halen ten minste wel deze
+minimale grens van logische bruikbaarheid. De precieze definitie van
+consistentie van verzamelingen !!{sentence}s kan per
+!!{derivation}ssysteem verschillen. Net als bij~$\Proves$ willen we
+dat consistentie overeenkomt met het semantische begrip
+vervulbaarheid. We willen dat altijd geldt: $\Gamma$ is consistent
+dan en slechts dan als zij vervulbaar is. De richting ``alleen als''
+komt neer op volledigheid: consistentie garandeert vervulbaarheid. De
+richting ``als'' komt neer op correctheid: vervulbaarheid garandeert
+consistentie. Voor de klassieke eerste-ordelogica zijn deze twee
+versies van correctheid en volledigheid inderdaad equivalent.
+\end{document}

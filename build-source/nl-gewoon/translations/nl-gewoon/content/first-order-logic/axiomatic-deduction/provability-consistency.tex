@@ -1,0 +1,103 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{axd}{prv}}
+      {\olfileid{pl}{axd}{prv}}
+
+\olsection{\usetoken{S}{derivability} en consistentie: wat volgt en wanneer er een tegenspraak ontstaat}
+
+Nu bewijzen we een aantal eigenschappen van de relatie
+!!{derivability}: welke formules formeel uit welke aannamen volgen.
+Elk daarvan is op zichzelf interessant. Elk hebben we later ook nodig
+in het bewijs van de volledigheidsstelling.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  Neem aan dat $\Gamma \Proves !A$ en dat $\Gamma \cup \{!A\}$
+  inconsistent is. Dan is $\Gamma$ inconsistent.
+\end{prop}
+
+\begin{proof}
+  Neem aan dat $\Gamma \cup \{!A\}$ inconsistent is. Dat betekent dat
+  $\Gamma \cup \{!A\} \Proves \lfalse$. Volgens
+  \olref[ptn]{prop:reflexivity} geldt $\Gamma \Proves !B$ voor elke
+  $!B \in \Gamma$. De hypothese geeft ons ook $\Gamma \Proves !A$.
+  We hebben dus $\Gamma \Proves !B$ voor elke $!B \in \Gamma \cup
+  \{!A\}$. Met
+  \olref[ptn]{prop:transitivity} krijgen we $\Gamma \Proves \lfalse$.
+  Er volgt dus een tegenspraak: $\Gamma$ is inconsistent.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ precies dan als $\Gamma \cup \{\lnot !A\}$
+inconsistent is.
+\end{prop}
+
+\begin{proof}
+Neem eerst aan dat $\Gamma \Proves !A$. Volgens
+\olref[ptn]{prop:monotonicity} mogen we de extra aanname toevoegen. Dan
+krijgen we $\Gamma \cup \{\lnot !A\} \Proves !A$. Volgens
+\olref[ptn]{prop:reflexivity} geldt ook $\Gamma \cup \{\lnot !A\}
+\Proves \lnot !A$. Uit \olref[prp]{ax:lnot2} hebben we bovendien
+$\Proves \lnot !A \lif (!A \lif \lfalse)$. Pas
+\olref[ded]{prop:mp} twee keer toe. Dan volgt $\Gamma \cup \{\lnot
+!A\} \Proves \lfalse$.
+
+Neem nu de andere kant. Stel dat $\Gamma \cup \{\lnot !A\}$
+inconsistent is. Dan $\Gamma \cup \{\lnot !A\} \Proves \lfalse$.
+Met de deductiestelling zetten we de extra aanname in de implicatie:
+$\Gamma \Proves \lnot !A \lif \lfalse$. Uit
+\olref[prp]{ax:lfalse2} hebben we $\Gamma \Proves (\lnot !A \lif
+\lfalse) \lif \lnot\lnot !A$. Met \olref[ded]{prop:mp} krijgen we dus
+$\Gamma \Proves \lnot\lnot !A$. Verder geldt $\Gamma \Proves
+\lnot\lnot !A \lif !A$ door \olref[prp]{ax:dne}. Pas
+\olref[ded]{prop:mp} nog een keer toe. Dan krijgen we $\Gamma \Proves
+!A$.
+\end{proof}
+
+\begin{prob}
+Bewijs: $\Gamma \Proves \lnot !A$ precies dan als $\Gamma \cup
+\{!A\}$ inconsistent is.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  Neem aan dat $\Gamma \Proves !A$ en dat $\lnot !A \in \Gamma$.
+  Dan is $\Gamma$ inconsistent.
+\end{prop}
+
+\begin{proof}
+  Uit \olref[prp]{ax:lnot2} hebben we $\Gamma \Proves \lnot !A \lif
+  (!A \lif \lfalse)$. Pas \olref[ded]{prop:mp} twee keer toe. Dan
+  krijgen we $\Gamma \Proves \lfalse$.
+\end{proof}
+
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  Neem aan dat $\Gamma \cup \{!A\}$ en $\Gamma \cup \{\lnot !A\}$
+  allebei inconsistent zijn. Dan is $\Gamma$ inconsistent.
+\end{prop}
+
+\begin{proof}
+Dit is een oefening.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+  Bewijs \olref[fol][axd][prv]{prop:provability-exhaustive}
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+  Bewijs \olref[pl][axd][prv]{prop:provability-exhaustive}
+\end{prob}
+\tagendprob
+
+
+\end{document}

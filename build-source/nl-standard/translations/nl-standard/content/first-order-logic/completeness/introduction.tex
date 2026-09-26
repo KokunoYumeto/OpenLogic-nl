@@ -1,0 +1,75 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{com}{int}}
+      {\olfileid{pl}{com}{int}}
+
+\olsection{Inleiding}
+
+De volledigheidsstelling is een van de fundamenteelste resultaten over
+logica. Zij heeft twee formuleringen, waarvan we de equivalentie zullen
+bewijzen. In haar eerste formulering zegt zij iets fundamenteels over
+de verhouding tussen semantisch gevolg en ons !!{derivation}ssysteem:
+als !!a{sentence}~$!A$ uit enkele !!{sentence}s $\Gamma$ volgt, dan
+bestaat er ook !!a{derivation} die $\Gamma \Proves !A$ vaststelt. Het
+!!{derivation}ssysteem is dus zo sterk als het maar kan zijn zonder
+dingen te bewijzen die niet werkelijk volgen.
+
+In haar tweede formulering kan zij als een bestaansresultaat voor
+modellen worden gesteld: elke consistente verzameling !!{sentence}s is
+vervulbaar. Consistentie is een bewijstheoretisch begrip: het zegt dat
+ons !!{derivation}ssysteem bepaalde !!{derivation}s niet kan
+voortbrengen. Maar waarom zou alleen het ontbreken van een bepaald
+soort !!{derivation}s uit~$\Gamma$ garanderen dat er
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!{valuation}{~$\pAssign{v}$}
+bestaat waarvoor $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$}? Voordat de
+volledigheidsstelling voor het eerst werd bewezen---zelfs voordat de
+!!{derivation}ssystemen bestonden die we nu gebruiken---was de grote
+Duitse wiskundige David Hilbert van mening dat de consistentie van
+wiskundige theorieën het bestaan garandeert van de objecten waarover
+ze gaan. In een brief aan Gottlob Frege formuleerde hij dit als volgt:
+\begin{quote}
+  Als de willekeurig gegeven axioma's elkaar met al hun gevolgen niet
+  tegenspreken, dan zijn ze waar en bestaan de door de axioma's
+  gedefinieerde dingen. Dit is voor mij het criterium voor waarheid en
+  bestaan.
+\end{quote}
+Frege was het daar hartgrondig mee oneens. De tweede formulering van de
+volledigheidsstelling laat zien dat Hilbert ten minste in deze zin
+gelijk had: als de axioma's consistent zijn, bestaat er \emph{een}
+\iftag{FOL}{!!{structure}}{!!{valuation}} die ze allemaal waar maakt.
+
+Dit zijn niet de enige redenen waarom de volledigheidsstelling---of
+eigenlijk haar bewijs---belangrijk is. Zij heeft verscheidene
+belangrijke gevolgen, waarvan we sommige afzonderlijk zullen
+bespreken. Elke !!{derivation} die $\Gamma \Proves !A$ aantoont, is
+bijvoorbeeld eindig en kan dus slechts eindig veel !!{sentence}s
+uit~$\Gamma$ gebruiken. Uit de volledigheidsstelling volgt daarom dat,
+als $!A$ een gevolg is van~$\Gamma$, zij al een gevolg is van een
+eindige deelverzameling van~$\Gamma$. Dit heet \emph{compactheid}.
+Equivalent hiermee is: als elke eindige deelverzameling van $\Gamma$
+consistent is, dan moet $\Gamma$ zelf consistent zijn.
+
+Hoewel de compactheidsstelling via de omweg langs !!{derivation}s uit
+de volledigheidsstelling volgt, kan men ook \emph{het bewijs van} de
+volledigheidsstelling gebruiken om haar rechtstreeks aan te tonen. Het
+bewijs neemt namelijk een verzameling !!{sentence}s met een bepaalde
+eigenschap---consistentie---en construeert daaruit !!a{structure} met
+bepaalde eigenschappen (in dit geval een structuur die de verzameling
+vervult). Nagenoeg dezelfde constructie bewijst compactheid
+rechtstreeks wanneer men niet met consistente, maar met ``eindig
+vervulbare'' verzamelingen !!{sentence}s begint.
+\iftag{FOL}{De constructie heeft nog andere gevolgen. Elke vervulbare
+  verzameling !!{sentence}s heeft bijvoorbeeld een eindig of
+  !!{denumerable} model. (Dit resultaat heet de stelling van
+  L\"owenheim--Skolem.) In de logica, en soms zelfs in de filosofie,
+  construeert men in het algemeen vaak !!{structure}s uit verzamelingen
+  !!{sentence}s.}{}
+
+\end{document}

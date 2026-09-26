@@ -1,0 +1,47 @@
+% Part:sets-functions-relations
+% Chapter: sets
+% Section: schroder-bernstein
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{sb}
+\olsection{Het idee van grootte en Schr\"oder-Bernstein}
+\begin{explain}
+Je zou verwachten dat het zo zit: als $A$ niet groter is dan $B$ en $B$
+niet groter is dan $A$, dan hebben $A$ en $B$ evenveel elementen; ze
+zijn gelijkmachtig. Eerlijk gezegd: als dat idee \emph{niet klopte},
+zou het moeilijk uit te leggen zijn waarom ons begrip van
+gelijkmachtigheid, zoals we dat hebben vastgelegd, iets te maken heeft
+met het vergelijken van de ‘groottes’ van verzamelingen!{} Gelukkig
+klopt dat idee. Dat laat de stelling van Schr\"oder-Bernstein zien.
+\end{explain}
+\begin{thm}[Schr\"oder-Bernstein]
+	\ollabel{thm:schroder-bernstein}
+	Als $\cardle{A}{B}$ en $\cardle{B}{A}$,
+	dan $\cardeq{A}{B}$.
+\end{thm}
+\begin{explain}
+Anders gezegd: als er !!a{injection} van $A$ naar~$B$ is en
+!!a{injection} van $B$ naar~$A$, dan is er !!a{bijection} van $A$
+naar~$B$.
+Dit is wel \emph{moeilijk} te bewijzen. Dat blijkt ook hieruit: Cantor
+formuleerde het resultaat, maar anderen hebben het bewijs
+gegeven.\footnote{Lees voor meer over de geschiedenis bijvoorbeeld
+\citet[pp.~165--6]{Potter2004}.}
+\oliflabeldef{sfr:cardinals:card-sb:sec}{We kunnen pas
+\emph{bewijzen} dat Schr\"oder-Bernstein geldt in
+\olref[sfr][cardinals][card-sb]{sec}.}{}%
+Tot die tijd kun (en moet) je aannemen dat het waar is.
+Gelukkig \emph{klopt} Schr\"oder-Bernstein. Dat ondersteunt onze gedachte
+dat de relaties $\cardeq{A}{B}$ en $\cardle{A}{B}$ die we hebben
+gedefinieerd iets met ‘grootte’ te maken hebben. Ook is
+Schr\"oder-Bernstein erg \emph{handig}.
+Een !!a{bijection} tussen twee verzamelingen met evenveel elementen is
+soms moeilijk te vinden. Dankzij Schr\"oder-Bernstein hoeven we die
+bijectie niet in één keer te vinden. We kunnen de twee richtingen apart
+aanpakken: eerst zoeken we !!a{injection} van de eerste naar de tweede
+verzameling, en daarna hetzelfde in de andere richting.
+\end{explain}
+\end{document}

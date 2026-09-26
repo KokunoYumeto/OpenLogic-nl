@@ -1,0 +1,98 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: derivations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{tab}{der}}
+      {\olfileid{pl}{tab}{der}}
+
+\olsection{\usetoken{P}{tableau}}
+
+\begin{explain}
+We hebben uitgelegd wat een aanname is en kennen nu de regels waarmee
+we formules afleiden. Daarmee bouwen we !!{tableau}s stap voor stap op.
+Elk !!{tableau} ontstaat op een van twee manieren. Het is één tak met
+een of meer aannamen. Of we maken het uit !!a{tableau} door op een tak
+een van de afleidingsregels toe te passen.
+\end{explain}
+
+\begin{defn}[!!^{tableau}]
+!!^a{tableau} voor de aannamen $\sFmla{S_1}{!A_1}$, \dots,
+$\sFmla{S_n}{!A_n}$ is een eindige boom van !!{signed formula}s. Elke
+$S_i$ is daarbij $\True$ of~$\False$. De boom moet aan de volgende
+voorwaarden voldoen:
+\begin{enumerate}
+\item Bovenaan staan de $n$ !!{signed formula}s
+  $\sFmla{S_i}{!A_i}$, onder elkaar.
+\item Iedere andere !!{signed formula} in de boom moet ontstaan door
+  een afleidingsregel correct toe te passen op !!a{signed formula} in
+  de tak erboven.
+\end{enumerate}
+Een tak van !!a{tableau} noemen we precies dan \emph{gesloten} als hij
+zowel $\sFmla{\True}{!A}$ als~$\sFmla{\False}{!A}$ bevat. Anders is de
+tak \emph{open}. !!^a{tableau} waarin elke tak gesloten is, noemen we
+een \emph{gesloten !!{tableau}} voor de gebruikte aannamen. Als
+!!a{tableau} niet gesloten is, bevat het minstens één open tak. Dan is
+het tableau \emph{open}.
+\end{defn}
+
+\begin{ex}
+  Een verzameling aannamen is op zichzelf al !!a{tableau}. Meestal is
+  dat tableau nog niet gesloten. Het is alleen gesloten als de aannamen
+  al het volgende paar !!{signed formula}s bevatten:
+  $\sFmla{\True}{!A}$ en~$\sFmla{\False}{!A}$.
+
+  Uit !!a{tableau}, open of gesloten, kunnen we een nieuw en groter
+  tableau maken. Kies daarin !!a{signed formula}~$!A$ en pas er een
+  afleidingsregel op toe. De regel zet een of meer nieuwe
+  !!{signed formula}s onderaan iedere tak die precies dat voorkomen
+  van~$!A$ bevat.
+
+  Neem bijvoorbeeld de aanname $\sFmla{\True}{!A \land \lnot
+    !A}$. Eerst hebben we alleen die aanname. Dat geeft het volgende
+  open !!{tableau}:
+  \begin{center}
+    \begin{tableau}{}
+      [\sFmla{\True}{\formula{A} \land \lnot \formula{A}}, just=\TAss]
+    \end{tableau}{}
+  \end{center}
+  Nu passen we de regel $\TRule{\True}{\land}$ op de aanname toe. Met
+  die regel mogen we twee nieuwe regels aan het !!{tableau} toevoegen:
+  $\sFmla{\True}{!A}$ en $\sFmla{\True}{\lnot !A}$.
+  \begin{center}
+    \begin{tableau}{}
+      [\sFmla{\True}{\formula{A} \land \lnot \formula{A}}, just=\TAss
+        [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\land}[1]},
+          [\sFmla{\True}{\lnot \formula{A}}, just={\TRule{\True}{\land}[1]}
+          ]
+        ]
+      ]
+    \end{tableau}{}
+  \end{center}
+  Rechts schrijven we bij iedere regel van !!a{tableau} welke
+  afleidingsregel we hebben gebruikt. Zo betekent
+  $\TRule{\True}{\land} 1$ dat de !!{signed formula} op die regel is
+  ontstaan door $\TRule{\True}{\land}$ toe te passen op de
+  !!{signed formula} op regel~$1$. Het nieuwe !!{tableau} bevat nu meer
+  !!{signed formula}s. Op slechts één daarvan,
+  $\sFmla{\True}{\lnot !A}$, kunnen we nog een regel toepassen. Dat is
+  hier de regel $\TRule{\True}{\lnot}$. Na toepassing daarvan is het
+  !!{tableau} gesloten:
+  \begin{center}
+    \begin{tableau}{}
+      [\sFmla{\True}{\formula{A} \land \lnot \formula{A}}, just=\TAss
+        [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\land}[1]}
+          [\sFmla{\True}{\lnot \formula{A}}, just={\TRule{\True}{\land}[1]}
+            [\sFmla{\False}{\formula{A}}, just={\TRule{\True}{\lnot}[3]}, close]
+          ]
+        ]
+      ]
+    \end{tableau}{}
+  \end{center}
+\end{ex}
+
+\end{document}

@@ -1,0 +1,74 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: rationals
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{arith}{rat}
+\olsection{Van $\Int$ naar $\Rat$}
+Hiervoor hebben we met wat na\"{i}eve verzamelingenleer de gehele
+getallen opgebouwd uit de natuurlijke getallen. Nu bouwen we op bijna
+dezelfde manier de rationale getallen op uit de gehele getallen. We
+beginnen met twee dingen die we weten:
+\begin{enumerate}
+	\item Elk rationaal getal kan worden geschreven als $\nicefrac{i}{j}$.
+	Hierbij zijn $i$ en $j$ gehele getallen en is $j$ niet nul.
+	\item Dezelfde informatie uit $\nicefrac{i}{j}$ kunnen we ook
+	vastleggen met het geordende paar $\tuple{ i, j}$.
+\end{enumerate}
+Het lijkt dus logisch om de rationale getallen op te vatten \emph{als}
+geordende paren uit $\Int \times (\Int \setminus \{0_\Int\})$. Toch is
+dat, net als eerder, iets te na\"ief. We willen namelijk
+$\nicefrac{3}{2} = \nicefrac{6}{4}$, terwijl $\tuple{ 3, 2}\neq \tuple{ 6,
+4}$. In het algemeen willen we:
+\[
+	\nicefrac{a}{b} = \nicefrac{c}{d} \text{ precies dan als } a \times d = b \times c
+\]
+Daarom leggen we voor paren uit $\Int \times (\Int \setminus
+\{0_\Int\})$ vast wanneer twee van zulke paren hetzelfde voorstellen.
+Zo krijgen we de volgende {equivalentierelatie}:
+\[
+	\tuple{ a, b }\Ratequiv \tuple{ c, d} \text{ precies dan als }a \times d = b \times c
+\]
+We moeten nog controleren of dit echt een equivalentierelatie is. Dat
+gaat vrijwel hetzelfde als bij $\Intequiv$, en laten we als oefening over. 
+\begin{prob}
+Laat zien dat $\Ratequiv$ een equivalentierelatie is.
+\end{prob}
+Nu kunnen we de rationale getallen precies aangeven:
+\begin{defn}
+De rationale getallen zijn de equivalentieklassen onder $\Ratequiv$ van
+paren van gehele getallen waarvan het tweede getal niet nul is. Zo'n
+klasse bestaat uit alle paren die volgens deze relatie bij elkaar horen.
+Dus $\Rat =
+\equivclass{(\Int \times (\Int\setminus \{0_\Int\}))}{\Ratequiv}$.
+\end{defn}
+Net als bij de gehele getallen willen we een paar basisbewerkingen
+vastleggen. Als $\equivrep{i,j}{\Ratequiv}$ de equivalentieklasse onder
+$\Ratequiv$ is waarin $\tuple{i, j}$ als !!a{element} zit, definiëren we:
+\begin{align*}
+	\equivrep{a, b}{\Ratequiv} + \equivrep{c, d}{\Ratequiv} &= \equivrep{ad + bc,  bd}{\Ratequiv}\\
+	\equivrep{a, b}{\Ratequiv} \times \equivrep{c, d}{\Ratequiv} &= \equivrep{a  c, b d}{\Ratequiv}.
+\intertext{Nu leggen we vast wanneer $r \leq s$. We gebruiken dat
+$r \le s$ precies dan als $s - r$ niet negatief is. Anders gezegd: $s - r$
+kan worden geschreven als $\nicefrac{i}{j}$, met $i$ niet-negatief en
+$j$~positief:}
+	\equivrep{a, b}{\Ratequiv} \leq \equivrep{c, d}{\Ratequiv} &\text{ precies dan als }
+	\equivrep{c, d}{\Ratequiv} - \equivrep{a, b}{\Ratequiv} = 
+	\equivrep{i_\Int, j_\Int}{\Ratequiv}
+\end{align*}
+Dit geldt voor een bepaalde keuze waarbij $i \in \Nat$ en $0 \neq j \in \Nat$.
+Nu moeten we controleren of deze definities echt werken zoals ze
+\emph{bedoeld} zijn. Dat doen we in \olref[check]{sec}. Ze blijken
+inderdaad te werken!{} Tot slot willen we een geheel getal ook \emph{als}
+rationaal getal kunnen gebruiken. Daarom spreken we voor elke $i \in
+\Int$ af dat $i_\Rat = \equivrep{i, 1_\Int}{\Ratequiv}$. In
+\olref[check]{sec} controleren we weer dat dit allemaal klopt.
+\begin{prob}
+Laat zien dat $(i + j)_\Rat = i_\Rat+ j_\Rat$ en $(i \times j)_\Rat =
+i_\Rat \times j_\Rat$ en $i \leq j \liff i_\Rat \leq j_\Rat$, voor alle
+$i, j \in \Int$.
+\end{prob}
+\end{document}

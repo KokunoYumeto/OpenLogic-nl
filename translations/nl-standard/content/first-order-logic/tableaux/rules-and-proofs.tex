@@ -1,0 +1,64 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{tab}{rul}}
+      {\olfileid{pl}{tab}{rul}}
+
+\olsection{Regels en \usetoken{P}{tableau}}
+
+!!^a{tableau} geeft een systematisch overzicht van de mogelijke
+manieren waarop !!a{sentence} in !!a{structure} waar of onwaar kan
+zijn. De bouwstenen van een tableau zijn !!{signed formula}s:
+!!{sentence}s met een waarheidswaarde als ``teken'', hetzij $\True$,
+hetzij~$\False$. Deze !!{formula}s zijn gerangschikt in een (naar
+beneden groeiende) boom.
+
+\begin{defn}
+  Een \emph{!!{signed formula}} is een paar dat bestaat uit een
+  waarheidswaarde en !!a{sentence}, dus een van de volgende twee
+  vormen:
+  \[
+  \sFmla{\True}{!A} \text{ of } \sFmla{\False}{!A}.
+  \]
+\end{defn}
+
+Intuïtief kunnen we $\sFmla{\True}{!A}$ lezen als ``$!A$ zou waar
+kunnen zijn'' en $\sFmla{\False}{!A}$ als ``$!A$ zou onwaar kunnen
+zijn'' (in een zekere !!{structure}).
+
+Elke !!{signed formula} in de boom is ofwel een \emph{aanname} (de
+aannamen staan helemaal bovenaan in de boom), ofwel verkregen uit
+!!a{signed formula} erboven door middel van een van de
+afleidingsregels. Voor elke mogelijke !!{main operator} van de
+voorafgaande !!{formula} zijn er twee regels: een voor het geval dat
+het teken~$\True$ is en een voor het geval dat het teken~$\False$ is.
+Sommige regels laten de boom vertakken; andere voegen alleen
+!!{signed formula}s aan de tak toe. Een regel hoeft niet op de
+onmiddellijk voorafgaande !!{signed formula} te worden toegepast. Hij
+kan (en moet vaak) worden toegepast op een willekeurige !!{signed
+formula} in de tak van de wortel tot de plaats waar de regel wordt
+toegepast.
+
+Een tak is \emph{gesloten} als hij zowel $\sFmla{\True}{!A}$ als
+$\sFmla{\False}{!A}$ bevat. !!^a{tableau} is gesloten als elke tak
+gesloten is. Volgens de intuïtieve interpretatie beschrijft elke tak
+een gezamenlijke mogelijkheid, maar $\sFmla{\True}{!A}$ en
+$\sFmla{\False}{!A}$ zijn niet gezamenlijk mogelijk. Als een tak
+gesloten is, is de mogelijkheid die hij beschrijft met andere woorden
+uitgesloten. Dit betekent in het bijzonder dat een gesloten
+!!{tableau} alle mogelijkheden uitsluit om tegelijk elke aanname van
+de vorm $\sFmla{\True}{!A}$ waar en elke aanname van de
+vorm~$\sFmla{\False}{!A}$ onwaar te maken.
+
+Een gesloten !!{tableau} \emph{voor $!A$} is een gesloten
+!!{tableau} met wortel~$\sFmla{\False}{!A}$. Als zo'n gesloten
+!!{tableau} bestaat, zijn alle mogelijkheden waarin~$!A$ onwaar is
+uitgesloten; $!A$ moet dus waar zijn in elke !!{structure}.
+
+\end{document}

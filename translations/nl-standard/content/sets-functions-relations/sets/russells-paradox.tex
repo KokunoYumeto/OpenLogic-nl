@@ -1,0 +1,95 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: russells-paradox
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid{sfr}{set}{rus}
+\olsection{De paradox van Russell}
+
+Op grond van extensionaliteit mogen we de notatie
+$\Setabs{x}{\phi(x)}$ gebruiken voor \emph{de} verzameling van alle
+$x$ waarvoor~$\phi(x)$ geldt. Uit extensionaliteit volgt echter
+\emph{werkelijk} alleen het volgende. \emph{Als} er een verzameling
+bestaat met precies de objecten die aan~$\phi$ voldoen als elementen,
+\emph{dan} is er maar één zo'n verzameling. Anders gezegd: als~$\phi$
+is vastgelegd, is de verzameling
+$\Setabs{x}{\phi(x)}$ uniek, \emph{als zij bestaat}.
+
+Maar dit voorbehoud is belangrijk!{} Niet iedere eigenschap leent
+zich voor \emph{comprehensie}. Sommige eigenschappen definiëren dus
+\emph{geen} verzameling. Als alle eigenschappen dat wel deden, zouden
+we regelrecht in tegenspraken belanden. Het bekendste voorbeeld
+hiervan is de paradox van Russell.
+
+Verzamelingen kunnen !!{element}s van andere verzamelingen zijn---de
+machtsverzameling van een verzameling~$A$ bestaat bijvoorbeeld zelf
+uit verzamelingen. Daarom is het zinvol na te gaan of een verzameling
+!!a{element} van een andere verzameling is. Kan een verzameling
+element van zichzelf zijn? Het begrip verzameling lijkt dat niet uit
+te sluiten. Als \emph{alle} verzamelingen bijvoorbeeld samen een
+collectie objecten vormen, zou men kunnen denken dat ze in één
+verzameling kunnen worden samengebracht---de verzameling van alle
+verzamelingen. Omdat die zelf een verzameling is, zou zij
+!!a{element} van de verzameling van alle verzamelingen zijn.
+
+De paradox van Russell ontstaat wanneer we de eigenschap beschouwen
+om zichzelf niet als !!a{element} te hebben, oftewel \emph{geen
+element van zichzelf te zijn}. Stel dat er een verzameling bestaat
+van alle verzamelingen die zichzelf niet als !!a{element} hebben.
+Bestaat
+\[
+R = \Setabs{x}{x \notin x}
+\]
+dan? We kunnen bewijzen dat dit niet zo is.
+
+\begin{thm}[De paradox van Russell]\ollabel{thm:russells-paradox}
+	Er bestaat geen verzameling $R = \Setabs{x}{x \notin x}$.
+\end{thm}
+
+\begin{proof}
+Als $R = \Setabs{x}{x \notin x}$ bestaat, dan geldt
+$R \in R$ dan en slechts dan als $R \notin R$. Dat is een tegenspraak.
+\end{proof}
+
+\begin{tagblock}{novice}
+\begin{explain}
+Laten we dit bewijs langzamer doorlopen. Als $R$ bestaat, is het
+zinvol te vragen of $R \in R$ geldt. Neem eerst aan dat inderdaad $R
+\in R$. De verzameling~$R$ is gedefinieerd als de verzameling van alle
+verzamelingen die geen !!{element}s van zichzelf zijn. Als $R \in R$,
+dan is $R$ element van zichzelf en mist die verzameling dus de eigenschap
+waarmee $R$ is gedefinieerd. Maar alleen verzamelingen met die eigenschap
+behoren tot~$R$. Daarom kan $R$ geen !!{element} van~$R$ zijn, dus
+$R \notin R$. De verzameling~$R$ kan niet zowel wel als niet
+!!a{element} van~$R$ zijn. We hebben dus een tegenspraak.
+
+Omdat de aanname $R \in R$ tot een tegenspraak leidt, volgt $R \notin
+R$. Maar ook dit leidt tot een tegenspraak!{} Want als $R \notin R$,
+dan heeft $R$ zelf juist wel de eigenschap waarmee $R$ is
+gedefinieerd. Net als alle andere verzamelingen die geen element van
+zichzelf zijn, zou $R$ dus !!a{element} van $R$ zijn. Opnieuw kan $R$
+niet zowel geen als wel !!a{element} van zichzelf zijn.
+\end{explain}
+\end{tagblock}
+
+\begin{digress}
+Hoe kunnen we een verzamelingenleer opzetten zonder in de paradox van
+Russell terecht te komen, dus zonder de \emph{inconsistente} bewering
+te doen dat $R = \Setabs{x}{x \notin x}$ bestaat? Daarvoor moeten we
+axioma's formuleren die heel precies aangeven wanneer verzamelingen
+bestaan (en wanneer niet).
+	
+De verzamelingenleer die in dit hoofdstuk wordt geschetst doet dat
+niet. Ze is \emph{werkelijk na\"ief}. Ze stelt alleen dat
+verzamelingen aan extensionaliteit voldoen en dat we uit gegeven
+verzamelingen hun vereniging, doorsnede enzovoort kunnen vormen. Het
+is mogelijk de verzamelingenleer nauwkeuriger en strenger te ontwikkelen.
+\oliflabeldef{cumul:::part}{Die strengere uitwerking komt aan bod in
+Deel \olref[cumul][][]{part}. Voorlopig gaan we na\"ief verder en
+proberen we tegenspraken zorgvuldig te vermijden.}{}
+\end{digress}
+\end{document}

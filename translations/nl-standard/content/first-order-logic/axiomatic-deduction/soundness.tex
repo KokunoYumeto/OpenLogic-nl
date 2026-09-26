@@ -1,0 +1,155 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{axd}{sou}}
+      {\olfileid{pl}{axd}{sou}}
+      
+\olsection{Correctheid}
+
+\begin{explain}
+!!^a{derivation}ssysteem, zoals axiomatische deductie, is \emph{correct}
+als het niets kan !!{derive} wat in werkelijkheid niet geldt.
+Correctheid is dus een soort gegarandeerde veiligheidseigenschap van
+!!{derivation}ssystemen. Afhankelijk van de bewijstheoretische
+eigenschap die aan de orde is, willen we bijvoorbeeld weten dat
+\begin{enumerate}
+\item elke !!{derivable}~$!A$ geldig is;
+\item als $!A$ uit enkele andere formules~$\Gamma$ !!{derivable} is,
+  het ook een gevolg daarvan is;
+\item als een verzameling !!{formula}s~$\Gamma$ inconsistent is, zij
+  onvervulbaar is.
+\end{enumerate}
+Dit zijn belangrijke eigenschappen van !!a{derivation}ssysteem. Als
+een ervan niet geldt, is het !!{derivation}ssysteem gebrekkig: het zou
+te veel !!{derive}. Het is daarom van het grootste belang de
+correctheid van !!a{derivation}ssysteem vast te stellen.
+\end{explain}
+
+\begin{prop}
+  Als $!A$ een axioma is, dan geldt
+  \iftag{FOL}
+    {$\Sat{M}{!A}[s]$ voor elke !!{structure}~$\Struct{M}$ en toekenning~$s$.}
+    {$\pSat{v}{!A}$ voor elke !!{valuation}~$\pAssign{v}$.}
+\end{prop}
+
+\begin{proof}
+\iftag{FOL}{We moeten nagaan dat alle axioma's geldig zijn. We
+  behandelen bijvoorbeeld \olref[qua]{ax:q1}. Veronderstel dat $t$
+  !!{free for} $x$ in $!A$ is en neem aan dat
+  $\Sat{M}{\lforall[x][!A]}[s]$. Volgens de definitie van vervulling
+  geldt dan voor elke $\varAssign{s'}{s}{x}$ ook
+  $\Sat{M}{!A}[s']$, en in het bijzonder wanneer
+  $s'(x) = \Value{t}{M}[s]$. Volgens
+  \olref[syn][ext]{prop:ext-formulas},
+  geldt $\Sat{M}{\Subst{!A}{t}{x}}[s]$. Dit toont aan dat
+  $\Sat{M}{(\lforall[x][!A] \lif \Subst{!A}{t}{x})}[s]$.}{Stel voor
+  elk axioma een waarheidstabel op om na te gaan dat het een
+  tautologie is.}
+\end{proof}
+
+\begin{thm}[Correctheid]
+\ollabel{thm:soundness}
+Als $\Gamma \Proves !A$, dan $\Gamma \Entails !A$.
+\end{thm}
+
+\begin{proof}
+We gebruiken inductie naar de lengte van de !!{derivation} van $!A$
+uit~$\Gamma$. Als geen stap door een afleidingsregel wordt
+gerechtvaardigd, zijn alle !!{formula}s in de !!{derivation} instanties
+van axioma's of behoren ze tot~$\Gamma$. Volgens de vorige propositie
+zijn alle axioma's \iftag{FOL}{geldig}{tautologieën}. Als $!A$ een
+axioma is, geldt dus $\Gamma \Entails !A$. Als $!A \in \Gamma$, dan
+geldt triviaal $\Gamma \Entails !A$.
+
+Als de laatste stap van de !!{derivation} van~$!A$ door modus ponens
+wordt gerechtvaardigd, komen de !!{formula}s $!B$ en $!B \lif !A$ in
+de !!{derivation} voor. De inductiehypothese is van toepassing op de
+delen van de !!{derivation} die met deze !!{formula}s eindigen, want
+die bevatten ten minste één door een afleidingsregel gerechtvaardigde
+stap minder. Volgens de inductiehypothese gelden dus
+$\Gamma \Entails !B$ en $\Gamma \Entails !B \lif !A$. Uit
+\iftag{FOL}
+      {\olref[syn][sem]{thm:sem-deduction}}
+      {\olref[pl][syn][sem]{thm:sem-deduction}}
+volgt dan $\Gamma \Entails !A$.
+
+\iftag{FOL}{Veronderstel nu dat de laatste stap door \QR{} wordt
+gerechtvaardigd. Die stap heeft dan de vorm
+$!C \lif \lforall[x][B(x)]$ en er is een voorafgaande stap
+$!C \lif !B(c)$, waarbij $c$ niet voorkomt in $\Gamma$, $!C$ of
+$\lforall[x][B(x)]$. Volgens de inductiehypothese geldt
+$\Gamma \Entails !C \lif !B(c)$. Uit
+\olref[syn][sem]{thm:sem-deduction} volgt
+$\Gamma \cup \{!C\} \Entails !B(c)$.
+
+Beschouw een structuur~$\Struct{M}$ waarvoor $\Sat{M}{\Gamma \cup
+  \{!C\}}$. We moeten aantonen dat
+$\Sat{M}{\lforall[x][!B(x)]}$. Omdat $\lforall[x][!B(x)]$
+!!a{sentence} is, moeten we volgens
+\olref[syn][ass]{prop:sat-quant} aantonen dat voor elke
+variabelentoekenning~$s$ geldt dat $\Sat{M}{!B(x)}[s]$. Omdat
+$\Gamma \cup \{!C\}$ uitsluitend uit zinnen bestaat, geldt volgens
+\olref[syn][sat]{defn:satisfaction} dat $\Sat{M}{!D}[s]$ voor alle
+$!D \in \Gamma$. Laat $\Struct{M'}$ gelijk zijn aan $\Struct{M}$,
+behalve dat $\Assign{c}{M'} = s(x)$. Omdat $c$ niet voorkomt
+in~$\Gamma$ of~$!C$, geldt volgens
+\olref[syn][ext]{cor:extensionality-sent} dat
+$\Sat{M'}{\Gamma \cup \{!C\}}$. Uit
+$\Gamma \cup \{!C\} \Entails !B(c)$ volgt $\Sat{M'}{B(c)}$. Omdat
+$!B(c)$ !!a{sentence} is, geldt volgens
+\olref[syn][ass]{prop:sentence-sat-true} dat
+$\Sat{M'}{!B(c)}[s]$. Volgens
+\olref[syn][ext]{prop:ext-formulas} geldt
+$\Sat{M'}{!B(x)}[s]$ dan en slechts dan als
+$\Sat{M'}{!B(c)}[s]$; bedenk dat $!B(c)$ gelijk is aan
+$\Subst{!B(x)}{c}{x}$. Dus $\Sat{M'}{!B(x)}[s]$. Omdat $c$ niet
+voorkomt in~$!B(x)$, volgt uit
+\olref[syn][ext]{prop:extensionality} dat $\Sat{M}{!B(x)}[s]$. De
+variabelentoekenning~$s$ was willekeurig, dus
+$\Sat{M}{\lforall[x][!B(x)]}$. Bijgevolg
+$\Gamma \cup \{!C\} \Entails \lforall[x][!B(x)]$. Uit
+\olref[syn][sem]{thm:sem-deduction} volgt ten slotte
+$\Gamma \Entails !C \lif \lforall[x][!B(x)]$.
+
+Het geval waarin $!A$ door \QR{} wordt gerechtvaardigd maar de vorm
+$\lexists[x][!B(x)] \lif !C$ heeft, laten we als oefening.}{}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+  Voltooi het bewijs van \olref[fol][axd][sou]{thm:soundness}.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+Als $\Proves !A$, dan is $!A$ \iftag{FOL}{geldig}{een tautologie}.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+Als $\Gamma$ vervulbaar is, dan is zij consistent.
+\end{cor}
+
+\begin{proof}
+We bewijzen de contrapositie. Stel dat $\Gamma$ niet consistent is.
+Dan $\Gamma \Proves \lfalse$, dat wil zeggen dat er
+!!a{derivation} van $\lfalse$ uit~$\Gamma$ bestaat. Volgens
+\olref{thm:soundness} moet elke
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+die $\Gamma$ vervult ook~$\lfalse$ vervullen. Omdat
+\iftag{FOL}{$\Sat/{M}{\lfalse}$ voor elke
+  !!{structure}~$\Struct{M}$}{$\pSat/{v}{\lfalse}$ voor elke
+  !!{valuation}~$\pAssign{v}$}, kan geen
+\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} $\Gamma$ vervullen. Dus is
+$\Gamma$ niet vervulbaar.
+\end{proof}
+
+
+\end{document}

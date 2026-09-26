@@ -1,0 +1,347 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: proving-things-quant
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{tab}{prq}
+
+\olsection{\usetoken{P}{tableau} met kwantoren (‘voor alle’ en ‘er bestaat’)}
+
+\begin{ex}
+Bij kwantoren mogen we de eigenvariabelevoorwaarde niet overtreden.
+Daardoor moeten we regels soms in een andere volgorde toepassen. Het
+helpt meestal om eerst de regels met deze voorwaarde toe te passen. In
+het uiteindelijke !!{tableau} staan die dan hoger.
+
+We bekijken hoe we !!a{tableau} maken voor de !!{sentence}
+$\lexists[x][\lnot !A(x)] \lif \lnot \lforall[x][!A(x)]$.
+Eerst zetten we zoals gewoonlijk de aanname bovenaan:
+\begin{oltableau}
+[\sFmla{\False}{\lexists[x][\lnot \formula{A}(x)]\lif \lnot
+    \lforall[x][\formula{A}(x)]}, just=\TAss]
+\end{oltableau}
+De !!{main operator} is $\lif$. Daarom passen we
+$\TRule{\False}{\lif}$ toe:
+\begin{oltableau}
+[\sFmla{\False}{\lexists[x][\lnot \formula{A}(x)]\lif \lnot
+    \lforall[x][\formula{A}(x)]}, just=\TAss, checked
+  [\sFmla{\True}{\lexists[x][\lnot \formula{A}(x)]},
+    just={\TRule{\False}{\lif}[1]}
+    [\sFmla{\False}{\lnot\lforall[x][\formula{A}(x)]},
+      just={\TRule{\False}{\lif}[1]}]
+  ]
+]
+\end{oltableau}
+Voor regel~$2$ gebruiken we $\TRule{\True}{\lexists}$. Daarvoor moeten
+we een nieuwe !!{constant} kiezen. Er staat nog geen !!{constant} in
+het !!{tableau}, dus we mogen er zelf een kiezen, bijvoorbeeld~$a$.
+\begin{oltableau}
+[\sFmla{\False}{\lexists[x][\lnot \formula{A}(x)]\lif \lnot
+    \lforall[x][\formula{A}(x)]}, just=\TAss, checked
+  [\sFmla{\True}{\lexists[x][\lnot \formula{A}(x)]},
+    just={\TRule{\False}{\lif}[1]}, checked
+    [\sFmla{\False}{\lnot\lforall[x][\formula{A}(x)]},
+      just={\TRule{\False}{\lif}[1]}
+      [\sFmla{\True}{\lnot\formula{A}(a)}, just={\TRule{\True}{\lexists}[2]}]
+    ]
+  ]
+]
+\end{oltableau}
+Nu passen we $\TRule{\False}{\lnot}$ toe op regel~$3$:
+\begin{oltableau}
+[\sFmla{\False}{\lexists[x][\lnot \formula{A}(x)]\lif \lnot
+    \lforall[x][\formula{A}(x)]}, just=\TAss, checked
+  [\sFmla{\True}{\lexists[x][\lnot \formula{A}(x)]},
+    just={\TRule{\False}{\lif}[1]}, checked
+    [\sFmla{\False}{\lnot\lforall[x][\formula{A}(x)]},
+      just={\TRule{\False}{\lif}[1]}, checked
+      [\sFmla{\True}{\lnot\formula{A}(a)}, just={\TRule{\True}{\lexists}[2]}
+        [\sFmla{\True}{\lforall[x][\formula{A}(x)]},
+          just = {\TRule{\False}{\lnot}[3]}
+        ]
+      ]
+    ]
+  ]
+]
+\end{oltableau}
+We sluiten het !!{tableau} in twee stappen. Eerst passen we
+$\TRule{\True}{\lnot}$ toe op regel~$4$. Daarna passen we
+$\TRule{\True}{\lforall}$ toe op regel~$5$.
+\begin{oltableau}
+[\sFmla{\False}{\lexists[x][\lnot \formula{A}(x)]\lif \lnot
+    \lforall[x][\formula{A}(x)]}, just=\TAss, checked
+  [\sFmla{\True}{\lexists[x][\lnot \formula{A}(x)]},
+    just={\TRule{\False}{\lif}[1]}, checked
+    [\sFmla{\False}{\lnot\lforall[x][\formula{A}(x)]},
+      just={\TRule{\False}{\lif}[1]}, checked
+      [\sFmla{\True}{\lnot\formula{A}(a)}, just={\TRule{\True}{\lexists}[2]}
+        [\sFmla{\True}{\lforall[x][\formula{A}(x)]},
+          just = {\TRule{\False}{\lnot}[3]}
+          [\sFmla{\False}{\formula{A}(a)}, just={\TRule{\True}{\lnot}[4]}
+            [\sFmla{\True}{\formula{A}(a)},
+              just={\TRule{\True}{\lforall}[5]}, close
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+]
+\end{oltableau}
+\end{ex}
+
+\begin{ex}
+We bekijken hoe we !!a{tableau} maken voor de verzameling
+\[
+\sFmla{\False}{\lexists[x][!C(x,b)]},
+\sFmla{\True}{\lexists[x][(!A(x) \land !B(x))]},
+\sFmla{\True}{\lforall[x][(!B(x) \lif !C(x,b))]}.
+\]
+We beginnen zoals gewoonlijk met de aannamen:
+\begin{oltableau}
+  [\sFmla{\False}{\lexists[x][\formula{C}(x,b)]}, just=\TAss
+    [\sFmla{\True}{\lexists[x][(\formula{A}(x) \land \formula{B}(x))]},
+      just=\TAss
+      [\sFmla{\True}{\lforall[x][(\formula{B}(x) \lif \formula{C}(x,b))]},
+        just=\TAss]
+    ]
+  ]
+\end{oltableau}
+Pas een regel met de eigenvariabelevoorwaarde altijd eerst toe. Hier is
+dat $\TRule{\True}{\lexists}$ op regel~$2$. In de aannamen staat de
+!!{constant}~$b$ al. We moeten dus een andere !!{constant} gebruiken en
+nemen weer~$a$.
+\begin{oltableau}
+  [\sFmla{\False}{\lexists[x][\formula{C}(x,b)]}, just=\TAss
+    [\sFmla{\True}{\lexists[x][(\formula{A}(x) \land \formula{B}(x))]},
+      just=\TAss, checked
+      [\sFmla{\True}{\lforall[x][(\formula{B}(x) \lif \formula{C}(x,b))]},
+        just=\TAss
+        [\sFmla{\True}{\formula{A}(a) \land \formula{B}(a)},
+          just={\TRule{\True}{\lexists}[2]}]
+      ]
+    ]
+  ]
+\end{oltableau}
+Als we nu $\TRule{\False}{\lexists}$ op regel~$1$ of
+$\TRule{\True}{\lforall}$ op regel~$3$ toepassen, moeten we kiezen welke
+term~$t$ we op de plaats van~$x$ zetten. Bij deze regels geldt de
+eigenvariabelevoorwaarde niet. We mogen daarom elke term kiezen. Soms
+moeten we dezelfde regel zelfs meerdere keren toepassen, telkens met
+een andere~$t$. Meestal is het handig om een term te nemen die al in het
+!!{tableau} staat. Hier zijn dat $a$ en~$b$. We verwachten dat $a$
+eerder een tak zal sluiten.
+\begin{oltableau}
+  [\sFmla{\False}{\lexists[x][\formula{C}(x,b)]}, just=\TAss
+    [\sFmla{\True}{\lexists[x][(\formula{A}(x) \land \formula{B}(x))]},
+      just=\TAss, checked
+      [\sFmla{\True}{\lforall[x][(\formula{B}(x) \lif \formula{C}(x,b))]}, just=\TAss
+        [\sFmla{\True}{\formula{A}(a) \land \formula{B}(a)}, just={\TRule{\True}{\lexists}[2]}
+          [\sFmla{\False}{\formula{C}(a,b)}, just={\TRule{\False}{\lexists}[1]}
+            [\sFmla{\True}{\formula{B}(a) \lif \formula{C}(a,b)},
+              just={\TRule{\True}{\lforall}[3]}
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+We zetten nog geen vinkje bij de !!{signed formula}s op de regels $1$
+en $3$, want misschien moeten we ze nog een keer gebruiken. Nu passen
+we $\TRule{\True}{\land}$ toe op regel~$4$:
+\begin{oltableau}
+  [\sFmla{\False}{\lexists[x][\formula{C}(x,b)]}, just=\TAss
+    [\sFmla{\True}{\lexists[x][(\formula{A}(x) \land \formula{B}(x))]},
+      just=\TAss, checked
+      [\sFmla{\True}{\lforall[x][(\formula{B}(x) \lif \formula{C}(x,b))]}, just=\TAss
+        [\sFmla{\True}{\formula{A}(a) \land \formula{B}(a)},
+          just={\TRule{\True}{\lexists}[2]}, checked
+          [\sFmla{\False}{\formula{C}(a,b)}, just={\TRule{\False}{\lexists}[1]}
+            [\sFmla{\True}{\formula{B}(a) \lif \formula{C}(a,b)},
+              just={\TRule{\True}{\lforall}[3]}
+              [\sFmla{\True}{\formula{A}(a)}, just={\TRule{\True}{\land}[4]}
+                [\sFmla{\True}{\formula{B}(a)}, just={\TRule{\True}{\land}[4]}
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+Nu passen we $\TRule{\True}{\lif}$ toe op regel~$6$. Daardoor sluit het
+!!{tableau}:
+\begin{oltableau}
+  [\sFmla{\False}{\lexists[x][\formula{C}(x,b)]}, just=\TAss
+    [\sFmla{\True}{\lexists[x][(\formula{A}(x) \land \formula{B}(x))]},
+      just=\TAss, checked
+      [\sFmla{\True}{\lforall[x][(\formula{B}(x) \lif \formula{C}(x,b))]},
+        just=\TAss
+        [\sFmla{\True}{\formula{A}(a) \land \formula{B}(a)},
+          just={\TRule{\True}{\lexists}[2]}, checked
+          [\sFmla{\False}{\formula{C}(a,b)},
+            just={\TRule{\False}{\lexists}[1]}
+            [\sFmla{\True}{\formula{B}(a) \lif \formula{C}(a,b)},
+              just={\TRule{\True}{\lforall}[3]}, checked
+              [\sFmla{\True}{\formula{A}(a)},
+                just={\TRule{\True}{\land}[4]}
+                [\sFmla{\True}{\formula{B}(a)},
+                  just={\TRule{\True}{\land}[4]}
+                  [\sFmla{\False}{\formula{B}(a)},
+                    just={\TRule{\True}{\lif}[6]},close
+                  ]
+                  [\sFmla{\True}{\formula{C}(a,b)},
+                    just={\TRule{\True}{\lif}[6]},close
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+
+
+\end{ex}
+
+\begin{ex}
+We maken !!a{tableau} voor de verzameling
+\[
+\sFmla{\True}{\lforall[x][!A(x)]}, \sFmla{\True}{\lforall[x][!A(x)] 
+  \lif \lexists[y][!B(y)]}, \sFmla{\True}{\lnot\lexists[y][!B(y)]}.
+\]
+Zoals gewoonlijk schrijven we eerst de aannamen op:
+\begin{oltableau}
+  [\sFmla{\True}{\lforall[x][\formula{A}(x)]}, just=\TAss
+    [\sFmla{\True}{\lforall[x][\formula{A}(x)] \lif
+        \lexists[y][\formula{B}(y)]}, just=\TAss
+      [\sFmla{\True}{\lnot\lexists[y][\formula{B}(y)]}, just=\TAss
+      ]
+    ]
+  ]
+\end{oltableau}
+Eerst passen we de regel $\TRule{\True}{\lnot}$ toe op regel~$3$. De
+vuistregel was: ``pas regels met eigenvariabelevoorwaarden altijd eerst
+toe.'' Daaruit volgt ook: ``wacht met kwantorregels zonder
+eigenvariabelevoorwaarden totdat je ze nodig hebt.'' Wacht ook met
+regels die het !!{tableau} laten vertakken.
+\begin{oltableau}
+  [\sFmla{\True}{\lforall[x][\formula{A}(x)]}, just=\TAss
+    [\sFmla{\True}{\lforall[x][\formula{A}(x)] \lif
+        \lexists[y][\formula{B}(y)]}, just=\TAss
+      [\sFmla{\True}{\lnot\lexists[y][\formula{B}(y)]}, just=\TAss, checked
+        [\sFmla{\False}{\lexists[y][\formula{B}(y)]}, just={\TRule{\True}{\lnot}[3]}]
+      ]
+    ]
+  ]
+\end{oltableau}
+Bij de nieuwe regel~$4$ hoort $\TRule{\False}{\lexists}$. Voor die
+kwantorregel geldt de eigenvariabelevoorwaarde niet. Daarom wachten we
+ermee en passen we eerst $\TRule{\True}{\lif}$ toe op regel~$2$.
+\begin{oltableau}
+  [\sFmla{\True}{\lforall[x][\formula{A}(x)]}, just=\TAss
+    [\sFmla{\True}{\lforall[x][\formula{A}(x)] \lif
+        \lexists[y][\formula{B}(y)]}, just=\TAss, checked
+      [\sFmla{\True}{\lnot\lexists[y][\formula{B}(y)]}, just=\TAss, checked
+        [\sFmla{\False}{\lexists[y][\formula{B}(y)]},
+          just={\TRule{\True}{\lnot}[3]},
+          [\sFmla{\False}{\lforall[x][\formula{A}(x)]}, just={\TRule{\True}{\lif}[2]}]
+          [\sFmla{\True}{\lexists[y][\formula{B}(y)]}, just={\TRule{\True}{\lif}[2]}]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+Bij beide nieuwe !!{signed formula}s hoort een regel met de
+eigenvariabelevoorwaarde. Die regels passen we nu toe:
+\begin{oltableau}
+  [\sFmla{\True}{\lforall[x][\formula{A}(x)]}, just=\TAss
+    [\sFmla{\True}{\lforall[x][\formula{A}(x)] \lif
+        \lexists[y][\formula{B}(y)]}, just=\TAss, checked
+      [\sFmla{\True}{\lnot\lexists[y][\formula{B}(y)]}, just=\TAss, checked
+        [\sFmla{\False}{\lexists[y][\formula{B}(y)]},
+          just={\TRule{\True}{\lnot}[3]}
+          [\sFmla{\False}{\lforall[x][\formula{A}(x)]}, just={\TRule{\True}{\lif}[2]},checked
+            [\sFmla{\False}{\formula{A}(b)}, just={\TRule{\False}{\lforall}[5]}]
+          ]
+          [\sFmla{\True}{\lexists[y][\formula{B}(y)]}, just={\TRule{\True}{\lif}[2]},checked
+            [\sFmla{\True}{\formula{B}(c)}, just={\TRule{\True}{\lexists}[5]}]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+Om de takken te sluiten, moeten we de !!{signed formula}s op de regels
+$1$ en~$3$ gebruiken. Daarbij horen de regels
+\TRule{\True}{\lforall} en \TRule{\False}{\lexists}. Voor geen van beide
+geldt de eigenvariabelevoorwaarde. We mogen dus kiezen welke termen
+werken. Voor de eerste gebruiken we $b$ en voor de tweede gebruiken
+we~$c$.
+\begin{oltableau}
+  [\sFmla{\True}{\lforall[x][\formula{A}(x)]}, just=\TAss
+    [\sFmla{\True}{\lforall[x][\formula{A}(x)] \lif
+        \lexists[y][\formula{B}(y)]}, just=\TAss, checked
+      [\sFmla{\True}{\lnot\lexists[y][\formula{B}(y)]}, just=\TAss, checked
+        [\sFmla{\False}{\lexists[y][\formula{B}(y)]},
+          just={\TRule{\True}{\lnot}[3]}
+          [\sFmla{\False}{\lforall[x][\formula{A}(x)]},
+            just={\TRule{\True}{\lif}[2]},checked
+            [\sFmla{\False}{\formula{A}(b)},
+              just={\TRule{\False}{\lforall}[5]}
+              [\sFmla{\True}{\formula{A}(b)},
+                just={\TRule{\True}{\lforall}[1]},close
+              ]
+            ]
+          ]
+          [\sFmla{\True}{\lexists[y][\formula{B}(y)]},
+            just={\TRule{\True}{\lif}[2]},checked
+            [\sFmla{\True}{\formula{B}(c)},
+              just={\TRule{\True}{\lexists}[5]}
+              [\sFmla{\False}{\formula{B}(c)},
+                just={\TRule{\False}{\lexists}[4]},close
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+\end{ex}
+
+\begin{prob}
+Maak voor elk van de volgende gevallen een gesloten !!{tableau}:
+\begin{enumerate}
+\item $\sFmla{\False}{(\lforall[x][!A(x)] \land \lforall[y][!B(y)])
+\lif \lforall[z][(!A(z) \land !B(z))]}$.
+\item $\sFmla{\False}{(\lexists[x][!A(x)] \lor \lexists[y][!B(y)])
+\lif \lexists[z][(!A(z) \lor !B(z))]}$.
+\item $\sFmla{\True}{\lforall[x][(!A(x) \lif !B)]},
+\sFmla{\False}{\lexists[y][!A(y)] \lif !B}$.
+\item $\sFmla{\True}{\lforall[x][\lnot !A(x)]},
+\sFmla{\False}{\lnot\lexists[x][!A(x)]}$.
+\item $\sFmla{\False}{\lnot\lexists[x][!A(x)] \lif \lforall[x][\lnot
+!A(x)]}$.
+\item $\sFmla{\False}{\lnot\lexists[x][\lforall[y][((!A(x,y) \lif
+\lnot !A(y,y)) \land (\lnot !A(y,y) \lif !A(x,y)))]]}$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Maak voor elk van de volgende gevallen een gesloten !!{tableau}:
+\begin{enumerate}
+\item $\sFmla{\False}{\lnot\lforall[x][!A(x)] \lif \lexists[x][\lnot!A(x)]}$.
+\item $\sFmla{\True}{(\lforall[x][!A(x)] \lif !B)}, \sFmla{\False}{\lexists[y][(!A(y) \lif !B)]}$.
+\item $\sFmla{\False}{\lexists[x][(!A(x) \lif \lforall[y][!A(y)])]}$.
+\end{enumerate}
+\end{prob}
+
+\end{document}

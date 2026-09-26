@@ -1,0 +1,85 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: provability-propositional
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{axd}{ppr}}
+      {\olfileid{pl}{axd}{ppr}}
+
+\olsection{\usetoken{S}{derivability} en de propositionele connectieven}
+
+\begin{explain}
+  We tonen aan dat de !!{derivability}srelatie~$\Proves$ van de
+  axiomatische deductie krachtig genoeg is om enkele fundamentele
+  feiten over de propositionele connectieven af te leiden, zoals
+  $!A \land !B \Proves !A$ en $!A, !A \lif !B \Proves !B$ (modus
+  ponens). Deze feiten zijn nodig voor het bewijs van de
+  volledigheidsstelling.
+\end{explain}
+
+\begin{prop}\ollabel{prop:provability-land}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-land-left} Zowel $!A \land !B \Proves
+    !A$ als $!A \land !B \Proves !B$.
+  \item \ollabel{prop:provability-land-right} $!A, !B \Proves !A \land !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Uit \olref[prp]{ax:land1} en \olref[prp]{ax:land1} met
+      modus ponens.
+  \item Uit \olref[prp]{ax:land3} met twee toepassingen van modus
+    ponens.
+  \end{enumerate}
+\end{proof}
+
+
+\begin{prop}\ollabel{prop:provability-lor}
+  \begin{enumerate}
+  \item $!A \lor !B, \lnot !A, \lnot !B$ is inconsistent.
+  \item Zowel $!A \Proves !A \lor !B$ als $!B \Proves !A \lor !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Uit \olref[prp]{ax:lnot1} volgen $\Proves \lnot !A \lif (!A
+    \lif \lfalse)$ en $\Proves \lnot !B \lif (!B \lif \lfalse)$.
+    Volgens de deductiestelling hebben we dus $\{\lnot !A\} \Proves
+    !A \lif \lfalse$ en $\{\lnot !B\} \Proves !B \lif \lfalse$. Uit
+    \olref[prp]{ax:lor3} volgt $\{\lnot !A, \lnot !B\} \Proves (!A
+    \lor !B) \lif \lfalse$. Volgens de deductiestelling geldt
+    $\{!A \lor !B, \lnot !A, \lnot !B\} \Proves \lfalse$.
+  \item Uit \olref[prp]{ax:lor1} en \olref[prp]{ax:lor2} met modus
+    ponens.
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lif}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-lif-left}  $!A, !A \lif !B \Proves !B$.
+  \item \ollabel{prop:provability-lif-right}
+    Zowel $\lnot !A \Proves !A \lif !B$ als $!B \Proves !A \lif !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item We kunnen het volgende !!{derive}:
+    \begin{derivation}
+      1. & $!A$ & \Hyp\\
+      2. & $!A \lif !B$ & \Hyp\\
+      3. & $!B$ & 1, 2, \MP
+    \end{derivation}
+    
+  \item Uit respectievelijk \olref[prp]{ax:lnot2} en
+    \olref[prp]{ax:lif1}, samen met de deductiestelling.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

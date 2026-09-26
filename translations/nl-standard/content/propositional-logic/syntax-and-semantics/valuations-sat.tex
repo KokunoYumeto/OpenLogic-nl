@@ -1,0 +1,201 @@
+% Part: propositional-logic
+% Chapter: syntax-and-semantics
+% Section: valuations-sat
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{pl}{syn}{val}
+
+\olsection{\usetoken{P}{valuation} en vervulling}
+
+\begin{defn}[!!^{valuation}s]
+Zij $\{\True, \False\}$ de verzameling van de twee waarheidswaarden
+``waar'' en ``onwaar''. \emph{!!^a{valuation}} voor $\Lang{L_0}$ is een
+functie~$\pAssign{v}$ die aan de !!{propositional variable}s van de
+taal hetzij $\True$, hetzij $\False$ toekent, dat wil zeggen
+$\pAssign{v} \colon \PVar \to \{\True, \False \}$.
+\end{defn}
+
+\begin{defn}
+  Definieer bij een gegeven !!a{valuation}~$\pAssign{v}$ de
+  evaluatiefunctie $\pValue{v} \colon \Frm[L_0] \to \{\True, \False \}$
+  inductief door:
+  \begin{align*}
+    \iftag{prvFalse}{\pValue{v}(\lfalse) & = \False; \\}{}
+    \iftag{prvTrue}{\pValue{v}(\ltrue) & = \True; \\}{}
+    \pValue{v}(\Obj p_n) & = \pAssign{v}(\Obj p_n); \\
+    \iftag{prvNot}{\pValue{v}(\lnot !A) & = \begin{cases}
+        \True & \text{als } \pValue{v}(!A) = \False;\\
+        \False & \text{anders.}
+      \end{cases} \\ }{}
+    \iftag{prvAnd}{\pValue{v}(!A \land !B) & = \begin{cases}
+        \True &
+        \text{als $\pValue{v}(!A) = \True$ en $\pValue{v}(!B) = \True$;}\\
+        \False &
+        \text{als $\pValue{v}(!A) = \False$ of $\pValue{v}(!B) = \False$}.
+      \end{cases}\\}{}
+    \iftag{prvOr}{\pValue{v}(!A \lor !B) & = \begin{cases}
+        \True &
+        \text{als $\pValue{v}(!A) = \True$ of $\pValue{v}(!B) = \True$;}\\
+        \False &
+        \text{als $\pValue{v}(!A) = \False$ en $\pValue{v}(!B) = \False$}.
+      \end{cases}\\}{}
+    \iftag{prvIf}{\pValue{v}(!A \lif !B) & = \begin{cases}
+        \True &
+        \text{als $\pValue{v}(!A) = \False$ of $\pValue{v}(!B) = \True$;}\\
+        \False &
+        \text{als $\pValue{v}(!A) = \True$ en $\pValue{v}(!B) = \False$}.
+      \end{cases}\\}{}
+    \iftag{prvIff}{\pValue{v}(!A \liff !B) & = \begin{cases}
+        \True &
+        \text{als $\pValue{v}(!A) = \pValue{v}(!B)$;}\\
+        \False &
+        \text{als $\pValue{v}(!A) \neq \pValue{v}(!B)$}.
+      \end{cases}}{}
+\end{align*}
+\end{defn}
+
+\begin{explain}
+De clausules komen overeen met de volgende waarheidstafels:
+\begin{center}
+\iftag{prvNot}{
+  \begin{tabular}{|c||c|} \hline
+    $!A$ & $ \lnot !A$ \\
+    \hline \hline
+    $\True$ & $\False$ \\
+    $\False$ & $\True$ \\
+    \hline
+  \end{tabular}
+}{}
+\iftag{prvAnd}{
+  \begin{tabular}{|cc||c|} \hline
+    $!A$ & $!B$ & $!A \land !B$ \\
+    \hline \hline
+    $\True$ & $\True$ & $\True$ \\
+    $\True$ & $\False$ & $\False$ \\
+    $\False$ & $\True$ & $\False$ \\
+    $\False$ & $\False$ & $\False$ \\
+    \hline
+  \end{tabular}
+}{}
+\iftag{prvOr}{
+  \begin{tabular}{|cc||c|} \hline
+    $!A$ & $!B$ & $!A \lor !B$ \\
+    \hline \hline
+    $\True$ & $\True$ & $\True$ \\
+    $\True$ & $\False$ & $\True$ \\
+    $\False$ & $\True$ & $\True$ \\
+    $\False$ & $\False$ & $\False$ \\
+    \hline
+  \end{tabular}
+}{}%
+\iftag{notprvNot,notprvAnd,notprvOr,notprvIf}{}{\\[1em]}
+\iftag{prvIf}{
+  \begin{tabular}{|cc||c|} \hline
+    $!A$ & $!B$ & $!A \lif !B$ \\
+    \hline \hline
+    $\True$ & $\True$ & $\True$ \\
+    $\True$ & $\False$ & $\False$ \\
+    $\False$ & $\True$ & $\True$ \\
+    $\False$ & $\False$ & $\True$ \\
+    \hline
+  \end{tabular}
+}{}
+\iftag{prvIff}{
+  \begin{tabular}{|cc||c|} \hline
+    $!A$ & $!B$ & $!A \liff !B$ \\
+    \hline \hline
+    $\True$ & $\True$ & $\True$ \\
+    $\True$ & $\False$ & $\False$ \\
+    $\False$ & $\True$ & $\False$ \\
+    $\False$ & $\False$ & $\True$ \\
+    \hline
+  \end{tabular}
+}{}
+\end{center}
+\end{explain}
+
+\begin{prob}
+Beschouw de uitbreiding van $\Lang{L_0}$ met een ternair connectief
+$\diamondsuit$ waarvan de evaluatie wordt gegeven door
+\begin{gather*}
+  \pValue{v}(\diamondsuit( !A , !B , !C ) ) = \begin{cases}
+    \pValue{v}( !B ) &
+    \text{als $\pValue{v}(!A) = \True$;}\\
+    \pValue{v}( !C ) &
+    \text{als $\pValue{v}(!A) = \False $}.
+  \end{cases}
+\end{gather*}
+Stel de waarheidstafel voor dit connectief op.
+\end{prob}
+
+\begin{thm}[Lokale bepaaldheid]
+\ollabel{thm:LocalDetermination} Stel dat $\pAssign{v_1}$ en
+$\pAssign{v_2}$ !!{valuation}s zijn die overeenstemmen op de
+!!{propositional variable}s die in $!A$ voorkomen, dat wil zeggen dat
+$\pAssign{v_1}(\Obj p_n) = \pAssign{v_2}(\Obj p_n)$ telkens als
+$\Obj p_n$ in de !!{formula}~$!A$ voorkomt. Dan stemmen
+$\pValue{v_1}$ en $\pValue{v_2}$ ook overeen op~$!A$, dat wil zeggen
+$\pValue{v_1}(!A) = \pValue{v_2}(!A)$.
+\end{thm}
+
+\begin{proof}
+Door inductie naar $!A$.
+\end{proof}
+
+\begin{defn}[Vervulling]
+\ollabel{defn:satisfaction} We kunnen het begrip
+  \emph{vervulling van !!a{formula}~$!A$ door
+  !!a{valuation}~$\pAssign{v}$}, $\pSat{v}{!A}$, als volgt inductief
+  definiëren. (We schrijven $\pSat/{v}{!A}$ voor ``niet
+  $\pSat{v}{!A}$''.)
+\begin{enumerate}
+\tagitem{prvFalse}{%
+  \indcase{!A}{\lfalse}{$\pSat/{v}{\indfrm}$.}}{}
+
+\tagitem{prvTrue}{%
+  \indcase{!A}{\ltrue}{$\pSat{v}{\indfrm}$.}}{}
+
+\item \indcase{!A}{\Obj p_i}{$\pSat{v}{\indfrm}$
+  dan en slechts dan als $\pAssign{v}(\Obj p_i) = \True$.}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}{$\pSat{v}{\indfrm}$ dan en slechts dan als
+    $\pSat/{v}{!B}$.}}{}
+
+\tagitem{prvAnd}{%
+  \indcase{!A}{(!B \land !C)}{$\pSat{v}{\indfrm}$ dan en slechts dan
+    als $\pSat{v}{!B}$ en $\pSat{v}{!C}$.}}{}
+
+\tagitem{prvOr}{%
+  \indcase{!A}{(!B \lor !C)}{$\pSat{v}{\indfrm}$ dan en slechts dan als
+    $\pSat{v}{!B}$ of $\pSat{v}{!C}$ (of beide).}}{}
+
+\tagitem{prvIf}{%
+  \indcase{!A}{(!B \lif !C)}{$\pSat{v}{\indfrm}$ dan en slechts dan als
+    $\pSat/{v}{!B}$ of $\pSat{v}{!C}$ (of beide).}}{}
+
+\tagitem{prvIff}{%
+  \indcase{!A}{(!B \liff !C)}{$\pSat{v}{\indfrm}$ dan en slechts dan
+    als hetzij zowel $\pSat{v}{!B}$ als $\pSat{v}{!C}$, hetzij noch
+    $\pSat{v}{!B}$ noch $\pSat{v}{!C}$.}}{}
+\end{enumerate}
+Als $\Gamma$ een verzameling !!{formula}s is, dan geldt
+$\pSat{v}{\Gamma}$ dan en slechts dan als $\pSat{v}{!A}$ voor
+elke~$!A \in \Gamma$.
+\end{defn}
+
+\begin{prop}\ollabel{prop:sat-value}
+  $\pSat{v}{!A}$ dan en slechts dan als $\pValue{v}(!A) = \True$.
+\end{prop}
+
+\begin{proof}
+  Door inductie naar~$!A$.
+\end{proof}
+
+\begin{prob}
+  Bewijs \olref[pl][syn][val]{prop:sat-value}
+\end{prob}
+\end{document}

@@ -1,0 +1,185 @@
+% Part: propositional-logic
+% Chapter: syntax-and-semantics
+% Section: formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{pl}{syn}{fml}
+
+\olsection{Propositionele \usetoken{P}{formula}}
+
+!!^{formula}s van de propositielogica worden uit
+\emph{!!{propositional
+    variable}s}\iftag{prvFalse}{\iftag{prvTrue}{,}{ en} de
+  propositionele constante~$\lfalse$}{}\iftag{prvTrue}{\iftag{prvFalse}{
+    en}{} de propositionele constante~$\ltrue$}{} opgebouwd met
+\emph{logische connectieven}.
+
+\begin{enumerate}
+\item !!^a{denumerable} verzameling~$\PVar$ van !!{propositional variable}s
+  $\Obj p_0$, $\Obj p_1$, \dots
+\tagitem{prvFalse}{De propositionele constante voor !!{falsity}~$\lfalse$.}{}
+\tagitem{prvTrue}{De propositionele constante voor !!{truth}~$\ltrue$.}{}
+\item De logische connectieven:
+  \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (negatie)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (conjunctie)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (disjunctie)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+\item Leestekens: (, ) en de komma.
+\end{enumerate}
+
+We duiden deze taal van de propositielogica aan met $\Lang L_0$.
+
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
+Naast de hierboven ingevoerde primitieve connectieven gebruiken we ook
+de volgende \emph{gedefinieerde} symbolen:
+\startycommalist
+  \iftag{defNot}{\ycomma $\lnot$ (negatie)}{}%
+  \iftag{defAnd}{\ycomma $\land$ (conjunctie)}{}%
+  \iftag{defOr}{\ycomma $\lor$ (disjunctie)}{}%
+  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{defFalse}{\ycomma $\lfalse$ (!!{falsity})}{}%
+  \iftag{defTrue}{\ycomma $\ltrue$ (!!{truth})}}{}.
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{explain}
+Een gedefinieerd symbool behoort formeel niet tot de taal, maar wordt
+als informele afkorting ingevoerd. Daarmee kunnen we formules afkorten
+die bij uitsluitend gebruik van primitieve symbolen vrij lang zouden
+worden. Dat is een duidelijk voordeel. Een nog groter voordeel is dat
+bewijzen korter worden. Elk primitief symbool moet in bewijzen immers
+afzonderlijk worden behandeld. Hoe meer primitieve symbolen er zijn,
+des te langer onze bewijzen dus worden.
+\end{explain}
+\end{tagblock}
+
+% Alternate symbols
+
+\begin{intro}
+Wellicht kent u andere termen en symbolen dan de hierboven gebruikte.
+In logicaboeken (en door docenten) worden $\sim$, $\neg$ en~!\ vaak
+gebruikt voor ``negatie'', en $\wedge$, $\cdot$ en $\&$ voor
+``conjunctie''. Veelgebruikte symbolen voor het ``conditioneel'' of de
+``implicatie'' zijn
+$\rightarrow$, $\Rightarrow$ en $\supset$.
+\iftag{prvIff,defIff}{Symbolen voor ``biconditioneel'',
+  ``bi-implicatie'' of ``(materiële) equivalentie'' zijn
+  $\leftrightarrow$, $\Leftrightarrow$ en
+  $\equiv$.}{}
+\iftag{prvFalse,defFalse}{Het symbool $\lfalse$ wordt onder meer
+  ``onwaarheid'', ``falsum'', ``absurdum'' en ``bottom'' genoemd.}{}
+\iftag{prvTrue,defTrue}{Het symbool $\ltrue$ wordt onder meer
+  ``waarheid'', ``verum'' en ``top'' genoemd.}{}
+\end{intro}
+
+\begin{defn}[Formule]
+\ollabel{defn:formulas}
+De verzameling~$\Frm[L_0]$ van \emph{!!{formula}s} van de
+propositielogica wordt als volgt inductief gedefinieerd:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ is een atomaire !!{formula}.}{}
+
+\tagitem{prvTrue}{$\ltrue$ is een atomaire !!{formula}.}{}
+
+\item Elke !!{propositional variable}~$\Obj p_i$ is een atomaire
+  !!{formula}.
+
+\tagitem{prvNot}{Als $!A$ !!a{formula} is, dan is $\lnot !A$
+  !!a{formula}.}{}
+
+\tagitem{prvAnd}{Als $!A$ en $!B$ !!{formula}s zijn, dan is $(!A \land
+  !B)$ !!a{formula}.}{}
+
+\tagitem{prvOr}{Als $!A$ en $!B$ !!{formula}s zijn, dan is $(!A \lor !B)$
+  !!a{formula}.}{}
+
+\tagitem{prvIf}{Als $!A$ en $!B$ !!{formula}s zijn, dan is $(!A \lif !B)$
+  !!a{formula}.}{}
+
+\tagitem{prvIff}{Als $!A$ en $!B$ !!{formula}s zijn, dan is $(!A \liff !B)$
+  !!a{formula}.}{}
+
+\tagitem{limitClause}{Niets anders is !!a{formula}.}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+De definitie van !!{formula}s is een \emph{inductieve definitie}. In
+wezen construeren we de verzameling !!{formula}s in oneindig veel
+stadia. In het beginstadium verklaren we alle atomaire formules tot
+formules; dit komt overeen met de eerste gevallen van de definitie,
+namelijk die voor
+\iftag{prvTrue}{$\ltrue$, }{}%
+\iftag{prvFalse}{$\lfalse$, }{}%
+$\Obj p_i$. Met ``atomaire !!{formula}'' wordt dus elke !!{formula} van
+een van deze vormen bedoeld.
+
+De overige gevallen van de definitie geven regels om uit reeds
+geconstrueerde !!{formula}s nieuwe !!{formula}s te construeren. In het
+tweede stadium kunnen we daarmee !!{formula}s uit atomaire
+!!{formula}s construeren. In het derde stadium construeren we nieuwe
+formules uit de atomaire formules en uit de formules die in het tweede
+stadium zijn verkregen, enzovoort. Een !!{formula} is precies datgene
+wat uiteindelijk in zo'n stadium wordt geconstrueerd.
+\end{explain}
+
+Wanneer we een formule $(!B \ast !C)$ schrijven die uit $!B$, $!C$ met
+een tweeplaatsig connectief~$\ast$ is geconstrueerd, laten we het
+buitenste paar haakjes vaak weg en schrijven we eenvoudig~$!B \ast !C$.
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{defn}
+Formules die met de gedefinieerde operatoren zijn geconstrueerd, worden
+als volgt opgevat:
+
+\begin{tagenumerate}{defTrue,defFalse,defNot,defOr,defAnd,defIf,defIff,defEx,defAll}
+
+\tagitem{defTrue}{$\ltrue$ is een afkorting voor
+  \iftag{prvFalse}{$\lnot\lfalse$}{$(!A \lor \lnot !A)$ voor een vaste
+    atomaire !!{formula}~$!A$}.}{}
+
+\tagitem{defFalse}{$\lfalse$ is een afkorting voor
+  \iftag{prvTrue}{$\lnot\ltrue$}{$(!A \land \lnot !A)$ voor een vaste
+    atomaire !!{formula}~$!A$}.}{}
+
+\tagitem{defNot}{$\lnot !A$ is een afkorting voor $!A \lif \lfalse$.}{}
+
+\tagitem{defOr}{$!A \lor !B$ is een afkorting voor
+  \iftag{prvAnd}{$\lnot(\lnot !A \land \lnot !B)$}{$\lnot !A \lif
+    !B$}.}{}
+
+\tagitem{defAnd}{$!A \land !B$ is een afkorting voor
+  \iftag{prvOr}{$\lnot(\lnot !A \lor \lnot !B)$}{$\lnot (!A \lif
+    \lnot !B)$}.}{}
+
+\tagitem{defIf}{$!A \lif !B$ is een afkorting voor
+  \iftag{prvOr}{$\lnot !A \lor !B$}{$\lnot (!A \land \lnot !B)$}.}{}
+
+\tagitem{defIff}{$!A \liff !B$ is een afkorting voor $(!A \lif !B) \land (!B
+  \lif !A)$.}{}
+\end{tagenumerate}
+\end{defn}
+\end{tagblock}
+
+\begin{defn}[Syntactische identiteit]
+Het symbool $\ident$ drukt syntactische identiteit tussen tekenreeksen
+uit. Dat wil zeggen: $!A \ident !B$ geldt dan en slechts dan als $!A$ en
+$!B$ even lange tekenreeksen zijn en op elke positie hetzelfde symbool
+bevatten.
+\end{defn}
+
+Aan weerszijden van het symbool $\ident$ mogen tekenreeksen staan die
+door aaneenschakeling zijn verkregen. Zo betekent $!A \ident (!B \lor
+!C)$ dat de tekenreeks~$!A$ dezelfde is als de tekenreeks die ontstaat
+door, in deze volgorde, een openend haakje, de tekenreeks $!B$, het
+symbool $\lor$, de tekenreeks~$!C$ en een sluitend haakje aaneen te
+schakelen. In dat geval weten we dat het eerste symbool van $!A$ een
+openend haakje is, dat $!A$ de tekenreeks $!B$ als deeltekenreeks bevat
+(beginnend bij het tweede symbool), dat die deeltekenreeks door $\lor$
+wordt gevolgd, enzovoort.
+\end{document}

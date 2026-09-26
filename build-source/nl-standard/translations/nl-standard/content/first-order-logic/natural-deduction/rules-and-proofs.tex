@@ -1,0 +1,50 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{ntd}{rul}}
+      {\olfileid{pl}{ntd}{rul}}
+
+\olsection{Regels en \usetoken{P}{derivation}}
+
+\begin{explain}
+Systemen van natuurlijke deductie zijn bedoeld om nauw aan te sluiten
+bij de informele redeneringen in wiskundige bewijzen (vandaar dat zij
+enigszins ``natuurlijk'' zijn). Bewijzen in natuurlijke deductie
+beginnen met aannamen. Vervolgens worden afleidingsregels toegepast.
+Aannamen worden door de afleidingsregels \Intro{\lnot}, \Intro{\lif},
+\iftag{FOL}{\Elim{\lor} en \Elim{\lexists}}{ en \Elim{\lor}}
+``!!{discharged}''. Ter verduidelijking wordt het label van de
+!!{discharged} aanname naast de afleidingsstap geplaatst.
+\end{explain}
+
+\begin{defn}[Aanname]
+Een \emph{aanname} is elke !!{sentence} die bovenaan een tak staat.
+\end{defn}
+
+!!^{derivation}s in natuurlijke deductie zijn bepaalde bomen van
+!!{sentence}s. De bovenste !!{sentence}s zijn aannamen. Als
+!!a{sentence} onder één, twee of drie andere sequenten staat, moet hij
+daaruit correct volgen door een afleidingsregel. De !!{sentence}s
+boven de afleidingsstap heten de \emph{premissen}; de !!{sentence}
+eronder heet de \emph{conclusie} van de afleidingsstap. De regels komen
+in paren: voor elke !!{operator} is er een introductieregel en een
+eliminatieregel. Zij voeren !!a{operator} in de conclusie in of
+verwijderen !!a{operator} uit een premisse van de regel. Sommige regels
+staan toe dat een aanname van een bepaald type wordt
+\emph{!!{discharged}}. Om aan te geven welke aanname door welke
+afleidingsstap wordt !!{discharged}, kennen we zowel de aanname als de
+afleidingsstap een label toe. Dit geven we aan door de aanname als
+``$\Discharge{!A}{n}$'' te schrijven.
+
+% Only include this sentence is on of \land, lor, lif or lnot is defined.
+
+\iftag{notprvNot,notprvAnd,notprvOr,notprvIf}{}%
+	{Het is gebruikelijk regels te beschouwen voor alle !!{operator}s $\land$, $\lor$, $\lif$, $\lnot$ en $\lfalse$, ook als sommige daarvan gedefinieerd zijn.}
+
+\end{document}

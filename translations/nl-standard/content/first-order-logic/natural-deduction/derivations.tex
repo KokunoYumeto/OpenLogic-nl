@@ -1,0 +1,108 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: derivations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{ntd}{der}}
+      {\olfileid{pl}{ntd}{der}}
+
+\olsection{\usetoken{P}{derivation}}
+
+\begin{explain}
+We hebben uiteengezet wat een aanname is en de afleidingsregels
+gegeven. !!^{derivation}s in natuurlijke deductie worden daaruit
+inductief opgebouwd: elke !!{derivation} is ofwel een op zichzelf
+staande aanname, ofwel samengesteld uit één, twee of drie
+!!{derivation}s gevolgd door een correcte afleidingsstap.
+\end{explain}
+
+\begin{defn}[!!^{derivation}]
+\Article{derivation} \emph{!!{derivation}} van !!a{sentence}~$!A$ uit
+aannamen~$\Gamma$ is een eindige boom van !!{sentence}s die aan de
+volgende voorwaarden voldoet:
+\begin{enumerate}
+\item De bovenste !!{sentence}s van de boom behoren tot $\Gamma$ of
+  worden door een afleidingsstap in de boom !!{discharged}.
+\item De onderste !!{sentence} van de boom is~$!A$.
+\item Elke !!{sentence} in de boom, met uitzondering van de onderste
+  zin~$!A$, is een premisse van een correcte toepassing van een
+  afleidingsregel waarvan de conclusie direct onder die !!{sentence}
+  in de boom staat.
+\end{enumerate}
+We zeggen dan dat $!A$ de \emph{conclusie} van de !!{derivation} is en
+$\Gamma$ de !!{undischarged} aannamen ervan zijn.
+
+Als er !!a{derivation} van $!A$ uit~$\Gamma$ bestaat, zeggen we dat
+$!A$ uit~$\Gamma$ \emph{!!{derivable}} is, in symbolen: $\Gamma
+\Proves !A$. Als er !!a{derivation} van~$!A$ bestaat waarin elke
+aanname is !!{discharged}, schrijven we~$\Proves !A$.
+\end{defn}
+
+\begin{ex}
+Elke op zichzelf staande aanname is !!a{derivation}. Zo is $!A$ op
+zichzelf !!a{derivation}, en $!B$ eveneens. We kunnen daaruit een
+nieuwe !!{derivation} verkrijgen door bijvoorbeeld de regel
+$\Intro{\land}$ toe te passen:
+\begin{prooftree}
+\AxiomC{$!A$}
+\AxiomC{$!B$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!A \land !B$}
+\end{prooftree}
+Deze regels zijn algemeen bedoeld: we kunnen de $!A$ en~$!B$ erin door
+willekeurige !!{sentence}s vervangen, bijvoorbeeld door $!C$ en~$!D$.
+De conclusie wordt dan $!C \land !D$, en dus is
+\begin{prooftree}
+\AxiomC{$!C$}
+\AxiomC{$!D$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!C \land !D$}
+\end{prooftree}
+een correcte !!{derivation}. We kunnen de aannamen ook verwisselen,
+zodat $!D$ de rol van~$!A$ vervult en $!C$ die van~$!B$. Derhalve is
+\begin{prooftree}
+\AxiomC{$!D$}
+\AxiomC{$!C$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!D \land !C$}
+\end{prooftree}
+eveneens een correcte !!{derivation}.
+
+We kunnen nu een andere regel toepassen, bijvoorbeeld $\Intro{\lif}$.
+Daarmee kunnen we een implicatie concluderen en elke aanname
+!!{discharge} die identiek is aan het antecedent van die implicatie.
+Beide volgende bomen zijn bijgevolg correcte !!{derivation}s:
+\begin{prooftree}
+\AxiomC{$\Discharge{!C}{1}$}
+\AxiomC{$!D$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!C \land !D$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$!C \lif (!C \land !D)$}
+\DisplayProof\bottomAlignProof
+\AxiomC{$!C$}
+\AxiomC{$\Discharge{!D}{1}$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!C \land !D$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$!D \lif (!C \land !D)$}
+\end{prooftree}
+Zij tonen respectievelijk aan dat $!D \Proves !C \lif (!C \land !D)$
+en $!C \Proves !D \lif (!C \land !D)$.
+
+Bedenk dat het intrekken van aannamen een mogelijkheid is, geen
+verplichting: we hoeven de aannamen niet in te trekken. We kunnen een
+regel in het bijzonder zelfs toepassen als de aannamen niet in de
+!!{derivation} voorkomen. Het volgende is bijvoorbeeld toegestaan,
+hoewel er geen aanname~$!A$ is om te worden !!{discharged}:
+\begin{prooftree}
+  \AxiomC{$!B$}
+  \DischargeRule{\Intro{\lif}}{1}
+  \UnaryInfC{$!A \lif !B$}
+\end{prooftree}
+\end{ex}
+\end{document}

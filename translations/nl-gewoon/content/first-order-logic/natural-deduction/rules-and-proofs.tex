@@ -1,0 +1,50 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{ntd}{rul}}
+      {\olfileid{pl}{ntd}{rul}}
+
+\olsection{Regels en \usetoken{P}{derivation}}
+
+\begin{explain}
+Een systeem van natuurlijke deductie volgt zo dicht mogelijk de
+informele manier van redeneren in een wiskundig bewijs. Daarom heet
+het ``natuurlijk''. Een bewijs begint met aannamen. Daarna passen we
+afleidingsregels toe. De regels \Intro{\lnot}, \Intro{\lif},
+\iftag{FOL}{\Elim{\lor} en \Elim{\lexists}}{ en \Elim{\lor}} trekken
+aannamen in: zulke aannamen worden ``!!{discharged}''. Naast de
+afleidingsstap staat het label van de !!{discharged} aanname, zodat
+duidelijk is welke aanname die stap intrekt.
+\end{explain}
+
+\begin{defn}[Aanname]
+Een \emph{aanname} is elke !!{sentence} die bovenaan, dus als eerste
+knoop, in een tak staat.
+\end{defn}
+
+!!^{derivation}s in natuurlijke deductie zijn bomen van
+!!{sentence}s. De bovenste !!{sentence}s zijn aannamen. Staat
+!!a{sentence} onder
+één, twee of drie sequenten, dan moet een afleidingsregel hem correct
+uit die sequenten laten volgen. De !!{sentence}s boven de regel heten
+de \emph{premissen}. De !!{sentence} eronder heet de
+\emph{conclusie}. Voor elke !!{operator} vormen twee regels een paar:
+een introductieregel en een eliminatieregel. De eerste voert
+!!a{operator} in de conclusie in; de tweede verwijdert !!a{operator}
+uit een premisse. Sommige regels staan toe dat een aanname van een
+bepaald type wordt \emph{!!{discharged}}. We geven de aanname en de
+afleidingsstap dan hetzelfde label. Zo is zichtbaar welke
+afleidingsstap welke aanname wordt !!{discharged}. De gelabelde aanname
+schrijven we als ``$\Discharge{!A}{n}$.''
+
+% Only include this sentence is on of \land, lor, lif or lnot is defined.
+
+\iftag{notprvNot,notprvAnd,notprvOr,notprvIf}{}%
+	{Gewoonlijk geven we regels voor alle !!{operator}s $\land$, $\lor$, $\lif$, $\lnot$ en $\lfalse$, ook als we sommige daarvan al via andere operatoren hebben gedefinieerd.}
+\end{document}

@@ -1,0 +1,125 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: zig-zag
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{zigzag}
+
+\olsection{De zigzagmethode van Cantor}
+
+\begin{explain}
+We hebben al enkele ``eenvoudige'' opsommingen bekeken. Nu volgt een
+iets moeilijker geval. Beschouw de verzameling paren van natuurlijke
+getallen\oliflabeldef{sfr:set:pai:sec}{, die we in
+\olref[set][pai]{sec} als volgt hebben gedefinieerd:}{, gedefinieerd door:}
+\[
+\Nat \times \Nat = \Setabs{\tuple{n,m}}{n,m \in \Nat}
+\]
+We kunnen deze geordende paren als volgt in een \emph{tabel} rangschikken:
+\[
+\begin{array}{ c | c | c | c | c | c}
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \dots \\
+\hline
+\mathbf 0 & \tuple{0,0} & \tuple{0,1} & \tuple{0,2} & \tuple{0,3} & \dots \\
+\hline
+\mathbf 1 & \tuple{1,0} & \tuple{1,1} & \tuple{1,2} & \tuple{1,3} & \dots \\
+\hline
+\mathbf 2 & \tuple{2,0} & \tuple{2,1} & \tuple{2,2} & \tuple{2,3} & \dots \\
+\hline
+\mathbf 3 & \tuple{3,0} & \tuple{3,1} & \tuple{3,2} & \tuple{3,3} & \dots \\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \ddots\\
+\end{array}
+\]
+Elk geordend paar uit $\Nat \times \Nat$ komt duidelijk precies eenmaal in de
+tabel voor. Het paar $\tuple{n,m}$ staat in het bijzonder in rij $n$ en kolom
+$m$. Maar hoe rangschikken we de elementen van zo'n tabel in een
+``eendimensionale'' lijst? Het patroon in de volgende tabel geeft één
+mogelijkheid (er zijn uiteraard vele andere):
+\[
+\begin{array}{ c | c | c | c | c | c | c}
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 &\dots \\
+\hline
+\mathbf 0 & 0  & 1& 3 & 6& 10 &\ldots \\
+\hline
+\mathbf 1 &2 & 4& 7 & 11 & \dots &\ldots \\
+\hline
+\mathbf 2 & 5 & 8 & 12 & \ldots & \dots&\ldots \\
+\hline
+\mathbf 3 & 9 & 13 & \ldots & \ldots & \dots & \ldots \\
+\hline
+\mathbf 4 & 14 & \ldots & \ldots & \ldots & \dots & \ldots \\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots&\ldots & \ddots\\
+\end{array}
+\]\noindent
+Dit patroon heet \emph{de zigzagmethode van Cantor}. Daarmee wordt
+$\Nat \times \Nat$ als volgt opgesomd:
+\[
+\tuple{0,0}, \tuple{0,1}, \tuple{1,0}, \tuple{0,2}, \tuple{1,1},
+\tuple{2,0}, \tuple{0,3}, \tuple{1,2}, \tuple{2,1}, \tuple{3,0}, \dots
+\]
+Hieruit volgt:
+\end{explain}
+
+\begin{prop}\ollabel{natsquaredenumerable}
+De verzameling $\Nat \times \Nat$ is !!{enumerable}.
+\end{prop}
+
+\begin{proof}
+Zij $f \colon \Nat \to \Nat\times\Nat$ de functie die elke $k \in \Nat$
+afbeeldt op het paar $\tuple{n,m} \in \Nat \times \Nat$ waarvoor $k$ de
+waarde in rij $n$ en kolom $m$ van Cantors zigzagtabel is. 
+\end{proof}
+
+\begin{explain}
+Deze techniek laat zich ook mooi uitbreiden. Zo kunnen we er de verzameling
+geordende drietallen van natuurlijke getallen mee opsommen, namelijk:
+\[
+\Nat \times \Nat \times \Nat = \Setabs{\tuple{n,m,k}}{n,m,k \in \Nat}
+\]
+We beschouwen $\Nat \times \Nat \times \Nat$ als het cartesische product van
+$\Nat \times \Nat$ met $\Nat$, dus
+\[
+\Nat^3 = (\Nat \times \Nat) \times \Nat =
+\Setabs{\tuple{\tuple{n,m},k}}{n, m, k
+  \in \Nat }
+\]
+Daarom kunnen we $\Nat^3$ met een tabel opsommen door op de ene as de
+opsomming van $\Nat$ en op de andere as de opsomming van $\Nat^2$ te zetten:
+\[
+\begin{array}{ c | c | c | c | c | c}
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \dots \\
+\hline
+\mathbf{\tuple{0,0}} & \tuple{0,0,0} & \tuple{0,0,1} & \tuple{0,0,2} & \tuple{0,0,3} & \dots \\
+\hline
+\mathbf{\tuple{0,1}} & \tuple{0,1,0} & \tuple{0,1,1} & \tuple{0,1,2} & \tuple{0,1,3} & \dots \\
+\hline
+\mathbf{\tuple{1,0}} & \tuple{1,0,0} & \tuple{1,0,1} & \tuple{1,0,2} & \tuple{1,0,3} & \dots \\
+\hline
+\mathbf{\tuple{0,2}} & \tuple{0,2,0} & \tuple{0,2,1} & \tuple{0,2,2} & \tuple{0,2,3} & \dots\\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
+\end{array}
+\]
+Zo geeft een methode als Cantors zigzagmethode ook een opsomming van~$\Nat^3$.
+Door zo verder te gaan, krijgen we opsommingen van $\Nat^n$ voor elk natuurlijk
+getal $n$. Dus:
+\end{explain}
+
+\begin{prop}
+$\Nat^n$ is !!{enumerable} voor elke $n \in \Nat$.
+\end{prop}
+
+\begin{prob}\label{sfr:siz:zigzag:prob:posint-n}
+Bewijs dat $(\PosInt)^n$ !!{enumerable} is voor elke $n \in \Nat$.
+\end{prob}
+
+\begin{prob}\label{sfr:siz:zigzag:prob:posint-star}
+  Bewijs dat $(\PosInt)^*$ !!{enumerable} is. Hierbij mag
+  \cref{sfr:siz:zigzag:prob:posint-n} worden aangenomen.
+\end{prob}
+\end{document}

@@ -1,0 +1,222 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: cauchy
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{arith}{cauchy}
+\olsection{Bijlage: de reële getallen als Cauchyrijen}
+In \olref[cuts]{sec} hebben we de reële getallen geconstrueerd als
+Dedekindsneden. In deze paragraaf leggen we een alternatieve
+constructie uit. Die berust op Cauchy's definitie van wat we nu een
+Cauchyrij noemen. Het gebruik van deze definitie om de reële getallen
+te \emph{construeren} is echter afkomstig van andere negentiende-eeuwse
+auteurs, met name Weierstrass, Heine, M\'{e}ray en Cantor. (Voor een
+helder historisch overzicht, zie \citeauthor{OConnorRobertson:RN}
+\citeyear{OConnorRobertson:RN}.)
+Voordat we de negentiende eeuw behandelen, staan we stil bij Simon
+Stevin (1548--1620). Stevin zag dat we elk reëel getal kunnen opvatten
+via zijn decimaalontwikkeling. Zelfs een irrationaal getal als
+$\sqrt{2}$ heeft dus een nette decimaalontwikkeling, die als volgt
+begint:
+\[
+	1.41421356237\ldots
+\] 
+Decimaalontwikkelingen zijn eenvoudig in de verzamelingenleer te
+modelleren: beschouw ze als functies $d \colon \Nat \to \Nat$, waarbij
+$d(n)$ het $n$-de cijfer achter de komma is dat ons interesseert. Er is
+dan een kleine aanpassing nodig voor het deel van het reële getal vóór
+de komma (hier alleen $1$). Ook is een tweede aanpassing nodig, in de
+vorm van een equivalentierelatie, om bijvoorbeeld te waarborgen dat
+$0.999\ldots = 1$. Op deze manier kan binnen de verzamelingenleer zonder
+veel moeite een volledig strenge constructie van de reële getallen in
+de trant van Stevin worden gegeven.
+Stevin is hier niet ons onderwerp. (Zie voor meer over Stevin
+\citealt{KatzKatz2012}.) Wel gebruiken we een nauw verwant idee. In
+plaats van de decimaalontwikkeling van $\sqrt{2}$ rechtstreeks te
+beschouwen, kunnen we een \emph{rij} steeds nauwkeurigere rationale
+benaderingen van $\sqrt{2}$ nemen, via de steeds preciezere
+decimaalbenaderingen:
+\[
+1, 1.4, 1.414, 1.4142, 1.41421,\ldots
+\]
+Het idee dat reële getallen via ``steeds betere benaderingen'' kunnen
+worden beschouwd, vormt de basis voor een nieuwe reeks inzichten. Ze
+lijken op de inzichten waarmee we $\Rat$ uit $\Int$ en $\Int$ uit
+$\Nat$ hebben geconstrueerd. Het gaat om het volgende:
+\begin{enumerate}
+	\item Elk reëel getal kan als een mogelijk oneindige
+	decimaalontwikkeling worden geschreven.
+	\item De informatie in zo'n mogelijk oneindige decimaalontwikkeling
+	kan evengoed in een rij rationale getallen worden vastgelegd.
+	\item Een rij rationale getallen kan worden opgevat als een functie
+	van $\Nat$ naar $\Rat$: laat $f(n)$ eenvoudig het $n$-de rationale
+	getal in de rij zijn.
+\end{enumerate}
+Niet \emph{elke} functie van $\Nat$ naar $\Rat$ levert echter een reëel
+getal op. Beschouw bijvoorbeeld de functie:
+\[
+	f(n) =\begin{cases}
+			1 & \text{als }n\text{ oneven is}\\
+			0 &\text{als }n\text{ even is}
+		\end{cases}
+\]
+Het probleem is dat de rij $0,1,0,1,0,1,0,\ldots$ geen enkel reëel
+getal lijkt te benaderen. Om alleen rijen te beschouwen die wel een
+reëel getal benaderen, beperken we ons daarom tot rijen met een
+\emph{limiet}.
+In \olref[his][set][limits]{sec} zijn we het begrip limiet al
+tegengekomen. We kunnen hier echter niet \emph{precies} dezelfde
+definitie gebruiken. De uitdrukking ``$(\forall \epsilon>0)$'' bevatte
+daar stilzwijgend een kwantificatie over de reële getallen, en we
+beschouwden limieten van functies op de reële getallen. Die definitie
+gebruiken zou dus betekenen dat we de reële getallen al aannemen,
+terwijl we juist die getallen willen \emph{construeren}. Gelukkig
+kunnen we met een nauw verwant limietbegrip werken.
+\begin{defn}\ollabel{def:CauchySequence}
+  Een functie $f: \Nat \to \Rat$ is een \emph{Cauchyrij} dan en slechts
+  dan als voor elke positieve $\epsilon \in \Rat$ geldt dat $(\exists
+  \ell \in \Nat)(\forall m, n > \ell)|f(m) - f(n)| < \epsilon$.
+\end{defn}
+Het algemene limietidee is hetzelfde als voorheen. Voor elk gewenst
+nauwkeurigheidsniveau, gemeten door~$\epsilon$, is er een ``gebied''
+waarin we moeten kijken: alle invoeren groter dan~$\ell$. Onze rij
+$1$, $1.4$, $1.414$, $1.4142$, $1.41421$\ldots heeft duidelijk een
+limiet. Wie $\sqrt{2}$ wil benaderen met een fout kleiner dan
+$\nicefrac{1}{10^{n}}$, kan elke term na de $n$-de nemen.
+Een voor de hand liggende gedachte is dan dat elk reëel getal gewoon
+een Cauchyrij \emph{is}. Net als bij de constructies van $\Int$ en
+$\Rat$ zou dat te na\"ief zijn: hetzelfde reële getal wordt door
+verschillende Cauchyrijen aangegeven. Dat is eenvoudig te zien. Neem
+een Cauchyrij~$f$ en definieer $g$ als precies dezelfde functie als~$f$,
+behalve dat $g(0)\neq f(0)$. Na de eerste term zijn de twee rijen
+overal gelijk. Uiteindelijk willen we daarom zeggen dat ze dezelfde
+limiet hebben, in de betekenis van \olref{def:CauchySequence}, en dus
+hetzelfde reële getal ``definiëren''. We moeten deze Cauchyrijen dus als
+hetzelfde reële getal beschouwen.
+Daarom moeten we opnieuw een equivalentierelatie op de Cauchyrijen
+definiëren en reële getallen met equivalentieklassen van Cauchyrijen identificeren.
+Eerst hebben we het begrip nodig van een functie die in de limiet naar
+$0$ gaat. Voor elke functie $h : \Nat \to \Rat$ zeggen we dat
+\emph{$h$ naar $0$ gaat} dan en slechts dan als voor elke positieve
+$\epsilon \in \Rat$ geldt dat $(\exists \ell \in \Nat)(\forall n >
+\ell)|h(n)| < \epsilon$.\footnote{Vergelijk dit met de definitie van
+$\lim_{x \mathord{\rightarrow}\infty}f(x) = 0$ in
+\olref[his][set][limits]{sec}.} Zijn $f$ en $g$ functies $\Nat \to
+\Rat$, stel dan $(f-g)(n) = f(n) - g(n)$. Definieer nu:
+\[
+	f \Realequiv g \text{ dan en slechts dan als $(f-g)$ naar $0$ gaat}.
+\]
+We moeten controleren dat $\Realequiv$ een equivalentierelatie is, en
+dat is inderdaad zo. Vervolgens kunnen we de reële getallen desgewenst
+definiëren als de equivalentieklassen onder $\Realequiv$ van alle
+Cauchyrijen van $\Nat \to \Rat$.
+\begin{prob}
+Stel $f(n) = 0$ voor elke $n$. Stel $g(n) = \frac{1}{(n+1)^2}$. Toon
+aan dat beide Cauchyrijen zijn en dat beide functies inderdaad limiet
+$0$ hebben, zodat ook $f \sim_\Real g$.
+\end{prob}
+Zoals gebruikelijk schrijven we nu $\equivrep{f}{\Realequiv}$ voor de
+equivalentieklasse met $f$ als !!a{element}. Voor de leesbaarheid laten
+we de index hierna echter weg en schrijven we alleen
+$\equivrep{f}{}$. Verder spreken we af dat voor elke $q \in \Rat$
+geldt: $q_{\Real} = \equivrep{c_{q}}{}$, waarbij $c_{q}$ de constante
+functie is met $c_q(n) = q$ voor alle $n \in \Nat$. Vervolgens
+definiëren we de elementaire relaties en bewerkingen op de reële
+getallen, bijvoorbeeld:
+\begin{align*}
+	\equivrep{f}{} + \equivrep{g}{} &= 	\equivrep{(f + g)}{} \\
+	\equivrep{f}{} \times 	\equivrep{g}{} &= \equivrep{(f \times g)}{} 
+\end{align*}
+waarbij $(f + g)(n) = f(n) + g(n)$ en $(f \times g)(n) = f(n) \times
+g(n)$. Ook moeten we controleren dat $(f + g)$, $(f-g)$ en $(f\times
+g)$ Cauchyrijen zijn wanneer $f$ en $g$ dat zijn. Dat is inderdaad zo;
+we laten het bewijs aan de lezer.
+Ten slotte definiëren we een ordening. We noemen $\equivrep{f}{}$
+\emph{positief} dan en slechts dan als zowel $\equivrep{f}{}\neq
+0_\Real$ als $(\exists \ell \in \Nat)(\forall n > \ell)0 < f(n)$
+geldt. Vervolgens definiëren we $\equivrep{f}{} < \equivrep{g}{}$ dan
+en slechts dan als $\equivrep{(g - f)}{}$ positief is. We moeten
+controleren dat dit welgedefinieerd is, dus niet afhangt van de keuze
+van de ``representerende'' functie uit de equivalentieklasse.
+%\begin{align*}
+%	\equivrep{f}{} \leq \equivrep{g}{} \text{ iff }&\equivrep{f}{} = \equivrep{g}{} \text{ or }\\
+%	&(\exists \ell \in \Nat)(\forall n \in \Nat)(\ell < n \lif f(n) \leq g(n))
+%\end{align*}
+Daarna is vrij eenvoudig aan te tonen dat deze definities de juiste
+algebraïsche eigenschappen opleveren:
+\begin{thm}\ollabel{thm:cauchyorderedfield}
+De Cauchyrijen vormen een geordend lichaam.
+\end{thm}
+\begin{proof}
+Oefening.
+\end{proof}
+\begin{prob}
+Bewijs dat de Cauchyrijen een geordend lichaam vormen.
+\end{prob}
+Het is moeilijker te bewijzen dat de aldus geconstrueerde reële
+getallen de volledigheidseigenschap hebben. Daarom geven we dat bewijs.
+\begin{thm}
+Elke niet-lege verzameling Cauchyrijen met een bovengrens heeft een
+kleinste bovengrens.
+\end{thm}
+\begin{proof}[Bewijsschets] Zij $S$ een willekeurige niet-lege
+verzameling Cauchyrijen met een bovengrens. Er is dus een $p \in \Rat$
+waarvoor $p_{\Real}$ een bovengrens van $S$ is. Zij $r \in S$; dan is er
+een $q \in \Rat$ waarvoor $q_{\Real} < r$. Als $S$ een kleinste
+bovengrens heeft, ligt die dus tussen $q_\Real$ en $p_\Real$, met de
+grenzen inbegrepen.
+We sluiten de kleinste bovengrens steeds verder in door haar tegelijk
+van onderen en van boven te benaderen. Daartoe definiëren we twee
+functies $f, g \colon \Nat \to \Rat$, met het doel dat $f$ de kleinste
+bovengrens\ van bovenaf en $g$ haar van onderaf benadert. We beginnen
+met:
+\begin{align*}
+	f(0) &= p \\
+	g(0) &= q
+\end{align*}
+Stel vervolgens $a_n = \frac{f(n) + g(n)}{2}$ en
+definieer:\footnote{Dit is een recursieve definitie. We hebben echter
+\emph{nog} geen reden gegeven om aan te nemen dat recursieve definities
+toelaatbaar zijn.}
+\begin{align*}
+	f(n+1) &=
+	\begin{cases}
+		a_n &\text{als }(\forall h \in S)\equivrep{h}{} \leq (a_n)_\Real\\
+		f(n)&\text{anders}
+	\end{cases}\\
+	g(n+1) &=
+	\begin{cases}
+		a_n &\text{als }(\exists h \in S)\equivrep{h}{} \geq (a_n)_\Real\\
+	 	g(n) &\text{anders}
+	\end{cases}
+\end{align*}
+Zowel $f$ als $g$ is een Cauchyrij. (Dit is vrij eenvoudig te
+controleren, maar we laten het als oefening.) De functie $(f-g)$ gaat
+naar $0$, want het verschil tussen $f$ en $g$ is na elke stap ten
+hoogste half zo groot. Dus $\equivrep{f}{} = \equivrep{g}{}$.
+Eerst tonen we aan dat $\equivrep{f}{}$ een bovengrens van $S$ is,
+dus:\ dat $(\forall h \in S)\equivrep{h}{} \leq \equivrep{f}{}$. (Daarbij
+gebruiken we \olref{thm:cauchyorderedfield}.) Zij $h \in S$ en neem ter
+tegenspraak aan dat $\equivrep{f}{} < \equivrep{h}{}$, zodat $0_\Real <
+\equivrep{(h-f)}{}$. Omdat $f$ een monotoon dalende Cauchyrij is, is er
+een $n \in \Nat$ waarvoor $\equivrep{(c_{f(n)} - f)}{} <
+\equivrep{(h-f)}{}$. Dus:
+\[
+	(f(n))_\Real = \equivrep{c_{f(n)}}{} < \equivrep{f}{} + \equivrep{(h-f)}{} = \equivrep{h}{},
+\]
+in tegenspraak met het feit dat volgens de constructie
+$\equivrep{h}{} \leq (f(n))_\Real$.
+Vervolgens tonen we aan dat $\equivrep{f}{} = \equivrep{g}{}$ de
+\emph{kleinste} bovengrens van $S$ is. Zij $j$ een willekeurige
+Cauchyrij en neem aan dat $\equivrep{j}{} < \equivrep{g}{}$. Net als
+hierboven volgt, omdat $g$ \emph{stijgend} is, dat er een $n \in \Nat$
+bestaat waarvoor $\equivrep{j}{} < (g(n))_\Real$. Volgens de constructie
+is er echter een $h \in S$ waarvoor $(g(n))_\Real \leq
+\equivrep{h}{}$. Dus $\equivrep{j}{} < \equivrep{h}{}$, zodat
+$\equivrep{j}{}$ geen bovengrens van $S$ is.
+\end{proof}
+\end{document}
+

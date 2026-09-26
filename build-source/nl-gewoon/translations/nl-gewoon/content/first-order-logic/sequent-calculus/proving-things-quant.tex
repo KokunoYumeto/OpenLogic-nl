@@ -1,0 +1,106 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: proving-things-quant
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{seq}{prq}
+
+\olsection{\usetoken{P}{derivation} met kwantoren (`voor alle' en `er bestaat')}
+
+\begin{ex}
+Geef een $\Log{LK}$-!!{derivation} van de sequent
+$\lexists[x][\lnot !A(x)] \Sequent \lnot \lforall[x][!A(x)]$.
+
+Bij kwantoren moeten we de eigenvariabelevoorwaarde in de gaten
+houden. Die voorwaarde beperkt welke letter we in sommige regels mogen
+invullen. Daardoor kan de volgorde van onze stappen ertoe doen. Pak de
+regels waarvoor die voorwaarde geldt het liefst als eerste aan. In het
+afgemaakte bewijs komen zulke regels dan lager te staan.
+Daarnaast helpt het om vooruit te kijken naar de beginsequent waarop
+we willen uitkomen. Hier moet dat iets als $!A(a) \Sequent !A(a)$ zijn.
+Als we de kwantorregels van onder naar boven gebruiken, moeten we dus
+dezelfde term kiezen. We noemen die term $a$ en gebruiken hem bij zowel
+de $\lforall$- als de $\lexists$-regel. Met verschillende termen zouden
+we iets als $!A(a) \Sequent !A(b)$ krijgen. Die sequent is niet
+afleidbaar.
+
+We beginnen zoals altijd met de sequent die onderaan moet staan:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lexists[x][\lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
+\end{prooftree}
+We kunnen nu \LeftR{\exists} of \RightR{\lnot} gebruiken. Voor
+\LeftR{\exists} geldt de eigenvariabelevoorwaarde. Daarom handelen we
+die regel meteen af en passen we hem als eerste toe.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x][!A(x)]$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x][\lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
+\end{prooftree}
+Als we daarna \LeftR{\lnot} en \RightR{\lnot} van onder naar boven
+toepassen, krijgen we
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lforall[x][!A(x)] \fCenter !A(a)$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A(a), \lforall[x][!A(x)] \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$\lforall[x][!A(x)], \lnot !A(a) \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x] !A(x)$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x] \lnot !A(x) \fCenter \lnot \lforall[x] !A(x)$
+\end{prooftree}
+Nu kunnen we alleen nog \LeftR{\forall} toepassen. Voor deze regel geldt
+de eigenvariabelebeperking niet. We willen uitkomen op een
+beginsequent van de vorm $!A(a) \Sequent !A(a)$. Daarom vullen we bij
+deze regel $a$ in als argument van $!A$.
+\begin{prooftree}
+\Axiom$!A(a) \fCenter !A(a)$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$\lforall[x][!A(x)] \fCenter !A(a)$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A(a), \lforall[x][!A(x)] \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$\lforall[x][!A(x)], \lnot !A(a) \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x][!A(x)]$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x][ \lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
+\end{prooftree}
+Bij kwantoren moeten we aan het einde nog eens controleren of we de
+eigenvariabelevoorwaarde nergens hebben geschonden. Die voorwaarde
+gold hier alleen voor \LeftR{\exists}. De eigenvariabele~$a$ komt niet
+voor in de onderste sequent van die regel; dat is de eindsequent.
+Daarom is dit een correcte !!{derivation}.
+\end{ex}
+
+\begin{prob}
+Geef !!{derivation}s van de volgende sequenten:
+\begin{enumerate}
+\item $\Sequent (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) \lif
+\lforall[z][(!A(z) \land !B(z))]$.
+\item $\Sequent (\lexists[x][!A(x)] \lor \lexists[y][!B(y)]) \lif
+\lexists[z][(!A(z) \lor !B(z))]$.
+\item $\lforall[x][(!A(x) \lif !B)] \Sequent \lexists[y][!A(y)] \lif !B$.
+\item $\lforall[x][\lnot !A(x)] \Sequent \lnot\lexists[x][!A(x)]$.
+\item $\Sequent \lnot\lexists[x][!A(x)] \lif \lforall[x][\lnot !A(x)]$.
+\item $\Sequent \lnot\lexists[x][\lforall[y][((!A(x,y) \lif \lnot
+!A(y,y)) \land (\lnot !A(y,y) \lif !A(x,y)))]]$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Geef !!{derivation}s van de volgende sequenten:
+\begin{enumerate}
+\item $\Sequent \lnot\lforall[x][!A(x)] \lif \lexists[x][\lnot!A(x)]$.
+\item $(\lforall[x][!A(x)] \lif !B) \Sequent \lexists[y][(!A(y) \lif !B)]$.
+\item $\Sequent \lexists[x][(!A(x) \lif \lforall[y][!A(y)])]$.
+\end{enumerate}
+(Bij elk van deze opgaven is de regel $\RightR{\Contraction}$ nodig.)
+\end{prob}
+\end{document}

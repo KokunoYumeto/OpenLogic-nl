@@ -1,0 +1,126 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: relations-as-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{rel}{set}
+\olsection{Relaties als verzamelingen}
+
+\begin{explain}
+In \olref[sfr][set][imp]{sec} hebben we enkele belangrijke
+verzamelingen genoemd: $\Nat$, $\Int$, $\Rat$, $\Real$. U herinnert
+zich ongetwijfeld nog enkele interessante relaties tussen de !!{element}s
+van sommige van deze verzamelingen. Zo heeft elk ervan een gebruikelijke
+\emph{ordening}. Daarnaast is er de \emph{identiteit}, die ieder object
+met zichzelf en met geen enkel ander object verbindt. We zullen nog veel meer
+interessante relaties tegenkomen, en er zijn nog meer relaties mogelijk.
+Voordat we die bespreken, merken we echter eerst op dat een relatie als een
+bijzonder soort verzameling kan worden opgevat.
+  
+Hiervoor hebben we twee begrippen uit \olref[sfr][set][pai]{sec} nodig.
+Ten eerste is er het \emph{geordende paar}: uit $a$ en $b$ kunnen
+we~$\tuple{a, b}$ vormen. De volgorde van de elementen is hier
+\emph{wel} van belang. Als $a \neq b$, dan is dus $\tuple{a, b} \neq
+\tuple{b, a}$. (Bij ongeordende paren, dat wil zeggen verzamelingen met
+$2$ elementen, geldt daarentegen $\{a, b\}=\{b, a\}$.) Ten tweede is er het
+\emph{cartesisch product}: als $A$ en $B$ verzamelingen zijn, kunnen we
+$A \times B$ vormen, de verzameling van alle paren $\tuple{x, y}$ met
+$x \in A$ en $y \in B$. In het bijzonder is $A^{2}= A \times A$ de
+verzameling van alle geordende paren uit~$A$.
+  
+We beschouwen nu één bepaalde relatie op een verzameling: de
+$<$-relatie op de verzameling~$\Nat$ van natuurlijke getallen. Neem de
+verzameling van alle getallenparen $\tuple{n, m}$ waarvoor $n<m$, dus
+\[
+  R=\Setabs{\tuple{n, m}}{n, m \in \Nat \text{ en } n<m}.
+\]
+Dat $n$ kleiner is dan $m$, komt precies overeen met het feit dat het
+paar $\tuple{n, m}$ tot $R$ behoort:
+\[
+      n<m\text{ desda }\tuple{n, m} \in R.
+\]
+We kunnen de verzameling $R$ dan ook zonder informatieverlies
+\emph{opvatten als} de $<$-relatie op $\Nat$.
+
+Op dezelfde manier kunnen we voor iedere relatie tussen getallen een
+deelverzameling van $\Nat^{2}$ construeren. Omgekeerd bepaalt iedere
+verzameling getallenparen $S \subseteq \Nat^{2}$ een bijbehorende
+relatie tussen getallen, namelijk de relatie waarin $n$ tot $m$ staat
+desda $\tuple{n, m} \in S$. Dit rechtvaardigt de volgende definitie:
+\end{explain}
+  
+\begin{defn}[Binaire relatie]
+Een \emph{binaire relatie} op een verzameling $A$ is een
+deelverzameling van~$A^{2}$. Als $R \subseteq A^{2}$ een binaire
+relatie op~$A$ is en $x, y \in A$, schrijven we soms $Rxy$ (of $xRy$)
+voor $\tuple{x, y} \in R$.
+\end{defn}
+  
+\begin{ex}
+  \ollabel{relations}
+De verzameling $\Nat^{2}$ van paren natuurlijke getallen kan als volgt
+in een tweedimensionale matrix worden weergegeven:
+\[
+  \begin{array}{ccccc}
+  \mathbf{\tuple{ 0,0 }} & \tuple{ 0,1 } &
+    \tuple{ 0,2 } & \tuple{ 0,3 } & \ldots\\
+  \tuple{ 1,0 } & \mathbf{\tuple{ 1,1 }} &
+    \tuple{ 1,2 } & \tuple{ 1,3 } & \ldots\\
+  \tuple{ 2,0 } & \tuple{ 2,1 } &
+    \mathbf{\tuple{ 2,2 }} & \tuple{ 2,3 } & \ldots\\
+  \tuple{ 3,0 } & \tuple{ 3,1 } & \tuple{ 3,2 } &
+    \mathbf{\tuple{ 3,3 }} & \ldots\\
+  \vdots & \vdots & \vdots & \vdots & \mathbf{\ddots}
+  \end{array}
+\]
+De diagonaal is hier vet gedrukt, want de deelverzameling van $\Nat^2$
+die bestaat uit de paren op de diagonaal, namelijk
+\[
+  \{\tuple{0,0 }, \tuple{ 1,1 }, \tuple{ 2,2 }, \dots\},
+  \]
+is de \emph{identiteit op}~$\Nat$. (Omdat de identiteit vaak wordt
+gebruikt, definiëren we $\Id{A}=\Setabs{\tuple{ x,x }}{x \in A}$ voor
+iedere verzameling $A$.) De deelverzameling van alle paren boven de
+diagonaal, namelijk
+\[
+  L = \{\tuple{ 0,1 },\tuple{ 0,2 },\ldots,\tuple{ 1,2 },
+  \tuple{ 1,3 }, \dots, \tuple{ 2,3 }, \tuple{ 2,4 },\ldots\},
+\]
+is de relatie \emph{kleiner dan}, dus $Lnm$ desda $n<m$. De
+deelverzameling van alle paren onder de diagonaal, namelijk
+\[
+  G=\{ \tuple{ 1,0 },\tuple{ 2,0 },\tuple{
+    2,1 }, \tuple{ 3,0 },\tuple{ 3,1 },\tuple{ 3,2 }, \dots\},
+\]
+is de relatie \emph{groter dan}, dus $Gnm$ desda $n>m$. De vereniging
+van $L$ met de zojuist gedefinieerde identiteit~$I$, die we $K=L\cup I$
+kunnen noemen, is de relatie
+\emph{kleiner dan of gelijk aan}: $Knm$ desda $n \le m$. Evenzo is
+$H=G \cup I$ de relatie \emph{groter dan of gelijk aan.} De relaties
+$L$, $G$, $K$ en $H$ zijn bijzondere relaties die \emph{ordeningen}
+heten. $L$ en $G$ hebben de eigenschap dat noch $L$, noch $G$ een getal
+met zichzelf in verband brengt (voor alle $n$ geldt dus noch $Lnn$,
+noch $Gnn$). Relaties met deze eigenschap heten \emph{irreflexief};
+zijn ze bovendien ordeningen, dan heten ze \emph{strikte ordeningen.}
+\end{ex}
+
+\begin{explain}
+Hoewel ordeningen en de identiteit belangrijke, natuurlijke relaties
+zijn, benadrukken we dat volgens onze definitie \emph{iedere}
+deelverzameling van $A^{2}$ een relatie op~$A$ is, hoe onnatuurlijk of
+gekunsteld die ook lijkt. Zo is $\emptyset$ een relatie op iedere
+verzameling (de \emph{lege relatie}, die voor geen enkel elementenpaar
+geldt), en is ook $A^{2}$~zelf een relatie op~$A$ (een relatie die voor
+ieder paar geldt), de \emph{universele relatie}. Ook iets als
+$E=\Setabs{\tuple{n, m}}{n>5 \text{ of } m \times n \ge 34}$ geldt als
+een relatie.
+\end{explain}
+  
+\begin{prob}
+  Geef de !!{element}s van de relatie $\subseteq$ op de verzameling
+  $\Pow{\{a, b, c\}}$.
+\end{prob}
+\end{document}

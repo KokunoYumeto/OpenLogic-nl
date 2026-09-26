@@ -1,0 +1,101 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: functions-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid{sfr}{fun}{rel}
+
+\olsection{Functies als relaties}
+
+\begin{explain}
+Een functie die !!{element}s van~$A$ naar !!{element}s van~$B$ stuurt,
+legt meteen een relatie tussen $A$ en~$B$ vast. Die relatie geldt voor
+$x$ en $y$ precies wanneer $f(x) = y$. Soms willen we de wiskunde met
+zo weinig mogelijk bouwstenen opbouwen. Dan kunnen we de functie~$f$
+\emph{zien als} deze relatie, dus als een verzameling paren. De vraag
+is dan: welke relaties leggen op deze manier een functie vast?
+\end{explain}
+
+\begin{defn}[Grafiek van een functie] Neem een functie $f\colon A \to
+B$. De \emph{grafiek} van~$f$ is de relatie $R_f \subseteq A \times
+B$ die als volgt is vastgelegd:
+\[
+R_f = \Setabs{\tuple{x,y}}{f(x) = y}.
+\]
+\end{defn}
+
+\begin{explain}
+Door extensionaliteit ligt de grafiek van een functie helemaal vast.
+Dezelfde regel geeft ook de stilzwijgende regel van extensionaliteit
+voor functies: hebben $f$ en~$g$ hetzelfde domein en codomein, dan
+zijn ze gelijk als ze bij elke invoer dezelfde waarde geven.
+
+Net zo geldt: is een relatie ‘functioneel’, dan is zij de grafiek van
+een functie.
+\end{explain}
+
+\begin{prop}\ollabel{prop:graph-function}
+Neem $R \subseteq A \times B$ waarvoor de volgende twee dingen gelden:
+\begin{enumerate}
+\item Als $Rxy$ en $Rxz$, dan $y = z$; en
+\item bij elke $x \in A$ is er een $y \in B$ waarvoor $\tuple{x,
+y} \in R$.
+\end{enumerate}
+Dan is $R$ de grafiek van de functie $f\colon A \to B$ die is
+vastgelegd door $f(x) = y$ precies wanneer $Rxy$.
+\end{prop}
+
+\begin{proof}
+Neem aan dat er een $y$ is waarvoor $Rxy$ geldt. Als er ook een $z
+\neq y$ was waarvoor $Rxz$ geldt, zou $R$ niet aan de voorwaarde
+voldoen. Als er een $y$ is waarvoor $Rxy$ geldt, is deze $y$ dus de
+enige. Daarom is $f$ goed vastgelegd. Het is duidelijk dat $R_f = R$.
+\end{proof}
+
+\begin{explain}
+Elke functie $f\colon A \to B$ heeft een grafiek: een relatie die uit
+paren in $A \times B$ bestaat en is vastgelegd door $f(x) = y$.
+Omgekeerd is elke
+relatie~$R \subseteq A \times B$ met de eigenschappen uit
+\olref{prop:graph-function} de grafiek van een functie~$f \colon A \to
+B$. Door dit nauwe verband kunnen we een functie gewoon als haar
+grafiek zien. Met andere woorden: we kunnen functies zien als bepaalde
+relaties, dus als bepaalde verzamelingen tupels.
+\oliflabeldef{sfr:rel:ref:sec}{Let wel: met deze ‘identificatie’
+bedoelen we hetzelfde als in \olref[sfr][rel][ref]{sec}. We doen geen
+uitspraak over wat functies in diepste zin zijn; we merken alleen op
+dat het handig is om functies als bepaalde verzamelingen te
+\emph{zien}. Dat heeft dit voordeel: w}{W}e kunnen nu op functies
+dezelfde soort bewerkingen uitvoeren als eerder op relaties (zie
+\olref[sfr][rel][ops]{sec}). In het bijzonder:
+\end{explain}
+
+\begin{defn}\ollabel{defn:funimage}
+Neem een functie $f \colon A \to B$ met $C\subseteq A$.
+
+De \emph{beperking} van~$f$ tot~$C$ is de
+functie~$\funrestrictionto{f}{C}\colon C \to B$ waarvoor
+$(\funrestrictionto{f}{C})(x) = f(x)$ voor alle $x \in C$. Anders
+gezegd: $\funrestrictionto{f}{C} = \Setabs{\tuple{x, y} \in R_f}{x
+\in C}$.
+
+Als we~$f$ op~$C$ \emph{toepassen}, krijgen we $\funimage{f}{C} =
+\Setabs{f(x)}{x \in C}$. We noemen dit ook het \emph{beeld} van~$C$
+onder~$f$.
+\end{defn}
+
+\begin{explain}
+Uit deze definities volgt dat $\ran{f} =
+\funimage{f}{\dom{f}}$ voor elke functie~$f$.
+\oliflabeldef{sfr:rel:ops:sec}{Deze begrippen werken precies zoals je
+zou verwachten uit de definities in
+\olref[sfr][rel][ops]{sec} en uit het feit dat we functies als relaties
+zien. Twee andere bewerkingen hebben wat meer uitleg nodig: inversen nemen en
+relaties samenstellen. Die geven we in
+\olref[inv]{sec} en \olref[cmp]{sec}.}{}
+\end{explain}
+\end{document}

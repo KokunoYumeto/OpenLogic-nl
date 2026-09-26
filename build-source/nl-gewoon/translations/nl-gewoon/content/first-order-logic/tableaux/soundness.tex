@@ -1,0 +1,251 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: soundness.tex
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{tab}{sou}}
+      {\olfileid{pl}{tab}{sou}}
+      
+\olsection{Correctheid: het systeem leidt niets onjuists af}
+
+\begin{explain}
+!!^a{derivation}ssysteem, zoals de tableaumethode, is \emph{correct}
+als het niets kan !!{derive} wat niet echt geldt. Correctheid geeft dus
+een veiligheidsgarantie voor !!{derivation}ssystemen. Welke garantie
+we precies nodig hebben, hangt af van de bewijstheoretische eigenschap
+waarover het gaat. We willen bijvoorbeeld weten dat
+\begin{enumerate}
+\item elke !!{derivable}~$!A$ ook echt
+  \iftag{FOL}{geldig}{een tautologie} is;
+\item als !!a{sentence} formeel uit andere zinnen !!{derivable} is, hij
+  ook logisch uit die zinnen volgt;
+\item als een verzameling !!{sentence}s inconsistent is, zij
+  onvervulbaar is: de zinnen zijn niet allemaal tegelijk waar te maken.
+\end{enumerate}
+Deze eigenschappen zijn belangrijk. Als een ervan niet geldt, deugt
+het !!{derivation}ssysteem niet: het zou te veel !!{derive}. Daarom
+moeten we bewijzen dat zo'n systeem correct is.
+
+Alle drie eigenschappen hierboven zijn met gesloten !!{tableau}s
+gedefinieerd. Om (1)--(3) te bewijzen, moeten we daarom iets laten zien
+over de betekenis van zo'n gesloten !!{tableau}. Eerst leggen we vast
+wanneer een structuur !!a{signed formula} waar maakt. Daarna bewijzen
+we dat geen structuur alle aannamen van een gesloten !!{tableau}
+tegelijk waar maakt. Daaruit volgen (1)--(3) meteen als gevolgen.
+\end{explain}
+
+\begin{defn}
+\iftag{FOL}{!!^a{structure}}{!!^a{valuation}}~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+\emph{maakt} !!a{signed formula} $\sFmla{\True}{!A}$ waar
+precies als $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Deze maakt
+$\sFmla{\False}{!A}$ waar precies als
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$. $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+maakt een verzameling !!{signed formula}s~$\Gamma$ waar precies als
+elke $\sFmla{S}{!A} \in \Gamma$ waar wordt gemaakt. $\Gamma$~is
+\emph{vervulbaar} als er een
+\iftag{FOL}{!!a{structure}}{!!a{valuation}} bestaat die alle formules
+erin waar maakt. Anders is de verzameling \emph{onvervulbaar}.
+\end{defn}
+
+\begin{thm}[Correctheid]
+  \ollabel{thm:tableau-soundness}
+  Als $\Gamma$ een gesloten !!{tableau} heeft, is $\Gamma$
+  onvervulbaar.
+\end{thm}
+
+\begin{proof}
+Noem een tak van !!a{tableau} vervulbaar als alle !!{signed formula}s
+op die tak samen vervulbaar zijn. Noem !!a{tableau} vervulbaar als het
+minstens één vervulbare tak heeft.
+
+We bewijzen eerst één bewering. Breid een vervulbaar !!{tableau} met
+een afleidingsregel uit. Dan is ook het nieuwe !!{tableau} vervulbaar.
+Daaruit volgt de stelling. Elk gesloten !!{tableau} ontstaat namelijk
+door afleidingsregels toe te passen op het !!{tableau} dat alleen
+aannamen uit~$\Gamma$ bevat. Als $\Gamma$ vervulbaar was, zou elk
+!!{tableau} ervoor dus vervulbaar blijven. Maar een gesloten
+!!{tableau} is niet vervulbaar. Elke tak bevat zowel
+$\sFmla{\True}{!A}$ als $\sFmla{\False}{!A}$. Geen structuur kan~$!A$
+tegelijk wel en niet waar maken.
+
+Neem een vervulbaar !!{tableau}. Het heeft dus minstens één vervulbare
+tak. Een afleidingsregel doet een van twee dingen: hij voegt
+!!{signed formula}s aan een tak toe, of hij splitst een tak in tweeën.
+Misschien breidt de regel een andere tak uit dan een vervulbare tak.
+Dan blijft die vervulbare tak gewoon bestaan in het nieuwe
+!!{tableau}. Ook het nieuwe tableau is dan vervulbaar. We hoeven dus
+alleen te kijken naar het geval waarin de regel juist op een
+vervulbare tak wordt toegepast.
+
+Laat $\Gamma$ de verzameling !!{signed formula}s op die tak zijn. Laat
+$\sFmla{S}{!A} \in \Gamma$ de !!{signed formula} zijn waarop we de
+regel toepassen. Splitst de regel de tak niet? Dan moeten we laten zien
+dat de uitgebreide tak nog steeds vervulbaar is. Die tak bestaat uit
+$\Gamma$ samen met de conclusies van de regel. Splitst de regel de tak
+wel? Dan moeten we laten zien dat minstens één van de twee nieuwe
+takken vervulbaar is.
+  
+Eerst bekijken we de regels die de tak niet splitsen.
+\begin{enumerate}
+\item Pas $\TRule{\True}{\lnot}$ toe op
+  $\sFmla{\True}{\lnot !B} \in \Gamma$. De uitgebreide tak bevat dan
+  de !!{signed formula}s $\Gamma \cup
+  \{\sFmla{\False}{!B}\}$. Stel dat
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$. Dan geldt in het bijzonder
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !B}$. Dus geldt
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$. Dat wil zeggen:
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ maakt
+  $\sFmla{\False}{!B}$.
+\item Pas $\TRule{\False}{\lnot}$ toe op
+  $\sFmla{\False}{\lnot !B} \in \Gamma$: opgave.
+\item Pas $\TRule{\True}{\land}$ toe op
+  $\sFmla{\True}{!B \land !C} \in \Gamma$. Daardoor komen er twee
+  nieuwe !!{signed formula}s op de tak: $\sFmla{\True}{!B}$ en
+  $\sFmla{\True}{!C}$. Stel dat
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$. Dan geldt in het bijzonder
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B \land !C}$. Daaruit volgen
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ en
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. Dit betekent dat
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ zowel
+  $\sFmla{\True}{!B}$ als $\sFmla{\True}{!C}$ waar maakt.
+\item Pas $\TRule{\False}{\lor}$ toe op
+  $\sFmla{\False}{!B \lor !C} \in \Gamma$: opgave.
+\item Pas $\TRule{\False}{\lif}$ toe op
+  $\sFmla{\False}{!B \lif !C} \in \Gamma$. Daardoor komen er twee
+  nieuwe !!{signed formula}s op de tak: $\sFmla{\True}{!B}$ en
+  $\sFmla{\False}{!C}$. Stel dat
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$. Dan geldt in het bijzonder
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B \lif !C}$. Daaruit volgen
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ en
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Dit betekent dat
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ zowel
+  $\sFmla{\True}{!B}$ als $\sFmla{\False}{!C}$ waar maakt.
+
+\iftag{FOL}{%
+\item Pas $\TRule{\True}{\lforall}$ toe op
+  $\sFmla{\True}{\lforall[x][!B(x)]} \in \Gamma$. Daardoor komt de
+  nieuwe !!{signed formula}~$\sFmla{\True}{!A(t)}$ op de tak. Stel dat
+  $\Sat{M}{\Gamma}$. Dan geldt in het bijzonder
+  $\Sat{M}{\lforall[x][!A(x)]}$. Volgens
+  \olref[syn][sem]{prop:quant-terms} geldt dan $\Sat{M}{!A(t)}$. Dus
+  maakt $\Struct{M}$ de formule $\sFmla{\True}{!A(t)}$ waar.
+
+\item Pas $\TRule{\False}{\lforall}$ toe op
+  $\sFmla{\False}{\lforall[x][!B(x)]} \in \Gamma$. Daardoor komt de
+  nieuwe !!{signed formula}~$\sFmla{\False}{!A(a)}$ op de tak. Hier is
+  $a$ !!a{constant} die niet in~$\Gamma$ voorkomt. Omdat $\Gamma$
+  vervulbaar is, bestaat er een $\Struct{M}$ waarvoor
+  $\Sat{M}{\Gamma}$. In het bijzonder geldt dan
+  $\Sat/{M}{\lforall[x][!B(x)]}$. We moeten laten zien dat
+  $\Gamma \cup \{\sFmla{\False}{!A(a)}\}$ vervulbaar is. Daarvoor
+  maken we als volgt een geschikte~$\Struct{M'}$.
+
+  Volgens \olref[syn][ass]{prop:sat-quant} geldt
+  $\Sat/{M}{\lforall[x][!B(x)]}$ precies als er een $s$ is waarvoor
+  $\Sat/{M}{!B(x)}[s]$. Neem nu een $\Struct{M'}$ die hetzelfde is als
+  $\Struct{M}$, behalve dat $\Assign{a}{M'} = s(x)$. Volgens
+  \olref[syn][ext]{cor:extensionality-sent} geldt voor elke
+  $\sFmla{\True}{!C} \in \Gamma$ dat $\Sat{M'}{!C}$. Voor elke
+  $\sFmla{\False}{!C} \in \Gamma$ geldt dat $\Sat/{M'}{!C}$. Dat komt
+  doordat $a$ niet in~$\Gamma$ voorkomt.
+
+  Volgens \olref[syn][ext]{prop:extensionality} geldt
+  $\Sat/{M'}{!A(x)}[s]$. Volgens
+  \olref[syn][ext]{prop:ext-formulas} geldt vervolgens
+  $\Sat/{M'}{!A(a)}[s]$. Omdat $!A(a)$ !!a{sentence} is, volgt uit
+  \olref[syn][ass]{prop:sentence-sat-true} dat
+  $\Sat/{M'}{!A(a)}$. Dat wil zeggen: $\Struct{M'}$ maakt
+  $\sFmla{\False}{!A(a)}$ waar.
+\item Pas $\TRule{\True}{\lexists}$ toe op
+  $\sFmla{\True}{\lexists[x][!B(x)]} \in \Gamma$: opgave.
+\item Pas $\TRule{\False}{\lexists}$ toe op
+  $\sFmla{\False}{\lexists[x][!B(x)]} \in \Gamma$: opgave.}{}
+\end{enumerate}
+Nu bekijken we de regels die een tak wel splitsen.
+\begin{enumerate}
+\item Pas $\TRule{\False}{\land}$ toe op
+  $\sFmla{\False}{!B \land !C} \in \Gamma$. Daardoor ontstaan twee
+  takken. De linkertak gaat verder met $\sFmla{\False}{!B}$ en de
+  rechtertak met $\sFmla{\False}{!C}$. Stel dat
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$. Dan geldt in het bijzonder
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B \land !C}$. Daaruit volgt
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$ of
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. In het eerste geval maakt
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+  $\sFmla{\False}{!B}$ waar. Daarmee maakt
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ alle formules op de linkertak
+  waar. In het tweede geval maakt
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+  $\sFmla{\False}{!C}$ waar. Daarmee maakt
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ alle formules op de
+  rechtertak waar.
+\item Pas $\TRule{\True}{\lor}$ toe op
+  $\sFmla{\True}{!B \lor !C} \in \Gamma$: opgave.
+\item Pas $\TRule{\True}{\lif}$ toe op
+  $\sFmla{\True}{!B \lif !C} \in \Gamma$: opgave.
+\item Breid de tak uit met \Cut. Daardoor ontstaan twee takken. De ene
+  bevat $\sFmla{\True}{!B}$ en de andere
+  $\sFmla{\False}{!B}$. We weten dat
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ en dat ofwel
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$, ofwel
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$. Daarom maakt
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ de linker- of de rechtertak
+  waar.
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Maak het bewijs van \olref[fol][tab][sou]{thm:tableau-soundness} af.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Maak het bewijs van \olref[pl][tab][sou]{thm:tableau-soundness} af.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+Als $\Proves !A$, dan is $!A$ \iftag{FOL}{geldig}{een tautologie}.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:entailment-soundness}
+Als $\Gamma \Proves !A$, dan geldt ook $\Gamma \Entails !A$.
+\end{cor}
+
+\begin{proof}
+  Stel dat $\Gamma \Proves !A$. Dan zijn er $!B_1$, \dots,
+  $!B_n \in \Gamma$ waarvoor
+  $\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}\}$ een gesloten !!{tableau} heeft. Volgens
+  \olref{thm:tableau-soundness} maakt elke
+  \iftag{FOL}{!!{structure}}{!!{valuation}}~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+  een zekere $!B_i$ onwaar of $!A$ waar. Als dus
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, dan geldt ook
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$.
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+Als $\Gamma$ vervulbaar is, dan is zij consistent.
+\end{cor}
+
+\begin{proof}
+We bewijzen de contrapositie. Neem aan dat $\Gamma$ niet consistent
+is. Dan zijn er $!B_1$, \dots, $!B_n \in \Gamma$ en is er een gesloten
+!!{tableau} voor
+$\{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}$. Volgens
+\olref{thm:tableau-soundness} bestaat er geen
+$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ waarvoor
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B_i}$ voor alle $i=1$, \dots,~$n$.
+Daarom is $\Gamma$ niet vervulbaar.
+\end{proof}
+
+\end{document}

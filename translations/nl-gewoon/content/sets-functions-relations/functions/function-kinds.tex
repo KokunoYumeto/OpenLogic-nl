@@ -1,0 +1,117 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: kinds
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{fun}{kin}
+\olsection{Verschillende soorten functies}
+
+\begin{explain}
+Het helpt om de soorten functies die we vaak tegenkomen in groepen in
+te delen.
+
+We beginnen met functies waarbij ieder element van het codomein ook
+echt als waarde voorkomt. Zo'n functie heet !!{surjective}. De
+afbeelding in \olref{fig:surjective} laat dit zien.
+
+\begin{figure}
+  \olasset{assets/diagrams/surjective.tikz}
+  \caption{Bij !!^a{surjective} functie komt ieder !!{element} van het
+    codomein als waarde voor.}
+  \ollabel{fig:surjective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[!!^{surjective} functie]
+Een functie $f \colon A \rightarrow B$ heet \emph{!!{surjective}}
+precies wanneer $B$ ook het bereik van~$f$ is. Dat betekent: voor elke
+$y \in B$ is er minstens één $x \in A$ waarvoor~$f(x) = y$, of in
+symbolen:
+\[
+  (\forall y \in B)(\exists x \in A)f(x) = y.
+\]
+Zo'n functie noemen we !!a{surjection} van $A$ naar $B$.
+\end{defn}
+
+\begin{explain}
+Wil je laten zien dat $f$ !!a{surjection} is, dan moet je laten zien
+dat ieder object in het codomein van $f$ de waarde $f(x)$ is bij een
+invoer $x$.
+
+Elke functie \emph{levert} !!a{surjection} op. Neem namelijk een
+functie $f \colon A \to B$ en maak $f' \colon A \to \ran{f}$ met
+$f'(x) = f(x)$. Het bereik $\ran{f}$ is \emph{per definitie}
+$\Setabs{f(x) \in B}{x \in A}$. Daarom is deze functie $f'$ zeker
+!!a{surjection}.
+\end{explain}
+
+\begin{explain}
+Elke mogelijke invoer van een functie krijgt precies één uitvoer. Bij
+sommige functies krijgen twee verschillende invoeren bovendien nooit
+dezelfde uitvoer. Zo'n functie heet !!{injective}. De afbeelding in
+\olref{fig:injective} laat dit zien.
+\begin{figure}
+  \olasset{assets/diagrams/injective.tikz}
+  \caption{!!^a{injective} functie geeft nooit dezelfde waarde aan
+    twee verschillende argumenten.}
+  \ollabel{fig:injective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[!!^{injective} functie]
+Een functie $f \colon A \rightarrow B$ heet \emph{!!{injective}}
+precies wanneer er bij elke $y \in B$ hoogstens één $x \in A$ is
+waarvoor~$f(x) = y$. Zo'n functie noemen we !!a{injection} van $A$
+naar~$B$.
+\end{defn}
+
+\begin{explain}
+Wil je laten zien dat $f$ !!a{injection} is, neem dan willekeurige
+!!{element}s $x$ en $y$ uit het domein van $f$. Je moet bewijzen: als
+$f(x)=f(y)$, dan $x=y$.
+\end{explain}
+
+\begin{ex}
+De constante functie $f\colon \Nat \to \Nat$ met $f(x) = 1$ is niet
+!!{injective} en ook niet !!{surjective}.
+
+De identiteitsfunctie $f\colon \Nat \to \Nat$ met $f(x) = x$ is
+!!{injective} én !!{surjective}.
+
+De opvolgerfunctie $f \colon \Nat \to \Nat$ met $f(x) = x+1$ is
+!!{injective}, maar niet !!{surjective}.
+  
+De functie $f \colon \Nat \to \Nat$ die als volgt is vastgelegd,
+\[
+  f(x) =
+  \begin{cases}
+    \frac{x}{2} & \text{als $x$ even is} \\
+    \frac{x+1}{2} & \text{als $x$ oneven is.}
+  \end{cases}
+\]
+is !!{surjective}, maar niet !!{injective}.
+\end{ex}
+
+\begin{explain}
+Vaak hebben we een functie nodig die tegelijk !!{injective} en
+!!{surjective} is. Zo'n functie heet !!{bijective}. Zij ziet eruit als
+de functie in \olref{fig:bijective}. !!^{bijection}s heten ook wel
+\emph{een-op-een-koppelingen}: ze koppelen ieder element van het
+codomein aan precies één element van het domein.
+\begin{figure}
+  \olasset{assets/diagrams/bijective.tikz}
+  \caption{!!^a{bijective} functie koppelt ieder element van het
+    codomein aan precies één element van het domein.}
+  \ollabel{fig:bijective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[!!^{bijection}]
+Een functie $f \colon A \to B$ heet \emph{!!{bijective}} precies
+wanneer zij zowel !!{surjective} als !!{injective} is. Zo'n functie
+noemen we !!a{bijection} van $A$ naar~$B$ (of tussen $A$ en~$B$).
+\end{defn}
+\end{document}

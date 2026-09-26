@@ -1,0 +1,111 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: cuts
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{arith}{cuts}
+\olsection{Van $\Rat$ naar $\Real$}
+In wezen laat de volledigheidseigenschap zien dat elk punt $\alpha$ op
+de getallenlijn die lijn precies in twee helften verdeelt: een
+onderste helft waarvan $\alpha$ de kleinste bovengrens is en een
+bovenste helft waarvan $\alpha$ de grootste ondergrens is. Om de reële
+getallen uit de rationale getallen te \emph{construeren}, stelde
+Dedekind voor de reële getallen eenvoudig op te vatten als de
+\emph{sneden} die de rationale getallen verdelen. We identificeren
+$\sqrt{2}$ dus met de \emph{snede} die de rationale getallen
+$< \sqrt{2}$ scheidt van de rationale getallen $> \sqrt{2}$.
+Laten we dit nauwkeurig formuleren. Als we de rationale getallen in
+twee helften verdelen, wordt de gemaakte verdeling al eenduidig bepaald
+door haar \emph{onderste} helft. Dit leidt tot de volgende definitie:
+\begin{defn}[Snede]
+Een \emph{snede} $\alpha$ is een niet-leeg echt beginstuk van de
+rationale getallen zonder grootste element. Met andere woorden,
+$\alpha$ is een snede dan en slechts dan als:
+\begin{enumerate}
+	\item \emph{niet-leeg en echt}: $\emptyset \neq \alpha \subsetneq \Rat$
+	\item \emph{beginstuk}: voor alle $p,q \in \Rat$ geldt: als $p < q \in \alpha$, dan $p \in \alpha$
+	\item \emph{geen maximum}: voor elke $p \in \alpha$ bestaat er een $q \in \alpha$ waarvoor $p < q$
+\end{enumerate}
+Dan is $\Real$ de verzameling van alle sneden.
+\end{defn}
+We kunnen nu dus schrijven: $\sqrt{2} = \Setabs{p \in \Rat}{p^2 < 2\text{ of }p < 0}$. Natuurlijk moeten we nog nagaan dat dit inderdaad een
+\emph{snede} is, maar dat stellen we uit tot \olref[check]{sec}.
+Nu deze objecten zijn gedefinieerd, moeten we, net als eerder, de
+elementaire functies en relaties erop definiëren. We beginnen met een
+eenvoudig geval:
+\begin{align*}
+	\alpha \leq \beta \text{ dan en slechts dan als }\alpha \subseteq \beta
+\end{align*}
+Met deze ordening kunnen we het centrale resultaat \emph{formuleren}:
+de verzameling sneden heeft de volledigheidseigenschap. Volledig
+uitgeschreven luidt de uitspraak als volgt. Als $S$ een niet-lege
+verzameling sneden met een bovengrens is, dan heeft $S$ een kleinste
+bovengrens. Preciezer: er is een snede $\lambda$ die een bovengrens van
+$S$ is, oftewel\ $(\forall \alpha \in S)\alpha \subseteq
+\lambda$, en $\lambda$ is de kleinste van zulke sneden, oftewel\ $(\forall \beta \in \Real)((\forall \alpha \in S)\alpha \subseteq \beta \lif \lambda \subseteq \beta)$. Het
+bewijs luidt als volgt:
+\begin{thm}\ollabel{realcompleteness}
+De verzameling sneden heeft de volledigheidseigenschap.
+\end{thm}
+\begin{proof}
+Zij $S$ een willekeurige niet-lege verzameling sneden met een
+bovengrens. Stel $\lambda = \bigcup S$.
+%\Setabs{p \in \Rat}{(\exists \alpha \in S)p \in \alpha}$$
+We beweren eerst dat $\lambda$ een snede is:
+\begin{enumerate}
+\item Omdat $S$ niet leeg is, bevat $S$ ten minste één snede,
+dus $\emptyset \neq \lambda$. Omdat $S$ een verzameling sneden is,
+geldt $\lambda \subseteq \Rat$. Omdat $S$ een bovengrens heeft, is er
+een $p \in \Rat$ die in geen enkele snede $\alpha \in S$ voorkomt. Dus
+$p\notin \lambda$ en bijgevolg $\lambda \subsetneq \Rat$.
+\item Stel dat $p < q \in \lambda$. Dan is er een $\alpha \in S$ met
+$q \in \alpha$. Omdat $\alpha$ een snede is, geldt $p \in \alpha$.
+Dus $p \in \lambda$.
+\item Stel dat $p \in \lambda$. Dan is er een $\alpha \in S$ met
+$p \in \alpha$. Omdat $\alpha$ een snede is, is er een $q \in
+\alpha$ waarvoor $p < q$. Dus $q \in \lambda$.
+\end{enumerate}
+Daarmee is de bewering bewezen. Bovendien geldt duidelijk $(\forall \alpha \in S)\alpha
+\subseteq \bigcup S = \lambda$, oftewel\ $\lambda$ is een bovengrens van $S$. Stel nu dat $\beta \in \mathbb{R}$ eveneens een bovengrens is, oftewel\ $(\forall \alpha \in S)\alpha \subseteq \beta$. Voor elke $p \in \Rat$ geldt: als $p \in \lambda$, dan is er een $\alpha \in S$ met $p \in \alpha$, zodat $p \in \beta$. Omdat dit voor elk rationaal getal geldt, volgt $\lambda \subseteq \beta$. Dus $\lambda$ is de \emph{kleinste} bovengrens van $S$.
+\end{proof}
+We hebben dus objecten die aan de volledigheidseigenschap voldoen.
+Anders gezegd: onze sneden vertonen geen “gaten”. (Een verdere
+“snede” in de reële in plaats van de rationale getallen zou daarom
+geen interessante nieuwe objecten opleveren.)
+Vervolgens moeten we bewerkingen op de reële getallen definiëren. We
+beginnen met een inbedding van de rationale getallen in de reële
+getallen door vast te leggen dat $p_\Real =
+\Setabs{q \in \Rat}{q < p}$ voor elke $p \in \Rat$. Daarna definiëren
+we:
+\begin{align*}
+	\alpha + \beta &= \Setabs{p + q}{p \in \alpha \land q \in \beta}\\
+%	\alpha - \beta &\defis \Setabs{p - q}{p \in \alpha \land q \in \Rat \setminus \beta}\\
+	\alpha \times \beta &=
+	\Setabs{p \times q}{0 \leq p \in \alpha \land 0 \leq q \in \beta} \cup 0_\Real & \text{als }\alpha, \beta \geq 0_\Real
+%	\alpha \div \beta &\defis
+%	\Setabs{\nicefrac{p}{q}}{p \in \alpha \land q \in \Rat \setminus \beta}  & \text{if }\alpha \geq 0_\Real, \beta > 0_\Real
+\end{align*}
+Voor ieder reëel getal leggen we bovendien vast dat nul maal dat getal
+en dat getal maal nul beide nul zijn. Voor de overige gevallen van
+vermenigvuldiging definiëren we eerst:
+\begin{align*}
+	-\alpha &= \Setabs{p - q}{p < 0 \land q \notin \alpha}
+\end{align*}
+en leggen we vervolgens vast:
+\begin{align*}
+	\alpha \times \beta &\defis
+	\begin{cases}
+		\mathord{-}\alpha \times \mathord{-}\beta &\text{als }\alpha < 0_\Real\text{ en }\beta < 0_\Real\\
+		\mathord{-}(\mathord{-}\alpha \times \beta) &\text{als }\alpha < 0_\Real \text{ en }\beta > 0_\Real\\
+		\mathord{-}(\alpha \times \mathord{-}\beta) &\text{als }\alpha > 0_\Real \text{ en }\beta < 0_\Real
+	\end{cases}
+\end{align*}
+Vervolgens moet worden nagegaan dat elk van deze definities steeds een
+snede oplevert. Ten slotte moeten we met een eenvoudig (maar omslachtig)
+bewijs aantonen dat de aldus gedefinieerde sneden zich precies zo
+gedragen als beoogd. Ook dit alles stellen we uit tot
+\olref[check]{sec}.
+\end{document}

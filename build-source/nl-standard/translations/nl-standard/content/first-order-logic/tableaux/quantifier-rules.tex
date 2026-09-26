@@ -1,0 +1,113 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: quantifier-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{tab}{qrl}
+
+\olsection{Kwantorregels}
+
+\subsection{Regels voor $\lforall$}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{\lforall[x][!A(x)]}}
+\RightLabel{\TRule{\True}{\forall}}
+\UnaryInfC{\sFmla{\True}{!A(t)}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{\lforall[x][!A(x)]}}
+\RightLabel{\TRule{\False}{\lforall}}
+\UnaryInfC{\sFmla{\False}{!A(a)}}
+\DisplayProof
+\end{defish}
+
+In \TRule{\True}{\lforall} is $t$ een gesloten term (dat wil zeggen:
+een term zonder variabelen). In \TRule{\False}{\lforall} is
+$a$~!!a{constant} die nergens mag voorkomen in de tak boven de regel
+\TRule{\False}{\lforall}. We noemen $a$ de \emph{eigenvariabele} van
+de inferentie \TRule{\False}{\forall}.\footnote{We gebruiken de term
+``eigenvariabele'', hoewel $a$ in de bovenstaande regel !!a{constant}
+is. Dit heeft historische redenen.}
+
+\subsection{Regels voor $\lexists$}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{\lexists[x][!A(x)]}}
+\RightLabel{\TRule{\True}{\lexists}}
+\UnaryInfC{\sFmla{\True}{!A(a)}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{\lexists[x][!A(x)]}}
+\RightLabel{\TRule{\False}{\lexists}}
+\UnaryInfC{\sFmla{\False}{!A(t)}}
+\DisplayProof
+\end{defish}
+
+Ook hier is $t$~een gesloten term, en is $a$~!!a{constant} die niet
+voorkomt in de tak boven de regel~\TRule{\True}{\lexists}. We noemen
+$a$ de \emph{eigenvariabele} van de inferentie
+\TRule{\True}{\lexists}.
+
+De voorwaarde dat een eigenvariabele niet voorkomt in de tak boven de
+inferentie \TRule{\False}{\lforall} of \TRule{\True}{\lexists}, heet
+de \emph{eigenvariabelevoorwaarde}.
+
+\begin{explain}
+Herinner u de afspraak dat we, wanneer $!A$ !!a{formula} is waarin de
+!!{variable}~$x$ vrij voorkomt, dit aangeven door~$!A(x)$ te schrijven.
+In dezelfde context is $!A(t)$ dan een afkorting voor
+$\Subst{!A}{t}{x}$. We zouden de regel
+\TRule{\False}{\lexists} dus ook als volgt kunnen schrijven:
+\begin{prooftree}
+  \AxiomC{\sFmla{\False}{\lexists[x][!A]}}
+  \RightLabel{\TRule{\False}{\lexists}}
+  \UnaryInfC{\sFmla{\False}{\Subst{!A}{t}{x}}}
+\end{prooftree}
+Merk op dat $t$ al in~$!A$ kan voorkomen; $!A$ kan bijvoorbeeld
+$\Atom{\Obj P}{t,x}$ zijn. Het afleiden van
+$\sFmla{\False}{\Atom{\Obj P}{t,t}}$ uit
+$ \sFmla{\False}{\lexists[x][\Atom{\Obj P}{t,x}]}$ is dus een
+correcte toepassing van~\TRule{\False}{\lexists}. De
+eigenvariabelevoorwaarden in \TRule{\False}{\lforall}
+en~\TRule{\True}{\lexists} vereisen echter dat de !!{constant}~$a$
+niet in~$!A$ voorkomt. Men kan dus niet met een correcte toepassing van
+de formule $\sFmla{\False}{\Atom{\Obj P}{a,a}}$ afleiden uit
+$\sFmla{\False}{\lforall[x][\Atom{\Obj P}{a,x}]}$ met
+$\TRule{\False}{\lforall}$.
+\end{explain}
+
+\begin{explain}
+In \TRule{\True}{\lforall} en \TRule{\False}{\lexists} gelden geen
+beperkingen voor de term~$t$. Bij de regels
+\TRule{\True}{\lexists} en \TRule{\False}{\lforall} vereist de
+eigenvariabelevoorwaarde daarentegen dat de !!{constant}~$a$ nergens
+voorkomt in de takken boven de desbetreffende inferentie. Deze
+voorwaarde is nodig om de correctheid van het systeem te waarborgen.
+Zonder deze voorwaarde zou het volgende een gesloten !!{tableau} zijn
+voor
+$\lexists[x][\formula{A}(x)] \lif \lforall[x][\formula{A}(x)]$:
+\begin{center}
+\begin{tableau}{}
+  [\sFmla{\False}{\lexists[x][\formula{A}(x)] \lif \lforall[x][\formula{A}(x)]}, just=\TAss
+    [\sFmla{\True}{\lexists[x][\formula{A}(x)]},
+      just={\TRule{\False}{\lif}[1]}
+      [\sFmla{\False}{\lforall[x][\formula{A}(x)]},
+        just={\TRule{\False}{\lif}[1]}
+        [\sFmla{\True}{\formula{A}(a)},
+          just={\TRule{\True}{\lexists}[2]}
+          [\sFmla{\False}{\formula{A}(a)},
+            just={\TRule{\False}{\lforall}[3]}, close]
+        ]
+      ]
+    ]
+  ]
+\end{tableau}
+\end{center}
+$\lexists[x][\formula{A}(x)] \lif
+\lforall[x][\formula{A}(x)]$ is echter niet geldig.
+\end{explain}
+
+\end{document}

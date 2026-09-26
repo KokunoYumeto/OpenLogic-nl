@@ -1,0 +1,107 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: quantifier-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{seq}{qrl}
+
+\olsection{Kwantorregels}
+
+\subsection{Regels voor $\lforall$}
+
+\begin{defish}
+\Axiom$ !A(t), \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$ \lforall[x][!A(x)],\Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A(a) $
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$ \Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+\DisplayProof
+\end{defish}
+
+In \LeftR{\lforall} is $t$ een gesloten term, dat wil zeggen een term
+zonder variabelen. In \RightR{\lforall} is $a$~!!a{constant} die
+nergens in de onderste sequent van de regel \RightR{\lforall} mag
+voorkomen. We noemen $a$ de \emph{eigenvariabele} van de
+\RightR{\forall}-afleidingsstap.\footnote{We gebruiken de term
+  ``eigenvariabele'' hoewel $a$ in de bovenstaande regel
+  !!a{constant} is. Dat heeft historische redenen.}
+
+\subsection{Regels voor $\lexists$}
+
+\begin{defish}
+\Axiom$ !A(a), \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x][!A(x)], \Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A(t) $
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$ \Gamma \fCenter \Delta, \lexists[x][!A(x)]$
+\DisplayProof
+\end{defish}
+
+Ook hier is $t$~een gesloten term en is $a$~!!a{constant} die niet in
+de onderste sequent van de regel \LeftR{\lexists} voorkomt. We noemen
+$a$ de \emph{eigenvariabele} van de \LeftR{\lexists}-afleidingsstap.
+
+De voorwaarde dat een eigenvariabele niet in de onderste sequent van
+de \RightR{\lforall}- of \LeftR{\lexists}-afleidingsstap voorkomt,
+heet de \emph{eigenvariabelevoorwaarde}.
+
+\begin{explain}
+Volgens onze afspraak geven we, als $!A$ !!a{formula} is waarin de
+!!{variable}~$x$ vrij voorkomt, dit aan door~$!A(x)$ te schrijven. In dezelfde context is
+$!A(t)$ dan een afkorting voor~$\Subst{!A}{t}{x}$. We zouden de regel
+\RightR{\lexists} dus ook als volgt kunnen schrijven:
+\begin{prooftree}
+  \Axiom$\Gamma \fCenter \Delta, \Subst{!A}{t}{x}$
+  \RightLabel{\RightR{\lexists}}
+  \UnaryInf$\Gamma \fCenter \Delta, \lexists[x][!A]$
+\end{prooftree}
+Merk op dat $t$ al in~$!A$ mag voorkomen. $!A$~kan bijvoorbeeld
+$\Atom{\Obj P}{t,x}$ zijn. De afleiding van $\Gamma \Sequent \Delta,
+\lexists[x][\Atom{\Obj P}{t,x}]$ uit~$\Gamma \Sequent \Delta,
+\Atom{\Obj P}{t,t}$ is dus een correcte toepassing
+van~\RightR{\lexists}: in de premisse mogen een of meer, maar niet
+noodzakelijk alle, voorkomens van~$t$ door de gebonden
+!!{variable}~$x$ worden ``vervangen''. De eigenvariabelevoorwaarden
+voor \RightR{\lforall} en~\LeftR{\lexists} vereisen daarentegen dat de
+!!{constant}~$a$ niet in~$!A$ voorkomt. Men kan dus niet op correcte
+wijze $\Gamma \Sequent \Delta, \lforall[x][\Atom{\Obj P}{a,x}]$
+afleiden uit $\Gamma \Sequent \Delta, \Atom{\Obj P}{a,a}$
+met~$\RightR{\lforall}$.
+\end{explain}
+
+\begin{explain}
+In \RightR{\lexists} en \LeftR{\lforall} gelden voor de term~$t$ geen
+verdere beperkingen. Bij de regels \LeftR{\lexists} en
+\RightR{\lforall} vereist de eigenvariabelevoorwaarde daarentegen dat
+de !!{constant}~$a$ nergens buiten~$!A(a)$ in de bovenste sequent
+voorkomt. Deze voorwaarde is nodig om te waarborgen dat het systeem
+correct is, dat wil zeggen dat het alleen geldige sequenten
+!!{derive}s. Zonder deze voorwaarde zouden de volgende afleidingen zijn
+toegestaan:
+\begin{prooftree}
+  \Axiom$!A(a) \fCenter !A(a)$
+  \RightLabel{*\LeftR{\lexists}}
+  \UnaryInf$\lexists[x][!A(x)] \fCenter !A(a)$
+  \RightLabel{\RightR{\lforall}}
+  \UnaryInf$\lexists[x][!A(x)] \fCenter \lforall[x][!A(x)]$
+  \DisplayProof\bottomAlignProof
+  \qquad
+  \Axiom$!A(a) \fCenter !A(a)$
+  \RightLabel{*\RightR{\lforall}}
+  \UnaryInf$!A(a) \fCenter \lforall[x][!A(x)]$
+  \RightLabel{\LeftR{\lexists}}
+  \UnaryInf$\lexists[x][!A(x)] \fCenter \lforall[x][!A(x)]$
+\end{prooftree}
+De sequent $\lexists[x][!A(x)] \Sequent \lforall[x][!A(x)]$ is echter
+niet geldig.
+\end{explain}
+\end{document}

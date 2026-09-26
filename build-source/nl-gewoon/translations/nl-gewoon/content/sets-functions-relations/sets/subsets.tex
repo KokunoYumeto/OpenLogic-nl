@@ -1,0 +1,104 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: subsets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{set}{sub}
+\olsection{Deelverzamelingen en machtsverzamelingen}
+
+\begin{explain}
+We willen verzamelingen vaak vergelijken. Een duidelijke vraag is dan:
+\emph{zit alles uit de ene verzameling ook in de andere?} Deze situatie is
+belangrijk genoeg om er een nieuwe schrijfwijze voor in te voeren.
+\end{explain}
+
+\begin{defn}[Deelverzameling]
+Als elk !!{element} van een verzameling $A$ ook !!a{element} van~$B$
+is, heet $A$ een \emph{deelverzameling} van~$B$. We schrijven dan
+$A \subseteq B$. Is $A$ geen deelverzameling van~$B$, dan schrijven
+we $A \not\subseteq B$. Als $A \subseteq B$ maar $A \neq B$, schrijven
+we $A \subsetneq B$. Dan heet $A$ een \emph{echte deelverzameling}
+van $B$.
+\end{defn}
+
+\begin{ex}
+Elke verzameling is een deelverzameling van zichzelf. Ook is
+$\emptyset$ een deelverzameling van elke verzameling. De even
+natuurlijke getallen vormen een deelverzameling van de natuurlijke
+getallen. Verder geldt $\{ a, b \} \subseteq \{ a, b, c \}$. Maar
+$\{ a, b, e \}$ is geen deelverzameling van $\{ a, b, c \}$.
+\end{ex}
+
+\begin{ex}
+Het getal $2$ is een !!{element} van de verzameling van de gehele
+getallen. De verzameling van de even getallen is een deelverzameling
+van die verzameling. Toch kan een verzameling \emph{tegelijk} !!a{element}
+en een deelverzameling van een andere verzameling zijn. Zo geldt
+$\{0\} \in \{0, \{0\}\}$, maar ook
+$\{0\} \subseteq \{0, \{0\}\}$.
+\end{ex}
+
+De regel van extensionaliteit zegt wanneer twee verzamelingen gelijk
+zijn: $A = B$ precies als elk !!{element} van~$A$ ook !!a{element}
+van~$B$ is, en omgekeerd. De eerste helft daarvan is precies wat
+$A \subseteq B$ betekent: elk !!{element} van~$A$ is ook
+!!a{element} van~$B$. Wisselen we $A$ en $B$ om, dan krijgen we
+$B \subseteq A$ precies als elk !!{element} van~$B$ ook !!a{element}
+van~$A$ is. Dat is de andere helft van ‘en omgekeerd’. Samen zeggen
+die twee helften dat verzamelingen precies gelijk zijn als ze elk een
+deelverzameling van de andere zijn.
+
+\begin{prop}
+$A = B$ precies als $A \subseteq B$ én $B \subseteq A$.
+\end{prop}
+
+Nu voeren we nog wat handige tekens in. Bij de uitleg van
+$A$ als deelverzameling van~$B$ schreven we ‘elk !!{element} van~$A$
+is \dots,’ en op de ‘$\dots$’ kwam ‘!!a{element} van $B$’. Zinnen met
+deze \emph{vorm} komen zo vaak voor dat een korte schrijfwijze handig
+is.
+
+\begin{defn}\ollabel{forallxina}
+$(\forall x \in A)\phi$ is een korte schrijfwijze voor $\forall x(x
+\in A \lif \phi)$. Net zo is $(\exists x \in A)\phi$ een korte
+schrijfwijze voor $\exists x(x \in A \land \phi)$.
+\end{defn}
+
+Met deze tekens zeggen we: $A \subseteq B$ precies als
+$(\forall x \in A)x \in B$.
+
+Nu kijken we naar de verzameling waarin alle deelverzamelingen van één
+gegeven verzameling zitten.
+
+\begin{defn}[Machtsverzameling]
+Neem alle deelverzamelingen van een verzameling~$A$ bij elkaar. De
+verzameling die je dan krijgt, heet de \emph{machtsverzameling van}~$A$.
+We schrijven daarvoor $\Pow{A}$.
+  \[
+    \Pow{A} = \Setabs{B}{B \subseteq A} 
+  \]
+\end{defn}
+
+\begin{ex}
+Welke deelverzamelingen van $\{ a, b, c \}$ zijn er? Dat zijn:
+$\emptyset$, $\{a \}$, $\{b\}$, $\{c\}$, $\{a, b\}$, $\{a, c\}$,
+$\{b, c\}$ en $\{a, b, c\}$. Als we die allemaal in één verzameling
+zetten, krijgen we $\Pow{\{a,b,c\}}$:
+\[
+\Pow{\{ a, b, c \}} = \{\emptyset, \{a \}, \{b\}, \{c\}, \{a, b\},
+\{b, c\}, \{a, c\}, \{a, b, c\}\}
+\]
+\end{ex}
+
+\begin{prob}
+Schrijf alle deelverzamelingen van $\{a, b, c, d\}$ op.
+\end{prob}
+
+\begin{prob}
+Laat zien dat als $A$ $n$ !!{element}s heeft, $\Pow{A}$ $2^n$
+!!{element}s heeft.
+\end{prob}
+\end{document}

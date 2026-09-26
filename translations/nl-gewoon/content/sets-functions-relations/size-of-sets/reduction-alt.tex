@@ -1,0 +1,143 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: reduction-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{red-alt}
+
+\olsection{Reductie: een probleem terugbrengen tot een ander}
+
+\begin{editorial}
+  In deze paragraaf bewijzen we met een reductie dat bepaalde
+  verzamelingen niet kunnen worden opgesomd. Dit sluit aan bij de resultaten in
+  \olref[nen-alt]{sec}. In \olref[red]{sec} staat een andere, iets
+  langere versie die aansluit bij de resultaten in
+  \olref[nen]{sec}.
+\end{editorial}
+
+We hebben met een diagonaalargument bewezen dat $\Bin^\omega$
+!!{nonenumerable} is. Met bijna hetzelfde argument lieten we zien dat
+$\Pow{\Nat}$ !!{nonenumerable} is. Maar we kunnen ook op een andere
+manier bewijzen dat $\Pow{\Nat}$ !!{nonenumerable} is: laat zien dat
+\emph{als $\Pow{\Nat}$ !!{enumerable} is, ook $\Bin^\omega$
+!!{enumerable} is}. We weten al dat $\Bin^\omega$
+!!{nonenumerable} is. Daaruit volgt dan dat $\Pow{\Nat}$ dat ook is.
+
+Dit heet het ene probleem tot het andere \emph{terugbrengen}, oftewel
+reduceren. Hier brengen we het probleem om $\Bin^\omega$ op te sommen
+terug tot het probleem om $\Pow{\Nat}$ op te sommen. Een oplossing van
+het tweede probleem---een opsomming van $\Pow{\Nat}$---zou een
+oplossing van het eerste geven---een opsomming van $\Bin^\omega$.
+
+Zo brengen we het opsommen van een verzameling~$B$ terug tot het
+opsommen van een verzameling~$A$. We laten zien hoe je van een
+opsomming van~$A$ een opsomming van~$B$ maakt. Het makkelijkst is om
+!!a{surjection} $f\colon A \to B$ te maken: een functie die elk element
+van haar doelverzameling bereikt. Als $x_1$, $x_2$, \dots{} de
+verzameling~$A$ opsommen, dan sommen $f(x_1)$, $f(x_2)$, \dots{} de
+verzameling~$B$ op. Hier zoeken we dus !!a{surjection} $f\colon
+\Pow{\Nat} \to \Bin^\omega$.
+
+\begin{prob}
+Laat zien dat als er een !!{injective} functie $g\colon B \to A$ is
+en $B$~!!{nonenumerable} is, dat ook voor~$A$ geldt. Laat hiervoor
+zien hoe je met~$g$ van een opsomming van~$A$ een opsomming van~$B$
+maakt.
+\end{prob}
+
+\begin{proof}[Bewijs van {\olref[nen-alt]{thm:nonenum-pownat}} met een reductie]
+Neem aan dat $\Pow{\Nat}$ !!{enumerable} is. Er is dan een opsomming
+$N_{1}$, $N_{2}$, $N_{3}$, \dots van deze verzameling.
+
+Maak de functie $f \colon \Pow{\Nat} \to \Bin^\omega$ als volgt.
+Laat $f(N)$ het rijtje $s_{k}$ zijn waarvoor $s_{k}(n) = 1$ precies
+wanneer $n \in N$, en laat $s_k(n) = 0$ in alle andere gevallen.
+
+Dit levert echt een functie op. Als $N \subseteq \Nat$, dan is elk $n
+\in \Nat$ namelijk wel of geen !!{element} van $N$. Neem bijvoorbeeld
+de verzameling $2\Nat = \Setabs{2n}{n \in \Nat} = \{0,2, 4, 6,
+\dots\}$ van de even natuurlijke getallen. Die wordt het rijtje
+$1010101\dots$; $\emptyset$ wordt $0000\dots$; $\Nat$ wordt
+$1111\dots$.
+
+De functie is ook !!{surjective}: elk rijtje van $0$'en en $1$'en
+hoort bij een verzameling natuurlijke getallen. Die verzameling bevat
+precies de getallen voor de plaatsen waar het rijtje een~$1$ bevat.
+Preciezer: als $s \in \Bin^\omega$, maak dan $N \subseteq \Nat$ met
+\[
+N = \Setabs{n \in \Nat}{s(n) = 1}
+\]
+Dan geldt $f(N) = s$. Dat kun je meteen controleren met de definitie
+van~$f$.
+
+Kijk nu naar de lijst
+\[
+f(N_1), f(N_2), f(N_3), \dots
+\]
+Omdat $f$ !!{surjective} is, is elk element van $\Bin^\omega$ de
+waarde van~$f$ voor een of ander argument. Elk element staat dus in
+deze lijst. De lijst somt daarom heel~$\Bin^\omega$ op.
+
+Als $\Pow{\Nat}$ !!{enumerable} was, zou $\Bin^\omega$ dus
+!!{enumerable} zijn. Maar $\Bin^\omega$ is !!{nonenumerable}
+(\olref[nen-alt]{thm:nonenum-bin-omega}). Daarom is $\Pow{\Nat}$
+!!{nonenumerable}.
+\end{proof}
+
+%\begin{explain}
+%It is easy to be confused about the direction the reduction goes in.
+%For instance, !!a{surjective} function $g \colon \Bin^\omega \to X$
+%does \emph{not} establish that $X$ is !!{nonenumerable}.  (Consider $g
+%\colon \Bin^\omega \to \Bin$ defined by $g(s) = s(1)$, the function
+%that maps a sequence of $0$'s and $1$'s to its first !!{element}.  It
+%is surjective, because some sequences start with $0$ and some start
+%with $1$. But $\Bin$ is finite.)  Note also that the function $f$ must
+%be surjective, or otherwise the argument does not go through:
+%$f(x_1)$, $f(x_2)$, \dots{} would then not be guaranteed to include
+%all the !!{element}s of~$Y$. For instance, $h\colon \Nat \to
+%\Bin^\omega$ defined by
+%\[
+%h(n) = \underbrace{000\dots0}_{\text{$n$ $0$'s}}
+%\]
+%is a function, but $\Nat$ is !!{enumerable}.
+%\end{explain}
+
+\begin{prob}\label{sfr:siz:red:prob:nat-nat}
+  Laat met een reductie zien dat de verzameling~$X$ van alle functies
+  $f\colon \Nat \to \Nat$ !!{nonenumerable} is (Aanwijzing: geef een
+  surjectieve functie van $X$ naar~$\Bin^\omega$.)
+\end{prob}
+
+\begin{prob}
+Laat met een reductie zien dat de verzameling van alle
+\emph{verzamelingen van} paren natuurlijke getallen, dus
+$\Pow{\Nat \times \Nat}$, !!{nonenumerable} is.
+\end{prob}
+
+\begin{prob}
+Laat met een reductie zien dat $\Nat^\omega$, de verzameling van alle
+oneindige rijtjes natuurlijke getallen, !!{nonenumerable} is.
+\end{prob}
+
+%\begin{prob}
+%Let $P$ be the set of functions from $\Nat$ to the set $\{0\}$, and let $Q$ be the set of \emph{partial}
+%functions from the set of positive integers to the set $\{0\}$. Show
+%that $P$~is !!{enumerable} and $Q$~is not. (Hint: reduce the problem
+%of enumerating $\Bin^\omega$ to enumerating~$Q$).
+%\end{prob}
+
+\begin{prob}
+Laat $S$ de verzameling van alle !!{surjection}s van $\Nat$ naar de
+verzameling $\{0,1\}$ zijn. De verzameling $S$ bevat dus alle
+!!{surjection}s~$f \colon \Nat \to \Bin$. Laat zien dat $S$
+!!{nonenumerable} is.
+\end{prob}
+
+\begin{prob}
+Laat zien dat de verzameling~$\Real$ van alle reële getallen
+!!{nonenumerable} is.
+\end{prob}
+\end{document}

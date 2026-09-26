@@ -1,0 +1,113 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: quantifier-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{ntd}{qrl}
+
+\olsection{Kwantorregels}
+
+\subsection{Regels voor $\lforall$}
+
+\begin{defish}
+\AxiomC{$!A(a)$}
+\RightLabel{\Intro{\lforall}}
+\UnaryInfC{$\lforall[x][\Atom{!A}{x}]$}
+\DisplayProof
+\hfill
+\AxiomC{$\lforall[x][\Atom{!A}{x}]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!A(t)$}
+\DisplayProof
+\end{defish}
+
+In de regels voor~$\lforall$ is $t$ een gesloten term (een term die
+geen variabelen bevat), en is $a$~!!a{constant} die niet voorkomt in
+de conclusie~$\lforall[x][!A(x)]$ of in enige aanname die
+!!{undischarged} is in de !!{derivation} die eindigt met de
+premisse~$!A(a)$. We noemen $a$ de \emph{eigenvariabele} van de
+afleidingsstap \Intro{\lforall}.\footnote{We gebruiken de term
+``eigenvariabele'', hoewel $a$ in de bovenstaande regel een constante
+is. Dit heeft historische redenen.}
+
+\subsection{Regels voor $\lexists$}
+
+\begin{defish}
+\AxiomC{$\Atom{!A}{t}$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][\Atom{!A}{x}]$}
+\DisplayProof
+\hfill
+\AxiomC{$\lexists[x][\Atom{!A}{x}]$}
+\AxiomC{[$\Atom{!A}{a}$]$^n$}
+\DeduceC{$!C$}
+\DischargeRule{\Elim{\lexists}}{n}
+\BinaryInfC{$!C$}
+\DisplayProof
+\end{defish}
+
+Ook hier is $t$ een gesloten term, en is $a$ !!a{constant} die niet
+voorkomt in de premisse $\lexists[x][!A(x)]$, in de conclusie~$!C$ of
+in enige aanname die !!{undischarged} is in de !!{derivation}s die
+eindigen met de twee premissen (afgezien van de aannamen $!A(a)$). We
+noemen $a$ de \emph{eigenvariabele} van de afleidingsstap
+\Elim{\lexists}.
+
+De voorwaarde dat een eigenvariabele noch in de premissen voorkomt,
+noch in enige aanname die !!{undischarged} is in de !!{derivation}s
+die leiden tot de premissen van de afleidingsstap \Intro{\lforall} of
+\Elim{\lexists}, heet de \emph{eigenvariabelevoorwaarde}.
+
+\begin{explain}
+Herinner u de afspraak dat we, wanneer $!A$ !!a{formula} is waarin de
+!!{variable}~$x$ vrij voorkomt, dit aangeven door~$!A(x)$ te schrijven.
+In dezelfde context is $!A(t)$ dan een afkorting voor
+$\Subst{!A}{t}{x}$. We zouden de regel $\Intro\lexists$ dus ook als
+volgt kunnen schrijven:
+\begin{prooftree}
+\AxiomC{$\Subst{!A}{t}{x}$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!A]$}
+\end{prooftree}
+Merk op dat $t$ al in~$!A$ kan voorkomen; zo kan $!A$ bijvoorbeeld
+$\Atom{\Obj P}{t,x}$ zijn. Uit~$\Atom{\Obj P}{t,t}$
+$\lexists[x][\Atom{\Obj P}{t,x}]$ afleiden is dus een correcte
+toepassing van~$\Intro\lexists$---men mag één of meer, en niet
+noodzakelijk alle, voorkomens van~$t$ in de premisse door de gebonden
+!!{variable}~$x$ ``vervangen''. De eigenvariabelevoorwaarden in
+$\Intro\lforall$ en~$\Elim\lexists$ vereisen echter dat de
+!!{constant}~$a$ niet in~$!A$ voorkomt. Men kan dus niet met een
+correcte toepassing van~$\Intro\lforall$ uit $\Atom{\Obj P}{a,a}$ de
+formule $\lforall[x][\Atom{\Obj P}{a,x}]$ afleiden.
+\end{explain}
+
+\begin{explain}
+Voor \Intro{\lexists} en \Elim{\lforall} gelden geen beperkingen: de
+term~$t$ mag willekeurig zijn, zodat we daar geen voorwaarden hoeven te
+controleren. Bij de regels \Elim{\lexists} en \Intro{\lforall} vereist
+de eigenvariabelevoorwaarde daarentegen dat de !!{constant}~$a$ nergens
+in de conclusie of in een !!{undischarged} aanname voorkomt. Deze
+voorwaarde is nodig om te waarborgen dat het systeem correct is, dat
+wil zeggen dat het alleen !!{sentence}s !!{derive} uit
+!!{undischarged} aannamen waaruit zij volgen. Zonder deze voorwaarde
+zou het volgende zijn toegestaan:
+\begin{prooftree}
+  \AxiomC{$\lexists[x][!A(x)]$}
+  \AxiomC{$\Discharge{!A(a)}{1}$}
+  \RightLabel{*\Intro{\lforall}}
+  \UnaryInfC{$\lforall[x][!A(x)]$}
+  \RightLabel{\Elim{\lexists}}
+  \BinaryInfC{$\lforall[x][!A(x)]$}
+\end{prooftree}
+Maar $\lexists[x][!A(x)] \Entails/ \lforall[x][!A(x)]$.
+
+Omdat de eliminatieregels voor kwantoren alleen toestaan dat gesloten
+termen voor !!{variable}s worden gesubstitueerd, volgt dat elke
+!!{formula} die uit een verzameling !!{sentence}s kan worden afgeleid,
+zelf !!a{sentence} is.
+\end{explain}
+
+\end{document}

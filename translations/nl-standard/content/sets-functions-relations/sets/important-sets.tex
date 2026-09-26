@@ -1,0 +1,68 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: important-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{set}{imp}
+\olsection{Enkele belangrijke verzamelingen}
+
+\begin{ex}
+We zullen voornamelijk verzamelingen behandelen waarvan de !!{element}en
+wiskundige objecten zijn. Vier zulke verzamelingen zijn belangrijk genoeg
+om een eigen naam te hebben:
+\begin{multline*}
+    \Nat = \{0, 1, 2, 3, \ldots\} \\
+    \shoveright{\text{de verzameling natuurlijke getallen}}\\
+    \shoveleft{\Int = \{\ldots, -2, -1, 0, 1, 2, \ldots\}} \\
+    \shoveright{\text{de verzameling gehele getallen}}\\
+    \shoveleft{\Rat = \Setabs{\nicefrac{m}{n}}{m, n \in \Int\text{ en }n \neq 0}}\\
+    \shoveright{\text{de verzameling rationale getallen}}\\
+    \shoveleft{\Real = (-\infty, \infty)}\\
+    \text{de verzameling reële getallen (het continuüm)}
+\end{multline*}
+Dit zijn allemaal \emph{oneindige} verzamelingen: elk van deze verzamelingen
+heeft oneindig veel !!{element}en.
+
+Wanneer we deze verzamelingen in deze volgorde doorlopen, voegen we telkens
+\emph{meer} getallen toe. De inclusies $\Nat \subseteq \Int
+\subseteq \Rat \subseteq \Real$ liggen voor de hand: ieder natuurlijk
+getal is immers een geheel getal, ieder geheel getal is rationaal en ieder
+rationaal getal is reëel. Ook $\Nat \subsetneq \Int \subsetneq
+\Rat$ is duidelijk, want $-1$ is wel een geheel maar geen natuurlijk getal,
+en $\nicefrac{1}{2}$ is wel rationaal maar niet geheel. Minder duidelijk is
+dat $\Rat \subsetneq \Real$, dus dat er reële getallen bestaan die niet
+rationaal zijn\oliflabeldef{sfr:arith:real:realline}{; hierop komen we terug
+in \olref[arith][real]{realline}}{}.
+
+Soms gebruiken we ook de verzameling positieve gehele getallen $\PosInt = \{1,
+2, 3, \dots\}$ en de verzameling die alleen de eerste twee natuurlijke
+getallen bevat, $\Bin = \{0, 1\}$.
+\end{ex}
+
+\begin{tagblock}{compsci}
+\begin{ex}[Tekenreeksen]
+Een ander interessant voorbeeld is de verzameling $A^{*}$ van \emph{eindige
+tekenreeksen} over een alfabet $A$: iedere eindige rij elementen van~$A$
+is een tekenreeks over $A$. De \emph{lege tekenreeks $\Lambda$} rekenen we
+tot de tekenreeksen over~$A$, voor elk alfabet~$A$. Bijvoorbeeld:
+\begin{multline*}
+\Bin^*
+=\{\Lambda,0,1,00,01,10,11,\\
+000,001,010,011,100,101,110,111,0000,\ldots\}.
+\end{multline*}
+Als $x=x_{1}\ldots x_{n}\in A^{*}$ een tekenreeks is die uit $n$
+``letters'' van $A$ bestaat, dan heet~$n$ de \emph{lengte} van de tekenreeks
+en schrijven we $\len{x}=n$.
+\end{ex}
+\end{tagblock}
+
+\begin{ex}[Oneindige rijen]
+Voor elke verzameling $A$ kunnen we ook de verzameling~$A^\omega$ van
+oneindige rijen !!{element}en van~$A$ beschouwen. Een oneindige rij
+$a_1a_2a_3a_4\dots$ bestaat uit een eenzijdig oneindige lijst van objecten,
+die elk !!a{element} van~$A$ zijn.
+\end{ex}
+\end{document}

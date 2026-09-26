@@ -1,0 +1,169 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{ntd}{ptn}}
+      {\olfileid{pl}{ntd}{ptn}}
+
+\olsection{Begrippen over formele afleidingen}
+
+\begin{editorial}
+In deze paragraaf verzamelen we de definities van de relatie
+``is afleidbaar uit'' en van consistentie voor natuurlijke deductie.
+\end{editorial}
+
+\begin{explain}
+We hebben al belangrijke begrippen over betekenis gedefinieerd:
+geldigheid, logisch gevolg en de vraag of iets waar te maken is. Nu
+definiëren we de bijbehorende \emph{bewijstheoretische begrippen},
+dus begrippen over formele afleidingen. Daarbij vragen we niet of
+!!{sentence}s waar zijn in !!{structure}s. We vragen of bepaalde
+!!{sentence}s wel of niet !!{derivable} zijn uit andere. De ontdekking
+dat de twee soorten begrippen samenvallen, was belangrijk. De
+\emph{correctheidsstelling} en de \emph{volledigheidsstelling} zeggen
+dat zij
+inderdaad samenvallen.
+\end{explain}
+
+
+\begin{defn}[Stellingen]
+!!^a{sentence}~$!A$ is een \emph{stelling} als er in de natuurlijke
+deductie !!a{derivation} van~$!A$ bestaat waarin alle aannamen zijn
+!!{discharged}. We schrijven $\Proves !A$ als $!A$ een stelling is.
+Als dat niet zo is, schrijven we $\Proves/ !A$.
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{sentence} $!A$ is \emph{!!{derivable} uit} een verzameling
+!!{sentence}s~$\Gamma$, genoteerd als $\Gamma \Proves !A$, als er
+!!a{derivation} met conclusie~$!A$ bestaat. Elke aanname in die
+!!{derivation} moet ofwel !!{discharged} zijn, ofwel in~$\Gamma$
+staan. Als $!A$ niet !!{derivable} is uit $\Gamma$, schrijven we
+$\Gamma \Proves/ !A$.
+\end{defn}
+
+\begin{defn}[Consistentie]
+Een verzameling !!{sentence}s~$\Gamma$ is \emph{inconsistent} precies
+als $\Gamma \Proves \lfalse$. Is $\Gamma$ niet inconsistent, dus als
+$\Gamma \Proves/ \lfalse$, dan noemen we haar \emph{consistent}.
+\end{defn}
+
+\begin{prop}[Reflexiviteit]
+\ollabel{prop:reflexivity}
+Als $!A \in \Gamma$, dan $\Gamma \Proves !A$.
+\end{prop}
+
+\begin{proof}
+De aanname $!A$ op zichzelf is al !!a{derivation} van~$!A$. De enige
+!!{undischarged} aanname is $!A$, en die staat in~$\Gamma$.
+\end{proof}
+  
+
+\begin{prop}[Monotonie]
+\ollabel{prop:monotonicity}
+Als $\Gamma \subseteq \Delta$ en $\Gamma \Proves !A$, dan $\Delta
+\Proves !A$.
+\end{prop}
+
+\begin{proof}
+Elke !!{derivation} van $!A$ uit $\Gamma$ is ook !!a{derivation} van
+$!A$ uit~$\Delta$.
+\end{proof}
+
+\begin{prop}[Transitiviteit]
+\ollabel{prop:transitivity}
+Als $\Gamma \Proves !A$ en $\{!A\} \cup \Delta \Proves
+!B$, dan $\Gamma \cup \Delta \Proves !B$.
+\end{prop}
+
+\begin{proof}
+Uit $\Gamma \Proves !A$ volgt dat er !!a{derivation}~$\delta_0$
+van~$!A$ bestaat. Alle !!{undischarged} aannamen daarvan staan
+in~$\Gamma$. Uit $\{!A\} \cup \Delta \Proves !B$ volgt dat er
+!!a{derivation}~$\delta_1$ van~$!B$ bestaat. Alle !!{undischarged}
+aannamen daarvan staan in~$\{!A\} \cup \Delta$. Beschouw nu:
+\begin{prooftree}
+  \AxiomC{$\Delta, \Discharge{!A}{1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!B$}
+  \DischargeRule{\Intro{\lif}}{1}
+  \UnaryInfC{$!A \lif !B$}
+  \AxiomC{$\Gamma$}
+  \RightLabel{$\delta_0$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lif}}
+  \BinaryInfC{$!B$}
+\end{prooftree}
+Alle !!{undischarged} aannamen staan nu in $\Gamma \cup
+\Delta$. Dit toont dus $\Gamma \cup \Delta \Proves !B$ aan.
+\end{proof}
+
+Als $\Gamma = \{!A_1, !A_2, \ldots, !A_k\}$ een eindige verzameling
+is, mogen we de korte vorm
+$!A_1,!A_2,\ldots,!A_k \Proves !B$ gebruiken voor
+$\Gamma \Proves !B$. In het bijzonder betekent
+$!A \Proves !B$ dat $\{!A\} \Proves !B$.
+
+Merk op: als $\Gamma \Proves !A$ en $!A
+\Proves !B$, dan $\Gamma \Proves !B$. Daaruit volgt ook het volgende.
+Als $!A_1, \dots, !A_n \Proves !B$ en $\Gamma \Proves !A_i$ voor
+elke~$i$, dan $\Gamma \Proves !B$.
+
+\begin{prop}
+\ollabel{prop:incons}
+De volgende uitspraken zijn equivalent.
+    \begin{enumerate}
+      \item \( \Gamma \) is inconsistent.
+      \item \( \Gamma \Proves {!A} \) geldt voor elke
+        !!{sentence}~\( {!A} \).
+      \item Zowel \( \Gamma \Proves {!A} \) als
+        \( \Gamma \Proves \lnot {!A} \) geldt voor minstens één
+        !!{sentence}~\( {!A} \).
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+Oefening.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Bewijs \olref[fol][ntd][ptn]{prop:incons}
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Bewijs \olref[pl][ntd][ptn]{prop:incons}
+\end{prob}
+\tagendprob
+
+\begin{prop}[Compactheid]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item Als $\Gamma \Proves !A$, dan is er een eindige
+    deelverzameling $\Gamma_0 \subseteq \Gamma$ waarvoor
+    $\Gamma_0 \Proves !A$.
+  \item Als elke eindige deelverzameling van~$\Gamma$ consistent is,
+    dan is $\Gamma$ consistent.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Als $\Gamma \Proves !A$, is er !!a{derivation}~$\delta$
+      van~$!A$ uit~$\Gamma$. Laat $\Gamma_0$ bestaan uit de
+      !!{undischarged} aannamen van~$\delta$. Elke !!{derivation} is
+      eindig. Daarom kan $\Gamma_0$ maar eindig veel !!{sentence}s
+      bevatten. Dus is $\delta$ !!a{derivation} van~$!A$ uit een
+      eindige~$\Gamma_0 \subseteq \Gamma$.
+    \item Dit is de contrapositie van (1) in het bijzondere geval
+      $!A \ident \lfalse$.
+  \end{enumerate}
+\end{proof}
+\end{document}

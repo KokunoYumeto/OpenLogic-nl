@@ -1,0 +1,165 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: orders
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{rel}{ord}
+\olsection{Ordeningen}
+
+\begin{explain}
+Veel vergelijkingen drukken uit dat objecten in een bepaald opzicht
+``kleiner dan'', ``gelijk aan'' of ``groter dan'' andere objecten zijn. Daarbij
+gaat het om \emph{ordeningsrelaties}, waarvan verschillende soorten bestaan.
+Soms moet elk tweetal objecten vergelijkbaar zijn, soms niet. Sommige relaties
+bevatten de identiteit (zoals~$\le$), andere niet (zoals~$<$). Een indeling is
+daarom nuttig.
+\end{explain}
+
+\begin{defn}[Preorde]
+Een relatie die zowel reflexief als transitief is, heet een
+\emph{preorde.}  
+\end{defn}
+
+\begin{defn}[Partiële ordening]
+Een preorde die bovendien antisymmetrisch is, heet een
+\emph{partiële ordening}.
+\end{defn}
+
+\begin{defn}[Lineaire ordening]\ollabel{def:linearorder}
+Een partiële ordening die bovendien samenhangend is, heet een
+\emph{totale ordening} of \emph{lineaire ordening}.
+\end{defn}
+
+\begin{ex}
+Elke lineaire ordening is ook een partiële ordening en elke partiële ordening is
+ook een preorde, maar de omkeringen gelden niet. De universele relatie
+op~$A$ is een preorde, want zij is reflexief en transitief. Als
+$A$ meer dan één !!{element} bevat, is de universele relatie echter niet
+antisymmetrisch en dus geen partiële ordening.
+\end{ex}
+
+\begin{ex}
+Beschouw de relatie \emph{niet langer dan} $\preccurlyeq$ op~$\Bin^*$:
+$x \preccurlyeq y$ dan en slechts dan als $\len{x} \le \len{y}$. Dit is een
+preorde (reflexief en transitief), en zelfs samenhangend, maar geen partiële
+ordening, want de relatie is niet antisymmetrisch. Zo geldt $01
+\preccurlyeq 10$ en $10 \preccurlyeq 01$, terwijl $01 \neq 10$.
+\end{ex}
+
+\begin{ex}
+Een belangrijke partiële ordening is de relatie $\subseteq$ op een verzameling
+van verzamelingen. In het algemeen is dit geen lineaire ordening: als $a \neq b$
+en we $\Pow{\{a, b\}} = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$ beschouwen,
+zien we dat $\{a\} \nsubseteq \{b\}$, $\{a\} \neq \{b\}$ en $\{b\}
+\nsubseteq \{a\}$.
+\end{ex}
+
+\begin{ex}
+De relatie \emph{deelbaarheid zonder rest} definieert een partiële ordening die
+niet lineair is. Voor gehele getallen $n$ en~$m$ betekent $n \mid m$ dat $n$
+het getal $m$ zonder rest deelt, wat precies het geval is als er een geheel
+getal~$k$ bestaat met $m = kn$. Op~$\Nat$ is dit een partiële
+ordening, maar geen lineaire ordening: zo geldt $2 \nmid 3$ en ook $3 \nmid
+2$. Als relatie op $\Int$ is deelbaarheid slechts een preorde, want zij is niet
+antisymmetrisch: $1 \mid -1$ en $-1 \mid 1$, maar $1 \neq -1$.
+\end{ex}
+
+\begin{ex}
+De \emph{uitbreidingsrelatie} op de verzameling rijen~$A^*$ wordt als volgt
+gedefinieerd: $s \sqsubseteq s'$ dan en slechts dan als $s = \emptyseq$ (de lege
+rij), $s = s'$, of $s = \tuple{s_1, \dots, s_n}$ en $s' =
+\tuple{s_1, \dots, s_n, s_{n+1}, \dots, s_m}$. Als $s \sqsubseteq s'$,
+zeggen we ook dat $s$ een \emph{beginsegment} van~$s'$ is. De
+uitbreidingsrelatie op $A^*$ is een partiële maar geen lineaire ordening; als
+bijvoorbeeld $a \neq b$, dan geldt $ab \not\sqsubseteq ba$ en $ba \not\sqsubseteq ab$.
+\end{ex}
+
+\begin{defn}[Strikte ordening]
+Een \emph{strikte ordening} is een relatie die irreflexief, asymmetrisch en
+transitief is.
+\end{defn}
+
+\begin{defn}[Strikte lineaire ordening]\ollabel{def:strictlinearorder}
+Een strikte ordening die bovendien samenhangend is, heet een
+\emph{strikte totale ordening} of \emph{strikte lineaire ordening}.
+\end{defn}
+
+\begin{ex}
+De lineaire ordening~$\le$ hoort bij de strikte lineaire ordening~$<$; de
+partiële ordening~$\subseteq$ bij de strikte ordening~$\subsetneq$.
+\end{ex}
+
+Door aan een strikte ordening $R$ op~$A$ de diagonaal $\Id{A}$ toe te voegen,
+dus alle paren~$\tuple{x, x}$, ontstaat een partiële ordening.  (Dit heet de
+\emph{reflexieve afsluiting} van~$R$.) Omgekeerd ontstaat uit een partiële
+ordening een strikte ordening door~$\Id{A}$ te verwijderen. De volgende twee
+resultaten formuleren dit precies.
+
+\begin{prop}\ollabel{prop:stricttopartial}
+Als $R$ een strikte ordening op~$A$ is, dan is $R^+ = R \cup \Id{A}$ een
+partiële ordening. Is $R$ bovendien een strikte lineaire ordening, dan is
+$R^+$ een lineaire ordening.
+\end{prop}
+
+\begin{proof}
+Stel dat $R$ een strikte ordening is, dus dat $R \subseteq A^2$ en $R$
+irreflexief, asymmetrisch en transitief is. Zij $R^+ = R \cup \Id{A}$. We
+moeten aantonen dat $R^+$ reflexief, antisymmetrisch en transitief is.
+
+$R^+$ is duidelijk reflexief, want $\tuple{x, x} \in \Id{A} \subseteq
+R^+$ voor alle $x \in A$. 
+
+Voor de antisymmetrie van $R^+$ nemen we ter tegenspraak aan dat
+$R^+xy$ en $R^+yx$, terwijl $x \neq y$. Nu is $\tuple{x,y} \in R \cup \Id{A}$,
+maar $\tuple{x, y} \notin \Id{A}$, zodat $\tuple{x, y} \in R$, oftewel
+$Rxy$. Evenzo geldt~$Ryx$. Dit is echter in tegenspraak met de aanname
+dat $R$ asymmetrisch is.
+
+Voor de transitiviteit nemen we aan dat $R^+xy$ en $R^+yz$. Als zowel
+$\tuple{x, y} \in R$ als $\tuple{y,z} \in R$, dan is $\tuple{x, z} \in
+R$, omdat $R$ transitief is. Anders geldt $\tuple{x, y} \in
+\Id{A}$, dus $x = y$, of $\tuple{y, z} \in \Id{A}$, dus $y = z$.
+In het eerste geval geldt volgens de aanname $R^+yz$ en volgt uit $x = y$ dat
+$R^+xz$. Voor het tweede geval geldt hetzelfde. In beide gevallen is $R^+xz$;
+dus is $R^+$ ook transitief.
+
+Neem ten slotte aan dat $R$ ook samenhangend is.
+Voor alle $x \neq y$ geldt dan $Rxy$ of~$Ryx$, oftewel
+$\tuple{x, y} \in R$ of $\tuple{y, x} \in R$. Omdat $R \subseteq R^+$,
+blijft dit voor $R^+$ gelden, zodat ook $R^+$ samenhangend is.
+\end{proof}
+
+\begin{prop}\ollabel{prop:partialtostrict}
+Als $R$ een partiële ordening op~$A$ is, dan is $R^- = R \setminus \Id{A}$ een
+strikte ordening. Is $R$ bovendien een lineaire ordening, dan is $R^-$ een
+strikte lineaire ordening.
+\end{prop}
+
+\begin{proof}
+Het bewijs wordt als opgave overgelaten.
+\end{proof}
+
+\begin{prob}
+Geef een bewijs van \olref[sfr][rel][ord]{prop:partialtostrict}. 
+\end{prob}
+
+Het volgende eenvoudige resultaat laat zien dat strikte lineaire ordeningen
+een op extensionaliteit lijkende eigenschap hebben:
+
+\begin{prop}\ollabel{prop:extensionality-strictlinearorders}
+Als $<$ een strikte lineaire ordening op $A$ is, dan geldt:
+\[
+  (\forall a, b \in A)((\forall x \in A)(x < a \liff x < b) \lif a = b).
+\]
+\end{prop}
+
+\begin{proof}
+Stel $(\forall x \in A)(x < a \liff x < b)$. Als $a < b$, dan $a <
+a$, in tegenspraak met de irreflexiviteit van $<$; dus $a \nless b$.
+Geheel analoog geldt $b \nless a$. Dan volgt $a = b$ uit de samenhangendheid
+van~$<$.
+\end{proof}
+\end{document}

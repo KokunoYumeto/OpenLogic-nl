@@ -1,0 +1,109 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: subsets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{set}{sub}
+\olsection{Deelverzamelingen en machtsverzamelingen}
+
+\begin{explain}
+We zullen verzamelingen vaak met elkaar willen vergelijken. Een voor de
+hand liggende vergelijking is: \emph{alles wat in de ene verzameling
+zit, zit ook in de andere}. Deze situatie is belangrijk genoeg om er
+nieuwe notatie voor in te voeren.
+\end{explain}
+
+\begin{defn}[Deelverzameling]
+Als elk !!{element} van een verzameling $A$ ook !!a{element} van~$B$
+is, noemen we $A$ een \emph{deelverzameling} van~$B$ en schrijven we
+$A \subseteq B$. Als $A$ geen deelverzameling van~$B$ is, schrijven
+we $A \not\subseteq B$. Als $A \subseteq B$ maar $A \neq B$, schrijven
+we $A \subsetneq B$ en noemen we $A$ een \emph{echte
+deelverzameling} van $B$.
+\end{defn}
+
+\begin{ex}
+Elke verzameling is een deelverzameling van zichzelf, en $\emptyset$
+is een deelverzameling van elke verzameling. De verzameling van de even
+natuurlijke getallen is een deelverzameling van de verzameling van de
+natuurlijke getallen. Ook geldt $\{ a, b \} \subseteq \{ a, b, c \}$.
+Daarentegen is $\{ a, b, e \}$ geen deelverzameling van
+$\{ a, b, c \}$.
+\end{ex}
+
+\begin{ex}
+Het getal $2$ is een !!{element} van de verzameling van de gehele
+getallen, terwijl de verzameling van de even getallen een
+deelverzameling is van de verzameling van de gehele getallen. Een
+verzameling kan echter \emph{zowel} !!a{element} als een deelverzameling van
+een andere verzameling zijn. Zo geldt $\{0\} \in \{0, \{0\}\}$ en ook
+$\{0\} \subseteq \{0, \{0\}\}$.
+\end{ex}
+
+Extensionaliteit geeft een gelijkheidscriterium voor verzamelingen:
+$A = B$ dan en slechts dan als elk !!{element} van~$A$ ook
+!!a{element} van~$B$ is, en omgekeerd. Volgens de definitie van
+‘deelverzameling’ drukt $A \subseteq B$ precies de eerste helft van dit
+criterium uit: elk !!{element} van~$A$ is ook !!a{element} van~$B$.
+De definitie geldt uiteraard ook met $A$ en $B$ verwisseld: $B
+\subseteq A$ dan en slechts dan als elk !!{element} van~$B$ ook
+!!a{element} van~$A$ is. Dat is precies wat in extensionaliteit met ‘en
+omgekeerd’ wordt bedoeld. Extensionaliteit impliceert dus dat
+verzamelingen gelijk zijn dan en slechts dan als ze deelverzamelingen
+van elkaar zijn.
+
+\begin{prop}
+$A = B$ dan en slechts dan als zowel $A \subseteq B$ als
+$B \subseteq A$.
+\end{prop}
+
+Dit is ook een geschikt moment om nog enkele handige notaties in te
+voeren. In de definitie van $A$ als deelverzameling van~$B$ schreven
+we ‘elk !!{element} van~$A$ is \dots,’ en vulden we de ‘$\dots$’ aan
+met ‘!!a{element} van $B$’. Uitdrukkingen met deze \emph{vorm} komen
+zo vaak voor dat het nuttig is er formele notatie voor in te voeren.
+
+\begin{defn}\ollabel{forallxina}
+$(\forall x \in A)\phi$ is een afkorting voor $\forall x(x \in A \lif
+\phi)$. Evenzo is $(\exists x \in A)\phi$ een afkorting voor $\exists
+x(x \in A \land \phi)$.
+\end{defn}
+
+Met deze notatie kunnen we zeggen dat $A \subseteq B$ dan en slechts
+dan als $(\forall x \in A)x \in B$.
+
+We gaan nu over tot een bepaald soort verzameling: de verzameling van
+alle deelverzamelingen van een gegeven verzameling.
+
+\begin{defn}[Machtsverzameling]
+De verzameling die uit alle deelverzamelingen van een verzameling~$A$
+bestaat, heet de \emph{machtsverzameling van}~$A$ en wordt genoteerd
+als $\Pow{A}$.
+  \[
+    \Pow{A} = \Setabs{B}{B \subseteq A} 
+  \]
+\end{defn}
+
+\begin{ex}
+Welke deelverzamelingen van $\{ a, b, c \}$ zijn er? Dit zijn:
+$\emptyset$, $\{a \}$, $\{b\}$, $\{c\}$, $\{a, b\}$, $\{a, c\}$,
+$\{b, c\}$ en $\{a, b, c\}$. De verzameling van al deze
+deelverzamelingen is $\Pow{\{a,b,c\}}$:
+\[
+\Pow{\{ a, b, c \}} = \{\emptyset, \{a \}, \{b\}, \{c\}, \{a, b\},
+\{b, c\}, \{a, c\}, \{a, b, c\}\}
+\]
+\end{ex}
+
+\begin{prob}
+Geef alle deelverzamelingen van $\{a, b, c, d\}$.
+\end{prob}
+
+\begin{prob}
+Toon aan dat als $A$ uit $n$ !!{element}s bestaat, $\Pow{A}$ uit
+$2^n$ !!{element}s bestaat.
+\end{prob}
+\end{document}

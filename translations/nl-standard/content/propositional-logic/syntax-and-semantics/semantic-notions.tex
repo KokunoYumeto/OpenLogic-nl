@@ -1,0 +1,96 @@
+% Part: propositional-logic
+% Chapter: syntax-and-semantics
+% Section: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{pl}{syn}{sem}
+
+\olsection{Semantische begrippen}
+
+We definiëren de volgende semantische begrippen:
+
+\begin{defn} 
+\begin{enumerate}
+\item !!^a{formula}~$!A$ is \emph{vervulbaar} als voor een zekere
+  $\pAssign{v}$ geldt dat $\pSat{v}{!A}$; zij is \emph{onvervulbaar}
+  als voor geen enkele $\pAssign{v}$ geldt dat $\pSat{v}{!A}$;
+\item !!^a{formula}~$!A$ is een \emph{tautologie} als
+  $\pSat{v}{!A}$ voor alle !!{valuation}s~$\pAssign{v}$;
+\item !!^a{formula}~$!A$ is \emph{contingent} als zij vervulbaar is,
+  maar geen tautologie;
+\item Als $\Gamma$ een verzameling !!{formula}s is, dan geldt
+  $\Gamma \Entails !A$ (``uit $\Gamma$ volgt $!A$'') dan en slechts dan
+  als $\pSat{v}{!A}$ voor elke !!{valuation}~$\pAssign{v}$ waarvoor
+  $\pSat{v}{\Gamma}$;
+\item Als $\Gamma$ een verzameling !!{formula}s is, dan is $\Gamma$
+  \emph{vervulbaar} als er !!a{valuation}~$\pAssign{v}$ bestaat waarvoor
+  $\pSat{v}{\Gamma}$, en anders is $\Gamma$ \emph{onvervulbaar}.
+\end{enumerate} 
+\end{defn}
+
+\begin{prob} 
+ Bepaal voor elk van de volgende vier !!{formula}s of zij
+ (a)~vervulbaar, (b)~een tautologie en (c)~contingent is.
+\begin{enumerate}
+  \item \( ( \Obj p_0 \lif ( \lnot \Obj p_1 \lif \lnot \Obj p_0 ) ) \).
+  \item \( ( ( \Obj p_0 \land \lnot \Obj p_1 ) \lif ( \lnot \Obj p_0 \land \Obj p_2 )) \liff ( ( \Obj p_2 \lif \Obj p_0 ) \lif ( \Obj p_0 \lif \Obj p_1 )) \).
+  \item \( ( \Obj p_0 \liff \Obj p_1 ) \lif ( \Obj p_2 \liff \lnot \Obj p_1 ) \).
+  \item \( (( \Obj p_0 \liff ( \lnot \Obj p_1 \land \Obj p_2 )) \lor ( \Obj p_2 \lif ( \Obj p_0 \liff \Obj p_1 ))) \).
+\end{enumerate}
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:semanticalfacts} 
+\begin{enumerate} 
+\item $!A$ is een tautologie dan en slechts dan als
+  $\emptyset \Entails !A$; 
+\item Als $\Gamma \Entails !A$ en $\Gamma \Entails !A \lif !B$, dan
+  geldt $\Gamma \Entails !B$;
+\item Als $\Gamma$ vervulbaar is, dan is elke eindige deelverzameling
+  van $\Gamma$ eveneens vervulbaar; 
+\item \ollabel{def:monotonicity} Monotoniciteit: als
+  $\Gamma \subseteq \Delta$ en $\Gamma \Entails !A$, dan geldt ook
+  $\Delta \Entails !A$;
+\item \ollabel{def:Cut} Transitiviteit: als $\Gamma \Entails !A$ en
+  $\Delta \cup \{ !A\} \Entails !B$, dan geldt
+  $\Gamma \cup \Delta \Entails !B$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[pl][syn][sem]{prop:semanticalfacts}
+\end{prob}
+
+\begin{prop}\ollabel{prop:entails-unsat}
+  $\Gamma \Entails !A$ dan en slechts dan als
+  $\Gamma \cup \{\lnot !A\}$ onvervulbaar is.
+\end{prop}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[pl][syn][sem]{prop:entails-unsat}
+\end{prob}
+
+\begin{thm}[Semantische deductiestelling]
+  \ollabel{thm:sem-deduction} $\Gamma \Entails !A \lif !B$ dan en
+  slechts dan als $\Gamma \cup \{!A\} \Entails !B$.
+\end{thm}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[pl][syn][sem]{thm:sem-deduction}
+\end{prob}
+\end{document}

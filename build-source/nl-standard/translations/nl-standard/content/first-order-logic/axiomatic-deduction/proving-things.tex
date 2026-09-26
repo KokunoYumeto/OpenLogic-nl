@@ -1,0 +1,136 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: proving-things
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{axd}{pro}}
+      {\olfileid{pl}{axd}{pro}}
+
+\olsection{Voorbeelden van \usetoken{P}{derivation}}
+
+
+\begin{ex}
+Stel dat we $(\lnot !D \lor !E) \lif (!D \lif !E)$ willen bewijzen.
+Dit is duidelijk geen instantie van een van onze axioma's, dus moeten
+we de regel \MP{} gebruiken om de formule !!{derive}. Onze enige regel
+is~MP: uit $!A$ en $!A \lif !B$ mogen we~$!B$ als gerechtvaardigde stap
+opnemen. Een mogelijke strategie is \olref[prp]{ax:lor3} te gebruiken
+met $!A$ gelijk aan $\lnot !D$, $!B$ gelijk aan $!E$ en $!C$ gelijk
+aan $!D \lif !E$. Dat geeft de instantie
+\[
+(\lnot !D \lif (!D \lif !E)) \lif ((!E \lif (!D \lif !E)) \lif ((\lnot
+!D \lor !E) \lif (!D \lif !E))).
+\]
+Waarom? Twee toepassingen van MP leveren het laatste deel op, en dat
+is precies wat we willen. Verder zien we direct dat $\lnot !D \lif
+(!D \lif !E)$ een instantie is van \olref[prp]{ax:lnot2} en dat $!E
+\lif (!D \lif !E)$ een instantie is van \olref[prp]{ax:lif1}. Onze
+!!{derivation} luidt dus:
+\begin{derivation}
+  1. &  $\lnot !D \lif (!D \lif !E)$ & \olref[prp]{ax:lnot2} \\
+  2. & $(\lnot !D \lif (!D \lif !E)) \lif {}$\\
+  &\qquad $((!E \lif (!D \lif !E)) \lif ((\lnot !D \lor !E) \lif (!D \lif !E)))$ & \olref[prp]{ax:lor3}\\
+  3. & $(!E \lif (!D \lif !E)) \lif ((\lnot !D \lor !E) \lif (!D \lif !E))$ & 1, 2, \MP\\
+  4. & $!E \lif (!D \lif !E)$ & \olref[prp]{ax:lif1}\\
+  5. & $(\lnot !D \lor !E) \lif (!D \lif !E)$ & 3, 4, \MP
+\end{derivation}
+\end{ex}
+
+\begin{ex}\ollabel{ex:identity}
+Laten we proberen !!a{derivation} van $!D \lif !D$ te vinden. Deze
+formule is geen instantie van een axioma, dus moeten we \MP{} gebruiken
+om haar !!{derive}. \olref[prp]{ax:lif1} is een axioma van de vorm~$!A
+\lif !B$ waarop we~\MP kunnen toepassen. Om ons te helpen, moet de
+formule~$!B$ die \MP{} hier als correcte stap rechtvaardigt natuurlijk
+$!D \lif !D$ zijn, want die formule willen we !!{derive}. Dan moet~$!A$
+ook $!D$ zijn. We zouden dus de volgende instantie van
+\olref[prp]{ax:lif1} kunnen nemen:
+\[
+!D \lif (!D \lif !D)
+\]
+Om \MP toe te passen, moeten we ook de bijbehorende tweede premisse,
+namelijk~$!A$, rechtvaardigen. In ons geval is dat echter~$!D$, en
+$!D$ op zichzelf zullen we niet kunnen !!{derive}. We hebben dus een
+andere strategie nodig.
+
+Het andere axioma waarin alleen~$\lif$ voorkomt, is
+\olref[prp]{ax:lif2}, namelijk
+\[
+(!A \lif (!B \lif !C)) \lif ((!A \lif !B) \lif (!A \lif !C))
+\]
+Met twee toepassingen van \MP{} kunnen we de laatste geneste
+implicatie bereiken. We zoeken dus opnieuw een instantie, ditmaal van
+\olref[prp]{ax:lif2}, waarin $!A \lif !C$ gelijk is aan $!D \lif !D$,
+de !!{formula} waarop we mikken. Dan zijn zowel~$!A$ als~$!C$ gelijk
+aan~$!D$. Hoe kiezen we~$!B$ zo dat zowel $!A \lif (!B \lif !C)$ als
+$!A \lif !B$, in ons geval dus $!D \lif (!B \lif !D)$ en $!D \lif
+!B$, ook !!{derivable} zijn? De eerste formule is al een instantie van
+\olref[prp]{ax:lif1}, ongeacht onze keuze voor~$!B$. En $!D \lif !B$
+is eveneens een instantie van \olref[prp]{ax:lif1} als $!B$ gelijk is
+aan $(!D \lif !D)$. Onze !!{derivation} is dus:
+\begin{derivation}
+  1. & $!D \lif ((!D \lif !D) \lif !D)$ & \olref[prp]{ax:lif1}\\
+  2. & $(!D \lif ((!D \lif !D) \lif !D)) \lif {}$\\
+  & \qquad $((!D \lif (!D \lif !D)) \lif (!D \lif !D))$ & \olref[prp]{ax:lif2}\\
+  3. & $(!D \lif (!D \lif !D)) \lif (!D \lif !D)$ & 1, 2, \MP\\
+  4. & $!D \lif (!D \lif !D)$ & \olref[prp]{ax:lif1}\\
+  5. & $!D \lif !D$ & 3, 4, \MP
+\end{derivation}
+\end{ex}
+
+\begin{ex}\ollabel{ex:chain}
+Soms willen we aantonen dat er !!a{derivation} bestaat van een
+!!{formula} uit andere !!{formula}s~$\Gamma$. Laten we bijvoorbeeld
+aantonen dat we $!A \lif !C$ kunnen !!{derive} uit $\Gamma = \{!A \lif
+!B, !B \lif !C\}$.
+\begin{derivation}
+  1. & $!A \lif !B$ & \Hyp\\
+  2. & $!B \lif !C$ & \Hyp\\
+  3. & $(!B \lif !C) \lif (!A \lif (!B \lif !C))$ & \olref[prp]{ax:lif1} \\
+  4. & $!A \lif (!B \lif !C)$ & 2, 3, \MP\\
+  5. & $(!A \lif (!B \lif !C)) \lif {}$\\
+  & \qquad $((!A \lif !B) \lif (!A \lif !C))$ & \olref[prp]{ax:lif2}\\
+  6. & $((!A \lif !B) \lif (!A \lif !C))$ & 4, 5, \MP\\
+  7. & $!A \lif !C$ & 1, 6, \MP
+\end{derivation}
+De regels met het label ``\Hyp'' (voor ``hypothese'') geven aan dat de
+!!{formula} op die regel !!a{element} is van~$\Gamma$.
+\end{ex}
+
+\begin{prop}
+  \ollabel{prop:chain} Als $\Gamma \Proves !A \lif !B$ en $\Gamma
+  \Proves !B \lif !C$, dan $\Gamma \Proves !A \lif !C$.
+\end{prop}
+
+\begin{proof}
+  Stel dat $\Gamma \Proves !A \lif !B$ en $\Gamma \Proves !B \lif
+  !C$. Dan bestaat er !!a{derivation} van $!A \lif !B$ uit~$\Gamma$,
+  en eveneens !!a{derivation} van~$!B \lif !C$ uit~$\Gamma$. Voeg
+  deze samen tot één !!{derivation} door ze achter elkaar te plaatsen.
+  Voeg vervolgens de regels 3--7 van de !!{derivation} uit het vorige
+  voorbeeld toe. Dit is !!a{derivation} van $!A \lif !C$---de laatste
+  regel van de nieuwe !!{derivation}---uit~$\Gamma$. De
+  rechtvaardigingen van de regels 4 en~7 blijven geldig als we de
+  verwijzing naar regel~1 vervangen door een verwijzing naar de
+  laatste regel van de !!{derivation} van~$!A \lif !B$, en de
+  verwijzing naar regel~2 door een verwijzing naar de laatste regel
+  van de !!{derivation} van~$!B \lif !C$.
+\end{proof}
+
+\begin{prob} 
+Toon de volgende beweringen aan door !!{derivation}s uit de axioma's
+te geven:
+\begin{enumerate} 
+\item $(!A \land !B) \lif (!B \land !A)$
+\item $((!A \land !B) \lif !C) \lif (!A \lif (!B \lif !C))$
+\item $\lnot(!A \lor !B) \lif \lnot !A$
+\end{enumerate} 
+\end{prob}
+
+
+
+\end{document}

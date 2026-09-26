@@ -1,0 +1,100 @@
+% Part: first-order-logic 
+% Chapter: axiomatic-deduction 
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{axd}{rul}}
+      {\olfileid{pl}{axd}{rul}}
+
+\olsection{Regels en \usetoken{P}{derivation}}
+
+\begin{explain}
+  Axiomatische !!{derivation}s horen bij de eenvoudigste stelsels van
+  afleidingsregels in de logica. !!^a{derivation} is gewoon een rij
+  !!{formula}s. Elke !!{formula} in die rij moet aan een van twee
+  voorwaarden voldoen. De formule is een invulling van een axioma, dus
+  van een vaste grondaanname van het formele systeem. Of de formule
+  volgt volgens een afleidingsregel uit een of meer eerdere
+  !!{formula}s in de rij. De laatste !!{formula} in de rij is wat de
+  !!{derivation} !!{derive}s.
+\end{explain}
+
+\begin{defn}[!!^{derivability}]
+Neem een verzameling~$\Gamma$ van !!{formula}s van $\Lang L$. Een
+\emph{!!{derivation}} uit~$\Gamma$ is een eindige rij $!A_1$,
+\dots,~$!A_n$ van !!{formula}s. Bij elk nummer $i \le n$ moet een van
+de volgende gevallen gelden:
+\begin{enumerate}
+\item $!A_i \in \Gamma$.
+\item $!A_i$ is een axioma.
+\item $!A_i$ volgt volgens een afleidingsregel uit een formule $!A_j$
+  (en soms ook $!A_k$). Daarbij geldt $j < i$ (en $k < i$): de
+  benodigde formules staan dus eerder in de rij.
+\end{enumerate}
+\end{defn}
+
+Of een !!{derivation} correct is, hangt af van de regels die we
+gebruiken en van wat we als axioma nemen. Een afleidingsregel heeft de
+vorm ``als dit geldt, dan geldt dat.'' Hij zegt dat stap~$A_i$ in
+!!a{derivation} correct is zodra aan bepaalde voorwaarden is voldaan.
+
+\begin{defn}[Afleidingsregel]
+Een \emph{afleidingsregel} geeft een voorwaarde die garandeert dat een
+stap in !!a{derivation} uit~$\Gamma$ correct is.
+\end{defn}
+
+Begin met het eenvoudigste geval. De rij die alleen uit $!A$ bestaat,
+met $!A \in \Gamma$, is zonder meer !!a{derivation}. We kunnen dus de
+volgende eenvoudige afleidingsregel gebruiken:
+\begin{quote}
+  Als $!A \in \Gamma$, dan is $!A$ altijd een correcte stap in elke
+  !!{derivation} uit~$\Gamma$.
+\end{quote}
+Hetzelfde geldt als $!A$ een van de axioma's is. Dan is de rij die
+alleen uit $!A$ bestaat ook !!a{derivation}. Dat geeft deze regel:
+\begin{quote}
+  Als $!A$ een axioma is, dan is $!A$ een correcte stap.
+\end{quote}
+Interessanter wordt het als een regel terugkijkt naar !!{formula}s die
+al eerder in de rij staan. De volgende regel heet \emph{modus ponens}:
+\begin{quote}
+  Als $!B \lif !A$ en $!B$ eerder in de !!{derivation} staan, dan
+  telt~$!A$ als een correcte stap.
+\end{quote}
+Stel dat dit de enige afleidingsregel is. Dan zegt onze definitie
+hierboven precies het volgende: $!A_1$, \dots,~$!A_n$ is
+!!a{derivation} als en alleen als bij elke $i \le n$ een van deze
+gevallen geldt:
+\begin{enumerate}
+\item $!A_i \in \Gamma$.
+\item $!A_i$ is een axioma.
+\item voor een zekere $j < i$ is $!A_j$ de formule $!B \lif !A_i$, en
+  voor een zekere $k < i$ is $!A_k$ de formule~$!B$.
+\end{enumerate}
+Het laatste geval zegt dat $!A_i$ met modus ponens volgt uit~$!A_j$
+($!B \lif !A_i$) en $!A_k$ ($!B$). We kunnen de hele rij dus stap voor
+stap controleren, van $1$ tot~$n$. Bij elk nummer kijken we of de
+!!a{formula}~$!A_i$ in~$\Gamma$ staat, een axioma is of volgens een
+afleidingsregel een correcte stap is. Als dat bij elk nummer lukt, telt
+de hele rij als een correcte !!{derivation}.
+
+\begin{defn}[!!^{derivability}]
+We zeggen dat !!a{formula}~$!A$ \emph{!!{derivable}} is uit $\Gamma$.
+We schrijven dit als $\Gamma \Proves !A$. Dat geldt als we uit
+$\Gamma$ !!a{derivation} kunnen maken waarvan de laatste formule $!A$
+is.
+\end{defn}
+
+\begin{defn}[Stellingen]
+!!^a{formula}~$!A$ heet een \emph{stelling}. Daarvoor moet er uit de
+lege verzameling !!a{derivation} bestaan die eindigt in~$!A$. We
+schrijven $\Proves !A$ als $!A$ een stelling is en $\Proves/ !A$ als
+dat niet zo is.
+\end{defn}
+
+
+\end{document}

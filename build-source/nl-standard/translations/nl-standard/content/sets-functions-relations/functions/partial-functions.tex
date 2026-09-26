@@ -1,0 +1,76 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: partial-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid{sfr}{fun}{par}
+
+\olsection{Partiële functies}
+
+\begin{explain}
+Soms is het nuttig de definitie van een functie te versoepelen, zodat
+de functiewaarde niet voor elke mogelijke invoer gedefinieerd hoeft te
+zijn. Zulke afbeeldingen heten \emph{partiële functies}.
+\end{explain}
+
+\begin{defn}
+Een \emph{partiële functie} $f \colon A \pto B$ is een afbeelding die
+aan elk !!{element} van~$A$ ten hoogste één !!{element} van~$B$
+toekent. Als $f$ een element van~$B$ aan $x \in A$ toekent, noemen
+we $f(x)$ \emph{gedefinieerd}; anders noemen we dit
+\emph{ongedefinieerd}. Als $f(x)$ gedefinieerd is, schrijven we $f(x)
+\fdefined$; anders schrijven we $f(x) \fundefined$. Het
+\emph{domein} van een partiële functie~$f$ is de deelverzameling
+van~$A$ waarop ze gedefinieerd is, dus $\dom{f} = \Setabs{x \in
+A}{f(x) \fdefined}$.
+\end{defn}
+
+\begin{ex}
+Elke functie $f\colon A \to B$ is ook een partiële functie. Partiële
+functies die overal op~$A$ gedefinieerd zijn---dus wat we tot nu toe
+kortweg een functie noemden---heten ook \emph{totale} functies.
+\end{ex}
+
+\begin{ex}
+De partiële functie $f \colon \Real \pto \Real$ gegeven door $f(x) =
+1/x$ is ongedefinieerd voor $x = 0$ en overal elders gedefinieerd.
+\end{ex}
+
+\begin{prob}
+Gegeven $f\colon A \pto B$, definieer de partiële functie $g\colon B
+\pto A$ als volgt. Voor elke $y \in B$: als er precies één $x \in A$
+is waarvoor $f(x) = y$, stel dan $g(y) = x$; schrijf anders $g(y)
+\fundefined$. Toon aan dat als $f$ injectief is, $g(f(x)) = x$ voor
+alle $x \in \dom{f}$ en $f(g(y)) = y$ voor alle $y \in \ran{f}$.
+\end{prob}
+
+\begin{defn}[Grafiek van een partiële functie]
+Zij $f\colon A \pto B$ een partiële functie. De \emph{grafiek} van~$f$
+is de relatie $R_f \subseteq A \times B$ die wordt gedefinieerd door
+\[
+R_f = \Setabs{\tuple{x,y}}{f(x) = y}.
+\]
+\end{defn}
+
+\begin{prop}
+Stel dat $R \subseteq A \times B$ de eigenschap heeft dat uit $Rxy$ en
+$Rxy'$ volgt dat $y = y'$. Dan is $R$ de grafiek van de partiële
+functie $f\colon A \pto B$ die als volgt wordt gedefinieerd: als er een
+$y$ is waarvoor $Rxy$, stel dan $f(x) = y$; schrijf anders $f(x)
+\fundefined$. Als $R$ bovendien \emph{serieel} is, dat wil zeggen dat
+er voor elke $x \in A$ een $y \in B$ bestaat waarvoor $Rxy$, dan is
+$f$ totaal.
+\end{prop}
+
+\begin{proof}
+Stel dat er een $y$ is waarvoor $Rxy$. Als er nog een $y' \neq y$ was
+waarvoor $Rxy'$, zou de voorwaarde voor $R$ worden geschonden. Als er
+een $y$ is waarvoor $Rxy$, is die $y$ dus uniek en is $f$
+welgedefinieerd. Verder geldt onmiddellijk $R_f = R$, en $f$ is totaal
+als~$R$ serieel is.
+\end{proof}
+\end{document}

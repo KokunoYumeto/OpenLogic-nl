@@ -1,0 +1,84 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: special-properties
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{rel}{prp}
+\olsection{Bijzondere eigenschappen van relaties}
+
+\begin{intro}
+Sommige soorten relaties komen zo vaak voor dat ze een eigen naam
+hebben gekregen. Zo verhouden de elementen van hun respectieve
+domeinen zich onder $\le$ en~$\subseteq$ op vergelijkbare wijze (neem
+bijvoorbeeld $\Nat$ voor~$\le$ en $\Pow{A}$ voor~$\subseteq$). Om
+precies aan te geven waarin deze relaties overeenkomen en verschillen,
+delen we ze in naar enkele bijzondere eigenschappen die relaties
+kunnen hebben. Enkele van die eigenschappen, of combinaties ervan,
+leveren bijzonder belangrijke soorten relaties op: ordeningen en
+equivalentierelaties.
+\end{intro}
+
+\begin{defn}[Reflexiviteit]
+Een relatie $R \subseteq A^2$ is \emph{reflexief} dan en slechts dan
+als voor elke $x \in A$ geldt dat $Rxx$.
+\end{defn}
+
+\begin{defn}[Transitiviteit]
+Een relatie $R \subseteq A^2$ is \emph{transitief} dan en slechts dan
+als uit $Rxy$ en $Ryz$ steeds $Rxz$ volgt.
+\end{defn}
+
+\begin{defn}[Symmetrie]
+Een relatie~$R \subseteq A^2$ is \emph{symmetrisch} dan en slechts dan
+als uit $Rxy$ steeds ook~$Ryx$ volgt.
+\end{defn}
+
+\begin{defn}[Antisymmetrie]
+Een relatie~$R \subseteq A^2$ is \emph{an\-ti\-symmetrisch} dan en
+slechts dan als uit $Rxy$ en $Ryx$ samen volgt dat $x=y$ (anders
+gezegd: als $x\neq y$, dan geldt $\lnot Rxy$ of $\lnot Ryx$).
+\end{defn}
+
+\begin{explain}
+Bij een symmetrische relatie gelden $Rxy$ en $Ryx$ altijd beide, of
+geen van beide. Bij een antisymmetrische relatie kunnen $Rxy$ en $Ryx$
+alleen beide gelden als $x = y$. Dit \emph{vereist} niet dat $Rxy$ en $Ryx$ gelden
+wanneer $x = y$; het sluit dat slechts niet uit. Een
+antisymmetrische relatie kan dus reflexief zijn, maar hoeft dat niet te
+zijn. Antisymmetrisch zijn is bovendien iets anders dan alleen niet
+symmetrisch zijn. Een relatie kan zelfs tegelijk symmetrisch en
+antisymmetrisch zijn (de identiteitsrelatie is hiervan een voorbeeld).
+\end{explain}
+
+\begin{defn}[Samenhangendheid]
+Een relatie $R \subseteq A^2$ is \emph{samenhangend} als voor alle
+$x,y\in A$ geldt: als $x \neq y$, dan $Rxy$ of~$Ryx$.
+\end{defn}
+
+\begin{prob}
+Geef voorbeelden van relaties die (a) reflexief en symmetrisch maar
+niet transitief zijn, (b) reflexief en antisymmetrisch zijn, (c)
+antisymmetrisch en transitief maar niet reflexief zijn, en (d)
+reflexief, symmetrisch en transitief zijn. Gebruik geen relaties op
+getallen of verzamelingen.
+\end{prob} 
+ 
+\begin{defn}[Irreflexiviteit]
+Een relatie $R \subseteq A^2$ heet \emph{irreflexief} als voor alle
+$x \in A$ geldt dat $Rxx$ niet geldt.
+\end{defn}
+
+\begin{defn}[Asymmetrie]
+Een relatie $R \subseteq A^2$ heet \emph{asymmetrisch} als er geen paar
+$x,y\in A$ is waarvoor zowel $Rxy$ als~$Ryx$ geldt.
+\end{defn}
+
+Als $A \neq \emptyset$, is geen enkele irreflexieve relatie op~$A$
+reflexief en is elke asymmetrische relatie op~$A$ ook
+antisymmetrisch. Er zijn echter relaties $R \subseteq A^2$ die noch
+reflexief noch irreflexief zijn, en er zijn antisymmetrische relaties
+die niet asymmetrisch zijn.
+\end{document}

@@ -1,0 +1,47 @@
+% Part:sets-functions-relations
+% Chapter: sets
+% Section: schroder-bernstein
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{sb}
+\olsection{Het begrip grootte en Schr\"oder-Bernstein}
+\begin{explain}
+Een intuïtieve gedachte is de volgende: als $A$ niet groter is dan $B$
+en $B$ niet groter is dan $A$, dan zijn $A$ en $B$ gelijkmachtig.
+Eerlijk gezegd zouden we, als deze gedachte \emph{onjuist} was,
+moeilijk kunnen volhouden dat het door ons gedefinieerde begrip van
+gelijkmachtigheid iets te maken heeft met het vergelijken van de
+‘groottes’ van verzamelingen!{} Gelukkig klopt de intuïtieve gedachte.
+Dit volgt uit de stelling van Schr\"oder-Bernstein.
+\end{explain}
+\begin{thm}[Schr\"oder-Bernstein]
+	\ollabel{thm:schroder-bernstein}
+	Als $\cardle{A}{B}$ en $\cardle{B}{A}$,
+	dan $\cardeq{A}{B}$.
+\end{thm}
+\begin{explain}
+Met andere woorden: als er !!a{injection} van $A$ naar~$B$ bestaat en
+!!a{injection} van $B$ naar~$A$, dan bestaat er !!a{bijection} van $A$
+naar~$B$.
+Dit resultaat is echter tamelijk \emph{moeilijk} te bewijzen. Inderdaad:
+Cantor formuleerde het resultaat, maar anderen hebben het
+bewezen.\footnote{Zie voor meer over de geschiedenis bijvoorbeeld
+\citet[pp.~165--6]{Potter2004}.}
+\oliflabeldef{sfr:cardinals:card-sb:sec}{We kunnen pas
+\emph{bewijzen} dat Schr\"oder-Bernstein geldt in
+\olref[sfr][cardinals][card-sb]{sec}.}{}%
+Voorlopig kunt (en moet) u dit zonder bewijs aannemen.
+Gelukkig is Schr\"oder-Bernstein \emph{juist}. Daarmee bevestigt de
+stelling onze gedachte dat de door ons gedefinieerde relaties, namelijk
+$\cardeq{A}{B}$ en $\cardle{A}{B}$, iets met ‘grootte’ te maken hebben.
+Bovendien is Schr\"oder-Bernstein zeer \emph{nuttig}. Het kan lastig
+zijn !!a{bijection} tussen twee gelijkmachtige verzamelingen te
+vinden. Met de stelling van Schr\"oder-Bernstein kunnen we die opgave in
+twee richtingen opsplitsen: we hoeven alleen !!a{injection} van de eerste
+naar de tweede verzameling te vinden en vervolgens hetzelfde in de
+andere richting te doen.
+\end{explain}
+\end{document}

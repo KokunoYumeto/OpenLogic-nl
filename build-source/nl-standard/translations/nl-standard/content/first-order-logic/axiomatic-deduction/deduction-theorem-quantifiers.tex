@@ -1,0 +1,59 @@
+% Part: first-order-logic 
+% Chapter: axiomatic-deduction 
+% Section: deduction-theorem-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{axd}{ddq}
+
+\olsection{De deductiestelling met kwantoren}
+
+\begin{thm}[Deductiestelling]
+\ollabel{thm:deduction-thm-q} Als $\Gamma \cup \{!A\} \Proves !B$,
+dan $\Gamma \Proves !A \lif !B$.
+\end{thm}
+
+\begin{proof}
+We gebruiken opnieuw inductie naar de lengte van de !!{derivation}
+van $!B$ uit $\Gamma \cup \{!A\}$.
+
+Het bewijs van de inductiebasis is identiek aan dat in het bewijs
+van~\olref[ded]{thm:deduction-thm}.
+
+Veronderstel voor de inductiestap opnieuw dat de !!{derivation} van
+$!B$ uit $\Gamma \cup \{!A\}$ eindigt met een stap~$!B$ die door een
+afleidingsregel wordt gerechtvaardigd. Als die afleidingsregel modus
+ponens is, gaan we te werk als in het bewijs van
+\olref[ded]{thm:deduction-thm}. Als die afleidingsregel \QR{} is, weten
+we dat $!B \ident !C \lif \lforall[x][!D(x)]$ en dat eerder in de
+!!{derivation} !!a{formula} van de vorm $!C \lif !D(a)$ voorkomt,
+waarbij $a$ niet voorkomt in~$!C$, $!A$ of $\Gamma$. Dus geldt
+\begin{align*}
+  \Gamma \cup \{!A\} & \Proves !C \lif !D(a),\\
+  \intertext{en is de inductiehypothese van toepassing, dat wil zeggen}
+    \Gamma & \Proves !A \lif (!C \lif !D(a)).\\
+  \intertext{Volgens}
+  & \Proves (!A \lif (!C \lif !D(a))) \lif ((!A \land !C) \lif !D(a))\\
+  \intertext{en modus ponens krijgen we}
+  \Gamma & \Proves (!A \land !C) \lif !D(a).\\
+  \intertext{Omdat de eigenvariabelevoorwaarde nog steeds geldt, kunnen we aan deze !!{derivation} een door \QR{} gerechtvaardigde stap toevoegen en krijgen we}
+    \Gamma & \Proves (!A \land !C) \lif \lforall[x][!D(x)].\\
+    \intertext{We hebben ook}
+    & \Proves ((!A \land !C) \lif \lforall[x][!D(x)]) \lif (!A \lif (!C \lif \lforall[x][!D(x)]),\\
+    \intertext{zodat volgens modus ponens}
+    \Gamma & \Proves !A \lif (!C \lif \lforall[x][!D(x)]),
+\end{align*}
+dat wil zeggen, $\Gamma \Proves !B$.
+
+We laten het geval waarin $!B$ door de regel \QR{} wordt
+gerechtvaardigd maar de vorm $\lexists[x][!D(x)] \lif !C$ heeft, als
+oefening.
+\end{proof}
+
+\begin{prob}
+  Voltooi het bewijs van \olref[fol][axd][ddq]{thm:deduction-thm-q}.
+\end{prob}
+
+\end{document}

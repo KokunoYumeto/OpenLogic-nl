@@ -1,0 +1,34 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: axioms-rules-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{axd}{qua}
+
+\olsection{Axioma's en regels voor kwantoren}
+
+\begin{defn}[Axioma's voor kwantoren]
+De \emph{axioma's} voor kwantoren zijn alle instanties van de volgende
+schema's:
+\begin{align}
+\ollabel{ax:q1} & \lforall[x][!B] \lif !B(t), \\
+\ollabel{ax:q2} & !B(t) \lif \lexists[x][!B].
+\end{align}
+voor elke gesloten term~$t$.
+\end{defn}
+
+\begin{defn}[Regels voor kwantoren]
+\item Als $!B \lif !A(a)$ al in de !!{derivation} voorkomt en $a$
+  noch in~$\Gamma$, noch in~$!B$ voorkomt, dan is $!B \lif
+  \lforall[x][!A(x)]$ een correcte afleidingsstap.
+\item Als $!A(a) \lif !B$ al in de !!{derivation} voorkomt en $a$
+  noch in~$\Gamma$, noch in~$!B$ voorkomt, dan is
+  $\lexists[x][!A(x)] \lif !B$ een correcte afleidingsstap.
+\end{defn}
+
+We korten elk van deze regels af als ``\QR.''
+
+\end{document}

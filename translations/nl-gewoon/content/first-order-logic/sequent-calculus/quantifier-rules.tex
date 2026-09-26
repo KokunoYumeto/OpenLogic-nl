@@ -1,0 +1,106 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: quantifier-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{seq}{qrl}
+
+\olsection{Regels voor kwantoren}
+
+\subsection{Regels voor $\lforall$}
+
+\begin{defish}
+\Axiom$ !A(t), \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$ \lforall[x][!A(x)],\Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A(a) $
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$ \Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+\DisplayProof
+\end{defish}
+
+Bij \LeftR{\lforall} is $t$ een gesloten term, dus een term zonder
+variabelen. Bij \RightR{\lforall} is $a$~!!a{constant} die nergens in
+de onderste sequent van de regel \RightR{\lforall} mag voorkomen. Die
+constante moet voor die onderste sequent dus nieuw zijn. We noemen $a$
+de \emph{eigenvariabele} van de
+\RightR{\forall}-afleidingsstap.\footnote{In deze regel is $a$ eigenlijk
+  !!a{constant}. Toch gebruiken we de term
+  ``eigenvariabele''. Dat heeft historische redenen.}
+
+\subsection{Regels voor $\lexists$}
+
+\begin{defish}
+\Axiom$ !A(a), \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x][!A(x)], \Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A(t) $
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$ \Gamma \fCenter \Delta, \lexists[x][!A(x)]$
+\DisplayProof
+\end{defish}
+
+Ook hier is $t$~een gesloten term. $a$~is !!a{constant} die niet in de
+onderste sequent van \LeftR{\lexists} voorkomt. We noemen $a$ de
+\emph{eigenvariabele} van de \LeftR{\lexists}-afleidingsstap.
+
+De eigenvariabele moet dus buiten de onderste sequent blijven bij
+\RightR{\lforall} en \LeftR{\lexists}. Deze eis heet de
+\emph{eigenvariabelevoorwaarde}.
+
+\begin{explain}
+We spreken het volgende af. Als $!A$ !!a{formula} is waarin de
+!!{variable}~$x$ vrij voorkomt, schrijven we~$!A(x)$. In dezelfde
+context is $!A(t)$ kort voor~$\Subst{!A}{t}{x}$. We kunnen de regel
+\RightR{\lexists} dus ook zo schrijven:
+\begin{prooftree}
+  \Axiom$\Gamma \fCenter \Delta, \Subst{!A}{t}{x}$
+  \RightLabel{\RightR{\lexists}}
+  \UnaryInf$\Gamma \fCenter \Delta, \lexists[x][!A]$
+\end{prooftree}
+$t$ mag al in~$!A$ voorkomen. Zo kan $!A$ de formule
+$\Atom{\Obj P}{t,x}$ zijn. We mogen daarom correct $\Gamma \Sequent
+\Delta, \lexists[x][\Atom{\Obj P}{t,x}]$ afleiden uit~$\Gamma \Sequent
+\Delta, \Atom{\Obj P}{t,t}$ met~\RightR{\lexists}. Daarbij
+``vervangen'' we in de premisse een of
+meer voorkomens van~$t$ door de gebonden !!{variable}~$x$. We hoeven
+niet alle voorkomens te vervangen. Voor de eigenvariabele in
+\RightR{\lforall} en~\LeftR{\lexists} geldt wel een strengere eis: de
+!!{constant}~$a$ mag niet in~$!A$ voorkomen. Daarom mogen we niet
+$\Gamma \Sequent \Delta, \lforall[x][\Atom{\Obj P}{a,x}]$ afleiden
+uit $\Gamma \Sequent \Delta, \Atom{\Obj P}{a,a}$
+met~$\RightR{\lforall}$.
+\end{explain}
+
+\begin{explain}
+Bij \RightR{\lexists} en \LeftR{\lforall} gelden voor de term~$t$ geen
+verdere beperkingen. Bij \LeftR{\lexists} en \RightR{\lforall} geldt
+wel de eigenvariabelevoorwaarde. Die eist dat de !!{constant}~$a$
+nergens buiten~$!A(a)$ in de bovenste sequent voorkomt. De voorwaarde
+is nodig om ervoor te zorgen dat het systeem correct is en dus alleen
+geldige sequenten !!{derive}s. Zonder deze voorwaarde zouden de
+volgende afleidingen zijn toegestaan:
+\begin{prooftree}
+  \Axiom$!A(a) \fCenter !A(a)$
+  \RightLabel{*\LeftR{\lexists}}
+  \UnaryInf$\lexists[x][!A(x)] \fCenter !A(a)$
+  \RightLabel{\RightR{\lforall}}
+  \UnaryInf$\lexists[x][!A(x)] \fCenter \lforall[x][!A(x)]$
+  \DisplayProof\bottomAlignProof
+  \qquad
+  \Axiom$!A(a) \fCenter !A(a)$
+  \RightLabel{*\RightR{\lforall}}
+  \UnaryInf$!A(a) \fCenter \lforall[x][!A(x)]$
+  \RightLabel{\LeftR{\lexists}}
+  \UnaryInf$\lexists[x][!A(x)] \fCenter \lforall[x][!A(x)]$
+\end{prooftree}
+Maar $\lexists[x][!A(x)] \Sequent \lforall[x][!A(x)]$ is niet geldig.
+\end{explain}
+\end{document}

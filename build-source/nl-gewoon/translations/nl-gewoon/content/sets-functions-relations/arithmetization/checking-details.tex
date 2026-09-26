@@ -1,0 +1,195 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: checking-details
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+	
+\olfileid{sfr}{arith}{check}
+\olsection{Geordende ringen en lichamen}
+In dit hoofdstuk zeiden we een paar keer dat bepaalde definities
+``werken zoals het hoort''. In deze technische bijlage leggen we uit
+wat dat betekent. We laten ook in grote lijnen zien hoe je kunt
+bewijzen dat de definities echt ``goed'' werken.
+In \olref[int]{sec} hebben we vastgelegd hoe je de getallen in $\Int$
+optelt en vermenigvuldigt. We moeten nu laten zien dat $\Int$ daardoor
+de structuur krijgt die we willen. Om precies te zijn: de gehele
+getallen moeten samen een commutatieve ring vormen.
+\begin{defn}
+	Een \emph{commutatieve ring} is een verzameling $S$ met twee speciale elementen, $0$ en $1$, en twee rekenbewerkingen, $+$ en $\times$. De volgende acht formules moeten dan kloppen:
+	\begin{align*}
+		\emph{Associativiteit (anders groeperen)}&&a + (b+ c) & = (a + b) + c \\
+		&& (a \times b) \times c & = a \times (b\times c)\\
+		\emph{Commutativiteit (volgorde omwisselen)}&&a + b &= b+ a  \\
+		&&  a \times b&= b\times a\\ 
+		\emph{Neutrale elementen (0 bij optellen en 1 bij vermenigvuldigen veranderen niets)}&&a + 0 &= a \\
+		&& a \times 1 &= a\\
+		\emph{Additieve inverse (tegengestelde bij optellen)}&&(\exists b\in S)0&=a + b\\
+		\emph{Distributiviteit (vermenigvuldigen over een som)}&&a \times (b+ c ) &= (a \times b) + (a \times c)
+	\end{align*}
+	Deze formules moeten kloppen voor elke keuze van de letters uit $S$; dat schrijven we er niet elke keer apart bij. Let ook op: de elementen die hier $0$ en~$1$ heten, hoeven niet de natuurlijke getallen nul en één te zijn.
+\end{defn}
+Om te bewijzen dat de gehele getallen een commutatieve ring vormen,
+moeten we dus deze acht regels nalopen. Elke regel op zichzelf is
+eenvoudig, maar samen is het nogal wat werk. Hieronder bewijzen we
+bijvoorbeeld de \emph{associativiteit} van het optellen: de uitkomst
+verandert niet als je de haakjes anders zet.
+\begin{proof} 
+Kies $i, j, k \in \Int$. We kunnen dan natuurlijke getallen $a_1, b_1,
+a_2, b_2, a_3, b_3 \in \Nat$ vinden zodat $i = \equivrep{a_1, b_1}{}$ en $j =
+\equivrep{a_2,b_2}{}$ en $k = \equivrep{a_3, b_3}{}$. (Om dit
+makkelijker te lezen, schrijven we ``$\equivrep{x, y}{}$'' in plaats van
+``$\equivrep{x, y}{\Intequiv}$''. Dat doen we in dit hele
+deel.) Nu rekenen we:
+\begin{align*}
+	i + (j + k) &= \equivrep{a_1, b_1}{}+(\equivrep{a_2, b_2}{} + \equivrep{a_3, b_3}{}) \\
+	&= \equivrep{a_1,  b_1}{} + \equivrep{a_2+a_3, b_2+b_3}{}\\
+	&= \equivrep{a_1 + (a_2 + a_3), b_1 + (b_2 + b_3)}{}\\
+	&= \equivrep{(a_1 + a_2) + a_3, (b_1 + b_2) + b_3}{}\\
+	&= \equivrep{a_1 + a_2, b_1 + b_2}{} + \equivrep{a_3, b_3}{}\\
+	&= (\equivrep{a_1, b_1}{} + \equivrep{a_2, b_2}{}) + \equivrep{a_3, b_3}{}\\
+	&= (i+j) + k
+\end{align*}
+Hier gebruiken we gewoon de bekende regels voor optellen op $\Nat$.
+\end{proof}
+Nu laten we zien dat elk geheel getal bij optellen een tegengestelde
+heeft, oftewel een \emph{additieve inverse}:
+\begin{proof}
+Kies $i \in \Int$ en schrijf $i = \equivrep{a,b}{}$ met $a,b \in
+\Nat$. Neem $j = \equivrep{b,a}{} \in
+\Int$. Voor natuurlijke getallen geldt $(a+b) + 0 = 0 + (b+a)$.
+Volgens de definitie betekent dit dat $\tuple{a+b, b+a} \sim_\Int
+\tuple{0,0}$, en dus dat $\equivrep{a+b, b+a}{} = \equivrep{0, 0}{}
+= 0_\Int$. We krijgen daarom $i + j =
+\equivrep{a,b}{}+\equivrep{b,a}{}=\equivrep{a+b, b+a}{}= \equivrep{0,
+0}{} = 0_\Int$.
+\end{proof}
+Hierna bewijzen we de \emph{distributiviteit}: als je met een som
+vermenigvuldigt, mag je de vermenigvuldiging over beide termen
+verdelen.
+\begin{proof}
+Kies net als hierboven $i = \equivrep{a_1, b_1}{}$ en $j =
+\equivrep{a_2,b_2}{}$ en $k = \equivrep{a_3, b_3}{}$. Dan rekenen we:
+\begin{align*}
+	i \times (j + k) 
+	&= \equivrep{a_1, b_1}{} \times (\equivrep{a_2,b_2}{} + \equivrep{a_3, b_3}{})\\
+	&= \equivrep{a_1, b_1}{} \times \equivrep{a_2 + a_3,b_2+b_3}{}\\
+	&= \equivrep{a_1  (a_2 + a_3) + b_1  (b_2+b_3), a_1  (b_2 + b_3) + b_1 (a_2 + a_3)}{}\\
+	&= \equivrep{a_1 a_2 + a_1a_3 + b_1 b_2+b_1b_3, a_1 b_2 + a_1b_3 + a_2b_1 + a_3b_1}{}\\		
+%		&= \equivrep{a_1 a_2 + b_1b_2 + a_1a_3 + b_1 b_2+b_1b_3, a_1 b_2 + a_1b_3 + a_2b_1 + a_3b_1}{}\\		
+	&= \equivrep{a_1a_2 + b_1b_2, a_1b_2 + a_2b_1}{} + \equivrep{a_1a_3 + b_1b_3, a_1b_3 + a_3b_1}{}\\
+	&= (\equivrep{a_1, b_1}{} \times \equivrep{a_2,b_2}{}) + (\equivrep{a_1, b_1}{} \times  \equivrep{a_3, b_3}{})\\
+	&= (i \times j) + (i \times k)
+\end{align*}
+\end{proof}
+De andere vijf regels mag je zelf bewijzen. Als dat is gedaan, weten
+we dat $\Int$ een commutatieve ring is. Dus optellen en
+vermenigvuldigen werken, met onze definities, zoals ze moeten werken.
+\begin{prob}
+Bewijs dat $\Int$ een commutatieve ring is.
+\end{prob}
+Maar we zijn nog niet klaar. We hebben niet alleen vastgelegd hoe
+optellen en vermenigvuldigen op $\Int$ werken, maar ook wanneer het
+ene getal kleiner dan of gelijk aan het andere is; daarvoor gebruiken
+we de ordeningsrelatie $\leq$. Ook die moet werken zoals bedoeld.
+Preciezer gezegd moeten we bewijzen dat $\Int$ een \emph{geordende}
+ring is.\footnote{Bedenk dat volgens
+	\olref[sfr][rel][ord]{def:linearorder} een totale ordening
+	een relatie is die reflexief, transitief, antisymmetrisch en samenhangend is.
+	In een ordening heet die laatste eigenschap soms
+	\emph{trichotomie}. Ze zegt dat voor elke $a$ en $b$ geldt: $a \leq b \lor a
+	= b \lor a \geq b$.} 
+\begin{defn}
+Een \emph{geordende ring} is een commutatieve ring met bovendien een
+totale ordening $\leq$. Daarbij moeten deze twee regels gelden:
+\begin{align*}
+	a \leq b &\lif a + c \leq b + c\\
+	(a \leq b \land 0 \leq c) &\lif a \times c \leq b \times c
+\end{align*}
+\end{defn}
+\begin{prob}
+Bewijs dat $\Int$ een geordende ring is. 
+\end{prob}
+Ook dit bewijs kost veel schrijfwerk, maar de stappen zelf zijn
+eenvoudig. We laten het aan jou over om te bewijzen dat onze
+$\Int$ inderdaad een geordende ring is.
+Daarmee zijn we klaar met de gehele getallen. Voor de rationale getallen moeten we
+bijna hetzelfde doen. We moeten bewijzen dat ze een geordend
+\emph{lichaam} vormen, met onze definities van $+$, $\times$ en
+$\leq$:
+\begin{defn}\ollabel{orderedfield}
+Een \emph{geordend lichaam} is een geordende ring waarvoor ook de volgende regel geldt:
+\begin{align*}
+	\emph{Multiplicatieve inverse (omgekeerde bij vermenigvuldigen)}& & (\forall a \in S \setminus \{0\})(\exists b \in S) a\times b& = 1
+\end{align*}
+\end{defn}
+Als je eenmaal hebt bewezen dat $\Int$ een geordende ring is, is de
+volgende stap niet moeilijk. Je moet alleen veel regels nalopen om
+te bewijzen dat $\Rat$ een geordend lichaam is.
+\begin{prob}
+Bewijs dat $\Rat$ een geordend lichaam is.
+\end{prob}
+Na de gehele en rationale getallen zijn alleen de reële getallen nog
+over. We moeten bewijzen dat $\Real$ een \emph{volledig} geordend
+lichaam is. Dat is een geordend lichaam met de
+volledigheidseigenschap. In \olref[cuts]{realcompleteness} hebben we
+al bewezen dat $\Real$ die eigenschap heeft. We moeten nog wel alle
+(saaie) stappen nalopen om te bewijzen dat $\Real$ een geordend
+lichaam is.
+Voor we aan \emph{die} hoop werk beginnen, moeten we eerst een paar
+dingen controleren die ``meteen duidelijk'' lijken. We moeten
+bijvoorbeeld zeker weten dat $\alpha + \beta$ volgens onze definitie
+zelf weer een \emph{snede} is, voor alle sneden $\alpha$ en $\beta$.
+Hier is het bewijs:
+\begin{proof}	
+Omdat $\alpha$ en $\beta$ allebei sneden zijn, is $\alpha + \beta = \Setabs{p
++ q}{p \in \alpha \land q \in \beta}$ een deelverzameling van $\Rat$ die
+niet leeg en niet de hele verzameling is. Stel nu dat $x < p + q$ voor een
+$p \in \alpha$ en een $q \in \beta$. Dan is $x - p < q$, zodat $x - p
+\in \beta$, en dus $x = p + (x - p) \in \alpha + \beta$. Zodra een
+getal in deze verzameling zit, zitten alle kleinere rationale
+getallen er dus ook in. Dat wil zeggen dat $\alpha + \beta$ een
+beginstuk van $\Rat$ is. Neem tot slot een willekeurig $p + q \in
+\alpha + \beta$. Omdat $\alpha$ en $\beta$ allebei sneden zijn, kunnen
+we $p_1 \in \alpha$ en $q_1 \in \beta$ vinden met $p < p_1$ en $q <
+q_1$. Dan is $p + q < p_1 + q_1 \in \alpha + \beta$. Er zit dus
+altijd nog een groter getal in $\alpha + \beta$, zodat deze
+verzameling geen grootste element, en dus geen maximum, heeft.
+\end{proof}
+Met vergelijkbare berekeningen kun je laten zien dat $\alpha - \beta$,
+$\alpha \times \beta$ en $\alpha \div \beta$ ook sneden zijn. Bij
+delingen moet je het geval waarin $\beta$ de nulsnede is buiten
+beschouwing laten. Ook dat bewijs laten we aan jou over.
+\begin{prob}
+Bewijs dat $\Real$ een geordend lichaam is.
+\end{prob}
+Er blijft nog één klein punt over. In \olref[cuts]{sec} zeggen we dat
+we $\sqrt{2} = \Setabs{p \in \Rat}{p < 0 \text{ of }p^2 < 2}$ kunnen nemen.
+We moeten nog bewijzen dat die verzameling echt een \emph{snede} is.
+Dat gaat zo:
+\begin{proof}
+Deze verzameling is duidelijk niet leeg, niet gelijk aan alle
+rationale getallen en een beginstuk daarvan. We hoeven dus alleen te
+bewijzen dat ze geen grootste element heeft. Neem daarvoor een
+willekeurig positief rationaal getal $p$ met $p^2 < 2$ en zet $q =
+\frac{2p+2}{p+2}$. Het is genoeg om te laten zien dat zowel $p < q$
+als $q^2 < 2$ geldt. Voor $p < q$ rekenen we:
+\begin{align*}
+	p^2 &< 2\\
+	p^2 + 2p &< 2 + 2p\\
+	p(p + 2) &< 2 + 2p\\
+	p &< \tfrac{2+2p}{p+2} = q
+\end{align*}
+Voor $q^2 < 2$ rekenen we:
+\begin{align*}
+	p^2 &< 2\\
+	2p^2 + 4p + 2 &< p^2 + 4p+ 4\\
+	4p^2 + 8p + 4 &< 2(p^2 + 4p + 4)\\
+	(2p+2)^2 & <2(p+2)^2\\
+	\tfrac{(2p+2)^2}{(p+2)^2} &< 2\\
+	q^2 &< 2
+\end{align*}
+\end{proof}
+\end{document}

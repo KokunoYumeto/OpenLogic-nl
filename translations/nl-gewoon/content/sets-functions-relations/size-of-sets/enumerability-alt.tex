@@ -1,0 +1,134 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: enumerations-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{enm-alt}
+
+\olsection{Opsommingen en \usetoken{S}{enumerable} verzamelingen}
+
+\begin{editorial}
+  In deze paragraaf is een opsomming een bijectie met (een eerste deel
+  van) $\Nat$. Zo gebeurt het in de verzamelingenleer. Dit wijkt een
+  beetje af van de definities in \olref[enm]{sec} en herhaalt alle
+  voorbeelden uit die paragraaf. De tekst is hier ook wat korter.
+\end{editorial}
+
+Een eindige verzameling kun je eenvoudig vastleggen door haar
+!!{element}s op te schrijven. Dat doen we zo:
+\[
+  A = \{a_1, a_2, \ldots, a_n\}.
+\]
+Als de !!{element}s $a_1$, \dots, $a_n$ allemaal verschillend zijn,
+geeft deze lijst !!a{bijection} tussen $A$ en de eerste $n$
+natuurlijke getallen $0$, \dots, $n-1$. Andersom heeft elke eindige
+verzameling maar eindig veel !!{element}s. Je kunt de elementen dus
+altijd zo aan getallen koppelen. Is $A$ eindig, dan is er met andere
+woorden !!a{bijection} tussen $A$ en $\{0, \dots, n-1\}$. Hier is $n$
+het aantal !!{element}s van~$A$.
+
+Als we ook bepaalde soorten oneindige verzamelingen toelaten, kunnen
+we sommige oneindige verzamelingen op deze manier in een lijst zetten.
+We leggen precies vast wat dat betekent: zo'n oneindige verzameling
+wordt opgesomd door !!a{bijection} tussen die verzameling en
+heel~$\Nat$.
+
+\begin{defn}[Opsomming in de verzamelingenleer]
+Een \emph{opsomming} van een verzameling $A$ is !!a{bijection}. Het
+bereik---de werkelijk verkregen waarden---is $A$. Het domein, de
+toegestane invoerverzameling, is een eerste stuk van de natuurlijke
+getallen $\{0, 1, \ldots, n\}$ {of} de hele verzameling natuurlijke
+getallen~$\Nat$.
+\end{defn}
+
+\begin{explain}
+Waarom heet dit een \emph{opsomming}? Als we een verzameling $A$
+hebben opgesomd, is er !!a{bijection} $f$ waarmee we de elementen van
+$A$ één voor één kunnen tellen. Het $0$-de element is $f(0)$, het
+eerste is $f(1)$, \ldots het $n$-de is $f(n)$\ldots.\footnote{Ja, we
+beginnen bij $0$. We zouden natuurlijk ook bij~$1$ kunnen beginnen.
+Dat maakt weinig verschil. We hoeven dan alleen~$\Nat$ te vervangen
+door~$\PosInt$.} De volgende definitie maakt nog duidelijker waarom:
+\end{explain}
+
+\begin{defn}
+  \ollabel{defn:enumerable}
+  Een verzameling~$A$ is !!{enumerable} precies wanneer $A =
+  \emptyset$ of wanneer~$A$ een opsomming heeft. We zeggen dat $A$
+  !!{nonenumerable} is precies wanneer $A$ niet !!{enumerable} is.
+\end{defn}
+
+\begin{explain}
+Een verzameling is dus !!{enumerable} als zij leeg is of als je haar
+!!{element}s met een opsomming één voor één kunt tellen.
+\end{explain}
+
+\begin{ex}
+De identiteitsfunctie $\Id{\Nat} \colon \Nat \to \Nat$, met
+$\Id{\Nat}(n) = n$, somt gewoon de natuurlijke getallen op. De functie
+die de \emph{positieve} natuurlijke getallen $\Nat^+ = \Nat \setminus
+\{0\}$ opsomt, is $g(n) = n + 1$: de opvolgerfunctie.
+\end{ex}
+
+\begin{prob}
+Laat zien dat een verzameling $A$ !!{enumerable} is precies wanneer
+$A = \emptyset$ of er !!a{surjection} $f\colon \Nat \to A$ is. Laat
+ook zien dat $A$ !!{enumerable} is precies wanneer er !!a{injection}
+$g\colon A \to \Nat$ is.
+\end{prob}
+
+\begin{ex}
+Neem de functies $f\colon \Nat \to \Nat$ en $g \colon \Nat \to \Nat$
+die zijn vastgelegd door
+\begin{align*}
+  f(n) & = 2n \text{ en}\\
+  g(n) & = 2n+1
+\end{align*}
+De eerste somt de even natuurlijke getallen op en de tweede de oneven
+natuurlijke getallen. Geen van beide is !!{surjective}. Daarom is
+geen van beide een opsomming van $\Nat$.
+\end{ex}
+
+\begin{prob}
+Geef een opsomming van de kwadraatgetallen $1$, $4$, $9$, $16$, \dots
+\end{prob}
+
+\begin{ex}
+Laat $\lceil x \rceil$ de \emph{plafondfunctie} zijn. Deze rondt $x$
+naar boven af tot het dichtstbijzijnde gehele getal. De volgende
+functie $f \colon \Nat \to \Int$,
+\[
+  f(n) = (-1)^{n} \left\lceil\tfrac{n}{2}\right\rceil
+\]
+zet de gehele getallen~$\Int$ in deze volgorde:
+\[
+\begin{array}{c c c c c c c c}
+f(0) & f(1) & f(2) & f(3) & f(4) & f(5) & f(6) & \dots \\ \\
+\big\lceil \tfrac{0}{2} \big\rceil & -\big\lceil \tfrac{1}{2}\big\rceil &  \big\lceil \tfrac{2}{2} \big\rceil & -\big\lceil \tfrac{3}{2} \big\rceil & \big\lceil \tfrac{4}{2} \big\rceil  & -\big\lceil \tfrac{5}{2}\big\rceil & \big\lceil \tfrac{6}{2} \big\rceil & \dots \\ \\
+0 & -1 & 1 & -2 & 2 & -3 & 3& \dots
+\end{array}
+\]
+Je ziet dat $f$ de waarden van $\Int$ één voor één geeft door steeds
+heen en weer te ‘springen’ tussen positieve en negatieve gehele getallen. Je kunt
+$f$ ook met twee gevallen vastleggen:
+\[
+f(n) = \begin{cases}
+  \frac{n}{2} & \text{als $n$ even is}\\
+  -\frac{n+1}{2} & \text{als $n$ oneven is}
+  \end{cases}
+\]
+\end{ex}
+
+\begin{prob}
+Laat zien dat als $A$ en $B$ !!{enumerable} zijn, ook $A \cup B$ dat
+is.
+\end{prob}
+
+\begin{prob}
+Laat met inductie naar $n$ zien dat als $A_1$, $A_2$, \dots, $A_n$
+allemaal !!{enumerable} zijn, ook $A_1 \cup \dots \cup A_n$ dat is.
+\end{prob}
+\end{document}

@@ -1,0 +1,90 @@
+% Part: first-order-logic
+% Chapter: proof-systems
+% Section: axiomatic-deduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{prf}{axd}}
+      {\olfileid{pl}{prf}{axd}}
+
+\olsection{Axiomatische \usetoken{P}{derivation}}
+
+Axiomatische !!{derivation}s zijn de oudste en eenvoudigste logische
+!!{derivation}ssystemen. Hun !!{derivation}s zijn eenvoudigweg rijen
+!!{sentence}s. Een rij !!{sentence}s geldt als een correcte
+!!{derivation} als elke !!{sentence}~$!A$ erin aan een van de volgende
+voorwaarden voldoet:
+\begin{enumerate}
+\item $!A$ is een axioma, of
+\item $!A$ is !!a{element} van een gegeven verzameling~$\Gamma$ van !!{sentence}s, of
+\item $!A$ is gerechtvaardigd door een afleidingsregel.
+\end{enumerate}
+Om een axioma te zijn, moet $!A$ de vorm hebben van een van een aantal
+vaste !!{sentence}sschema's. Er bestaan veel verzamelingen
+axiomaschema's die voor de eerste-ordelogica een deugdelijk, dus correct
+en volledig, !!{derivation}ssysteem opleveren. Sommige zijn geordend
+naar de connectieven waarop ze betrekking hebben. De schema's
+\[
+!A \lif (!B \lif !A) \qquad !B \lif (!B \lor !C) \qquad (!B \land !C) \lif !B
+\]
+zijn bijvoorbeeld gangbare axioma's voor respectievelijk $\lif$,
+$\lor$ en~$\land$. Sommige axiomasystemen streven naar een minimaal
+aantal axioma's. Afhankelijk van de connectieven die als primitief
+worden aangenomen, bestaan er zelfs axiomasystemen met slechts één
+axioma.
+
+Een afleidingsregel is een voorwaardelijke uitspraak die een voldoende
+voorwaarde geeft waaronder !!a{sentence} in !!a{derivation}
+gerechtvaardigd is. Modus ponens is een zeer gangbare regel van dit
+soort: als $!A$ en $!A \lif !B$ al gerechtvaardigd zijn, dan is ook
+$!B$ gerechtvaardigd. Een stap in !!a{derivation} die de
+!!{sentence}~$!B$ bevat, is dus gerechtvaardigd mits zowel $!A$ als
+$!A \lif !B$ (voor een zekere !!{sentence}~$!A$) eerder dan~$!B$ in de
+!!{derivation} voorkomen.
+
+De op axiomatische !!{derivation}s gebaseerde relatie $\Proves$ wordt
+als volgt gedefinieerd: $\Gamma \Proves !A$ dan en slechts dan als er
+!!a{derivation} bestaat met de !!{sentence}~$!A$ als laatste formule
+(waarbij $\Gamma$ wordt genomen als de verzameling !!{sentence}s in die
+!!{derivation} die volgens~(2) hierboven zijn gerechtvaardigd). $!A$
+is een stelling als er !!a{derivation} van~$!A$ bestaat waarvoor
+$\Gamma$ leeg is, dat wil zeggen als elke !!{sentence} in de
+!!{derivation} volgens (1) of~(3) is gerechtvaardigd. De volgende
+!!a{derivation} laat bijvoorbeeld zien dat $\Proves !A  \lif (!B \lif
+(!B \lor !A))$:
+\begin{derivation}
+  1. & $!B \lif (!B \lor !A)$ \\
+  2. & $(!B \lif (!B \lor !A)) \lif (!A  \lif (!B \lif (!B \lor !A)))$\\
+  3. & $!A  \lif (!B \lif (!B \lor !A))$
+\end{derivation}
+De !!{sentence} op regel~1 heeft de vorm van het axioma $!A \lif (!A
+\lor !B)$ (waarbij de rollen van $!A$ en $!B$ zijn verwisseld). De zin
+op regel~2 heeft de vorm van het axioma $!A \lif (!B \lif !A)$. Beide
+regels zijn dus gerechtvaardigd. Regel~3 is door modus ponens
+gerechtvaardigd: als we de formule op die regel afkorten als $!D$, dan
+heeft regel~2 de vorm $!C \lif !D$, waarbij $!C$ gelijk is aan $!B \lif
+(!B \lor !A)$, dus aan regel~1.
+
+Een verzameling $\Gamma$ is inconsistent als $\Gamma \Proves \lfalse$.
+In een volledig axiomasysteem is bovendien $\lfalse \lif !A$ voor
+elke~$!A$ bewijsbaar. Als $\Gamma$ inconsistent is, dan geldt dus
+$\Gamma \Proves !A$ voor elke~$!A$.
+
+Gottlob Frege gaf in zijn \emph{Begriffsschrift} uit 1879 de eerste
+systemen van axiomatische !!{derivation}s voor de logica. Daarom wordt
+dit werk vaak beschouwd als het eerste werk van de moderne logica.
+Alfred North Whitehead en Bertrand Russell vervolmaakten zulke systemen
+in hun \emph{Principia Mathematica}; ook David Hilbert en zijn leerlingen
+deden dat in de jaren twintig van de twintigste eeuw. Daarom worden ze
+vaak ``Frege-systemen'' of ``Hilbert-systemen'' genoemd. Ze zijn zeer
+veelzijdig, doordat voor een logica vaak gemakkelijk een axiomatisch
+systeem kan worden gevonden. Omdat de !!{derivation}s zeer eenvoudig
+zijn opgebouwd en de systemen slechts een of twee afleidingsregels
+hebben, zijn ook uitspraken \emph{over} die !!{derivation}s
+betrekkelijk gemakkelijk te bewijzen. In de praktijk zijn ze echter
+zeer moeilijk te gebruiken: bewijzen zijn moeilijk te vinden en uit
+te schrijven.
+\end{document}

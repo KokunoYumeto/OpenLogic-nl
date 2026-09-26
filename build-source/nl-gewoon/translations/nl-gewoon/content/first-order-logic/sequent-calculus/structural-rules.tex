@@ -1,0 +1,80 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: structural-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{seq}{srl}}
+      {\olfileid{pl}{seq}{srl}}
+
+\olsection{Regels die de volgorde en het aantal zinnen veranderen}
+
+Er zijn ook regels nodig waarmee we !!{sentence}s links en rechts van
+een sequent op een andere plek kunnen zetten. Een logische regel werkt
+alleen als de !!{sentence}s waarop hij ingrijpt helemaal links of
+helemaal rechts in zijn uitgangssequent staan. Daarom is er een regel
+om !!{sentence}s te verwisselen. Met andere regels kunnen we twee
+gelijke !!{sentence}s samenvoegen tot één of aan een van beide kanten
+!!a{sentence} toevoegen.
+
+\subsection{Een zin toevoegen (verzwakking)}
+
+\begin{defish}
+\Axiom$ \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !A, \Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A$
+\DisplayProof
+\end{defish}
+
+\subsection{Twee gelijke zinnen samenvoegen (contractie)}
+
+\begin{defish}
+\Axiom$ !A, !A, \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\Contraction}}
+\UnaryInf$ !A, \Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A, !A$
+\RightLabel{\RightR{\Contraction}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A$
+\DisplayProof
+\end{defish}
+
+\subsection{De volgorde veranderen (verwisseling)}
+
+\begin{defish}
+\Axiom$ \Gamma, !A, !B, \Pi \fCenter \Delta $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ \Gamma, !B, !A, \Pi \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A, !B, \Lambda$
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ \Gamma \fCenter \Delta, !B, !A, \Lambda$
+\DisplayProof
+\end{defish}
+
+Een reeks stappen met verzwakking, contractie en verwisseling wordt
+vaak weergegeven met dubbele afleidingslijnen.
+
+De volgende regel heet de ``snederegel''. Strikt genomen kunnen we
+zonder deze regel, maar hij maakt het veel makkelijker om bestaande
+!!{derivation}s opnieuw te gebruiken en met elkaar te combineren.
+\begin{defish}
+\[
+\Axiom$ \Gamma \fCenter \Delta, !A$
+\Axiom$ !A, \Pi \fCenter \Lambda $
+\RightLabel{\Cut}
+\BinaryInf$ \Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+\end{defish}
+\end{document}

@@ -1,0 +1,56 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olchapter{fol}{seq}{De sequentencalculus}}
+      {\olchapter{pl}{seq}{De sequentencalculus}}
+
+\begin{editorial}
+  Dit hoofdstuk behandelt Gentzens standaardsequentencalculus LK voor
+  de klassieke eerste-ordelogica. Het kan nog met meer voorbeelden en
+  opgaven worden aangevuld. Gebruik de tag ``prfLK'' om materiaal over
+  de sequentencalculus als bewijssysteem op te nemen of uit te sluiten.
+\end{editorial}
+
+\olimport{rules-and-proofs}
+
+\olimport{propositional-rules}
+
+\iftag{FOL}{%
+  \olimport{quantifier-rules}
+}{}
+
+\olimport{structural-rules}
+
+\olimport{derivations}
+
+\olimport{proving-things}
+
+\iftag{FOL}{%
+  \olimport{proving-things-quant}
+}{}
+
+\olimport{proof-theoretic-notions}
+
+\olimport{provability-consistency}
+
+\olimport{provability-propositional}
+
+\iftag{FOL}{%
+  \olimport{provability-quantifiers}
+}{}
+
+\olimport{soundness}
+
+\iftag{FOL}{%
+  \olimport{identity}
+  \olimport{soundness-identity}
+}{}
+
+\OLEndChapterHook
+
+\end{document}

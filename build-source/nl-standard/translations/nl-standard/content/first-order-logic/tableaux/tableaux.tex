@@ -1,0 +1,54 @@
+% Part: first-order-logic
+% Chapter: tableaux
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olchapter{fol}{tab}{Tableaus}}
+      {\olchapter{pl}{tab}{Tableaus}}
+
+\begin{editorial}
+Dit hoofdstuk presenteert een analytisch tableausysteem met tekens.
+  
+Gebruik de tag ``prfTab'' om materiaal dat van belang is voor
+natuurlijke deductie als bewijssysteem op te nemen of uit te sluiten.
+\end{editorial}
+
+\olimport{rules-and-proofs}
+
+\olimport{propositional-rules}
+
+\iftag{FOL}{%
+  \olimport{quantifier-rules}
+}{}
+
+\olimport{derivations}
+
+\olimport{proving-things}
+
+\iftag{FOL}{%
+  \olimport{proving-things-quant}
+}{}
+
+\olimport{proof-theoretic-notions}
+
+\olimport{provability-consistency}
+
+\olimport{provability-propositional}
+
+\iftag{FOL}{%
+  \olimport{provability-quantifiers}
+}{}
+
+\olimport{soundness}
+
+\iftag{FOL}{%
+  \olimport{identity}
+  \olimport{soundness-identity}
+}{}
+
+\OLEndChapterHook
+
+\end{document}

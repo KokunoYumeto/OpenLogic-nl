@@ -1,0 +1,170 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: outline
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{com}{out}}
+      {\olfileid{pl}{com}{out}}
+
+\olsection{De route door het bewijs}
+
+Het bewijs van de volledigheidsstelling heeft nogal wat stappen. Bij
+een eerste lezing raak je daardoor gemakkelijk de draad kwijt. Daarom
+zetten we eerst de hele route op een rij. We beginnen door anders naar
+de vraag te kijken. De formulering ``als $\Gamma \Entails !A$, dan
+$\Gamma \Proves !A$'' geeft nog weinig houvast. Om
+$\Gamma \Proves !A$ te bewijzen, moeten we !!a{derivation} vinden. De
+aanname $\Gamma \Entails !A$ vertelt niet meteen hoe we die afleiding
+moeten bouwen. Bij sommige bewijssystemen kan dat rechtstreeks, maar
+hier nemen we een andere route. Volledigheid zegt namelijk ook: ``als
+$\Gamma$ consistent is, dan is zij vervulbaar.'' Nu kunnen we de
+informatie in~$\Gamma$ als bouwmateriaal gebruiken. Samen met de
+aanname dat zij consistent is, proberen we
+\iftag{FOL}{!!a{structure}}{!!a{valuation}} te bouwen die elke
+\iftag{FOL}{!!{sentence}}{!!{formula}} in~$\Gamma$ waar maakt. We weten
+welk soort \iftag{FOL}{!!{structure}}{!!{valuation}} we nodig hebben:
+precies een die doet wat $\Gamma$ beschrijft!{}
+
+Bevat $\Gamma$ alleen \iftag{FOL}{atomaire
+  !!{sentence}s}{!!{propositional variable}s}? Dan kunnen we er
+gemakkelijk een model voor bouwen.\iftag{FOL}{ Stel dat alle atomaire
+  !!{sentence}s de vorm $\Atom{P}{a_1,\dots,a_n}$ hebben. De $a_i$ zijn
+  daarbij !!{constant}s.}{} We hoeven alleen het volgende te kiezen:
+\iftag{FOL}{%
+  !!a{domain}~$\Domain{M}$ en een betekenis voor~$P$ waarvoor
+  $\Sat{M}{\Atom{P}{a_1,\ldots,a_n}}$. Daar is een eenvoudig recept
+  voor. Neem $\Domain{M} = \Nat$ en $\Assign{\Obj c_i}{M} = i$. Staat
+  $\Atom{P}{a_1,\ldots,a_n} \in \Gamma$, zet dan het tupel $\tuple{k_1,
+    \dots, k_n}$ in $\Assign{P}{M}$. Hier is $k_i$ de index van het
+  constante symbool~$a_i$ (dus $a_i \ident \Obj c_{k_i}$).}{%
+  !!a{valuation}~$\pAssign{v}$ waarvoor $\pSat{v}{p}$ voor alle $p \in
+  \Gamma$. Definieer $\pAssign{v}(p) = \True$ precies als
+  $p \in \Gamma$.}
+
+Neem nu aan dat $\Gamma$ een !!{formula}~$\lnot !B$ bevat en dat $!B$
+atomair is. Kan onze bouw van
+$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ dan verhinderen dat $\lnot !B$
+waar wordt? Hier helpt de consistentie van~$\Gamma$. Als
+$\lnot !B \in \Gamma$, dan $!B \notin \Gamma$; anders zou $\Gamma$
+inconsistent zijn. En als $!B \notin \Gamma$, dan zorgt onze
+constructie van~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ ervoor dat
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$. Dus
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !B}$. Dit geval werkt.
+
+Maar wat doen we als $\Gamma$ samengestelde, niet-atomaire formules
+bevat? Stel dat $!A \land !B$ erin staat. Om die formule waar te maken,
+moeten we doen alsof zowel $!A$ als $!B$ in~$\Gamma$ staat. En als
+$!A \lor !B \in \Gamma$, moeten we minstens een van beide waar maken.
+We doen dan alsof een van beide in~$\Gamma$ staat.
+
+Dit geeft ons een plan: voeg meer !!{formula}s aan~$\Gamma$ toe. Doe
+dat zo dat (a)~de nieuwe verzameling consistent blijft; (b)~voor elke
+mogelijke atomaire !!{sentence}~$!A$ ofwel $!A$ ofwel $\lnot !A$ in de
+nieuwe verzameling staat; en (c)~bij $!A \land !B$ ook zowel $!A$ als
+$!B$ in de verzameling staat, en bij $!A \lor !B$ ook minstens een van
+$!A$ en $!B$, enzovoort. We blijven zulke formules toevoegen, zo nodig
+eindeloos. Noem de verzameling van alle toegevoegde
+!!{formula}s~$\Gamma^*$. De eerdere constructie geeft dan
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
+Met inductie kunnen we bewijzen dat zij alle zinnen in~$\Gamma^*$ waar
+maakt. Zij maakt dan ook alle zinnen in~$\Gamma$ waar, want
+$\Gamma \subseteq \Gamma^*$. Uiteindelijk blijken (a) en~(b) al
+genoeg. Een verzameling zinnen die aan (b) voldoet, heet
+\emph{volledig}. We moeten de consistente verzameling~$\Gamma$ dus
+uitbreiden tot een verzameling~$\Gamma^*$ die zowel consistent als
+volledig is.
+
+\iftag{FOL}{%
+Dit plan heeft nog een probleem. Stel dat
+$\lexists[x][!A(x)] \in \Gamma$. Dan willen we een !!{constant}~$c$
+kiezen en $!A(c)$ toevoegen. Maar is dat altijd mogelijk? Misschien
+heeft onze taal maar enkele !!{constant}s en geldt voor elk daarvan
+$\lnot !A(c) \in \Gamma$. We kunnen dan niet ook $!A(c)$ toevoegen:
+de verzameling zou inconsistent worden. Bovendien weten we dan niet of
+$\Struct{M}$ de formule $!A(c)$ of juist $\lnot !A(c)$ waar moet maken.
+Het kan zelfs gebeuren dat $\Gamma$ alleen zinnen bevat in een taal
+zonder constante symbolen, zoals de taal van de verzamelingenleer.
+
+We lossen dit op door aan het begin oneindig veel constanten toe te
+voegen. We voegen ook zinnen toe die deze constanten op de juiste
+manier met de kwantoren verbinden. We moeten natuurlijk bewijzen dat
+dit geen inconsistentie kan veroorzaken.
+
+Onze eerste constructie werkt goed als de atomaire zinnen alleen
+!!{constant}s bevatten. Maar een taal kan ook !!{function}s bevatten.
+Dan moeten we geschikte functies op~$\Nat$ vinden om aan die
+!!{function}s toe te kennen, en dat kan lastig zijn. We gebruiken
+daarom een truc. Gebruik niet $i$ als betekenis van $\Obj c_i$, maar
+neem de verzameling !!{constant}s zelf als domein. De structuur
+$\Struct M$ kan dan elke !!{constant} aan zichzelf toekennen:
+$\Assign{\Obj c_i}{M} = \Obj c_i$. We gaan nog een stap verder. Laat
+$\Domain{M}$ bestaan uit alle \emph{termen} van de taal!{} Dan is
+meteen duidelijk welke functie bij elk functiesymbool hoort. Deze
+functies krijgen termen als invoer en leveren termen als uitvoer. Aan
+de !!{function}~$\Obj f^n_i$ kennen we de functie toe die bij de $n$
+termen $t_1$, \dots,~$t_n$ als invoer de term
+$\Obj f^n_i(t_1, \dots, t_n)$ als uitvoer geeft.
+
+Nu ontbreekt nog één puzzelstuk: wat doen we met~$\eq$? Het
+!!{predicate}~$\eq$ heeft een vaste betekenis:
+$\Sat{M}{\eq[t][t']}$ precies als
+$\Value{t}{M} = \Value{t'}{M}$. In onze constructie is de !!{value} van
+een term~$t$ de term $t$ zelf. Deze !!{structure} maakt daardoor
+\emph{geen enkele} zin van de vorm $\eq[t][t']$ waar, behalve als $t$
+en $t'$ letterlijk dezelfde term zijn. Dat is een probleem. Vrijwel
+elke interessante theorie in een taal met !!{function}s heeft namelijk
+zinnen $\eq[t][t']$ als stelling waarin $t$ en $t'$ verschillende
+termen zijn. In een rekenkundige theorie is bijvoorbeeld
+$\eq[(\Obj 0+ \Obj 0)][\Obj 0]$ een stelling. We passen daarom het
+domein van~$\Struct M$ aan. De objecten in~$\Domain{M}$ zijn niet
+langer losse termen, maar verzamelingen van termen. Elke verzameling
+bevat precies de termen die volgens de zinnen in~$\Gamma$ gelijk moeten
+zijn. Stel bijvoorbeeld dat $\Gamma$ een rekenkundige theorie is. Dan
+bevat een van deze verzamelingen $\Obj 0$, $(\Obj 0 + \Obj 0)$,
+$(\Obj 0 \times \Obj 0)$, enzovoort. We kennen die verzameling toe aan
+$\Obj 0$. Zij blijkt ook de waarde te zijn van alle termen in de
+verzameling, waaronder $(\Obj 0 + \Obj 0)$. In de aangepaste
+!!{structure} is de zin $\eq[(\Obj 0+ \Obj 0)][\Obj 0]$ daarom waar.}{}
+
+Dit wordt dus de volledige route. Eerst onderzoeken we consistente
+verzamelingen die !!{complete} zijn. We bewijzen vooral het volgende:
+zo'n !!a{complete} consistente verzameling bevat $!A \land !B$ precies
+als zij zowel $!A$ als~$!B$ bevat; zij bevat $!A \lor !B$ precies als
+zij minstens een van beide bevat; enzovoort
+(\olref[ccs]{prop:ccs}).\iftag{FOL}{ Daarna definiëren en onderzoeken
+  we ``verzadigde'' verzamelingen zinnen. Zo'n verzameling bevat
+  implicaties die elke gekwantificeerde !!{sentence} koppelen aan haar
+  concrete gevallen (\olref[hen]{defn:henkin-exp}). We bewijzen dat we
+  elke consistente verzameling~$\Gamma$ kunnen uitbreiden tot een
+  verzadigde verzameling~$\Gamma'$ (\olref[hen]{lem:henkin}). Is een
+  verzameling consistent, verzadigd en !!{complete}? Dan geldt ook:
+  zij bevat \iftag{prvEx}{$\lexists[x][!A(x)]$ precies als zij $!A(t)$
+    bevat voor een gesloten term~$t$}{}\iftag{defEx,defAll}{}{ en
+  }\iftag{prvAll}{$\lforall[x][!A(x)]$ precies als zij $!A(t)$ bevat
+    voor elke gesloten term~$t$}{}
+  (\olref[hen]{prop:saturated-instances}).}{}
+Vervolgens nemen we de\iftag{FOL}{ verzadigde}{} consistente
+verzameling~$\iftag{FOL}{\Gamma'}{\Gamma}$. We breiden haar uit tot een
+\iftag{FOL}{verzadigde, consistente en}{consistente en}
+!!{complete} verzameling~$\Gamma^*$ (\olref[lin]{lem:lindenbaum}). Met
+$\Gamma^*$ definiëren we vervolgens ons \iftag{FOL}{termmodel
+  $\Struct M(\Gamma^*)$}{!!{valuation}~$\pAssign v(\Gamma^*)$}.
+\iftag{FOL}{Het domein van het termmodel bestaat uit de gesloten termen.
+  De atomaire !!{sentence}s in de verzameling geven aan hoe we de
+  !!{predicate}s moeten interpreteren}{De !!{propositional variable}s
+  in de verzameling bepalen de valuatie} in~$\Gamma^*$
+(\olref[mod]{defn:termmodel}). Daarna gebruiken we de eigenschappen van
+\iftag{FOL}{ verzadigde,}{} volledige consistente verzamelingen. Zo
+bewijzen we dat inderdaad
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ precies als
+$!A \in \Gamma^*$ (\olref[mod]{lem:truth}). In het bijzonder volgt
+dan $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\Gamma}$.
+\iftag{FOL}{Ten slotte bekijken we hoe we een termmodel definiëren als
+  $\Gamma$ ook~$\eq$ bevat (\olref[ide]{defn:term-model-factor}). We
+  bewijzen dat dit model~$\Gamma^*$ vervult (\olref[ide]{lem:truth}).}{}
+
+\end{document}

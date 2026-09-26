@@ -1,0 +1,81 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: partial-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid{sfr}{fun}{par}
+
+\olsection{Partiële functies: niet altijd een uitkomst}
+
+\begin{explain}
+Soms maken we de definitie van een functie wat ruimer. Dan hoeft niet
+elke mogelijke invoer een uitkomst te hebben. Zo'n functie heet een
+\emph{partiële functie}.
+\end{explain}
+
+\begin{defn}
+Een \emph{partiële functie} $f \colon A \pto B$ koppelt aan elk
+!!{element} van~$A$ hoogstens één !!{element} van~$B$. Een invoer kan
+dus zonder uitkomst blijven, maar krijgt nooit meer dan één uitkomst. Koppelt $f$ een
+element van~$B$ aan $x \in A$, dan is $f(x)$ \emph{gedefinieerd}.
+Anders noemen we dit \emph{ongedefinieerd}. Als $f(x)$ gedefinieerd
+is, schrijven we $f(x) \fdefined$; anders schrijven we $f(x)
+\fundefined$. Het \emph{domein} van een partiële functie~$f$ bestaat
+uit de invoeren in~$A$ waarvoor wel een uitkomst bestaat. Dus
+$\dom{f} = \Setabs{x \in A}{f(x) \fdefined}$.
+\end{defn}
+
+\begin{ex}
+Elke functie $f\colon A \to B$ is ook een partiële functie. Een
+partiële functie die voor elke invoer uit~$A$ een uitkomst heeft---dus
+precies wat we tot nu toe gewoon een functie noemden---heet ook een
+\emph{totale} functie.
+\end{ex}
+
+\begin{ex}
+De partiële functie $f \colon \Real \pto \Real$ met $f(x) = 1/x$ heeft
+geen uitkomst bij $x = 0$ en is voor elke andere invoer wel
+gedefinieerd.
+\end{ex}
+
+\begin{prob}
+Gegeven is $f\colon A \pto B$. Definieer de partiële functie $g\colon
+B \pto A$ als volgt. Neem een $y \in B$. Is er precies één $x \in A$
+waarvoor $f(x) = y$, zet dan $g(y) = x$. Schrijf in alle andere
+gevallen $g(y) \fundefined$. Toon nu aan: als $f$ injectief is, dan
+$g(f(x)) = x$ voor alle $x \in \dom{f}$, en $f(g(y)) = y$ voor alle
+$y \in \ran{f}$.
+\end{prob}
+
+\begin{defn}[Grafiek van een partiële functie]
+Neem een partiële functie $f\colon A \pto B$. De \emph{grafiek} van~$f$
+houdt bij welke invoer welke uitkomst krijgt. Het is de relatie
+$R_f \subseteq A \times B$ die wordt gegeven door
+\[
+R_f = \Setabs{\tuple{x,y}}{f(x) = y}.
+\]
+\end{defn}
+
+\begin{prop}
+Neem een relatie $R \subseteq A \times B$ met deze regel: als $Rxy$ en
+$Rxy'$ allebei gelden, dan $y = y'$. Eén invoer kan dus niet twee
+verschillende uitkomsten hebben. Dan is $R$ de grafiek van de partiële
+functie $f\colon A \pto B$ die zo werkt: is er een $y$ waarvoor $Rxy$,
+dan zetten we $f(x) = y$; anders schrijven we $f(x) \fundefined$. Is
+$R$ ook \emph{serieel}, dan heeft elke invoer een uitkomst: voor elke
+$x \in A$ is er een $y \in B$ waarvoor $Rxy$. In dat geval is $f$
+totaal.
+\end{prop}
+
+\begin{proof}
+Stel dat er een $y$ is waarvoor $Rxy$. Er kan geen andere $y' \neq y$
+zijn waarvoor $Rxy'$, want dan voldoet $R$ niet aan de regel hierboven.
+Als er een $y$ is waarvoor $Rxy$, is die $y$ dus uniek en geeft $f$ bij
+die invoer een vaste uitkomst. Verder is $R_f = R$. Ook is $f$ totaal
+als~$R$ serieel is.
+\end{proof}
+\end{document}

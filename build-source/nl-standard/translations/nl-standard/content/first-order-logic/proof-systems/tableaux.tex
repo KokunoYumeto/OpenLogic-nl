@@ -1,0 +1,91 @@
+% Part: first-order-logic
+% Chapter: proof-systems
+% Section: tableaux
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{prf}{tab}}
+      {\olfileid{pl}{prf}{tab}}
+
+\olsection{\usetoken{P}{tableau}}
+
+Veel !!{derivation}ssystemen werken met rangschikkingen van
+!!{sentence}s; !!{tableau}s werken daarentegen met !!{signed formula}s.
+!!^a{signed formula} is een paar dat bestaat uit een
+waarheidswaardeteken ($\True$ of $\False$) en !!a{sentence}:
+\[
+\sFmla{\True}{!A} \text{ of } \sFmla{\False}{!A}.
+\]
+!!^a{tableau} bestaat uit !!{signed formula}s die in een neerwaarts
+vertakkende boom zijn gerangschikt. Het begint met een aantal
+\emph{aannames} en wordt voortgezet met !!{signed formula}s die door
+toepassing van een afleidingsregel uit een erboven staande
+!!{signed formula} volgen. Elke regel staat toe dat aan het uiteinde
+van een tak een of meer !!{signed formula}s worden toegevoegd, of dat
+twee !!{signed formula}s naast elkaar worden toegevoegd. In het
+laatste geval splitst de tak zich in tweeën en vormen de twee
+toegevoegde !!{signed formula}s de uiteinden van de nieuwe takken.
+
+Wanneer een regel op een samengestelde !!{signed formula} wordt
+toegepast, worden !!{signed formula}s toegevoegd die onmiddellijke
+deel-!!{formula}s zijn. Voor elk van beide tekens is er een regel. De
+regel $\TRule{\True}{\land}$ wordt bijvoorbeeld toegepast op
+$\sFmla{\True}{!A \land !B}$. Daarmee mogen beide !!{signed formula}s
+$\sFmla{\True}{!A}$ en~$\sFmla{\True}{!B}$ worden toegevoegd aan het
+uiteinde van elke tak die $\sFmla{\True}{!A \land !B}$ bevat. Met de
+regel $\TRule{\False}{!A \land !B}$ mag een tak worden gesplitst door
+$\sFmla{\False}{!A}$ en $\sFmla{\False}{!B}$ naast elkaar toe te
+voegen. !!^a{tableau} is gesloten als elk van zijn takken een bij
+elkaar horend paar !!{signed formula}s $\sFmla{\True}{!A}$ en
+$\sFmla{\False}{!A}$ bevat.
+
+De op !!{tableau}s gebaseerde relatie $\Proves$ wordt als volgt
+gedefinieerd: $\Gamma \Proves !A$ dan en slechts dan als er een eindige
+verzameling~$\Gamma_0 = \{!B_1, \dots, !B_n\} \subseteq \Gamma$ bestaat
+waarvoor er een gesloten !!{tableau} is met de aannames
+\[
+\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} 
+\]
+De volgende gesloten !!{tableau} laat bijvoorbeeld zien dat $\Proves
+(!A \land !B) \lif !A$:
+\begin{oltableau}
+  [\sFmla{\False}{(\formula{A} \land \formula{B}) \lif \formula{A}}, just = \TAss
+    [\sFmla{\True}{\formula{A} \land \formula{B}}, just = {\TRule{\False}{\lif}[1]}
+      [\sFmla{\False}{\formula{A}}, just = {\TRule{\False}{\lif}[1]}
+        [\sFmla{\True}{\formula{A}}, just = {\TRule{\True}{\lif}[2]}
+          [\sFmla{\True}{\formula{B}}, just = {\TRule{\True}{\lif}[2]}, close]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+
+Een verzameling $\Gamma$ is inconsistent in de !!{tableau}calculus als
+er een gesloten !!{tableau} bestaat met aannames
+\[
+\{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} 
+\]
+waarbij $!B_i \in \Gamma$ geldt voor elke gebruikte index.
+
+!!^{tableau}s zijn in de jaren vijftig van de twintigste eeuw
+onafhankelijk van elkaar uitgevonden door Evert Beth en Jaakko
+Hintikka en vervolgens vereenvoudigd en verbreid door Raymond
+Smullyan. Ze zijn zeer gemakkelijk te gebruiken, omdat het opstellen
+van !!a{tableau} een zeer systematische procedure is. Door hun
+systematische aard lenen !!{tableau}s zich ook voor implementatie op
+een computer. !!^a{tableau} is echter vaak moeilijk te lezen en het
+verband met bewijzen is soms moeilijk te doorzien. De benadering is
+bovendien tamelijk algemeen: voor veel verschillende logica's bestaan
+!!{tableau}systemen. Met !!{tableau}s kunnen ook !!{structure}s worden
+gevonden die gegeven (verzamelingen) !!{sentence}s vervullen. Als de
+verzameling vervulbaar is, heeft zij geen gesloten !!{tableau}; elk
+!!{tableau} heeft dan dus een open tak. Uit een open tak kan de
+vervullende !!{structure} worden ``afgelezen'', mits op die tak elke
+toepasbare regel is toegepast. Er bestaat ook een zeer nauw verband
+met de sequentencalculus: in wezen is een gesloten !!{tableau} een
+samengeperste !!{derivation} in de sequentencalculus, ondersteboven
+geschreven.
+\end{document}

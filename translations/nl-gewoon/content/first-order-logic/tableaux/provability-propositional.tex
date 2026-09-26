@@ -1,0 +1,186 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: provability-propositional
+
+% verification of properties of provability needed for maximally
+% consistent sets in the completeness chapter.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{tab}{ppr}}
+      {\olfileid{pl}{tab}{ppr}}
+
+\olsection{\usetoken{S}{derivability} en de logische tekens voor en, of en als--dan}
+
+\begin{explain}
+  Met de relatie~$\Proves$ schrijven we op wat met tableaus formeel
+  uit aannamen volgt. We laten zien dat deze manier van afleiden een
+  paar basisfeiten over de logische tekens aankan. Zo gelden
+  $!A \land !B \Proves !A$ en $!A, !A \lif !B \Proves !B$. Dat tweede
+  patroon heet modus ponens. Deze feiten hebben we nodig voor het
+  bewijs van de volledigheidsstelling.
+\end{explain}
+
+\begin{prop}\ollabel{prop:provability-land}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-land-left} Zowel $!A \land !B \Proves
+    !A$ als $!A \land !B \Proves !B$.
+  \item \ollabel{prop:provability-land-right} Omgekeerd geldt
+    $!A, !B \Proves !A \land !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Voor de eerste twee gevolgtrekkingen hebben zowel
+    $\{\sFmla{\False}{!A}, \sFmla{\True}{!A \land !B}\}$ als
+    $\{\sFmla{\False}{!B}, \sFmla{\True}{!A \land !B}\}$ een gesloten
+    !!{tableau}:
+    \begin{oltableau}{}
+      [\sFmla{\False}{\formula{A}}, just=\TAss
+        [\sFmla{\True}{\formula{A} \land \formula{B}}, just=\TAss
+          [\sFmla{\True{\formula{A}}},just={\TRule{\True}{\land}[2]}
+            [\sFmla{\True{\formula{B}}},just={\TRule{\True}{\land}[2]}, close
+            ]
+          ]
+        ]
+      ]
+    \end{oltableau}
+    \begin{oltableau}{}
+      [\sFmla{\False}{\formula{B}}, just=\TAss
+        [\sFmla{\True}{\formula{A} \land \formula{B}}, just=\TAss
+          [\sFmla{\True{\formula{A}}},just={\TRule{\True}{\land}[2]}
+            [\sFmla{\True{\formula{B}}},just={\TRule{\True}{\land}[2]}, close
+            ]
+          ]
+        ]
+      ]
+    \end{oltableau}
+    \item Voor de omgekeerde gevolgtrekking is dit een gesloten
+      !!{tableau} voor $\{\sFmla{\True}{!A},
+      \sFmla{\True}{!B}, \sFmla{\False}{!A \land !B}\}$:
+      \begin{oltableau}
+        [\sFmla{\False}{\formula{A} \land \formula{B}}, just = \TAss
+          [\sFmla{\True}{\formula{A}}, just = \TAss
+            [\sFmla{\True}{\formula{B}}, just=\TAss
+              [\sFmla{\False}{\formula{A}}, just = {\TRule{\False}{\land}[1]}, close]
+              [\sFmla{\False}{\formula{B}}, just = {\TRule{\False}{\land}[1]}, close]
+            ]
+          ]
+        ]
+      \end{oltableau}     
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lor}
+  \begin{enumerate}
+  \item De formules in $\{!A \lor !B, \lnot !A, \lnot !B\}$ zijn
+    samen inconsistent.
+  \item Er gelden twee gevolgtrekkingen: zowel
+    $!A \Proves !A \lor !B$ als $!B \Proves !A \lor !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Dit gesloten !!{tableau} laat het eerste punt zien voor
+    $\{\sFmla{\True}{!A \lor !B},
+    \sFmla{\True}{\lnot !A}, \sFmla{\True}{\lnot !B}\}$:
+    \begin{oltableau}
+      [\sFmla{\True}{\formula{A} \lor \formula{B}}, just = \TAss
+        [\sFmla{\True}{\lnot \formula{A}}, just = \TAss
+          [\sFmla{\True}{\lnot \formula{B}}, just = \TAss
+            [\sFmla{\False}{\formula{A}}, just = {\TRule{\True}{\lnot}[2]}
+              [\sFmla{\False}{\formula{B}}, just = {\TRule{\True}{\lnot}[3]}
+                [\sFmla{\True}{\formula{A}}, just = {\TRule{\True}{\lor}[1]}, close]
+                [\sFmla{\True}{\formula{B}}, just = {\TRule{\True}{\lor}[1]}, close]
+              ]
+            ]
+          ]
+        ]
+      ]
+    \end{oltableau}
+  \item Voor de twee gevolgtrekkingen hebben zowel
+    $\{\sFmla{\False}{!A \lor !B}, \sFmla{\True}{!A}\}$ als
+    $\{\sFmla{\False}{!A \lor !B}, \sFmla{\True}{!B}\}$ een gesloten
+    !!{tableau}:
+    \begin{oltableau}{}
+      [\sFmla{\False}{\formula{A} \lor \formula{B}}, just=\TAss
+        [\sFmla{\True}{\formula{A}}, just=\TAss
+          [\sFmla{\False{\formula{A}}},just={\TRule{\False}{\lor}[1]}
+            [\sFmla{\False{\formula{B}}},just={\TRule{\False}{\lor}[1]}, close
+            ]
+          ]
+        ]
+      ]
+    \end{oltableau}
+    \begin{oltableau}{}
+      [\sFmla{\False}{\formula{A} \lor \formula{B}}, just=\TAss
+        [\sFmla{\True}{\formula{B}}, just=\TAss
+          [\sFmla{\False{\formula{A}}},just={\TRule{\False}{\lor}[1]}
+            [\sFmla{\False{\formula{B}}},just={\TRule{\False}{\lor}[1]}, close
+            ]
+          ]
+        ]
+      ]
+    \end{oltableau}
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lif}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-lif-left}  Er geldt
+    $!A, !A \lif !B \Proves !B$.
+  \item \ollabel{prop:provability-lif-right}
+    Zowel $\lnot !A \Proves !A \lif !B$ als
+    $!B \Proves !A \lif !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Voor de eerste gevolgtrekking heeft
+      $\{\sFmla{\False}{!B}, \sFmla{\True}{!A \lif !B},
+      \sFmla{\True}{!A}\}$ een gesloten !!{tableau}:
+      \begin{oltableau}
+        [\sFmla{\False}{\formula{B}}, just=\TAss
+          [\sFmla{\True}{\formula{A} \lif \formula{B}}, just=\TAss
+            [\sFmla{\True}{\formula{A}}, just=\TAss
+              [\sFmla{\False}{\formula{A}}, just = {\TRule{\True}{\lif}[2]}, close]
+              [\sFmla{\True}{\formula{B}}, just = {\TRule{\True}{\lif}[2]}, close]
+            ]
+          ]
+        ]
+      \end{oltableau}
+    \item Voor de andere twee gevolgtrekkingen hebben zowel
+      $\{\sFmla{\False}{!A \lif !B},
+      \sFmla{\True}{\lnot !A}\}$ als $\{\sFmla{\False}{!A \lif !B},
+      \sFmla{\True}{!B}\}$ een gesloten !!{tableau}:
+      \begin{oltableau}
+        [\sFmla{\False}{\formula{A} \lif \formula{B}}, just = \TAss
+          [\sFmla{\True}{\lnot \formula{A}}, just = \TAss
+            [\sFmla{\True}{\formula{A}}, just = {\TRule{\False}{\lif}[1]}
+              [\sFmla{\False}{\formula{B}}, just = {\TRule{\False}{\lif}[1]}
+                [\sFmla{\False}{\formula{A}}, just = {\TRule{\True}{\lnot}[2]}, close]
+              ]
+            ]
+          ]
+        ]
+      \end{oltableau}
+      \begin{oltableau}
+        [\sFmla{\False}{\formula{A} \lif \formula{B}}, just = \TAss
+          [\sFmla{\True}{\formula{B}}, just = \TAss
+            [\sFmla{\True}{\formula{A}}, just = {\TRule{\False}{\lif}[1]}
+              [\sFmla{\False}{\formula{B}}, just = {\TRule{\False}{\lif}[1]},close
+              ]
+            ]
+          ]
+        ]
+      \end{oltableau}
+  \end{enumerate}
+\end{proof}
+
+\end{document}

@@ -1,0 +1,86 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: reflections
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{rel}{ref}
+\olsection{Even filosofisch nadenken}
+
+In \olref[set]{sec} hebben we relaties gedefinieerd als bepaalde
+verzamelingen. Laten we even stilstaan bij een filosofische vraag: wat
+\emph{doen} we eigenlijk wanneer we zo'n definitie geven? Het is maar
+de vraag of we daarmee willen zeggen dat we hebben \emph{ontdekt}
+dat bepaalde dingen in werkelijkheid precies hetzelfde zijn;
+bijvoorbeeld dat de ordeningsrelatie op $\Nat$ \emph{bleek} samen te
+vallen met de verzameling $R=
+\Setabs{\tuple{n,m}}{n, m \in \Nat\text{ en } n < m}$ die we in
+\olref[set]{sec} hebben gedefinieerd. Daar zijn drie
+redenen voor.
+
+Ten eerste: in \olref[set][pai]{wienerkuratowski} kozen we
+$\tuple{a, b} = \{\{a\}, \{a, b\}\}$ als definitie. Kijk nu naar de
+andere definitie $\lVert a, b\rVert = \{\{b\}, \{a, b\}\} =
+\tuple{b,a}$. Als $a \neq b$, dan is $\tuple{a, b} \neq \lVert
+a,b\rVert$. Maar we hadden $\lVert a,b\rVert$ net zo goed in plaats
+van $\tuple{a,b}$ kunnen gebruiken als definitie van een geordend paar.
+Beide keuzes hadden even goed gewerkt. We hebben dus twee
+verzamelingen die allebei even goed dienst kunnen doen als de
+ordeningsrelatie op de natuurlijke getallen:
+\begin{align*}
+		R &= \Setabs{\tuple{n,m}}{n, m \in \Nat \text{ en }n < m}\\
+		S &= \Setabs{\lVert n,m\rVert}{n, m \in \Nat \text{ en }n < m}.
+\end{align*}
+Volgens het extensionaliteitsbeginsel zijn verzamelingen gelijk als ze
+dezelfde elementen hebben. Omdat $R \neq S$, kunnen ze dus niet
+\emph{allebei} de ordeningsrelatie op~$\Nat$ zijn.
+Maar dan zou het zomaar een keuze zijn om te zeggen dat $R$ en niet $S$
+(of omgekeerd) de ordeningsrelatie \emph{is}. Dat zou nogal gênant
+zijn. (Dit is een heel eenvoudig voorbeeld van een argument tegen het
+idee dat je zulke wiskundige dingen volledig tot verzamelingen kunt
+terugbrengen. Het argument is door Benacerraf in
+\citeyear{Benacerraf1965} bekend geworden. We komen hier nog een paar
+keer op terug.)
+
+Ten tweede: stel dat \emph{elke} relatie een verzameling is. Dan moet
+ook de relatie ``is element van'', $\in$, zelf één bepaalde
+verzameling zijn. Dat zou de verzameling
+$\Setabs{\tuple{x,y}}{x \in y}$ moeten zijn. Maar bestaat die
+verzameling wel? Door de paradox van Russell kunnen we dat niet zomaar
+aannemen. Sterker nog,
+\oliflabeldef{cumul:::part}{de verzamelingenleer die we in
+\olref[cumul][][]{part} opbouwen, zal zeggen dat deze verzameling
+\emph{niet bestaat}.\footnote{We lopen even vooruit. Neem voor een
+bewijs uit het ongerijmde aan dat $I =
+\Setabs{\tuple{x,y}}{x \in y}$ bestaat. Dan is $\bigcup \bigcup I$ de
+universele verzameling, dus de verzameling van alle verzamelingen. Dat
+is in strijd met \olref[sfr][z][sep]{thm:NoUniversalSet}.}}{het mogelijk
+is de verzamelingenleer nauwkeurig op te bouwen met axioma's, en in die
+theorie bestaat deze verzameling inderdaad niet.}
+Dus ook als we sommige relaties als verzamelingen kunnen gebruiken,
+moeten we met de relatie ``is element van'' anders omgaan.
+
+Ten derde: toen we relaties met verzamelingen ``gelijkstelden'',
+spraken we af dat we $Rxy$ mochten schrijven voor $\tuple{x,y} \in R$.
+Dat werkt zolang we ``$\in$'' \emph{als} een predicaat gebruiken: als
+iets waarmee we zeggen dat het ene ding een element van het andere is.
+Maar stel dat ``$\in$'' zelf een verzameling aanduidt. Dan is de
+uitdrukking ``$\tuple{x,y} \in R$'' alleen een rij van drie losse
+uitdrukkingen die elk voor één verzameling staan: ``$\tuple{x,y}$'', ``$\in$''
+en ``$R$''. Met een rij namen kun je net zomin een uitspraak doen als
+met deze onzin: ``het kopje pennenhouder de tafel''. Ook hier moeten we
+dus anders omgaan met de relatie ``is element van'', zelfs als we
+sommige andere relaties wel als verzamelingen kunnen gebruiken. (Hier
+komen een eenvoudige versie van de paradox van Frege over het begrip
+\emph{paard} en een bekend bezwaar van Wittgenstein tegen Russell
+samen.)
+
+Wat volgt hier nu uit? Er is niets \emph{mis} met de uitspraak dat
+relaties tussen getallen verzamelingen zijn. We moeten alleen weten hoe
+die uitspraak bedoeld is. We zeggen niet dat we een feit hebben ontdekt
+over welke dingen in werkelijkheid één en hetzelfde zijn. We zeggen alleen dat
+we in sommige situaties bepaalde relaties als bepaalde verzamelingen
+kunnen en zullen \emph{behandelen}.
+\end{document}

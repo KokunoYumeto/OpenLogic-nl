@@ -1,0 +1,70 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: composition
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{fun}{cmp}
+\olsection{Samenstelling: functies na elkaar gebruiken}
+
+\begin{explain}
+\oliflabeldef{sfr:fun:inv:sec}{In \olref[inv]{sec} zagen we dat de
+inverse~$f^{-1}$ van !!a{bijection}~$f$ zelf ook een functie is. Nog
+een manier om functies te gebruiken is ze samen te stellen: w}{W}e
+kunnen uit twee functies, $f$ en~$g$, één nieuwe functie maken. We
+gebruiken eerst $f$ en daarna~$g$. Dat werkt alleen wanneer alle
+uitkomsten van de eerste functie geldige invoeren voor de tweede zijn.
+Anders gezegd: het beeld van~$f$ moet een deelverzameling zijn van het
+domein van~$g$.
+\oliflabeldef{sfr:rel:ops:sec}{Functies op deze manier samenstellen is
+vergelijkbaar met relaties samenstellen zoals beschreven in
+\olref[rel][ops]{sec}.}{}
+
+Een plaatje kan duidelijk maken wat er gebeurt. In
+\olref{fig:composition} staan twee functies, $f \colon A \to B$ en
+$g \colon B \to C$, en hun samenstelling~$(\comp{f}{g})$. De functie
+$(\comp{f}{g}) \colon A \to C$ koppelt elk !!{element} van~$A$ aan
+!!a{element} van~$C$. Zo bepalen we welk !!{element} van~$C$ bij
+!!a{element} van $A$ hoort. Neem een invoer $x \in A$. Gebruik eerst
+de functie $f$ voor~$x$; de uitkomst is $f(x) = y \in B$. Gebruik
+daarna de functie $g$ voor~$y$; de uitkomst is $g(f(x)) = g(y) = z
+\in C$.
+\begin{figure}
+  \olasset[2\olphotowidth]{assets/diagrams/composition.tikz}
+  \caption{De samenstelling $g \circ f$: eerst $f$ en daarna~$g$.}
+  \ollabel{fig:composition}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Samenstelling]
+Neem de functies $f\colon A \to B$ en $g\colon B \to C$. De
+\emph{samenstelling} van $f$ met~$g$ is $\comp{f}{g} \colon A \to C$.
+Voor elke invoer geldt $(\comp{f}{g})(x) = g(f(x))$.
+\end{defn}
+
+\begin{ex}
+Neem de functies $f(x) = x + 1$ en $g(x) = 2x$. Omdat
+$(\comp{f}{g})(x) = g(f(x))$, tel je bij elke invoer~$x$ eerst één op.
+Daarna verdubbel je de uitkomst. De samenstelling is dus
+$(\comp{f}{g})(x) = 2(x+1)$.
+\end{ex}
+
+\begin{prob}
+Bewijs dat als $f \colon A \to B$ en $g \colon B \to C$ allebei
+!!{injective} zijn---verschillende invoeren geven dus verschillende
+uitkomsten---ook $\comp{f}{g}\colon A \to C$ !!{injective} is.
+\end{prob}
+
+\begin{prob}
+Bewijs dat als $f \colon A \to B$ en $g \colon B \to C$ allebei
+!!{surjective} zijn---ze bereiken dus elk element van hun
+doelverzameling---ook $\comp{f}{g}\colon A \to C$ !!{surjective} is.
+\end{prob}
+
+\begin{prob}
+Neem $f \colon A \to B$ en $g \colon B \to C$. De grafiek van
+$\comp{f}{g}$ moet $R_f \mid R_g$ zijn. Laat dat zien.
+\end{prob}
+\end{document}

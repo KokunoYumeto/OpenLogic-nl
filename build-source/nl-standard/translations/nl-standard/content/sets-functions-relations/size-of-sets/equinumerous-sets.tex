@@ -1,0 +1,104 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: equinumerous-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{equ}
+
+\olsection{Gelijkmachtigheid}
+
+We hebben een intuïtief begrip van de ``grootte'' van verzamelingen, dat voor
+eindige verzamelingen goed werkt. Maar hoe zit het met oneindige verzamelingen?
+Voor een formele vergelijking van de grootte van twee verzamelingen van
+\emph{willekeurige} grootte kunnen we het best eerst vastleggen wanneer
+verzamelingen even groot zijn. Frege schrijft:
+\begin{quote}
+  Als een ober er zeker van wil zijn dat hij precies evenveel messen als
+  borden op tafel heeft gelegd, hoeft hij geen van beide te tellen. Hij kan
+  eenvoudig rechts van elk bord een mes leggen, waarbij elk mes op tafel
+  rechts van een bord ligt. De borden en messen zijn zo één-op-één aan elkaar
+  gekoppeld, en wel door diezelfde ruimtelijke betrekking. \citep[\S70]{Frege1884}
+\end{quote}
+Het inzicht uit deze passage kunnen we in een formele definitie vastleggen:
+
+\begin{defn}\ollabel{comparisondef}
+  $A$ is \emph{gelijkmachtig} met $B$, geschreven als $\cardeq{A}{B}$,
+  precies dan wanneer er !!a{bijection} $f \colon A \to B$ bestaat.
+\end{defn}
+
+\begin{prop}\ollabel{equinumerosityisequi}
+Gelijkmachtigheid is een equivalentierelatie.
+\end{prop}
+
+\begin{proof} 
+We moeten aantonen dat gelijkmachtigheid reflexief, symmetrisch en transitief
+is. Laat $A, B$ en $C$ verzamelingen zijn.
+
+\emph{Reflexiviteit.} De identiteitsfunctie $\Id{A} \colon A \to A$, met
+$\Id{A} (x) = x$ voor alle $x \in A$, is !!a{bijection}. Dus geldt
+$\cardeq{A}{A}$.
+
+\emph{Symmetrie.} Stel dat $\cardeq{A}{B}$, dus dat er !!a{bijection}
+$f\colon A \to B$ bestaat. Omdat $f$ !!{bijective} is, bestaat zijn inverse
+$f^{-1}$ en is deze eveneens !!{bijective}. Bijgevolg is
+$f^{-1}\colon B \to A$ !!a{bijection}, zodat $\cardeq{B}{A}$.
+
+\emph{Transitiviteit.} Stel dat $\cardeq{A}{B}$ en $\cardeq{B}{C}$, dus dat
+er !!{bijection}s $f\colon A \to B$ en $g\colon B \to C$ bestaan. Dan is de
+samenstelling $\comp{f}{g}\colon A \to C$ !!{bijective}, zodat
+$\cardeq{A}{C}$.
+\end{proof}
+
+\begin{prop}
+Als $\cardeq{A}{B}$, dan is $A$ precies dan !!{enumerable} als $B$ dat is.
+\end{prop}
+
+\begin{editorial}
+Het volgende bewijs gebruikt \olref[enm]{defn:enumerable} als
+\olref[enm]{sec} is opgenomen en anders \olref[enm-alt]{defn:enumerable}.
+\end{editorial}
+
+\begin{proof}
+Stel dat $\cardeq{A}{B}$. Er bestaat dan !!a{bijection} $f \colon A
+\to B$. Stel bovendien dat $A$ !!{enumerable} is.
+\oliflabeldef{sfr:siz:enm:defn:enumerable}{
+  Dan geldt $A = \emptyset$ of er bestaat een surjectieve functie
+  $g\colon \PosInt \to A$. Als $A = \emptyset$, dan is ook $B = \emptyset$
+  (anders zou er !!a{element}~$y \in B$ zijn, maar geen $x \in
+  A$ waarvoor $f(x) = y$). Als daarentegen $g\colon \PosInt \to A$
+  !!{surjective} is, dan is $\comp{g}{f} \colon \PosInt \to B$
+  !!{surjective}. Neem om dit te zien een willekeurige $y \in B$. Omdat $f$
+  !!{surjective} is, bestaat er een $x \in A$ waarvoor $f(x) = y$. Omdat
+  $g$ !!{surjective} is, bestaat er een $n \in \PosInt$ waarvoor $g(n) =
+  x$. Bijgevolg
+\[
+(\comp{g}{f})(n) = f(g(n)) = f(x) = y
+\]
+en dus is $\comp{g}{f}$ !!{surjective}. Daarmee is $\comp{g}{f}$ een
+opsomming van~$B$, zodat $B$~!!{enumerable} is.}
+{
+  Dan geldt $A = \emptyset$ of er bestaat !!a{bijection}~$g$ met bereik
+  $A$ en met als domein $\Nat$ of een beginstuk van de natuurlijke getallen. Als
+  $A = \emptyset$, dan is ook $B = \emptyset$ (anders zou er een~$y \in B$
+  zijn zonder $x \in A$ waarvoor $f(x) = y$). Neem dus aan dat we zo'n
+  !!{bijection}~$g$ hebben. Dan is $\comp{g}{f}$ !!a{bijection} met bereik
+  $B$ en hetzelfde domein als~$g$ (dus $\Nat$ of een beginstuk daarvan),
+  zodat $B$ !!{enumerable} is.}
+
+Als $B$ !!{enumerable} is, volgt op dezelfde manier dat $A$ !!{enumerable}
+is, nu met de !!{bijection} $f^{-1}\colon B \to A$ in plaats van~$f$.
+\end{proof}
+
+\begin{prob}
+Toon aan dat uit $\cardeq{A}{C}$, $\cardeq{B}{D}$ en $A \cap B =
+C \cap D = \emptyset$ volgt dat $\cardeq{A \cup B}{C \cup D}$.
+\end{prob}
+
+\begin{prob}
+Toon aan dat als $A$ oneindig en !!{enumerable} is, dan
+$\cardeq{A}{\Nat}$.
+\end{prob}
+\end{document}

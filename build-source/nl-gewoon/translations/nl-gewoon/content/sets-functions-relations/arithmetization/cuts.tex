@@ -1,0 +1,116 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: cuts
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{arith}{cuts}
+\olsection{Van $\Rat$ naar $\Real$}
+De volledigheidseigenschap zegt eigenlijk dat elk punt $\alpha$ op de
+getallenlijn die lijn netjes in twee helften verdeelt. De onderste
+helft heeft $\alpha$ als kleinste bovengrens; de bovenste helft heeft
+$\alpha$ als grootste ondergrens. Dedekind stelde voor om de reële
+getallen uit de rationale getallen te \emph{maken}. Een rationaal getal
+kun je schrijven als een breuk van gehele getallen, waarbij de noemer
+niet nul is. Dedekind zag een
+reëel getal als een \emph{snede} die de rationale getallen in tweeën
+deelt. Zo stellen we $\sqrt{2}$ gelijk aan de \emph{snede} tussen de
+rationale getallen $< \sqrt{2}$ en de rationale getallen $> \sqrt{2}$.
+Dat kunnen we nog wat preciezer opschrijven. Als we de rationale getallen in twee
+helften delen, is de \emph{onderste} helft genoeg om te weten welke
+verdeling we hebben gemaakt. Daarom gebruiken we de volgende definitie:
+\begin{defn}[Snede]
+Een \emph{snede} $\alpha$ is een deel van de rationale getallen dat
+niet leeg is en ook niet alle rationale getallen bevat. Als er een
+getal in zit, zitten alle kleinere rationale getallen er ook in. Er is
+geen grootste getal in de snede. Precies opgeschreven is $\alpha$ dus
+een snede als:
+\begin{enumerate}
+	\item \emph{er iets in zit, maar niet alles}: $\emptyset \neq \alpha \subsetneq \Rat$
+	\item \emph{alle kleinere getallen er ook in zitten}: voor alle $p,q \in \Rat$ geldt: als $p < q \in \alpha$, dan $p \in \alpha$
+	\item \emph{er geen grootste getal is}: voor elke $p \in \alpha$ is er een $q \in \alpha$ waarvoor $p < q$
+\end{enumerate}
+De verzameling $\Real$ bestaat dan uit alle sneden.
+\end{defn}
+We kunnen nu dus zeggen dat $\sqrt{2} = \Setabs{p \in \Rat}{p^2 < 2\text{ of }p < 0}$. We moeten nog wel controleren dat dit echt een
+\emph{snede} is. Dat doen we pas in \olref[check]{sec}.
+Nu we weten wat onze getallen zijn, moeten we vastleggen hoe de
+eenvoudige functies en relaties voor die getallen werken. We beginnen
+met deze regel:
+\begin{align*}
+	\alpha \leq \beta \text{ precies dan als }\alpha \subseteq \beta
+\end{align*}
+Met deze regel voor de volgorde kunnen we het belangrijkste resultaat
+\emph{formuleren}: de verzameling sneden heeft de
+volledigheidseigenschap. Dat betekent hier het volgende. Als $S$ een
+niet-lege verzameling sneden is
+en een bovengrens heeft, dan heeft $S$ ook een kleinste bovengrens.
+Volledig uitgeschreven: er is een snede $\lambda$ die een bovengrens
+van $S$ is, oftewel\ $(\forall \alpha \in S)\alpha \subseteq
+\lambda$. Bovendien is $\lambda$ de kleinste snede die dat doet,
+oftewel\ $(\forall \beta \in \Real)((\forall \alpha \in S)\alpha \subseteq \beta \lif \lambda \subseteq \beta)$. Dit
+is het bewijs:
+\begin{thm}\ollabel{realcompleteness}
+De verzameling sneden heeft de volledigheidseigenschap.
+\end{thm}
+\begin{proof}
+Neem een willekeurige niet-lege verzameling sneden $S$ met een
+bovengrens. Stel $\lambda = \bigcup S$.
+%\Setabs{p \in \Rat}{(\exists \alpha \in S)p \in \alpha}$$
+We laten eerst zien dat $\lambda$ een snede is:
+\begin{enumerate}
+\item $S$ is niet leeg. Daarom zit er minstens één snede in
+$S$, zodat $\emptyset \neq \lambda$. Alles wat in $S$ zit, is een snede,
+dus $\lambda \subseteq \Rat$. Omdat $S$ een bovengrens heeft, is er
+een rationaal getal $p \in \Rat$ dat in geen enkele snede $\alpha \in S$
+zit. Daarom
+is $p\notin \lambda$ en dus $\lambda \subsetneq \Rat$.
+\item Neem aan dat $p < q \in \lambda$. Dan is er een snede $\alpha \in S$
+waarvoor $q \in \alpha$. Omdat $\alpha$ een snede is, geldt
+$p \in \alpha$. Dus $p \in \lambda$.
+\item Neem aan dat $p \in \lambda$. Dan is er een snede $\alpha \in S$
+waarvoor $p \in \alpha$. Omdat $\alpha$ een snede is, is er een
+$q \in \alpha$ waarvoor $p < q$. Dus $q \in \lambda$.
+\end{enumerate}
+Daarmee is de bewering bewezen. Verder is het duidelijk dat $(\forall \alpha \in S)\alpha
+\subseteq \bigcup S = \lambda$, oftewel\ $\lambda$ is een bovengrens van $S$. Neem nu aan dat $\beta \in \mathbb{R}$ ook een bovengrens is, oftewel\ $(\forall \alpha \in S)\alpha \subseteq \beta$. Kies een willekeurige $p \in \Rat$. Als $p \in \lambda$, dan is er een $\alpha \in S$ met $p \in \alpha$, en dus geldt ook $p \in \beta$. Dit geldt voor elk rationaal getal, zodat $\lambda \subseteq \beta$. Daarom is $\lambda$ de \emph{kleinste} bovengrens van $S$.
+\end{proof}
+We hebben nu dus sneden die aan de volledigheidseigenschap voldoen.
+Je kunt dat ook zo zeggen: er zitten geen “gaten” tussen onze sneden.
+(Als we nog eens “sneden” zouden maken, maar nu in de reële getallen
+in plaats van de rationale, zouden daar geen interessante nieuwe
+dingen uit komen.)
+Nu moeten we vastleggen hoe de bewerkingen op de reële getallen werken.
+Eerst nemen we de rationale getallen op in de reële getallen. We
+spreken af dat $p_\Real = \Setabs{q \in \Rat}{q < p}$ voor elke
+$p \in \Rat$. Daarna definiëren we:
+\begin{align*}
+	\alpha + \beta &= \Setabs{p + q}{p \in \alpha \land q \in \beta}\\
+%	\alpha - \beta &\defis \Setabs{p - q}{p \in \alpha \land q \in \Rat \setminus \beta}\\
+	\alpha \times \beta &=
+	\Setabs{p \times q}{0 \leq p \in \alpha \land 0 \leq q \in \beta} \cup 0_\Real & \text{als }\alpha, \beta \geq 0_\Real
+%	\alpha \div \beta &\defis
+%	\Setabs{\nicefrac{p}{q}}{p \in \alpha \land q \in \Rat \setminus \beta}  & \text{if }\alpha \geq 0_\Real, \beta > 0_\Real
+\end{align*}
+Verder spreken we voor elk reëel getal af dat nul maal dat getal nul
+is en dat het getal maal nul ook nul is. Voor de andere gevallen van
+vermenigvuldiging spreken we eerst het volgende af:
+\begin{align*}
+	-\alpha &= \Setabs{p - q}{p < 0 \land q \notin \alpha}
+\end{align*}
+Daarna spreken we af:
+\begin{align*}
+	\alpha \times \beta &\defis
+	\begin{cases}
+		\mathord{-}\alpha \times \mathord{-}\beta &\text{als }\alpha < 0_\Real\text{ en }\beta < 0_\Real\\
+		\mathord{-}(\mathord{-}\alpha \times \beta) &\text{als }\alpha < 0_\Real \text{ en }\beta > 0_\Real\\
+		\mathord{-}(\alpha \times \mathord{-}\beta) &\text{als }\alpha > 0_\Real \text{ en }\beta < 0_\Real
+	\end{cases}
+\end{align*}
+We moeten nog controleren dat elk van deze regels altijd een snede
+oplevert. Daarna moeten we laten zien dat de zo gemaakte sneden precies
+doen wat ze horen te doen. Dat is niet moeilijk, maar het bewijs is wel
+lang. Ook dit behandelen we in \olref[check]{sec}.
+\end{document}

@@ -1,0 +1,150 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: formation-sequences
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{pl}{syn}{fseq}
+
+\olsection{Vormingsrijen}
+
+Het definiëren van !!{formula}s met een inductieve definitie en de
+aanvullende techniek om eigenschappen van !!{formula}s door inductie te
+bewijzen, vormen een elegante en efficiënte benadering. Het kan echter
+ook nuttig zijn om de constructie van !!{formula}s van onderaf en stap
+voor stap te beschouwen. Dat doen we hier met het begrip
+\emph{vormingsrij}.
+
+\begin{defn}[Vormingsrijen voor formules]
+\ollabel{defn:fseq-frm}
+Een eindige rij $\tuple{!A_0,\dotsc,!A_n}$ van tekenreeksen uit de
+taal~$\Lang L_0$ is een \emph{vormingsrij} voor $!A$ als
+$!A \ident !A_n$ en voor alle $i \leq n$ geldt: $!A_i$ is een
+atomaire formule, of er bestaan $j,k < i$ waarvoor een van de volgende
+gevallen geldt:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A_i \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A_i \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A_i \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A_i \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A_i \ident (!A_j \liff !A_k)$.}{}%
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+\[
+\tuple{
+    \Obj p_0,
+    \Obj p_1,
+    (\Obj p_1 \land \Obj p_0),
+    \lnot (\Obj p_1 \land \Obj p_0)
+}
+\]
+is een vormingsrij van
+$\lnot (\Obj p_1 \land \Obj p_0)$, evenals
+\[
+\tuple{
+    \Obj p_0,
+    \Obj p_1,
+    \Obj p_0,
+    (\Obj p_1 \land \Obj p_0),
+    (\Obj p_0 \lif \Obj p_1),
+    \lnot (\Obj p_1 \land \Obj p_0)
+}.
+\]
+%
+Zoals uit het tweede voorbeeld blijkt, mogen vormingsrijen ``rommel''
+bevatten: formules die overbodig zijn of niet aan de constructie
+bijdragen.
+\end{ex}
+
+\begin{prop}
+\ollabel{prop:formed}
+Elke !!{formula}~$!A$ in~$\Frm[L_0]$ heeft een vormingsrij.
+\end{prop}
+
+\begin{proof}
+Stel dat $!A$ atomair is. Dan is de rij~$\tuple{!A}$ een vormingsrij
+voor~$!A$.
+%
+Stel nu dat $!B$ en~$!C$ respectievelijk de vormingsrijen
+$\tuple{!B_0,\dotsc,!B_n}$ en $\tuple{!C_0,\dotsc,!C_m}$ hebben.
+%
+\begin{enumerate}
+  \tagitem{prvNot}{Als $!A \ident \lnot !B$, dan is
+      $\tuple{!B_0,\dotsc,!B_n,\lnot !B_n}$
+      een vormingsrij voor~$!A$.}{}
+  \tagitem{prvAnd}{Als $!A \ident (!B \land !C)$, dan is
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \land !C_m)}$
+      een vormingsrij voor~$!A$.}{}
+  \tagitem{prvOr}{Als $!A \ident (!B \lor !C)$, dan is
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lor !C_m)}$
+      een vormingsrij voor~$!A$.}{}
+  \tagitem{prvIf}{Als $!A \ident (!B \lif !C)$, dan is
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lif !C_m)}$
+      een vormingsrij voor~$!A$.}{}
+  \tagitem{prvIff}{Als $!A \ident (!B \liff !C)$, dan is
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \liff !C_m)}$
+      een vormingsrij voor~$!A$.}{}
+\end{enumerate}
+Volgens het inductieprincipe voor !!{formula}s heeft elke !!{formula}
+een vormingsrij.
+\end{proof}
+
+We kunnen ook het omgekeerde bewijzen. Dit is belangrijk, omdat het
+aantoont dat onze twee definities van formules equivalent zijn: zij
+leveren dezelfde resultaten op. Het betekent ook dat we stellingen
+over formules kunnen bewijzen door gewone inductie naar de lengte van
+vormingsrijen.
+
+\begin{lem}
+\ollabel{lem:fseq-init}
+Stel dat $\tuple{!A_0,\dotsc,!A_n}$ een vormingsrij voor~$!A_n$ is en
+dat $k \leq n$. Dan is $\tuple{!A_0,\dotsc,!A_k}$ een vormingsrij
+voor~$!A_k$.
+\end{lem}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\begin{thm}
+\ollabel{thm:fseq-frm-equiv}
+$\Frm[L_0]$ is de verzameling van alle tekenreeksen in de
+taal~$\Lang L_0$ die een vormingsrij hebben.
+\end{thm}
+
+\begin{proof}
+Zij $F$ de verzameling van alle tekenreeksen in de taal~$\Lang L_0$
+die een vormingsrij hebben. In \olref[pl][syn][fseq]{prop:formed}
+hebben we gezien dat $\Frm[L_0] \subseteq F$. We bewijzen nu de
+omgekeerde inclusie.
+
+Stel dat $!A$ een vormingsrij $\tuple{!A_0,\dotsc,!A_n}$ heeft. We
+bewijzen dat $!A \in \Frm[L_0]$ met sterke inductie naar~$n$. Onze
+inductiehypothese luidt dat elke tekenreeks met een vormingsrij waarvan
+de laatste index $m < n$ is, tot~$\Frm[L_0]$ behoort. Volgens de
+definitie van een vormingsrij is $!A_n$ atomair, of er bestaan
+$j,k < n$ waarvoor een van de volgende gevallen geldt:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A_n \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A_n \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A_n \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A_n \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A_n \ident (!A_j \liff !A_k)$.}{}%
+\end{enumerate}
+We onderscheiden nu gevallen. Als $!A_n$ atomair is, dan is
+$!A_n \in \Frm[L_0]$. Stel daarentegen dat $!A \ident
+(!A_j \land !A_k)$. Volgens \olref[pl][syn][fseq]{lem:fseq-init} zijn
+$\tuple{!A_0,\dotsc,!A_j}$ en $\tuple{!A_0,\dotsc,!A_k}$ vormingsrijen
+voor respectievelijk $!A_j$ en~$!A_k$. Omdat het echte beginstukken
+van de vormingsrij voor~$!A$ zijn, zijn hun laatste indices kleiner
+dan~$n$. Volgens de inductiehypothese behoren $!A_j$ en~$!A_k$ dus
+  tot~$\Frm[L_0]$. Uit de definitie van !!a{formula} volgt dan dat dit
+  dus ook voor $(!A_j \land !A_k)$ geldt. De overige gevallen
+volgen uit analoge redeneringen.
+\end{proof}
+
+\end{document}

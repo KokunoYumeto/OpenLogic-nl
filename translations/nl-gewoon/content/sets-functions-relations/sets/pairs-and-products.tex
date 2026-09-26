@@ -1,0 +1,137 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: pairs-and-products
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{set}{pai}
+\olsection{Paren, geordende rijtjes en cartesische producten}
+
+\begin{explain}
+Uit extensionaliteit volgt dat een verzameling niet bijhoudt in welke
+volgorde haar elementen staan. Als die volgorde wel meetelt, gebruiken
+we daarom \emph{geordende paren} $\tuple{x, y}$. Bij een ongeordend
+paar $\{x, y\}$ maakt de volgorde niets uit: $\{x, y\} = \{y, x\}$.
+Bij een geordend paar maakt de volgorde wel uit: als $x \neq y$, dan
+$\tuple{x, y} \neq \tuple{y, x}$.
+
+Wat moet een geordend paar in de verzamelingenleer precies vastleggen?
+Twee geordende paren moeten precies gelijk zijn wanneer hun eerste
+elementen gelijk zijn én hun tweede elementen gelijk zijn:
+\[
+  \tuple{a, b}= \tuple{c, d}\text{ precies wanneer }a = c \text{ en }b=d.
+\]
+Met de definitie van Wiener--Kuratowski kunnen we zulke paren uit
+verzamelingen opbouwen.
+\end{explain}
+
+\begin{defn}[Geordend paar]\ollabel{wienerkuratowski}
+	$\tuple{a, b} = \{\{a\}, \{a, b\}\}$.
+\end{defn}
+
+\begin{prob}
+	Gebruik \olref[sfr][set][pai]{wienerkuratowski} om te bewijzen dat
+	$\tuple{a, b}= \tuple{c, d}$ precies wanneer $a = c$ en $b=d$.
+\end{prob}
+
+\begin{explain}
+Met deze definitie kunnen we ook andere verzamelingen maken. Soms
+willen we meer dan twee dingen in een vaste volgorde zetten. Dan
+krijgen we bijvoorbeeld \emph{drietallen} $\tuple{x, y, z}$,
+\emph{viertallen} $\tuple{x, y, z, u}$, enzovoort. Een drietal kunnen
+we zien als een bijzonder geordend paar: het eerste element is zelf
+een geordend paar. Zo is $\tuple{x, y, z}$ hetzelfde als
+$\tuple{\tuple{x, y},z}$. Bij viertallen doen we hetzelfde:
+$\tuple{x,y,z,u}$ is $\tuple{\tuple{\tuple{x,y},z},u}$, enzovoort.
+Zo'n geordend rijtje heet in het algemeen een
+\emph{geordend $n$-tal} $\tuple{x_1, \dots, x_n}$.
+
+We zullen verzamelingen van zulke geordende paren of geordende $n$-tallen later
+nodig hebben.
+\end{explain}
+
+\begin{defn}[Cartesisch product]
+Neem verzamelingen $A$ en $B$. Hun \emph{cartesisch product} $A
+\times B$ is de verzameling van alle geordende paren waarvan het eerste
+element in de eerste verzameling zit en het tweede in de tweede:
+\[
+  A \times B = \Setabs{\tuple{x, y}}{x \in A \text{ en } y \in B}.
+\]
+\end{defn}
+
+\begin{ex}
+Als $A = \{0, 1\}$ en $B = \{1, a, b\}$, dan bestaat hun product uit
+\[
+A \times B = \{ \tuple{0, 1}, \tuple{0, a}, \tuple{0, b},
+    \tuple{1, 1}, \tuple{1, a}, \tuple{1, b} \}.
+\]
+\end{ex}
+
+\begin{ex}
+Neem een verzameling $A$. Het product van $A$ met zichzelf is $A
+\times A$; we schrijven dit ook als~$A^2$. Het bevat \emph{alle}
+paren $\tuple{x, y}$ waarvoor $x, y \in A$. De verzameling van alle
+drietallen $\tuple{x, y, z}$ is $A^3$, enzovoort. Deze afspraak kunnen
+we stap voor stap vastleggen:
+\begin{align*}
+  A^1 & = A\\
+  A^{k+1} & = A^k \times A
+\end{align*}
+\end{ex}
+
+\begin{prob}
+Schrijf alle !!{element}s van $\{1, 2, 3\}^3$ op.
+\end{prob}
+
+\begin{prop}\ollabel{cardnmprod}
+Heeft $A$ precies $n$ !!{element}s en $B$ precies $m$ !!{element}s,
+dan heeft $A \times B$ precies $n\cdot m$ elementen.
+\end{prop}
+
+\begin{proof}
+Neem een !!{element}~$x$ van~$A$. Er zijn dan $m$ !!{element}s van de
+vorm $\tuple{x, y} \in A \times B$. Schrijf $B_x =
+\Setabs{\tuple{x, y}}{y \in B}$. Als $x_1 \neq x_2$, verschilt elk
+paar uit de ene zo gevormde verzameling van elk paar uit de andere; in het bijzonder geldt
+$\tuple{x_1, y} \neq \tuple{x_2, y}$. Daarom is $B_{x_1} \cap B_{x_2}
+= \emptyset$. Als $A = \{x_1, \dots, x_n\}$, dan is $A \times B =
+B_{x_1} \cup \dots \cup B_{x_n}$. Deze losse verzamelingen hebben
+samen dus $n\cdot m$ !!{element}s.
+
+Je kunt dit zien door de !!{element}s van~$A \times B$ in een rooster
+te zetten:
+\[
+\begin{array}{rcccc}
+  B_{x_1} = & \{\tuple{x_1, y_1} & \tuple{x_1, y_2} & \dots & \tuple{x_1, y_m}\}\\
+  B_{x_2} = & \{\tuple{x_2, y_1} & \tuple{x_2, y_2} & \dots & \tuple{x_2, y_m}\}\\
+  \vdots & & \vdots\\
+  B_{x_n} = & \{\tuple{x_n, y_1} & \tuple{x_n, y_2} & \dots & \tuple{x_n, y_m}\}
+\end{array}
+\]
+Alle $x_i$ zijn verschillend en alle $y_j$ zijn verschillend. Daarom
+zijn geen twee paren in dit rooster gelijk. In totaal zijn het
+$n\cdot m$ paren.
+\end{proof}
+
+\begin{prob}
+Bewijs met inductie naar~$k$ dat het volgende geldt voor elke $k \ge
+1$: als $A$ precies $n$ !!{element}s heeft, dan heeft $A^k$ precies
+$n^k$ !!{element}s.
+\end{prob}
+
+\begin{ex}
+Als $A$ een verzameling is, is een \emph{woord} over~$A$ elk rijtje
+!!{element}s van~$A$. Zo'n rijtje kun je zien als een geordend $n$-tal met
+!!{element}s van~$A$. Is bijvoorbeeld $A = \{a, b, c\}$, dan kun je
+het rijtje ‘$bac$’ zien als het drietal~$\tuple{b, a, c}$. In de
+informatica zijn woorden, dus rijtjes symbolen, heel belangrijk. We
+spreken af dat één !!{element} van~$A$ een rijtje van lengte~$1$ is,
+en dat $\emptyset$ het rijtje van lengte~$0$ is. De verzameling met
+\emph{alle} woorden over~$A$ is dan
+\[
+A^* = \{\emptyset\} \cup A \cup A^2 \cup A^3 \cup \dots
+\]
+\end{ex}
+\end{document}

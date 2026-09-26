@@ -1,0 +1,118 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: pairing
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{pai}
+\olsection{Paarfuncties en codes}
+
+\begin{explain}
+Cantors zigzagmethode maakt zichtbaar dat $\Nat^n$ kan worden opgesomd. Laten
+we ons echter richten op de tabel die $\Nat^2$ voorstelt. Als we de
+zigzaglijn in de tabel volgen en de posities tellen, zien we dat
+$\tuple{1,2}$ aan het getal~$7$ wordt gekoppeld. Het zou echter handig
+zijn dit rechtstreeks te kunnen berekenen. We willen dus de
+\emph{inverse} van de zigzagopsomming bij de hand hebben,
+$g\colon \Nat^2 \to \Nat$, waarvoor geldt
+\[
+g(\tuple{0,0}) = 0, \;
+g(\tuple{0,1}) = 1, \;
+g(\tuple{1,0}) = 2, \; \dots,  
+g(\tuple{1,2}) = 7, \; \dots
+\]
+Daarmee kunnen we precies berekenen op welke plaats $\tuple{n, m}$ in
+onze opsomming voorkomt.
+
+In feite kunnen we $g$ rechtstreeks definiëren. Daarvoor gebruiken we
+twee feiten. Ten eerste: als de kolomindex positief is en op het
+snijpunt van de $n$-de rij en de $m$-de kolom de waarde~$v$ staat, dan
+staat op het snijpunt van de
+$(n+1)$-ste rij en de $(m-1)$-ste kolom de waarde $v + 1$. Ten tweede
+bestaat de eerste rij van onze opsomming uit de driehoeksgetallen,
+beginnend met $0$, $1$, $3$, $6$, enzovoort. Het $k$-de
+driehoeksgetal is de som van de natuurlijke getallen tot en met $k$; die som kan
+worden berekend als $k(k+1)/2$. Deze twee feiten geven de functie
+\[
+  g(n,m) = \frac{(n+m+1)(n+m)}{2} + n
+\]
+Meestal schrijven we $g(n, m)$ in plaats van $g(\tuple{n, m})$, omdat
+dat prettiger leest. De formule zegt dat we eerst het
+$(n+m)^\text{de}$ driehoeksgetal bepalen en daar vervolgens $n$ bij
+optellen. Deze formule vult de tabel precies op de gewenste manier. In het
+bijzonder wordt het paar $\tuple{1, 2}$ afgebeeld op $\frac{4 \times 3}{2} +
+1 = 7$.
+
+Deze functie $g$ is de \emph{inverse} van een opsomming van een
+verzameling paren. Zulke functies heten \emph{paarfuncties}.
+\end{explain}
+
+\begin{defn}[Paarfunctie]
+  Een functie $f\colon A \times B \to \Nat$ is een rekenkundige
+  \emph{paarfunctie} als $f$ injectief is. We zeggen ook: $f$
+  \emph{codeert} $A \times B$, en $f(x,y)$ is de
+  \emph{code} van $\tuple{x,y}$.
+\end{defn}
+
+\begin{explain}
+Met paarfuncties kunnen we bijvoorbeeld paren van natuurlijke getallen
+coderen. Anders gezegd: we kunnen elk \emph{paar} elementen door
+\emph{één} getal voorstellen. Met de inverse van de paarfunctie
+kunnen we het getal \emph{decoderen}, dat wil zeggen: bepalen welk paar
+het voorstelt.
+\end{explain}
+
+\begin{prob}
+Geef een opsomming van de verzameling van alle niet-negatieve rationale
+getallen.
+\end{prob}
+
+\begin{prob}
+Toon aan dat $\Rat$ !!{enumerable} is. Bedenk dat elk rationaal getal
+kan worden geschreven als een breuk $z/m$ met $z \in \Int$, $m \in \Nat^+$.
+\end{prob}
+
+\begin{prob}
+Definieer een opsomming van $\Bin^*$.
+\end{prob}
+
+\begin{prob}
+Uit de inleidende cursus logica weten we dat elke mogelijke waarheidstafel een
+waarheidsfunctie weergeeft. De waarheidsfuncties zijn dus precies alle functies
+$\Bin^k \to \Bin$ voor een zekere~$k$. Bewijs dat de verzameling van alle
+waarheidsfuncties kan worden opgesomd.
+\end{prob}
+
+\begin{prob}
+Toon aan dat de verzameling van alle eindige deelverzamelingen van een
+willekeurige oneindige !!{enumerable} verzameling !!{enumerable} is.
+\end{prob}
+
+\begin{prob}
+Een deelverzameling van $\Nat$ heet \emph{co-eindig} dan en slechts dan
+als zij in $\Nat$ het complement van een eindige verzameling is; dus
+is $A \subseteq \Nat$ co-eindig dan en slechts dan als
+$\Nat\setminus A$ eindig is. Laat $I$ de verzameling zijn waarvan de
+!!{element}s precies de eindige en co-eindige deelverzamelingen van
+$\Nat$ zijn. Toon aan dat $I$ !!{enumerable} is.
+\end{prob}
+
+\begin{prob}
+Toon aan dat een !!{enumerable} vereniging van !!{enumerable}
+verzamelingen !!{enumerable} is. Dus: als $A_1$, $A_2$, \dots{}
+verzamelingen zijn en elke $A_i$ !!{enumerable} is, dan is ook hun
+vereniging $\bigcup_{i=1}^\infty A_i$ !!{enumerable}. [NB: dit is
+moeilijk!]
+\end{prob}
+
+\begin{prob}
+Laat $f \colon A \times B \to \Nat$ een willekeurige paarfunctie zijn.
+Toon aan dat de inverse van $f$ een opsomming van $A \times B$ is.
+\end{prob}
+
+\begin{prob}
+Geef een functie die $\Nat^3$ codeert.
+\end{prob}
+\end{document}

@@ -1,0 +1,107 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: From N to Z
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid{sfr}{arith}{int}
+\olsection{Van $\Nat$ naar $\Int$}
+We beginnen met twee eenvoudige observaties:
+	\begin{enumerate}
+		\item Elk geheel getal kan worden geschreven als $n - m$, waarbij $n, m \in\Nat$.
+		\item De informatie in een uitdrukking $n - m$ kan evengoed worden vastgelegd met een geordend paar $\tuple{n, m}$.
+	\end{enumerate}
+We weten al dat de geordende paren van natuurlijke getallen de !!{element}s
+van $\Nat^2$ zijn. Bovendien nemen we aan dat we $\Nat$ begrijpen. De
+twee observaties leiden daarom tot een na\"{i}ef voorstel: \emph{vat
+gehele getallen op als geordende paren van natuurlijke getallen}.
+Dit voorstel is echter te na\"{i}ef. We willen uiteraard dat $0- 2 = 4
+- 6$, maar $\tuple{0, 2 }\neq \tuple{4, 6}$. We kunnen $\Nat^2$ dus
+niet zonder meer de verzameling gehele getallen noemen.
+Als we het probleem uit dit voorbeeld veralgemenen, willen we het volgende:
+	$$a - b = c - d \text{ precies dan als }a + d = c + b$$
+(Dat dit de \emph{bedoelde} werking is, ligt voor de hand: tel aan beide
+kanten $b$ en $d$ op.) De eenvoudigste manier om dit gedrag te
+garanderen is de equivalentierelatie $\Intequiv$ tussen geordende paren
+als volgt te definiëren:
+$$\tuple{ a, b } \Intequiv \tuple{c, d}\text{ precies dan als }a + d = c + b$$
+We moeten nu aantonen dat dit een equivalentierelatie is.
+\begin{prop} $\Intequiv$ is een equivalentierelatie.
+\end{prop}
+	\begin{proof}
+	We moeten aantonen dat $\Intequiv$ reflexief, symmetrisch en transitief is.
+	\emph{Reflexiviteit:} Het is duidelijk dat $\tuple{a, b} \Intequiv \tuple{a, b}$,
+	want $a + b = b + a$.
+	\emph{Symmetrie:} Stel dat $\tuple{a, b} \Intequiv \tuple{c, d}$,
+	zodat $a + d = c + b$. Dan is $c + b = a + d$, en dus
+	$\tuple{c, d} \Intequiv \tuple{a, b}$.
+	\emph{Transitiviteit:} Stel dat $\tuple{a, b} \Intequiv \tuple{c,
+	d}\Intequiv \tuple{m, n}$. Dan is $a + d = c + b$ en $c + n = m +
+	d$. Bijgevolg is $a + d + c + n = c + b + m + d$, en dus $a + n =
+	m + b$. Hieruit volgt $\tuple{a, b } \Intequiv \tuple{m, n}$.
+\end{proof}
+Met deze equivalentierelatie kunnen we nu equivalentieklassen vormen:
+\begin{defn}
+		De gehele getallen zijn de equivalentieklassen van geordende paren
+		van natuurlijke getallen onder $\Intequiv$; dus $\Int =
+		\equivclass{\Nat^2}{\Intequiv}$.
+\end{defn}
+Men kan op uiteenlopende manieren \emph{filosofisch} reageren op deze
+stipulatieve definitie. Voordat we die reacties bespreken, is het echter
+nuttig eerst enkele technische details uit te werken.
+Nu we hebben bepaald wat de gehele getallen zijn, moeten we de elementaire
+functies en relaties daarop definiëren. We schrijven
+$\equivrep{m, n}{\Intequiv}$ voor de equivalentieklasse onder
+$\Intequiv$ die $\tuple{m, n}$ als !!a{element} bevat.\footnote{Met de
+in \olref[sfr][rel][eqv]{def:equivalenceclass} ingevoerde notatie
+zouden we hiervoor $\equivrep{\tuple{m,n}}{\Intequiv}$ hebben
+geschreven. Dat is echter iets moeilijker leesbaar.} Dus:
+	$$\equivrep{m, n}{\Intequiv} = \Setabs{\tuple{a, b} \in \Nat^2}{\tuple{a, b}\Intequiv \tuple{m, n}}$$
+We definiëren nu:
+	\begin{align*}
+		\equivrep{a, b}{\Intequiv} + \equivrep{c, d}{\Intequiv} &= \equivrep{a + c, b + d}{\Intequiv}\\
+		\equivrep{a, b}{\Intequiv} \times \equivrep{c, d}{\Intequiv} &= \equivrep{a c + b  d, a  d + b c}{\Intequiv}\\
+		\equivrep{a, b}{\Intequiv} \leq \equivrep{c, d}{\Intequiv} &\text{ precies dan als }a + d \leq b + c
+	\end{align*}	
+(Zoals gebruikelijk schrijf ik `$ab$' voor `$(a \times b)$', zodat de
+axioma's gemakkelijker leesbaar zijn.) We moeten nu nagaan of deze
+definities naar behoren \emph{werken}. Het
+is tamelijk omslachtig om dit volledig te formuleren en te controleren;
+de details staan in \olref[check]{sec}. De kern is dat alles werkt.
+Er rest nog één punt. We hebben de gehele getallen met behulp van
+natuurlijke getallen geconstrueerd. Dit betekent echter dat de
+natuurlijke getallen \emph{zelf geen gehele getallen zijn}. Op de
+filosofische betekenis hiervan komen we terug in \olref[ref]{sec}.
+Technisch hebben we een manier nodig om natuurlijke getallen
+\emph{als} gehele getallen te behandelen. De oplossing is eenvoudig:
+voor elke $n \in \Nat$ spreken we af dat $n_\Int =
+\equivrep{n, 0}{\Intequiv}$. We
+moeten controleren of deze afspraak goed werkt, dat wil
+zeggen dat voor alle $m, n \in \Nat$ geldt:
+\begin{align*}
+	(m + n)_\Int &= m_\Int + n_\Int\\
+	(m \times n)_\Int &= m_\Int \times n_\Int\\
+	m \leq n &\liff m_\Int \leq n_\Int
+\end{align*}
+Dit is vrij eenvoudig na te gaan. Voor de tweede gelijkheid
+kunnen we bijvoorbeeld de eigenschappen van de natuurlijke getallen
+gebruiken en als volgt redeneren:
+%\begin{proof}
+%	Met de eigenschappen van de natuurlijke getallen is duidelijk:
+	\begin{align*}
+%		(m + n)_\Int  = \equivrep{m + n, 0}{\Intequiv} = \equivrep{m + n, 0 + 0}{\Intequiv} = \equivrep{m, 0}{\Intequiv} + \equivrep{n, 0}{\Intequiv} = m_\Int + n_\Int\\
+		(m \times n)_\Int  &= \equivrep{m \times n, 0}{\Intequiv} \\
+		&= \equivrep{m \times n + 0 \times 0, m \times 0 + 0 \times n}{\Intequiv} \\
+		&= \equivrep{m, 0}{\Intequiv} \times \equivrep{n, 0}{\Intequiv} \\
+		&= m_\Int \times n_\Int
+	\end{align*}
+%\end{proof}
+De controle van de overige twee voorwaarden laten we als oefening.
+\begin{prob}
+	Toon aan dat $(m + n)_\Int = m_\Int + n_\Int$ en $m \leq n \liff
+	m_\Int \leq n_\Int$ voor alle $m, n \in \Nat$.
+\end{prob}
+\end{document}

@@ -1,0 +1,57 @@
+% Part: first-order-logic
+% Chapter: axiomatic-proofs
+% Section: identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{axd}{ide}
+
+\olsection{\usetoken{P}{derivation} met \usetoken{S}{identity}}
+
+Om $\eq$ in !!{derivation}s te behandelen, voegen we eenvoudig nieuwe
+axiomaschema's toe. De definitie van !!{derivation} en $\Proves$ blijft
+ongewijzigd; we staan slechts ook de nieuwe axioma's toe.
+
+\begin{defn}[Axioma's voor !!{identity}]
+\begin{align}
+\ollabel{ax:id1} & \eq[t][t], \\
+\ollabel{ax:id2} & \eq[t_1][t_2] \lif (!B(t_1) \lif
+  !B(t_2)),
+\end{align}
+voor willekeurige gesloten termen $t$, $t_1$, $t_2$.
+\end{defn}
+
+\begin{prop}\ollabel{prop:sound}
+  De axioma's \olref{ax:id1} en \olref{ax:id2} zijn geldig.
+\end{prop}
+
+\begin{proof}
+  Oefening.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[fol][axd][ide]{prop:sound}.
+\end{prob}
+
+\begin{prop}\ollabel{prop:iden1}
+ $\Gamma \Proves \eq[t][t]$, voor elke term $t$ en
+ verzameling~$\Gamma$.
+\end{prop}
+
+\begin{prop}\ollabel{prop:iden2}
+  Als $\Gamma \Proves !A(t_1)$ en $\Gamma \Proves
+  \eq[t_1][t_2]$, dan geldt $\Gamma \Proves !A(t_2)$.
+\end{prop}
+
+\begin{proof}
+De !!{formula}
+\[
+(\eq[t_1][t_2] \lif (!A(t_1) \lif !A(t_2)))
+\]
+is een instantie van~\olref{ax:id2}. De conclusie volgt door
+\MP{} tweemaal toe te passen.
+\end{proof}
+
+\end{document}

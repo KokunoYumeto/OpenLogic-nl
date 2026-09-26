@@ -1,0 +1,49 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: soundness-identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{seq}{sid}
+
+\olsection{Correctheid met \usetoken{S}{identity}}
+
+\begin{prop}
+$\Log{LK}$ blijft correct wanneer we beginsequenten en regels voor
+identiteit, dus gelijkheid, toevoegen.
+\end{prop}
+
+\begin{proof}
+Beginsequenten van de vorm ${} \Sequent \eq[t][t]$ zijn geldig. De
+reden is dat voor elke !!{structure}~$\Struct M$ geldt
+$\Sat{M}{\eq[t][t]}$. We nemen hierbij aan dat de term $t$ gesloten is:
+hij bevat geen variabelen. Een toekenning van objecten aan variabelen
+maakt daarom geen verschil.
+
+Stel nu dat de laatste afleidingsstap in !!a{derivation} een $=$-regel
+is. De premisse is $\eq[t_1][t_2], \Gamma \Sequent \Delta, !A(t_1)$;
+de conclusie is $\eq[t_1][t_2], \Gamma \Sequent \Delta, !A(t_2)$.
+Beschouw !!a{structure}~$\Struct M$. Om de conclusie geldig te noemen,
+moeten we het volgende aantonen. Als $\Sat{M}{\eq[t_1][t_2]}$ en
+$\Sat{M}{\Gamma}$, dan geldt ofwel $\Sat{M}{!C}$ voor een $!C \in
+\Delta$, ofwel $\Sat{M}{!A(t_2)}$.
+
+Volgens de inductiehypothese is de premisse geldig. Als
+$\Sat{M}{\eq[t_1][t_2]}$ en $\Sat{M}{\Gamma}$, zijn er dus twee
+mogelijkheden: (a) voor een $!C \in \Delta$ geldt $\Sat{M}{!C}$, of
+(b) $\Sat{M}{!A(t_1)}$. In geval (a) zijn we meteen klaar. Neem nu
+geval (b). Laat $s$ een toekenning zijn waarvoor
+$s(x) = \Value{t_1}{M}$. Volgens
+\olref[syn][ass]{prop:sentence-sat-true} geldt
+$\Sat{M}{!A(t_1)}[s]$. Omdat $\varAssign{s}{s}{x}$, kunnen we
+\olref[syn][ext]{prop:ext-formulas} dat $\Sat{M}{!A(x)}[s]$. Uit
+$\Sat{M}{\eq[t_1][t_2]}$ volgt $\Value{t_1}{M} = \Value{t_2}{M}$, en
+daarom $s(x) = \Value{t_2}{M}$. We passen nu
+\olref[syn][ext]{prop:ext-formulas} nogmaals toe te passen, verkrijgen
+we ook $\Sat{M}{!A(t_2)}[s]$. Ten slotte volgt volgens
+\olref[syn][ass]{prop:sentence-sat-true} geldt derhalve
+$\Sat{M}{!A(t_2)}$.
+\end{proof}
+\end{document}

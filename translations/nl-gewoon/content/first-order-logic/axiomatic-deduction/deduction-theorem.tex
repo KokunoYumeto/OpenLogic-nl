@@ -1,0 +1,143 @@
+% Part: first-order-logic 
+% Chapter: axiomatic-deduction 
+% Section: deduction-theorem
+
+% verification of properties of provability needed for maximally 
+% consistent sets in the completeness chapter.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{axd}{ded}}
+      {\olfileid{pl}{axd}{ded}}
+
+\olsection{De deductiestelling: een aanname in een implicatie zetten}
+
+Een !!{derivation} in een axiomasysteem uitschrijven kost veel werk,
+en zo'n !!{derivation} kan moeilijk te vinden zijn. Vaak hoeven we niet
+echt een lange rij !!{formula}s op te schrijven. Het is makkelijker om
+met een paar eenvoudige resultaten te laten zien dat zo'n
+!!{derivation} bestaat. Drie daarvan hebben we al. Met
+\olref[ptn]{prop:reflexivity} mogen we $\Gamma \Proves !A$ schrijven
+zodra we weten dat $!A \in \Gamma$. Volgens
+\olref[ptn]{prop:monotonicity} mogen we aan $\Gamma \Proves !A$ een
+extra aanname toevoegen; dan krijgen we $\Gamma \cup \{!B\} \Proves
+!A$. En \olref[ptn]{prop:transitivity} zegt: als $\Gamma \Proves !A$
+en $!A \Proves !B$, dan $\Gamma \Proves !B$. Nu volgt nog een
+eenvoudig resultaat. Het is een ``meta''-versie van modus ponens: dezelfde
+stap, maar nu voor uitspraken over hele afleidingen.
+
+\begin{prop}
+  \ollabel{prop:mp} Als $\Gamma \Proves !A$ en $\Gamma \Proves !A \lif
+  !B$, dan $\Gamma \Proves !B$.
+\end{prop}
+
+\begin{proof}
+  De volgende drie regels laten zien dat $\{!A, !A \lif !B\} \Proves
+  !B$:
+  \begin{derivation}
+    1. & $!A$ & Aanname\\
+    2. & $!A \lif !B$ & Aanname\\
+    3. & $!B$ & 1, 2, MP
+  \end{derivation}
+  Met \olref[ptn]{prop:transitivity} krijgen we dan $\Gamma \Proves
+  !B$.
+\end{proof}
+
+Het belangrijkste hulpmiddel dat we hier gebruiken, is de
+deductiestelling:
+
+\begin{thm}[Deductiestelling: zet de extra aanname in de implicatie]
+\ollabel{thm:deduction-thm} $\Gamma \cup \{!A\} \Proves !B$ dan en
+slechts dan als $\Gamma \Proves !A \lif !B$.
+\end{thm}
+
+\begin{proof}
+De richting ``als'' is direct. Neem aan dat $\Gamma \Proves !A \lif
+!B$. Volgens \olref[ptn]{prop:monotonicity} mogen we de extra aanname
+toevoegen en krijgen we $\Gamma \cup \{!A\} \Proves !A \lif !B$.
+Volgens \olref[ptn]{prop:reflexivity} geldt ook $\Gamma \cup \{!A\}
+\Proves !A$. Met \olref{prop:mp} krijgen we dus $\Gamma \cup \{!A\}
+\Proves !B$.
+
+Nu de richting ``slechts als''. We gebruiken inductie naar de lengte
+van de !!{derivation} van $!B$ uit $\Gamma \cup \{!A\}$: eerst een
+afleiding van lengte één, daarna de stap naar een langere afleiding.
+
+Begin met de inductiebasis: een !!{derivation} van lengte~$1$.
+!!^a{derivation} van~$!B$ uit $\Gamma \cup \{!A\}$ met lengte~$1$
+bestaat alleen uit $!B$. Als die afleiding klopt, geldt ofwel
+$!B$$\in \Gamma \cup \{!A\}$, of is de formule een axioma. Eerst het
+geval dat $!B \in \Gamma$ of een axioma is. Dan $\Gamma \Proves !B$.
+Uit \olref[prp]{ax:lif1} hebben we ook $\Gamma \Proves !B \lif (!A
+\lif !B)$. Met \olref{prop:mp} krijgen we $\Gamma \Proves !A \lif !B$.
+Blijft het geval $!B \in \{ !A\}$. Ook dan $\Gamma \Proves !A \lif
+!B$, want de laatste !!{sentence}~$!A \lif !B$ is dan dezelfde als
+$!A \lif !A$. Die hebben we al !!{derive}d in
+\olref[pro]{ex:identity}.
+
+Nu de inductiestap. Kijk eerst naar het geval waarin !!a{derivation}
+van~$!B$ uit $\Gamma \cup \{!A\}$ eindigt met een stap~$!B$ die met
+modus ponens is verkregen. (Is dat niet zo, dan geldt $!B \in \Gamma$,
+$!B \ident !A$, of is $!B$ een axioma. Dan gebruiken we dezelfde
+redenering als in de inductiebasis.) Voor de laatste stap met modus
+ponens moeten eerder in de !!{derivation} de stappen $!C \lif !B$ en
+$!C$ staan, voor een !!{formula}~$!C$. Dus $\Gamma \cup \{!A\}
+\Proves !C \lif !B$ en $\Gamma \cup \{!A\} \Proves !C$. De twee
+bijbehorende !!{derivation}s zijn korter. De inductiehypothese geldt
+daarom voor allebei. Dat geeft:
+\begin{align*}
+  & \Gamma \Proves !A \lif (!C \lif !B); \\
+  & \Gamma \Proves !A \lif !C.
+\end{align*}
+Verder geldt
+\[
+\Gamma \Proves (!A \lif (!C \lif !B)) \lif
+((!A\lif !C)  \lif (!A \lif !B)),
+\]
+volgens \olref[prp]{ax:lif2}. Pas \olref{prop:mp} nu twee keer toe. Dan
+krijgen we $\Gamma \Proves !A \lif !B$, en dat moesten we bewijzen.
+\end{proof}
+
+Nu is ook te zien waarom \olref[prp]{ax:lif1} en
+\olref[prp]{ax:lif2} precies zo zijn gekozen: daardoor geldt de
+deductiestelling.
+
+Hier volgen nog enkele nuttige feiten over !!{derivability}. Het
+bewijs ervan is een oefening.
+
+\begin{prop}
+  \ollabel{prop:derivfacts}
+\begin{enumerate}
+\item $\Proves (!A \lif !B) \lif ((!B \lif !C)
+  \lif (!A \lif !C)$; \ollabel{derivfacts:a}
+\item Als $\Gamma \cup \{ \lnot !A\}
+  \Proves \lnot !B$, dan $\Gamma \cup \{ !B\} \Proves
+  !A$ (contrapositie: keer de richting om en ontken beide kanten);
+  \ollabel{derivfacts:b}
+\item  $\{ !A, \lnot!A\} \Proves
+    !B$ (ex falso quodlibet, ofwel explosie: uit een tegenspraak volgt
+    elke formule); \ollabel{derivfacts:c}
+\item  $\{ \lnot\lnot!A\} \Proves
+  !A$ (eliminatie van dubbele negatie: verwijder de twee negaties);
+  \ollabel{derivfacts:d}
+\item Als $\Gamma \Proves \lnot\lnot!A$, dan $\Gamma \Proves
+  !A$;\ollabel{derivfacts:e}
+\end{enumerate}
+\end{prop}
+
+\tagprob{FOL}
+\begin{prob}
+  Bewijs \olref[fol][axd][ded]{prop:derivfacts}
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+  Bewijs \olref[pl][axd][ded]{prop:derivfacts}
+\end{prob}
+\tagendprob
+
+\end{document}

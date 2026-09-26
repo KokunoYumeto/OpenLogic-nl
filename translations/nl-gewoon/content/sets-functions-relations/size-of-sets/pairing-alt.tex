@@ -1,0 +1,112 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: pairing-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{pai-alt}
+
+\olsection{Nog een manier om paren te nummeren}
+
+\begin{explain}
+Je kunt de paren in $\Nat^2$ ook anders opsommen. Bij sommige manieren is het
+makkelijker om vanuit een nummer het bijbehorende paar terug te vinden, dus om
+de inverse te bepalen. Hier is zo'n manier. Zet de opsomming nu eens niet in
+een rooster. Begin met de lijst van positieve gehele getallen en zet naast elk
+getal een leeg vak. Vul die vakken één voor één als volgt met paren
+$\tuple{n,m}$. Begin met de paren die op de eerste plaats~$0$ hebben, dus met
+de paren $\tuple{0,m}$. Zet het eerste paar, $\tuple{0,0}$, in het eerste lege
+vak. Sla een leeg vak over en zet het tweede paar, $\tuple{0,1}$, in het
+volgende lege vak. Sla daarna weer een leeg vak over, enzovoort. Het begin van
+de opsomming is nog niet af en ziet er nu zo uit:
+\[\small
+\begin{array}{@{}c c c c c c c c c c c@{}}
+\mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
+\tuple{0,0} &  & \tuple{0,1} &  & \tuple{0,2} &  & \tuple{0,3} & & \tuple{0,4} &  & \dots \\
+\end{array}
+\]
+Doe bij de vakken die nog leeg zijn hetzelfde met de paren $\tuple{1,m}$.
+Sla ook nu steeds één leeg vak over:
+\[\small
+\begin{array}{@{}c c c c c c c c c c c@{}}
+\mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
+\tuple{0,0} & \tuple{1,0} & \tuple{0,1} &  & \tuple{0,2} & \tuple{1,1} & 
+\tuple{0,3} & & \tuple{0,4} &  \tuple{1,2} & \dots \\
+\end{array}
+\]
+Vul daarna op dezelfde manier de paren $\tuple{2,m}$, $\tuple{3,m}$,
+enzovoort in. De volledige opsomming begint dan zo:
+\[\small
+\begin{array}{@{}cc c c c c c c c c c@{}}
+\mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
+\tuple{0,0} & \tuple{1,0} & \tuple{0,1} & \tuple{2,0}  & \tuple{0,2} & 
+\tuple{1,1} & \tuple{0,3} & \tuple{3,0}  & \tuple{0,4} &  \tuple{1,2} & \dots \\
+\end{array}
+\]
+Als we de vakken in het rooster hierboven volgens deze opsomming nummeren,
+ontstaat er geen nette zigzaglijn. We krijgen deze indeling:
+\[
+\begin{array}{ c | c | c | c | c | c | c | c }
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \dots \\
+\hline
+\mathbf 0 & 1 & 3 & 5 & 7 & 9 & 11 & \dots \\
+\hline
+\mathbf 1 & 2 & 6 & 10 & 14 & 18 & \dots & \dots \\
+\hline
+\mathbf 2 & 4 & 12 & 20 & 28 & \dots & \dots & \dots \\
+\hline
+\mathbf 3 & 8 & 24 & 40 & \dots & \dots & \dots & \dots \\
+\hline
+\mathbf 4 & 16 & 48 & \dots & \dots & \dots & \dots & \dots \\
+\hline
+\mathbf 5 & 32 & \dots & \dots & \dots & \dots & \dots & \dots \\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots\\
+\end{array}
+\]
+De paren in rij~$0$ staan op de oneven plaatsen van onze opsomming: het paar
+$\tuple{0,m}$ staat op plaats $2m+1$. De paren in de tweede rij,
+$\tuple{1,m}$, staan op plaatsen met een nummer dat tweemaal een oneven getal
+is, namelijk $2 \cdot (2m+1)$. De paren in de derde rij, $\tuple{2,m}$, staan
+op plaatsen met een nummer dat viermaal een oneven getal is,
+$4 \cdot (2m+1)$; enzovoort. Voor de rijen vermenigvuldigen we $(2m+1)$ dus
+achtereenvolgens met $1$, $2$, $4$, $8$, \dots. Dat zijn precies de machten
+van~$2$: $1= 2^0$, $2 = 2^1$, $4 = 2^2$, $8 = 2^3$, \dots\@ De macht boven
+de 2 is steeds het eerste getal van het paar. Bij het paar $\tuple{n,m}$ is de
+factor daarom $2^n$. De algemene regel is dus $2^n \cdot (2m+1)$. Met deze
+regel krijgt elk paar een \emph{positief} geheel getal: $\tuple{0,0}$ staat op
+plaats~$1$. Als we bij plaats~$0$ willen beginnen, trekken we~$1$ van de
+uitkomst af. Dan krijgen we:
+\end{explain}
+
+\begin{ex}
+De functie $h\colon \Nat^2 \to \Nat$ met de regel
+\[
+h(n,m) = 2^n (2m+1) - 1
+\]
+is een paarfunctie voor de verzameling paren natuurlijke getallen~$\Nat^2$.
+\end{ex}
+
+\begin{explain}
+In onze tweede opsomming van $\Nat^2$ krijgt het paar $\tuple{0,0}$ dus de code
+$h(0,0) = 2^0(2\cdot 0+1) - 1 = 0$. Het paar $\tuple{1,2}$ krijgt de code
+$2^{1} \cdot (2 \cdot 2 + 1) - 1 = 2 \cdot 5 - 1 = 9$. Het paar
+$\tuple{2,6}$ krijgt de code $2^{2} \cdot (2 \cdot 6 + 1) - 1 = 51$.
+\end{explain}
+
+Soms hoeven we de paren natuurlijke getallen~$\Nat^2$ alleen een code te geven.
+Niet elk natuurlijk getal hoeft daarbij als code te worden gebruikt: de
+codering hoeft dus niet surjectief te zijn. Als we zo'n code terugrekenen naar
+een paar, lukt dat alleen voor een deel van de getallen. De inverse is dan een
+partiële functie.
+
+\begin{ex}
+De functie $j\colon \Nat^2 \to \Nat^+$ met de regel
+\[
+j(n,m) = 2^n3^m
+\]
+is !!a{injective} functie $\Nat^2 \to \Nat$.
+\end{ex}
+\end{document}

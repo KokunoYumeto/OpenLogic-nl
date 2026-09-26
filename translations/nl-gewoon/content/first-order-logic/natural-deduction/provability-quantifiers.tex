@@ -1,0 +1,65 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: provability-quantifiers
+
+% verification of properties of provability needed for maximally
+% consistent sets in the completeness chapter.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{ntd}{qpr}
+
+\olsection{\usetoken{S}{derivability} en de kwantoren}
+
+\begin{explain}
+  Voor de volledigheidsstelling zijn ook de feiten over~$\Proves$
+  nodig die we in deze paragraaf bewijzen. De regels voor natuurlijke
+  deductie moeten deze feiten dus opleveren.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:strong-generalization} Als $c$ een constante is die niet
+voorkomt in $\Gamma$ of $!A(x)$, en als $\Gamma \Proves !A(c)$, dan
+$\Gamma
+\Proves \lforall[x][!A(x)]$.
+\end{thm}
+
+\begin{proof}
+Laat $\delta$ !!a{derivation} van $!A(c)$ uit $\Gamma$ zijn. Voeg een
+\Intro{\lforall}-inferentie toe. Zo krijgen we !!a{derivation} van
+$\lforall[x][!A(x)]$. De constante $c$ komt niet in $\Gamma$ of
+$!A(x)$ voor. Daarom voldoet de afleiding aan de
+eigenvariabelevoorwaarde.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$!A(t) \Proves \lexists[x][!A(x)]$.}{}
+
+\tagitem{prvAll}{$\lforall[x][!A(x)] \Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{Het volgende is !!a{derivation}
+  van~$\lexists[x][!A(x)]$ uit~$!A(t)$:
+\begin{prooftree}
+\AxiomC{$!A(t)$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!A(x)]$}
+\end{prooftree}}{}
+
+\tagitem{prvAll}{Het volgende is !!a{derivation} van~$!A(t)$
+  uit~$\lforall[x][!A(x)]$:
+\begin{prooftree}
+\AxiomC{$\lforall[x][!A(x)]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!A(t)$}
+\end{prooftree}}{}
+\end{tagenumerate}
+\end{proof}
+\end{document}

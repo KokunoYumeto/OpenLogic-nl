@@ -1,0 +1,77 @@
+% Part: propositional-logic
+% Chapter: syntax-and-semantics
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{pl}{syn}{int}
+
+\olsection{Inleiding}
+
+In de propositielogica gaat het om !!{formula}s. We bouwen die op uit
+!!{propositional variable}s met de verbindingstekens $\lnot$, $\land$,
+$\lor$, $\lif$ en $\liff$. Je kunt !!a{propositional variable}~$p$
+zien als een letter die staat voor een zin of bewering die waar of
+onwaar is. Als de ``waarheidswaarde'' van de !!{propositional
+variable}s in !!a{formula} bekend is, ligt ook de waarheidswaarde vast
+van elke !!{formula} die we daaruit met de verbindingstekens opbouwen.
+Daarom heet de propositielogica \emph{waarheidsfunctioneel}: haar
+betekenisregels werken met functies van waarheidswaarden. Andere
+aspecten van waarheid en onwaarheid laten we buiten beschouwing. Het
+maakt hier bijvoorbeeld niet uit of iets noodzakelijk waar is en niet
+alleen toevallig waar, of iemand weet dat het waar is, of het nu waar
+is in plaats van vroeger of later. We gebruiken maar twee waarden:
+waar ($\True$) en onwaar ($\False$). We bespreken dus niet de
+mogelijkheid dat een bewering noch waar noch onwaar is, of maar half
+waar. Ook nemen we alleen verbindingstekens waarbij de
+waarheidswaarden van de delen de waarheidswaarde van de hele
+!!{formula} volledig bepalen, dus niet bijvoorbeeld de betekenis van
+die delen. Bij voorwaardelijke zinnen in het Engels is omstreden
+of hun waarheidswaarde op deze manier wordt bepaald. Voor de materiële
+implicatie~$\lif$ gebeurt dat wel. Andere logica's behandelen
+voorwaardelijke verbindingen waarbij dat niet zo is.
+
+Voordat we de theorie zelf en de metatheorie, waarin we die theorie
+onderzoeken, kunnen uitwerken, moeten we twee dingen vastleggen: hoe de
+uitdrukkingen worden gevormd en wat ze betekenen. Dat zijn de
+vormregels (syntaxis) en de betekenisregels (semantiek). We geven één
+manier om met verbindingstekens !!{formula}s uit !!{propositional
+variable}s op te bouwen. Andere definities zijn ook mogelijk. Een
+ander systeem kan andere symbolen kiezen, andere verbindingstekens als
+basis nemen en haakjes anders gebruiken. Het kan de haakjes zelfs
+helemaal weglaten, zoals in de zogenoemde Poolse notatie. In al die
+benaderingen definiëren de vormingsregels de verzameling !!{formula}s
+\emph{inductief}. Als de regels goed zijn opgesteld, kan elke
+uitdrukking volgens die regels in wezen maar op één manier zijn
+ontstaan. Elke uitdrukking is dan \emph{uniek leesbaar}. Daardoor
+kunnen we de betekenis op dezelfde stapsgewijze, inductieve manier
+vastleggen.
+
+De betekenis van uitdrukkingen hoort bij de semantiek. Daar staat de
+vraag centraal of een formule waar is onder !!a{valuation}. Zo'n
+!!{valuation}~$\pAssign{v}$ kent aan elke !!{propositional variable}
+  de waarde $\True$ of $\False$ toe. Daarmee bepaalt de !!{valuation}
+  de waarde $\pValue{v}(!A)$ voor elke !!{formula}~$!A$. !!^a{formula}
+wordt door !!a{valuation}~$\pAssign{v}$ vervuld precies als
+$\pValue{v}(!A) = \True$. Dat schrijven we als $\pSat{v}{!A}$. Ook
+deze relatie kunnen we stap voor stap definiëren aan de hand van de
+opbouw van~$!A$. Met de waarheidsfuncties van de logische
+verbindingstekens bepalen we bijvoorbeeld wanneer $!A \land !B$ wordt
+vervuld: dat hangt ervan af of $!A$ en~$!B$ wel of niet worden
+vervuld.
+
+Met de relatie $\pSat{v}{!A}$ voor zinnen kunnen we daarna drie
+belangrijke begrippen definiëren: tautologie, semantisch gevolg en
+vervulbaarheid. !!^a{formula} is een tautologie, $\Entails !A$, als
+  elke !!{valuation} haar vervult. Anders gezegd:
+  $\pValue{v}(!A) = \True$ voor elke~$\pAssign{v}$. Een formule volgt uit een
+verzameling !!{formula}s, $\Gamma \Entails !A$, als elke
+!!{valuation} die alle !!{formula}s in~$\Gamma$ vervult, ook~$!A$
+vervult. Een verzameling !!{formula}s is vervulbaar als er een
+!!{valuation} is die alle formules in die verzameling tegelijk
+vervult. Zowel de !!{formula}s als hun vervulling zijn inductief
+gedefinieerd. Daarom kunnen we met inductie eigenschappen van deze
+betekenisregels bewijzen en de begrippen met elkaar verbinden.
+\end{document}

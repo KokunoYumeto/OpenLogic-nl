@@ -1,0 +1,187 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: inverses
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{fun}{inv}
+\olsection{Inverse functies}
+
+\begin{explain}
+We vatten functies op als afbeeldingen. Een voor de hand liggende vraag is
+dan of zo'n afbeelding kan worden ``omgekeerd.'' De opvolgerfunctie
+$f(x) = x + 1$ kan bijvoorbeeld worden omgekeerd, in die zin dat de
+functie $g(y) = y - 1$ ``ongedaan maakt'' wat $f$ doet.
+
+We moeten echter voorzichtig zijn. Met deze definitie is~$g$ wel een
+functie $\Int \to \Int$, maar geen \emph{functie} $\Nat \to \Nat$,
+omdat $g(0) \notin \Nat$. Zelfs in eenvoudige gevallen is dus niet
+meteen duidelijk of een functie kan worden omgekeerd; dat kan van het
+domein en codomein afhangen.
+
+Met het begrip inverse van een functie kunnen we dit nauwkeurig formuleren.
+\end{explain}
+
+\begin{defn}
+Een functie $g \colon B \to A$ is een \emph{inverse} van een functie
+$f \colon A \to B$ als $f(g(y)) = y$ en $g(f(x)) = x$ voor alle
+$x \in A$ en $y \in B$.
+\end{defn}
+
+Als $f$ een inverse~$g$ heeft, schrijven we vaak $f^{-1}$ in plaats
+van~$g$.
+
+\begin{explain}
+We bepalen nu wanneer functies een inverse hebben. Als inverse van
+$f\colon A \to B$ ligt de functie $g\colon B \to A$ voor de hand die
+``gedefinieerd wordt door''
+\[
+g(y) = \text{``de'' $x$ waarvoor $f(x) = y$.}
+\]
+De aanhalingstekens om ``gedefinieerd wordt door'' (en om ``de'')
+geven aan dat dit nog geen geldige definitie is: zo werkt het niet in
+alle gevallen. Wil deze definitie een functie
+vastleggen, dan moet er precies één~$x$ zijn waarvoor $f(x) = y$:
+de uitvoer van~$g$ moet eenduidig zijn bepaald. Bovendien moet die
+voor elke $y \in B$ zijn bepaald. Als er $x_1$ en $x_2 \in A$ zijn
+waarvoor $x_1 \neq x_2$ maar $f(x_1) = f(x_2)$, dan is $g(y)$ niet
+eenduidig bepaald voor $y = f(x_1) = f(x_2)$. En als er helemaal
+geen~$x$ bestaat waarvoor $f(x) = y$, dan is $g(y)$ helemaal
+niet bepaald. Kortom, om $g$ te kunnen definiëren, moet $f$ zowel
+!!{injective} als !!{surjective} zijn.
+
+We werken dit stap voor stap uit en splitsen de vraag in tweeën.
+Gegeven een functie~$f\colon A \to B$: wanneer bestaat er een functie
+$g\colon B \to A$ waarvoor $g(f(x)) = x$? Zo'n $g$ ``maakt ongedaan''
+wat $f$ doet en heet een \emph{linksinverse} van~$f$. Ten tweede:
+wanneer bestaat er een functie $h\colon B \to A$ waarvoor
+$f(h(y)) = y$? Zo'n $h$ heet een \emph{rechtsinverse} van~$f$:
+$f$ ``maakt ongedaan'' wat $h$~doet.
+\end{explain}
+
+\begin{prop}
+Als het domein niet leeg is en $f\colon A \to B$ !!{injective} is, dan
+bestaat er een
+\emph{linksinverse}~$g\colon B \to A$ van~$f$ waarvoor
+$g(f(x)) = x$ voor alle $x \in A$.
+\end{prop}
+
+\begin{proof}
+Neem aan dat het domein niet leeg is en dat $f\colon A \to B$
+!!{injective} is, en neem $y \in B$.
+Als $y \in \ran{f}$, bestaat er een $x \in A$ waarvoor $f(x) = y$.
+Omdat $f$ !!{injective} is, bestaat er maar één zo'n~$x \in A$. We
+kunnen dan $g(y) = x$ definiëren; $g(y)$ is dus ``de'' $x \in A$
+waarvoor $f(x) = y$. Als $y \notin \ran{f}$, kunnen we dit op een
+willekeurige~$a \in A$ afbeelden. Kies daarom een $a \in A$ en
+definieer $g\colon B \to A$ door:
+\[
+g(y) = \begin{cases}
+    x & \text{als $f(x) = y$}\\
+    a & \text{als $y \notin \ran{f}$.}
+\end{cases}
+\]
+Deze functie is voor alle $y \in B$ gedefinieerd, want voor elke
+$y \in \ran{f}$ bestaat er precies één $x \in A$ waarvoor $f(x) = y$.
+Volgens de definitie geldt: als $y = f(x)$, dan $g(y) = x$, oftewel
+$g(f(x)) = x$.
+\end{proof}
+
+\begin{prob}
+Toon aan dat als $f\colon A \to B$ een linksinverse~$g$ heeft,
+$f$~!!{injective} is.
+\end{prob}
+
+\begin{prop}
+    Als $f\colon A \to B$ !!{surjective} is, dan bestaat er een
+    \emph{rechtsinverse}~$h\colon B \to A$ van~$f$ waarvoor
+    $f(h(y)) = y$ voor alle~$y \in B$.
+\end{prop}
+
+\begin{proof}
+Neem aan dat $f\colon A \to B$ !!{surjective} is en neem $y \in B$.
+Omdat $f$~!!{surjective} is, bestaat er een $x_y \in A$ waarvoor
+$f(x_y) = y$. We kunnen dan $h(y) = x_y$ definiëren. Voor elke
+$y \in B$ kiezen we dus een $x \in A$ waarvoor $f(x) = y$; omdat
+$f$~!!{surjective} is, valt er altijd ten minste één te
+kiezen.\footnote{Omdat $f$ !!{surjective} is, is voor elke~$y \in B$
+de verzameling $\Setabs{x}{f(x) = y}$ niet-leeg. Voor onze definitie
+van~$h$ moeten we uit elk van deze verzamelingen één $x$ kiezen. Dat
+dit altijd mogelijk is, spreekt in feite niet vanzelf: de mogelijkheid
+om deze keuzes te maken wordt eenvoudigweg als axioma aangenomen. Met
+andere woorden, deze stelling veronderstelt het zogeheten
+keuzeaxioma, een kwestie die we
+\oliflabeldef{sth:choice::chap}{opnieuw behandelen in \olref[sth][choice][]{chap}}{hier buiten beschouwing laten}.
+In veel specifieke gevallen is het keuzeaxioma echter niet nodig,
+bijvoorbeeld wanneer $A = \Nat$ of eindig is, of wanneer $f$
+!!{bijective} is. (In het bijzondere geval dat $f$ !!{bijective} is,
+heeft voor elke $y \in B$ de verzameling $\Setabs{x}{f(x) = y}$
+precies één !!{element}, zodat er niets te kiezen valt.)}
+Volgens de definitie geldt: als $x = h(y)$, dan $f(x) = y$, oftewel
+voor elke $y \in B$: $f(h(y)) = y$.
+\end{proof}
+
+\begin{prob}
+Toon aan dat als $f\colon A \to B$ een rechtsinverse~$h$ heeft,
+$f$~!!{surjective} is.
+\end{prob}
+
+\begin{explain}
+  Door de ideeën uit het vorige bewijs te combineren, volgt nu dat
+  elke !!{bijection} een inverse heeft: er is één functie die zowel
+  linksinverse als rechtsinverse van~$f$ is.
+\end{explain}
+
+\begin{prop}\ollabel{prop:bijection-inverse}
+Als $f\colon A \to B$ !!{bijective} is, bestaat er een
+functie~$f^{-1}\colon B \to A$ zodanig dat voor alle $x \in A$
+$f^{-1}(f(x)) = x$ en voor alle $y \in B$ $f(f^{-1}(y)) = y$.
+\end{prop}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[sfr][fun][inv]{prop:bijection-inverse}. Definieer
+$f^{-1}$, toon aan dat dit een functie is en toon aan dat het een
+inverse van~$f$ is, dus dat $f^{-1}(f(x)) = x$ en
+$f(f^{-1}(y)) = y$ voor alle $x \in A$ en $y \in B$.
+\end{prob}
+
+\begin{explain}
+We kunnen inversen op een iets algemenere manier verkrijgen. We zagen
+in \olref[kin]{sec} dat elke functie $f$ een !!a{surjection}
+$f' \colon A \to \ran{f}$ induceert door $f'(x) = f(x)$ te stellen
+voor alle $x \in A$. Als $f$~!!{injective} is, is $f'$ duidelijk
+!!{bijective} en heeft deze volgens
+\olref{prop:bijection-inverse} dus een unieke inverse. Met een klein
+misbruik van notatie noemen we de inverse van $f'$ soms kortweg
+``de inverse van~$f$.''
+\end{explain}
+
+\begin{prop}\ollabel{prop:left-right}%
+  Toon aan dat als $f\colon A \to B$ een linksinverse~$g$ en een
+  rechtsinverse~$h$ heeft, $h = g$.
+\end{prop}
+
+\begin{proof}
+  Opgave.
+\end{proof}
+
+\begin{prob}
+  Bewijs \olref[sfr][fun][inv]{prop:left-right}.
+\end{prob}
+
+\begin{prop}\ollabel{prop:inverse-unique}
+Elke functie~$f$ heeft ten hoogste één inverse.
+\end{prop}
+
+\begin{proof}
+  Neem aan dat $g$ en $h$ beide inversen van~$f$ zijn. Dan is $g$ in
+  het bijzonder een linksinverse van~$f$ en $h$ een rechtsinverse.
+  Volgens \olref{prop:left-right} geldt $g = h$.
+\end{proof}
+\end{document}

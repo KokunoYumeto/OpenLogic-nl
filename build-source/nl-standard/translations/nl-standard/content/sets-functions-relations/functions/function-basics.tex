@@ -1,0 +1,134 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: basics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{fun}{bas}
+\olsection{Basisbegrippen}
+
+\begin{explain}
+Een \emph{functie} beeldt elk !!{element} van een gegeven verzameling af op
+één bepaald !!{element} van een (eventueel andere) gegeven verzameling. Zo
+bepaalt de bewerking optellen met~$1$ een functie:
+elk getal~$n$ wordt afgebeeld op precies één getal~$n+1$.
+  
+Algemener kunnen functies paren, drietallen enzovoort als argument hebben en
+een bepaalde uitvoer opleveren. Veel functies kennen we uit de elementaire
+rekenkunde. Optelling en vermenigvuldiging zijn bijvoorbeeld functies: ze
+hebben twee getallen als invoer en leveren één getal als uitvoer op.
+
+In deze wiskundige, abstracte betekenis is een functie een \emph{zwarte
+doos}: alleen de koppeling tussen invoer en uitvoer is van belang, niet de
+methode waarmee de uitvoer wordt berekend.
+\end{explain}
+
+\begin{defn}[Functie]
+Een \emph{functie} $f \colon A \to B$ beeldt elk !!{element} van~$A$ af
+op een !!{element} van~$B$.
+
+We noemen $A$ het \emph{domein} van~$f$ en $B$ het \emph{codomein}
+van~$f$. De !!{element}en van~$A$ heten de invoeren of \emph{argumenten}
+van~$f$. Het !!{element} van~$B$ dat aan een argument~$x$ door~$f$ wordt
+gekoppeld, heet de \emph{waarde van~$f$} voor argument~$x$ en wordt
+geschreven als~$f(x)$.
+
+Het \emph{beeld} $\ran{f}$ van~$f$ is de deelverzameling van het codomein
+die bestaat uit de waarden van~$f$ voor een of meer argumenten; $\ran{f} =
+\Setabs{f(x)}{x \in A}$.
+\end{defn}
+
+Het diagram in \olref{fig:function} kan helpen om functies te begrijpen. De
+ellips links stelt het \emph{domein} van de functie voor en de ellips rechts
+haar \emph{codomein}. Een pijl loopt van een \emph{argument} in het domein
+naar de bijbehorende \emph{waarde} in het codomein.
+
+\begin{figure}
+  \olasset{assets/diagrams/function.tikz}
+  \caption{Een functie beeldt elk !!{element} van de ene verzameling af op
+    !!a{element} van een andere. Een pijl loopt van een argument in het
+    domein naar de bijbehorende waarde in het codomein.}
+  \ollabel{fig:function}
+\end{figure}
+
+\begin{ex}
+Vermenigvuldiging neemt paren natuurlijke getallen als invoer en beeldt ze
+af op natuurlijke getallen als uitvoer. Dit is dus een functie van
+$\Nat \times \Nat$ (het domein) naar $\Nat$ (het codomein). Het beeld blijkt
+ook $\Nat$ te zijn, want elke $n \in \Nat$ is gelijk aan $n \times 1$.
+\end{ex}
+
+\begin{ex}
+Vermenigvuldiging is een functie, omdat zij elke invoer---elk paar natuurlijke
+getallen---aan precies één uitvoer koppelt: $\times \colon \Nat^2 \to
+\Nat$. Daarentegen levert de koppeling van een natuurlijk getal~$n$ aan een
+reëel getal~$x$ waarvoor $x^2 = n$ geen functie op, want elk positief geheel
+getal~$n$ heeft twee vierkantswortels: $\sqrt{n}$ en~$-\sqrt{n}$. We krijgen
+wel een functie als we alleen de niet-negatieve vierkantswortel kiezen:
+$\sqrt{\phantom{X}} \colon \Nat \to \Real$.
+\end{ex}
+
+\begin{ex}
+De relatie die elke leerling in een klas aan diens eindcijfer koppelt, is een
+functie: geen leerling kan binnen dezelfde klas twee verschillende eindcijfers
+krijgen. De relatie die elke leerling in een klas aan diens ouders koppelt, is
+geen functie: een leerling kan nul, twee of meer ouders hebben.
+\end{ex}
+
+\begin{explain}
+We kunnen een functie definiëren door voor elk mogelijk argument nauwkeurig
+vast te leggen wat haar waarde is. Dat kan met een formule, met een methode om
+de waarde te berekenen of met een lijst van de waarden voor alle argumenten.
+Welke definitiewijze we ook kiezen, voor elk argument moeten we precies één
+waarde vastleggen.
+\end{explain}
+
+
+\begin{ex}
+Definieer $f \colon \Nat \to \Nat$ door $f(x) = x+1$. Deze definitie legt
+$f$ vast als een functie met natuurlijke getallen als invoer en als uitvoer.
+Bij een natuurlijk getal~$x$ levert $f$ de opvolger~$x+1$.
+In dit geval is het codomein $\Nat$ niet het beeld van~$f$, want het
+natuurlijke getal~$0$ is van geen enkel natuurlijk getal de opvolger. Het
+beeld van~$f$ is de verzameling van alle positieve gehele getallen,
+$\Int^{+}$.
+\end{ex}
+
+\begin{ex}\ollabel{examplefunext}
+Definieer $g \colon \Nat \to \Nat$ door $g(x) = x+2-1$. Hieruit volgt dat
+$g$ een functie is met natuurlijke getallen als invoer en als uitvoer. Bij een
+natuurlijk getal~$x$ levert $g$ de voorganger van de opvolger van de opvolger
+van~$x$, dus $x+1$.
+\end{ex}
+
+\begin{explain}
+We hebben zojuist twee functies, $f$ en $g$, met verschillende
+\emph{definities} bekeken. Toch zijn ze \emph{dezelfde functie}. Voor elk
+natuurlijk getal~$n$ geldt immers $f(n) = n+1 = n+2-1 =
+g(n)$. Anders gezegd: onze definities van $f$ en~$g$ leggen met verschillende
+vergelijkingen dezelfde afbeelding vast. We gebruiken hier dus stilzwijgend
+het extensionaliteitsbeginsel voor functies:
+\[
+  \text{als }\forall x\, f(x) = g(x)\text{, dan }f = g
+\]
+mits $f$ en~$g$ hetzelfde domein én hetzelfde codomein hebben.
+\end{explain}
+
+\begin{ex}
+We kunnen functies ook gevalsgewijs definiëren. Zo kunnen we
+$h \colon \Nat \to \Nat$ definiëren door
+\[
+h(x) =
+\begin{cases}
+  \frac{x}{2} & \text{als $x$ even is} \\
+  \frac{x+1}{2} & \text{als $x$ oneven is.}
+\end{cases}
+\]
+Omdat elk natuurlijk getal even of oneven is, is de uitvoer van deze functie
+altijd een natuurlijk getal. Bij een gevalsgewijze definitie moet elke
+mogelijke invoer in precies één geval vallen. Soms moet worden bewezen dat de
+gevallen uitputtend en onderling uitsluitend zijn.
+\end{ex}
+\end{document}

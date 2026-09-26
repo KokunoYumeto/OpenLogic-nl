@@ -1,0 +1,86 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: equivalence-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{rel}{eqv}
+
+\olsection{Equivalentierelaties}
+
+De identiteitsrelatie op een verzameling is reflexief, symmetrisch en
+transitief. Veel relaties~$R$ hebben al deze drie eigenschappen.
+
+\begin{defn}[Equivalentierelatie] 
+Neem een relatie $R \subseteq A^2$. Als deze relatie reflexief, symmetrisch en
+transitief is, noemen we haar een \emph{equivalentierelatie}.
+!!^{element}s $x$ en $y$ uit~$A$ zijn \emph{$R$-equivalent} als~$Rxy$.
+\end{defn}
+
+Bij een equivalentierelatie hoort het begrip \emph{equivalentieklasse}.
+Zo'n relatie verdeelt haar domein in losse delen. Binnen elk deel staan
+alle objecten via de relatie met elkaar in verband. Objecten uit
+verschillende delen staan niet zo met elkaar in verband. Soms willen
+we gewoon over de delen \emph{zelf} praten. Daarvoor gebruiken we deze
+definitie:
+
+\begin{defn}\ollabel{def:equivalenceclass}
+Laat $R \subseteq A^2$ een equivalentierelatie zijn. Neem een $x \in A$.
+De \emph{equivalentieklasse} van $x$ in~$A$ is de verzameling
+$\equivrep{x}{R} = \Setabs{y \in A}{Rxy}$. De verzameling van al deze
+equivalentieklassen heet de \emph{quotiëntverzameling} die bij $A$ en~$R$ hoort:
+$\equivclass{A}{R} = \Setabs{\equivrep{x}{R}}{x \in A}$. 
+\end{defn}
+
+De volgende stelling laat zien dat deze definitie werkt: de
+equivalentieklassen vormen samen een partitie, dus een verdeling van~$A$:
+
+\begin{prop}
+Als $R \subseteq A^2$ een equivalentierelatie is, dan geldt $Rxy$ precies wanneer
+$\equivrep{x}{R} = \equivrep{y}{R}$.
+\end{prop}
+
+\begin{proof}
+Neem eerst aan dat $Rxy$ geldt. Kies een $z \in \equivrep{x}{R}$.
+Volgens de definitie geldt dan $Rxz$. Omdat $R$ een equivalentierelatie
+is, volgt $Ryz$. Dit gaat zo: uit $Rxy$ en de symmetrie van~$R$ volgt
+$Ryx$. Uit dat omgekeerde verband, $Rxz$ en de transitiviteit van~$R$
+volgt daarna~$Ryz$.
+Dus $z \in \equivrep{y}{R}$. Daarom zit ieder element van de eerste
+equivalentieklasse ook in de tweede, zodat $\equivrep{x}{R} \subseteq
+\equivrep{y}{R}$. Hetzelfde argument, maar nu met de rollen omgedraaid,
+geeft $\equivrep{y}{R} \subseteq \equivrep{x}{R}$. De twee verzamelingen
+hebben dus precies dezelfde elementen. Volgens extensionaliteit is
+$\equivrep{x}{R} = \equivrep{y}{R}$.
+
+Neem nu aan dat $\equivrep{x}{R} = \equivrep{y}{R}$. Omdat $R$
+reflexief is, geldt $Ryy$. Dus $y \in \equivrep{y}{R}$. Ook geldt
+$y \in \equivrep{x}{R}$, want we nemen aan dat $\equivrep{x}{R} =
+\equivrep{y}{R}$. Daarmee geldt $Rxy$.
+\end{proof}
+
+\begin{ex}
+Een goed voorbeeld komt uit rekenen met resten, ook wel modulair rekenen
+genoemd. Neem natuurlijke getallen $a$ en $b$ en een $n \in \PosInt$.
+Dan betekent $a \equiv_n b$ dat
+er bij deling van $a$ door~$n$ dezelfde rest overblijft als bij deling
+van $b$ door~$n$. (Met symbolen staat er hetzelfde: $a \equiv_n b$ geldt
+precies wanneer er een $k \in \Int$ is waarvoor $a - b = kn$.)
+$\equiv_n$ is voor elk~$n$ een equivalentierelatie. Er zijn precies $n$
+verschillende equivalentieklassen voor~$\equiv_n$. Anders gezegd:
+$\equivclass{\Nat}{\equiv_n}$ heeft $n$ !!{element}s. Die klassen zijn:
+de getallen die je zonder rest door $n$ kunt delen, oftewel
+$\equivrep{0}{\equiv_n}$; de getallen waarbij na deling door $n$ rest~$1$
+overblijft, oftewel $\equivrep{1}{\equiv_n}$; \ldots; en de getallen
+waarbij na deling door~$n$ rest~$n-1$ overblijft, oftewel
+~$\equivrep{n-1}{\equiv_n}$.
+\end{ex}
+
+\begin{prob}
+Laat zien dat $\equiv_n$ voor elke $n \in \PosInt$ een
+equivalentierelatie is en dat $\equivclass{\Nat}{\equiv_n}$ precies
+$n$ elementen heeft.
+\end{prob}
+\end{document}

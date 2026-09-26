@@ -1,0 +1,120 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: kinds
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{fun}{kin}
+\olsection{Soorten functies}
+
+\begin{explain}
+Het is nuttig een indeling te geven van enkele soorten functies die we
+het vaakst tegenkomen.
+
+Om te beginnen bekijken we functies met de eigenschap dat ieder
+element van het codomein een waarde van de functie is. Zulke functies
+heten !!{surjective} en kunnen worden weergegeven zoals in
+\olref{fig:surjective}.
+
+\begin{figure}
+  \olasset{assets/diagrams/surjective.tikz}
+  \caption{!!^a{surjective} functie heeft ieder !!{element} van het
+    codomein als waarde.}
+  \ollabel{fig:surjective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[!!^{surjective} functie]
+Een functie $f \colon A \rightarrow B$ heet \emph{!!{surjective}} dan
+en slechts dan als $B$ ook het bereik van~$f$ is, dat wil zeggen: voor
+iedere $y \in B$ bestaat er ten minste één $x \in A$ waarvoor~$f(x) =
+y$, of in symbolen:
+\[
+  (\forall y \in B)(\exists x \in A)f(x) = y.
+\]
+Zo'n functie noemen we !!a{surjection} van $A$ naar $B$.
+\end{defn}
+
+\begin{explain}
+Om aan te tonen dat $f$ !!a{surjection} is, moet men laten zien dat
+ieder object in het codomein van $f$ de waarde $f(x)$ is voor een
+zekere invoer $x$.
+
+Merk op dat iedere functie !!a{surjection} \emph{induceert}. Gegeven
+een functie $f \colon A \to B$ definiëren we immers $f' \colon A \to
+\ran{f}$ door $f'(x) = f(x)$. Omdat $\ran{f}$ \emph{per definitie}
+gelijk is aan $\Setabs{f(x) \in B}{x \in A}$, is deze functie $f'$
+gegarandeerd !!a{surjection}.
+\end{explain}
+
+\begin{explain}
+Iedere functie beeldt elke mogelijke invoer af op precies één uitvoer.
+Er zijn echter ook functies die nooit verschillende invoeren op
+dezelfde uitvoer afbeelden. Zulke functies heten !!{injective} en
+kunnen worden weergegeven zoals in \olref{fig:injective}.
+\begin{figure}
+  \olasset{assets/diagrams/injective.tikz}
+  \caption{!!^a{injective} functie beeldt nooit twee verschillende
+    argumenten af op dezelfde waarde.}
+  \ollabel{fig:injective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[!!^{injective} functie]
+Een functie $f \colon A \rightarrow B$ heet \emph{!!{injective}} dan
+en slechts dan als er voor iedere $y \in B$ ten hoogste één $x \in A$
+bestaat waarvoor~$f(x) = y$. Zo'n functie noemen we !!a{injection} van
+$A$ naar~$B$.
+\end{defn}
+
+\begin{explain}
+Om aan te tonen dat $f$ !!a{injection} is, moet men voor willekeurige
+!!{element}s $x$ en $y$ van het domein van $f$ bewijzen dat uit
+$f(x)=f(y)$ volgt dat $x=y$.
+\end{explain}
+
+\begin{ex}
+De constante functie $f\colon \Nat \to \Nat$ gegeven door $f(x) = 1$
+is noch !!{injective}, noch !!{surjective}.
+
+De identiteitsfunctie $f\colon \Nat \to \Nat$ gegeven door $f(x) = x$
+is zowel !!{injective} als !!{surjective}.
+
+De opvolgerfunctie $f \colon \Nat \to \Nat$ gegeven door $f(x) = x+1$
+is !!{injective}, maar niet !!{surjective}.
+  
+De functie $f \colon \Nat \to \Nat$ gedefinieerd door
+\[
+  f(x) =
+  \begin{cases}
+    \frac{x}{2} & \text{als $x$ even is} \\
+    \frac{x+1}{2} & \text{als $x$ oneven is.}
+  \end{cases}
+\]
+is !!{surjective}, maar niet !!{injective}.
+\end{ex}
+
+\begin{explain}
+Vaak willen we functies beschouwen die zowel !!{injective} als
+!!{surjective} zijn. Zulke functies noemen we !!{bijective}. Ze zien
+eruit als de functie in \olref{fig:bijective}. !!^{bijection}s worden
+ook wel \emph{een-eenduidige correspondenties} genoemd, omdat ze de
+elementen van het codomein eenduidig koppelen aan de elementen van het
+domein.
+\begin{figure}
+  \olasset{assets/diagrams/bijective.tikz}
+  \caption{!!^a{bijective} functie koppelt de elementen van het
+    codomein eenduidig aan die van het domein.}
+  \ollabel{fig:bijective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[!!^{bijection}]
+Een functie $f \colon A \to B$ heet \emph{!!{bijective}} dan en
+slechts dan als zij zowel !!{surjective} als !!{injective} is. Zo'n
+functie noemen we !!a{bijection} van $A$ naar~$B$ (of tussen $A$
+en~$B$).
+\end{defn}
+\end{document}

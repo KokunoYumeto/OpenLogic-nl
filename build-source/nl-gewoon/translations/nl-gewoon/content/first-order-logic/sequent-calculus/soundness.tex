@@ -1,0 +1,422 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: soundness.tex
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{seq}{sou}}
+      {\olfileid{pl}{seq}{sou}}
+
+\olsection{Correctheid}
+
+\begin{explain}
+!!^a{derivation}ssysteem, zoals de sequentenrekening, is \emph{correct}
+als het alleen zaken !!{derive} die werkelijk gelden. Correctheid geeft
+dus een garantie: zo'n !!{derivation}ssysteem leidt niet te veel
+af. Welke garantie we precies nodig hebben, hangt af van de eigenschap
+van formele bewijzen die we bekijken. We willen bijvoorbeeld weten dat
+\begin{enumerate}
+\item elke !!{derivable}~$!A$ \iftag{FOL}{geldig}{een tautologie} is;
+\item als !!a{sentence} uit enkele andere zinnen !!{derivable}
+  is, die zin daar ook logisch uit volgt;
+\item als een verzameling !!{sentence}s inconsistent is, ze
+  niet waar te maken is.
+\end{enumerate}
+Dit zijn belangrijke eigenschappen van !!a{derivation}ssysteem. Mist
+het !!{derivation}ssysteem een van deze eigenschappen, dan schiet het
+tekort: het kan dan te veel !!{derive}. Daarom moeten we vaststellen
+dat het !!{derivation}ssysteem correct is.
+
+Alle drie de eigenschappen zijn omschreven via de !!{derivability} van
+bepaalde sequenten in de sequentenrekening. Om (1)--(3) te bewijzen,
+moeten we daarom nagaan wat zulke !!{derivable} sequenten semantisch
+betekenen. Eerst definiëren we wanneer een sequent \emph{geldig} is.
+Daarna bewijzen we dat elke !!{derivable} sequent geldig is. Uit dat
+ene resultaat volgen (1)--(3) als gevolgen.
+\end{explain}
+
+\begin{defn}
+\iftag{FOL}{!!^a{structure}~$\Struct
+  M$}{!!^a{valuation}~$\pAssign{v}$} \emph{vervult} een sequent
+$\Gamma \Sequent \Delta$ precies als een van twee dingen gebeurt:
+ofwel $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ voor een $!A \in \Gamma$,
+ofwel $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ voor een $!A \in \Delta$.
+
+Een sequent is \emph{geldig} precies als elke
+\iftag{FOL}{!!{structure}~$\Struct M$}{!!{valuation}~$\pAssign{v}$}
+hem vervult.
+\end{defn}
+
+\begin{thm}[Correctheid]
+\ollabel{thm:sequent-soundness} Als $\Log{LK}$ de sequent $\Theta
+\Sequent \Xi$ !!{derive}, dan is $\Theta \Sequent \Xi$ geldig.
+\end{thm}
+
+\begin{proof}
+Laat $\pi$ !!a{derivation} van $\Theta \Sequent \Xi$ zijn. We bewijzen
+de stelling met inductie naar het aantal afleidingsstappen~$n$
+in~$\pi$.
+
+In het begingeval is het aantal afleidingsstappen~$0$. Dan bestaat
+$\pi$ alleen uit een beginsequent. Elke beginsequent $!A \Sequent !A$
+is geldig: voor elke \iftag{FOL}{$\Struct M$}{$\pAssign{v}$} geldt ofwel
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ of
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$.
+
+Neem nu aan dat het aantal afleidingsstappen groter is dan~0. We
+bekijken welk type regel als laatste, dus onderaan, is toegepast. Elke
+!!{derivation} van een premisse daarvan telt minder dan~$n$ stappen.
+De inductiehypothese zegt daarom dat elke premisse geldig is.
+
+We beginnen met de regels met maar één premisse.
+\begin{enumerate}
+\item De laatste afleidingsstap is een verzwakking, dus een stap die
+  een zin toevoegt. Dan is $\Theta
+  \Sequent \Xi$ ofwel $!A, \Gamma \Sequent \Delta$ (als de laatste
+  stap \LeftR{\Weakening} is), ofwel $\Gamma \Sequent \Delta, !A$
+  (als die stap \RightR{\Weakening} is), en eindigt de !!{derivation}
+  in een van
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\Weakening}}
+    \UnaryInf$!A, \Gamma \fCenter \Delta$
+    \DisplayProof\qquad\bottomAlignProof
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta$
+    \RightLabel{\RightR{\Weakening}}
+    \UnaryInf$\Gamma \fCenter \Delta, !A$
+  \end{prooftree}
+  De inductiehypothese zegt dat $\Gamma \Sequent \Delta$ geldig is.
+  Voor elke
+  \iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
+  is er ofwel een $!C \in \Gamma$ waarvoor
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$, ofwel een $!C \in \Delta$
+  waarvoor $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$.
+  
+  Bekijk eerst de mogelijkheid aan de linkerkant. Als
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ voor een $!C \in \Gamma$,
+  dan geldt $!C \in \Theta$, want $\Theta = !A, \Gamma$. Er is
+  dus een $!C \in \Theta$ waarvoor
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Evenzo geldt: als
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ voor een $!C \in \Delta$, dan
+  geldt $!C \in \Xi$ en bovendien
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ voor een $!C \in \Xi$.
+  In beide mogelijkheden is $\Theta \Sequent \Xi$ dus geldig.
+\item De laatste afleidingsstap is \LeftR{\lnot}. De premisse is dan
+  $\Gamma \Sequent \Delta, !A$ en de conclusie $\lnot !A, \Gamma
+  \Sequent \Delta$. De !!{derivation} eindigt dus in
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \RightLabel{\LeftR{\lnot}}
+    \UnaryInf$\lnot !A, \Gamma \fCenter \Delta$
+  \end{prooftree}
+  waarbij $\Theta = \lnot !A, \Gamma$ en $\Xi = \Delta$.
+
+  Volgens de inductiehypothese is de premisse $\Gamma \Sequent
+  \Delta, !A$ geldig. Voor elke
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} geldt dus een van drie
+  mogelijkheden: (a) $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ voor een
+  $!C \in \Gamma$, (b) $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ voor een
+  $!C \in \Delta$, of (c)
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. We willen aantonen dat ook
+  $\Theta \Sequent \Xi$ geldig is. Laat
+  \iftag{FOL}{$\Struct{M}$ !!a{structure} zijn}{$\pAssign{v}$
+  !!a{valuation} zijn}. We lopen de drie mogelijkheden langs. Als (a)
+  geldt, is er een $!C \in \Gamma$
+  waarvoor $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$, en geldt
+  $!C \in \Theta$. Als (b) geldt, is er een $!C \in \Delta$ waarvoor
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$, en geldt $!C \in \Xi$. Als ten
+  slotte $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, dan
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lnot !A}$. Omdat $\lnot !A \in
+  \Theta$, is er een $!C \in \Theta$ waarvoor
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. In elk van de drie
+  mogelijkheden is $\Theta \Sequent \Xi$ dus geldig.
+\item De laatste afleidingsstap is \RightR{\lnot}. Werk dit geval zelf
+  uit.
+\item De laatste afleidingsstap is \LeftR{\land}. Er zijn twee
+  varianten: $!A \land !B$ kan links worden afgeleid uit $!A$ of uit
+  $!B$ aan de linkerkant van de premisse. In het eerste geval eindigt
+  $\pi$ in
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$!A, \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\land}}
+    \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+  \end{prooftree}
+  en is $\Theta = !A \land !B, \Gamma$, terwijl $\Xi = \Delta$.
+  Beschouw een
+  \iftag{FOL}{!!a{structure}~$\Struct
+    M$}{!!a{valuation}~$\pAssign{v}$}. Volgens de inductiehypothese is
+  $!A, \Gamma \Sequent \Delta$ geldig. Daardoor is er een van drie
+  redenen waarom de premisse geldig is: ofwel (a)
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$, (b)
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ voor een $!C \in \Gamma$,
+  of (c)~$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ voor een $!C \in
+  \Delta$. In geval (a) geldt
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \land !B}$. Er is dus een $!C
+  \in \Theta$ (namelijk $!A \land !B$) waarvoor
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. In geval (b) is er een $!C
+  \in \Gamma$ waarvoor $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$, en
+  geldt $!C \in \Theta$. In geval (c) is er een $!C \in
+  \Delta$ waarvoor $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$, en geldt
+  $!C \in \Xi$, want $\Xi = \Delta$. In elk geval vervult
+  \iftag{FOL}{$\Struct M$}{$\pAssign{v}$} dus $!A \land !B, \Gamma
+  \Sequent \Delta$. Omdat \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}
+  willekeurig was, is $\Gamma \Sequent \Delta$ geldig. Het geval
+  waarin $!A \land !B$ uit $!B$ wordt afgeleid, verloopt hetzelfde,
+  met $!B$ in plaats van $!A$.
+\item De laatste afleidingsstap is \RightR{\lor}. Er zijn twee
+  varianten: $!A \lor !B$ kan rechts worden afgeleid uit $!A$ of uit
+  $!B$ aan de rechterkant van de premisse. In het eerste geval eindigt
+  $\pi$ in
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \RightLabel{\RightR{\lor}}
+    \UnaryInf$\Gamma \fCenter \Delta, !A \lor !B$
+  \end{prooftree}
+  Nu is $\Theta = \Gamma$ en $\Xi = \Delta, !A \lor !B$. Beschouw een
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
+  Omdat $\Gamma \Sequent \Delta, !A$ geldig is, bekijken we weer drie
+  mogelijkheden. Ofwel (a)
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, (b)
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ voor een $!C \in \Gamma$,
+  of (c)~$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ voor een $!C \in
+  \Delta$. In geval (a) geldt
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$. In geval (b) is er een
+  $!C \in \Gamma$ waarvoor $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$.
+  In geval (c) is er een $!C \in \Delta$ waarvoor
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. In elk geval vervult
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} dus $\Gamma \Sequent
+  \Delta, !A \lor !B$, oftewel $\Theta \Sequent \Xi$. Omdat
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} willekeurig was, is $\Theta
+  \Sequent \Xi$ geldig. Het geval waarin $!A \lor !B$ uit $!B$ wordt
+  afgeleid, verloopt hetzelfde, met $!B$ in plaats van $!A$.
+\item De laatste afleidingsstap is \RightR{\lif}. Dan eindigt $\pi$ in
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$!A, \Gamma \fCenter \Delta, !B$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\Gamma \fCenter \Delta, !A \lif !B$
+  \end{prooftree}
+  Ook nu zegt de inductiehypothese dat de premisse geldig is. We gaan
+  na waarom daaruit de geldigheid van de conclusie volgt. Laat
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} willekeurig zijn. Omdat
+  $!A, \Gamma \Sequent \Delta, !B$ geldig is, doet zich ten minste een
+  van de volgende gevallen voor: (a)
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$, (b)
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$, (c)
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ voor een~$~!C \in \Gamma$,
+  of (d) $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ voor een $!C \in
+  \Delta$. In de gevallen (a) en (b) is de implicatie waar, want dan
+  is de voorzin onwaar of de nazin waar. Er geldt dus
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$, zodat er een $!C \in
+  \Delta, !A \lif !B$ is waarvoor
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. In geval (c) geldt voor een
+  $!C \in \Gamma$ dat $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. In
+  geval (d) geldt voor een $!C \in \Delta$ dat
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. In elk geval vervult
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} de sequent $\Gamma \Sequent
+  \Delta, !A \lif !B$. Omdat \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}
+  willekeurig was, is $\Gamma \Sequent \Delta, !A \lif !B$ geldig.
+  \iftag{FOL}{%
+\item De laatste afleidingsstap is \LeftR{\lforall}. Dan zijn er
+  !!a{formula}~$!A(x)$ en een gesloten term~$t$ zodanig dat $\pi$
+  eindigt in
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$!A(t), \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[x][!A(x)], \Gamma \fCenter \Delta$
+  \end{prooftree}
+  We willen aantonen dat de conclusie $\lforall[x][!A(x)], \Gamma
+  \Sequent \Delta$ geldig is. Beschouw !!a{structure}~$\Struct M$.
+  Omdat de premisse $!A(t), \Gamma \Sequent \Delta$ geldig is, zijn er
+  drie mogelijkheden. Er geldt ofwel (a) $\Sat/{M}{!A(t)}$, ofwel (b)
+  $\Sat/{M}{!C}$ voor een $!C
+  \in \Gamma$, ofwel (c)~$\Sat{M}{!C}$ voor een $!C \in \Delta$. In
+  geval (a) geldt volgens \olref[syn][sem]{prop:quant-terms}: als
+  $\Sat{M}{\lforall[x][!A(x)]}$, dan $\Sat{M}{!A(t)}$. Omdat
+  $\Sat/{M}{!A(t)}$, geldt $\Sat/{M}{\lforall[x][!A(x)]}$. In de
+  gevallen (b) en (c) vervult $\Struct{M}$ eveneens $\lforall[x][!A(x)],
+  \Gamma \Sequent \Delta$. Omdat $\Struct M$ willekeurig was, is
+  $\lforall[x][!A(x)], \Gamma \Sequent \Delta$ geldig.
+\item De laatste afleidingsstap is \RightR{\lexists}. Werk dit geval
+  zelf uit.
+\item De laatste afleidingsstap is \RightR{\lforall}. Dan zijn er
+  !!a{formula}~$!A(x)$ en !!a{constant}~$a$ zodanig dat $\pi$ eindigt in
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A(a)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+  \end{prooftree}
+  waarbij aan de eigenvariabelevoorwaarde is voldaan. Die voorwaarde
+  betekent hier dat $a$ niet voorkomt in $!A(x)$, $\Gamma$ of
+  $\Delta$. Volgens de inductiehypothese
+  is de premisse van de laatste afleidingsstap geldig. We moeten
+  aantonen dat ook de conclusie geldig is, dus dat voor elke
+  !!{structure}~$\Struct M$ ofwel (a)
+  $\Sat{M}{\lforall[x][!A(x)]}$, ofwel (b) $\Sat/{M}{!C}$ voor een $!C
+  \in \Gamma$, ofwel (c)~$\Sat{M}{!C}$ voor een $!C \in \Delta$.
+
+  Zij $\Struct{M}$ een willekeurige !!{structure}. Als (b) of (c)
+  geldt, zijn we klaar. Neem dus aan dat geen van beide geldt: voor
+  alle $!C \in \Gamma$ geldt $\Sat{M}{!C}$, en voor alle $!C \in
+  \Delta$ geldt $\Sat/{M}{!C}$. We moeten aantonen dat (a) geldt, dus
+  $\Sat{M}{\lforall[x][!A(x)]}$. Volgens
+  \olref[syn][ass]{prop:sat-quant} hoeven we daarvoor alleen aan te
+  tonen dat $\Sat{M}{!A(x)}[s]$ voor elke toekenning van objecten aan
+  variabelen~$s$. Laat $s$ dus zo'n willekeurige toekenning zijn. We
+  maken nu de structuur~$\Struct{M'}$ die
+  alleen daarin van~$\Struct{M}$ verschilt dat $\Assign{a}{M'} =
+  s(x)$. Volgens \olref[syn][ext]{cor:extensionality-sent} geldt voor
+  elke $!C \in \Gamma$ dat $\Sat{M'}{!C}$, omdat $a$ niet in~$\Gamma$
+  voorkomt, en voor elke $!C \in \Delta$ dat $\Sat/{M'}{!C}$. De
+  premisse is echter geldig, dus $\Sat{M'}{!A(a)}$. Volgens
+  \olref[syn][ass]{prop:sentence-sat-true} geldt
+  $\Sat{M'}{!A(a)}[s]$, want $!A(a)$ is een zin. Nu
+  $\varAssign{s}{s}{x}$ met $s(x) = \Value{a}{M'}[s]$, omdat we
+  $\Struct{M'}$ precies zo hebben gedefinieerd. We kunnen dus
+  \olref[syn][ext]{prop:ext-formulas} toepassen en verkrijgen
+  $\Sat{M'}{!A(x)}[s]$. Omdat $a$ niet in~$!A(x)$ voorkomt, volgt uit
+  \olref[syn][ext]{prop:extensionality} dat
+  $\Sat{M}{!A(x)}[s]$. Aangezien $s$ willekeurig was, hebben we bewezen
+  dat $\Sat{M}{!A(x)}[s]$ voor alle zulke toekenningen.
+\item De laatste afleidingsstap is \LeftR{\lexists}. Werk dit geval
+  zelf uit.
+}{}
+\end{enumerate}
+Nu behandelen we de regels met twee premissen.
+\begin{enumerate}
+\item De laatste afleidingsstap is een snede: de tussenformule
+  verdwijnt uit de conclusie. Dan eindigt $\pi$ in
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \AxiomC{}
+    \Deduce$!A, \Pi \fCenter \Lambda$
+    \RightLabel{\Cut}
+    \BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+  \end{prooftree}
+  Laat \iftag{FOL}{$\Struct{M}$ !!a{structure} zijn}{$\pAssign{v}$
+    !!a{valuation} zijn}. Volgens de inductiehypothese zijn de
+  premissen geldig, zodat \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}
+  beide premissen vervult. Er zijn twee gevallen: (a)
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ en (b)
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. In geval (a) kan
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} de linkerpremisse alleen
+  vervullen als hij $\Gamma \Sequent \Delta$ vervult. Dan vervult hij
+  ook de conclusie. In geval (b) kan
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} de rechterpremisse alleen
+  vervullen als hij $\Pi \setminus \Lambda$ vervult. Ook dan vervult
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} de conclusie.
+\item De laatste afleidingsstap is \RightR{\land}. Dan eindigt $\pi$ in
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !B$
+    \RightLabel{\RightR{\land}}
+    \BinaryInf$\Gamma \fCenter \Delta, !A \land !B$
+  \end{prooftree}
+  Beschouw een \iftag{FOL}{!!a{structure}~$\Struct
+    M$}{!!a{valuation}~$\pAssign{v}$}. Als
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} de sequent $\Gamma \Sequent
+  \Delta$ vervult, zijn we klaar. Neem dus aan dat dit niet zo is.
+  Volgens de inductiehypothese is $\Gamma \fCenter \Delta, !A$ geldig,
+  zodat
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Op dezelfde manier volgt uit
+  de geldigheid van $\Gamma \Sequent \Delta, !B$ dat
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$. Beide conjuncten zijn dus waar,
+  en daarom
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$.
+\item De laatste afleidingsstap is \LeftR{\lor}. Werk dit geval zelf
+  uit.
+\item De laatste afleidingsstap is \LeftR{\lif}. Dan eindigt $\pi$ in
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \AxiomC{}
+    \Deduce$!B, \Pi \fCenter \Lambda$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$!A \lif !B, \Gamma, \Pi \fCenter \Delta, \Lambda$
+  \end{prooftree}
+  Beschouw opnieuw
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+  en neem aan dat \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} de sequent
+  $\Gamma, \Pi \Sequent \Delta, \Lambda$ niet vervult. We moeten
+  aantonen dat $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$. Omdat
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} de sequent $\Gamma, \Pi
+  \Sequent \Delta, \Lambda$ niet vervult, vervult hij noch $\Gamma
+  \Sequent \Delta$, noch $\Pi \Sequent \Lambda$. De eerste premisse
+  dwingt dan de vereiste waarheid af. Preciezer: omdat $\Gamma
+  \Sequent \Delta, !A$ geldig is, geldt
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. De tweede premisse dwingt de
+  vereiste onwaarheid af: omdat $!B, \Pi \Sequent \Lambda$ geldig is,
+  geldt
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$. Daaruit volgt
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$, zoals verlangd.
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Werk de overgeslagen gevallen in het bewijs van
+\olref[fol][seq][sou]{thm:sequent-soundness} uit.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Werk de overgeslagen gevallen in het bewijs van
+\olref[pl][seq][sou]{thm:sequent-soundness} uit.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+Als $\Proves !A$, dan is $!A$ \iftag{FOL}{geldig}{een tautologie}.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:entailment-soundness}
+Als $\Gamma \Proves !A$, dan $\Gamma \Entails !A$.
+\end{cor}
+
+\begin{proof}
+Als $\Gamma \Proves !A$, dan is er een eindige deelverzameling
+$\Gamma_0 \subseteq \Gamma$ waarvoor !!a{derivation} van
+$\Gamma_0 \Sequent !A$ bestaat. Volgens
+\olref{thm:sequent-soundness} maakt elke
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+ofwel een $!B \in \Gamma_0$ onwaar, ofwel $!A$ waar. Als dus
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, dan ook
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$.
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+Als $\Gamma$ vervulbaar is, dan is hij consistent.
+\end{cor}
+
+\begin{proof}
+We bewijzen de contrapositie: een inconsistente verzameling is niet
+vervulbaar. Stel dus dat $\Gamma$ niet consistent is.
+Dan bestaan er een eindige $\Gamma_0 \subseteq \Gamma$ en
+!!a{derivation} van $\Gamma_0 \Sequent \quad$. Volgens
+\olref{thm:sequent-soundness} is $\Gamma_0 \Sequent \quad$ geldig.
+Met andere woorden: voor elke
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
+is er een $!C \in \Gamma_0$ waarvoor
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Omdat $\Gamma_0 \subseteq
+\Gamma$, behoort die $!C$ ook tot~$\Gamma$. Geen enkele
+\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} vervult dus~$\Gamma$, zodat
+$\Gamma$ niet vervulbaar is.
+\end{proof}
+\end{document}

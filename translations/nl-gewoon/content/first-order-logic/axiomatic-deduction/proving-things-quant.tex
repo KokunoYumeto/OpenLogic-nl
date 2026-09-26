@@ -1,0 +1,36 @@
+% Part: first-order-logic 
+% Chapter: axiomatic-deduction 
+% Section: proving-things-quant
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{axd}{prq}
+
+\olsection{\usetoken{P}{derivation} met kwantoren (‘voor alle’ en ‘er bestaat’)}
+
+\begin{ex}
+We geven !!a{derivation} van $(\lforall[x][!A(x)] \land
+\lforall[y][!B(y)]) \lif \lforall[x][(!A(x) \land !B(x))]$.
+
+Kijk eerst naar
+\begin{align*}
+  (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[x][!A(x)]\\
+  \intertext{Dit is een invulling van \olref[prp]{ax:land1}. Verder is}
+  \lforall[x][!A(x)] & \lif !A(a) \\
+  \intertext{een invulling van \olref[qua]{ax:q1}. Volgens \olref[pro]{prop:chain} is daarom}
+  (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif !A(a) \\
+  \intertext{!!{derivable}. Dezelfde stappen werken voor $!B$. Eerst hebben we}
+  (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[y][!B(y)] \qquad\text{and}\\
+    \lforall[y][!B(y)] & \lif !B(a)\\
+    \intertext{In die volgorde zijn dit invullingen van \olref[prp]{ax:land2} en \olref[qua]{ax:q1}. Daarom is}
+    (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif !B(a)\\
+    \intertext{volgens \olref[pro]{prop:chain} af te leiden. Neem nu een passende invulling van \olref[prp]{ax:land3} en pas~\MP twee keer toe. Dan krijgen we}
+    (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif (!A(a) \land !B(a))\\
+    \intertext{Ook dit is af te leiden. Pas nu \QR{} toe. Dat geeft}
+(\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[x][(!A(x) \land !B(x))].
+\end{align*}
+\end{ex}
+
+\end{document}

@@ -1,0 +1,35 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: axioms-rules-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{axd}{qua}
+
+\olsection{Axioma's en regels voor kwantoren}
+
+\begin{defn}[Axioma's voor kwantoren]
+De \emph{axioma's} voor kwantoren, de tekens voor `voor alle' en `er
+bestaat', zijn alle invullingen van de volgende twee vormen:
+\begin{align}
+\ollabel{ax:q1} & \lforall[x][!B] \lif !B(t), \\
+\ollabel{ax:q2} & !B(t) \lif \lexists[x][!B].
+\end{align}
+Hierbij mag $t$ elke gesloten term zijn, dus elke term zonder
+variabelen.
+\end{defn}
+
+\begin{defn}[Regels voor kwantoren]
+\item Kijk eerst naar $!B \lif !A(a)$. Staat deze formule al in de
+  !!{derivation}, en komt $a$ niet voor in~$\Gamma$ en ook niet in~$!B$? Dan
+  telt $!B \lif \lforall[x][!A(x)]$ als een correcte stap.
+\item Kijk nu naar $!A(a) \lif !B$. Staat deze formule al in de
+  !!{derivation}, en komt $a$ niet voor in~$\Gamma$ en ook niet in~$!B$? Dan
+  telt $\lexists[x][!A(x)] \lif !B$ als een correcte stap.
+\end{defn}
+
+Voor elk van deze twee regels schrijven we kortweg ``\QR.''
+
+\end{document}

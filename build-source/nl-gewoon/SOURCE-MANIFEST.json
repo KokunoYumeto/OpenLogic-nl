@@ -1,0 +1,943 @@
+{
+  "schema": "openlogic-nl-source-checkpoint/1",
+  "register": "nl-gewoon",
+  "scope": {
+    "first": "OLP-0001",
+    "last": "OLP-0128",
+    "units": 128
+  },
+  "manifest_excludes_itself": true,
+  "records": [
+    {
+      "path": "BUILD.md",
+      "bytes": 2223,
+      "sha256": "42da86382b65452fd5d55e3e88f00e1597c8c1b6b8ca5777fccae82335c78735"
+    },
+    {
+      "path": "LICENSE.md",
+      "bytes": 17068,
+      "sha256": "bb5e0179a1e9bdb55634a4303784cf73c297a1dcee27b92cd546bf398075531c"
+    },
+    {
+      "path": "OpenLogic-NL-Gewoon-Partial-OLP-0001--OLP-0128.tex",
+      "bytes": 638323,
+      "sha256": "214f05eb17d14a23e65fe0af29bbb6c4f4b81ec3c9c672994d6dba58dd322a67"
+    },
+    {
+      "path": "PDF-REBUILD.json",
+      "bytes": 1979,
+      "sha256": "abf07c030359142e089c888c182d5bf95439e8b46e50db5af14f6e7594eeee8a"
+    },
+    {
+      "path": "PUBLICATIESTATUS.json",
+      "bytes": 201,
+      "sha256": "25c6cb23827dd9b0f3274855db07549c7fd7fa1ad74a015c5fa710826a52cf27"
+    },
+    {
+      "path": "alignment/ACCEPTED_PREFIX.jsonl",
+      "bytes": 145373,
+      "sha256": "36a48ebf3241744cdc31c1f289d27a17be59b246b214418894b374c9f434354f"
+    },
+    {
+      "path": "alignment/AUTHORITY.json",
+      "bytes": 456,
+      "sha256": "fc167342234d6e0046e54efd81de7d2d03abdfa44ea537f195e84d3aa5f43cbf"
+    },
+    {
+      "path": "alignment/UNITS.jsonl",
+      "bytes": 735240,
+      "sha256": "ba823eec3c63b9c9574df70134f3d98e38cd8bfd532a52f69bd92d82d8f2aea8"
+    },
+    {
+      "path": "editions/nl-gewoon/support/open-logic-reader-locale.tex",
+      "bytes": 10479,
+      "sha256": "b2daf68840320c6e9dc05f80314862aafce9f9cdb2c9309a54ef38761d35016d"
+    },
+    {
+      "path": "scripts/build_partial_epub3.py",
+      "bytes": 123221,
+      "sha256": "c43838bf22961ff5eda701d496cd34fa68adc8d84b93f00e690db900098d05b4"
+    },
+    {
+      "path": "scripts/test_build_partial_epub3.py",
+      "bytes": 64873,
+      "sha256": "e14c75d0fe04f097714fe52a88b7cdaed900c97f040c68c6e7c23979c0c917dc"
+    },
+    {
+      "path": "translations/nl-gewoon/content/content.tex",
+      "bytes": 2449,
+      "sha256": "e1e279f0ce60c408900d570b801b2b0948e47777c2fe682d30225e3390e83525"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/axiomatic-deduction.tex",
+      "bytes": 1359,
+      "sha256": "013f541ac744a72e3104a144d5d389b89de9ff4c24c5f5bd96af8148fe67cdbc"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/axioms-rules-propositional.tex",
+      "bytes": 1509,
+      "sha256": "973cbabe7f49b1d4298af511acde29f2cc02e0c707dca8db43c7ffe6b3a7155f"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/axioms-rules-quantifiers.tex",
+      "bytes": 1150,
+      "sha256": "f532b2ff5c26eed49f8583844ef766286e7e9bb7ae6c542ec1f57ed2438be2f2"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/deduction-theorem-quantifiers.tex",
+      "bytes": 2430,
+      "sha256": "6673397177d5db2526f7f5902c1d59db109dbe10c55c1592a94da59e81925142"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/deduction-theorem.tex",
+      "bytes": 5374,
+      "sha256": "389f855e54f8c04aa92dcf52b799c24144ac6a68713b99e1224d8c6cdef107cb"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/identity.tex",
+      "bytes": 1489,
+      "sha256": "0e41588cba4fc82cbafcd48d55fbf7143f5de301bef10af1aec99d94d3ee73cd"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/proof-theoretic-notions.tex",
+      "bytes": 4852,
+      "sha256": "e5a7eae5945613c2d48dcae57c91fabdd8938298ee8c732b2393e74023b75a47"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/provability-consistency.tex",
+      "bytes": 3360,
+      "sha256": "c5a0c937f5ec2b7cc54bb7528cae87c7c1ec5608b6e82fb80e737252ba7235be"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/provability-propositional.tex",
+      "bytes": 3190,
+      "sha256": "fbf2047987a2ade5192bab788f38180a784153104aeeb647009c42f841ecc59a"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/provability-quantifiers.tex",
+      "bytes": 1618,
+      "sha256": "431e223738827cba66ab7de19e8cc3c5feb9dc97251a3178ad4d11e8b06f3833"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/proving-things-quant.tex",
+      "bytes": 1612,
+      "sha256": "e3a1cd6393297a24e0d6c460a5aad4ebdb43b43537692b4506961f54e697fe6c"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/proving-things.tex",
+      "bytes": 5732,
+      "sha256": "50dae38fa97eeb543b61dc3430db7d80dc3275b54080b271beb9042eb89b89fd"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/rules-and-proofs.tex",
+      "bytes": 3929,
+      "sha256": "3d7ef10ca2459d6bc0431dd39fa34a996ae6cfa00fc34ca5c37907087921fe62"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/axiomatic-deduction/soundness.tex",
+      "bytes": 6235,
+      "sha256": "ea10eb9f8775187624248605c076c5090436f00c78dc110dfa0767383b7d8c78"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/completeness/completeness.tex",
+      "bytes": 721,
+      "sha256": "e0206b5c7ee6bb86f156b34445ba5ff4c82db1df7b2378455b8b1a4de766a841"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/completeness/introduction.tex",
+      "bytes": 3706,
+      "sha256": "f25927ffd82ed156671eb72866d552ffa1ecb8e6c17810a6c3e5398bd3d3aeb0"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/completeness/outline.tex",
+      "bytes": 9418,
+      "sha256": "43085723f8de4d93a4cab66237fea4e8b054b5c4d039552bfe9968f403f7c8ae"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/derivations.tex",
+      "bytes": 3766,
+      "sha256": "16491d0466692e38db8e1649e6b54de0956f64f40654a46c10a4c8dbea670158"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/identity.tex",
+      "bytes": 3986,
+      "sha256": "454c6076b08aecfc272669213f855efc997e015a2c8296bea666ed657e2ff17b"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/natural-deduction.tex",
+      "bytes": 1082,
+      "sha256": "24dc558f78d7014043d1f95136f2f2ccb1e5141db4710e6204dffc1b1e26316e"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/proof-theoretic-notions.tex",
+      "bytes": 5390,
+      "sha256": "9b6753d6ddd6225417219cdd3fb71f8665effe525b694f7734b7a74abd146ee6"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/propositional-rules.tex",
+      "bytes": 2500,
+      "sha256": "9ff523e40b69cb50c654edb6676b811e5127a04178a37282060dda9ee2c78234"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/provability-consistency.tex",
+      "bytes": 3951,
+      "sha256": "609c8bf8d465eca8a705706f9417752b2bd818e1b4bd119cc3a66e16238c1a03"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/provability-propositional.tex",
+      "bytes": 3913,
+      "sha256": "e3cbe16e3cb56e528b48e87d33bed17cf1a2a892a3293a618f4c43f3c20cd6c9"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/provability-quantifiers.tex",
+      "bytes": 1816,
+      "sha256": "d77016333b106a03ee209f78bd9d02bab2c78c036994b876ce31b4d95439b849"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/proving-things-quant.tex",
+      "bytes": 9408,
+      "sha256": "50dcf0a637cf46b7d6c78a5c7efb71cc028025b655ab544524decb1dd6113c51"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/proving-things.tex",
+      "bytes": 11110,
+      "sha256": "e00435533ff38cb09c9675e9d70104179017e9101851140401ebfb22028f355a"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/quantifier-rules.tex",
+      "bytes": 4316,
+      "sha256": "187b6862fac5ad3a76d8c465c7b65a34053772459e9d7dec1472d190c4c9940e"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/rules-and-proofs.tex",
+      "bytes": 2112,
+      "sha256": "17c5034557a1be52e04b3697b436f006aaad2c1e56df6a8c2ad908f807141548"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/soundness-identity.tex",
+      "bytes": 1748,
+      "sha256": "ee68ae32c808d8bc063dae86df54323d458b69ae23c365acc7280e16eafba0dc"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/natural-deduction/soundness.tex",
+      "bytes": 13339,
+      "sha256": "07bd647e0d9127f8eb801e9c9390bd8e3e9d27323c15bc0f051643d911124d1d"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/proof-systems/axiomatic-deduction.tex",
+      "bytes": 4445,
+      "sha256": "5644d726c85338c3fd6c3b43602b08a2d71ab8c9f141fc875773b18b91ca3e79"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/proof-systems/introduction.tex",
+      "bytes": 5649,
+      "sha256": "ea2e475b95949fccbd28fccf98cdbd0fc72e60fa09837f53bf82e6c67cfc40bf"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/proof-systems/natural-deduction.tex",
+      "bytes": 4792,
+      "sha256": "2eebd20714a2216664156f53d452e06b6e4abc9a474889cd8970378c823d5b92"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/proof-systems/proof-systems.tex",
+      "bytes": 715,
+      "sha256": "3491559c1d0ad224a0c76b99572d5e4cc5c68a6801fa440fc5b4bfe586066771"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/proof-systems/sequent-calculus.tex",
+      "bytes": 3005,
+      "sha256": "584b9e9f8c6cf9d135cf9c1e4918bdb15435ebddfe9b34979fe44c98c6e8fe8f"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/proof-systems/tableaux.tex",
+      "bytes": 4096,
+      "sha256": "d0fa0b1d47030c620b9e0490b7d22c6f08b38afcb79f3d8d5a3083dcde70cb04"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/derivations.tex",
+      "bytes": 4373,
+      "sha256": "611e6ff53e2ce5d5e7f394570631b2ea7d56d072ec299a452b015579109753af"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/identity.tex",
+      "bytes": 2697,
+      "sha256": "c83b0e9963d652cffd4bdcfa52afb5911f80f3a787497dcf6c738d13a8dfc516"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/proof-theoretic-notions.tex",
+      "bytes": 6460,
+      "sha256": "e054db156283cd61d0641a5a7564ed99ca8a7bd4dfbd054cfef211769537433b"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/propositional-rules.tex",
+      "bytes": 2035,
+      "sha256": "3355b9c50fcd2cd5b931686de4fd702b8d9fb899320a5391f98bfb25ada77670"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/provability-consistency.tex",
+      "bytes": 4344,
+      "sha256": "15a2a7bd7fb1da430468ff7dd198e5c132cec1c67a3a6da67560d183134d86c6"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/provability-propositional.tex",
+      "bytes": 4706,
+      "sha256": "9dfd704cb532ab86161ad377e8ed2dc0d49a37b226564e576d33f07a2c405143"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/provability-quantifiers.tex",
+      "bytes": 1922,
+      "sha256": "e087542829e1e2b77b9cb141efcc0288dbad7855de786fc0005526eb046ab7cd"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/proving-things-quant.tex",
+      "bytes": 4356,
+      "sha256": "3d60d04362af4ea38ec45ea85b795dbd822d7b6ded0e5066909ffe9853f8fbd2"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/proving-things.tex",
+      "bytes": 12262,
+      "sha256": "c8ccb914f39873b64e6c15eda7856b3209bf7fffe73cad4fd1f4c2bf5b22aa12"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/quantifier-rules.tex",
+      "bytes": 3946,
+      "sha256": "3acc5f74f8f31380a6eda06436437bab071f6e91b2adae013745d7703c418036"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/rules-and-proofs.tex",
+      "bytes": 2899,
+      "sha256": "4fe6da34415e95b81b50ca1872a0ec2e447a6329ee0b6dffc6e15f0fe8adf210"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/sequent-calculus.tex",
+      "bytes": 1117,
+      "sha256": "cb9523b42fea2e47551d92b9a84cd59c12c4abddc44fa5259e24c63be0fbc811"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/soundness-identity.tex",
+      "bytes": 1980,
+      "sha256": "57792e7cd3c15926e1cc1637081089833b9af84cfefd417f4cef2ec90fd6a7b4"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/soundness.tex",
+      "bytes": 19096,
+      "sha256": "cf2f7c12cdd277c477ff7213f0a0d857c979aa22012a5675aae0918b3bbafd4a"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/sequent-calculus/structural-rules.tex",
+      "bytes": 2313,
+      "sha256": "68656af2135b82c35975025577dcc5aaa39c13d859b3be5ed060c03186435ce0"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/derivations.tex",
+      "bytes": 3820,
+      "sha256": "1829db103b6710a50df2e108d25da3a909757d28f400ed90760d9bbf42926558"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/identity.tex",
+      "bytes": 3676,
+      "sha256": "b23b59a447c90a9a5fc3d1958e39c4df913a9929bdf6bfcda073fb06d3c94373"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/proof-theoretic-notions.tex",
+      "bytes": 6207,
+      "sha256": "bd2349d393d5534d3a76ef93556c835455d3691ee7249d7cb552ca7d3e94db81"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/propositional-rules.tex",
+      "bytes": 2377,
+      "sha256": "8a53364a9250d197801ea41de610a81c534ac107cdbad30421f0947f3e28a558"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/provability-consistency.tex",
+      "bytes": 6454,
+      "sha256": "d8e20b0a4be50ebe649c061206051a96d6620da4fabff0e029d0102b000c35f7"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/provability-propositional.tex",
+      "bytes": 6720,
+      "sha256": "923341eff12226ce89e0b31fcce783fefa25e677118b35aa78ba75166fb032fd"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/provability-quantifiers.tex",
+      "bytes": 3176,
+      "sha256": "03ffa7f66e91ea8d815fcece8720b6f84a1866e499cb727b3625b9e9c0231d6a"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/proving-things-quant.tex",
+      "bytes": 13417,
+      "sha256": "473d132db0217d07394f15e1949d66bb56ad9210a66f2c30416c1d153b935a02"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/proving-things.tex",
+      "bytes": 18106,
+      "sha256": "ae6091604dfa24a7e89b54db1e7f98f9a9d115d709d210c30b3c30704210715d"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/quantifier-rules.tex",
+      "bytes": 3935,
+      "sha256": "ae2219f2f911ea52259ada4d207c3d33158eecd4e7d79747b78bca745fa3d7eb"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/rules-and-proofs.tex",
+      "bytes": 2555,
+      "sha256": "293ce0560fad3c9c4492029df99fb16e5e9f0539864d1bfab59f5b5b20343527"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/soundness-identity.tex",
+      "bytes": 1936,
+      "sha256": "01298d11656918bbeb8641caaa1575b8476c8329c643010349c048eb4e6cdc93"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/soundness.tex",
+      "bytes": 10902,
+      "sha256": "aa9f74003dc3e308011400694981c3914e6010be0a220c7659c94efafc449683"
+    },
+    {
+      "path": "translations/nl-gewoon/content/first-order-logic/tableaux/tableaux.tex",
+      "bytes": 993,
+      "sha256": "df4d55b1cd7288923e0af056dac30ddee8a21db34ac3b95415b5afff9b5aaef5"
+    },
+    {
+      "path": "translations/nl-gewoon/content/open-logic-about.tex",
+      "bytes": 1776,
+      "sha256": "4567f54b1ddebcdc856036e0852da78e0135aa5092544e8825750ad1d89ede08"
+    },
+    {
+      "path": "translations/nl-gewoon/content/propositional-logic/propositional-logic.tex",
+      "bytes": 1751,
+      "sha256": "505387e20efa8c5d5b350745c9874300e9b9b3cfc56eb6975f4bbd6df9316d6d"
+    },
+    {
+      "path": "translations/nl-gewoon/content/propositional-logic/syntax-and-semantics/formation-sequences.tex",
+      "bytes": 5341,
+      "sha256": "775616fabae1f4b1516ff24a3705d702a106ab84cbda92057d9f33e6d04f3e2c"
+    },
+    {
+      "path": "translations/nl-gewoon/content/propositional-logic/syntax-and-semantics/formulas.tex",
+      "bytes": 7024,
+      "sha256": "fd67fb99d1c28f1f8befb4dd5d90a09140cb63f05a19a55a3215b841669b568d"
+    },
+    {
+      "path": "translations/nl-gewoon/content/propositional-logic/syntax-and-semantics/introduction.tex",
+      "bytes": 4153,
+      "sha256": "f43a71e9b73f224b7dd52a261ab7d06d8ba78015e80e1047ce6ecf6d2fd05eba"
+    },
+    {
+      "path": "translations/nl-gewoon/content/propositional-logic/syntax-and-semantics/preliminaries.tex",
+      "bytes": 4400,
+      "sha256": "0da1a922a6fbe3f210470d14ce815dc68c8cb2259ed6b8ccbfb3cb53f9961b94"
+    },
+    {
+      "path": "translations/nl-gewoon/content/propositional-logic/syntax-and-semantics/semantic-notions.tex",
+      "bytes": 3142,
+      "sha256": "88c8372aef7bfc58212c68d02cc97b7e32823a0bf7cba39e23ed068e0710f170"
+    },
+    {
+      "path": "translations/nl-gewoon/content/propositional-logic/syntax-and-semantics/syntax-and-semantics.tex",
+      "bytes": 655,
+      "sha256": "d7f987cd82af4d9acf3b3c6e3bbee222b265173f7dbdc9abbe08e222c987cd5e"
+    },
+    {
+      "path": "translations/nl-gewoon/content/propositional-logic/syntax-and-semantics/valuations-sat.tex",
+      "bytes": 6225,
+      "sha256": "7d55a86e33ac7dbe136d652453c91e03724f9889f9bb1ab369902ca5004a20eb"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/arithmetization/arithmetization.tex",
+      "bytes": 564,
+      "sha256": "d710c9b76650be6f1a12868e5a6900417232f88b714f1dcd04684dea9997cb5b"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/arithmetization/cauchy.tex",
+      "bytes": 10666,
+      "sha256": "3cc033da20413b1ee39a9d318bdbab477ef397a6a4a50dd35bb6b79b65e8f0d9"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/arithmetization/checking-details.tex",
+      "bytes": 9637,
+      "sha256": "f80cfdaef7b6ea4c335fb8554d7fc2645c3e6fe9b91afc2cc19cf63bf029e77b"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/arithmetization/cuts.tex",
+      "bytes": 6503,
+      "sha256": "04929643b0c492b865054012424c7344d723bc121b754c3c93d87a2ba2b537d7"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/arithmetization/integers.tex",
+      "bytes": 5691,
+      "sha256": "5386355daa1568a71ef96368d92f0bf46837cf396666ae203a5af4618e4b674e"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/arithmetization/rationals.tex",
+      "bytes": 3535,
+      "sha256": "87a1fd1a9c8c5588478251a066e6fbb73ef10e7049bab5e7acd5bf2a85ff3a77"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/arithmetization/reals.tex",
+      "bytes": 4832,
+      "sha256": "be126f8452fd1d60065b81e3e16a62ee0c32c33c9169f099f841b9681bc2e278"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/arithmetization/reflections.tex",
+      "bytes": 5255,
+      "sha256": "0b78eca90d451ede3d16c5c2d4ff65fdba45c2eb9308b15b1d9f8d696cde05cf"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/functions/composition.tex",
+      "bytes": 2687,
+      "sha256": "e55828b6ba92b3f73002cbe9932faca7d613fe944a11d2f9742ba1f434808820"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/functions/function-basics.tex",
+      "bytes": 5778,
+      "sha256": "993613ab3815794f31147d43304056f3411823dcd0ee037fea0676ecd422fac4"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/functions/function-kinds.tex",
+      "bytes": 3879,
+      "sha256": "3f656abb22dc9510bcc14d4af37cae2d3d906ffc5abd77feb2f7023ec61b75e1"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/functions/functions-relations.tex",
+      "bytes": 3874,
+      "sha256": "e02bcb72366c8b12d063f3cd9dd4f642f884b2b5bbf157971cdf8f376f73e135"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/functions/functions.tex",
+      "bytes": 397,
+      "sha256": "095199b52971703373d2cd9bfd0103450e30a405145e63084981deba8bef1a60"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/functions/inverses.tex",
+      "bytes": 7156,
+      "sha256": "0911403bee44a1f70aa91b4ecb739cd67273f3f43ddf95eb7e097f3d41fe80c7"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/functions/partial-functions.tex",
+      "bytes": 3023,
+      "sha256": "3c6e61578e11155905cee095b20c4d5617580c518006497d5d83229e2067c23a"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/infinite/card-sb.tex",
+      "bytes": 4622,
+      "sha256": "087ac037595a68d996da53ad6a9c65a0d299e72c9f557560301e9a4624aed736"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/infinite/dedekind-algebra.tex",
+      "bytes": 5602,
+      "sha256": "8203b6d054af11c5b706bec52d7ae333a8e654440c0692790ff4cc18d6cce0b5"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/infinite/dedekind-induction.tex",
+      "bytes": 3840,
+      "sha256": "6d2a60b4b69234a23877ebf4d6316c8c26e166b36c58231fe9df277d4d13a7cd"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/infinite/dedekinds-proof.tex",
+      "bytes": 6087,
+      "sha256": "69e5a22b57964ea2a1a1edf0f91c6175593d551776896905eb3bb9cbcfc47b53"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/infinite/hilberts-hotel.tex",
+      "bytes": 2677,
+      "sha256": "6f1187564149e624e7942082b46b49e1baf05ffccdacc8ef0ec6c7164eec01de"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/infinite/infinite.tex",
+      "bytes": 469,
+      "sha256": "a29f953c08bb765266c461a8d7e0405712355968e8f052a659fef2be5028e9fb"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/relations/equivalence-relations.tex",
+      "bytes": 3697,
+      "sha256": "5d82d7e7b83d1c27ef4d6f5f521fe5aacc940747f04de5a65035a038e4ae5fc0"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/relations/graphs.tex",
+      "bytes": 2981,
+      "sha256": "de2c129772ce1f2cca4992981d22649cde372ae85199dc6712aafdde335d9a5a"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/relations/operations.tex",
+      "bytes": 2877,
+      "sha256": "0c7e4f5e9b3e1a6c5dcd32ceaf7b2861a5065d4f0360bab6db552400e5881157"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/relations/orders.tex",
+      "bytes": 6675,
+      "sha256": "422758ee2074d5f75acc9c6147dd079468481f82073f3ebd285d49b884b6b97e"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/relations/reflections.tex",
+      "bytes": 4445,
+      "sha256": "8cf9beed248a09f41b66cc92ec598808bb477aab44ebc50b1af534ac58103286"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/relations/relations-as-sets.tex",
+      "bytes": 5567,
+      "sha256": "f158de687b7c29b739fae5a653b9796d756993868e9d248156779a48d994db07"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/relations/relations-complete.tex",
+      "bytes": 408,
+      "sha256": "448341fbb5ffdee88215b9a4cf91a831e2f3befd11e38cbfd969d4fe394e1dd8"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/relations/special-properties.tex",
+      "bytes": 3604,
+      "sha256": "d22a9b6372663dd90f90fc5835dad1846502f4adc649d1fb779a7ce2c0081bab"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/relations/trees.tex",
+      "bytes": 5529,
+      "sha256": "a43246ff47f14b1b4f3501c84b5d76c818f301c52b6b972a045a6869468a50ec"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/sets-functions-relations-complete.tex",
+      "bytes": 737,
+      "sha256": "6b236d241522f1261ea5f6b7afc6152a18ccd459f82315dce660fcc9a03d63cd"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/sets/basics.tex",
+      "bytes": 4107,
+      "sha256": "2e6851db5395fac7b5d3bace99d2f2f748becafa1e1e365aae183558ead3c8fa"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/sets/important-sets.tex",
+      "bytes": 2788,
+      "sha256": "b55ffeb560fc07545dd07ffad9b679d5ebfb779d935dd759eb30230a83e3afe5"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/sets/pairs-and-products.tex",
+      "bytes": 5065,
+      "sha256": "e41ef2d3e1ffdfcb310771d3c071b0ee5de6f7c93932658d9df2213e90f57334"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/sets/russells-paradox.tex",
+      "bytes": 4212,
+      "sha256": "7b6fe603401f07a2a4ecdab0f45d615e08092f218efc218009f8c12e1f9c23e0"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/sets/sets.tex",
+      "bytes": 364,
+      "sha256": "1570952ea3b3213bccddf2749fb326c61837a24fc7bd0c76b4cbfbf583dd2e17"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/sets/subsets.tex",
+      "bytes": 3749,
+      "sha256": "8e1cc42b1c03b24c9a0528a0c28e2effabbef969472836ad0874a2cf95450ba9"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/sets/unions-and-intersections.tex",
+      "bytes": 6036,
+      "sha256": "3c8ad64b91c0e87c087221e73f4ff289ab2b98df6d2101d10164eeeda556605a"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/comparing-size.tex",
+      "bytes": 7415,
+      "sha256": "7614d2fdac53cdc3b334e63aae04cd65c1b172bb5224f9618f715b215d337836"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/enumerability-alt.tex",
+      "bytes": 5003,
+      "sha256": "1a306991f3db80c70d4d16e4eff3cdeda80ef4232c1259aabf72bb3616c387ec"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/enumerability.tex",
+      "bytes": 12749,
+      "sha256": "bfc3168b9f48d426a67ad952846d7b804d7a6ef0b1551014e22df96d6b675b09"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/equinumerous-sets.tex",
+      "bytes": 4313,
+      "sha256": "1b97a1ecd151d4c0e332ed2fe6b5020c27f999fe50e38c767273dbf17e57edf4"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/introduction.tex",
+      "bytes": 1207,
+      "sha256": "c864bfcf07047e1fbfb1f24536b0bc5c37433805a69bed0f3fcfce8e25e9048b"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/non-enumerability-alt.tex",
+      "bytes": 6957,
+      "sha256": "126b06381f6d61cb5bca4e0cde24ea06f3913dca21d65f3660f3398a18df1059"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/non-enumerability.tex",
+      "bytes": 9890,
+      "sha256": "fb980ef541500403c788c25dba621ce77144f7685f8bacf3ad408c82ce56aab8"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/pairing-alt.tex",
+      "bytes": 4871,
+      "sha256": "f33c7c8d17a604fbdca2147d47f51f9f95988f61a7b90eaddb44c03aa93bfb37"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/pairing.tex",
+      "bytes": 4544,
+      "sha256": "60f286c3dad1004a76d82074f3e231adfa9e2679c5a326227e6ddd0ee4e8907d"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/reduction-alt.tex",
+      "bytes": 5813,
+      "sha256": "32e84911a776fbdf9d45c763928774551cb915b14ad528207339d99b059934fd"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/reduction.tex",
+      "bytes": 6246,
+      "sha256": "9352d83152913a88b04be4b07a7e16fbed2bbedcdf11e090ba41caa2d780ca69"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/schroder-bernstein.tex",
+      "bytes": 2082,
+      "sha256": "a579c933818db03febb1be633e3d0d1d3623e7c5499af0554882e18a55c45215"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/size-of-sets-complete.tex",
+      "bytes": 1771,
+      "sha256": "ddca04f62091e5d53207a3b5683955f0ac14f962bc61be86227d62c46eae64db"
+    },
+    {
+      "path": "translations/nl-gewoon/content/sets-functions-relations/size-of-sets/zig-zag.tex",
+      "bytes": 4474,
+      "sha256": "36d33ed6e4267889207bce9d551e4f9642dde33f9b3087cd320ea251dea09a23"
+    },
+    {
+      "path": "upstream/LICENSE.md",
+      "bytes": 17227,
+      "sha256": "1094a30e124027cb4cff48d932f1a8673d1386682a475a0edc811f2162241fec"
+    },
+    {
+      "path": "upstream/README.md",
+      "bytes": 1867,
+      "sha256": "3f30cae67fed17daad8017fecc4e39c3f600fb67169a228ea6037aae2afd37bf"
+    },
+    {
+      "path": "upstream/assets/diagrams/bijective.tikz",
+      "bytes": 8026,
+      "sha256": "38dacd080b28790b24b343f2f2da36602792609481bc5ac4059d949904be7f2d"
+    },
+    {
+      "path": "upstream/assets/diagrams/composition.tikz",
+      "bytes": 14084,
+      "sha256": "ad4d91333bb7d95c341e168381965ada603782bfbcaa2452096d8f1ddd78be04"
+    },
+    {
+      "path": "upstream/assets/diagrams/difference.tikz",
+      "bytes": 4703,
+      "sha256": "bdb3bede3e70dd888eff930948db4cd8615868a323f2cd4162b0cc6e954fe5ec"
+    },
+    {
+      "path": "upstream/assets/diagrams/function.tikz",
+      "bytes": 9944,
+      "sha256": "cb994564115f1e1f2be0e184abb7614989fd9d89c94ce9b99fc74a614a58260d"
+    },
+    {
+      "path": "upstream/assets/diagrams/injective.tikz",
+      "bytes": 9691,
+      "sha256": "6cb35d1950e2d1f34787ee0bdcc41fee1678c8a9fc3dc910b10688c4ec2dcc21"
+    },
+    {
+      "path": "upstream/assets/diagrams/intersection.tikz",
+      "bytes": 4009,
+      "sha256": "56bcfa9dd91404e902b92526929b698d67fa635acf956ccca70732b56717a46b"
+    },
+    {
+      "path": "upstream/assets/diagrams/surjective.tikz",
+      "bytes": 7386,
+      "sha256": "7083e6761874e930503fb0f9a4473a7177b65da466b7ae5f443c86e53cd770a5"
+    },
+    {
+      "path": "upstream/assets/diagrams/turing-machine.tikz",
+      "bytes": 32616,
+      "sha256": "95f2d3b39612c761f12c5f732d57825fbe12c9a0b3aa65e16dad9ef9161bd1c6"
+    },
+    {
+      "path": "upstream/assets/diagrams/union.tikz",
+      "bytes": 5125,
+      "sha256": "621f4f8fac2f86282bece8f499f5502a97bc40bc13a6fd36bf5d8a179c51f969"
+    },
+    {
+      "path": "upstream/assets/logos/aboer-print.png",
+      "bytes": 147689,
+      "sha256": "7ac519ac6da7b0509b38093e28fb362b8328b64718e07788abdf5c68852bbc8c"
+    },
+    {
+      "path": "upstream/assets/logos/aboer-screen.png",
+      "bytes": 147689,
+      "sha256": "7ac519ac6da7b0509b38093e28fb362b8328b64718e07788abdf5c68852bbc8c"
+    },
+    {
+      "path": "upstream/assets/logos/by.eps",
+      "bytes": 216199,
+      "sha256": "da379c07507e1cc66659dfd20753120ffc7d316eb901c922b29355ae7fb43df6"
+    },
+    {
+      "path": "upstream/assets/logos/by.pdf",
+      "bytes": 1406,
+      "sha256": "e006252e6556509483e13ce851f59c43569dfb77518b01e49bf9892e1f6076ea"
+    },
+    {
+      "path": "upstream/assets/logos/cc.eps",
+      "bytes": 184734,
+      "sha256": "8038e0cccf17aacc27b7c12122256500bae8e3601013c744b17dc0a3ec9907fe"
+    },
+    {
+      "path": "upstream/assets/logos/cc.pdf",
+      "bytes": 1943,
+      "sha256": "3675e2ab61cc94de674ab418dcd0e3d6511f306abf50f90c0c6771414186885a"
+    },
+    {
+      "path": "upstream/assets/logos/openlogic-logo-bw.eps",
+      "bytes": 2606,
+      "sha256": "a05cdd1bda1f5b65f3c5e768f42365f48b645a5e36aab8dfbe2b2cd5281ce342"
+    },
+    {
+      "path": "upstream/assets/logos/openlogic-logo-bw.pdf",
+      "bytes": 1084,
+      "sha256": "1c5933c487dbe3f804474ee439e1e189c8547e608ed4eef0edeb21f6981db8d0"
+    },
+    {
+      "path": "upstream/assets/logos/openlogic-logo-color.eps",
+      "bytes": 2706,
+      "sha256": "5e1a4828f27c080e48b7c93a46d52c3e7361db812e053b6c2ad0c0fc4510aee8"
+    },
+    {
+      "path": "upstream/assets/logos/openlogic-logo-color.pdf",
+      "bytes": 1752,
+      "sha256": "d2b138076e393dc44b73e480bfba10b9bce68ceac53fefb1c19f6ae8981c26a2"
+    },
+    {
+      "path": "upstream/assets/logos/openlogic-wm-bw.eps",
+      "bytes": 7050,
+      "sha256": "569842dd2c7e2d48e78617caba24e9eeb5fae58edd8ec756774f5fb4a09ec5fc"
+    },
+    {
+      "path": "upstream/assets/logos/openlogic-wm-bw.pdf",
+      "bytes": 3252,
+      "sha256": "0a7cfdc3eb57dfbcb7f97e0573823653802b642b029de323671937febffe7de9"
+    },
+    {
+      "path": "upstream/assets/logos/openlogic-wm-color.eps",
+      "bytes": 7069,
+      "sha256": "542ac0a4402f92435ac19b87f25893ec7eea1100f9efb7d95f8e24bc202fd669"
+    },
+    {
+      "path": "upstream/assets/logos/openlogic-wm-color.pdf",
+      "bytes": 3264,
+      "sha256": "a17e71de48145b56fa6fe78fab0fa35530f4788143b39f09f54bbf1c1c1e4087"
+    },
+    {
+      "path": "upstream/assets/logos/remix.eps",
+      "bytes": 216323,
+      "sha256": "3f81a8c12c558ed9b2edca94148556f0b5adb9d067ce24476583929a4be5b8e5"
+    },
+    {
+      "path": "upstream/assets/logos/remix.pdf",
+      "bytes": 1451,
+      "sha256": "3ed058c675a84eda0568c4213830a1a85c9202bc4f29c731bf55adb786ab6f07"
+    },
+    {
+      "path": "upstream/assets/logos/ti-print.pdf",
+      "bytes": 13477,
+      "sha256": "a09002f2e38c2db84b4f2c920e68c2e5787c72780bc5238d5d69d499039a0ae6"
+    },
+    {
+      "path": "upstream/assets/logos/ti-screen.pdf",
+      "bytes": 13591,
+      "sha256": "082cd4b5f5350404327d31bdce81bbfb24c2cfa961c97b23e145bf23edf5ab92"
+    },
+    {
+      "path": "upstream/bib/natbib-oup.bst",
+      "bytes": 31657,
+      "sha256": "c3cb1272ab13900bb117f9cc3ba4028ef9f40bcb4943ca852c569c7a2c31e733"
+    },
+    {
+      "path": "upstream/bib/open-logic.bib",
+      "bytes": 36027,
+      "sha256": "0cad63329b415462622f2246b542a0c74b7f1322d80a08b90c1d8d083383ef3c"
+    },
+    {
+      "path": "upstream/locale/nl/open-logic-locale.sty",
+      "bytes": 10626,
+      "sha256": "0346ccfb6ad19a6d20a83afeb04c96581538792ac3f34292fc9e02816b012cde"
+    },
+    {
+      "path": "upstream/open-logic-config.sty",
+      "bytes": 52113,
+      "sha256": "ab19be71b50b415738603290317b504d9fa6b82850fe640d585c62db1540ced3"
+    },
+    {
+      "path": "upstream/open-logic-envs.sty",
+      "bytes": 4692,
+      "sha256": "031b1d324bdfa2f8434f5fe40f6b7193d35e6a617e149d7ad6e588efde29fcb6"
+    },
+    {
+      "path": "upstream/open-logic-locale.sty",
+      "bytes": 5254,
+      "sha256": "626420f1378baa6e1947f7e523a9ca3c20bee9fbfee651a0174fed32563f81c0"
+    },
+    {
+      "path": "upstream/sty/bpextra.sty",
+      "bytes": 198,
+      "sha256": "ad64c08c6fd5cc241336d55e5f31139fdd9a39105da950c2e26a08d867f71fd4"
+    },
+    {
+      "path": "upstream/sty/bussproofs-extra.sty",
+      "bytes": 9645,
+      "sha256": "7dcbc725f91babecb177f2a7dcf9c2bd83800bd9ed30b1f8b25f4eaa9fa60fcf"
+    },
+    {
+      "path": "upstream/sty/open-logic-book-envs.sty",
+      "bytes": 5712,
+      "sha256": "acaf1caaee44d9aa99842327fcbc24edec9a47849782475710678c00febc557e"
+    },
+    {
+      "path": "upstream/sty/open-logic-book.cls",
+      "bytes": 16770,
+      "sha256": "4360054faafcc6eb41a042be71906e9ece75e1c9fb032fd3946280b055d41eeb"
+    },
+    {
+      "path": "upstream/sty/open-logic-debug.sty",
+      "bytes": 1645,
+      "sha256": "dc1b5e34fc035e82827b74a337e2224cfb3b0261d2d90be6137783f828a211b6"
+    },
+    {
+      "path": "upstream/sty/open-logic-defer.sty",
+      "bytes": 5083,
+      "sha256": "5fec681f627ac0b840ed02958a9edabe90962a4f66c2972b94a7a704daad81f6"
+    },
+    {
+      "path": "upstream/sty/open-logic-formulas.sty",
+      "bytes": 1629,
+      "sha256": "6c1fe7695cab63cdf9e6ace0327aeedfcab824688cd762fc35281a3b25679369"
+    },
+    {
+      "path": "upstream/sty/open-logic-referencing.sty",
+      "bytes": 3350,
+      "sha256": "6b8df594d50b522a261d7e8fb36c4bf02b8e5d5433b6f096259ff9a3f076eed4"
+    },
+    {
+      "path": "upstream/sty/open-logic-selective.sty",
+      "bytes": 4225,
+      "sha256": "5021f57118408331df98ada83da89e882079ea95a72101d8d66d6018afc176f2"
+    },
+    {
+      "path": "upstream/sty/open-logic-tokenize.sty",
+      "bytes": 4283,
+      "sha256": "8c2a048a6e14e8295d5e5dc08ddda22149007b03786f7d441343e48dc711e731"
+    },
+    {
+      "path": "upstream/sty/open-logic.sty",
+      "bytes": 11069,
+      "sha256": "556675a5ddfc00999dae90da0272ca0e33004866823aec6efb33ffe0a410dcbf"
+    },
+    {
+      "path": "upstream/sty/ptolemaicastronomy.sty",
+      "bytes": 3019,
+      "sha256": "7a2f80ae1bab40570502fb17516b2ad02610201f4da203c2304fc5b6343a924e"
+    }
+  ],
+  "tree_sha256": "ee8e6e47f56a363ff457ef99064976c3d5c84ef3f39203e30176f93748f58364"
+}

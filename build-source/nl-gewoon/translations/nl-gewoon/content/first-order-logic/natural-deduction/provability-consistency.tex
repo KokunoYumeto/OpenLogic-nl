@@ -1,0 +1,132 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{ntd}{prv}}
+      {\olfileid{pl}{ntd}{prv}}
+      
+\olsection{\usetoken{S}{derivability} en consistentie}
+
+We bewijzen nu enkele eigenschappen van de relatie
+‘is afleidbaar uit’. Elke eigenschap is op zichzelf interessant. Ze
+zijn ook allemaal nodig voor het bewijs van de volledigheidsstelling.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  Als $\Gamma \Proves !A$ en $\Gamma \cup \{!A\}$ inconsistent is,
+  dan is $\Gamma$ inconsistent.
+\end{prop}
+
+\begin{proof}
+Noem de !!{derivation} van~$!A$ uit~$\Gamma$~$\delta_1$. Noem de
+!!{derivation} van~$\lfalse$ uit $\Gamma \cup \{!A\}$~$\delta_2$.
+Dan kunnen we dit !!{derive}:
+\begin{prooftree}
+\AxiomC{$\Gamma, \Discharge{!A}{1}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot !A$}
+\AxiomC{$\Gamma$}
+\RightLabel{$\delta_1$}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\end{prooftree}
+In de nieuwe !!{derivation} is de aanname~$!A$ !!{discharged}. Daarom
+is het !!a{derivation} uit~$\Gamma$.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ precies als $\Gamma \cup \{\lnot !A\}$
+inconsistent is.
+\end{prop}
+
+\begin{proof}
+Stel eerst dat $\Gamma \Proves !A$. Er is dan !!a{derivation}
+~$\delta_0$ van~$!A$ waarvan de !!{undischarged} aannamen in
+~$\Gamma$ staan. Zo krijgen we !!a{derivation} van $\lfalse$ uit
+$\Gamma \cup \{\lnot !A\}$:
+\begin{prooftree}
+  \AxiomC{$\lnot !A$}
+  \AxiomC{$\Gamma$}
+  \RightLabel{$\delta_0$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+\end{prooftree}
+
+Neem nu aan dat $\Gamma \cup \{\lnot !A\}$ inconsistent is. Laat
+$\delta_1$ de bijbehorende !!{derivation} van~$\lfalse$ zijn, met
+!!{undischarged} aannamen in~$\Gamma \cup \{\lnot !A\}$. Zo krijgen
+we !!a{derivation} van~$!A$ uit alleen~$\Gamma$ door~$\FalseCl$ te
+gebruiken:
+\begin{prooftree}
+  \AxiomC{$\Gamma, \Discharge{\lnot !A}{1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$\lfalse$}
+  \RightLabel{\FalseCl}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A$}
+\end{prooftree}
+\end{proof}
+
+\begin{prob}
+Bewijs dat $\Gamma \Proves \lnot !A$ precies als
+$\Gamma \cup \{!A\}$ inconsistent is.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  Als $\Gamma \Proves !A$ en $\lnot !A \in \Gamma$, dan is $\Gamma$
+  inconsistent.
+\end{prop}
+
+\begin{proof}
+  Stel dat $\Gamma \Proves !A$ en $\lnot !A \in \Gamma$. Dan is er
+  !!a{derivation}~$\delta$ van~$!A$ uit~$\Gamma$. Kijk naar deze
+  eenvoudige toepassing van de regel $\Elim{\lnot}$:
+  \begin{prooftree}
+    \AxiomC{$\lnot !A$}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta$}
+    \DeduceC{$!A$}
+    \RightLabel{\Elim{\lnot}}
+    \BinaryInfC{$\lfalse$}
+  \end{prooftree}
+  Omdat $\lnot !A \in \Gamma$, staan alle !!{undischarged} aannamen
+  in~$\Gamma$. Dit laat zien dat $\Gamma \Proves \lfalse$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  Als $\Gamma \cup \{!A\}$ en $\Gamma \cup \{\lnot !A\}$ allebei
+  inconsistent zijn, dan is $\Gamma$ inconsistent.
+\end{prop}
+
+\begin{proof}
+Er zijn !!{derivation}s $\delta_1$ en $\delta_2$ van respectievelijk
+~$\lfalse$ uit $\Gamma \cup \{ !A \}$ en~$\lfalse$ uit
+$\Gamma \cup \{ \lnot !A \}$. Daarmee kunnen we dit !!{derive}:
+\begin{prooftree}
+\AxiomC{$\Gamma, \Discharge{\lnot !A}{2}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{2}
+\UnaryInfC{$\lnot \lnot !A$}
+\AxiomC{$\Gamma, \Discharge{!A}{1}$}
+\RightLabel{$\delta_1$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot !A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\end{prooftree}
+De aannamen $!A$ en $\lnot !A$ zijn !!{discharged}. Dit is dus
+!!a{derivation} van~$\lfalse$ uit alleen~$\Gamma$. Daarom is
+$\Gamma$ inconsistent.
+\end{proof}
+\end{document}

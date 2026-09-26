@@ -1,0 +1,135 @@
+% Part: sets-functions-relations
+% Chapter: infinite
+% Section: dedekind
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{infinite}{dedekind}
+\olsection{Dedekindalgebra's}
+
+De natuurlijke getallen moeten niet alleen oneindig zijn. Ze moeten ook
+bepaalde (algebraïsche) eigenschappen hebben, zodat optellen,
+vermenigvuldigen enzovoort goed werken.
+
+Dedekind nam de \emph{opvolgerfunctie} als uitgangspunt. Die functie
+stuurt elk getal naar zijn opvolger. Daarna beschreef hij de getallen
+met deze drie eigenschappen:
+\begin{enumerate}
+	\item Er is een getal, $0$, dat niet de opvolger van een getal is
+	\\anders gezegd: $0 \notin \ran{s}$
+	\\in symbolen: $\forall x\ s(x) \neq 0$
+	\item Verschillende getallen hebben verschillende opvolgers
+	\\dus is $s$ injectief: verschillende invoeren krijgen verschillende uitkomsten
+	\\in symbolen: $\forall x \forall y (s(x) = s(y) \lif x = y)$
+	\item\ollabel{repeatedapplication} Elk getal krijg je door bij $0$ te
+	beginnen en steeds de opvolgerfunctie toe te passen.
+\end{enumerate}
+De eerste twee eigenschappen kunnen we makkelijk in eerste-ordelogica
+opschrijven (zie hierboven). Maar voor \olref{repeatedapplication}
+hebben we meer nodig dan alleen eerste-ordelogica. Dedekind wist deze
+eigenschap, \olref{repeatedapplication}, als volgt met verzamelingen te
+omschrijven:
+\begin{enumerate}
+	\item[3$'$.] De natuurlijke getallen vormen de kleinste verzameling
+	die \emph{gesloten is onder de opvolgerfunctie}. Dat betekent: pas je
+	$s$ toe op een willekeurig element van de verzameling, dan krijg je
+	opnieuw een element van die verzameling.
+\end{enumerate}
+We moeten dit nu precies uitschrijven.
+
+\begin{defn}\ollabel{Closure}
+	Neem een functie $f$. We noemen een verzameling $X$ $f$-\emph{gesloten}
+	{precies als} $(\forall x \in X)f(x) \in X$. De functie brengt
+	elementen van die verzameling dan niet buiten de verzameling. Voor
+	elke $o$ leggen we nu vast:
+	$$\closureofunder{f}{o} = \bigcap\Setabs{X}{o \in X\text{ en }X
+\text{ $f$-gesloten is}}$$
+\end{defn}
+
+Dus $\closureofunder{f}{o}$ is de doorsnede van alle $f$-gesloten
+verzamelingen waar $o$ een element van is: het deel dat al die
+verzamelingen gemeen hebben. Daarom is $\closureofunder{f}{o}$
+intuïtief de \emph{kleinste} $f$-gesloten verzameling waar $o$ een
+element van is. Het volgende resultaat maakt dat precies:
+\begin{lem}\ollabel{closureproperties}
+	Voor elke verzameling $A$, elke functie $f \colon A \to A$ en elke
+	$o \in A$:
+	\begin{enumerate}
+		\item\ollabel{closurehaselem} $o \in \closureofunder{f}{o}$; en
+		\item\ollabel{closureclosed} $\closureofunder{f}{o}$ is $f$-gesloten; en
+		\item\ollabel{closuresmallest} als $X$ $f$-gesloten is en $o \in
+		X$, dan $\closureofunder{f}{o} \subseteq X$
+	\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Er is minstens één $f$-gesloten verzameling waar $o$ een element van
+is, namelijk $\ran{f}\cup \{o\}$. Daarom bestaat
+$\closureofunder{f}{o}$, de doorsnede van \emph{alle} zulke
+verzamelingen. We moeten nu
+\olref{closurehaselem}--\olref{closuresmallest} nalopen.
+
+Voor \olref{closurehaselem}: $o \in \closureofunder{f}{o}$. Alle
+verzamelingen in de doorsnede hebben $o$ als element, dus hun doorsnede
+ook.
+
+Voor \olref{closureclosed}: neem $x \in \closureofunder{f}{o}$. Als
+$o \in X$ en $X$ $f$-gesloten is, dan zit $x \in X$ en zit ook
+$f(x) \in X$, want $X$ is $f$-gesloten. Dit geldt voor elke verzameling
+in de doorsnede, dus $f(x) \in \closureofunder{f}{o}$.
+
+Voor \olref{closuresmallest} gebruiken we een algemene regel: als
+$X \in C$, dan $\bigcap C \subseteq X$.
+\end{proof}
+
+Nu kunnen we de volgende definitie geven:
+
+\begin{defn}
+Een \emph{Dedekindalgebra} bestaat uit drie dingen: een verzameling
+$A$, een functie $f \colon A \to A$ en een gekozen element $o \in A$.
+Ze moeten aan deze voorwaarden voldoen:
+	\begin{enumerate}
+		\item \ollabel{ded:proper} $o \notin \ran{f}$
+		\item \ollabel{ded:injection} $f$ is injectief
+		\item \ollabel{ded:closure} $A = \closureofunder{f}{o}$
+	\end{enumerate}
+\end{defn}
+
+Omdat $A = \closureofunder{f}{o}$, weten we uit het vorige resultaat
+dat $A$ de kleinste $f$-gesloten verzameling is waar $o$ een element
+van is. Elke Dedekindalgebra is Dedekind-oneindig. Dat zie je direct aan
+voorwaarden \olref{ded:proper} en \olref{ded:injection} van de
+definitie. Maar er geldt ook iets in de omgekeerde richting: van elke
+Dedekind-oneindige verzameling kunnen we een Dedekindalgebra maken.
+
+\begin{thm}\ollabel{thm:DedekindInfiniteAlgebra}
+Als er een Dedekind-oneindige verzameling bestaat, dan bestaat er een
+Dedekindalgebra.
+\end{thm}
+
+\begin{proof}
+Neem een Dedekind-oneindige verzameling $D$. Er is dan een injectie $g
+\colon D \to D$ en een element $o \in D \setminus \ran{g}$. Neem nu
+$A = \closureofunder{g}{o}$. Volgens \olref{closureproperties} bestaat
+$A$ en geldt $o \in A$. Neem $f = \funrestrictionto{g}{A}$. We laten
+zien dat $A, f, o$ samen een Dedekindalgebra vormen.
+
+Voor \olref{ded:proper}: $o \notin \ran{g}$ en $\ran{f} \subseteq
+\ran{g}$, dus $o\notin \ran{f}$.
+
+Voor \olref{ded:injection}: $g$ is een injectie op $D$ en $f
+\subseteq g$, dus is de beperking ook injectief.
+
+Voor \olref{ded:closure}: volgens \olref{closureproperties} is $A$
+$g$-gesloten; dus is $A$ ook $f$-gesloten. Daarom is
+$\closureofunder{f}{o} \subseteq A$ volgens
+\olref{closureproperties}. Verder is $\closureofunder{f}{o}$ zelf
+$f$-gesloten en geldt $f = \funrestrictionto{g}{A}$. Daaruit volgt dat
+$\closureofunder{f}{o}$ ook $g$-gesloten is. Dus
+$A \subseteq \closureofunder{f}{o}$ volgens
+\olref{closureproperties}.
+\end{proof}
+
+\end{document}

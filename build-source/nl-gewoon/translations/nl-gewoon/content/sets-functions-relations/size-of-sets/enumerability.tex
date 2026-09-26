@@ -1,0 +1,290 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: enumerations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{enm}
+
+\olsection{Opsommingen en \usetoken{S}{enumerable} verzamelingen}
+
+\begin{editorial}
+  Deze paragraaf gaat over het opsommen van verzamelingen. Hier is een
+  opsomming een surjectieve functie met $\PosInt$ als domein. Alles wordt
+  stap voor stap uitgelegd voor lezers die nog
+  niet veel wiskunde kennen. In \olref[enm-alt]{sec} staat een kortere
+  versie. Daar heet een bijectie tussen $\Nat$ (of een beginstuk
+  daarvan) en de verzameling een opsomming.
+\end{editorial}
+
+\begin{explain}
+We hebben al voorbeelden van verzamelingen gegeven door hun
+!!{element}s op een lijst te zetten. Nu bekijken we hoe je de
+!!{element}s van een verzameling kunt opsommen en wanneer dat kan,
+ook als de verzameling oneindig is.
+\end{explain}
+
+\begin{defn}[Opsomming, in gewone woorden]
+In gewone woorden is een \emph{opsomming} van een verzameling~$A$ een
+lijst van !!{element}s van~$A$. Die lijst mag oneindig zijn, maar ieder
+!!{element} van $A$ moet ergens op een eindige plaats staan. Als $A$
+zo'n opsomming heeft, noemen we $A$ \emph{!!{enumerable}}.
+\end{defn}
+
+\begin{explain}
+Bij zo'n opsomming moet je op een paar dingen letten:
+\begin{enumerate}
+\item Voor ons telt een lijst alleen als opsomming als zij een begin
+  heeft. Ieder !!{element}, behalve het eerste, moet precies één
+  !!{element} vlak vóór zich hebben. Er staan dus maar eindig veel
+  elementen tussen het eerste !!{element} van de lijst en elk ander
+  !!{element}. Elk !!{element} van een opsomming heeft daardoor een
+  eindige plaats: het eerste !!{element} staat op plaats~$1$, het
+  tweede op plaats~$2$, enzovoort.
+\item Je kunt dezelfde verzameling~$A$ op verschillende manieren
+  opsommen; alleen de volgorde van de !!{element}s is anders. De lijst
+  $4$, $1$, $25$, $16$,~$9$ somt de verzameling van
+  de eerste vijf kwadraten net zo goed op als $1$, $4$, $9$, $16$,~$25$.
+\item Herhalingen zijn toegestaan: $1$, $1$, $2$, $2$, $3$, $3$,
+  ~\dots{} somt dezelfde verzameling op als $1$, $2$, $3$,~\dots{}.
+\item Maar als we één bepaalde opsomming geven, doen de volgorde en de
+  herhalingen er \emph{wel} toe. We kunnen een opsomming van de positieve
+  gehele getallen laten beginnen met $1$, $2$, $3$, $1$, \dots{}, maar in de gewone
+  volgorde $1$, $2$, $3$, $4$,~\dots is het patroon makkelijker te zien.
+\item Een opsomming moet een begin hebben. De lijst \dots, $3$, $2$,
+  $1$ is dus geen opsomming van de positieve gehele getallen: zij heeft
+  geen eerste !!{element}. Vraag maar op welke plaats in deze lijst het
+  getal 76 staat. Dan zie je waarom dit uit de eerdere definitie volgt.
+\item Deze lijst somt de positieve gehele getallen niet op: $1$, $3$,
+  $5$, \dots, $2$, $4$, $6$, \dots\@ Dat werkt niet, want de even
+  getallen zouden op plaats $\infty + 1$, $\infty + 2$, $\infty + 3$
+  staan en niet op een eindige plaats.
+\item Ook de lege verzameling is aftelbaar: de lege lijst somt haar op!{}
+\end{enumerate}
+\end{explain}
+
+\begin{prop}
+  Als $A$ een opsomming heeft, kan zij ook zonder herhalingen worden
+  opgesomd.
+\end{prop}
+
+\begin{proof}
+  Stel dat $A$ wordt opgesomd door $x_1$, $x_2$, \dots{}, waarbij elke
+  $x_i$ een !!{element} van~$A$ is. We laten de latere, herhaalde !!{element}s weg.
+  In de nieuwe lijst nemen we $x_i$ op als dit !!a{element} van~$A$
+  niet eerder onder $x_1$, \dots,
+  $x_{i-1}$ stond. We laten $x_i$ weg als het al onder $x_1$, \dots,
+  ~$x_{i-1}$ stond.
+\end{proof}
+
+Om precies te kunnen bepalen hoe opsommingen en !!{enumerable}
+verzamelingen werken en er iets over te kunnen bewijzen, moeten we
+nauwkeuriger zeggen wat een opsomming is. Dat doen we nu.
+
+\begin{defn}[Opsomming, precies gedefinieerd] 
+Een \emph{opsomming} van een verzameling $A \neq \emptyset$ is elke
+!!{surjective} functie $f \colon \PosInt \to A$. Dat betekent dat elk
+element van de verzameling minstens één keer als functiewaarde voorkomt.
+\end{defn}
+
+\begin{explain}
+We laten zien dat de precieze definitie en de eerdere uitleg met een
+mogelijk oneindige lijst hetzelfde zeggen. Elke !!{surjective} functie
+van $\PosInt$ naar een verzameling~$A$ somt~$A$ op. De functie geeft
+namelijk deze lijst: $f(1)$, $f(2)$, $f(3)$, \dots. Omdat $f$
+!!{surjective} is, is ieder !!{element} van~$A$ gelijk aan~$f(n)$ voor
+minstens één~$n \in \PosInt$. Elk !!{element} van $A$ staat dus op een
+eindige plaats in de lijst. De functie hoeft niet !!{injective} te
+zijn en mag dezelfde waarde daarom vaker geven. Zoals we al zagen, zijn
+zulke herhalingen toegestaan.
+
+Omgekeerd: als een lijst alle !!{element}s van~$A$ opsomt, kunnen we een
+!!a{surjective} functie $f\colon \PosInt \to A$ maken. We nemen voor
+$f(n)$ het $n$-de !!{element} van de lijst. Bestaat er geen $n$-de
+!!{element}, dan nemen we het laatste !!{element} van de lijst. Alleen
+als $A$ leeg is, en de lijst dus ook leeg is, krijgen we zo geen
+!!a{surjective} functie. Elke niet-lege lijst geeft dus een
+!!a{surjective} functie $f\colon \PosInt \to A$.
+\end{explain}
+
+\begin{defn}
+  \ollabel{defn:enumerable}
+  Een verzameling~$A$ is !!{enumerable} als zij leeg is of een opsomming
+  heeft, en alleen dan.
+\end{defn}
+
+\begin{ex}
+De positieve gehele getallen ($\PosInt$) kun je gewoon opsommen met de
+identiteitsfunctie $f(n) = n$. Voor de natuurlijke getallen $\Nat$
+werkt de functie $g(n) = n - 1$.
+\end{ex}
+
+\begin{ex}
+Neem de functies $f\colon \PosInt \to \PosInt$ en $g \colon \PosInt \to
+\PosInt$ die zijn gegeven door
+\begin{align*}
+f(n) & = 2n \text{ en}\\
+g(n) & = 2n - 1
+\end{align*}
+De eerste somt de positieve even gehele getallen op; de tweede doet
+hetzelfde voor de positieve oneven gehele getallen. Toch is geen van
+beide een opsomming van $\PosInt$, want geen van beide is
+!!{surjective}.
+\end{ex}
+
+\begin{prob}
+Geef een opsomming van de positieve kwadraten $1$, $4$, $9$, $16$, \dots
+\end{prob}
+
+\begin{ex}
+De functie $f(n) = (-1)^{n} \lceil \frac{(n-1)}{2}\rceil$ gebruikt
+$\lceil x \rceil$, de \emph{plafondfunctie}. Die geeft het kleinste
+gehele getal dat groter is dan of gelijk is aan $x$. De functie somt
+de gehele getallen~$\Int$ op. Je ziet hoe $f$ de getallen uit $\Int$
+achtereenvolgens geeft door heen en weer te ``springen'' tussen positieve en negatieve
+gehele getallen:
+\[
+\begin{array}{c c c c c c c c}
+f(1) & f(2) & f(3) & f(4) & f(5) & f(6) & f(7) & \dots \\ \\
+- \lceil \tfrac{0}{2} \rceil & \lceil \tfrac{1}{2}\rceil & - \lceil \tfrac{2}{2} \rceil & \lceil \tfrac{3}{2} \rceil & - \lceil \tfrac{4}{2} \rceil  & \lceil \tfrac{5}{2}
+\rceil & - \lceil \tfrac{6}{2} \rceil & \dots \\ \\
+0 & 1 & -1 & 2 & -2 & 3 & \dots
+\end{array}
+\]
+Je kunt $f$ ook zo per geval beschrijven:
+\[
+f(n) = \begin{cases}
+  0 & \text{als $n = 1$}\\
+  n/2 & \text{als $n$ even is}\\
+  -(n-1)/2 & \text{als $n$ oneven en $>1$ is}
+  \end{cases}
+\]
+\end{ex}
+
+\begin{prob}
+  Laat zien dat als $A$ en $B$ !!{enumerable} zijn, ook $A \cup B$ dat
+  is. Ga zo te werk: neem aan dat er !!{surjective} functies
+  $f\colon \PosInt \to A$ en $g\colon \PosInt \to B$ zijn. Maak een
+  !!a{surjective} functie~$h\colon \PosInt \to A \cup B$ en bewijs dat
+  die !!{surjective} is. Bekijk ook wat er gebeurt als $A$ leeg is
+  of~$B = \emptyset$.
+\end{prob}
+  
+\begin{prob}
+  Laat zien dat als $B \subseteq A$ en $A$ !!{enumerable} is, ook~$B$
+  dat is. Neem aan dat er een !!a{surjective} functie
+  $f\colon \PosInt \to A$ is. Maak een !!a{surjective} functie
+  $g\colon \PosInt \to B$ en bewijs dat die !!{surjective} is. Wat
+  gebeurt er als $B = \emptyset$?
+\end{prob}
+    
+\begin{prob}
+  Laat met inductie naar $n$ zien dat als $A_1$, $A_2$, \dots, $A_n$
+  allemaal !!{enumerable} zijn, ook $A_1 \cup \dots \cup A_n$ dat is.
+  Je mag aannemen dat als twee verzamelingen $A$ en~$B$ !!{enumerable}
+  zijn, ook~$A \cup B$ dat is. 
+\end{prob}
+
+Wanneer je de !!{element}s van een verzameling op een lijst zet, ligt
+het misschien meer voor de hand om vanaf het $1$-ste !!{element} te
+tellen. Maar wiskundigen tellen graag met de natuurlijke getallen~$\Nat$.
+Ze noemen de !!{element}s van een lijst daarom het $0$-de, $1$-ste,
+$2$-de, enzovoort. We kunnen een opsomming dus net
+zo goed definiëren als een !!a{surjective} functie van $\Nat$ naar~$A$.
+Beide definities zeggen hetzelfde.
+
+\begin{prop}\ollabel{prop:enum-shift}
+  Er bestaat een !!a{surjection} $f\colon \PosInt \to A$ precies
+  wanneer er een !!a{surjection} $g\colon \Nat \to A$ bestaat.
+\end{prop}
+
+\begin{proof}
+  Begin met een !!a{surjection} $f\colon \PosInt \to A$. Definieer
+  $g(n) = f(n+1)$ voor elke $n \in \Nat$. Dan is $g\colon \Nat \to A$
+  !!{surjective}. Omgekeerd beginnen we met een !!a{surjection}
+  $g\colon \Nat \to A$ en definiëren we $f(n) = g(n-1)$.
+\end{proof}
+
+Daarom geldt:
+
+\begin{cor}\ollabel{cor:enum-nat}
+Een verzameling $A$ is !!{enumerable} als zij leeg is of als er een
+!!a{surjective} functie $f\colon \Nat \to A$ bestaat, en alleen dan.
+\end{cor}
+
+We zagen al dat je uit een lijst met !!{element}s van een
+verzameling~$A$ alle herhalingen kunt halen. Bij opsommingen kan dat
+ook, maar we moeten iets zorgvuldiger zeggen en bewijzen wat er dan
+gebeurt. Een functie $f\colon \PosInt \to A$ moet voor elke
+$n \in \PosInt$ een waarde hebben. Als~$A$ maar eindig veel
+!!{element}s heeft, zijn er dus oneindig veel !!{element}s van~$\PosInt$
+waarvoor de functie een waarde moet geven, maar slechts eindig veel
+mogelijke !!{element}s van~$A$. Dan kun je niet voorkomen dat dezelfde
+waarde vaker voorkomt. Is de lijst zonder herhalingen eindig, dan
+moeten we voor~$f$ een ander domein nemen dat ook maar eindig veel
+!!{element}s heeft. Zonder herhalingen moet $f$ !!{injective} zijn.
+De functie is ook !!{surjective}. We zoeken dus een !!a{bijection}
+tussen een eindige verzameling $\{1, \dots, n\}$ of $\PosInt$ en~$A$.
+
+\begin{prop}\ollabel{prop:enum-bij}
+Als $f\colon \PosInt \to A$ !!{surjective} is en dus een opsomming
+van~$A$ is, bestaat er een !!a{bijection} $g\colon Z \to A$. Daarbij
+is $Z$ gelijk aan~$\PosInt$ of aan $\{1, \dots, n\}$ voor een
+$n \in \PosInt$.
+\end{prop}
+
+\begin{proof}
+  We definiëren $g$ recursief: elke nieuwe waarde kiezen we met behulp
+  van de waarden die al gekozen zijn. Begin met
+  $g(1) = f(1)$. Is $g(i)$ al gekozen, dan nemen we voor $g(i+1)$ de
+  eerste waarde in $f(1)$, $f(2)$, \dots{} die nog niet voorkomt onder
+  $g(1)$, \dots, $g(i)$, als zo'n waarde bestaat. Heeft $A$ precies $n$
+  !!{element}s, dan zijn $g(1)$, \dots, $g(n)$ allemaal gekozen. We
+  hebben dan een functie $g\colon \{1, \dots, n\} \to A$. Heeft $A$
+  oneindig veel !!{element}s, dan moet er voor elke $i$ een
+  !!a{element} van~$A$ in de opsomming $f(1)$, $f(2)$, \dots, staan dat
+  nog niet voorkomt onder $g(1)$, \dots, $g(i)$. In dat geval hebben we
+  een functie $g\colon \PosInt \to A$.
+  
+  De functie $g$ is !!{surjective}. Elk element van~$A$ komt immers voor
+  in de lijst $f(1)$, $f(2)$, \dots{} omdat $f$ !!{surjective} is. Het wordt
+  daarom uiteindelijk de waarde van~$g(i)$ voor een bepaalde~$i$.
+  De functie is ook !!{injective}. Stel namelijk dat er een $j < i$
+  was waarvoor $g(j) = g(i)$. Dan zou $g(i)$ al in de lijst $g(1)$, \dots,
+  $g(i-1)$ voorkomen. Dat is in strijd met de manier waarop we~$g$ hebben
+  gekozen.
+\end{proof}
+
+\begin{cor}\ollabel{cor:enum-nat-bij}
+Een verzameling $A$ is !!{enumerable} als zij leeg is of als er een
+!!a{bijection} $f\colon N \to A$ bestaat, waarbij $N = \Nat$ of
+$N = \{0, \dots, n\}$ voor een $n \in \Nat$, en alleen dan.
+\end{cor}
+
+\begin{proof}
+$A$ is !!{enumerable} als $A$ leeg is of als er een !!a{surjective}
+$f\colon \PosInt \to A$ bestaat, en alleen dan. Uit
+\olref{prop:enum-bij} volgt dat dit precies het geval is als er een
+!!a{bijective} functie~$f\colon Z \to A$ bestaat waarvoor $Z =
+\PosInt$ of $Z = \{1, \dots, n\}$ voor een $n \in \PosInt$. Hetzelfde
+argument als in het bewijs van \olref{prop:enum-shift} laat zien dat
+dit weer precies het geval is als er een !!a{bijection}
+$g\colon N \to A$ bestaat, waarbij $N = \Nat$ of
+$N = \{0, \dots, n-1\}$.
+\end{proof}
+
+\begin{prob}
+  Volgens \olref[sfr][siz][enm]{defn:enumerable} is een verzameling $A$
+  aftelbaar als $A = \emptyset$ of als er een !!a{surjective}
+  $f\colon \PosInt \to A$ bestaat, en alleen dan. Je kunt een
+  ``!!{enumerable} verzameling'' ook op een andere, even precieze manier definiëren: een
+  verzameling is aftelbaar als er een !!a{injective} functie
+  $g\colon A \to \PosInt$ bestaat, en alleen dan. Laat zien dat beide
+  definities hetzelfde zeggen. Laat dus zien dat er een !!a{injective}
+  functie $g\colon A \to \PosInt$ bestaat precies wanneer
+  $A = \emptyset$ of er een !!a{surjective} $f\colon \PosInt \to A$
+  bestaat.
+\end{prob}
+\end{document}

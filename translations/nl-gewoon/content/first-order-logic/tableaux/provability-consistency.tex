@@ -1,0 +1,160 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{tab}{prv}}
+      {\olfileid{pl}{tab}{prv}}
+
+\olsection{\usetoken{S}{derivability} en consistentie: wat volgt en wat samen kan kloppen}
+
+We bewijzen nu een paar eigenschappen van !!{derivability}: wanneer
+een zin formeel uit aannamen volgt. Die eigenschappen zijn ook op
+zichzelf interessant. Bovendien hebben we ze stuk voor stuk nodig in
+het bewijs van de volledigheidsstelling.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  Stel dat $\Gamma \Proves !A$ en dat $\Gamma \cup \{!A\}$
+  inconsistent is. Dan is $\Gamma$ inconsistent.
+\end{prop}
+
+\begin{proof}
+Er zijn twee eindige verzamelingen:
+$\Gamma_0 = \{!B_1, \dots, !B_n\}$ en
+$\Gamma_1 =\{!C_1, \dots, !C_n\} \subseteq \Gamma$. Daarvoor hebben
+  \begin{align*}
+    \{\sFmla{\False}{!A}, &
+    \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} \\
+    \{\sFmla{\True}{!A}, &
+    \sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_m}\}
+  \end{align*}
+  beide verzamelingen gesloten !!{tableau}s. Pas op $!A$ de regel
+  \Cut{} toe. Daarmee kunnen we de twee tableaus samenvoegen tot één
+  gesloten !!{tableau}. Dat bewijst dat
+  $\Gamma_0 \cup \Gamma_1$ inconsistent is. Nu geldt
+  $\Gamma_0 \subseteq \Gamma$ en $\Gamma_1 \subseteq \Gamma$. Daarom
+  geldt ook $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$. Dus is
+  $\Gamma$~inconsistent.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ geldt precies dan als
+$\Gamma \cup \{\lnot !A\}$ inconsistent is.
+\end{prop}
+
+\begin{proof}
+Neem eerst aan dat $\Gamma \Proves !A$. Dat betekent dat er een
+gesloten !!{tableau} is voor
+\[
+\{\sFmla{\False}{!A},
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+\]
+Pas nu de regel $\TRule{\True}{\lnot}$ toe. Zo maken we hiervan een
+gesloten !!{tableau} voor
+\[
+\{\sFmla{\True}{\lnot !A},
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}.
+\]
+
+Nu de andere richting. Neem een gesloten !!{tableau} voor de tweede
+verzameling. Daar maken we als volgt een gesloten !!{tableau} voor de
+eerste verzameling van. Verwijder elke formule die ontstaat door
+\TRule{\True}{\lnot} toe te passen op de eerste aanname
+$\sFmla{\True}{\lnot !A}$. Verwijder ook die aanname zelf. Voeg daarna
+de aanname $\sFmla{\False}{!A}$ toe.
+Waarom blijven alle takken gesloten? Een tak kan al gesloten zijn
+doordat hij de conclusie bevat van \TRule{\True}{\lnot}, toegepast op
+$\sFmla{\True}{\lnot !A}$. Die conclusie is
+$\sFmla{\False}{!A}$. De bijbehorende tak in het nieuwe !!{tableau} is
+dus ook gesloten. Een tak in het oude tableau kan ook gesloten zijn
+doordat hij zowel de aanname $\sFmla{\True}{\lnot !A}$ als
+$\sFmla{\False}{\lnot !A}$ bevat. Pas dan
+$\TRule{\False}{\lnot}$ toe op $\sFmla{\False}{\lnot !A}$. Dat geeft
+$\sFmla{\True}{!A}$. Ook deze tak sluit, want we hebben
+$\sFmla{\False}{!A}$ als aanname toegevoegd.
+\end{proof}
+
+\begin{prob}
+Geef een bewijs dat $\Gamma \Proves \lnot !A$ precies dan geldt als
+$\Gamma \cup \{!A\}$ inconsistent is.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  Stel dat $\Gamma \Proves !A$ en $\lnot !A \in \Gamma$. Dan is
+  $\Gamma$ inconsistent.
+\end{prop}
+
+\begin{proof}
+  Neem aan dat $\Gamma \Proves !A$ en $\lnot !A \in \Gamma$. Dan zijn
+  er $!B_1$, \dots, $!B_n \in \Gamma$ waarvoor \
+  \[
+  \{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+  \]
+  een gesloten tableau bestaat. Vervang de aanname
+  \sFmla{\False}{!A} door \sFmla{\True}{\lnot !A}. Zet na de aannamen
+  ook de conclusie van \TRule{\True}{\lnot}, toegepast op
+  \sFmla{\False}{!A}. Verwees een !!{sentence} in het oude
+  !!{tableau} voor haar rechtvaardiging naar regel~$1$? Dan verwijst
+  die zin in het nieuwe !!{tableau} naar regel~$n+1$. Was het oude
+  !!{tableau} gesloten, dan is het nieuwe dus ook gesloten. Alle
+  aannamen liggen in~$\Gamma$. Het nieuwe tableau laat daarom zien dat
+  $\Gamma$ inconsistent is.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  Stel dat $\Gamma \cup \{!A\}$ en $\Gamma \cup \{\lnot !A\}$ beide
+  inconsistent zijn. Dan is $\Gamma$ inconsistent.
+\end{prop}
+
+\begin{proof}
+  Stel dat er $!B_1$, \dots, $!B_n \in \Gamma$ en $!C_1$, \dots,
+  $!C_m \in \Gamma$ zijn waarvoor
+  \begin{align*}
+    \{\sFmla{\True}{!A}, &
+    \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} \text{ and}\\
+    \{\sFmla{\True}{\lnot !A}, &
+    \sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_m}\}
+  \end{align*}
+  allebei een gesloten !!{tableau} hebben. We bouwen daar één
+  gecombineerd !!{tableau} van dat laat zien dat $\Gamma$ inconsistent
+  is. Neem als aannamen
+  $\sFmla{\True}{!B_1}$, \dots, $\sFmla{\True}{!B_n}$ samen met
+  $\sFmla{\True}{!C_1}$, \dots, $\sFmla{\True}{!C_m}$. Pas daarna de
+  regel \Cut{} toe. Er ontstaan twee takken. De ene begint met
+  $\sFmla{\True}{!A}$ en de andere met $\sFmla{\False}{!A}$.  
+  
+  Voeg links het deel van het eerste !!{tableau} onder de aannamen
+  toe. Alle regels zijn daar nog steeds juist toegepast. Elke aanname
+  van het eerste !!{tableau} is immers beschikbaar, ook
+  $\sFmla{\True}{!A}$. Daarom sluit elke tak onder
+  $\sFmla{\True}{!A}$. 
+  
+  Voeg rechts het deel van het tweede !!{tableau} onder zijn aanname
+  toe. Laat daar alle uitkomsten weg van toepassingen van
+  $\TRule{\True}{\lnot}$ op $\sFmla{\True}{\lnot !A}$. De conclusie
+  van $\TRule{\True}{\lnot}$ op $\sFmla{\True}{\lnot !A}$ is
+  $\sFmla{\False}{!A}$. Die formule is toch al beschikbaar: ze staat
+  rechts als conclusie van de regel \Cut{} in het gecombineerde
+  !!{tableau}.
+
+  Er blijven twee mogelijkheden over. Misschien sloot een tak in het
+  tweede tableau doordat hij zowel de aanname
+  $\sFmla{\True}{\lnot !A}$ bevatte als
+  $\sFmla{\False}{\lnot !A}$. De eerste staat niet meer als aanname in
+  het gecombineerde !!{tableau}. Pas daarom
+  $\TRule{\False}{\lnot}$ toe op $\sFmla{\False}{\lnot !A}$. Dat geeft
+  $\sFmla{\True}{!A}$. Dezelfde tak in het gecombineerde !!{tableau}
+  sluit nu ook, want rechts staat al de conclusie van de regel \Cut{},
+  namelijk $\sFmla{\False}{!A}$. Sloot een tak in het tweede
+  !!{tableau} om een andere reden? Dan sluit de bijbehorende tak in het
+  gecombineerde !!{tableau} ook. Elke !!{signed formula} behalve
+  $\sFmla{\True}{\lnot !A}$ die op de oude tak stond, staat namelijk
+  ook op de bijbehorende tak in het gecombineerde !!{tableau}.
+  \end{proof}
+
+\end{document}

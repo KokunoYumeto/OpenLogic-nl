@@ -1,0 +1,113 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: quantifier-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{tab}{qrl}
+
+\olsection{Regels voor kwantoren}
+
+\subsection{Regels voor $\lforall$ (voor alle)}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{\lforall[x][!A(x)]}}
+\RightLabel{\TRule{\True}{\forall}}
+\UnaryInfC{\sFmla{\True}{!A(t)}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{\lforall[x][!A(x)]}}
+\RightLabel{\TRule{\False}{\lforall}}
+\UnaryInfC{\sFmla{\False}{!A(a)}}
+\DisplayProof
+\end{defish}
+
+Bij \TRule{\True}{\lforall} is $t$ een gesloten term, dus een term
+zonder variabelen. Bij \TRule{\False}{\lforall} is $a$~!!a{constant}.
+Die constante mag nergens voorkomen in de tak boven de regel
+\TRule{\False}{\lforall}. We noemen $a$ de \emph{eigenvariabele} van
+de inferentie \TRule{\False}{\forall}.\footnote{We noemen $a$ hier om
+historische redenen een ``eigenvariabele'', hoewel hij in de
+bovenstaande regel !!a{constant} is.}
+
+\subsection{Regels voor $\lexists$ (er bestaat)}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{\lexists[x][!A(x)]}}
+\RightLabel{\TRule{\True}{\lexists}}
+\UnaryInfC{\sFmla{\True}{!A(a)}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{\lexists[x][!A(x)]}}
+\RightLabel{\TRule{\False}{\lexists}}
+\UnaryInfC{\sFmla{\False}{!A(t)}}
+\DisplayProof
+\end{defish}
+
+Ook hier is $t$~een gesloten term. Verder is $a$~!!a{constant}. Deze
+constante mag niet voorkomen in de tak boven de
+regel~\TRule{\True}{\lexists}. We noemen $a$ de
+\emph{eigenvariabele} van de inferentie
+\TRule{\True}{\lexists}.
+
+Bij deze twee regels geldt dus dezelfde eis: de eigenvariabele mag niet
+voorkomen in de tak boven de inferentie \TRule{\False}{\lforall} of
+\TRule{\True}{\lexists}. Die eis heet de
+\emph{eigenvariabelevoorwaarde}.
+
+\begin{explain}
+We gebruiken de volgende afspraak. Als $!A$ !!a{formula} is waarin de
+!!{variable}~$x$ vrij voorkomt, schrijven we dat als~$!A(x)$. In
+dezelfde situatie is $!A(t)$ een korte schrijfwijze voor
+$\Subst{!A}{t}{x}$. Daarom kunnen we de regel
+\TRule{\False}{\lexists} ook als volgt schrijven:
+\begin{prooftree}
+  \AxiomC{\sFmla{\False}{\lexists[x][!A]}}
+  \RightLabel{\TRule{\False}{\lexists}}
+  \UnaryInfC{\sFmla{\False}{\Subst{!A}{t}{x}}}
+\end{prooftree}
+De term $t$ kan al in~$!A$ staan. Zo kan $!A$ bijvoorbeeld
+$\Atom{\Obj P}{t,x}$ zijn. Daarom mag je
+$\sFmla{\False}{\Atom{\Obj P}{t,t}}$ afleiden uit
+$ \sFmla{\False}{\lexists[x][\Atom{\Obj P}{t,x}]}$ met
+\TRule{\False}{\lexists}. Bij \TRule{\False}{\lforall}
+en~\TRule{\True}{\lexists} geldt een extra voorwaarde: de
+!!{constant}~$a$ mag niet in~$!A$ voorkomen. Daarom mag je
+$\sFmla{\False}{\Atom{\Obj P}{a,a}}$ niet afleiden uit
+$\sFmla{\False}{\lforall[x][\Atom{\Obj P}{a,x}]}$ met
+$\TRule{\False}{\lforall}$.
+\end{explain}
+
+\begin{explain}
+Bij \TRule{\True}{\lforall} en \TRule{\False}{\lexists} mag $t$ elke
+term zijn. Bij \TRule{\True}{\lexists} en
+\TRule{\False}{\lforall} geldt wel de eigenvariabelevoorwaarde. De
+!!{constant}~$a$ mag dan nergens voorkomen in de takken boven de
+betreffende inferentie. Deze voorwaarde zorgt ervoor dat het systeem
+alleen geldige conclusies oplevert. Zonder de voorwaarde zou het
+volgende een gesloten !!{tableau} zijn voor
+$\lexists[x][\formula{A}(x)] \lif \lforall[x][\formula{A}(x)]$:
+\begin{center}
+\begin{tableau}{}
+  [\sFmla{\False}{\lexists[x][\formula{A}(x)] \lif \lforall[x][\formula{A}(x)]}, just=\TAss
+    [\sFmla{\True}{\lexists[x][\formula{A}(x)]},
+      just={\TRule{\False}{\lif}[1]}
+      [\sFmla{\False}{\lforall[x][\formula{A}(x)]},
+        just={\TRule{\False}{\lif}[1]}
+        [\sFmla{\True}{\formula{A}(a)},
+          just={\TRule{\True}{\lexists}[2]}
+          [\sFmla{\False}{\formula{A}(a)},
+            just={\TRule{\False}{\lforall}[3]}, close]
+        ]
+      ]
+    ]
+  ]
+\end{tableau}
+\end{center}
+Maar $\lexists[x][\formula{A}(x)] \lif
+\lforall[x][\formula{A}(x)]$ is niet geldig.
+\end{explain}
+
+\end{document}

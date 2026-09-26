@@ -1,0 +1,318 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: proving-things
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{ntd}{pro}}
+      {\olfileid{pl}{ntd}{pro}}
+
+\olsection{Voorbeelden van \usetoken{P}{derivation}}
+
+\begin{ex}
+Laten we !!a{derivation} geven van de !!{sentence}
+$(!A \land !B) \lif !A$.
+
+We beginnen door de gewenste conclusie onderaan de !!{derivation} te
+schrijven.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$(!A\land !B) \lif !A$}
+\end{prooftree}
+
+Vervolgens moeten we bepalen welk soort inferentie !!a{sentence} van
+deze vorm als resultaat kan hebben. De !!{main operator} van de
+conclusie is $\lif$. We proberen de conclusie daarom met de regel
+\Intro{\lif} te verkrijgen. Het is raadzaam de betrokken aannamen op
+te schrijven en de afleidingsregels gaandeweg te benoemen. Zo is
+gemakkelijk te zien of aan het einde van het bewijs alle aannamen zijn
+!!{discharged}.
+\begin{prooftree}
+\AxiomC{$\Discharge{!A \land !B}{1}$}
+\DeduceC{$!A$}
+\DischargeRule{\Intro{\lif}}{1} 
+\UnaryInfC{$(!A\land !B) \lif !A$}
+\end{prooftree}
+
+Nu moeten we de stappen van de aanname $!A \land !B$ naar $!A$
+invullen. Omdat we slechts met één connectief te maken hebben,
+$\land$, moeten we de $\land$-eliminatieregel gebruiken. Dat levert
+het volgende bewijs op:
+\begin{prooftree}
+\AxiomC{$\Discharge{!A \land !B}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!A$}
+\DischargeRule{\Intro{\lif}}{1} 
+\UnaryInfC{$(!A\land !B) \lif !A$}
+\end{prooftree}
+We hebben nu een correcte !!{derivation} van $(!A \land
+!B) \lif !A$.
+\end{ex}
+
+\begin{ex}
+Laten we nu !!a{derivation} geven van $(\lnot !A \lor !B)
+\lif (!A \lif !B)$.
+
+We beginnen door de gewenste conclusie onderaan de !!{derivation} te
+schrijven.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
+\end{prooftree}
+Om een logische regel te vinden die deze conclusie kan opleveren,
+bekijken we de logische connectieven in de conclusie: $\lnot$,
+$\lor$ en $\lif$. Voorlopig is alleen het eerste voorkomen van
+$\lif$ van belang, want dat is de !!{main operator} van de
+!!{sentence} in het eindsequent. $\lnot$, $\lor$ en het tweede
+voorkomen van $\lif$ vallen binnen het bereik van een ander
+connectief; die behandelen we dus later. We beginnen daarom met de
+regel \Intro{\lif}. Een correcte toepassing moet er als volgt uitzien:
+\begin{prooftree}
+\AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
+\DeduceC{$!A \lif !B$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
+\end{prooftree}
+Er zijn nu twee manieren om verder te gaan. We kunnen van onder naar
+boven blijven werken en naar een tweede toepassing van de regel
+\Intro{\lif} zoeken, of we kunnen van boven naar beneden werken en een
+regel \Elim{\lor} toepassen. Laten we voor het laatste kiezen. We
+gebruiken de aanname $\lnot !A \lor !B$ als de meest linkse premisse
+van \Elim{\lor}. Voor een geldige toepassing van \Elim{\lor} moeten
+de twee andere premissen identiek zijn aan de conclusie
+$!A \lif !B$. Elk van die premissen mag achtereenvolgens uit een
+andere aanname worden afgeleid, namelijk uit een van de twee disjuncten
+van $\lnot !A \lor !B$. Onze !!{derivation} ziet er dus als volgt uit:
+\begin{prooftree}
+\AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
+\AxiomC{$\Discharge{\lnot !A}{2}$}
+\DeduceC{$!A \lif !B$}
+\AxiomC{$\Discharge{!B}{2}$}
+\DeduceC{$!A \lif !B$}
+\DischargeRule{\Elim{\lor}}{2}
+\TrinaryInfC{$!A \lif !B$}
+\DischargeRule{\Intro{\lif}}{1} 
+\UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
+\end{prooftree}
+
+In elk van de twee takken rechts willen we $!A \lif !B$ !!{derive}.
+Dat kan het best met \Intro{\lif}.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
+\AxiomC{$\Discharge{\lnot !A}{2}, \Discharge{!A}{3}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{3}
+\UnaryInfC{$!A \lif !B$}
+\AxiomC{$\Discharge{!B}{2}, \Discharge{!A}{4}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{4}
+\UnaryInfC{$!A \lif !B$}
+\DischargeRule{\Elim{\lor}}{2}
+\TrinaryInfC{$!A \lif !B$}
+\DischargeRule{\Intro{\lif}}{1} 
+\UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
+\end{prooftree}
+
+Voor de twee ontbrekende delen van de !!{derivation} hebben we in het
+midden !!{derivation}s van $!B$ uit $\lnot !A$ en $!A$ nodig, en
+links uit $!A$ en $!B$. Laten we het eerste geval eerst
+behandelen. $\lnot !A$ en $!A$ zijn de twee premissen van
+\Elim{\lnot}:
+\begin{prooftree}
+\AxiomC{$\Discharge{\lnot !A}{2}$}
+\AxiomC{$\Discharge{!A}{3}$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DeduceC{$!B$}
+\end{prooftree}
+Met \FalseInt kunnen we $!B$ als conclusie verkrijgen en de tak
+voltooien.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
+\AxiomC{$\Discharge{\lnot !A}{2}$}
+\AxiomC{$\Discharge{!A}{3}$}
+\RightLabel{\Intro{\lfalse}}
+\BinaryInfC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!B$}
+\DischargeRule{\Intro{\lif}}{3}
+\UnaryInfC{$!A \lif !B$}
+\AxiomC{$\Discharge{!B}{2}, \Discharge{!A}{4}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{4}
+\UnaryInfC{$!A \lif !B$}
+\DischargeRule{\Elim{\lor}}{2}
+\TrinaryInfC{$!A \lif !B$}
+\DischargeRule{\Intro{\lif}}{1} 
+\UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
+\end{prooftree}
+
+Laten we nu de meest rechtse tak bekijken. Hier is het van belang te
+beseffen dat de definitie van !!{derivation} \emph{toestaat dat
+aannamen worden opgeheven}, maar dit \emph{niet vereist}. Als we
+$!B$ uit een van de aannamen $!A$ en $!B$ kunnen afleiden zonder de
+andere te gebruiken, is dat dus toegestaan. $!B$ uit~$!B$ !!{derive}
+is triviaal: $!B$ op zichzelf is al zo'n !!{derivation}, zonder dat
+inferenties nodig zijn. We kunnen de aanname~$!A$ daarom eenvoudig
+weglaten.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
+\AxiomC{$\Discharge{\lnot !A}{2}$}
+\AxiomC{$\Discharge{!A}{3}$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!B$}
+\DischargeRule{\Intro{\lif}}{3}
+\UnaryInfC{$!A \lif !B$}
+\AxiomC{$\Discharge{!B}{2}$}
+\RightLabel{\Intro{\lif}}
+\UnaryInfC{$!A \lif !B$}
+\DischargeRule{\Elim{\lor}}{2}
+\TrinaryInfC{$!A \lif !B$}
+\DischargeRule{\Intro{\lif}}{1} 
+\UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
+\end{prooftree}
+Merk op dat de meest rechtse \Intro{\lif}-inferentie in de voltooide
+!!{derivation} feitelijk geen enkele aanname opheft.
+\end{ex}
+
+\begin{ex}
+Tot dusver hebben we de regel \FalseCl{} niet nodig gehad. Deze regel
+is bijzonder omdat we er een aanname mee mogen opheffen die geen
+sub-!!{formula} van de conclusie van de regel is. Hij hangt nauw samen
+met de regel \FalseInt{}. De regel \FalseInt{} is zelfs een bijzonder
+geval van de regel \FalseCl{}. Er bestaat een logica die
+‘intuïtionistische logica’ heet en waarin alleen \FalseInt{} is
+toegestaan. De regel \FalseCl{} is een laatste
+redmiddel wanneer niets anders werkt. Stel bijvoorbeeld dat we
+$!A \lor \lnot !A$ willen !!{derive}. Onze gebruikelijke strategie
+zou zijn om te proberen $!A \lor \lnot !A$ met $\Intro{\lor}$ te
+!!{derive}. Daarvoor zouden we echter zonder aannamen hetzij $!A$,
+hetzij $\lnot !A$ moeten !!{derive}, en dat is onmogelijk. \FalseCl{}
+brengt uitkomst.
+\begin{prooftree}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \DeduceC{$\lfalse$}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A \lor \lnot !A$}
+\end{prooftree}
+Nu zoeken we !!a{derivation} van $\lfalse$ uit $\lnot(!A \lor
+\lnot !A)$. Omdat $\lfalse$ de conclusie van $\Elim{\lnot}$ is,
+kunnen we die regel proberen:
+\begin{prooftree}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \DeduceC{$\lnot !A$}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A \lor \lnot !A$}
+\end{prooftree}
+Onze strategie om !!a{derivation} van~$\lnot !A$ te vinden, vereist
+een toepassing van~$\Intro{\lnot}$:
+\begin{prooftree}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}, \Discharge{!A}{2}$}
+  \DeduceC{$\lfalse$}
+  \DischargeRule{\Intro{\lnot}}{2}
+  \UnaryInfC{$\lnot !A$}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A \lor \lnot !A$}
+\end{prooftree}
+Hier kunnen we $\lfalse$ gemakkelijk verkrijgen door
+$\Elim{\lnot}$ toe te passen op de aanname
+$\lnot(!A \lor \lnot !A)$ en op $!A \lor \lnot !A$. De laatste
+formule volgt uit onze nieuwe aanname $!A$ met~$\Intro{\lor}$:
+\begin{prooftree}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \AxiomC{$\Discharge{!A}{2}$}
+  \RightLabel{\Intro{\lor}}
+  \UnaryInfC{$!A \lor \lnot !A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\Intro{\lnot}}{2}
+  \UnaryInfC{$\lnot !A$}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A \lor \lnot !A$}
+\end{prooftree}
+Rechts gebruiken we dezelfde strategie, behalve dat we $!A$ met
+~\FalseCl verkrijgen:
+\begin{prooftree}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \AxiomC{$\Discharge{!A}{2}$}
+  \RightLabel{\Intro{\lor}}
+  \UnaryInfC{$!A \lor \lnot !A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\Intro{\lnot}}{2}
+  \UnaryInfC{$\lnot !A$}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \AxiomC{$\Discharge{\lnot !A}{3}$}
+  \RightLabel{\Intro{\lor}}
+  \UnaryInfC{$!A \lor \lnot !A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\FalseCl}{3}
+  \UnaryInfC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A \lor \lnot !A$}
+\end{prooftree}
+\end{ex}
+
+\begin{prob}
+Geef !!{derivation}s die het volgende aantonen:
+\begin{enumerate}
+\item $!A \land (!B \land !C) \Proves (!A \land !B) \land !C$.
+\item $!A \lor (!B \lor !C) \Proves (!A \lor !B) \lor !C$.
+\item $!A \lif (!B \lif !C) \Proves !B \lif (!A \lif !C)$.
+\item $!A \Proves \lnot\lnot !A$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Geef !!{derivation}s die het volgende aantonen:
+\begin{enumerate}
+\item $(!A \lor !B) \lif !C \Proves !A \lif !C$.
+\item $(!A \lif !C) \land (!B \lif !C) \Proves (!A \lor !B) \lif !C$.
+\item $\Proves \lnot(!A \land \lnot !A)$.
+\item $!B \lif !A \Proves \lnot !A \lif \lnot !B$.
+\item $\Proves (!A \lif \lnot !A) \lif \lnot !A$.
+\item $\Proves \lnot(!A \lif !B) \lif \lnot !B$.
+\item $!A \lif !C \Proves \lnot (!A \land \lnot !C)$.
+\item $!A \land \lnot !C \Proves \lnot (!A \lif !C)$.
+\item $!A \lor !B, \lnot !B \Proves !A$.
+\item $\lnot !A \lor \lnot !B \Proves \lnot(!A \land !B)$.
+\item $\Proves (\lnot !A \land \lnot !B) \lif\lnot(!A \lor !B)$.
+\item $\Proves \lnot(!A \lor !B) \lif (\lnot !A \land \lnot !B)$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Geef !!{derivation}s die het volgende aantonen:
+\begin{enumerate}
+\item $\lnot(!A \lif !B) \Proves !A$.
+\item $\lnot(!A \land !B) \Proves \lnot !A \lor \lnot !B$.
+\item $!A \lif !B \Proves \lnot !A \lor !B$.
+\item $\Proves \lnot \lnot !A \lif !A$.
+\item $!A \lif !B, \lnot !A \lif !B \Proves !B$.
+\item $(!A \land !B) \lif !C \Proves (!A \lif !C) \lor (!B \lif !C)$.
+\item $(!A \lif !B) \lif !A \Proves !A$.
+\item $\Proves (!A \lif !B) \lor (!B \lif !C)$.
+\end{enumerate}
+(Hiervoor is steeds de regel $\FalseCl$ nodig.)
+\end{prob}
+\end{document}

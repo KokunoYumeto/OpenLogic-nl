@@ -1,0 +1,198 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{tab}{ptn}}
+      {\olfileid{pl}{tab}{ptn}}
+      
+\olsection{Bewijstheoretische begrippen}
+
+\begin{editorial}
+Deze paragraaf bundelt de definities van de afleidbaarheidsrelatie
+en consistentie voor tableaus.
+\end{editorial}
+
+\begin{explain}
+Zoals we enkele belangrijke semantische begrippen hebben gedefinieerd
+(geldigheid, logisch gevolg en vervulbaarheid), definiëren we nu de
+overeenkomstige \emph{bewijstheoretische begrippen}. Deze worden niet
+gedefinieerd door na te gaan of !!{sentence}s in !!{structure}s waar
+zijn, maar door na te gaan of bepaalde gesloten !!{tableau}s bestaan.
+Het was een belangrijke ontdekking dat deze begrippen samenvallen. Dit
+is de inhoud van de \emph{correctheids-} en
+\emph{volledigheidsstellingen}.
+\end{explain}
+
+
+\begin{defn}[Stellingen]
+Een !!{sentence}~$!A$ is een \emph{stelling} als er een gesloten
+!!{tableau} bestaat voor~$\sFmla{\False}{!A}$. We schrijven
+$\Proves !A$ als $!A$ een stelling is en $\Proves/ !A$ als dat niet
+zo is.
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{sentence} $!A$ is \emph{!!{derivable} uit} een verzameling
+!!{sentence}s~$\Gamma$, $\Gamma \Proves !A$, dan en slechts dan als er
+een eindige verzameling $\{!B_1, \dots, !B_n\} \subseteq \Gamma$ is
+en er een gesloten !!{tableau} bestaat voor de verzameling
+\[
+\{
+  \sFmla{\False}{!A},
+  \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}
+  \}.
+\]
+Als $!A$ niet !!{derivable} is uit $\Gamma$, schrijven we
+$\Gamma \Proves/ !A$.
+\end{defn}
+
+\begin{defn}[Consistentie]
+Een verzameling !!{sentence}s~$\Gamma$ heet \emph{inconsistent} dan en
+slechts dan als er een eindige verzameling
+$\{!B_1, \dots, !B_n\} \subseteq \Gamma$ is en er een gesloten
+!!{tableau} bestaat voor de verzameling
+\[
+\{
+  \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}  
+  \}.
+\]
+Als $\Gamma$ niet inconsistent is, noemen we haar \emph{consistent}.
+\end{defn}
+
+\begin{prop}[Reflexiviteit]
+\ollabel{prop:reflexivity}
+Als $!A \in \Gamma$, dan $\Gamma \Proves !A$.
+\end{prop}
+
+\begin{proof}
+Als $!A \in \Gamma$, dan is $\{!A\}$ een eindige deelverzameling
+van~$\Gamma$ en is het !!{tableau}
+\begin{oltableau}
+  [\sFmla{\False}{\formula{A}}, just = \TAss
+    [\sFmla{\True}{\formula{A}}, just = \TAss,close]
+  ]
+\end{oltableau}
+gesloten.
+\end{proof}
+  
+
+\begin{prop}[Monotoniciteit]
+\ollabel{prop:monotonicity}
+Als $\Gamma \subseteq \Delta$ en $\Gamma \Proves !A$, dan $\Delta
+\Proves !A$.
+\end{prop}
+
+\begin{proof}
+Elke eindige deelverzameling van~$\Gamma$ is ook een eindige
+deelverzameling van~$\Delta$.
+\end{proof}
+
+\begin{prop}[Transitiviteit]
+\ollabel{prop:transitivity}
+Als $\Gamma \Proves !A$ en $\{!A\} \cup
+\Delta \Proves !B$, dan $\Gamma \cup \Delta \Proves !B$.
+\end{prop}
+
+\begin{proof}
+Als $\{!A\} \cup \Delta \Proves !B$, dan is er een eindige
+deelverzameling $\Delta_0 =
+\{!C_1, \dots, !C_n\} \subseteq \Delta$ zodat
+\begin{align*}
+\{\sFmla{\False}{!B}, & \sFmla{\True}{!A}, \sFmla{\True}{!C_1},
+\dots, \sFmla{\True}{!C_n}\}
+\intertext{een gesloten !!{tableau} heeft. Als $\Gamma \Proves !A$,
+  dan zijn er $!D_1$, \dots, $!D_m \subseteq \Gamma$ zodat}
+\{\sFmla{\False}{!A}, & \sFmla{\True}{!D_1},
+\dots, \sFmla{\True}{!D_m}\}
+\end{align*}
+een gesloten !!{tableau} heeft.
+
+Beschouw nu het !!{tableau} met de aannamen
+\[
+\sFmla{\False}{!B},
+\sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_n},
+\sFmla{\True}{!D_1}, \dots, \sFmla{\True}{!D_m}.
+\]
+Pas op~$!A$ de regel \Cut{} toe. Hierdoor ontstaan twee takken: de ene
+bevat $\sFmla{\True}{!A}$, de andere $\sFmla{\False}{!A}$. Op de ene
+tak zijn dus alle elementen van
+\[
+\{\sFmla{\False}{!B}, \sFmla{\True}{!A},
+\sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_n}\}
+\]
+beschikbaar. Omdat er voor deze aannamen een gesloten !!{tableau}
+bestaat, kunnen we dat aan deze tak vastmaken; elke tak die door
+$\sFmla{\True}{!A}$ loopt, sluit. Op de andere tak zijn alle elementen
+van
+\[
+\{\sFmla{\False}{!A}, \sFmla{\True}{!D_1}, \dots,
+\sFmla{\True}{!D_m}\}
+\]
+beschikbaar. We kunnen dus ook de andere kant aanvullen tot een
+gesloten !!{tableau}. Dit bewijst $\Gamma \cup \Delta \Proves !B$.
+\end{proof}
+
+Dit betekent in het bijzonder dat als $\Gamma \Proves !A$ en $!A
+\Proves !B$, dan $\Gamma \Proves !B$. Hieruit volgt ook dat als $!A_1,
+\dots, !A_n \Proves !B$ en $\Gamma \Proves !A_i$ voor elke~$i$, dan
+$\Gamma \Proves !B$.
+
+\begin{prop}
+\ollabel{prop:incons}
+$\Gamma$ is inconsistent dan en slechts dan als $\Gamma \Proves !A$
+voor elke !!{sentence}~$!A$.
+\end{prop}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Bewijs \olref[fol][tab][ptn]{prop:incons}
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Bewijs \olref[pl][tab][ptn]{prop:incons}
+\end{prob}
+\tagendprob
+
+\begin{prop}[Compactheid]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item Als $\Gamma \Proves !A$, dan is er een eindige deelverzameling
+    $\Gamma_0 \subseteq \Gamma$ zodat $\Gamma_0 \Proves !A$.
+  \item Als elke eindige deelverzameling van~$\Gamma$ consistent is,
+    dan is $\Gamma$ consistent.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Als $\Gamma \Proves !A$, dan bestaan er een eindige
+      deelverzameling $\Gamma_0 = \{!B_1, \dots, !B_n\}$ en een
+      gesloten !!{tableau} voor
+      \[
+      \{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+      \]
+      Dit !!{tableau} bewijst ook $\Gamma_0 \Proves !A$.
+    \item Als $\Gamma$ inconsistent is, dan bestaat er voor een eindige
+      deelverzameling $\Gamma_0 = \{!B_1, \dots, !B_n\}$ een gesloten
+      !!{tableau} voor
+      \[
+      \{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+      \]
+      Dit gesloten !!{tableau} bewijst dat $\Gamma_0$ inconsistent is.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

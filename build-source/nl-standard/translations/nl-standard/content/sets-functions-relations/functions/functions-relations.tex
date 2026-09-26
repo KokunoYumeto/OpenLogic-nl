@@ -1,0 +1,105 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: functions-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid{sfr}{fun}{rel}
+
+\olsection{Functies als relaties}
+
+\begin{explain}
+Een functie die !!{element}s van~$A$ afbeeldt op !!{element}s van~$B$
+bepaalt vanzelf een relatie tussen $A$ en~$B$, namelijk de relatie die
+tussen $x$ en $y$ geldt dan en slechts dan als $f(x) = y$. We kunnen
+de functie~$f$ zelfs---bijvoorbeeld als we het aantal bouwstenen van
+de wiskunde willen beperken---\emph{identificeren} met deze relatie,
+dus met een verzameling paren. Dit roept de vraag op: welke relaties
+bepalen op deze manier functies?
+\end{explain}
+
+\begin{defn}[Grafiek van een functie] Laat $f\colon A \to B$ een
+functie zijn. De \emph{grafiek} van~$f$ is de relatie $R_f \subseteq A
+\times B$ die wordt gedefinieerd door
+\[
+R_f = \Setabs{\tuple{x,y}}{f(x) = y}.
+\]
+\end{defn}
+
+\begin{explain}
+Uit extensionaliteit volgt dat de grafiek van een functie uniek is.
+Bovendien rechtvaardigt extensionaliteit voor verzamelingen direct het
+stilzwijgende extensionaliteitsbeginsel voor functies: als $f$ en~$g$
+hetzelfde domein en codomein hebben, zijn ze gelijk wanneer ze overal
+dezelfde waarden aannemen.
+
+Evenzo is een ‘functionele’ relatie de grafiek van een functie.
+\end{explain}
+
+\begin{prop}\ollabel{prop:graph-function}
+Laat $R \subseteq A \times B$ aan de volgende voorwaarden voldoen:
+\begin{enumerate}
+\item Als $Rxy$ en $Rxz$, dan $y = z$; en
+\item voor iedere $x \in A$ bestaat er een $y \in B$ waarvoor
+$\tuple{x, y} \in R$.
+\end{enumerate}
+Dan is $R$ de grafiek van de functie $f\colon A \to B$ die wordt
+gedefinieerd door $f(x) = y$ dan en slechts dan als $Rxy$.
+\end{prop}
+
+\begin{proof}
+Stel dat er een $y$ bestaat waarvoor $Rxy$ geldt. Als er nog een $z
+\neq y$ bestond waarvoor $Rxz$ geldt, zou niet aan de voorwaarde
+voor~$R$ zijn voldaan. Als er een $y$ bestaat waarvoor $Rxy$ geldt, is
+deze $y$ dus uniek en is $f$ goed gedefinieerd. Uiteraard is $R_f =
+R$.
+\end{proof}
+
+\begin{explain}
+Iedere functie $f\colon A \to B$ heeft een grafiek, dat wil zeggen een
+relatie die bestaat uit paren in $A \times B$ en wordt gedefinieerd
+door $f(x) = y$.
+Omgekeerd is iedere relatie~$R \subseteq A \times B$ met de
+eigenschappen uit \olref{prop:graph-function} de grafiek van een
+functie~$f \colon A \to B$. Door dit nauwe verband tussen functies en
+hun grafieken kunnen we een functie eenvoudig als haar grafiek
+opvatten. Functies kunnen met andere woorden worden geïdentificeerd
+met bepaalde relaties, dus met bepaalde verzamelingen tupels.
+\oliflabeldef{sfr:rel:ref:sec}{Merk echter op dat deze ‘identificatie’
+dezelfde strekking heeft als in \olref[sfr][rel][ref]{sec}: het is
+geen bewering over de metafysica van functies, maar de vaststelling
+dat het handig is functies als bepaalde verzamelingen te
+\emph{behandelen}. Een voordeel daarvan is het volgende: w}{W}e
+kunnen nu op functies soortgelijke bewerkingen uitvoeren als we op
+relaties hebben uitgevoerd (zie \olref[sfr][rel][ops]{sec}). In het
+bijzonder:
+\end{explain}
+
+\begin{defn}\ollabel{defn:funimage}
+Laat $f \colon A \to B$ een functie zijn met $C\subseteq A$.
+
+De \emph{restrictie} van~$f$ tot~$C$ is de
+functie~$\funrestrictionto{f}{C}\colon C \to B$ die wordt gedefinieerd
+door $(\funrestrictionto{f}{C})(x) = f(x)$ voor alle $x \in C$. Met
+andere woorden, $\funrestrictionto{f}{C} = \Setabs{\tuple{x, y} \in
+R_f}{x \in C}$.
+
+Als we~$f$ op~$C$ \emph{toepassen}, krijgen we $\funimage{f}{C} =
+\Setabs{f(x)}{x \in C}$. Dit noemen we ook het \emph{beeld} van~$C$
+onder~$f$.
+\end{defn}
+
+\begin{explain}
+Uit deze definities volgt dat $\ran{f} =
+\funimage{f}{\dom{f}}$ voor iedere functie~$f$.
+\oliflabeldef{sfr:rel:ops:sec}{Deze begrippen werken precies zoals men
+op grond van de definities in \olref[sfr][rel][ops]{sec} en onze
+identificatie van functies met relaties zou verwachten. Twee andere
+bewerkingen---inversen en samenstellingen van relaties---vereisen echter iets
+meer uitleg. Die geven we in \olref[inv]{sec} en
+\olref[cmp]{sec}.}{}
+\end{explain}
+\end{document}

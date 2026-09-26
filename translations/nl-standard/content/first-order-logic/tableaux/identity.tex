@@ -1,0 +1,108 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{tab}{ide}
+
+\olsection{\usetoken{P}{tableau} met \usetoken{S}{identity}}
+
+!!^{tableau}s met !!{identity} vereisen aanvullende afleidingsregels.
+De regels voor $\eq$ luiden als volgt (waarbij $t$, $t_1$ en $t_2$
+gesloten termen zijn):
+
+\begin{defish}
+\AxiomC{}
+\RightLabel{$\eq$}
+\UnaryInfC{\sFmla{\True}{\eq[t][t]}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\True}{\eq[t_1][t_2]}}
+\noLine
+\UnaryInfC{\sFmla{\True}{!A(t_1)}}
+\RightLabel{$\TRule{\True}{\eq}$}
+\UnaryInfC{\sFmla{\True}{!A(t_2)}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\True}{\eq[t_1][t_2]}}
+\noLine
+\UnaryInfC{\sFmla{\False}{!A(t_1)}}
+\RightLabel{$\TRule{\False}{\eq}$}
+\UnaryInfC{\sFmla{\False}{!A(t_2)}}
+\DisplayProof
+\end{defish}
+Merk op dat $\TRule{\True}{\eq}$ en $\TRule{\False}{\eq}$, in
+tegenstelling tot alle andere regels, vereisen dat er al \emph{twee}
+!!{signed formula}s op de tak voorkomen, namelijk zowel
+$\sFmla{\True}{\eq[t_1][t_2]}$ als $\sFmla{S}{!A(t_1)}$.
+
+\begin{ex}
+Als $s$ en $t$ gesloten termen zijn, dan geldt
+$\eq[s][t], !A(s) \Proves !A(t)$:
+\begin{oltableau}
+  [\sFmla{\False}{\formula{A}(t)}, just = \TAss
+    [\sFmla{\True}{\eq[s][t]}, just = \TAss
+      [\sFmla{\True}{\formula{A}(s)}, just = \TAss
+        [\sFmla{\True}{\formula{A}(t)}, just={\TRule{\True}{\eq}[2, 3]}, close]
+      ]
+    ]
+  ]
+\end{oltableau}
+Dit staat bekend als het substitutieprincipe voor identiteit, ook wel
+het principe van Leibniz.
+
+!!^{tableau}s bewijzen dat $\eq$ symmetrisch is, dat wil zeggen dat
+$\eq[s_1][s_2] \Proves \eq[s_2][s_1]$:
+\begin{oltableau}
+  [\sFmla{\False}{\eq[s_2][s_1]}, just = \TAss
+    [\sFmla{\True}{\eq[s_1][s_2]}, just = \TAss
+      [\sFmla{\True}{\eq[s_1][s_1]}, just = {$\eq$}
+        [\sFmla{\True}{\eq[s_2][s_1]}, just = {\TRule{\True}{\eq}[2, 3]}, close]
+      ]
+    ]
+  ]
+\end{oltableau}
+Hier is regel~$2$ de eerste vereiste
+!!{formula}~$\sFmla{\True}{\eq[s_1][s_2]}$ van
+$\TRule{\True}{\eq}$. Regel~$3$ is de tweede, van de vorm
+$\sFmla{\True}{!A(s_2)}$. Beschouw $!A(x)$ als $\eq[x][s_1]$. Dan is
+$!A(s_1)$ gelijk aan $\eq[s_1][s_1]$ en $!A(s_2)$ aan
+$\eq[s_2][s_1]$.
+
+Ze bewijzen ook dat $\eq$ transitief is, dat wil zeggen dat
+$\eq[s_1][s_2], \eq[s_2][s_3] \Proves \eq[s_1][s_3]$:
+\begin{oltableau}
+  [\sFmla{\False}{\eq[s_1][s_3]}, just = \TAss
+    [\sFmla{\True}{\eq[s_1][s_2]}, just = \TAss
+      [\sFmla{\True}{\eq[s_2][s_3]}, just = \TAss
+        [\sFmla{\True}{\eq[s_1][s_3]}, just = {\TRule{\True}{\eq}[3, 2]}, close]
+      ]
+    ]
+  ]
+\end{oltableau}
+In dit !!{tableau} is de eerste vereiste !!{formula} van
+$\TRule{\True}{\eq}$ regel~$3$,
+$\sFmla{\True}{\eq[s_2][s_3]}$; $s_2$ speelt de rol van~$t_1$ en
+$s_3$ die van~$t_2$. De tweede vereiste formule, van de vorm
+$\sFmla{\True}{!A(s_2)}$, is regel~$2$. Beschouw $!A(x)$ hier als
+$\eq[s_1][x]$. Daardoor wordt $!A(s_2)$ gelijk aan
+$\eq[t_1][t_2]$ (d.w.z. regel~$2$) en $!A(s_3)$ aan de
+!!{formula}~$\eq[s_1][s_3]$ in de conclusie.
+\end{ex}
+
+\begin{prob}
+Geef gesloten !!{tableau}s voor de volgende gevallen:
+\begin{enumerate}
+\item $\sFmla{\False}{\lforall[x][\lforall[y][((x = y \land !A(x))
+      \lif !A(y))]]}$
+\item $\sFmla{\False}{\lexists[x][(!A(x) \land
+    \lforall[y][(!A(y) \lif y = x)])]}$,\\
+  $\sFmla{\True}{\lexists[x][!A(x)] \land
+    \lforall[y][\lforall[z][((!A(y) \land !A(z)) \lif y = z)]]}$
+\end{enumerate}
+\end{prob}
+
+\end{document}

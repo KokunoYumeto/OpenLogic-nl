@@ -1,0 +1,122 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: pairing
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{pai}
+\olsection{Paarfuncties en de codes die ze geven}
+
+\begin{explain}
+Aan de zigzagmethode van Cantor zie je dat je $\Nat^n$ in een lijst kunt zetten.
+Kijk nu naar onze tabel voor $\Nat^2$. Als je de zigzag door de tabel
+volgt en de plaatsen telt, zie je dat $\tuple{1,2}$ het getal~$7$
+krijgt. Het zou handig zijn als we dit getal meteen konden uitrekenen.
+Daarvoor willen we de functie die bij elk paar teruggaat naar zijn nummer
+in de zigzaglijst: de
+\emph{inverse} $g\colon \Nat^2 \to \Nat$, waarbij
+\[
+g(\tuple{0,0}) = 0, \;
+g(\tuple{0,1}) = 1, \;
+g(\tuple{1,0}) = 2, \; \dots,  
+g(\tuple{1,2}) = 7, \; \dots
+\]
+Met deze functie rekenen we precies uit op welke plaats $\tuple{n, m}$
+in onze lijst komt.
+
+We kunnen $g$ direct vastleggen met twee feiten. Als de kolomindex
+groter is dan nul en in het vakje op rij $n$ en in kolom $m$ de
+waarde~$v$ staat, dan staat in het vakje op
+rij $(n+1)$ en in kolom $(m-1)$ de waarde $v + 1$. Het tweede feit is
+dat de eerste rij van onze lijst de driehoeksgetallen bevat. Die beginnen
+met $0$, $1$, $3$, $6$, enzovoort. Het $k$-de driehoeksgetal krijg je
+door de natuurlijke getallen tot en met $k$ op te tellen. Dat kun je uitrekenen
+als $k(k+1)/2$. Met beide feiten krijgen we deze functie:
+\[
+  g(n,m) = \frac{(n+m+1)(n+m)}{2} + n
+\]
+Meestal schrijven we $g(n, m)$ in plaats van $g(\tuple{n, m})$. Dat
+leest makkelijker. De formule zegt: zoek eerst het
+$(n+m)^\text{de}$ driehoeksgetal en tel daar $n$ bij op. Zo komen de
+getallen precies in de juiste vakjes van de tabel. Het paar
+$\tuple{1, 2}$ krijgt dus $\frac{4 \times 3}{2} + 1 = 7$.
+
+De functie $g$ is dus de \emph{inverse} van een opsomming van paren. Bij elk
+paar geeft ze het nummer van zijn plaats in de lijst.
+Zo'n functie heet een \emph{paarfunctie}.
+\end{explain}
+
+\begin{defn}[Paarfunctie]
+  Een functie $f\colon A \times B \to \Nat$ heet een rekenkundige
+  \emph{paarfunctie} als $f$ injectief is: verschillende invoerparen
+  krijgen dan verschillende getallen. We zeggen ook: $f$
+  \emph{codeert} $A \times B$. Het getal $f(x,y)$ is de
+  \emph{code} van $\tuple{x,y}$.
+\end{defn}
+
+\begin{explain}
+Met paarfuncties kunnen we bijvoorbeeld paren van natuurlijke getallen
+coderen. Elk \emph{paar} krijgt dan \emph{één} getal. Met de
+inverse van de paarfunctie gaan we de andere kant op: we vinden uit welk
+paar bij het getal hoort. Dat heet het getal \emph{decoderen}.
+\end{explain}
+
+\begin{prob}
+Geef een manier om alle niet-negatieve rationale getallen in één lijst
+te zetten.
+\end{prob}
+
+\begin{prob}
+Laat zien dat $\Rat$ !!{enumerable} is. Bedenk daarbij dat je elk
+rationaal getal kunt schrijven als een breuk $z/m$ met $z \in \Int$,
+$m \in \Nat^+$.
+\end{prob}
+
+\begin{prob}
+Beschrijf hoe je alle elementen van $\Bin^*$ in één lijst zet.
+\end{prob}
+
+\begin{prob}
+Denk terug aan je eerste cursus logica: elke mogelijke tabel met
+waarheidswaarden legt een waarheidsfunctie vast. De waarheidsfuncties
+zijn dus precies alle functies $\Bin^k \to \Bin$ voor een bepaalde
+$k$. Bewijs dat je de verzameling van alle waarheidsfuncties in een
+lijst kunt zetten.
+\end{prob}
+
+\begin{prob}
+Neem een willekeurige oneindige !!{enumerable} verzameling. Laat zien
+dat de verzameling van alle eindige deelverzamelingen ervan ook
+!!{enumerable} is.
+\end{prob}
+
+\begin{prob}
+Een deelverzameling van $\Nat$ heet \emph{co-eindig} als er binnen $\Nat$ maar
+eindig veel getallen buiten liggen. Precies gezegd: $A \subseteq \Nat$
+is co-eindig dan en slechts dan als $\Nat\setminus A$
+eindig is. Laat de !!{element}s van $I$ precies de eindige en co-eindige
+deelverzamelingen van $\Nat$ zijn. Laat zien dat $I$ !!{enumerable} is.
+\end{prob}
+
+\begin{prob}
+Laat zien dat het samenvoegen van !!{enumerable} veel !!{enumerable}
+verzamelingen weer een !!{enumerable} verzameling oplevert. Precies
+gezegd: neem verzamelingen $A_1$, $A_2$, \dots{} waarvan elke $A_i$
+!!{enumerable} is. Laat zien dat ook de verzameling waarin ze allemaal
+samenkomen, $\bigcup_{i=1}^\infty A_i$, !!{enumerable} is. [Let op: dit
+is moeilijk!]
+\end{prob}
+
+\begin{prob}
+Neem een willekeurige paarfunctie $f \colon A \times B \to \Nat$.
+Laat zien dat de inverse van $f$, de functie die haar werking omdraait,
+een opsomming, dus een lijst, van $A \times B$ is.
+\end{prob}
+
+\begin{prob}
+Geef een functie die elk drietal uit $\Nat^3$ een eigen natuurlijk
+getal als code geeft.
+\end{prob}
+\end{document}

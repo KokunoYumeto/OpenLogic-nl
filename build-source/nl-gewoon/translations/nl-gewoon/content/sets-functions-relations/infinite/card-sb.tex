@@ -1,0 +1,116 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{infinite}{card-sb}
+
+\olsection{Bijlage: de stelling van Schr\"oder-Bernstein bewijzen}
+
+Voordat we de na\"ieve verzamelingenleer achter ons laten, bekijken we
+nog één laatste na\"ief bewijs. Het is wel behoorlijk slim opgebouwd!
+Het gaat om een bewijs van de stelling van Schr\"oder-Bernstein
+(\olref[sfr][siz][sb]{thm:schroder-bernstein}): als
+$\cardle{A}{B}$ en $\cardle{B}{A}$, dan $\cardeq{A}{B}$. Anders
+gezegd: bij injecties $f \colon A \to B$ en $g \colon B \to A$
+bestaat er een bijectie $h \colon A \to B$.
+
+In dit hoofdstuk gebruikten we Dedekinds idee van \emph{afsluitingen}.
+Met dat idee gaf Dedekind een mooi bewijs van de stelling van
+Schr\"oder-Bernstein. Dat bewijs staat hier. Onze versie volgt
+\citet[pp.~157--8]{Potter2004} bijna helemaal. Daar staat een iets
+andere aanpak die in de kern hetzelfde is. Als je even googelt, zie je
+ook dat voor deze stelling---net als voor de irrationaliteit van
+$\sqrt{2}$---\emph{veel} interessante en heel verschillende bewijzen
+bestaan.
+
+We gebruiken bijna dezelfde notatie als in
+\olref[sfr][infinite][dedekind]{Closure} en schrijven
+\[
+\Closureofunder{f}{B} = \bigcap \Setabs{X}{B \subseteq X
+\text{ en $X$ is $f$-gesloten}}
+\]
+voor elke verzameling~$B$ en functie~$f$. De verzameling
+$\Closureofunder{f}{B}$ is de kleinste $f$-gesloten verzameling die~$B$
+bevat. Dat betekent het volgende:
+
+\begin{lem}\ollabel{Closureprops}
+	Voor elke functie $f$ en elke $B$:
+	\begin{enumerate}
+		\item\ollabel{Closurehaselem} $B \subseteq \Closureofunder{f}{B}$; en
+		\item\ollabel{Closureclosed} $\Closureofunder{f}{B}$ is $f$-gesloten; en
+		\item\ollabel{Closuresmallest} als $X$ $f$-gesloten is en $B
+		\subseteq X$, dan $\Closureofunder{f}{B} \subseteq X$.
+	\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Dit gaat precies zoals in
+\olref[sfr][infinite][dedekind]{closureproperties}.
+\end{proof}
+
+Voor de stelling van Schr\"oder-Bernstein hebben we nog één laatste feit
+nodig:
+
+\begin{prop}\ollabel{sbhelper}
+Als $A \subseteq B \subseteq C$ en $A \approx C$, dan $\cardeq{\cardeq{A}{B}}{C}$.
+\end{prop}
+
+\begin{proof}
+Neem een bijectie $f \colon C \to A$. Stel $F =
+\Closureofunder{f}{C \setminus B}$ en definieer als volgt een functie
+$g$ met domein~$C$:
+\[
+	g(x) =
+	\begin{cases}
+			f(x) &\text{als $x \in F$}\\
+			x & \text{anders}
+		\end{cases}
+\]
+We laten zien dat $g$ een bijectie van $C \to B$ is. Dan is ook
+$\comp{f^{-1}}{g} \colon A \to B$ een bijectie, en is het bewijs
+klaar.
+
+Eerst beweren we: als $x \in F$ maar $y\notin F$, dan $g(x) \neq g(y)$.
+Stel, om een tegenspraak te krijgen, dat ze toch gelijk zijn. Dan geldt
+$y = g(y) = g(x) = f(x)$. Omdat $x \in F$ en $F$ volgens
+\olref{Closureprops} $f$-gesloten is, geldt $y = f(x) \in F$. Dat is
+een tegenspraak.
+
+Stel nu dat $g(x) = g(y)$. Uit wat we net bewezen volgt: $x \in F$ dan
+en slechts dan als $y \in F$. Als $x, y \in F$, dan is $f(x) = g (x)
+= g(y) = f(y)$. Dus $x = y$, want $f$ is een bijectie. Als
+$x, y \notin F$, dan $x = g(x) = g(y) = y$. De functie~$g$ is dus
+injectief.
+
+We moeten nog bewijzen dat $\ran{g} = B$. Eerst laten we zien dat
+$\ran{g} \subseteq B$. Neem $z \in C$. Als $z \in F$, dan is
+$g(z) = f(z) \in A \subseteq B$. Als $z \notin F$, dan geldt
+$z \notin C \setminus B$, want $C \setminus B \subseteq F$. Dus geldt
+$z \in B$ en $g(z) = z \in B$. Daarmee is
+$\ran{g} \subseteq B$. Nu de andere kant. Neem $x \in B \subseteq C$.
+Als $x \notin F$, dan $g(x) = x$.
+Als $x \in F$, dan is $x = f(y)$ voor een $y \in F$. Anders zou
+$F \setminus \{x\}$ namelijk $f$-gesloten zijn en $C\setminus B$
+bevatten. Volgens \olref{Closureprops} kan dat niet. Nu geldt
+$g(y) = f(y) = x$.
+\end{proof}
+
+Nu volgt het bewijs van de hoofdstelling. Voor een functie~$h$ en een
+verzameling~$D$ hadden we $\funimage{h}{D} = \Setabs{h(x)}{x \in D}$
+gedefinieerd.
+
+\begin{proof}[Bewijs van de stelling van Schr\"oder-Bernstein] Neem
+injecties $f \colon A \to B$ en $g \colon B \to A$. Omdat
+$\funimage{f}{A} \subseteq B$, geldt
+$\funimage{g}{\funimage{f}{A}} \subseteq g[B] \subseteq A$. Ook is
+$\comp{f}{g} \colon A \to \funimage{g}{\funimage{f}{A}}$ injectief,
+want $g$ en $f$ zijn dat allebei. Deze functie is zelfs bijectief: we
+hebben het codomein van $\comp{f}{g}$ precies gelijk aan het beeld van
+die functie gekozen. Dus
+$\cardeq{\funimage{g}{\funimage{f}{A}}}{A}$. Uit
+\olref{sbhelper} volgt daarom dat er een bijectie $h \colon A \to
+\funimage{g}{B}$ bestaat. Ook is $g^{-1}$ een bijectie van
+$\funimage{g}{B} \to B$. Dus is $\comp{h}{g^{-1}} \colon A \to B$
+een bijectie.
+\end{proof}
+\end{document}

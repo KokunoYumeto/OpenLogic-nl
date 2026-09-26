@@ -1,0 +1,137 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: pairs-and-products
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{set}{pai}
+\olsection{Paren, n-tallen en cartesische producten}
+
+\begin{explain}
+Uit extensionaliteit volgt dat de elementen van een verzameling geen
+volgorde hebben. Om een volgorde weer te geven gebruiken we daarom
+\emph{geordende paren} $\tuple{x, y}$. In een ongeordend paar $\{x,
+y\}$ doet de volgorde er niet toe: $\{x, y\} = \{y, x\}$. In een
+geordend paar is de volgorde wel van belang: als $x \neq y$, dan
+$\tuple{x, y} \neq \tuple{y, x}$.
+
+Hoe moeten we geordende paren in de verzamelingenleer opvatten?
+Van wezenlijk belang is dat twee geordende paren dan en slechts dan gelijk
+zijn als hun eerste elementen gelijk zijn en ook hun tweede elementen
+gelijk zijn, dus:
+\[
+  \tuple{a, b}= \tuple{c, d}\text{ dan en slechts dan als zowel }a = c \text{ als }b=d.
+\]
+We kunnen geordende paren in de verzamelingenleer definiëren met de
+definitie van Wiener--Kuratowski.
+\end{explain}
+
+\begin{defn}[Geordend paar]\ollabel{wienerkuratowski}
+	$\tuple{a, b} = \{\{a\}, \{a, b\}\}$.
+\end{defn}
+
+\begin{prob}
+	Bewijs met \olref[sfr][set][pai]{wienerkuratowski} dat $\tuple{a,
+	b}= \tuple{c, d}$ dan en slechts dan als zowel $a = c$ als $b=d$.
+\end{prob}
+
+\begin{explain}
+Nu we een definitie van een geordend paar hebben vastgelegd, kunnen we
+daarmee andere verzamelingen definiëren. Soms hebben we bijvoorbeeld
+ook geordende rijtjes van meer dan twee objecten nodig, zoals
+\emph{drietallen} $\tuple{x, y, z}$, \emph{viertallen} $\tuple{x, y,
+z, u}$, enzovoort. We kunnen drietallen opvatten als bijzondere
+geordende paren waarvan het eerste element zelf een geordend paar is:
+$\tuple{x, y, z}$ is $\tuple{\tuple{x, y},z}$. Hetzelfde geldt voor
+viertallen: $\tuple{x,y,z,u}$ is
+$\tuple{\tuple{\tuple{x,y},z},u}$, enzovoort. In het algemeen spreken
+we van \emph{geordende $n$-tallen} $\tuple{x_1, \dots, x_n}$.
+
+Bepaalde verzamelingen van geordende paren of andere geordende
+$n$-tallen zullen van pas komen.
+\end{explain}
+
+\begin{defn}[Cartesisch product]
+Gegeven verzamelingen $A$ en $B$ is hun \emph{cartesisch product} $A
+\times B$ gedefinieerd door
+\[
+  A \times B = \Setabs{\tuple{x, y}}{x \in A \text{ en } y \in B}.
+\]
+\end{defn}
+
+\begin{ex}
+Als $A = \{0, 1\}$ en $B = \{1, a, b\}$, dan is hun product
+\[
+A \times B = \{ \tuple{0, 1}, \tuple{0, a}, \tuple{0, b},
+    \tuple{1, 1}, \tuple{1, a}, \tuple{1, b} \}.
+\]
+\end{ex}
+
+\begin{ex}
+Als $A$ een verzameling is, schrijven we het product van $A$ met
+zichzelf, $A \times A$, ook als~$A^2$. Dit is de verzameling van
+\emph{alle} paren $\tuple{x, y}$ waarvoor $x, y \in A$. De
+verzameling van alle drietallen $\tuple{x, y, z}$ is $A^3$,
+enzovoort. We kunnen dit recursief definiëren:
+\begin{align*}
+  A^1 & = A\\
+  A^{k+1} & = A^k \times A
+\end{align*}
+\end{ex}
+
+\begin{prob}
+Geef alle !!{element}s van $\{1, 2, 3\}^3$.
+\end{prob}
+
+\begin{prop}\ollabel{cardnmprod}
+Als $A$ uit $n$ !!{element}s bestaat en $B$ uit $m$ !!{element}s, dan
+heeft $A \times B$ precies $n\cdot m$ elementen.
+\end{prop}
+
+\begin{proof}
+Voor elk !!{element}~$x$ van~$A$ zijn er $m$ !!{element}s van de vorm
+$\tuple{x, y} \in A \times B$. Laat $B_x = \Setabs{\tuple{x, y}}{y
+  \in B}$. Als $x_1 \neq x_2$, verschilt elk paar uit de ene zo
+gevormde verzameling van elk paar uit de andere; in het bijzonder geldt $\tuple{x_1, y} \neq
+\tuple{x_2, y}$. Daarom is $B_{x_1} \cap B_{x_2} = \emptyset$. Als
+$A = \{x_1, \dots, x_n\}$, dan is bovendien $A \times B = B_{x_1}
+\cup \dots \cup B_{x_n}$ en heeft dit product dus $n\cdot m$
+!!{element}s.
+
+We kunnen dit weergeven door de !!{element}s van~$A \times B$ in een
+rooster te zetten:
+\[
+\begin{array}{rcccc}
+  B_{x_1} = & \{\tuple{x_1, y_1} & \tuple{x_1, y_2} & \dots & \tuple{x_1, y_m}\}\\
+  B_{x_2} = & \{\tuple{x_2, y_1} & \tuple{x_2, y_2} & \dots & \tuple{x_2, y_m}\}\\
+  \vdots & & \vdots\\
+  B_{x_n} = & \{\tuple{x_n, y_1} & \tuple{x_n, y_2} & \dots & \tuple{x_n, y_m}\}
+\end{array}
+\]
+Omdat alle $x_i$ onderling verschillend zijn en ook alle $y_j$
+onderling verschillend zijn, zijn geen twee paren in dit rooster
+gelijk. Er staan er $n\cdot m$ in.
+\end{proof}
+
+\begin{prob}
+Bewijs met inductie naar~$k$ dat voor alle $k \ge 1$ geldt: als $A$
+$n$ !!{element}s heeft, dan heeft $A^k$ precies $n^k$ !!{element}s.
+\end{prob}
+
+\begin{ex}
+Als $A$ een verzameling is, is een \emph{woord} over~$A$ een
+willekeurig rijtje !!{element}s van~$A$. Een rijtje kan worden opgevat
+als een geordend $n$-tal van !!{element}s van~$A$. Als bijvoorbeeld $A =
+\{a, b, c\}$, dan kan het rijtje ‘$bac$’ worden opgevat als het
+drietal~$\tuple{b, a, c}$. Woorden, dat wil zeggen rijtjes symbolen,
+zijn van wezenlijk belang in de informatica. Volgens afspraak
+beschouwen we !!{element}s van~$A$ als rijtjes van lengte~$1$, en
+$\emptyset$ als het rijtje van lengte~$0$. De verzameling van
+\emph{alle} woorden over~$A$ is dan
+\[
+A^* = \{\emptyset\} \cup A \cup A^2 \cup A^3 \cup \dots
+\]
+\end{ex}
+\end{document}

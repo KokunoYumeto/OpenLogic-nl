@@ -1,0 +1,69 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: important-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{set}{imp}
+\olsection{Een paar belangrijke verzamelingen}
+
+\begin{ex}
+We werken meestal met verzamelingen waarvan de !!{element}en wiskundige
+objecten zijn. Vier van die verzamelingen zijn zo belangrijk dat ze een eigen
+naam hebben:
+\begin{multline*}
+    \Nat = \{0, 1, 2, 3, \ldots\} \\
+    \shoveright{\text{de verzameling natuurlijke getallen}}\\
+    \shoveleft{\Int = \{\ldots, -2, -1, 0, 1, 2, \ldots\}} \\
+    \shoveright{\text{de verzameling gehele getallen}}\\
+    \shoveleft{\Rat = \Setabs{\nicefrac{m}{n}}{m, n \in \Int\text{ en }n \neq 0}}\\
+    \shoveright{\text{de verzameling rationale getallen}}\\
+    \shoveleft{\Real = (-\infty, \infty)}\\
+    \text{de verzameling reële getallen (het continuüm)}
+\end{multline*}
+Deze verzamelingen zijn allemaal \emph{oneindig}: elke verzameling bevat
+oneindig veel !!{element}en.
+
+Bij elke volgende verzameling komen er \emph{meer} getallen bij. Daarom is
+$\Nat \subseteq \Int \subseteq \Rat \subseteq \Real$: elk natuurlijk
+getal is ook een geheel getal, elk geheel getal is ook rationaal en elk
+rationaal getal is ook reëel. Bovendien is $\Nat \subsetneq \Int
+\subsetneq \Rat$. Het getal $-1$ is namelijk wel geheel maar niet natuurlijk,
+en $\nicefrac{1}{2}$ is wel rationaal maar niet geheel. Dat $\Rat
+\subsetneq \Real$ is minder vanzelfsprekend. Er zijn dus reële getallen die
+niet rationaal zijn\oliflabeldef{sfr:arith:real:realline}{; daar komen we op
+terug in \olref[arith][real]{realline}}{}.
+
+We gebruiken soms ook de positieve gehele getallen $\PosInt = \{1,
+2, 3, \dots\}$ en de verzameling met alleen de eerste twee natuurlijke
+getallen, $\Bin = \{0, 1\}$.
+\end{ex}
+
+\begin{tagblock}{compsci}
+\begin{ex}[Tekenreeksen]
+Nog een voorbeeld is $A^{*}$, de verzameling van alle \emph{eindige
+tekenreeksen} die je met een alfabet $A$ kunt maken. Elke eindige rij
+elementen van~$A$ is zo'n tekenreeks over~$A$. Ook de
+\emph{lege tekenreeks $\Lambda$},
+waarin geen enkel teken staat, hoort bij de tekenreeksen over~$A$, voor elk
+alfabet~$A$. Bijvoorbeeld:
+\begin{multline*}
+\Bin^*
+=\{\Lambda,0,1,00,01,10,11,\\
+000,001,010,011,100,101,110,111,0000,\ldots\}.
+\end{multline*}
+Als $x=x_{1}\ldots x_{n}\in A^{*}$ uit $n$ ``letters'' van $A$ bestaat,
+dan is de \emph{lengte} van die tekenreeks~$n$. We schrijven dan
+$\len{x}=n$.
+\end{ex}
+\end{tagblock}
+
+\begin{ex}[Oneindige rijen]
+Bij elke verzameling $A$ kunnen we ook kijken naar~$A^\omega$, de verzameling
+van alle oneindige rijen !!{element}en van~$A$. Zo'n rij
+$a_1a_2a_3a_4\dots$ is een lijst die aan één kant eindeloos doorloopt.
+Elk object in de lijst is !!a{element} van~$A$.
+\end{ex}
+\end{document}

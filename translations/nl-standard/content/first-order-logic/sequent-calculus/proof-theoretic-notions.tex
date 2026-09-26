@@ -1,0 +1,176 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\begin{editorial}
+  Deze paragraaf bundelt de definities van de bewijsbaarheidsrelatie en
+  consistentie voor natuurlijke deductie.
+\end{editorial}
+
+\iftag{FOL}
+      {\olfileid{fol}{seq}{ptn}}
+      {\olfileid{pl}{seq}{ptn}}
+
+\olsection{Bewijstheoretische begrippen}
+
+\begin{explain}
+Zoals we enkele belangrijke semantische begrippen hebben gedefinieerd
+(geldigheid, semantisch gevolg en vervulbaarheid), definiëren we nu de
+overeenkomstige \emph{bewijstheoretische begrippen}. Deze worden niet
+gedefinieerd aan de hand van de vervulling van !!{sentence}s in
+!!{structure}s, maar aan de hand van de !!{derivability} of
+!!{nonderivability} van bepaalde sequenten. De ontdekking dat deze
+begrippen samenvallen was van groot belang. Dat ze samenvallen, is de
+inhoud van de \emph{correctheidsstelling} en de
+\emph{volledigheidsstelling}.
+\end{explain}
+
+\begin{defn}[Stellingen]
+!!^a{sentence}~$!A$ is een \emph{stelling} als er in~$\Log{LK}$
+!!a{derivation} van de sequent $\quad \Sequent !A$ bestaat. We schrijven
+$\Proves !A$ als $!A$ een stelling is en $\Proves/ !A$ als dat niet zo
+is.
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{sentence}~$!A$ is \emph{!!{derivable} uit} een verzameling
+!!{sentence}s~$\Gamma$, genoteerd $\Gamma \Proves !A$, dan en slechts
+dan als er een eindige deelverzameling~$\Gamma_0 \subseteq \Gamma$ en
+een rij~$\Gamma_0'$ van de !!{sentence}s in~$\Gamma_0$ bestaan zodat
+$\Log{LK}$ de sequent $\Gamma_0' \Sequent !A$ !!{derive}s. Als $!A$
+niet !!{derivable} is uit $\Gamma$, schrijven we $\Gamma \Proves/ !A$.
+\end{defn}
+
+Vanwege de contractie-, verzwakkings- en verwisselingsregels zijn de
+volgorde en het aantal voorkomens van de !!{sentence}s in~$\Gamma_0'$
+niet van belang: als $\Gamma_0' \Sequent !A$ !!{derivable} is, dan
+geldt dit ook voor $\Gamma_0'' \Sequent !A$ voor elke $\Gamma_0''$ die
+dezelfde !!{sentence}s bevat als~$\Gamma_0'$. Als bijvoorbeeld
+$\Gamma_0 = \{!B, !C\}$, dan zijn zowel $\Gamma_0' = \tuple{!B, !B,
+!C}$ als $\Gamma_0'' = \tuple{!C, !C, !B}$ rijen die uitsluitend de
+!!{sentence}s uit~$\Gamma_0$ bevatten. Is een sequent met de ene rij
+!!{derivable}, dan is de overeenkomstige sequent met de andere rij dat
+ook, bijvoorbeeld:
+\begin{prooftree}
+  \AxiomC{}
+  \Deduce$!B, !B, !C \fCenter !A$
+  \RightLabel{\LeftR{\Contraction}}
+  \UnaryInf$!B, !C \fCenter !A$
+  \RightLabel{\LeftR{\Exchange}}
+  \UnaryInf$!C, !B \fCenter !A$
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!C, !C, !B \fCenter !A$
+\end{prooftree}
+Voortaan bedoelen we, voor een eindige verzameling
+!!{sentence}s~$\Gamma_0$, met $\Gamma_0 \Sequent !A$ elke sequent waarvan het
+antecedent een rij van !!{sentence}s uit~$\Gamma_0$ is. Waar nodig
+veronderstellen we stilzwijgend toepassingen van contractie,
+verwisseling en verzwakking.
+
+\begin{defn}[Consistentie]
+Een verzameling zinnen~$\Gamma$ is \emph{inconsistent} dan en slechts
+dan als er een eindige deelverzameling~$\Gamma_0 \subseteq \Gamma$
+bestaat waarvoor $\Log{LK}$ de sequent $\Gamma_0 \Sequent \quad$
+!!{derive}s. Is $\Gamma$ niet inconsistent, dat wil zeggen: geldt voor
+elke eindige $\Gamma_0 \subseteq \Gamma$ dat $\Log{LK}$ de sequent
+$\Gamma_0 \Sequent \quad$ niet !!{derive}s, dan heet de verzameling
+\emph{consistent}.
+\end{defn}
+
+\begin{prop}[Reflexiviteit]
+\ollabel{prop:reflexivity}
+Als $!A \in \Gamma$, dan $\Gamma \Proves !A$.
+\end{prop}
+
+\begin{proof}
+De beginsequent $!A \Sequent !A$ is !!{derivable}, en $\{!A\}
+\subseteq \Gamma$.
+\end{proof}
+
+\begin{prop}[Monotonie]
+\ollabel{prop:monotonicity}
+Als $\Gamma \subseteq \Delta$ en $\Gamma \Proves !A$, dan $\Delta
+\Proves !A$.
+\end{prop}
+
+\begin{proof}
+Stel $\Gamma \Proves !A$. Er is dus een eindige $\Gamma_0 \subseteq
+\Gamma$ waarvoor $\Gamma_0 \Sequent !A$ !!{derivable} is. Omdat
+$\Gamma \subseteq \Delta$, is $\Gamma_0$ ook een eindige
+deelverzameling van~$\Delta$. De !!{derivation} van $\Gamma_0 \Sequent
+!A$ toont daarom ook aan dat $\Delta \Proves !A$.
+\end{proof}
+
+\begin{prop}[Transitiviteit]
+\ollabel{prop:transitivity}
+Als $\Gamma \Proves !A$ en $\{!A\} \cup \Delta \Proves !B$, dan
+$\Gamma \cup \Delta \Proves !B$.
+\end{prop}
+
+\begin{proof}
+Als $\Gamma \Proves !A$, bestaan er een eindige $\Gamma_0 \subseteq
+\Gamma$ en !!a{derivation}~$\pi_0$ van $\Gamma_0 \Sequent !A$. Als
+$\{!A\} \cup \Delta \Proves !B$, bestaat er voor een eindige
+deelverzameling $\Delta_0 \subseteq \Delta$ !!a{derivation}~$\pi_1$
+van $!A, \Delta_0 \Sequent !B$. Beschouw de volgende !!{derivation}:
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{$\pi_0$}
+  \Deduce$\Gamma_0 \fCenter !A$
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!A, \Delta_0 \fCenter !B$
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma_0, \Delta_0 \fCenter !B$
+\end{prooftree}
+Omdat $\Gamma_0 \cup \Delta_0 \subseteq \Gamma \cup \Delta$, toont
+dit aan dat $\Gamma \cup \Delta \Proves !B$.
+\end{proof}
+
+Dit betekent in het bijzonder dat uit $\Gamma \Proves !A$ en $!A
+\Proves !B$ volgt dat $\Gamma \Proves !B$. Ook volgt dat, als $!A_1,
+\dots, !A_n \Proves !B$ en $\Gamma \Proves !A_i$ voor elke~$i$, dan
+$\Gamma \Proves !B$.
+
+\begin{prop}
+\ollabel{prop:incons}
+$\Gamma$ is inconsistent dan en slechts dan als $\Gamma \Proves {!A}$
+voor elke zin~$!A$.
+\end{prop}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[fol][seq][ptn]{prop:incons}.
+\end{prob}
+
+\begin{prop}[Compactheid]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item Als $\Gamma \Proves !A$, dan is er een eindige deelverzameling
+    $\Gamma_0 \subseteq \Gamma$ waarvoor $\Gamma_0 \Proves !A$.
+  \item Als elke eindige deelverzameling van~$\Gamma$ consistent is,
+    dan is $\Gamma$ consistent.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Als $\Gamma \Proves !A$, dan is er een eindige
+      deelverzameling $\Gamma_0 \subseteq \Gamma$ waarvoor de sequent
+      $\Gamma_0 \Sequent !A$ !!a{derivation} heeft. Bijgevolg geldt
+      $\Gamma_0 \Proves !A$.
+    \item Als $\Gamma$ inconsistent is, dan is er een eindige
+      deelverzameling~$\Gamma_0 \subseteq \Gamma$ waarvoor $\Log{LK}$
+      de sequent $\Gamma_0 \Sequent \quad$ !!{derive}s. Dan is
+      $\Gamma_0$ dus een inconsistente eindige deelverzameling
+      van~$\Gamma$.
+  \end{enumerate}
+\end{proof}
+\end{document}

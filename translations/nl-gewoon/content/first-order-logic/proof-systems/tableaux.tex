@@ -1,0 +1,90 @@
+% Part: first-order-logic
+% Chapter: proof-systems
+% Section: tableaux
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{prf}{tab}}
+      {\olfileid{pl}{prf}{tab}}
+
+\olsection{\usetoken{P}{tableau}}
+
+Veel stelsels van afleidingsregels werken met !!{sentence}s die op een
+bepaalde manier bij elkaar staan. !!{tableau}s werken met
+!!{signed formula}s. !!^a{signed formula} is een paar: een teken voor
+een waarheidswaarde ($\True$ of $\False$) en !!a{sentence}:
+\[
+\sFmla{\True}{!A} \text{ of } \sFmla{\False}{!A}.
+\]
+!!^a{tableau} is een boom van !!{signed formula}s die naar beneden
+vertakt. Bovenaan staan enkele \emph{aannames}. Daaronder komen
+!!{signed formula}s die met een afleidingsregel uit een erboven staande
+!!{signed formula} volgen. Met elke regel voegen we aan het einde van
+een tak een of meer !!{signed formula}s toe. Soms voegen we twee
+!!{signed formula}s naast elkaar toe. Dan splitst de tak zich in
+tweeën en staat aan elk nieuw uiteinde een van de twee toegevoegde
+!!{signed formula}s.
+
+Als we een regel op een samengestelde !!{signed formula} toepassen,
+voegen we de directe deel-!!{formula}s ervan toe. Voor elk van de twee
+tekens is er een eigen regel. Zo passen we $\TRule{\True}{\land}$ toe
+op $\sFmla{\True}{!A \land !B}$. We mogen dan zowel
+$\sFmla{\True}{!A}$ als~$\sFmla{\True}{!B}$ toevoegen aan het einde
+van elke tak die $\sFmla{\True}{!A \land !B}$ bevat. Met
+$\TRule{\False}{!A \land !B}$ mogen we een tak in tweeën splitsen. We
+voegen dan $\sFmla{\False}{!A}$ en $\sFmla{\False}{!B}$ naast elkaar
+toe. !!^a{tableau} is gesloten als elke tak een paar !!{signed formula}s
+met dezelfde formule maar verschillende tekens bevat:
+$\sFmla{\True}{!A}$ en $\sFmla{\False}{!A}$.
+
+Voor !!{tableau}s definiëren we de relatie $\Proves$ als volgt.
+$\Gamma \Proves !A$ geldt precies als er een eindige verzameling
+$\Gamma_0 = \{!B_1, \dots, !B_n\} \subseteq \Gamma$ bestaat waarvoor
+er een gesloten !!{tableau} is met de volgende aannames:
+\[
+\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} 
+\]
+De volgende gesloten !!{tableau} laat bijvoorbeeld zien dat $\Proves
+(!A \land !B) \lif !A$:
+\begin{oltableau}
+  [\sFmla{\False}{(\formula{A} \land \formula{B}) \lif \formula{A}}, just = \TAss
+    [\sFmla{\True}{\formula{A} \land \formula{B}}, just = {\TRule{\False}{\lif}[1]}
+      [\sFmla{\False}{\formula{A}}, just = {\TRule{\False}{\lif}[1]}
+        [\sFmla{\True}{\formula{A}}, just = {\TRule{\True}{\lif}[2]}
+          [\sFmla{\True}{\formula{B}}, just = {\TRule{\True}{\lif}[2]}, close]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+
+Een verzameling $\Gamma$ heet inconsistent in de !!{tableau}calculus als
+we een gesloten !!{tableau} kunnen maken met de aannames
+\[
+\{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} 
+\]
+Daarbij moet $!B_i \in \Gamma$ gelden voor elke gebruikte index.
+
+Evert Beth en Jaakko Hintikka vonden !!{tableau}s in de jaren vijftig
+van de twintigste eeuw onafhankelijk van elkaar uit. Raymond Smullyan
+maakte de methode daarna eenvoudiger en bekender. Een !!{tableau} is
+heel gemakkelijk te gebruiken omdat je bij het opbouwen een vaste reeks
+stappen volgt. Daarom kan ook een computer de methode goed uitvoeren.
+!!^a{tableau} is vaak wel moeilijk te lezen. Ook is
+niet altijd duidelijk hoe het met een bewijs samenhangt. We kunnen de
+methode ook voor veel verschillende logica's gebruiken. Voor die
+logica's bestaan !!{tableau}systemen. Met !!{tableau}s kunnen we ook
+!!{structure}s
+vinden die gegeven (verzamelingen) !!{sentence}s vervullen. Als de
+verzameling vervulbaar is, kan er geen gesloten !!{tableau} voor zijn.
+Elk !!{tableau} heeft dan een open tak. Uit zo'n open tak kunnen we de
+vervullende !!{structure} ``aflezen''. Daarvoor moeten we op die tak
+wel elke regel hebben toegepast die erop kon worden toegepast. Er is
+ook een heel nauw verband met de sequentencalculus. Een gesloten
+!!{tableau} is in wezen een !!{derivation} in de sequentencalculus
+waarin de stappen dichter op elkaar staan en die ondersteboven is
+geschreven.
+\end{document}

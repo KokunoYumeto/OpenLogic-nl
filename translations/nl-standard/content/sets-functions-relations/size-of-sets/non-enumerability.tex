@@ -1,0 +1,219 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: non-enumerability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{nen}
+
+\olsection{\printtoken{S}{nonenumerable} verzamelingen}
+
+\begin{editorial}
+  Deze paragraaf bewijst met de definitie uit \olref[enm]{sec} de
+  overaftelbaarheid van $\Bin^\omega$ en $\Pow{\PosInt}$. De behandeling
+  is iets elementairder en iets uitvoeriger opgezet dan de versie in
+  \olref[enm-alt]{sec}
+\end{editorial}
+
+Sommige verzamelingen, zoals de verzameling $\PosInt$ van positieve
+gehele getallen, zijn oneindig. Tot dusver hebben we voorbeelden gezien
+van oneindige verzamelingen die allemaal !!{enumerable} waren. Er zijn
+echter ook oneindige verzamelingen die deze eigenschap niet hebben. Zulke
+verzamelingen heten \emph{!!{nonenumerable}}.
+
+Om te beginnen is het wellicht al verrassend dat er
+!!{nonenumerable} verzamelingen bestaan. Voor iedere !!{enumerable}
+verzameling~$A$ bestaat er een !!a{surjective} functie $f \colon \PosInt
+\to A$. Als een verzameling !!{nonenumerable} is, bestaat zo'n functie
+niet. Geen enkele functie die de oneindig vele !!{element}s van~$\PosInt$
+op~$A$ afbeeldt, kan dan dus heel~$A$ bereiken. In die zin heeft~$A$
+``meer'' !!{element}s dan de oneindig vele positieve gehele getallen.
+
+Hoe kan men bewijzen dat een verzameling !!{nonenumerable} is? Daarvoor
+moet men aantonen dat zo'n surjectieve functie niet kan bestaan. Dit is
+gelijkwaardig met aantonen dat de elementen van~$A$ niet kunnen worden
+opgesomd in een lijst die naar één kant oneindig doorloopt. De beste
+aanpak is te bewijzen dat iedere lijst van !!{element}s van~$A$ ten
+minste één element weglaat; met andere woorden, dat geen functie
+$f\colon \PosInt \to A$ !!{surjective} kan zijn. Dit kan met Cantors
+\emph{diagonaalmethode}. Gegeven een lijst van !!{element}s van~$A$,
+bijvoorbeeld $x_1$, $x_2$, \dots, construeren we een ander element
+van~$A$ dat door zijn constructie onmogelijk op die lijst kan staan.
+
+Ons eerste voorbeeld is de verzameling~$\Bin^\omega$ van alle oneindige
+rijen van $0$'en en $1$'en zonder ontbrekende plaatsen.
+
+\begin{thm}
+\ollabel{thm:nonenum-bin-omega}
+De verzameling $\Bin^\omega$~is !!{nonenumerable}.
+\end{thm}
+
+\begin{proof}
+Veronderstel ter tegenspraak dat $\Bin^\omega$ !!{enumerable} is. Neem
+dus aan dat $s_{1}$, $s_{2}$, $s_{3}$, $s_{4}$, \dots{} een lijst van
+alle !!{element}s van~$\Bin^\omega$ is. Iedere $s_i$ is zelf een
+oneindige rij van $0$'en en~$1$'en. Noem het $j$-de element van de
+$i$-de rij in deze lijst $s_i(j)$. De $i$-de rij~$s_i$ is dan
+\[
+s_i(1), s_i(2), s_i(3), \dots
+\]
+
+We kunnen deze lijst en de elementen van iedere rij $s_i$ daarin in een
+rooster rangschikken:
+\[
+\begin{array}{c|c|c|c|c|c}
+& 1 & 2 & 3 & 4 & \dots \\\hline
+1 & \mathbf{s_{1}(1)} & s_{1}(2) & s_{1}(3) & s_1(4) & \dots \\\hline
+2 & s_{2}(1)& \mathbf{s_{2}(2)} & s_2(3) & s_2(4) & \dots \\\hline
+3 & s_{3}(1)& s_{3}(2) & \mathbf{s_3(3)} & s_3(4) & \dots \\\hline
+4 & s_{4}(1)& s_{4}(2) & s_4(3) & \mathbf{s_4(4)} & \dots \\\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \mathbf{\ddots}
+\end{array}
+\]
+De aanduidingen links geven het nummer van de rij in de lijst $s_1$,
+$s_2$, \dots; de getallen bovenaan nummeren de !!{element}s van de
+afzonderlijke rijen. Zo is $s_{1}(1)$ de naam van het getal, een $0$ of
+een~$1$, dat het eerste !!{element} van de rij $s_{1}$ is, enzovoort.
+
+Nu construeren we een oneindige rij $\overline{s}$ van $0$'en en $1$'en
+die onmogelijk op deze lijst kan staan. De definitie van $\overline{s}$
+hangt af van de lijst $s_1$, $s_2$, \dots. Iedere oneindige lijst van
+oneindige rijen van $0$'en en $1$'en bepaalt een oneindige
+rij~$\overline{s}$ die gegarandeerd niet op de lijst voorkomt.
+
+Om $\overline{s}$ te definiëren, leggen we al haar !!{element}s vast:
+we geven $\overline{s}(n)$ voor iedere $n \in \PosInt$. We lezen daartoe
+de diagonaal van het bovenstaande rooster af (vandaar de naam
+``diagonaalmethode'') en vervangen vervolgens iedere $1$ door een $0$
+en iedere $0$ door een~$1$. Abstract geformuleerd definiëren we
+$\overline{s}(n)$ als $0$ of $1$, naargelang het $n$-de !!{element} op
+de diagonaal, $s_n(n)$, gelijk is aan $1$ of $0$.
+\[
+\overline{s}(n) =
+\begin{cases}
+1 & \text{als $s_{n}(n) = 0$}\\
+0 & \text{als $s_{n}(n) = 1$}.
+\end{cases}
+\]
+Wie formules verkiest boven definities per geval, kan ook
+$\overline{s}(n) = 1 - s_n(n)$ definiëren.
+
+De rij $\overline{s}$ is duidelijk een oneindige rij van $0$'en en
+$1$'en: zij ontstaat uit de rij van $0$'en en $1$'en op de diagonaal
+van ons rooster door iedere term om te keren. Dus is $\overline{s}$
+!!a{element} van~$\Bin^\omega$. Zij kan echter niet op de lijst $s_1$,
+$s_2$, \dots{} staan. Waarom niet?
+
+Zij kan niet de eerste rij op de lijst, $s_1$, zijn, want zij verschilt
+van $s_1$ in het eerste !!{element}. Wat $s_1(1)$ ook is, we hebben
+voor $\overline{s}(1)$ de andere waarde gekozen. Zij kan evenmin de
+tweede rij op de lijst zijn, want $\overline{s}$ verschilt van $s_2$ in
+het tweede element: als $s_2(2)$ gelijk is aan $0$, is $\overline{s}(2)$
+gelijk aan $1$, en omgekeerd. Enzovoort.
+
+Preciezer: als $\overline{s}$ op de lijst stond, zou er een $k$ bestaan
+waarvoor $\overline{s} = s_{k}$. Twee rijen zijn precies dan gelijk als
+ze op iedere plaats overeenkomen; voor iedere~$n$ zou dus
+$\overline{s}(n) = s_{k}(n)$ gelden. In het bijzonder zou voor het
+speciale geval $n = k$ moeten gelden dat $\overline{s}(k) = s_{k}(k)$.
+Nu is $s_k(k)$ gelijk aan $0$ of aan~$1$. Als die waarde $0$ is, moet
+$\overline{s}(k)$ gelijk zijn aan~$1$---zo hebben we $\overline{s}$
+gedefinieerd. Maar als $s_k(k) = 1$, dan volgt opnieuw uit de manier
+waarop we $\overline{s}$ hebben gedefinieerd dat $\overline{s}(k) = 0$.
+In beide gevallen geldt $\overline{s}(k) \neq
+s_{k}(k)$.
+
+We begonnen met de aanname dat er een lijst van !!{element}s van
+$\Bin^\omega$, $s_1$, $s_2$, \dots{}, bestaat. Uit deze lijst
+construeerden we
+een rij~$\overline{s}$ waarvan we hebben bewezen dat zij niet op de
+lijst kan staan. Zij is echter beslist zelf een rij van $0$'en en
+$1$'en als alle $s_i$ rijen van $0$'en en $1$'en zijn; dus $\overline{s} \in
+\Bin^\omega$. Er kan in het bijzonder geen lijst van \emph{alle}
+!!{element}s van~$\Bin^\omega$ bestaan. Uit iedere vermeende lijst
+kunnen we immers ook een rij~$\overline{s}$ construeren die gegarandeerd
+niet op die lijst staat. De aanname dat alle rijen in~$\Bin^\omega$ op
+één lijst staan, leidt dus tot een tegenspraak.
+\end{proof}
+
+\begin{explain}
+Deze bewijsmethode heet een ``diagonaalargument'', omdat de diagonaal van
+het rooster wordt gebruikt om~$\overline{s}$ te definiëren. Voor een
+diagonaalargument is niet noodzakelijk een rooster nodig: met hetzelfde
+idee kunnen we bewijzen dat verzamelingen niet !!{enumerable} zijn, ook
+als er geen rooster en geen daadwerkelijke diagonaal aan te pas komt.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:nonenum-pownat}
+$\Pow{\PosInt}$ is niet !!{enumerable}.
+\end{thm}
+
+\begin{proof}
+We gaan op dezelfde manier te werk en laten zien dat er voor iedere
+lijst van deelverzamelingen van~$\PosInt$ een deelverzameling van
+$\PosInt$ bestaat die niet op de lijst kan staan. Veronderstel dat de
+volgende lijst van deelverzamelingen van~$\PosInt$ gegeven is:
+\[
+Z_{1}, Z_{2}, Z_{3}, \dots
+\]
+We definiëren nu een verzameling $\overline{Z}$ waarvoor bij iedere
+$n \in \PosInt$ geldt dat $n \in \overline{Z}$ precies dan als $n
+\notin Z_{n}$:
+\[
+\overline{Z} = \Setabs{n \in \PosInt}{n \notin Z_n}
+\]
+$\overline{Z}$ is duidelijk een verzameling van positieve gehele
+getallen, want volgens de aanname is iedere~$Z_n$ dat ook; bijgevolg
+geldt $\overline{Z} \in \Pow{\PosInt}$. Maar $\overline{Z}$ kan niet op
+de lijst staan. Om dit aan te tonen, bewijzen we voor iedere $k \in
+\PosInt$ dat $\overline{Z} \neq Z_k$.
+
+Laat $k \in \PosInt$ willekeurig zijn. We hebben $\overline{Z}$ zo
+gedefinieerd dat voor iedere $n \in \PosInt$ geldt: $n \in
+\overline{Z}$ precies dan als $n \notin Z_n$. Als speciaal geval met
+$n=k$ geldt dus: $k \in \overline{Z}$ precies dan als $k \notin Z_k$.
+Daaruit volgt dat $\overline{Z} \neq Z_k$: $k$ is !!a{element} van de
+ene verzameling, maar niet van de andere, zodat $\overline{Z}$ en $Z_k$
+verschillende !!{element}s hebben. Omdat $k$ willekeurig was, staat
+$\overline{Z}$ niet op de lijst $Z_1$, $Z_2$, \dots
+\end{proof}
+
+\begin{explain}
+In het voorgaande bewijs werd geen diagonaal genoemd, maar men kan het
+wel als een diagonaalargument opvatten. Stel daartoe de verzamelingen
+$Z_1$, $Z_2$, \dots{} in een rooster geschreven voor, waarbij ieder
+!!{element}~$j \in Z_i$ in de $j$-de kolom staat. Stel bijvoorbeeld dat
+de eerste vier verzamelingen op de lijst $\{1,2,3,\dots\}$, $\{2, 4, 6,
+\dots\}$, $\{1,2,5\}$ en $\{3,4,5,\dots\}$ zijn. Dan begint het rooster
+als volgt:
+\[
+\begin{array}{r@{}rrrrrrr}
+  Z_1 = \{ & \mathbf{1}, & 2, & 3, & 4, & 5, & 6, & \dots\}\\
+  Z_2 = \{ &  & \mathbf{2}, &  & 4, &  & 6, & \dots\}\\
+  Z_3 = \{ & 1, & 2, &  &  & 5\phantom{,} &  & \}\\
+  Z_4 = \{ &  &  & 3, & \mathbf{4}, & 5, & 6, & \dots\}\\
+  \vdots & & & & & \ddots
+\end{array}
+\]
+De verzameling $\overline{Z}$ wordt dan verkregen door de diagonaal af
+te lopen, de getallen op de diagonaal weg te laten en juist die $j$ op
+te nemen waarvoor rij en kolom nummer~$j$ elkaar in het rooster op een
+lege plaats kruisen. In dit voorbeeld laten we $1$ en $2$ weg, nemen
+we~$3$ op, laten we~$4$ weg, enzovoort.
+\end{explain}
+
+\begin{prob}
+Bewijs met een diagonaalargument dat $\Pow{\Nat}$ !!{nonenumerable} is.
+\end{prob}
+
+\begin{prob}\label{sfr:siz:nen:prob:f-posint}
+Bewijs met een expliciet diagonaalargument dat de verzameling functies
+$f \colon \PosInt \to \PosInt$ !!{nonenumerable} is. Toon dus aan dat er,
+als $f_1$, $f_2$, \dots{} een lijst van functies is en iedere $f_i\colon
+\PosInt \to \PosInt$ een functie is, een $\overline{f}\colon \PosInt \to \PosInt$
+bestaat die niet op deze lijst staat.
+\end{prob}
+\end{document}

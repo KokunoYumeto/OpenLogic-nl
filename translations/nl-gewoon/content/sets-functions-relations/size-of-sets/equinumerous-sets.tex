@@ -1,0 +1,107 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: equinumerous-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{equ}
+
+\olsection{Evenveel elementen}
+
+Bij eindige verzamelingen werkt ons gewone idee van ``grootte'' prima. Maar
+hoe zit het met oneindige verzamelingen? Als we een precieze regel willen om
+verzamelingen van \emph{elke} grootte te vergelijken, is het handig om
+eerst te zeggen wanneer twee verzamelingen even groot zijn. Frege geeft dit voorbeeld:
+\begin{quote}
+  Als een ober zeker wil weten dat hij precies evenveel messen als borden op
+  tafel heeft gelegd, hoeft hij geen van beide te tellen. Hij legt gewoon rechts
+  van elk bord een mes en zorgt dat elk mes rechts van een bord ligt. Zo hoort
+  bij elk bord precies één mes en bij elk mes precies één bord: het mes ligt
+  telkens rechts van het bord. \citep[\S70]{Frege1884}
+\end{quote}
+Dit idee kunnen we nu precies opschrijven:
+
+\begin{defn}\ollabel{comparisondef}
+  $A$ is \emph{gelijkmachtig} met $B$, geschreven als $\cardeq{A}{B}$,
+  precies wanneer er !!a{bijection} $f \colon A \to B$ bestaat. Zo'n functie
+  koppelt de elementen één-op-één aan elkaar en slaat niets over.
+\end{defn}
+
+\begin{prop}\ollabel{equinumerosityisequi}
+De relatie ``evenveel elementen hebben'' is een equivalentierelatie.
+\end{prop}
+
+\begin{proof} 
+We moeten drie dingen laten zien: gelijkmachtigheid is reflexief, symmetrisch
+en transitief. Neem verzamelingen $A, B$ en $C$.
+
+\emph{Reflexiviteit.} De functie $\Id{A} \colon A \to A$ stuurt elk element
+naar zichzelf: $\Id{A} (x) = x$ voor elke $x \in A$. Deze functie is
+!!a{bijection}. Dus
+$\cardeq{A}{A}$.
+
+\emph{Symmetrie.} Stel dat $\cardeq{A}{B}$. Er is dan !!a{bijection}
+$f\colon A \to B$. Omdat $f$ !!{bijective} is, bestaat de omgekeerde functie
+$f^{-1}$ en is die ook !!{bijective}. Daarom is
+$f^{-1}\colon B \to A$ !!a{bijection}, en dus $\cardeq{B}{A}$.
+
+\emph{Transitiviteit.} Stel dat $\cardeq{A}{B}$ en $\cardeq{B}{C}$. Dan zijn
+er !!{bijection}s $f\colon A \to B$ en $g\colon B \to C$. Voeren we die na
+elkaar uit, dan krijgen we de bijectieve functie $\comp{f}{g}\colon A \to C$.
+Daarom geldt $\cardeq{A}{C}$.
+\end{proof}
+
+\begin{prop}
+Als $\cardeq{A}{B}$, dan is $A$ precies dan !!{enumerable} als $B$ dat is.
+\end{prop}
+
+\begin{editorial}
+Het volgende bewijs gebruikt \olref[enm]{defn:enumerable} wanneer
+\olref[enm]{sec} is opgenomen. Anders gebruikt het
+\olref[enm-alt]{defn:enumerable}.
+\end{editorial}
+
+\begin{proof}
+Stel dat $\cardeq{A}{B}$. Dan is er !!a{bijection} $f \colon A
+\to B$. Stel ook dat $A$ !!{enumerable} is.
+\oliflabeldef{sfr:siz:enm:defn:enumerable}{
+  Dan is $A = \emptyset$, of er is een surjectieve functie
+  $g\colon \PosInt \to A$. Als $A = \emptyset$, dan is ook $B = \emptyset$
+  (anders zou er !!a{element}~$y \in B$ zijn, terwijl er geen $x \in
+  A$ is met $f(x) = y$). In het andere geval is $g\colon \PosInt \to A$
+  !!{surjective}. Dan is $\comp{g}{f} \colon \PosInt \to B$ ook
+  !!{surjective}. Neem om dat te zien een $y \in B$. Omdat $f$
+  !!{surjective} is, is er een $x \in A$ met $f(x) = y$. Omdat
+  $g$ !!{surjective} is, is er een $n \in \PosInt$ met $g(n) =
+  x$. Dus
+\[
+(\comp{g}{f})(n) = f(g(n)) = f(x) = y
+\]
+en daarmee is $\comp{g}{f}$ !!{surjective}. De functie $\comp{g}{f}$ somt
+dus de hele verzameling~$B$ op. Daarom is $B$~!!{enumerable}.}
+{
+  Dan is $A = \emptyset$, of er is !!a{bijection}~$g$ waarvan het bereik
+  $A$ is en het domein $\Nat$ of een eerste stuk van de natuurlijke getallen. Als
+  $A = \emptyset$, dan is ook $B = \emptyset$ (anders zou er een~$y \in B$
+  zijn zonder een $x \in A$ waarvoor $f(x) = y$). Neem dus zo'n
+  !!{bijection}~$g$. Dan is $\comp{g}{f}$ !!a{bijection} met bereik~$B$ en
+  met hetzelfde domein als~$g$ (dus $\Nat$ of een eerste stuk daarvan).
+  Daarom is $B$ !!{enumerable}.}
+
+Als $B$ !!{enumerable} is, laat hetzelfde argument zien dat $A$
+!!{enumerable} is. We gebruiken dan de !!{bijection} $f^{-1}\colon B \to A$
+in plaats van~$f$.
+\end{proof}
+
+\begin{prob}
+Laat zien dat als $\cardeq{A}{C}$ en $\cardeq{B}{D}$, en $A \cap B =
+C \cap D = \emptyset$, dan $\cardeq{A \cup B}{C \cup D}$.
+\end{prob}
+
+\begin{prob}
+Laat zien dat als $A$ oneindig en !!{enumerable} is, dan
+$\cardeq{A}{\Nat}$.
+\end{prob}
+\end{document}

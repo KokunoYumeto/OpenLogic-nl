@@ -1,0 +1,80 @@
+% Part: propositional-logic
+% Chapter: syntax-and-semantics
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{pl}{syn}{int}
+
+\olsection{Inleiding}
+
+De propositielogica bestudeert !!{formula}s die uit
+!!{propositional variable}s worden opgebouwd met de propositionele
+connectieven $\lnot$, $\land$, $\lor$, $\lif$ en $\liff$. Intuïtief
+staat !!a{propositional variable}~$p$ voor een zin of propositie die
+waar of onwaar is. Zodra de ``waarheidswaarde'' van de
+!!{propositional variable}s in !!a{formula} is bepaald, ligt ook de
+waarheidswaarde vast van elke !!{formula} die daaruit met propositionele
+connectieven is gevormd. We noemen de propositielogica
+\emph{waarheidsfunctioneel}, omdat haar semantiek door functies van
+waarheidswaarden wordt gegeven. In de propositielogica laten we nadere
+bepalingen van waarheid en onwaarheid dus buiten beschouwing. We vragen
+bijvoorbeeld niet of iets noodzakelijk waar is in plaats van slechts
+contingent waar, of bekend is dat iets waar is, of iets nu waar is in
+plaats van vroeger waar te zijn geweest of later waar te zullen zijn.
+We beschouwen slechts twee waarheidswaarden, waar ($\True$) en onwaar
+($\False$), en sluiten daarmee uit dat een bewering noch waar noch
+onwaar, of slechts half waar, zou kunnen zijn. Ook beperken we ons tot
+connectieven waarvoor de waarheidswaarde van een ermee opgebouwde
+!!{formula} volledig door de waarheidswaarden van haar delen wordt
+bepaald (en bijvoorbeeld niet door haar betekenis). Of de
+waarheidswaarde van voorwaardelijke zinnen in het Engels in deze
+zin waarheidsfunctioneel is, is omstreden. De materiële implicatie
+$\lif$ is dat wel; andere logica's behandelen voorwaardelijke
+verbindingen die niet waarheidsfunctioneel zijn.
+
+Om de theorie en metatheorie van de waarheidsfunctionele
+propositielogica te ontwikkelen, moeten we eerst de syntaxis en
+semantiek van haar uitdrukkingen definiëren. We beschrijven één manier
+om met connectieven !!{formula}s uit !!{propositional variable}s op te
+bouwen. Andere definities zijn mogelijk. Andere systemen kiezen andere
+symbolen, nemen andere verzamelingen connectieven als primitief en
+gebruiken haakjes anders (of helemaal niet, zoals in de zogenoemde
+Poolse notatie). Alle benaderingen hebben echter gemeen dat de
+vormingsregels de verzameling !!{formula}s \emph{inductief} definiëren.
+Wanneer dat zorgvuldig gebeurt, kan elke uitdrukking volgens de
+vormingsregels in wezen maar op één manier zijn ontstaan. De inductieve
+definitie levert dan \emph{uniek leesbare} uitdrukkingen op. Daardoor
+kunnen we met dezelfde methode---een inductieve definitie---betekenissen
+aan die uitdrukkingen toekennen.
+
+Het toekennen van betekenis aan uitdrukkingen behoort tot de semantiek.
+Het centrale begrip in de semantiek van de propositielogica is
+vervulling door !!a{valuation}. !!^a{valuation}~$\pAssign{v}$ kent de
+waarheidswaarden $\True$ en $\False$ toe aan de !!{propositional
+variable}s. Elke !!{valuation} bepaalt de waarheidswaarde
+$\pValue{v}(!A)$ van elke !!{formula}~$!A$. !!^a{formula} wordt door
+!!a{valuation}~$\pAssign{v}$ vervuld dan en slechts dan als
+$\pValue{v}(!A) = \True$; dit noteren we als $\pSat{v}{!A}$. Deze
+relatie kan ook door inductie naar de structuur van~$!A$ worden
+gedefinieerd. Met de waarheidsfuncties van de logische connectieven
+definiëren we bijvoorbeeld de vervulling van $!A \land !B$ in termen
+van het al dan niet vervuld zijn van $!A$ en~$!B$.
+
+Op grond van de vervullingsrelatie $\pSat{v}{!A}$ voor zinnen kunnen we
+vervolgens de fundamentele semantische begrippen tautologie, semantisch
+gevolg en vervulbaarheid definiëren. !!^a{formula} is een tautologie,
+$\Entails !A$, als elke !!{valuation} haar vervult, dat wil zeggen als
+$\pValue{v}(!A) = \True$ voor elke~$\pAssign{v}$. Een formule volgt uit
+een verzameling !!{formula}s, $\Gamma \Entails !A$, als elke
+!!{valuation} die alle !!{formula}s in~$\Gamma$ vervult, ook~$!A$
+vervult. Een verzameling !!{formula}s is vervulbaar als er een
+!!{valuation} is die alle !!{formula}s uit die verzameling tegelijk
+vervult. Omdat !!{formula}s inductief zijn gedefinieerd en vervulling
+op haar beurt door inductie naar de structuur van !!{formula}s is
+gedefinieerd, kunnen we inductie gebruiken om eigenschappen van onze
+semantiek te bewijzen en de gedefinieerde semantische begrippen met
+elkaar in verband te brengen.
+\end{document}

@@ -1,0 +1,72 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: operations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{rel}{ops}
+\olsection{Bewerkingen op relaties}
+
+Het is vaak nuttig relaties te wijzigen of te combineren. In
+\olref[sfr][rel][ord]{prop:stricttopartial} hebben we de \emph{vereniging}
+van relaties beschouwd. Dit is eenvoudig de vereniging van twee relaties die
+we opvatten als verzamelingen van paren. Evenzo hebben we in
+\olref[sfr][rel][ord]{prop:partialtostrict} het relatieve verschil van relaties
+beschouwd. Hieronder volgen enkele andere bewerkingen op relaties.
+
+\begin{defn}\ollabel{relationoperations} 
+Laat $R$ en $S$ relaties zijn en $A$ een willekeurige verzameling.
+
+De \emph{inverse} van $R$ is $R^{-1} = \Setabs{\tuple{y, x}}{\tuple{x,
+    y} \in R}$.
+
+De \emph{samenstelling} van $R$ en $S$ (eerst de eerste relatie, daarna de
+tweede) is $(R \mid S) =
+\{\tuple{x, z} : \exists y(Rxy \land Syz)\}$.
+
+De \emph{restrictie} van $R$ tot $A$ is $\funrestrictionto{R}{A}= R
+\cap A^2$.
+
+Het door $R$ bepaalde \emph{beeld} van $A$ is $\funimage{R}{A} = \{y :
+(\exists x \in A)Rxy\}$.
+\end{defn}
+
+\begin{ex}
+Laat $S \subseteq \Int^2$ de opvolgerrelatie op~$\Int$ zijn, dus
+$S = \Setabs{\tuple{x, y} \in \Int^2}{x + 1 = y}$. Dan geldt $Sxy$ precies
+dan wanneer $x + 1 = y$.
+
+$S^{-1}$ is de voorgangerrelatie op $\Int$, dus
+$\Setabs{\tuple{x,y}\in\Int^2}{x -1 =y}$.
+
+$S\mid S$ is
+$ \Setabs{\tuple{x,y}\in\Int^2}{x + 2 =y}$
+
+$\funrestrictionto{S}{\Nat}$ is de opvolgerrelatie op~$\Nat$.
+
+$\funimage{S}{\{1,2,3\}}$ is $\{2, 3, 4\}$.
+\end{ex}
+
+\begin{defn}[Transitieve afsluiting]Laat $R \subseteq A^2$ een binaire relatie zijn.
+	
+De \emph{transitieve afsluiting} van~$R$ is $R^+ = \bigcup_{0 < n \in
+\Nat} R^n$, waarbij we recursief $R^1 = R$ en $R^{n+1} = R^n
+\mid R$ definiëren.
+
+De \emph{reflexief-transitieve afsluiting} van $R$ is $R^* = R^+ \cup
+\Id{A}$.
+\end{defn}
+
+\begin{ex}
+Neem de opvolgerrelatie $S \subseteq \Int^2$. Dan geldt $S^2xy$ precies als
+$x + 2 = y$, $S^3xy$ precies als $x + 3 = y$, enzovoort. Dus geldt $S^+xy$
+precies als $x + n = y$ voor een zekere $n \geq 1$. Anders gezegd: $S^+xy$
+geldt precies als $x < y$, en $S^*xy$ precies als $x \le y$.
+\end{ex}
+
+\begin{prob}
+Toon aan dat de transitieve afsluiting van $R$ inderdaad transitief is.
+\end{prob}
+\end{document}

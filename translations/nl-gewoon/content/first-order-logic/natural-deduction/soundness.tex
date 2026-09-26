@@ -1,0 +1,335 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{ntd}{sou}}
+      {\olfileid{pl}{ntd}{sou}}
+      
+\olsection{Correctheid}
+
+\begin{explain}
+!!^a{derivation}ssysteem, zoals natuurlijke deductie, is
+\emph{correct} als het alleen dingen kan !!{derive} die werkelijk
+volgen. Correctheid geeft dus een veiligheidsgarantie voor
+!!{derivation}ssystemen. Welke precieze eigenschap we nodig hebben,
+hangt van de situatie af. We willen bijvoorbeeld weten dat
+\begin{enumerate}
+\item elke !!{derivable} !!{sentence}
+  \iftag{FOL}{geldig}{onder elke valuatie waar} is;
+\item als !!a{sentence} !!{derivable} is uit andere zinnen, zij daar
+  ook logisch uit volgt;
+\item als een verzameling !!{sentence}s inconsistent is, zij niet waar
+  te maken is.
+\end{enumerate}
+Dit zijn belangrijke eigenschappen van !!a{derivation}ssysteem. Als
+een ervan niet geldt, kan het systeem te veel !!{derive} en deugt het
+niet. Daarom is het heel belangrijk om de correctheid van
+!!a{derivation}ssysteem te bewijzen.
+\end{explain}
+
+\begin{thm}[Correctheid]
+\ollabel{thm:soundness}
+Als $!A$ !!{derivable} is uit de !!{undischarged} aannamen
+$\Gamma$, dan $\Gamma \Entails !A$.
+\end{thm}
+
+\begin{proof}
+Laat $\delta$ !!a{derivation} van $!A$ zijn. We gebruiken inductie
+over het aantal inferenties in~$\delta$.
+
+In de inductiebasis is het aantal inferenties~$0$. Dan bestaat
+$\delta$ alleen uit één !!{sentence}~$!A$: een aanname. Die aanname is
+!!{undischarged}. Alleen een inferentie kan een aanname
+!!{discharged} maken, en hier zijn geen inferenties. Elke
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+die alle !!{undischarged} aannamen van het bewijs waar maakt, maakt
+daarom ook~$!A$ waar.
+
+Nu komt de inductiestap. Neem aan dat $\delta$~$n$ inferenties bevat.
+De uitgangsformule of uitgangsformules van de onderste inferentie
+worden !!{derive}d met deel-!!{derivation}s. Elk daarvan heeft minder
+dan~$n$ inferenties. De inductiehypothese zegt dat de uitgangsformules
+van de onderste inferentie volgen uit de !!{undischarged} aannamen van
+de deel-!!{derivation}s die daar eindigen. We moeten laten zien dat de
+conclusie~$!A$ volgt uit de !!{undischarged} aannamen van het hele
+bewijs.
+
+We behandelen elk mogelijk soort onderste inferentie apart. Eerst
+komen de inferenties met maar één uitgangsformule.
+
+\begin{enumerate}
+\item Stel dat de laatste inferentie \Intro{\lnot} is. De
+  !!{derivation} heeft dan deze vorm:
+  \begin{prooftree}
+    \AxiomC{$\Gamma, \Discharge{!A}{n}$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$\lfalse$}
+    \DischargeRule{\Intro{\lnot}}{n}
+    \UnaryInfC{$\lnot !A$}
+  \end{prooftree}
+  Volgens de inductiehypothese volgt $\lfalse$ uit de
+  !!{undischarged} aannamen $\Gamma \cup \{!A\}$ van~$\delta_1$.
+  Beschouw
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
+  We moeten laten zien: als
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, dan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !A}$. Neem voor een bewijs via
+  tegenspraak aan dat $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, maar
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lnot !A}$. Dit laatste betekent
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Dan zou
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma \cup \{!A\}}$ gelden. Dat is
+  in strijd met de inductiehypothese. Dus
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !A}$.
+
+\item De laatste inferentie is \Elim{\land}. Er zijn twee
+  mogelijkheden: we mogen $!A$ of $!B$ uit de uitgangsformule
+  $!A \land !B$ afleiden. Bekijk de eerste mogelijkheid. De
+  !!{derivation}~$\delta$ ziet er zo uit:
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A \land !B$}
+    \RightLabel{\Elim{\land}}
+    \UnaryInfC{$!A$}
+  \end{prooftree}
+  Volgens de inductiehypothese volgt $!A \land !B$ uit de
+  !!{undischarged} aannamen~$\Gamma$ van~$\delta_1$. Beschouw
+  !!a{structure}~\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}. We moeten
+  laten zien: als $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, dan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Neem aan dat
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$. De inductiehypothese
+  ($\Gamma \Entails !A \land !B$) geeft
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$. Per definitie geldt
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$ precies als zowel
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ als
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$. (De mogelijkheid waarin $!B$
+  uit $!A \land !B$ wordt afgeleid, werkt op dezelfde manier.)
+  
+\item De laatste inferentie is \Intro{\lor}. Er zijn twee
+  mogelijkheden: we mogen $!A \lor !B$ afleiden uit de
+  uitgangsformule~$!A$ of uit~$!B$. Bekijk de eerste mogelijkheid. De
+  !!{derivation} heeft deze vorm:
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A$}
+    \RightLabel{\Intro{\lor}}
+    \UnaryInfC{$!A \lor !B$}
+  \end{prooftree}
+  Volgens de inductiehypothese volgt $!A$ uit de !!{undischarged}
+  aannamen~$\Gamma$ van~$\delta_1$. Beschouw
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
+  We moeten laten zien: als
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, dan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$. Neem aan dat
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$. Dan geldt
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ wegens
+  $\Gamma \Entails !A$ (de inductiehypothese). Daarom geldt ook
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$. (De mogelijkheid
+  waarin $!A \lor !B$ uit~$!B$ wordt afgeleid, werkt op dezelfde
+  manier.)
+  
+\item De laatste inferentie is \Intro{\lif}. We leiden $!A \lif !B$
+  af uit een deelbewijs met aanname~$!A$ en conclusie~$!B$. Dus:
+  \begin{prooftree}
+    \AxiomC{$\Gamma, \Discharge{!A}{n}$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!B$}
+    \DischargeRule{\Intro{\lif}}{n}
+    \UnaryInfC{$!A \lif !B$}
+  \end{prooftree}
+  Volgens de inductiehypothese volgt $!B$ uit de !!{undischarged}
+  aannamen van~$\delta_1$. Dus $\Gamma \cup \{!A\} \Entails
+  !B$. Beschouw
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
+  De !!{undischarged} aannamen van~$\delta$ staan alleen in $\Gamma$,
+  want de laatste inferentie heft $!A$ op. We moeten dus laten zien
+  dat $\Gamma \Entails !A \lif !B$. Neem voor een bewijs via
+  tegenspraak aan dat er een
+  \iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
+  is waarvoor $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ maar
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$. Dan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ en
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$. Volgens de hypothese volgt
+  $!B$ echter uit $\Gamma \cup \{!A\}$, dus
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$. Dat is een tegenspraak. Dus
+  $\Gamma \Entails !A \lif !B$.
+
+\item De laatste inferentie is \FalseInt. Hier eindigt $\delta$ zo:
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$\lfalse$}
+    \RightLabel{\FalseInt}
+    \UnaryInfC{$!A$}
+  \end{prooftree}
+  Volgens de inductiehypothese is $\Gamma \Entails \lfalse$. We
+  moeten laten zien dat $\Gamma \Entails !A$. Stel dat dit niet zo is.
+  Dan is er een~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ waarvoor
+    $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ en
+    $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$. Maar
+    $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lfalse}$ geldt altijd. Dit zou
+    dus betekenen dat $\Gamma \Entails/ \lfalse$, in strijd met de
+    inductiehypothese.
+
+\item De laatste inferentie is \FalseCl. Oefening.
+
+\iftag{FOL}{
+\item De laatste inferentie is \Intro{\lforall}. Dan heeft $\delta$
+  deze vorm:
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A(a)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x)]$}
+  \end{prooftree}
+  Volgens de inductiehypothese volgt de uitgangsformule $!A(a)$ uit de
+  !!{undischarged} aannamen $\Gamma$. Neem een structuur
+  $\Struct{M}$ die aan $\Sat{M}{\Gamma}$ voldoet. We moeten laten zien
+  dat $\Sat{M}{\lforall[x][!A(x)]}$. Omdat
+  $\lforall[x][!A(x)]$ !!a{sentence} is, moeten we voor elke
+  variabelentoekenning~$s$ laten zien dat $\Sat{M}{!A(x)}[s]$
+  (\olref[syn][ass]{prop:sat-quant}). $\Gamma$ bestaat alleen uit
+  zinnen. Daarom geldt $\Sat{M}{!B}[s]$ voor elke
+  $!B \in \Gamma$, volgens
+  \olref[syn][sat]{defn:satisfaction}. Laat $\Struct{M'}$ gelijk zijn
+  aan $\Struct{M}$, behalve dat $\Assign{a}{M'} = s(x)$. Omdat $a$
+  niet in~$\Gamma$ voorkomt, geldt $\Sat{M'}{\Gamma}$ volgens
+  \olref[syn][ext]{cor:extensionality-sent}. Uit
+  $\Gamma \Entails !A(a)$ volgt $\Sat{M'}{!A(a)}$. Omdat $!A(a)$
+  !!a{sentence} is, geldt $\Sat{M'}{!A(a)}[s]$ volgens
+  \olref[syn][ass]{prop:sentence-sat-true}.
+  $\Sat{M'}{!A(x)}[s]$ geldt precies als $\Sat{M'}{!A(a)}$, volgens
+  \olref[syn][ext]{prop:ext-formulas} (bedenk dat $!A(a)$ gewoon
+  $\Subst{!A(x)}{a}{x}$ is). Dus $\Sat{M'}{!A(x)}[s]$. Omdat $a$ niet
+  voorkomt in~$!A(x)$, volgt uit
+  \olref[syn][ext]{prop:extensionality} dat
+  $\Sat{M}{!A(x)}[s]$. De variabelentoekenning $s$ was willekeurig.
+  Dus $\Sat{M}{\lforall[x][!A(x)]}$.
+  
+\item De laatste inferentie is \Intro{\lexists}. Oefening.
+
+\item De laatste inferentie is \Elim{\forall}. Oefening.
+}{}
+\end{enumerate}
+
+Nu bekijken we de mogelijke inferenties met meer dan één
+uitgangsformule: \Elim{\lor}, \Intro{\land},
+\iftag{FOL}{\Elim{\lif} en \Elim{\lexists}}{en \Elim{\lif}}.
+\begin{enumerate}
+
+\item De laatste inferentie is \Intro{\land}. We leiden
+  $!A \land !B$ af uit de uitgangsformules $!A$ en $!B$.
+  $\delta$ heeft deze vorm:
+  \begin{prooftree}
+    \AxiomC{$\Gamma_1$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A$}
+    \AxiomC{$\Gamma_2$}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!B$}
+    \RightLabel{\Intro{\land}}
+    \BinaryInfC{$!A \land !B$}
+  \end{prooftree}
+  Volgens de inductiehypothese volgt $!A$ uit de !!{undischarged}
+  aannamen~$\Gamma_1$ van~$\delta_1$. Ook volgt $!B$ uit de
+  !!{undischarged} aannamen~$\Gamma_2$ van~$\delta_2$. De
+  !!{undischarged} aannamen van~$\delta$ zijn $\Gamma_1 \cup
+  \Gamma_2$. Daarom moeten we laten zien dat
+  $\Gamma_1 \cup \Gamma_2 \Entails !A \land !B$. Beschouw
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+  waarvoor
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$. Uit
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1}$ volgt
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, want
+  $\Gamma_1 \Entails !A$. En uit
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_2}$ volgt
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$, want
+  $\Gamma_2 \Entails !B$. Samen geeft dit
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$.
+  
+\item De laatste inferentie is \Elim{\lor}. Oefening.
+
+\item De laatste inferentie is \Elim{\lif}. We leiden $!B$ af uit de
+  uitgangsformules $!A \lif !B$ en~$!A$. De !!{derivation}~$\delta$
+  ziet er zo uit:
+  \begin{prooftree}
+    \AxiomC{$\Gamma_1$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A \lif !B$}
+    \AxiomC{$\Gamma_2$}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!A$}
+    \RightLabel{\Elim{\lif}}
+    \BinaryInfC{$!B$}
+  \end{prooftree}
+  Volgens de inductiehypothese volgt $!A \lif !B$ uit de
+  !!{undischarged} aannamen~$\Gamma_1$ van~$\delta_1$. Ook volgt $!A$
+  uit de !!{undischarged} aannamen~$\Gamma_2$ van~$\delta_2$.
+  Beschouw
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
+  We moeten laten zien: als
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$, dan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$. Neem aan dat
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$. Uit
+  $\Gamma_1 \Entails !A \lif !B$ volgt
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$. Uit
+  $\Gamma_2 \Entails !A$ volgt
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Dit betekent
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$. (Als namelijk
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$, dan zou uit
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ volgen dat
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$. Dat is in
+  tegenspraak met
+  ~$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$.)
+
+\item De laatste inferentie is \Elim{\lnot}. Oefening.
+  
+\tagitem{FOL}{De laatste inferentie is \Elim{\lexists}. Oefening.}{}
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Maak het bewijs van \olref[fol][ntd][sou]{thm:soundness} af.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Maak het bewijs van \olref[pl][ntd][sou]{thm:soundness} af.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+Als $\Proves !A$, dan is $!A$
+\iftag{FOL}{geldig}{onder elke valuatie waar}.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+Als $\Gamma$ waar te maken is, dan is zij consistent.
+\end{cor}
+
+\begin{proof}
+We bewijzen de tegengestelde uitspraak met omgekeerde richting, de
+contrapositie. Neem aan dat $\Gamma$ niet consistent is. Dan
+$\Gamma \Proves \lfalse$. Er is dus !!a{derivation} van $\lfalse$ uit
+!!{undischarged} aannamen in~$\Gamma$. Volgens
+\olref{thm:soundness} moet elke
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+die $\Gamma$ waar maakt, ook $\lfalse$ waar maken. Maar
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lfalse}$ voor elke
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
+dus geen enkele \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} kan
+$\Gamma$ waar maken. Met andere woorden: $\Gamma$ is niet waar te
+maken.
+\end{proof}
+\end{document}

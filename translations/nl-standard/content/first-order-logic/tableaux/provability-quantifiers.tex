@@ -1,0 +1,88 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: provability-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{tab}{qpr}
+\olsection{\usetoken{S}{derivability} en de kwantoren}
+
+\begin{explain}
+  De volledigheidsstelling vereist ook dat de tableauregels de in deze
+  paragraaf bewezen feiten over~$\Proves$ opleveren.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:strong-generalization} Als $c$ een constante is die niet
+voorkomt in $\Gamma$ of~$!A(x)$ en $\Gamma \Proves !A(c)$, dan geldt
+$\Gamma \Proves \lforall[x][!A(x)]$.
+\end{thm}
+
+\begin{proof}
+Stel dat $\Gamma \Proves !A(c)$, d.w.z. dat er $!B_1$, \dots, $!B_n
+\in \Gamma$ en een gesloten !!{tableau} zijn voor
+\begin{align*}
+\{ \sFmla{\False}{!A(c)}, &
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n} \}.
+\intertext{We moeten aantonen dat er ook een gesloten !!{tableau} is voor}
+\{ \sFmla{\False}{\lforall[x][!A(x)]}, &
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n} \}.
+\end{align*}
+Neem het gesloten !!{tableau}, vervang de eerste aanname door
+$\sFmla{\False}{\lforall[x][!A(x)]}$ en voeg
+$\sFmla{\False}{!A(c)}$ na de aannamen in.
+\begin{center}
+\begin{tableau}{not line numbering}
+  [\sFmla{\False}{\formula{A}(c)}
+    [\sFmla{\True}{\formula{B}_1}
+      [\vdots
+      [\sFmla{\True}{\formula{B}_n}, 
+        [][][]]]]]
+\end{tableau}\qquad
+\begin{tableau}{not line numbering}
+  [\sFmla{\False}{\lforall[x][\formula{A}(x)]}
+    [\sFmla{\True}{\formula{B}_1}
+      [\vdots
+        [\sFmla{\True}{\formula{B}_n},
+          [\sFmla{\False}{\formula{A}(c)}
+        [][][]]]]]]
+\end{tableau}
+\end{center}
+Het tableau blijft gesloten, aangezien alle !!{sentence}s die voordien
+als aannamen beschikbaar waren, nog steeds bovenaan het !!{tableau}
+staan. De ingevoegde regel is het resultaat van een correcte toepassing
+van $\TRule{\False}{\lforall}$, want de !!{constant}~$c$ komt niet voor
+in $!B_1$, \dots, $!B_n$ of $\lforall[x][!A(x)]$, d.w.z. niet boven de
+ingevoegde regel in het nieuwe !!{tableau}.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$!A(t) \Proves \lexists[x][!A(x)]$.}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{Een gesloten !!{tableau} voor
+  $\sFmla{\False}{\lexists[x][!A(x)]}, \sFmla{\True}{!A(t)}$ is:
+  \begin{oltableau}
+    [\sFmla{\False}{\lexists[x][\formula{A}(x)]}, just = \TAss
+      [\sFmla{\True}{\formula{A}(t)}, just = \TAss
+        [\sFmla{\False}{\formula{A}(t)}, just = {\TRule{\False}{\lexists}[1]}, close]]]
+    \end{oltableau}}{}
+\tagitem{prvAll}{Een gesloten !!{tableau} voor
+  $\sFmla{\False}{\formula{A}(t)}, \sFmla{\True}{\lforall[x][!A(x)]}, $ is:
+  \begin{oltableau}
+    [\sFmla{\False}{\formula{A}(t)}, just = \TAss
+      [\sFmla{\True}{\lforall[x][\formula{A}(x)]}, just = \TAss
+        [\sFmla{\True}{\formula{A}(t)}, just = {\TRule{\True}{\lforall}[2]}, close]]]
+    \end{oltableau}}{}
+\end{tagenumerate}
+\end{proof}
+
+\end{document}

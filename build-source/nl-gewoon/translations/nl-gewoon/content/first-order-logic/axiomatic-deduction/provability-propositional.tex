@@ -1,0 +1,96 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: provability-propositional
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{axd}{ppr}}
+      {\olfileid{pl}{axd}{ppr}}
+
+\olsection{\usetoken{S}{derivability} en de logische tekens voor en, of en als--dan}
+
+\begin{explain}
+  Met de relatie~$\Proves$ schrijven we op wat met axiomatische
+  deductie formeel uit aannamen volgt. We laten zien dat deze manier
+  van afleiden een paar basisfeiten over de propositionele
+  connectieven, dus de logische verbindingstekens, aankan. Zo gelden
+  $!A \land !B \Proves !A$ en $!A, !A \lif !B \Proves !B$. Dat tweede
+  patroon heet modus ponens. Deze feiten hebben we nodig voor het
+  bewijs van de volledigheidsstelling.
+\end{explain}
+
+\begin{prop}\ollabel{prop:provability-land}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-land-left} Er gelden twee
+    gevolgtrekkingen: zowel $!A \land !B \Proves !A$ als
+    $!A \land !B \Proves !B$.
+  \item \ollabel{prop:provability-land-right} Omgekeerd geldt
+    $!A, !B \Proves !A \land !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item De eerste twee gevolgtrekkingen volgen met modus ponens uit
+      respectievelijk \olref[prp]{ax:land1} en
+      \olref[prp]{ax:land1}.
+  \item Begin met \olref[prp]{ax:land3}. Pas modus ponens twee keer
+    toe.
+  \end{enumerate}
+\end{proof}
+
+
+\begin{prop}\ollabel{prop:provability-lor}
+  \begin{enumerate}
+  \item De formules $!A \lor !B, \lnot !A, \lnot !B$ zijn samen
+    inconsistent.
+  \item Er gelden twee gevolgtrekkingen: zowel
+    $!A \Proves !A \lor !B$ als $!B \Proves !A \lor !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Uit \olref[prp]{ax:lnot1} krijgen we $\Proves \lnot !A \lif
+    (!A \lif \lfalse)$ en $\Proves \lnot !B \lif (!B \lif
+    \lfalse)$. Gebruik op beide de deductiestelling. Dan krijgen we
+    $\{\lnot !A\} \Proves !A \lif \lfalse$ en $\{\lnot !B\} \Proves
+    !B \lif \lfalse$. Gebruik vervolgens \olref[prp]{ax:lor3}. Dat
+    geeft $\{\lnot !A, \lnot !B\} \Proves (!A \lor !B) \lif
+    \lfalse$. Pas ten slotte de deductiestelling toe. Dan geldt
+    $\{!A \lor !B, \lnot !A, \lnot !B\} \Proves \lfalse$.
+  \item Gebruik \olref[prp]{ax:lor1} voor de eerste gevolgtrekking en
+    \olref[prp]{ax:lor2} voor de tweede. Pas in beide gevallen modus
+    ponens toe.
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lif}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-lif-left} Er geldt
+    $!A, !A \lif !B \Proves !B$.
+  \item \ollabel{prop:provability-lif-right}
+    Er gelden bovendien twee gevolgtrekkingen: zowel
+    $\lnot !A \Proves !A \lif !B$ als $!B \Proves !A \lif !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item We kunnen dit meteen !!{derive}:
+    \begin{derivation}
+      1. & $!A$ & \Hyp\\
+      2. & $!A \lif !B$ & \Hyp\\
+      3. & $!B$ & 1, 2, \MP
+    \end{derivation}
+    
+  \item Gebruik voor de eerste bewering \olref[prp]{ax:lnot2} en voor
+    de tweede \olref[prp]{ax:lif1}. Gebruik daarbij ook de
+    deductiestelling.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

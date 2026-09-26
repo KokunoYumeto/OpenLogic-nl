@@ -1,0 +1,465 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: proving-things
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{tab}{pro}}
+      {\olfileid{pl}{tab}{pro}}
+
+\olsection{Voorbeelden van \usetoken{P}{tableau}}
+
+\begin{ex}
+Laten we een gesloten !!{tableau} zoeken voor de !!{sentence}
+$(!A \land !B) \lif !A$.
+
+Om te beginnen schrijven we de bijbehorende aanname bovenaan het
+!!{tableau}.
+\begin{oltableau}
+  [\sFmla{\False}{(\formula{A} \land \formula{B}) \lif \formula{A}},
+    just = \TAss]
+\end{oltableau}
+
+Er is slechts één aanname, dus er is slechts één !!{signed formula}
+waarop we een regel kunnen toepassen. (Op iedere !!{signed formula} kan
+steeds hoogstens één regel worden toegepast: de regel die hoort bij het
+teken en de !!{main operator} van de !!{sentence}.) In dit geval moeten
+we dus $\TRule{\False}{\lif}$ toepassen.
+\begin{oltableau}
+  [\sFmla{\False}{(\formula{A} \land \formula{B}) \lif \formula{A}},
+    checked, just = \TAss
+    [\sFmla{\True}{\formula{A} \land \formula{B}},
+      just={\TRule{\False}{\lif}[1]}
+      [\sFmla{\False}{\formula{A}}, just={\TRule{\False}{\lif}[1]}]
+    ]
+  ]
+\end{oltableau}
+Om bij te houden op welke !!{signed formula}s we hun bijbehorende regel
+al hebben toegepast, zetten we een vinkje naast de zin. Zet echter
+\emph{alleen} een vinkje als de regel op alle open takken is toegepast.
+Zodra op !!a{signed formula} in iedere open tak de bijbehorende regel is
+toegepast, hoeven we er niet naar terug te keren om de regel nogmaals toe
+te passen. Hier is er slechts één tak, zodat de regel maar eenmaal hoeft
+te worden toegepast. (Vinkjes zijn slechts een hulpmiddel bij het
+construeren van tableaus en maken officieel geen deel uit van hun
+syntaxis.)
+
+Er is één nieuwe !!{signed formula} waarop we een regel kunnen toepassen:
+$\sFmla{\True}{!A \land !B}$ op regel~$2$. Toepassing van de regel
+$\TRule{\True}{\land}$ levert op:
+\begin{oltableau}
+  [\sFmla{\False}{(\formula{A} \land \formula{B}) \lif \formula{A}},
+    checked, just = \TAss
+    [\sFmla{\True}{\formula{A} \land \formula{B}},
+      just={\TRule{\False}{\lif}[1]}, checked
+      [\sFmla{\False}{\formula{A}}, just={\TRule{\False}{\lif}[1]}
+        [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\land}[2]}
+          [\sFmla{\True}{\formula{B}}, just={\TRule{\True}{\land}[2]}, close
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+De tak bevat nu zowel $\sFmla{\True}{!A}$ (op regel~$4$) als
+$\sFmla{\False}{!A}$ (op regel~$3$) en is daarom gesloten. Omdat dit de
+enige tak is, is het !!{tableau} gesloten. We hebben een gesloten
+!!{tableau} voor~$(!A \land !B) \lif !A$ gevonden.
+\end{ex}
+
+\begin{ex}
+Laten we nu een gesloten !!{tableau} zoeken voor
+$(\lnot !A \lor !B) \lif (!A \lif !B)$.
+
+We beginnen met de bijbehorende aanname:
+\begin{oltableau}
+  [\sFmla{\False}{(\lnot \formula{A} \lor \formula{B}) \lif
+      (\formula{A} \lif \formula{B})}, just=\TAss]
+\end{oltableau}
+De enige !!{signed formula} in dit !!{tableau} heeft
+!!{main operator}~$\lif$ en teken~$\False$. We passen er dus de regel
+$\TRule{\False}{\lif}$ op toe en verkrijgen:
+\begin{oltableau}
+  [\sFmla{\False}{(\lnot \formula{A} \lor \formula{B})
+      \lif (\formula{A} \lif \formula{B})}, just=\TAss, checked
+    [\sFmla{\True}{\lnot \formula{A} \lor \formula{B}},
+      just={\TRule{\False}{\lif}[1]}
+      [\sFmla{\False}{(\formula{A} \lif \formula{B})},
+        just={\TRule{\False}{\lif}[1]}
+      ]
+    ]
+  ]
+\end{oltableau}
+We kunnen nu kiezen of we $\TRule{\True}{\lor}$ op regel~$2$ toepassen
+of $\TRule{\False}{\lif}$ op regel~$3$. De volgorde doet er niet toe,
+mits op iedere !!{signed formula} in iedere tak de bijbehorende regel
+wordt toegepast. We kiezen de eerste mogelijkheid. De regel
+$\TRule{\True}{\lor}$ laat het !!{tableau} vertakken; de twee conclusies
+van de regel worden als nieuwe !!{signed formula}s aan de twee nieuwe
+takken toegevoegd. Dit levert op:
+\begin{oltableau}
+  [\sFmla{\False}{(\lnot \formula{A} \lor \formula{B}) \lif
+      (\formula{A} \lif \formula{B})}, just=\TAss, checked
+    [\sFmla{\True}{\lnot \formula{A} \lor \formula{B}},
+      just={\TRule{\False}{\lif}[1]}, checked
+      [\sFmla{\False}{(\formula{A} \lif \formula{B})},
+        just={\TRule{\False}{\lif}[1]}
+        [\sFmla{\True}{\lnot \formula{A}}, just={\TRule{\True}{\lor}[2]}]
+        [\sFmla{\True}{\formula{B}}, just={\TRule{\True}{\lor}[2]}]
+      ]
+    ]
+  ]
+\end{oltableau}
+We hebben de regel $\TRule{\False}{\lif}$ nog niet op regel~$3$
+toegepast; dat doen we nu. Om tijd te besparen passen we hem op beide
+takken toe. Bedenk dat we pas een vinkje naast !!a{signed formula}
+zetten als we de bijbehorende regel in iedere open tak hebben toegepast.
+Het is daarom verstandig een regel onderaan iedere tak toe te passen
+waarin de !!{signed formula} voorkomt waarop die regel van toepassing
+is. Dan hoeven we later, verderop in de verschillende takken, niet naar
+die !!{signed formula} terug te keren.
+\begin{oltableau}
+  [\sFmla{\False}{(\lnot \formula{A} \lor \formula{B}) \lif
+      (\formula{A} \lif \formula{B})}, just=\TAss, checked
+    [\sFmla{\True}{\lnot \formula{A} \lor \formula{B}},
+      just={\TRule{\False}{\lif}[1]}, checked
+      [\sFmla{\False}{(\formula{A} \lif \formula{B})},
+        just={\TRule{\False}{\lif}[1]}, checked
+        [\sFmla{\True}{\lnot \formula{A}}, just={\TRule{\True}{\lor}[2]}
+          [\sFmla{\True}{\formula{A}}, just={\TRule{\False}{\lif}[3]}
+            [\sFmla{\False}{\formula{B}}, just={\TRule{\False}{\lif}[3]}]
+          ]
+        ]
+        [\sFmla{\True}{\formula{B}}, just={\TRule{\True}{\lor}[2]}
+          [\sFmla{\True}{\formula{A}}, just={\TRule{\False}{\lif}[3]}
+            [\sFmla{\False}{\formula{B}}, just={\TRule{\False}{\lif}[3]}, close]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+De rechtertak is nu gesloten. Op de linkertak kunnen we de regel
+$\TRule{\True}{\lnot}$ nog op regel~$4$ toepassen. Dit levert
+$\sFmla{\False}{!A}$ op en sluit de linkertak:
+\begin{oltableau}
+  [\sFmla{\False}{(\lnot \formula{A} \lor \formula{B}) \lif
+      (\formula{A} \lif \formula{B})}, just=\TAss, checked
+    [\sFmla{\True}{\lnot \formula{A} \lor \formula{B}},
+      just={\TRule{\False}{\lif}[1]}, checked
+      [\sFmla{\False}{(\formula{A} \lif \formula{B})},
+        just={\TRule{\False}{\lif}[1]}, checked
+        [\sFmla{\True}{\lnot \formula{A}}, just={\TRule{\True}{\lor}[2]}
+          [\sFmla{\True}{\formula{A}}, just={\TRule{\False}{\lif}[3]}
+            [\sFmla{\False}{\formula{B}}, just={\TRule{\False}{\lif}[3]}
+              [\sFmla{\False}{\formula{A}},
+                just={\TRule{\True}{\lnot}[4]}, close]
+            ]
+          ]
+        ]
+        [\sFmla{\True}{\formula{B}}, just={\TRule{\True}{\lor}[2]}
+          [\sFmla{\True}{\formula{A}}, just={\TRule{\False}{\lif}[3]}
+            [\sFmla{\False}{\formula{B}},
+              just={\TRule{\False}{\lif}[3]}, close]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+\end{ex}
+
+\begin{ex}
+We kunnen !!{tableau}s construeren met een willekeurig aantal
+!!{signed formula}s als aannamen. Vaak moeten we bovendien meer dan één
+regel toepassen die vertakking mogelijk maakt; in het algemeen kan
+!!a{tableau} een willekeurig aantal takken hebben. Beschouw bijvoorbeeld
+!!a{tableau} voor
+$\{\sFmla{\True}{!A \lor (!B \land !C)}, \sFmla{\False}{(!A \lor !B) \land (!A
+  \lor !C)}\}$. We beginnen door $\TRule{\True}{\lor}$ op de eerste
+aanname toe te passen:
+\begin{oltableau}
+  [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
+    just=\TAss, checked
+    [\sFmla{\False}{(\formula{A} \lor \formula{B}) \land
+        (\formula{A} \lor \formula{C})}, just=\TAss
+      [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\lor}[1]}]
+      [\sFmla{\True}{\formula{B} \land \formula{C}},
+        just={\TRule{\True}{\lor}[1]}]
+    ]
+  ]
+\end{oltableau}
+Nu kunnen we de regel $\TRule{\False}{\land}$ op regel~$2$ toepassen.
+We doen dit gelijktijdig op beide takken en kunnen regel~$2$ daarom
+afvinken:
+\begin{oltableau}
+  [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
+    just=\TAss, checked
+    [\sFmla{\False}{(\formula{A} \lor \formula{B}) \land
+        (\formula{A} \lor \formula{C})}, just=\TAss, checked
+      [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\lor}[1]}
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}]
+      ]
+      [\sFmla{\True}{\formula{B} \land \formula{C}},
+        just={\TRule{\True}{\lor}[1]}
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}]
+      ]
+    ]
+  ]
+\end{oltableau}
+Vervolgens kunnen we $\TRule{\False}{\lor}$ toepassen op alle takken
+die $!A \lor !B$ bevatten:
+\begin{oltableau}
+  [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
+    just=\TAss, checked
+    [\sFmla{\False}{(\formula{A} \lor \formula{B}) \land
+        (\formula{A} \lor \formula{C})}, just=\TAss, checked
+      [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\lor}[1]}
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}}, just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{B}},
+              just={\TRule{\False}{\lor}[4]}, close]
+          ]
+        ]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}]
+      ]
+      [\sFmla{\True}{\formula{B} \land \formula{C}},
+        just={\TRule{\True}{\lor}[1]}
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}}, just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{B}},
+              just={\TRule{\False}{\lor}[4]}]
+          ]
+        ]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}]
+      ]
+    ]
+  ]
+\end{oltableau}
+De meest linkse tak is nu gesloten. We passen nu
+$\TRule{\False}{\lor}$ toe op $!A \lor !C$:
+\begin{oltableau}
+  [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
+    just=\TAss, checked
+    [\sFmla{\False}{(\formula{A} \lor \formula{B}) \land
+        (\formula{A} \lor \formula{C})}, just=\TAss, checked
+      [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\lor}[1]}
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{B}},
+              just={\TRule{\False}{\lor}[4]}, close]
+          ]
+        ]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}, move by=2
+            [\sFmla{\False}{\formula{C}},
+              just={\TRule{\False}{\lor}[4]}, close]
+          ]
+        ]
+      ]
+      [\sFmla{\True}{\formula{B} \land \formula{C}},
+        just={\TRule{\True}{\lor}[1]}
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{B}},
+              just={\TRule{\False}{\lor}[4]}
+            ]
+          ]
+        ]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}, move by=2
+            [\sFmla{\False}{\formula{C}},
+              just={\TRule{\False}{\lor}[4]}]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+Merk op dat we het resultaat van de tweede toepassing van
+$\TRule{\False}{\lor}$ voor de duidelijkheid lager hebben geplaatst.
+In dit geval was dat niet nodig geweest, aangezien de rechtvaardigingen
+dezelfde zouden zijn.
+
+Er zijn nog twee open takken en $\sFmla{\True}{!B \land !C}$ op
+regel~$3$ is nog niet afgevinkt. We passen er
+$\TRule{\True}{\land}$ op toe en verkrijgen een gesloten !!{tableau}:
+\begin{oltableau}
+  [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
+    just=\TAss, checked
+    [\sFmla{\False}{(\formula{A} \lor \formula{B}) \land
+        (\formula{A} \lor \formula{C})}, just=\TAss, checked
+      [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\lor}[1]}
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{B}},
+              just={\TRule{\False}{\lor}[4]}, close]
+          ]
+        ]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{C}},
+              just={\TRule{\False}{\lor}[4]}, close]
+          ]
+        ]
+      ]
+      [\sFmla{\True}{\formula{B} \land \formula{C}},
+        just={\TRule{\True}{\lor}[1]}, checked
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{B}},
+              just={\TRule{\False}{\lor}[4]}
+              [\sFmla{\True}{\formula{B}},
+                just={\TRule{\True}{\land}[3]}
+                [\sFmla{\True}{\formula{C}},
+                  just={\TRule{\True}{\land}[3]},close
+                ]
+              ]
+            ]
+          ]
+        ]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{C}},
+              just={\TRule{\False}{\lor}[4]}
+              [\sFmla{\True}{\formula{B}},
+                just={\TRule{\True}{\land}[3]}
+                [\sFmla{\True}{\formula{C}},
+                  just={\TRule{\True}{\land}[3]},close
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+
+Ter vergelijking volgt hier een gesloten !!{tableau} voor dezelfde
+verzameling aannamen, waarin de regels in een andere volgorde zijn
+toegepast:
+\begin{oltableau}
+  [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
+    just=\TAss, checked
+    [\sFmla{\False}{(\formula{A} \lor \formula{B}) \land
+        (\formula{A} \lor \formula{C})}, just=\TAss, checked
+      [\sFmla{\False}{\formula{A} \lor \formula{B}},
+        just={\TRule{\False}{\land}[2]}, checked
+        [\sFmla{\False}{\formula{A}},
+          just={\TRule{\False}{\lor}[3]}
+          [\sFmla{\False}{\formula{B}},
+            just={\TRule{\False}{\lor}[3]}
+            [\sFmla{\True}{\formula{A}},
+              just={\TRule{\True}{\lor}[1]},close
+            ]
+            [\sFmla{\True}{\formula{B} \land \formula{C}},
+              just={\TRule{\True}{\lor}[1]}, checked
+              [\sFmla{\True}{\formula{B}},
+                just={\TRule{\True}{\land}[6]}
+                [\sFmla{\True}{\formula{C}},
+                  just={\TRule{\True}{\land}[6]},close
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+      [\sFmla{\False}{\formula{A} \lor \formula{C}},
+        just={\TRule{\False}{\land}[2]}, checked
+        [\sFmla{\False}{\formula{A}},
+          just={\TRule{\False}{\lor}[3]}
+          [\sFmla{\False}{\formula{C}},
+            just={\TRule{\False}{\lor}[3]}
+            [\sFmla{\True}{\formula{A}},
+              just={\TRule{\True}{\lor}[1]},close
+            ]
+            [\sFmla{\True}{\formula{B} \land \formula{C}},
+              just={\TRule{\True}{\lor}[1]}, checked
+              [\sFmla{\True}{\formula{B}},
+                just={\TRule{\True}{\land}[6]}
+                [\sFmla{\True}{\formula{C}},
+                  just={\TRule{\True}{\land}[6]},close
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+\end{ex}
+
+\begin{prob}
+Geef gesloten !!{tableau}s voor de volgende gevallen:
+\begin{enumerate}
+\item $\sFmla{\True}{!A \land (!B \land !C)}, \sFmla{\False}{(!A \land !B) \land !C}$.
+\item $\sFmla{\True}{!A \lor (!B \lor !C)}, \sFmla{\False}{(!A \lor !B) \lor !C}$.
+\item $\sFmla{\True}{!A \lif (!B \lif !C)}, \sFmla{\False}{!B \lif (!A \lif !C)}$.
+\item $\sFmla{\True}{!A}, \sFmla{\False}{\lnot\lnot !A}$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Geef gesloten !!{tableau}s voor de volgende gevallen:
+\begin{enumerate}
+\item $\sFmla{\True}{(!A \lor !B) \lif !C}, \sFmla{\False}{!A \lif !C}$.
+\item $\sFmla{\True}{(!A \lif !C) \land (!B \lif !C)}, \sFmla{\False}{(!A \lor !B) \lif !C}$.
+\item $\sFmla{\False}{\lnot(!A \land \lnot !A)}$.
+\item $\sFmla{\True}{!B \lif !A}, \sFmla{\False}{\lnot !A \lif \lnot !B}$.
+\item $\sFmla{\False}{(!A \lif \lnot !A) \lif \lnot !A}$.
+\item $\sFmla{\False}{\lnot(!A \lif !B) \lif \lnot !B}$.
+\item $\sFmla{\True}{!A \lif !C}, \sFmla{\False}{\lnot (!A \land \lnot !C)}$.
+\item $\sFmla{\True}{!A \land \lnot !C}, \sFmla{\False}{\lnot (!A \lif !C)}$.
+\item $\sFmla{\True}{!A \lor !B, \lnot !B}, \sFmla{\False}{!A}$.
+\item $\sFmla{\True}{\lnot !A \lor \lnot !B}, \sFmla{\False}{\lnot(!A \land !B)}$.
+\item $\sFmla{\False}{(\lnot !A \land \lnot !B) \lif\lnot(!A \lor !B)}$.
+\item $\sFmla{\False}{\lnot(!A \lor !B) \lif (\lnot !A \land \lnot !B)}$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Geef gesloten !!{tableau}s voor de volgende gevallen:
+\begin{enumerate}
+\item $\sFmla{\True}{\lnot(!A \lif !B)}, \sFmla{\False}{!A}$.
+\item $\sFmla{\True}{\lnot(!A \land !B)}, \sFmla{\False}{\lnot !A \lor \lnot !B}$.
+\item $\sFmla{\True}{!A \lif !B}, \sFmla{\False}{\lnot !A \lor !B}$.
+\item $\sFmla{\False}{\lnot \lnot !A \lif !A}$.
+\item $\sFmla{\True}{!A \lif !B}, \sFmla{\True}{\lnot !A \lif !B}, \sFmla{\False}{!B}$.
+\item $\sFmla{\True}{(!A \land !B) \lif !C}, \sFmla{\False}{(!A \lif !C) \lor (!B \lif !C)}$.
+\item $\sFmla{\True}{(!A \lif !B) \lif !A}, \sFmla{\False}{!A}$.
+\item $\sFmla{\False}{(!A \lif !B) \lor (!B \lif !C)}$.
+\end{enumerate}
+\end{prob}
+
+\end{document}

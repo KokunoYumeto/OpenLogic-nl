@@ -1,0 +1,142 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{axd}{ptn}}
+      {\olfileid{pl}{axd}{ptn}}
+
+\olsection{Bewijstheoretische begrippen}
+
+\begin{explain}
+Zoals we een aantal belangrijke semantische begrippen hebben
+gedefinieerd (\iftag{FOL}{geldigheid}{tautologie}, gevolg en
+vervulbaarheid), definiëren we nu de overeenkomstige
+\emph{bewijstheoretische begrippen}. Deze worden niet gedefinieerd aan
+de hand van het waar zijn van !!{sentence}s in !!{structure}s, maar aan
+de hand van de !!{derivability} of !!{nonderivability} van bepaalde
+formules. Het was een belangrijke ontdekking dat deze begrippen
+samenvallen. Dat ze samenvallen, is de inhoud van de
+\emph{correctheids-} en \emph{volledigheidsstellingen}.
+\end{explain}
+
+\begin{defn}[!!^{derivability}]
+!!^a{formula}~$!A$ is \emph{!!{derivable} uit} $\Gamma$, genoteerd als
+$\Gamma \Proves !A$, als er !!a{derivation} uit~$\Gamma$ bestaat die
+eindigt met~$!A$.
+\end{defn}
+
+\begin{defn}[Stellingen]
+!!^a{formula}~$!A$ is een \emph{stelling} als er !!a{derivation} van
+$!A$ uit de lege verzameling bestaat. We schrijven $\Proves !A$ als
+$!A$ een stelling is en $\Proves/ !A$ als dat niet zo is.
+\end{defn}
+
+\begin{defn}[Consistentie]
+Een verzameling !!{formula}s~$\Gamma$ is \emph{consistent} dan en
+slechts dan als $\Gamma\Proves/ \lfalse$; anders is zij
+\emph{inconsistent}.
+\end{defn}
+
+\begin{prop}[Reflexiviteit]
+\ollabel{prop:reflexivity}
+Als $!A \in \Gamma$, dan $\Gamma \Proves !A$.
+\end{prop}
+
+\begin{proof}
+  De !!{formula}~$!A$ op zichzelf is !!a{derivation} van~$!A$
+  uit~$\Gamma$.
+\end{proof}
+
+\begin{prop}[Monotoniciteit]
+\ollabel{prop:monotonicity}
+Als $\Gamma \subseteq \Delta$ en $\Gamma \Proves !A$, dan $\Delta
+\Proves !A$.
+\end{prop}
+
+\begin{proof}
+Elke !!{derivation} van $!A$ uit $\Gamma$ is tevens !!a{derivation}
+van $!A$ uit~$\Delta$.
+\end{proof}
+
+\begin{prop}[Transitiviteit]
+\ollabel{prop:transitivity}
+Als $\Gamma \Proves !A$ en $\{!A\} \cup \Delta \Proves
+!B$, dan $\Gamma \cup \Delta \Proves !B$.
+\end{prop}
+
+\begin{proof}
+  Veronderstel dat $\{!A\} \cup \Delta \Proves !B$. Dan bestaat er
+  !!a{derivation} $!B_1$, \dots, $!B_l = !B$ uit~$\{!A\} \cup
+  \Delta$. Sommige stappen in die !!{derivation} zijn correct op
+  grond van een regel die naar een eerdere regel~$!B_i = !A$
+  verwijst. Volgens de aanname bestaat er !!a{derivation} van~$!A$
+  uit~$\Gamma$, dat wil zeggen !!a{derivation}~$!A_1$, \dots,
+  $!A_k = !A$, waarin elke $!A_i$ een axioma, !!a{element}
+  van~$\Gamma$ of correct volgens een afleidingsregel is. Beschouw nu
+  de rij
+  \[
+  !A_1, \dots, !A_k = !A, !B_1, \dots, !B_l = !B.
+  \]
+  Dit is een correcte !!{derivation} van~$!B$ uit $\Gamma \cup
+  \Delta$, want elke regel met $B_i = !A$ wordt nu gerechtvaardigd
+  door dezelfde regel die~$!A_k = !A$ rechtvaardigt.
+\end{proof}
+
+Merk op dat hieruit in het bijzonder volgt dat, als $\Gamma \Proves
+!A$ en $!A \Proves !B$, dan $\Gamma \Proves !B$. Hieruit volgt ook
+dat, als $!A_1, \dots, !A_n \Proves !B$ en $\Gamma \Proves !A_i$
+voor elke~$i$, dan $\Gamma \Proves !B$.
+
+\begin{prop}
+\ollabel{prop:incons}
+$\Gamma$ is inconsistent dan en slechts dan als $\Gamma \Proves !A$
+voor elke~$!A$.
+\end{prop}
+
+\begin{proof}
+Oefening.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Bewijs \olref[fol][axd][ptn]{prop:incons}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Bewijs \olref[pl][axd][ptn]{prop:incons}.
+\end{prob}
+\tagendprob
+
+\begin{prop}[Compactheid]
+\ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item Als $\Gamma \Proves !A$, dan bestaat er een eindige
+    deelverzameling $\Gamma_0 \subseteq \Gamma$ waarvoor
+    $\Gamma_0 \Proves !A$.
+  \item Als elke eindige deelverzameling van~$\Gamma$ consistent is,
+    dan is $\Gamma$ consistent.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Als $\Gamma \Proves !A$, bestaat er een eindige rij
+      !!{formula}s $!A_1$, \dots,~$!A_n$ waarvoor $!A \ident !A_n$,
+      waarbij elke $!A_i$ ofwel een logisch axioma, ofwel !!a{element}
+      van~$\Gamma$ is, ofwel door modus ponens uit eerdere
+      !!{formula}s volgt. Laat $\Gamma_0$ bestaan uit die $!A_i$ die
+      tot~$\Gamma$ behoren. De !!{derivation} is dan tevens
+      !!a{derivation} uit~$\Gamma_0$, en dus $\Gamma_0 \Proves !A$.
+    \item Dit is de contrapositie van~(1) voor het bijzondere geval
+      $!A \ident \lfalse$.
+\end{enumerate}
+\end{proof}
+
+\end{document}

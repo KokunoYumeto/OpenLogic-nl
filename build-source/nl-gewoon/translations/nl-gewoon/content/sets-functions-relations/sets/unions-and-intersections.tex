@@ -1,0 +1,174 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: unions-and-intersections
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{set}{uni}
+\olsection{Verenigingen en doorsneden}
+
+\begin{explain}
+In \olref[sfr][set][bas]{sec} hebben we verzamelingen beschreven door te
+zeggen aan welke voorwaarde hun elementen moeten voldoen. Dat heet abstractie
+en heeft de vorm $\Setabs{x}{\phi(x)}$. In de voorwaarde~$\phi$ mogen
+verzamelingen staan die we al hebben beschreven. Neem bijvoorbeeld twee
+verzamelingen $A$ en~$B$. In $\Setabs{x}{x \in A \lor x \in B}$ zitten precies
+de objecten die !!{element} zijn van $A$ of van~$B$. De !!{element}en van $A$
+en~$B$ staan daarin dus bij elkaar. In \olref{fig:union} vormen de
+!!{element}en van de twee verzamelingen $A$ en~$B$ samen het gemarkeerde gebied.
+
+\begin{figure}
+  \olasset{assets/diagrams/union.tikz}
+  \caption{De vereniging $A \cup B$ bestaat uit de !!{element}en van $A$
+   samen met de !!{element}en van~$B$.}
+  \ollabel{fig:union} 
+\end{figure}
+
+Dit samenvoegen van verzamelingen komt vaak van pas. Daarom krijgt deze
+bewerking een vaste naam en een symbool.
+\end{explain}
+
+\begin{defn}[Vereniging]
+De \emph{vereniging} van twee verzamelingen $A$ en $B$ schrijven we als
+$A \cup B$. Daarin zitten precies de objecten die !!{element} zijn van $A$,
+van $B$ of van allebei.
+\[
+A \cup B = \Setabs{x}{x \in A \lor x \in B}
+\]
+\end{defn}
+
+\begin{ex}
+Hoe vaak een !!{element} wordt genoemd, maakt voor een verzameling niet uit.
+Een !!{element} dat in beide verzamelingen zit, staat daarom maar één keer in
+hun vereniging: $\{ a, b, c\} \cup \{ a, 0, 1\} = \{a, b, c, 0, 1\}$.
+
+Als de ene verzameling een deelverzameling van de andere is, is hun vereniging
+gewoon de grootste: $\{a, b, c \} \cup \{a \} = \{a, b, c\}$.
+
+Voeg je de lege verzameling toe, dan verandert er niets: $\{a,
+b, c \} \cup \emptyset = \{a, b, c \}$.
+\end{ex}
+
+\begin{prob}
+Laat zien dat als $A \subseteq B$, dan $A \cup B = B$.
+\end{prob}
+
+\begin{explain}
+Er is ook een bewerking die de ``tegenhanger'' is van verenigen. Die houdt
+alleen de !!{element}en over die zowel !!{element} van~$A$ als !!{element}
+van~$B$ zijn. Deze bewerking heet de \emph{doorsnede}. Je ziet haar in
+\olref{fig:intersection}.
+\begin{figure}
+  \olasset{assets/diagrams/intersection.tikz}
+  \caption{De doorsnede $A \cap B$ bestaat uit de !!{element}en die de twee
+    verzamelingen gemeen hebben.}
+  \ollabel{fig:intersection}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Doorsnede]
+De \emph{doorsnede} van twee verzamelingen $A$ en $B$ schrijven we als
+$A \cap B$. Daarin zitten precies de objecten die zowel !!{element} van $A$
+als !!{element} van~$B$ zijn.
+\[
+A \cap B = \Setabs{x}{x \in A \land x \in B}
+\]
+Twee verzamelingen heten \emph{disjunct} als hun doorsnede leeg is. Dat
+betekent dat ze geen !!{element}en gemeen hebben.
+\end{defn}
+
+\begin{ex}
+Hebben twee verzamelingen geen !!{element}en gemeen, dan is hun doorsnede leeg:
+$\{ a, b, c\} \cap \{ 0, 1\} = \emptyset$.
+
+Hebben ze wel !!{element}en gemeen, dan staan precies die in hun doorsnede:
+$\{a, b, c \} \cap \{a, b, d \} = \{a, b\}$.
+
+Als de ene verzameling een deelverzameling van de andere is, is hun doorsnede
+de kleinste: $\{a, b, c\} \cap \{a, b\} = \{a, b\}$.
+
+De doorsnede met de lege verzameling is altijd leeg: $\{a, b, c \}
+\cap \emptyset = \emptyset$.
+\end{ex}
+
+\begin{prob}
+Geef een volledig bewijs dat als $A \subseteq B$, dan $A \cap B = A$.
+\end{prob}
+
+\begin{explain}
+We kunnen ook drie of meer verzamelingen verenigen of doorsnijden. Dat kan op
+een mooie, algemene manier. Stop eerst alle verzamelingen waarmee je wilt
+werken samen in één verzameling. Hun
+vereniging bestaat dan precies uit de objecten die in minstens één
+!!{element} van die verzameling zitten. Hun doorsnede bestaat precies uit de
+objecten die in ieder !!{element} ervan zitten.
+\end{explain}
+
+\begin{defn}
+Als de !!{element}en van $A$ zelf verzamelingen zijn, dan bestaat $\bigcup A$
+precies uit de !!{element}en die in minstens één !!{element} van~$A$ zitten:
+\begin{align*}
+\bigcup A & = \Setabs{x}{x \text{ zit in !!a{element} van } A},
+\text{ dus:}\\
+& = \Setabs{x}{\text{er is een } B \in A
+  \text{ met } x \in B}
+\end{align*}
+\end{defn}
+
+\begin{defn}
+Als de !!{element}en van $A$ zelf verzamelingen zijn, dan bestaat $\bigcap A$
+precies uit de objecten die in elk !!{element} van~$A$ zitten:
+\begin{align*}
+\bigcap A & = \Setabs{x}{x \text{ zit in elk !!{element} van } A},
+\text{ dus:}\\
+ & = \Setabs{x}{\text{voor elke } B \in A, x \in B}
+\end{align*}
+\end{defn}
+
+\begin{ex}
+Neem $A = \{ \{ a, b \}, \{ a, d, e \}, \{ a, d \} \}$.
+Dan is $\bigcup A = \{ a, b, d, e \}$ en $\bigcap A = \{ a \}$.
+\end{ex}
+\begin{prob}
+	Laat zien dat als $A$ een verzameling is en $A \in B$, dan
+	$A \subseteq \bigcup B$.
+\end{prob}
+
+We kunnen hetzelfde doen met een rij verzamelingen $A_1$, $A_2$, \dots
+\begin{align*}
+\bigcup_i A_i & = \Setabs{x}{x \text{ zit in minstens één van de } A_i}\\
+\bigcap_i A_i & = \Setabs{x}{x \text{ zit in elk van de } A_i}.
+\end{align*}
+
+Soms gebruiken we een verzameling $I$ als \emph{index}. We bekijken dan
+verzamelingen $A_i$, één voor elke $i \in I$. In dat geval mogen we ook dit
+schrijven:
+\begin{align*}
+	\bigcup_{i \in I} A_i & = \bigcup \Setabs{A_i }{i \in I}\\
+	\bigcap_{i \in I} A_i & = \bigcap\Setabs{A_i}{i \in I}
+\end{align*}
+
+Ten slotte kunnen we kijken naar alles wat wel in~$A$ zit, maar niet in~$B$.
+In \olref{difference} zie je dat verschil.
+
+\begin{figure}
+  \olasset{assets/diagrams/difference.tikz}
+  \caption{Het verschil $A \setminus B$ bestaat uit de !!{element}en die wel
+    in $A$ zitten, maar niet in~$B$.}
+  \ollabel{difference}
+\end{figure}
+
+\begin{defn}[Verschil]
+Het \emph{verschil}~$A \setminus B$ bestaat precies uit de !!{element}en die
+wel in $A$ zitten, maar niet in~$B$. Dus:
+\[
+A\setminus B = \Setabs{x}{x\in A \text{ en } x \notin B}.
+\]
+\end{defn}
+
+\begin{prob}
+	Laat zien dat als $A \subsetneq B$, dan $B \setminus A \neq \emptyset$.
+\end{prob}
+\end{document}

@@ -1,0 +1,161 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: non-enumerability-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{siz}{nen-alt}
+
+\olsection{\printtoken{S}{nonenumerable} verzamelingen}
+
+\begin{editorial}
+  Deze paragraaf bewijst dat $\Bin^\omega$ en $\Pow{\Nat}$ niet
+  aftelbaar zijn. We gebruiken de definities uit
+  \olref[enm-alt]{sec}: daar vragen we om een bijectie met~$\Nat$, niet
+  om een surjectie vanuit $\PosInt$.
+\end{editorial}
+
+\begin{explain}
+De verzameling natuurlijke getallen~$\Nat$ is oneindig. Je kunt haar
+ook zonder moeite opsommen: ze is !!{enumerable}. Het opvallende is dat
+sommige verzamelingen helemaal niet kunnen worden opgesomd. Zulke
+verzamelingen heten \emph{!!{nonenumerable}}, dus niet !!{enumerable}
+(zie \olref[sfr][siz][enm-alt]{defn:enumerable}).
+
+Waarom is dat verrassend? Als $A$ !!{nonenumerable} is, bestaat er
+\emph{geen} !!{bijection} $f \colon \Nat \to A$. Geen enkele functie
+kan dan de oneindig vele !!{element}s van~$\Nat$ aan~$A$ koppelen en
+daarbij elk !!{element} van~$A$ bereiken. Voor zo'n $A$ zijn er dus
+``meer'' !!{element}s van~$A$ dan er natuurlijke getallen zijn.
+
+Hoe bewijs je dat een verzameling !!{nonenumerable} is? Je moet laten
+zien dat zo'n !!{bijection} niet kan bestaan. Neem daarvoor iedere
+mogelijke lijst van !!{element}s van~$A$ en laat zien dat er altijd
+minstens één !!{element} ontbreekt. Dan kan geen functie
+$f\colon \Nat \to A$ !!{surjective} zijn. Zo'n functie bereikt dus
+niet alles. Vaak werkt daarvoor Cantors \emph{diagonaalmethode}. Je
+begint met een lijst van !!{element}s van~$A$, bijvoorbeeld $x_1$,
+$x_2$, \dots. Daarna maak je een ander !!{element} van~$A$ dat door de
+manier waarop je het maakt onmogelijk op die lijst kan staan.
+
+Een voorbeeld maakt dit duidelijk. We beginnen met de verzameling
+$\Bin^\omega$ van alle oneindige rijen met alleen $0$'en en $1$'en. (Het
+teken `$\Bin$' staat voor binair; hier kun je het gewoon zien als de
+verzameling met twee elementen
+$\{0,1\}$.)\oliflabeldef{sfr:card-arithmetic:card-opps:sec}{\footnote{Om
+precies te zijn moeten we $\Bin^\omega$ vastleggen als de verzameling
+van alle $\omega$-rijen van $0$'en en $1$'en, dus als de verzameling
+$\funfromto{\omega}{\{0,1\}}$. Wat dat betekent, wordt pas duidelijk
+in \olref[sfr][card-arithmetic][card-opps]{sec}.}{} Voor nu geeft deze
+iets lossere uitleg geen problemen.}
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:nonenum-bin-omega}
+$\Bin^\omega$ is !!{nonenumerable}: je kunt de elementen ervan niet
+allemaal op één lijst zetten.
+\end{thm}
+
+\begin{proof}
+Neem een lijst die een deelverzameling van $\Bin^\omega$ opsomt. We
+hebben dan $s_{0}$, $s_{1}$, $s_{2}$, \dots{}, waarbij iedere $s_n$ een
+oneindige rij van $0$'en en $1$'en is. Hier is $s_n(m)$ het cijfer dat
+in de $n$-de rij op de $m$-de plaats staat. Zet de lijst nu in een tabel. Dan staat
+$s_n(m)$ in rij~$n$ en kolom~$m$:
+\[
+\begin{array}{c|c|c|c|c|c}
+& 0 & 1 & 2 & 3 & \dots \\\hline
+0 & \mathbf{s_{0}(0)} & s_{0}(1) & s_{0}(2) & s_0(3) & \dots \\\hline
+1 & s_{1}(0)& \mathbf{s_{1}(1)} & s_1(2) & s_1(3) & \dots \\\hline
+2 & s_{2}(0)& s_{2}(1) & \mathbf{s_2(2)} & s_2(3) & \dots \\\hline
+3 & s_{3}(0)& s_{3}(1) & s_3(2) & \mathbf{s_3(3)} & \dots \\\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \mathbf{\ddots}
+\end{array}
+\]
+We maken nu een oneindige rij~$d$ van $0$'en en $1$'en die niet in de
+lijst voorkomt. Daarvoor bepalen we elk cijfer: we kiezen
+$d(n)$ voor elke $n \in \Nat$. Lees de diagonaal van de tabel van
+linksboven naar rechtsonder en verwissel $1$ en $0$: waar de diagonaal
+een $1$ heeft, kies je $0$, en andersom. Daar komt de naam
+``diagonaalmethode'' vandaan. In een formule kiezen we $d(n)$ als $0$
+of $1$, op grond van het $n$-de !!{element} van de diagonaal, $s_n(n)$,
+dat zelf $1$ of $0$ is:
+\[
+d(n) =
+\begin{cases}
+1 & \text{als $s_{n}(n) = 0$}\\
+0 & \text{als $s_{n}(n) = 1$}
+\end{cases}
+\]
+Nu is $d \in \Bin^\omega$, want het is een oneindige rij van $0$'en en
+$1$'en. We hebben $d$ zo gemaakt dat $d(n) \neq s_n(n)$ voor elke
+$n \in \Nat$. De rij~$d$ verschilt dus van~$s_n$ op plaats~$n$.
+Daarom is $d \neq s_n$ voor elke $n\in \Nat$. De rij~$d$ staat dus
+niet in de lijst $s_0$, $s_1$, $s_2$, \dots
+
+Het maakte niet uit met welke opsomming van een deelverzameling van
+$\Bin^\omega$ we begonnen: er ontbrak steeds een !!{element} van
+$\Bin^\omega$. De hele verzameling $\Bin^\omega$ kan dus niet worden
+opgesomd. Met andere woorden: $\Bin^\omega$ is !!{nonenumerable}.
+\end{proof}
+
+\begin{explain}
+Deze manier van bewijzen heet de ``diagonaalmethode'': we gebruikten de
+diagonaal van de tabel om~$d$ te maken. Toch heb je daarbij niet altijd
+letterlijk een tabel nodig. Met hetzelfde idee kun je ook zonder tabel
+en zonder echte diagonaal laten zien dat een
+verzameling !!{nonenumerable} is. Het volgende resultaat laat zien hoe.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:nonenum-pownat}
+$\Pow{\Nat}$ is niet !!{enumerable}.
+\end{thm}
+
+\begin{proof}
+We doen hetzelfde als daarnet. We laten zien dat in elke lijst van
+deelverzamelingen van~$\Nat$ minstens één deelverzameling van $\Nat$
+ontbreekt. Neem dus een lijst $N_0, N_1, N_2, \ldots$ van
+deelverzamelingen van $\Nat$. We maken de verzameling~$D$ met deze
+regel: $n \in D$ precies dan als $n \notin N_{n}$:
+\[
+D = \Setabs{n \in \Nat}{n \notin N_n}
+\]
+Het is duidelijk dat $D\subseteq \Nat$. Toch kan $D$ niet in de lijst
+staan. Voor elk natuurlijk getal geldt namelijk $n \in D$ precies dan als
+$n\notin N_n$. Daardoor is $D \neq N_n$ voor elke $n \in \Nat$.
+\end{proof}
+
+\begin{explain}
+In het vorige bewijs kwam het woord diagonaal niet voor. Toch kun je
+er als volgt een diagonaal in zien. Schrijf de verzamelingen $N_0$,
+$N_1$, \dots, in een tabel. Zet $N_n$ op rij~$n$ door het getal~$m$ in
+kolom~$m$ te schrijven precies wanneer $m \in N_n$. Stel bijvoorbeeld dat de eerste
+vier verzamelingen in de lijst $\{0,1,2,\dots\}$,
+$\{1, 3, 5, \dots\}$, $\{0,1,4\}$ en $\{2,3,4,\dots\}$ zijn. Dan begint
+de tabel zo:
+\[
+\begin{array}{r@{}rrrrrrr}
+  N_0 = \{ & \mathbf{0}, & 1, & 2, & & & & \dots\}\\
+  N_1 = \{ &  & \mathbf{1}, &  & 3, &  & 5, & \dots\}\\
+  N_2 = \{ & 0, & 1, &  &  & 4\phantom{,} &  & \}\\
+  N_3 = \{ &  &  & 2, & \mathbf{3}, & 4, & & \dots\}\\
+  &\vdots & & & & & & \ddots\phantom{\}}
+  \end{array}
+\]
+Ga nu langs de diagonaal naar beneden. $D$ is de verzameling waarvoor
+$n \in D$ precies wanneer $n$ \emph{niet} op de diagonaal staat. In het voorbeeld laten
+we dus $0$ en $1$ weg, nemen we~$2$ op, laten we~$3$ weg, enzovoort.
+\end{explain}
+
+\begin{prob}
+Werk het diagonaalargument helemaal uit en laat zo zien dat de
+verzameling van alle functies $f \colon \Nat \to \Nat$
+!!{nonenumerable} is. Neem dus aan dat $f_1$, $f_2$, \dots, een lijst
+van functies is en dat elke $f_i\colon \Nat \to \Nat$ een functie is.
+Laat zien dat er dan een functie $g \colon \Nat \to \Nat$ bestaat die
+niet in de lijst staat.
+\end{prob}
+\end{document}

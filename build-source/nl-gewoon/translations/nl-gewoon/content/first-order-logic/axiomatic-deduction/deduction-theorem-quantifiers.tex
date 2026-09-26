@@ -1,0 +1,59 @@
+% Part: first-order-logic 
+% Chapter: axiomatic-deduction 
+% Section: deduction-theorem-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{axd}{ddq}
+
+\olsection{De deductiestelling met kwantoren (‘voor alle’ en ‘er bestaat’)}
+
+\begin{thm}[Deductiestelling: zet de extra aanname in de implicatie]
+\ollabel{thm:deduction-thm-q} Als $\Gamma \cup \{!A\} \Proves !B$,
+dan $\Gamma \Proves !A \lif !B$.
+\end{thm}
+
+\begin{proof}
+We gebruiken weer inductie naar de lengte van de !!{derivation} van
+$!B$ uit $\Gamma \cup \{!A\}$: eerst een afleiding van lengte één,
+daarna de stap naar een langere afleiding.
+
+Voor de inductiebasis geldt precies hetzelfde bewijs als in
+\olref[ded]{thm:deduction-thm}.
+
+Nu de inductiestap. Neem weer aan dat de !!{derivation} van $!B$ uit
+$\Gamma \cup \{!A\}$ eindigt met een stap~$!B$ die met een
+afleidingsregel is verkregen. Is die regel modus ponens, dan gebruiken
+we hetzelfde bewijs als in \olref[ded]{thm:deduction-thm}. Is die regel
+\QR, dan geldt $!B \ident !C \lif \lforall[x][!D(x)]$. Eerder in de
+!!{derivation} staat dan !!a{formula} van de vorm $!C \lif !D(a)$.
+Daarbij komt $a$ niet voor in~$!C$, niet in~$!A$ en ook niet in
+$\Gamma$. We hebben dus:
+\begin{align*}
+  \Gamma \cup \{!A\} & \Proves !C \lif !D(a),\\
+  \intertext{De bijbehorende afleiding is korter. Volgens de inductiehypothese geldt daarom}
+    \Gamma & \Proves !A \lif (!C \lif !D(a)).\\
+  \intertext{Gebruik nu}
+  & \Proves (!A \lif (!C \lif !D(a))) \lif ((!A \land !C) \lif !D(a))\\
+  \intertext{Pas modus ponens toe. Dan krijgen we}
+  \Gamma & \Proves (!A \land !C) \lif !D(a).\\
+  \intertext{De eigenvariabelevoorwaarde geldt nog steeds: $a$ komt nergens voor waar dat verboden is. We mogen dus met \QR{} een stap aan deze !!{derivation} toevoegen. Dat geeft}
+    \Gamma & \Proves (!A \land !C) \lif \lforall[x][!D(x)].\\
+    \intertext{We hebben bovendien}
+    & \Proves ((!A \land !C) \lif \lforall[x][!D(x)]) \lif (!A \lif (!C \lif \lforall[x][!D(x)]),\\
+    \intertext{Pas nogmaals modus ponens toe. Dan}
+    \Gamma & \Proves !A \lif (!C \lif \lforall[x][!D(x)]),
+\end{align*}
+dus $\Gamma \Proves !B$.
+
+Er blijft één geval over als oefening: $!B$ is met de regel \QR{}
+verkregen en heeft de vorm $\lexists[x][!D(x)] \lif !C$.
+\end{proof}
+
+\begin{prob}
+  Maak het bewijs van \olref[fol][axd][ddq]{thm:deduction-thm-q} af.
+\end{prob}
+
+\end{document}

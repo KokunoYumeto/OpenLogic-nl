@@ -1,0 +1,84 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: equality
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{seq}{ide}
+
+\olsection{\usetoken{P}{derivation} met \usetoken{S}{identity}}
+
+Voor !!^{derivation}s waarin !!{identity}, dus gelijkheid, voorkomt,
+zijn extra beginsequenten en afleidingsregels nodig.
+
+\begin{defn}[Beginsequenten voor $\eq$]
+Als $t$ een gesloten term is, dan is ${} \Sequent \eq[t][t]$ een
+beginsequent. Deze sequent drukt
+zelfidentiteit uit.
+\end{defn}
+
+De regels voor $\eq$ staan hieronder. Daarbij zijn $t_1$ en $t_2$
+gesloten termen.
+
+\begin{defish}
+\Axiom$ \eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_1) $
+\RightLabel{$\eq$}
+\UnaryInf$\eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_2)$
+\DisplayProof
+\hfill
+\Axiom$\eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_2) $
+\RightLabel{$\eq$}
+\UnaryInf$\eq[t_1][t_2], \Gamma  \fCenter \Delta, !A(t_1)$
+\DisplayProof
+\end{defish}
+
+\begin{ex}
+Als $s$ en $t$ gesloten termen zijn, dan geldt $\eq[s][t], !A(s)
+\Proves !A(t)$:
+\begin{prooftree}
+\Axiom$ !A(s) \fCenter !A(s)$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$\eq[s][t], !A(s)  \fCenter !A(s)$
+\RightLabel{$\eq$}
+\UnaryInf$\eq[s][t], !A(s)  \fCenter !A(t)$
+\end{prooftree}
+Dit heet het beginsel van substitueerbaarheid van identieken, of de
+wet van Leibniz: gelijke termen mogen op deze manier voor elkaar
+worden vervangen.
+
+$\Log{LK}$ bewijst ook twee eigenschappen van $\eq$: gelijkheid is
+symmetrisch en transitief.
+\begin{prooftree}
+\Axiom$ \fCenter \eq[t_1][t_1] $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ \eq[t_1][t_2] \fCenter \eq[t_1][t_1] $
+\RightLabel{$\eq$}
+\UnaryInf$ \eq[t_1][t_2] \fCenter \eq[t_2][t_1]$
+\DisplayProof\qquad\bottomAlignProof
+\Axiom$ \eq[t_1][t_2] \fCenter \eq[t_1][t_2] $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$\eq[t_2][t_3], \eq[t_1][t_2]  \fCenter \eq[t_1][t_2] $
+\RightLabel{$\eq$}
+\UnaryInf$\eq[t_2][t_3], \eq[t_1][t_2]  \fCenter \eq[t_1][t_3]$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$\eq[t_1][t_2], \eq[t_2][t_3]  \fCenter \eq[t_1][t_3]$
+\end{prooftree}
+Bij de linker !!{derivation} vullen we voor de
+!!{formula}~$!A(x)$ de formule~$\eq[x][t_1]$ in. Bij de rechter vullen
+we voor $!A(x)$ de formule~$\eq[t_1][x]$ in. Zo gebruikt elk bewijs
+dezelfde gelijkheidsregel
+in een andere richting.
+\end{ex}
+
+\begin{prob}
+Werk voor elk van de volgende sequenten een !!{derivation} uit:
+\begin{enumerate}
+\item $\Sequent \lforall[x][\lforall[y][((x = y \land !A(x)) \lif !A(y))]]$
+\item $\lexists[x][!A(x)] \land \lforall[y][\lforall[z][((!A(y) \land
+    !A(z)) \lif y = z)]] \Sequent 
+\lexists[x][(!A(x) \land \lforall[y][(!A(y) \lif y = x)])]$
+\end{enumerate}
+\end{prob}
+\end{document}

@@ -1,0 +1,93 @@
+% Part: first-order-logic
+% Chapter: proof-systems
+% Section: natural-deduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{prf}{ntd}}
+      {\olfileid{pl}{prf}{ntd}}
+
+\olsection{Natuurlijke deductie}
+
+Natuurlijke deductie is !!a{derivation}ssysteem dat werkelijke
+redeneringen beoogt te weerspiegelen, in het bijzonder de
+gereglementeerde redeneringen van wiskundigen. Werkelijke redeneringen
+volgen een aantal ``natuurlijke'' patronen. Met een bewijs door
+gevalsonderscheid kan uit een disjunctieve premisse een conclusie worden
+afgeleid door aan te tonen dat de conclusie uit elk van de disjuncten
+volgt. Met een bewijs uit het ongerijmde kan een conclusie worden
+afgeleid door aan te tonen dat haar negatie tot een tegenspraak leidt.
+Een implicatie ``als \dots, dan \dots'' kan worden bewezen door aan te
+tonen dat het consequens uit het antecedens volgt. Natuurlijke deductie
+formaliseert enkele van deze natuurlijke afleidingspatronen. Bij elk
+logisch connectief en elke kwantor horen twee regels: een
+introductieregel en een eliminatieregel. Elke regel komt overeen met
+zo'n natuurlijk afleidingspatroon. Zo komt $\Intro{\lif}$ overeen met
+het bewijzen van een implicatie en $\Elim{\lor}$ met een bewijs door
+gevalsonderscheid. Een bijzonder eenvoudige regel is $\Elim{\land}$:
+daarmee kan uit $!A \land !B$ de formule~$!A$ (of $!B$) worden afgeleid.
+
+Natuurlijke deductie onderscheidt zich van andere
+!!{derivation}ssystemen onder meer door het gebruik van aannames.
+!!^a{derivation} in natuurlijke deductie is een boom van
+!!{formula}s. Aan de wortel van de boom staat één !!{formula}; de
+``bladeren'' zijn de !!{formula}s waaruit de conclusie wordt afgeleid.
+Sommige !!{formula}s aan de bladeren spelen binnen de
+!!{derivation} een rol, maar zijn ``opgebruikt'' wanneer de conclusie
+wordt bereikt. Dit komt overeen met de gangbare praktijk om bij een
+redenering hypothesen in te voeren die slechts korte tijd van kracht
+blijven. Bij een bewijs door gevalsonderscheid nemen we bijvoorbeeld
+elk van de disjuncten aan; bij het bewijzen van een implicatie nemen we
+het antecedens aan; bij een bewijs uit het ongerijmde nemen we de
+negatie van de conclusie aan. Kenmerkend voor natuurlijke deductie is
+dat zulke hypothetische aannames worden ingevoerd en vervolgens, om
+een tussenstap vast te stellen, weer worden opgeheven. De !!{formula}s
+aan de bladeren van !!a{derivation} heten aannames; sommige
+afleidingsregels kunnen ze ``!!{discharge}.'' Als we bijvoorbeeld
+!!a{derivation} van~$!B$ hebben uit aannames waaronder~$!A$, dan mogen
+we volgens $\Intro{\lif}$ de formule~$!A \lif !B$ afleiden en elke
+aanname van de vorm~$!A$ !!{discharge}. (Om bij te houden welke
+aannames bij welke afleidingsstappen worden opgeheven, geven we de
+afleidingsstap en de aannames die daarbij worden opgeheven hetzelfde
+nummer.) De aannames die aan het eind van de !!{derivation}
+!!{undischarged} zijn, zijn samen voldoende voor de waarheid van de
+conclusie. !!^a{derivation} stelt dus vast dat de conclusie volgt uit
+de !!{undischarged} aannames.
+
+De op natuurlijke deductie gebaseerde relatie $\Gamma \Proves !A$
+geldt dan en slechts dan als er !!a{derivation} bestaat waarin $!A$~de
+laatste !!{sentence} van de boom is en elk !!{undischarged} blad
+tot~$\Gamma$ behoort. $!A$~is een stelling in natuurlijke deductie dan
+en slechts dan als er !!a{derivation} bestaat waarin $!A$~de laatste
+!!{sentence} is en alle aannames zijn !!{discharged}. De volgende
+!!a{derivation} laat bijvoorbeeld zien dat $\Proves (!A \land !B) \lif
+!A$:
+\begin{prooftree}
+  \AxiomC{$\Discharge{!A \land !B}{1}$}
+  \RightLabel{\Elim{\land}}
+  \UnaryInfC{$!A$}
+  \DischargeRule{\Intro{\lif}}{1}
+  \UnaryInfC{$(!A \land !B) \lif !A$}
+\end{prooftree}
+Het nummer~$1$ geeft aan dat de aanname $!A \land !B$ bij de
+\Intro{\lif}-afleidingsstap wordt !!{discharged}.
+
+Een verzameling~$\Gamma$ is inconsistent dan en slechts dan als
+$\Gamma \Proves \lfalse$ in natuurlijke deductie. De regel \FalseInt{}
+zorgt ervoor dat uit een inconsistente verzameling elke !!{sentence}
+kan worden !!{derive}d.
+
+Systemen voor natuurlijke deductie zijn in de jaren dertig van de
+twintigste eeuw ontwikkeld door Gerhard Gentzen en Stanis\l{}aw
+Ja\'skowski en later verder ontwikkeld door Dag Prawitz en Frederic
+Fitch. Omdat de afleidingsstappen natuurlijke bewijsmethoden
+weerspiegelen, geniet natuurlijke deductie de voorkeur van filosofen.
+De door Fitch ontwikkelde versies worden vaak gebruikt in inleidende
+leerboeken over logica. Binnen de filosofie van de logica worden de
+regels van de natuurlijke deductie soms opgevat als bepalend voor de
+betekenis van de logische operatoren (``bewijstheoretische semantiek'').
+
+\end{document}

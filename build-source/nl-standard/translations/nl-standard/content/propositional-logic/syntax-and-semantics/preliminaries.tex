@@ -1,0 +1,122 @@
+% Part: propositional-logic
+% Chapter: propositional-logic
+% Section: preliminaries
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{pl}{syn}{pre}
+
+\olsection{Voorbereidingen}
+
+\begin{thm}[\emph{Inductieprincipe voor !!{formula}s}]
+  \ollabel{thm:induction}  
+  Stel dat een eigenschap~$P$ voor alle atomaire !!{formula}s geldt en
+  bovendien aan de volgende voorwaarden voldoet:
+  \begin{enumerate}
+    \tagitem{prvNot}{zij geldt voor $\lnot !A$ wanneer zij voor~$!A$
+      geldt;}{}
+    \tagitem{prvAnd}{zij geldt voor $(!A \land !B)$ wanneer zij voor
+      $!A$ en~$!B$ geldt;}{}
+    \tagitem{prvOr}{zij geldt voor $(!A \lor !B)$ wanneer zij voor
+      $!A$ en~$!B$ geldt;}{}
+    \tagitem{prvIf}{zij geldt voor $(!A \lif !B)$ wanneer zij voor
+      $!A$ en~$!B$ geldt;}{}
+    \tagitem{prvIff}{zij geldt voor $(!A \liff !B)$ wanneer zij voor
+      $!A$ en~$!B$ geldt.}{}
+  \end{enumerate}
+  Dan geldt $P$ voor alle !!{formula}s.
+\end{thm}
+
+\begin{proof}
+  Zij $S$ de collectie van alle !!{formula}s met eigenschap~$P$.
+  Duidelijk is $S \subseteq \Frm[L_0]$. De collectie~$S$ voldoet aan
+  alle voorwaarden van \olref[fml]{defn:formulas}: zij bevat alle
+  atomaire !!{formula}s en is gesloten onder de !!{operator}s.
+  $\Frm[L_0]$ is de kleinste dergelijke klasse, dus
+  $\Frm[L_0] \subseteq S$. Bijgevolg is $\Frm[L_0] = S$ en heeft elke
+  formule eigenschap~$P$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:balanced}
+   Elke !!{formula} in~$\Frm[L_0]$ is \emph{in balans}: zij bevat
+   evenveel linkerhaakjes als rechterhaakjes.
+\end{prop}
+
+\begin{prob}
+Bewijs \olref[pl][syn][pre]{prop:balanced}
+\end{prob}
+
+\begin{prop} \ollabel{prop:noinit}
+Geen echt beginstuk van !!a{formula} is !!a{formula}.
+\end{prop}
+
+\begin{prob}
+  Bewijs \olref[pl][syn][pre]{prop:noinit}
+\end{prob}
+
+\begin{prop}[Unieke leesbaarheid]
+Elke !!{formula}~$!A$ in $ \Frm[L_0]$ heeft precies één ontleding in
+een van de volgende vormen:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$.}{}
+
+\tagitem{prvTrue}{$\ltrue$.}{}
+
+\item $\Obj p_n$ voor een zekere $\Obj p_n \in  \PVar$.
+  
+\tagitem{prvNot}{$\lnot !B$ voor een zekere !!{formula}~$!B$.}{}
+
+\tagitem{prvAnd}{$(!B \land !C)$ voor zekere !!{formula}s $!B$ en~$!C$.}{}
+
+\tagitem{prvOr}{$(!B \lor !C)$ voor zekere !!{formula}s $!B$ en~$!C$.}{}
+
+\tagitem{prvIf}{$(!B \lif !C)$ voor zekere !!{formula}s $!B$ en~$!C$.}{}
+
+\tagitem{prvIff}{$(!B \liff !C)$ voor zekere !!{formula}s $!B$ en~$!C$.}{}
+\end{enumerate}
+Bovendien is deze ontleding \emph{uniek}.
+\end{prop}
+
+\begin{proof}
+Door inductie naar $!A$. Stel bijvoorbeeld dat $!A$ twee verschillende
+ontledingen heeft, als $(!B \lif !C)$ en als $(!B' \lif !C')$. Dan
+moeten $!B$ en $!B'$ gelijk zijn; anders zou een van beide een echt
+beginstuk van de andere zijn. Als de twee ontledingen van $!A$
+verschillen, moet dat dus komen doordat $!C$ en $!C'$ verschillende
+ontledingen van dezelfde tekenreeks zijn. Dit is volgens de
+inductiehypothese onmogelijk.
+\end{proof}
+
+
+\begin{defn}[Uniforme substitutie]
+Als $!A$ en $!B$ !!{formula}s zijn en $\Obj p_i$ !!a{propositional
+  variable} is, dan duidt $\Subst{!A}{!B}{\Obj p_i}$ het resultaat aan
+  van het vervangen van elk voorkomen van $\Obj p_i$ door een voorkomen
+  van $!B$ in $!A$. Evenzo wordt de gelijktijdige substitutie van
+$\Obj p_1$, \dots,~$\Obj p_n$ door de !!{formula}s $!B_1$,
+\dots,~$!B_n$ aangeduid met
+$\SSubst{!A}{\subst{!B_1}{\Obj p_1},\dots,\subst{!B_n}{\Obj p_n}}$.
+\end{defn}
+
+\begin{prob} Bepaal voor elk van de vijf onderstaande !!{formula}s of
+ die !!{formula} kan worden uitgedrukt als een substitutie
+ \( \Subst{!A}{!B}{\Obj p_i} \), waarbij \( !A \) gelijk is aan (i)
+ \( \Obj p_0 \); (ii) \( ( \lnot \Obj p_0 \land \Obj p_1) \); en (iii)
+ \( ( ( \lnot \Obj p_0 \lif \Obj p_1 ) \land \Obj p_2 ) \). Geef in
+  elk geval de bijbehorende substitutie.
+  \begin{enumerate}
+    \item \( \Obj p_1 \) 
+    \item \( ( \lnot \Obj p_0 \land \Obj p_0 ) \)
+    \item \( ( ( \Obj p_0 \lor \Obj p_1 ) \land \Obj p_2 )  \)
+    \item \( \lnot ( ( \Obj p_0 \lif \Obj p_1 ) \land \Obj p_2 ) \)
+    \item \( (( \lnot ( \Obj p_0 \lif \Obj p_1 ) \lif ( \Obj p_0 \lor \Obj p_1 )) \land \lnot ( \Obj p_0 \land \Obj p_1 )) \)
+  \end{enumerate}
+\end{prob}
+
+\begin{prob}
+Geef met inductie een wiskundig precieze definitie van
+$\Subst{!A}{!B}{p}$.
+\end{prob}
+\end{document}

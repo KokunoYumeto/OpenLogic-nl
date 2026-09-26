@@ -1,0 +1,133 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{ntd}{prv}}
+      {\olfileid{pl}{ntd}{prv}}
+      
+\olsection{\usetoken{S}{derivability} en consistentie}
+
+We zullen nu een aantal eigenschappen van de
+!!{derivability}srelatie vaststellen. Ze zijn elk op zichzelf
+interessant, maar spelen ook allemaal een rol in het bewijs van de
+volledigheidsstelling.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  Als $\Gamma \Proves !A$ en $\Gamma \cup \{!A\}$ inconsistent is,
+  dan is $\Gamma$ inconsistent.
+\end{prop}
+
+\begin{proof}
+Laat de !!{derivation} van~$!A$ uit~$\Gamma$~$\delta_1$ zijn en laat
+de !!{derivation} van~$\lfalse$ uit $\Gamma \cup \{!A\}$~$\delta_2$
+zijn. Dan kunnen we het volgende !!{derive}:
+\begin{prooftree}
+\AxiomC{$\Gamma, \Discharge{!A}{1}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot !A$}
+\AxiomC{$\Gamma$}
+\RightLabel{$\delta_1$}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\end{prooftree}
+In de nieuwe !!{derivation} is de aanname~$!A$ !!{discharged}; het is
+dus !!a{derivation} uit~$\Gamma$.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ dan en slechts dan als
+$\Gamma \cup \{\lnot !A\}$ inconsistent is.
+\end{prop}
+
+\begin{proof}
+Stel eerst dat $\Gamma \Proves !A$. Er bestaat dan dus
+!!a{derivation}~$\delta_0$ van~$!A$ uit de !!{undischarged}
+aannamen~$\Gamma$. We verkrijgen als volgt !!a{derivation} van
+$\lfalse$ uit $\Gamma \cup \{\lnot !A\}$:
+\begin{prooftree}
+  \AxiomC{$\lnot !A$}
+  \AxiomC{$\Gamma$}
+  \RightLabel{$\delta_0$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+\end{prooftree}
+
+Veronderstel nu dat $\Gamma \cup \{\lnot !A\}$ inconsistent is en
+laat $\delta_1$ de bijbehorende !!{derivation} van~$\lfalse$ uit
+!!{undischarged} aannamen in~$\Gamma \cup \{\lnot !A\}$ zijn. We
+verkrijgen !!a{derivation} van~$!A$ uit uitsluitend~$\Gamma$ door
+~$\FalseCl$ te gebruiken:
+\begin{prooftree}
+  \AxiomC{$\Gamma, \Discharge{\lnot !A}{1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$\lfalse$}
+  \RightLabel{\FalseCl}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A$}
+\end{prooftree}
+\end{proof}
+
+\begin{prob}
+Bewijs dat $\Gamma \Proves \lnot !A$ dan en slechts dan als
+$\Gamma \cup \{!A\}$ inconsistent is.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  Als $\Gamma \Proves !A$ en $\lnot !A \in \Gamma$, dan is $\Gamma$
+  inconsistent.
+\end{prop}
+
+\begin{proof}
+  Stel dat $\Gamma \Proves !A$ en $\lnot !A \in \Gamma$. Dan bestaat
+  er !!a{derivation}~$\delta$ van~$!A$ uit~$\Gamma$. Beschouw deze
+  eenvoudige toepassing van de regel $\Elim{\lnot}$:
+  \begin{prooftree}
+    \AxiomC{$\lnot !A$}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta$}
+    \DeduceC{$!A$}
+    \RightLabel{\Elim{\lnot}}
+    \BinaryInfC{$\lfalse$}
+  \end{prooftree}
+  Omdat $\lnot !A \in \Gamma$, liggen alle !!{undischarged} aannamen
+  in~$\Gamma$. Dit toont aan dat $\Gamma \Proves \lfalse$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  Als $\Gamma \cup \{!A\}$ en $\Gamma \cup \{\lnot !A\}$ beide
+  inconsistent zijn, dan is $\Gamma$ inconsistent.
+\end{prop}
+
+\begin{proof}
+Er bestaan !!{derivation}s $\delta_1$ en $\delta_2$ van respectievelijk
+~$\lfalse$ uit $\Gamma \cup \{ !A \}$ en~$\lfalse$ uit
+$\Gamma \cup \{ \lnot !A \}$. Dan kunnen we het volgende !!{derive}:
+\begin{prooftree}
+\AxiomC{$\Gamma, \Discharge{\lnot !A}{2}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{2}
+\UnaryInfC{$\lnot \lnot !A$}
+\AxiomC{$\Gamma, \Discharge{!A}{1}$}
+\RightLabel{$\delta_1$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot !A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\end{prooftree}
+Omdat de aannamen $!A$ en $\lnot !A$ zijn !!{discharged}, is dit
+!!a{derivation} van~$\lfalse$ uit uitsluitend~$\Gamma$. Bijgevolg is
+$\Gamma$ inconsistent.
+\end{proof}
+\end{document}

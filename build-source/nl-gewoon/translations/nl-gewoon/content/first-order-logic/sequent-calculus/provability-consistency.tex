@@ -1,0 +1,134 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{seq}{prv}}
+      {\olfileid{pl}{seq}{prv}}
+
+\olsection{\usetoken{S}{derivability} en consistentie}
+
+We bewijzen nu een aantal eigenschappen van de relatie
+!!{derivability}. Die eigenschappen zijn ook los van elkaar
+interessant. Bovendien hebben we ze stuk voor stuk nodig in het bewijs
+van de volledigheidsstelling.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  Als $\Gamma \Proves !A$ en $\Gamma \cup \{!A\}$ inconsistent is,
+  dan is $\Gamma$ inconsistent.
+\end{prop}
+
+\begin{proof}
+Er zijn eindige verzamelingen $\Gamma_0$ en $\Gamma_1 \subseteq
+\Gamma$ waarvoor $\Log{LK}$ de sequenten $\Gamma_0 \Sequent
+!A$ en $!A, \Gamma_1 \Sequent \quad$ !!{derive}s. Noem de
+$\Log{LK}$-!!{derivation} van $\Gamma_0 \Sequent !A$ nu~$\pi_0$. Noem
+de $\Log{LK}$-!!{derivation} van $\Gamma_1, !A \Sequent \quad$
+nu~$\pi_1$. Met de snederegel kunnen we dan het volgende !!{derive}:
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{$\pi_0$}
+\Deduce$ \Gamma_0 \fCenter !A $
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!A, \Gamma_1 \fCenter $
+\RightLabel{\Cut}
+\BinaryInf$ \Gamma_0,\Gamma_1 \fCenter $
+\end{prooftree}
+
+Omdat $\Gamma_0 \subseteq \Gamma$ en $\Gamma_1 \subseteq \Gamma$, geldt
+$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$. De afleiding hierboven laat
+daarom zien dat $\Gamma$ inconsistent is.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ precies als $\Gamma \cup \{\lnot !A\}$
+inconsistent is.
+\end{prop}
+
+\begin{proof}
+Neem eerst aan dat $\Gamma \Proves !A$. Er is dan
+!!a{derivation}~$\pi_0$ van $\Gamma \Sequent !A$. Voeg daar één stap
+met $\LeftR{\lnot}$ aan toe. Zo krijgen we !!a{derivation}
+van~$\lnot !A, \Gamma \Sequent \quad$. Dat betekent precies dat
+$\Gamma \cup \{\lnot !A\}$ inconsistent is.
+
+Neem nu omgekeerd aan dat $\Gamma \cup \{\lnot !A\}$ inconsistent is.
+Dan is er !!a{derivation}~$\pi_1$ van $\lnot !A, \Gamma \Sequent
+\quad$. Het volgende is !!a{derivation} van $\Gamma \Sequent !A$:
+\begin{prooftree}
+  \Axiom$!A \fCenter !A$
+  \RightLabel{\RightR{\lnot}}
+  \UnaryInf$\fCenter !A, \lnot !A$
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\lnot !A, \Gamma \fCenter$
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma \fCenter !A$
+\end{prooftree}
+\end{proof}
+
+\begin{prob}
+Bewijs dat $\Gamma \Proves \lnot !A$ precies als $\Gamma \cup \{!A\}$
+inconsistent is.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  Als $\Gamma \Proves !A$ en $\lnot !A \in \Gamma$, dan is $\Gamma$
+  inconsistent.
+\end{prop}
+
+\begin{proof}
+  Neem aan dat $\Gamma \Proves !A$ en $\lnot !A \in \Gamma$. Dan is er
+  !!a{derivation}~$\pi$ van een sequent $\Gamma_0 \Sequent !A$. De
+  sequent $\lnot !A, \Gamma_0 \Sequent \quad$ is dan eveneens
+  !!{derivable}:
+  \begin{prooftree}
+    \AxiomC{}
+    \RightLabel{$\pi$}
+    \Deduce$\Gamma_0 \fCenter !A$
+    \Axiom$!A \fCenter !A$
+    \RightLabel{\LeftR{\lnot}}
+    \UnaryInf$\lnot !A, !A \fCenter$
+    \RightLabel{\LeftR{\Exchange}}
+    \UnaryInf$!A, \lnot !A \fCenter$
+    \RightLabel{\Cut}
+    \BinaryInf$\Gamma_0, \lnot !A \fCenter$
+  \end{prooftree}
+  Omdat $\lnot !A \in \Gamma$ en $\Gamma_0 \subseteq \Gamma$, laat
+  deze afleiding zien dat $\Gamma$ inconsistent is.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  Als $\Gamma \cup \{!A\}$ en $\Gamma \cup \{\lnot !A\}$ allebei
+  inconsistent zijn, dan is $\Gamma$ inconsistent.
+\end{prop}
+
+\begin{proof}
+Er zijn dan eindige delen $\Gamma_0 \subseteq \Gamma$ en $\Gamma_1
+\subseteq \Gamma$. Verder zijn er $\Log{LK}$-!!{derivation}s $\pi_0$
+en $\pi_1$ van respectievelijk $!A, \Gamma_0 \Sequent \quad$ en
+$\lnot !A, \Gamma_1 \Sequent \quad$. Met die twee afleidingen kunnen
+we het volgende !!{derive}:
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{$\pi_0$}
+\Deduce$ !A, \Gamma_0 \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \Gamma_0 \fCenter \lnot !A$
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\lnot !A, \Gamma_1 \fCenter  $
+\RightLabel{\Cut}
+\BinaryInf$ \Gamma_0, \Gamma_1 \fCenter $
+\end{prooftree}
+Omdat $\Gamma_0 \subseteq \Gamma$ en $\Gamma_1 \subseteq \Gamma$, geldt
+$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$. De laatste sequent heeft
+een lege rechterkant. Dus is $\Gamma$ inconsistent.
+\end{proof}
+\end{document}

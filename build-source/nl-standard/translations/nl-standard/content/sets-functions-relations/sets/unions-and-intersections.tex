@@ -1,0 +1,174 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: unions-and-intersections
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{set}{uni}
+\olsection{Verenigingen en doorsneden}
+
+\begin{explain}
+In \olref[sfr][set][bas]{sec} hebben we verzamelingen door abstractie
+gedefinieerd, dus met definities van de vorm $\Setabs{x}{\phi(x)}$.
+Daarbij gebruiken we een eigenschap~$\phi$, waarin ook al gedefinieerde
+verzamelingen mogen voorkomen. Zijn $A$ en~$B$ bijvoorbeeld verzamelingen,
+dan bestaat $\Setabs{x}{x \in A \lor x \in B}$ uit alle objecten die
+!!{element} zijn van $A$ of van~$B$. Deze verzameling verenigt dus de
+!!{element}en van $A$ en~$B$. In \olref{fig:union} geeft het gemarkeerde
+gebied de !!{element}en van de twee verzamelingen $A$ en~$B$ aan.
+
+\begin{figure}
+  \olasset{assets/diagrams/union.tikz}
+  \caption{De vereniging $A \cup B$ van twee verzamelingen bestaat uit de
+   !!{element}en van $A$ samen met die van~$B$.}
+  \ollabel{fig:union} 
+\end{figure}
+
+Verzamelingen op deze manier verenigen is een veelgebruikte en nuttige
+bewerking. Daarom geven we haar een formele naam en een symbool.
+\end{explain}
+
+\begin{defn}[Vereniging]
+De \emph{vereniging} van twee verzamelingen $A$ en $B$, geschreven als
+$A \cup B$, is de verzameling van alle objecten die !!{element} zijn van
+$A$, van $B$ of van beide.
+\[
+A \cup B = \Setabs{x}{x \in A \lor x \in B}
+\]
+\end{defn}
+
+\begin{ex}
+Omdat herhaling van !!{element}en geen rol speelt, bevat de vereniging van
+twee verzamelingen een gemeenschappelijk !!{element} maar één keer. Zo geldt
+$\{ a, b, c\} \cup \{ a, 0, 1\} = \{a, b, c, 0, 1\}$.
+
+De vereniging van een verzameling met een van haar deelverzamelingen is
+de grotere verzameling: $\{a, b, c \} \cup \{a \} = \{a, b, c\}$.
+
+De vereniging van een verzameling met de lege verzameling is die verzameling
+zelf: $\{a, b, c \} \cup \emptyset = \{a, b, c \}$.
+\end{ex}
+
+\begin{prob}
+Bewijs dat uit $A \subseteq B$ volgt dat $A \cup B = B$.
+\end{prob}
+
+\begin{explain}
+We kunnen ook de ``duale'' bewerking van vereniging beschouwen. Deze bewerking
+vormt de verzameling van alle !!{element}en die zowel !!{element} van~$A$
+als !!{element} van~$B$ zijn. Zij heet \emph{doorsnede} en kan worden
+weergegeven zoals in \olref{fig:intersection}.
+\begin{figure}
+  \olasset{assets/diagrams/intersection.tikz}
+  \caption{De doorsnede $A \cap B$ van twee verzamelingen bestaat uit hun
+    gemeenschappelijke !!{element}en.}
+  \ollabel{fig:intersection}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Doorsnede]
+De \emph{doorsnede} van twee verzamelingen $A$ en $B$, geschreven als
+$A \cap B$, is de verzameling van alle objecten die zowel !!{element} van
+$A$ als !!{element} van~$B$ zijn.
+\[
+A \cap B = \Setabs{x}{x \in A \land x \in B}
+\]
+Twee verzamelingen heten \emph{disjunct} als hun doorsnede leeg is. Ze hebben
+dan geen !!{element}en gemeen.
+\end{defn}
+
+\begin{ex}
+Als twee verzamelingen geen !!{element}en gemeen hebben, is hun doorsnede leeg:
+$\{ a, b, c\} \cap \{ 0, 1\} = \emptyset$.
+
+Als twee verzamelingen wel !!{element}en gemeen hebben, bestaat hun doorsnede
+uit al die !!{element}en: $\{a, b, c \} \cap \{a, b, d \} = \{a, b\}$.
+
+De doorsnede van een verzameling met een van haar deelverzamelingen is de
+kleinere verzameling: $\{a, b, c\} \cap \{a, b\} = \{a, b\}$.
+
+De doorsnede van elke verzameling met de lege verzameling is leeg: $\{a, b, c \}
+\cap \emptyset = \emptyset$.
+\end{ex}
+
+\begin{prob}
+Geef een rigoureus bewijs dat uit $A \subseteq B$ volgt dat $A \cap B = A$.
+\end{prob}
+
+\begin{explain}
+We kunnen ook de vereniging of doorsnede van meer dan twee verzamelingen
+vormen. Een elegante algemene aanpak is de volgende. Breng alle verzamelingen
+waarvan we de vereniging of doorsnede willen nemen onder in één verzameling.
+De vereniging van de oorspronkelijke verzamelingen is dan de verzameling van
+alle objecten die tot ten minste één !!{element} van die verzameling behoren;
+hun doorsnede is de verzameling van alle objecten die tot elk !!{element}
+ervan behoren.
+\end{explain}
+
+\begin{defn}
+Als $A$ een verzameling van verzamelingen is, dan is $\bigcup A$ de verzameling
+van de !!{element}en van de !!{element}en van~$A$:
+\begin{align*}
+\bigcup A & = \Setabs{x}{x \text{ behoort tot !!a{element} van } A},
+\text{ d.w.z.:}\\
+& = \Setabs{x}{\text{er is een } B \in A
+  \text{ waarvoor } x \in B}
+\end{align*}
+\end{defn}
+
+\begin{defn}
+Als $A$ een verzameling van verzamelingen is, dan is $\bigcap A$ de verzameling
+van de objecten die alle elementen van~$A$ gemeen hebben:
+\begin{align*}
+\bigcap A & = \Setabs{x}{x \text{ behoort tot elk !!{element} van } A},
+\text{ d.w.z.:}\\
+ & = \Setabs{x}{\text{voor elke } B \in A, x \in B}
+\end{align*}
+\end{defn}
+
+\begin{ex}
+Stel $A = \{ \{ a, b \}, \{ a, d, e \}, \{ a, d \} \}$.
+Dan is $\bigcup A = \{ a, b, d, e \}$ en $\bigcap A = \{ a \}$.
+\end{ex}
+\begin{prob}
+	Toon aan dat als $A$ een verzameling is en $A \in B$, dan
+	$A \subseteq \bigcup B$.
+\end{prob}
+
+Hetzelfde kan voor een rij verzamelingen $A_1$, $A_2$, \dots
+\begin{align*}
+\bigcup_i A_i & = \Setabs{x}{x \text{ behoort tot ten minste één van de } A_i}\\
+\bigcap_i A_i & = \Setabs{x}{x \text{ behoort tot elk van de } A_i}.
+\end{align*}
+
+Als we een \emph{indexverzameling} $I$ hebben en verzamelingen $A_i$
+beschouwen, één voor elke $i \in I$, kunnen we ook deze afkortingen gebruiken:
+\begin{align*}
+	\bigcup_{i \in I} A_i & = \bigcup \Setabs{A_i }{i \in I}\\
+	\bigcap_{i \in I} A_i & = \bigcap\Setabs{A_i}{i \in I}
+\end{align*}
+
+Ten slotte kunnen we de verzameling van alle !!{element}en van~$A$ beschouwen
+die niet in~$B$ liggen. Dit is weergegeven in \olref{difference}.
+
+\begin{figure}
+  \olasset{assets/diagrams/difference.tikz}
+  \caption{Het verschil $A \setminus B$ van twee verzamelingen bestaat uit
+    de !!{element}en van~$A$ die geen !!{element} van~$B$ zijn.}
+  \ollabel{difference}
+\end{figure}
+
+\begin{defn}[Verschil]
+Het \emph{verschil}~$A \setminus B$ is de verzameling van alle !!{element}en
+van $A$ die geen !!{element} van~$B$ zijn, dus
+\[
+A\setminus B = \Setabs{x}{x\in A \text{ en } x \notin B}.
+\]
+\end{defn}
+
+\begin{prob}
+	Bewijs dat uit $A \subsetneq B$ volgt dat $B \setminus A \neq \emptyset$.
+\end{prob}
+\end{document}

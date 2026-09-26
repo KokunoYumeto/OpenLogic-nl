@@ -1,0 +1,117 @@
+% Part: sets-functions-relations
+% Chapter: infinite
+% Section: dedekinds-proof
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{infinite}{dedekindsproof}
+
+\olsection[Dedekinds ``bewijs'']{Dedekinds ``bewijs'' dat er een
+oneindige verzameling bestaat}
+
+In dit hoofdstuk hebben we de natuurlijke getallen met verzamelingen
+beschreven. Daarbij gebruikten we Dedekindalgebra's. In
+\olref[arith][ref]{sec} bespraken we onder meer wat de aritmetisering
+van de analyse filosofisch betekent: de analyse wordt in rekenkundige
+termen opgebouwd. Nu moeten we bekijken wat het resultaat van dit
+hoofdstuk betekent.
+
+In heel \olref[sfr][arith][]{chap} gingen we uit van de natuurlijke
+getallen en lieten we precies zien hoe we daarmee de gehele, rationale
+en reële getallen konden opbouwen. In dit hoofdstuk hebben we de
+natuurlijke getallen zelf niet op die manier opgebouwd. We hebben
+alleen laten zien dat we \emph{van elke Dedekind-oneindige verzameling}
+een verzameling kunnen definiëren die precies de eigenschappen heeft die
+we van~$\Nat$ verlangen.
+
+We kunnen dus niet beweren dat we een metafysische vraag hebben
+beantwoord, bijvoorbeeld: \emph{welke objecten zijn de natuurlijke
+getallen}? Dat is maar goed ook. In
+\olref[sfr][arith][ref]{sec} zeiden we immers dat we de definitie
+van~$\Real$ als de verzameling van Dedekindsneden niet als een
+\emph{ontdekking} moeten zien. Het is een handige afspraak. Waar het om
+gaat, is dat Dedekindsneden de belangrijkste wiskundige eigenschappen
+van de reële getallen hebben. Hier geldt hetzelfde: \emph{elke}
+Dedekindalgebra heeft de belangrijkste wiskundige eigenschappen van de
+natuurlijke getallen. (Dedekind maakte dit extra duidelijk door te
+bewijzen dat alle Dedekindalgebra's \emph{isomorf} zijn
+(\citeyear[stellingen 132--3]{Dedekind1888}). Geen wonder dat veel
+hedendaagse ``structuralisten'' Dedekind daarom als voorloper noemen.)
+
+We hebben ook laten zien hoe we de theorie van de natuurlijke getallen
+kunnen onderbrengen in een eenvoudige, na\"ieve verzamelingenleer. Die
+leer is nog vrij informeel. Maar ze lijkt de natuurlijke getallen niet
+vooraf als gegeven aan te nemen. Misschien komen we zo dichter bij
+Dedekinds eigen ambitieuze plan. Hij legde het zo uit:
+\begin{quote}
+	Als iets bewezen kan worden, mogen we het in de wetenschap niet zonder
+	bewijs geloven. Dat lijkt een redelijke eis. Toch vind ik dat zelfs de
+	nieuwste manieren om de basis van de eenvoudigste wetenschap te leggen
+	nog niet aan die eis voldoen. Daarmee bedoel ik het deel van de logica
+	dat over de getallentheorie gaat. Als ik rekenkunde (algebra, analyse)
+	slechts een deel van de logica noem, bedoel ik dat het begrip getal
+	volgens mij helemaal losstaat van onze begrippen of intuïties van
+	ruimte en tijd---ik zie het juist als iets dat rechtstreeks voortkomt
+	uit de zuivere wetten van het denken.
+	\citep[voorwoord]{Dedekind1888}
+\end{quote}
+Dedekinds gedurfde idee is dus dit. We hebben net laten zien hoe we de
+natuurlijke getallen alleen met (na\"ieve) verzamelingenleer kunnen
+opbouwen. In \olref[sfr][arith][]{chap} zagen we hoe we de reële
+getallen kunnen opbouwen met de natuurlijke getallen als uitgangspunt
+en met wat verzamelingenleer. Misschien blijken ``rekenkunde (algebra,
+analyse)'' dus toch ``slechts een deel van de logica'' te zijn (in de
+ruimere betekenis die Dedekind aan het woord ``logica'' geeft).
+
+Dat is het idee. Maar wacht even. Om een Dedekindalgebra te
+bouwen---onze vervanger voor de natuurlijke getallen---moet er wel een
+Dedekind-oneindige verzameling bestaan. (Kijk maar terug naar
+\olref[sfr][infinite][dedekind]{thm:DedekindInfiniteAlgebra}.) Als we
+het bestaan van zo'n verzameling niet met ``logica'' of ``de zuivere
+wetten van het denken'' kunnen bewijzen, loopt het plan vast.
+
+\emph{Kunnen} we met ``de zuivere wetten van het denken'' dan bewijzen
+dat er een Dedekind-oneindige verzameling bestaat? Dedekind probeerde
+het zo:
+\begin{quote}
+  Mijn eigen wereld van gedachten, dat wil zeggen het geheel~$S$ van alle
+  dingen waarover ik kan denken, is oneindig. Als~$s$ voor een element
+  van~$S$ staat, dan is de gedachte~$s'$ dat ik over~$s$ kan denken zelf
+  ook een element van~$S$. Als we die gedachte zien als een
+  beeld~$\phi(s)$ van het element~$s$, dan is \dots~$S$
+  [Dedekind-]oneindig, en dat moest worden bewezen.
+	\citep[\S66]{Dedekind1888}
+\end{quote}
+Dit is nogal verbazingwekkend in een boek dat verder grotendeels uit
+zeer precieze wiskundige bewijzen bestaat. Hier vallen twee dingen op.
+
+Ten eerste: dit ``bewijs'' zouden we tegenwoordig nauwelijks wiskundig
+noemen. Het gaat over psychologische objecten, namelijk gedachten, en
+dan ook nog over gedachten die alleen \emph{mogelijk} zijn.
+
+Ten tweede: met Dedekindalgebra's zoals wij die hebben uitgelegd, zit er
+ook een duidelijk technisch gat in dit ``bewijs''. Als Dedekinds
+redenering klopt, bewijst ze alleen dat er oneindig veel dingen zijn
+(om precies te zijn: oneindig veel gedachten). Maar Dedekind moet ons
+ook een reden geven om~$S$ te zien als één \emph{verzameling} met
+oneindig veel elementen. In plaats daarvan kan~$S$ gewoon staan voor
+\emph{een aantal dingen} (meervoud). Die hoeven samen nog geen
+verzameling te vormen.
+
+Dedekind zag dit gat niet. Dat kan betekenen dat zijn woord
+``totaliteit'' niet precies hetzelfde betekende als wat \emph{wij} met
+``verzameling'' bedoelen.\footnote{Er zijn inderdaad andere redenen om
+dat te denken; zie \citet[p.~23]{Potter2004}.} Dat zou niet erg
+verrassend zijn. In de afgelopen twee hoofdstukken hebben we alles op
+een na\"ieve manier gedaan: we maakten een ``constructie'' van de
+natuurlijke getallen en bouwden daaruit de gehele, reële en rationale
+getallen op. Telkens als we een bepaalde verzameling nodig hadden,
+namen we gewoon aan dat die bestond. We legden geen algemene regels
+vast die precies zeggen welke verzamelingen bestaan en wanneer. Maar we
+weten dat \emph{enkele} algemene regels nodig zijn. Anders krijgen we
+de paradox van Russell.
+
+Het is tijd om niet langer zo na\"ief te werk te gaan.
+\end{document}

@@ -1,0 +1,106 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: basics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{set}{bas}
+\olsection{Extensionaliteit}
+
+Een \emph{verzameling} is een geheel van objecten dat als één
+object wordt beschouwd. De objecten waaruit de verzameling bestaat,
+heten \emph{elementen} of \emph{leden} van de verzameling. Als $x$
+!!a{element} van een verzameling~$A$ is, schrijven we $x \in A$; zo
+niet, dan schrijven we $x \notin A$. De verzameling zonder
+!!{element}s heet de \emph{lege} verzameling en wordt
+aangeduid met~‘$\emptyset$’.
+
+\begin{explain}
+Het maakt niet uit hoe we de verzameling \emph{aangeven}, in welke
+\emph{volgorde} we haar !!{element}s plaatsen of zelfs hoe
+\emph{vaak} we haar !!{element}s meetellen. Alleen welke
+!!{element}s ze bevat, is van belang. Dit leggen we vast in het
+volgende beginsel.
+\end{explain}
+
+\begin{defn}[Extensionaliteit]
+  Als $A$ en $B$ verzamelingen zijn, dan geldt $A = B$ dan en slechts
+  dan als elk !!{element} van~$A$ ook !!a{element} van~$B$ is, en
+  omgekeerd.
+\end{defn}
+
+Dankzij extensionaliteit kunnen we bepaalde notatie gebruiken. Zijn
+$a_{1}$, \dots, $a_{n}$ objecten, dan is $\{a_{1}, \dots, a_{n}\}$ in
+het algemeen \emph{de} verzameling waarvan $a_1, \ldots, a_n$ de
+!!{element}s zijn. We benadrukken het woord ‘\emph{de}’, want uit
+extensionaliteit volgt dat er maar \emph{één} zo'n verzameling kan
+zijn. Uit extensionaliteit volgt bovendien:
+  \[
+    \{a, a, b\} = \{a, b\} = \{b,a\}.
+  \] 
+Dit weerspiegelt dat bij verzamelingen de volgorde van de
+!!{element}s er niet toe doet, evenmin als het aantal keren dat ze
+worden vermeld.
+
+\begin{tagblock}{novice}
+\begin{ex}
+Elke groep objecten kan tot een verzameling worden samengenomen. De
+verzameling van Richards broers en zussen bevat bijvoorbeeld één
+persoon en kan worden geschreven als $S=\{\textrm{Ruth}\}$. De
+verzameling van de positieve gehele getallen kleiner dan $4$ is
+$\{1, 2, 3\}$, maar kan ook worden geschreven als $\{3, 2, 1\}$ of
+zelfs als $\{1, 2, 1, 2, 3\}$. Volgens extensionaliteit zijn dit
+allemaal dezelfde verzameling: elk !!{element} van $\{1, 2, 3\}$ is
+ook !!a{element} van $\{3, 2, 1\}$ (en van $\{1, 2, 1, 2, 3\}$), en
+omgekeerd.
+\end{ex} 
+\end{tagblock}
+
+Vaak geven we een verzameling aan met een eigenschap die haar
+!!{element}s gemeen hebben. Daarvoor gebruiken we de volgende verkorte
+notatie: $\Setabs{x}{\phi(x)}$. Hier staat $\phi(x)$ voor de
+eigenschap die~$x$ moet hebben om tot de !!{element}s van de
+verzameling te worden gerekend.
+
+\begin{tagblock}{novice}
+\begin{ex}
+In ons voorbeeld hadden we $S$ ook als volgt kunnen aangeven:
+\[
+S = \Setabs{x}{x \text{ een broer of zus van Richard is}}.
+\]
+\end{ex}
+\end{tagblock}
+
+\begin{tagblock}{math}
+\begin{ex}
+Een getal heet \emph{volmaakt} dan en slechts dan als het gelijk is
+aan de som van zijn echte delers (d.w.z. getallen waardoor het zonder
+rest deelbaar is, maar die niet gelijk zijn aan het getal zelf). Zo is
+$6$ volmaakt, want zijn echte delers zijn $1$, $2$ en~$3$, en
+$6 = 1 + 2 + 3$. Het getal $6$ is zelfs het enige positieve gehele
+getal kleiner dan $10$ dat volmaakt is. Met extensionaliteit kunnen we
+dus schrijven:
+\[
+	\{6\} = \Setabs{x}{x\text{ volmaakt is en }0 \leq x \leq 10}
+\]
+We lezen de notatie rechts als ‘de verzameling van alle $x$ waarvoor
+$x$ volmaakt is en $0 \leq x \leq 10$’. Deze gelijkheid bevestigt dat
+het bij verzamelingen niet uitmaakt hoe ze worden aangegeven. Meer in
+het algemeen volgt uit extensionaliteit dat er hoogstens één verzameling
+van alle $x$ kan zijn waarvoor $\phi(x)$ geldt. Daarom mogen we
+$\Setabs{x}{\phi(x)}$ \emph{de} verzameling van alle $x$ noemen
+waarvoor~$\phi(x)$ geldt.
+\end{ex}
+\end{tagblock}
+
+Met extensionaliteit kunnen we aantonen dat verzamelingen gelijk zijn: om
+$A = B$ te bewijzen, tonen we aan dat uit $x \in A$ steeds $x \in B$ volgt
+en uit $y \in B$ steeds $y \in A$.
+
+\begin{prob}
+Bewijs dat er hoogstens één lege verzameling is, d.w.z. toon aan dat
+als $A$ en $B$ verzamelingen zonder !!{element}s zijn, dan $A = B$.
+\end{prob}
+\end{document}
