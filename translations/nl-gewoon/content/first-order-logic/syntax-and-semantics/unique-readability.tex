@@ -1,0 +1,201 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: unique-readability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{unq}
+
+\olsection{Iedere formule heeft maar één opbouw}
+
+\begin{explain}
+Door onze definitie heeft iedere !!{formula} \emph{maar één lezing}:
+volgens de vormregels voor !!{formula}s kan zij in wezen maar op één
+manier zijn opgebouwd. Daardoor kan zij ook maar op één manier worden
+``geïnterpreteerd''. Zonder die eigenschap zouden sommige !!{formula}s
+meer dan één lezing of interpretatie hebben. Dat willen we voorkomen.
+Nog belangrijker is dat de meeste definities en bewijzen hierna anders
+niet zouden werken.
+
+Een slecht voorbeeld laat het probleem het duidelijkst zien. Stel dat
+onze regels voor !!{formula}s meer dan één opbouw toelieten. We zouden
+bijvoorbeeld de haakjes rond verbindingstekens kunnen vergeten en deze
+regel kunnen toelaten:
+\begin{quote}
+Als $!A$ en $!B$ !!{formula}s zijn, dan is $!A \lif !B$ dat ook.
+\end{quote}
+Begin met een atomaire formule $!D$. Met deze regel kunnen we dan $!D
+\lif !D$ maken. Met die formule en $!D$ kunnen we vervolgens $!D \lif
+!D \lif !D$ maken. Dat kan op twee manieren:
+\begin{enumerate}
+\item We nemen $!D$ als $!A$ en $!D \lif !D$ als $!B$.
+\item We nemen $!A$ als $!D \lif !D$ en $!B$ als~$!D$.  
+\end{enumerate}
+Daarom kunnen we de !!{formula}~$!D \lif !D \lif !D$ ook op twee
+manieren ``lezen''. Zij heeft de vorm $!B \lif !C$ met $!B$ gelijk aan
+$!D$ en $!C$ gelijk aan $!D \lif !D$. Maar zij heeft \emph{ook} de vorm
+$!B \lif !C$ met $!B$ gelijk aan $!D \lif !D$ en $!C$ gelijk aan~$!D$.
+
+Dan werken onze definities niet altijd. Neem de !!{main operator} van
+een formule. Bij een formule van de vorm $!B \lif !C$ noemen we het
+aangegeven voorkomen van~$\lif$ de !!{main operator}. De formule $!D
+\lif !D \lif !D$ past hierboven op twee manieren bij $!B \lif !C$.
+Bij de ene manier wordt het eerste voorkomen van $\lif$ de !!{main
+operator}; bij de andere manier wordt het tweede voorkomen dat. Maar
+de !!{main operator} moet een \emph{functie} van de !!{formula} zijn.
+Dat wil zeggen: iedere !!{formula} moet precies één voorkomen van een
+!!{main operator} hebben.
+\end{explain}
+
+\begin{lem}
+In iedere !!{formula}~$!A$ staan evenveel linker- als rechterhaakjes.
+\end{lem}
+
+\begin{proof}
+We bewijzen dit door te volgen hoe $!A$ is opgebouwd. Dit heet
+inductie over de opbouw. We moeten twee dingen doen. Eerst controleren
+we het voor alle atomaire formules; dat is de basis van de inductie.
+Daarna laten we zien dat iedere vormregel de eigenschap bewaart: als
+de formules waarmee we beginnen evenveel linker- als rechterhaakjes
+hebben, dan geldt dat ook voor de nieuwe formule die we ermee maken.
+
+We schrijven $l(!A)$ voor het aantal linkerhaakjes en $r(!A)$ voor het
+aantal rechterhaakjes in~$!A$. Op dezelfde manier zijn $l(t)$ en $r(t)$
+de aantallen linker- en rechterhaakjes in een term~$t$.
+
+\begin{prob}
+    Bewijs dat voor iedere term~$t$ geldt: $l(t) = r(t)$.
+\end{prob}
+
+\begin{enumerate}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}{In $\indfrm$ staan $0$
+    linker- en $0$ rechterhaakjes.}}{}
+
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}{In $\indfrm$ staan $0$
+    linker- en $0$ rechterhaakjes.}}{}
+
+\item \indcase{!A}{\Atom{R}{t_1,\dots,t_n}}{$l(\indfrm) = 1 + l(t_1) +
+  \dots + l(t_n) = 1 + r(t_1) + \dots + r(t_n) = r(\indfrm)$. Hier
+  gebruiken we de oefening hierboven: $l(t) = r(t)$ voor iedere
+  term~$t$.}
+
+\item \indcase{!A}{\eq[t_1][t_2]}{$l(\indfrm) = l(t_1) + l(t_2) =
+  r(t_1) + r(t_2) = r(\indfrm)$.}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{Volgens de inductieaanname
+    geldt $l(!B) = r(!B)$. Daarom geldt $l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$.}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{Volgens de inductieaanname geldt $l(!B) =
+  r(!B)$ en $l(!C) = r(!C)$. Daarom geldt $l(\indfrm) = 1 + l(!B) + l(!C) =
+  1 + r(!B) + r(!C) = r(\indfrm)$.}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{Volgens de
+    inductieaanname geldt $l(!B) = r(!B)$. Daarom geldt $l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$.}}{}
+
+% Toon het geval voor \lexists als prvEx geldt en prvAll niet
+\tagitem{prvAll,notprvEx}{}{\indcase{!A}{\lexists[x][!B]}{Volgens de
+    inductieaanname geldt $l(!B) = r(!B)$. Daarom geldt $l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$.}}
+
+% Zeg alleen 'Hetzelfde' als zowel prvEx als prvAll gelden
+\tagitem{notprvAll,notprvEx}{}{\indcase{!A}{\lexists[x][!B]}{Hetzelfde.}}
+\end{enumerate}
+\end{proof}
+
+\begin{defn}[Echt beginstuk (echte prefix)]
+Een rij tekens $!B$ is een \emph{echt beginstuk}, ook wel een echte
+prefix, van een rij tekens~$!A$ als je na $!B$ nog een niet-lege rij
+tekens kunt zetten en zo precies~$!A$ krijgt.
+\end{defn}
+
+\begin{lem}\ollabel{lem:no-prefix}
+Als $!A$ !!a{formula} is en $!B$ een echt beginstuk van $!A$ is, dan
+is $!B$ geen !!a{formula}.
+\end{lem}
+
+\begin{proof}
+Oefening.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[fol][syn][unq]{lem:no-prefix}.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:unique-atomic}
+Als $!A$ een atomaire !!{formula} is, geldt precies één van de volgende
+mogelijkheden.
+\begin{enumerate}
+\tagitem{prvFalse}{$!A \ident \lfalse$.}{}
+\tagitem{prvTrue}{$!A \ident \ltrue$.}{}
+\item $!A \ident \Atom{R}{t_1,\dots,t_n}$, waarbij $R$ een $n$-plaatsig
+  !!{predicate} is en $t_1$, \dots, $t_n$ termen zijn. De symbolen $R$,
+  $t_1$, \dots, $t_n$ liggen allemaal precies vast.
+\item $!A \ident \eq[t_1][t_2]$, waarbij er voor $t_1$ en $t_2$ maar
+  één keuze mogelijk is.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Oefening.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[fol][syn][unq]{prop:unique-atomic}. (Aanwijzing: formuleer
+en bewijs voor termen een versie van \olref[fol][syn][unq]{lem:no-prefix}.)
+\end{prob}
+
+\begin{prop}[Eenduidige opbouw]
+Iedere !!{formula} valt onder precies één van de volgende mogelijkheden.
+\begin{enumerate}
+\item $!A$ is atomair.
+
+\tagitem{prvNot}{$!A$ heeft de vorm $\lnot !B$.}{}
+
+\tagitem{prvAnd}{$!A$ heeft de vorm $(!B \land !C)$.}{}
+
+\tagitem{prvOr}{$!A$ heeft de vorm $(!B \lor !C)$.}{}
+
+\tagitem{prvIf}{$!A$ heeft de vorm $(!B \lif !C)$.}{}
+
+\tagitem{prvIff}{$!A$ heeft de vorm $(!B \liff !C)$.}{}
+
+\tagitem{prvAll}{$!A$ heeft de vorm $\lforall[x][!B]$.}{}
+
+\tagitem{prvEx}{$!A$ heeft de vorm $\lexists[x][!B]$.}{}
+\end{enumerate}
+In elk geval ligt $!B$, of liggen $!B$ en $!C$, precies vast. Er
+zijn dus bijvoorbeeld geen twee verschillende paren $!B$, $!C$ en
+$!B'$, $!C'$ waarvoor $!A$ tegelijk de vorm
+\iftag{prvIf}{$(!B \lif !C)$ en $(!B' \lif !C')$ heeft.}{
+    \iftag{prvOr}{$(!B \lor !C)$ en $(!B' \lor !C')$ heeft.}{
+      \iftag{prvAnd}{$(!B \land !C)$ en $(!B' \land !C')$ heeft.}{}}}
+\end{prop}
+
+\begin{proof}
+Volgens de vormregels begint iedere niet-atomaire !!{formula} met een
+openingshaakje~(, \iftag{prvNot}{$\lnot$,}{} of een teken voor
+``voor alle'' of ``er bestaat''. Begint een
+!!{formula} met een van de volgende symbolen, dan moet zij juist
+atomair zijn: !!a{predicate}, !!a{function}, !!a{constant}\iftag{prvFalse}{,
+$\lfalse$}{}\iftag{prvTrue}{, $\ltrue$}{}.
+
+We hoeven daarom alleen nog het volgende geval te behandelen. Stel dat
+$!A$ de vorm $(!B \ast !C)$ én de vorm $(!B' \mathbin{\ast'} !C')$
+heeft. Dan moeten we bewijzen dat $!B \ident !B'$, $!C \ident !C'$ en
+$\ast = {\ast'}$.
+
+Neem dus aan dat zowel $!A \ident (!B \ast !C)$ als $!A \ident (!B'
+\mathbin{\ast'} !C')$ geldt. Nu zijn er twee mogelijkheden: $!B \ident
+!B'$ geldt wel, of niet. Als het wel geldt, volgen $\ast = {\ast'}$ en
+$!C \ident !C'$ meteen. Die tekens zijn namelijk even lange stukken
+van $!A$ die op dezelfde plaats beginnen. In het andere geval geldt
+$!B \not\ident !B'$. De stukken $!B$ en $!B'$ beginnen allebei op
+dezelfde plaats in $!A$. Daarom moet het ene een echt beginstuk van het
+andere zijn. Volgens \olref{lem:no-prefix} kan dat niet.
+\end{proof}
+\end{document}

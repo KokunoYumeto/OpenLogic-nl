@@ -1,0 +1,288 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: formation-sequences
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{fseq}
+
+\olsection{Formules stap voor stap opbouwen}
+
+Met een inductieve definitie kun je !!{formula}s netjes en kort
+opbouwen. Met inductie kun je daarna eigenschappen van !!{formula}s
+bewijzen. Dat is een elegante en efficiënte aanpak. Soms is het echter
+handiger om de bouw van !!{formula}s van onder naar boven, stap voor
+stap, te volgen. Daarvoor gebruiken we hier een
+\emph{constructiereeks}: een rij van opeenvolgende bouwstappen.
+%
+Zo kunnen we termen en !!{formula}s invoeren zonder steeds naar hun
+inductieve definities te verwijzen. We beginnen met een willekeurige rij
+tekens uit een taal~$\Lang L$. Zo'n rij noemen we een symboolrij.
+
+\begin{defn}[Rijen tekens (symboolrijen)]
+\ollabel{defn:string}
+Neem een eerste-ordetaal $\Lang L$. Een \emph{$\Lang L$-symboolrij} is
+een eindige rij tekens uit~$\Lang L$. Als uit de context duidelijk is
+dat het om de taal~$\Lang L$ gaat, noemen we een
+$\Lang L$-symboolrij kortweg een \emph{symboolrij}.
+\end{defn}
+
+\begin{ex}
+Neem een willekeurige eerste-ordetaal $\Lang L$. Iedere
+$\Lang L$-!!{formula} is dan een $\Lang L$-symboolrij. Andersom geldt
+dat niet: \[)(\Obj v_0\lif\lexists\] is wel een
+$\Lang L$-symboolrij, maar geen $\Lang L$-!!{formula}.
+\end{ex}
+
+\begin{defn}[Een term stap voor stap opbouwen]
+\ollabel{defn:fseq-trm}
+De eindige rij $\Lang L$-symboolrijen $\tuple{t_0,\dotsc,t_n}$ heet een
+\emph{constructiereeks} voor een term $t$. Daarvoor moet zij met die
+term eindigen: $t \ident t_n$. Voor iedere plaats $i \leq n$ moet bovendien een van
+twee dingen gelden. Of $t_i$ is !!a{variable} of !!a{constant}. Of
+$\Lang L$ bevat een $k$-plaatsige !!{function}~$f$ en er
+bestaan eerdere plaatsen $m_0,\dotsc,m_k < i$ waarvoor
+$t_i \ident f(t_{m_0},\dotsc,t_{m_k})$. Als we onderscheid moeten
+maken, noemen we zo'n rij een \emph{termconstructiereeks}.
+\end{defn}
+
+\begin{ex}
+De rij
+\[
+    \tuple{\Obj c_0, \Obj v_0, \Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}, \Atom{\Obj f^1_0}{\Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}}}
+\]
+bouwt stap voor stap de term $\Atom{\Obj f^1_0}{\Atom{\Obj
+f^2_0}{\Obj c_0, \Obj v_0}}$ op en is dus een constructiereeks voor
+die term. Deze rij doet dat ook:
+\[
+    \tuple{\Obj v_0, \Obj c_0, \Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}, \Atom{\Obj f^1_0}{\Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}}}.
+\]
+\end{ex}
+
+\begin{defn}[Een formule stap voor stap opbouwen]
+\ollabel{defn:fseq-frm}
+De eindige rij $\Lang L$-symboolrijen $\tuple{!A_0,\dotsc,!A_n}$
+heet een \emph{constructiereeks} voor~$!A$. Haar laatste element moet
+de bedoelde formule zijn: $!A \ident !A_n$. Voor iedere plaats
+$i \leq n$ geldt één van twee dingen. Het element $!A_i$ is een
+atomaire !!{formula}. Of het is opgebouwd uit eerdere elementen.
+Preciezer: er bestaan dan $j,k < i$ en
+!!a{variable}~$x$ waarvoor een van deze regels geldt:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A_i \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A_i \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A_i \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A_i \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A_i \ident (!A_j \liff !A_k)$.}{}%
+    \tagitem{prvAll}{$!A_i \ident \lforall[x][!A_j]$.}{}%
+    \tagitem{prvEx}{$!A_i \ident \lexists[x][!A_j]$.}{}%
+\end{enumerate}
+Als we onderscheid moeten maken, noemen we zo'n rij een
+\emph{formuleconstructiereeks}.
+\end{defn}
+
+\begin{ex}
+\[
+\tuple{
+    \Atom{\Obj A^1_0}{\Obj v_0},
+    \Atom{\Obj A^1_1}{\Obj c_1},
+    (\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0}),
+    \lexists[\Obj v_0][(\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0})]
+}
+\]
+is een constructiereeks voor $\lexists[\Obj v_0][(\Atom{\Obj A^1_1}{\Obj
+c_1} \land \Atom{\Obj A^1_0}{\Obj v_0})]$. De volgende rij is dat
+ook:
+\begin{multline*}
+\tuple{
+    \Atom{\Obj A^1_0}{\Obj v_0},
+    \Atom{\Obj A^1_1}{\Obj c_1},
+    (\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0}),
+    \Atom{\Obj A^1_1}{\Obj c_1},\\
+    \lforall[\Obj v_1][\Atom{\Obj A^1_0}{\Obj v_0}],
+    \lexists[\Obj v_0][(\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0})]
+}.
+\end{multline*}
+%
+In de tweede rij staan overbodige stappen. Sommige !!{formula}s zijn
+dubbel of zijn niet nodig om de eindformule te bouwen. Zulke stappen
+zijn de ``rommel'' die een constructiereeks mag bevatten.
+\end{ex}
+
+\begin{prop}\ollabel{prop:formed}
+Iedere !!{formula}~$!A$ in~$\Frm[L]$ heeft een constructiereeks.
+\end{prop}
+
+\begin{proof}
+Is $!A$ atomair, dan is de rij $\tuple{!A}$ al een
+constructiereeks voor~$!A$.
+%
+Neem nu aan dat $!B$ en~$!C$ constructiereeksen hebben. Noem die
+respectievelijk $\tuple{!B_0,\dotsc,!B_n}$ en
+$\tuple{!C_0,\dotsc,!C_m}$.
+%
+\begin{enumerate}
+  \tagitem{prvNot}{Als $!A \ident \lnot !B$, voeg dan de negatie van
+      het laatste element achter de bijbehorende rij. De rij
+      $\tuple{!B_0,\dotsc,!B_n,\lnot !B_n}$
+      is een constructiereeks voor~$!A$.}{}
+  \tagitem{prvAnd}{Als $!A \ident (!B \land !C)$, zet dan de twee
+      rijen achter elkaar en voeg de laatste bouwstap toe. De rij
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \land !C_m)}$
+      is een constructiereeks voor~$!A$.}{}
+  \tagitem{prvOr}{Neem $!A \ident (!B \lor !C)$. Dan is
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lor !C_m)}$
+      een constructiereeks voor~$!A$.}{}
+  \tagitem{prvIf}{Neem $!A \ident (!B \lif !C)$. Dan is
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lif !C_m)}$
+      een constructiereeks voor~$!A$.}{}
+  \tagitem{prvIff}{Neem $!A \ident (!B \liff !C)$. Dan is
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \liff !C_m)}$
+      een constructiereeks voor~$!A$.}{}
+  \tagitem{prvAll}{Neem $!A \ident \lforall[x][!B]$. Dan is
+      $\tuple{!B_0,\dotsc,!B_n,\lforall[x][!B_n]}$
+      een constructiereeks voor~$!A$.}{}
+  \tagitem{prvEx}{Neem $!A \ident \lexists[x][!B]$. Dan is
+      $\tuple{!B_0,\dotsc,!B_n,\lexists[x][!B_n]}$
+      een constructiereeks voor~$!A$.}{}
+\end{enumerate}
+Dit zijn alle manieren waarop !!{formula}s worden opgebouwd. Volgens
+het inductieprincipe heeft daarom iedere !!{formula} een
+constructiereeks.
+\end{proof}
+
+Ook de omgekeerde richting geldt: iedere symboolrij met een
+formuleconstructiereeks is werkelijk een formule. Onze twee manieren
+om formules te definiëren leveren dus precies dezelfde uitkomsten op.
+Daardoor kunnen we stellingen over formules ook bewijzen met gewone
+inductie naar de lengte van een constructiereeks.
+
+\begin{lem}
+\ollabel{lem:fseq-init}
+Neem een constructiereeks $\tuple{!A_0,\dotsc,!A_n}$ voor~$!A_n$ en
+neem $k \leq n$. Stoppen we de rij op die plaats, dan is de kortere rij
+$\tuple{!A_0,\dotsc,!A_k}$ een constructiereeks voor~$!A_k$.
+\end{lem}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[fol][syn][fseq]{lem:fseq-init}.
+\end{prob}
+
+\begin{thm}
+\ollabel{thm:fseq-frm-equiv}
+$\Frm[L]$ bestaat precies uit de $\Lang L$-symboolrijen~$!A$
+waarvoor een formuleconstructiereeks voor~$!A$ bestaat.
+\end{thm}
+
+\begin{proof}
+Noem $F$ de verzameling van alle symboolrijen uit de taal~$\Lang L$ met
+een constructiereeks. Uit
+\olref[fol][syn][fseq]{prop:formed} weten we al dat
+$\Frm[L] \subseteq F$: iedere formule behoort dus tot die verzameling. Nu bewijzen we
+de andere richting.
+
+Neem een symboolrij $!A$ met een constructiereeks
+$\tuple{!A_0,\dotsc,!A_n}$. We bewijzen dat $!A \in \Frm[L]$ met
+sterke inductie naar~$n$. De inductiehypothese zegt dat iedere symboolrij
+met een constructiereeks van lengte $m < n$ al in $\Frm[L]$ zit.
+Volgens de definitie van een constructiereeks is $!A \ident !A_n$
+atomair, of er zijn eerdere plaatsen $j,k < n$ waarvoor een van deze
+gevallen geldt:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A \ident (!A_j \liff !A_k)$.}{}%
+    \tagitem{prvAll}{$!A \ident \lforall[x][!A_j]$.}{}%
+    \tagitem{prvEx}{$!A \ident \lexists[x][!A_j]$.}{}%
+\end{enumerate}
+We bekijken de gevallen apart. Is $!A$ atomair, dan is
+$!A_n \in \Frm[L_0]$. Neem nu het geval
+$!A \equiv (!A_j \land !A_k)$. Volgens
+\olref[fol][syn][fseq]{lem:fseq-init} zijn
+$\tuple{!A_0,\dotsc,!A_j}$ en $\tuple{!A_0,\dotsc,!A_k}$
+constructiereeksen. De eerste is voor $!A_j$ en de tweede voor~$!A_k$.
+Beide kortere rijen beginnen bij hetzelfde eerste element en stoppen
+eerder dan de rij voor~$!A$. Hun lengte is dus kleiner dan~$n$.
+Volgens de inductiehypothese zitten $!A_j$ en~$!A_k$
+daarom in~$\Frm[L_0]$. Uit de definitie van !!a{formula} volgt dan dat
+ook $(!A_j \land !A_k)$ daarin zit. De andere gevallen gaan op dezelfde
+manier.
+\end{proof}
+
+Voor constructiereeksen van termen gelden vergelijkbare eigenschappen
+als voor die van !!{formula}s.
+
+\begin{prop}
+\ollabel{prop:fseq-trm-equiv}
+$\Trm[L]$ bestaat precies uit de $\Lang L$-symboolrijen $t$
+waarvoor een termconstructiereeks voor~$t$ bestaat.
+\end{prop}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[fol][syn][fseq]{prop:fseq-trm-equiv}.
+Aanwijzing: gebruik ongeveer dezelfde aanpak als in het bewijs van
+\olref[fol][syn][fseq]{thm:fseq-frm-equiv}.
+\end{prob}
+
+Een constructiereeks kan op twee manieren overbodige stappen bevatten.
+Soms komt hetzelfde element meer dan één keer voor. Of een element kan nergens nodig zijn
+om de uiteindelijke formule of term op te bouwen. Beide soorten
+``rommel'' verdwijnen als we alleen naar de kortst mogelijke
+constructiereeksen kijken.
+
+\begin{defn}[Kortst mogelijke constructiereeksen]
+\ollabel{defn:minimal-fseq}
+Een constructiereeks $\tuple{!A_0, \ldots, !A_n}$ voor een
+formule~$!A$ is een \emph{kortst mogelijke constructiereeks} voor~$!A$
+als geen andere constructiereeks met hetzelfde einddoel korter is.
+Neem formeel een willekeurige andere constructiereeks~$s$ voor~$!A$.
+De lengte van~$s$ is dan groter dan of gelijk aan~$n+1$.
+
+Zo is ook een constructiereeks $\tuple{t_0, \ldots, t_n}$
+voor een term~$t$ een \emph{kortst mogelijke constructiereeks}
+voor~$t$ als geen andere constructiereeks met hetzelfde einddoel korter
+is. Neem een willekeurige andere constructiereeks~$s$ voor~$t$. De
+lengte van~$s$ is dan groter dan of gelijk aan~$n+1$.
+\end{defn}
+
+Kortst mogelijk betekent niet dat er maar één zo'n rij is. Een formule
+of term kan meer dan één kortst mogelijke constructiereeks hebben. Al
+die reeksen bevatten wel precies dezelfde symboolrijen.
+
+\begin{prop}
+\ollabel{prop:subformula-equivs}
+De volgende drie uitspraken zijn equivalent; ze zeggen dus hetzelfde:
+\begin{enumerate}
+    \item $!B$ is een sub-!!{formula} van~$!A$.
+    \item $!B$ komt voor in iedere constructiereeks van~$!A$.
+    \item $!B$ komt voor in een kortst mogelijke constructiereeks van~$!A$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[fol][syn][fseq]{prop:subformula-equivs}.
+\end{prob}
+
+\begin{history}
+Raymond Smullyan voerde constructiereeksen in in zijn leerboek
+\emph{First-Order Logic} \citep{Smullyan1968}.
+\citet{Zuckerman1973} stelde later meer eigenschappen van
+constructiereeksen vast.
+\end{history}
+\end{document}

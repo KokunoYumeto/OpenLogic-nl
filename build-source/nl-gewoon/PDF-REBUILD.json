@@ -9,7 +9,7 @@
     ],
     "manifest": "SOURCE-MANIFEST.json",
     "project_specific": [
-      "OpenLogic-NL-Gewoon-Partial-OLP-0001--OLP-0144.tex",
+      "OpenLogic-NL-Gewoon-Partial-OLP-0001--OLP-0160.tex",
       "upstream/open-logic-config.sty",
       "upstream/open-logic-envs.sty",
       "upstream/open-logic-locale.sty",
@@ -27,7 +27,7 @@
       "-pdf",
       "-pdflatex=pdflatex %O -interaction=nonstopmode -halt-on-error -file-line-error -recorder %S",
       "-outdir=pdf-replay-1",
-      "OpenLogic-NL-Gewoon-Partial-OLP-0001--OLP-0144.tex"
+      "OpenLogic-NL-Gewoon-Partial-OLP-0001--OLP-0160.tex"
     ],
     [
       "latexmk",
@@ -36,7 +36,7 @@
       "-pdf",
       "-pdflatex=pdflatex %O -interaction=nonstopmode -halt-on-error -file-line-error -recorder %S",
       "-outdir=pdf-replay-2",
-      "OpenLogic-NL-Gewoon-Partial-OLP-0001--OLP-0144.tex"
+      "OpenLogic-NL-Gewoon-Partial-OLP-0001--OLP-0160.tex"
     ]
   ],
   "driver": "latexmk",
@@ -48,7 +48,7 @@
     "SOURCE_DATE_EPOCH": "1790380800",
     "TZ": "UTC"
   },
-  "input": "OpenLogic-NL-Gewoon-Partial-OLP-0001--OLP-0144.tex",
+  "input": "OpenLogic-NL-Gewoon-Partial-OLP-0001--OLP-0160.tex",
   "machine_serialization": {
     "named_mutex": "Global\\InterlanguageTeXSlotV1",
     "platform": "Windows",

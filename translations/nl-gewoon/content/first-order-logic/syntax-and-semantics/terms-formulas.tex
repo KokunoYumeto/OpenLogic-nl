@@ -1,0 +1,235 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: terms-formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{frm}
+
+\olsection{Termen en \printtoken{P}{formula}}
+
+Als een taal~$\Lang L$ van de logica van de eerste orde is gekozen,
+kunnen we uit de basistekens van~$\Lang L$ uitdrukkingen bouwen. Twee
+belangrijke soorten uitdrukkingen zijn \emph{termen} en
+\emph{!!{formula}s}.
+
+\begin{defn}[Termen]
+\ollabel{defn:terms}
+De verzameling \emph{termen}~$\Trm[L]$ van~$\Lang L$ bouwen we stap
+voor stap (inductief) met de volgende regels:
+\begin{enumerate}
+\item Iedere !!{variable} is een term.
+\item Iedere !!{constant} van~$\Lang L$ is een term.
+\item Als $f$ een !!{function} met $n$ argumentplaatsen is en $t_1$,
+  \dots, $t_n$ termen zijn, dan is $\Atom{f}{t_1, \ldots, t_n}$ een
+  term.
+\tagitem{limitClause}{
+  Verder is niets een term.}{}
+\end{enumerate}
+Een term zonder !!{variable}s heet een \emph{gesloten term}.
+\end{defn}
+
+\begin{explain}
+In onze beschrijving staan de !!{constant}s als een aparte soort teken.
+We hadden ze ook kunnen behandelen als !!{function}s met nul
+argumentplaatsen. Regel twee van de termdefinitie was dan niet nodig.
+We moeten $\Atom{f}{t_1, \ldots, t_n}$ dan gewoon lezen als alleen het
+teken $f$ als $n = 0$.
+\end{explain}
+
+\begin{defn}[Formules]
+\ollabel{defn:formulas}
+Ook de verzameling \emph{!!{formula}s}~$\Frm[L]$ van de taal~$\Lang L$
+bouwen we stap voor stap (inductief):
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ is een atomaire !!{formula}.}{}
+
+\tagitem{prvTrue}{$\ltrue$ is een atomaire !!{formula}.}{}
+
+\item Als $R$ een !!{predicate} met $n$ argumentplaatsen van~$\Lang L$
+  is en $t_1$, \dots, $t_n$ termen van~$\Lang L$ zijn, dan is
+  $\Atom{R}{t_1,\ldots, t_n}$ een atomaire !!{formula}.
+
+\item Als $t_1$ en $t_2$ termen van~$\Lang L$ zijn, dan is
+  $\Atom{\eq}{t_1, t_2}$ een atomaire !!{formula}.
+
+\tagitem{prvNot}{Als $!A$ !!a{formula} is, dan is $\lnot !A$
+  !!a{formula}.}{}
+
+\tagitem{prvAnd}{Als $!A$ en $!B$ !!{formula}s zijn, dan is $(!A \land
+  !B)$ !!a{formula}.}{}
+
+\tagitem{prvOr}{Als $!A$ en $!B$ !!{formula}s zijn, dan is $(!A \lor !B)$
+  !!a{formula}.}{}
+
+\tagitem{prvIf}{Als $!A$ en $!B$ !!{formula}s zijn, dan is $(!A \lif !B)$
+  !!a{formula}.}{}
+
+\tagitem{prvIff}{Als $!A$ en $!B$ !!{formula}s zijn, dan is $(!A \liff !B)$
+  !!a{formula}.}{}
+
+\tagitem{prvAll}{Als $!A$ !!a{formula} is en $x$ !!a{variable},
+  dan is $\lforall[x][!A]$ !!a{formula}.}{}
+
+\tagitem{prvEx}{Als $!A$ !!a{formula} is en $x$ !!a{variable},
+  dan is $\lexists[x][!A]$ !!a{formula}.}{}
+
+\tagitem{limitClause}{Verder is niets !!a{formula}.}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+De definities van termen en !!{formula}s zijn \emph{inductieve
+definities}: we bouwen de verzamelingen stap voor stap op. Voor de
+!!{formula}s zijn er oneindig veel mogelijke stappen. In de eerste
+stap noemen we alle atomaire formules formules. Dat zijn precies de
+eerste gevallen van de definitie, dus de gevallen voor
+\iftag{prvTrue}{$\ltrue$, }{}%
+\iftag{prvFalse}{$\lfalse$, }{}%
+$\Atom{R}{t_1,\dots,t_n}$ en $\Atom{\eq}{t_1,t_2}$. Een ``atomaire
+!!{formula}'' is dus iedere !!{formula} van een van deze vormen.
+
+De andere gevallen zijn regels om uit bestaande !!{formula}s nieuwe
+!!{formula}s te maken. In de tweede stap passen we die regels toe op
+atomaire !!{formula}s. In de derde stap gebruiken we zowel de atomaire
+formules als de formules uit de tweede stap, enzovoort. Iets is een
+!!{formula} als het uiteindelijk in zo'n stap wordt gemaakt. Iets
+anders is geen !!{formula}.
+\end{explain}
+
+Volgens afspraak zetten we $\eq$ tussen zijn twee argumenten en laten
+we de haakjes weg. Zo is $\eq[t_1][t_2]$ een afkorting van
+$\Atom{\eq}{t_1,t_2}$. Ook korten we $\lnot \Atom{\eq}{t_1,t_2}$ af
+als $\eq/[t_1][t_2]$. Een formule $(!B \ast !C)$ is uit $!B$, $!C$
+gemaakt met een verbindingsteken~$\ast$ met twee argumentplaatsen. Het
+buitenste paar haakjes laten we vaak weg; we schrijven dan alleen
+$!B \ast !C$.
+
+\begin{intro}
+Sommige logicaboeken eisen dat de !!{variable}~$x$ echt in~$!A$
+voorkomt voordat we
+\iftag{prvEx}{$\lexists[x][!A]$ }{}%
+\iftag{notprvEx,notprvAll}{}{en }%
+\iftag{prvAll}{$\lforall[x][!A]$ }{}%
+rekenen tot
+\iftag{notprvEx,notprvAll}{!!a{formula}}{!!{formula}s}.
+Wij stellen die eis niet. Dat veroorzaakt geen problemen en maakt de
+behandeling eenvoudiger.
+\end{intro}
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{defn}
+Formules met de gedefinieerde operatoren zijn afkortingen. We spreken
+het volgende af:
+
+\begin{tagenumerate}{defTrue,defFalse,defNot,defOr,defAnd,defIf,defIff,defEx,defAll}
+
+\tagitem{defTrue}{$\ltrue$ is een afkorting van
+  \iftag{prvFalse}{$\lnot\lfalse$}{$(!A \lor \lnot !A)$ voor een
+    zekere vaste atomaire !!{formula}~$!A$}.}{}
+
+\tagitem{defFalse}{$\lfalse$ is een afkorting van
+  \iftag{prvTrue}{$\lnot\ltrue$}{$(!A \land \lnot !A)$ voor een
+    zekere vaste atomaire !!{formula}~$!A$}.}{}
+
+\tagitem{defNot}{$\lnot !A$ is een afkorting van $!A \lif \lfalse$.}{}
+
+\tagitem{defOr}{$!A \lor !B$ is een afkorting van
+  \iftag{prvAnd}{$\lnot(\lnot !A \land \lnot !B)$}{$\lnot !A \lif
+    !B$}.}{}
+
+\tagitem{defAnd}{$!A \land !B$ is een afkorting van
+  \iftag{prvOr}{$\lnot(\lnot !A \lor \lnot !B)$}{$\lnot (!A \lif
+    \lnot !B)$}.}{}
+
+\tagitem{defIf}{$!A \lif !B$ is een afkorting van
+  \iftag{prvOr}{$\lnot !A \lor !B)$}{$\lnot (!A \land \lnot !B)$}.}{}
+
+\tagitem{defIff}{$!A \liff !B$ is een afkorting van $(!A \lif !B) \land (!B
+  \lif !A)$.}{}
+
+\tagitem{defAll}{$\lforall[x][!A]$ is een afkorting van $\lnot\lexists[x][\lnot !A]$.}{}
+
+\tagitem{defEx}{$\lexists[x][!A]$ is een afkorting van $\lnot\lforall[x][\lnot !A]$.}{}
+\end{tagenumerate}
+\end{defn}
+\end{tagblock}
+
+In een taal voor een bepaalde toepassing zetten we !!{predicate}s en
+!!{function}s met twee argumentplaatsen vaak tussen de termen waarop ze
+werken. In de rekenkunde schrijven we bijvoorbeeld $t_1 < t_2$ en
+$(t_1 + t_2)$; in de verzamelingenleer schrijven we $t_1 \in t_2$. De
+opvolgerfunctie uit de rekenkunde schrijven we volgens afspraak zelfs
+\emph{na} haar argument:~$t'$. Officieel zijn dit alleen afkortingen.
+Ze staan respectievelijk voor $\Atom{\Obj A^2_0}{t_1, t_2}$,
+$\Obj f^2_0(t_1, t_2)$, $\Atom{\Obj A^2_0}{t_1, t_2}$ en $f^1_0(t)$.
+
+\begin{defn}[Syntactische identiteit]
+Het symbool $\ident$ betekent dat twee tekenreeksen syntactisch precies
+gelijk zijn. Dus $!A \ident !B$ geldt precies wanneer $!A$ en $!B$
+even lang zijn en op iedere plaats hetzelfde teken hebben.
+\end{defn}
+
+Aan beide kanten van $\ident$ mogen tekenreeksen staan die uit kleinere
+reeksen zijn samengevoegd. Zo betekent $!A \ident (!B \lor !C)$ dat
+de tekenreeks~$!A$ uit precies het volgende bestaat, in deze volgorde:
+een openingshaakje, de tekenreeks $!B$, het teken $\lor$, de
+tekenreeks~$!C$ en een sluithaakje. Dan weten we dus ook dat het eerste
+teken van~$!A$ een openingshaakje is. Verder bevat $!A$ de tekenreeks
+$!B$ vanaf het tweede teken, en direct na die deelreeks staat~$\lor$,
+enzovoort.
+
+Termen en !!{formula}s worden stap voor stap uit basiselementen
+opgebouwd. Daarom kunnen we eigenschappen ervan bewijzen met de volgende
+inductieprincipes.
+
+\begin{lem}[\emph{Inductieprincipe voor termen}]
+    \ollabel{lem:trmind}
+    Neem een taal~$\Lang L$ van de logica van de eerste orde.
+    Stel dat een eigenschap~$P$ aan de volgende voorwaarden voldoet:
+    %
+    \begin{enumerate}
+        \item zij geldt voor iedere !!{variable}~$v$;
+        %
+        \item zij geldt voor iedere !!{constant}~$a$ van~$\Lang L$; en
+        %
+        \item zij geldt voor $f(t_1,\dotsc,t_n)$ zodra zij geldt voor
+        $t_1$,~\dots, $t_n$ en $f$~een !!{function} met $n$
+            argumentplaatsen van~$\Lang L$ is.
+    \end{enumerate}
+    Hierbij zijn $t_1$,~\dots, $t_n$ termen van~$\Lang{L}$. Dan geldt
+    $P$ voor iedere term in~$\Trm[L]$.
+\end{lem}
+
+\begin{prob}
+    Bewijs \olref[fol][syn][frm]{lem:trmind}.
+\end{prob}
+
+\begin{lem}[\emph{Inductieprincipe voor !!{formula}s}]
+    \ollabel{thm:frmind}
+    Neem een taal~$\Lang L$ van de logica van de eerste orde.
+    Stel dat een eigenschap~$P$ voor alle atomaire !!{formula}s geldt.
+    Stel ook dat zij aan de volgende voorwaarden voldoet:
+    %
+    \begin{enumerate}
+        \tagitem{prvNot}{zij geldt voor $\lnot !A$ zodra zij
+            geldt voor~$!A$;}{}
+        \tagitem{prvAnd}{zij geldt voor $(!A \land !B)$ zodra zij
+            geldt voor $!A$ en~$!B$;}{}
+        \tagitem{prvOr}{zij geldt voor $(!A \lor !B)$ zodra zij
+            geldt voor $!A$ en~$!B$;}{}
+        \tagitem{prvIf}{zij geldt voor $(!A \lif !B)$ zodra zij
+            geldt voor $!A$ en~$!B$;}{}
+        \tagitem{prvIff}{zij geldt voor $(!A \liff !B)$ zodra zij
+            geldt voor $!A$ en~$!B$;}{}
+        \tagitem{prvEx}{zij geldt voor $\lexists[x][!A]$ zodra zij
+            geldt voor~$!A$;}{}
+        \tagitem{prvAll}{zij geldt voor $\lforall[x][!A]$ zodra zij
+            geldt voor~$!A$;}{}
+  \end{enumerate}
+  Hierbij zijn $!A$ en $!B$ !!{formula}s van~$\Lang{L}$. Dan geldt
+  $P$ voor alle formules in~$\Frm[L]$.
+\end{lem}
+\end{document}

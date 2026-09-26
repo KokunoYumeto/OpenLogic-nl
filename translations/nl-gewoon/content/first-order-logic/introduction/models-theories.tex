@@ -1,0 +1,68 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: models-theories
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{mod}
+
+\olsection{Modellen en theorieën}
+
+Nu de syntaxis en semantiek van de eerste-ordelogica vastliggen, kunnen
+we eigenschappen van !!{structure}s en semantische begrippen
+onderzoeken. We kunnen ook !!{derivation}ssystemen definiëren en
+bestuderen. Neem een verzameling !!{sentence}s~$\Gamma$. Welke
+!!{structure}s maken al die !!{sentence}s waar? Als
+!!a{structure}~$\Struct{M}$ alle !!{sentence}s uit die verzameling waar maakt, heet zij een
+\emph{model van~$\Gamma$}.
+We kunnen bij~$\Gamma$ beginnen en haar modellen zoeken. Hoe zien die
+eruit? Hoe groot of klein moeten ze zijn? We kunnen ook bij één
+!!{structure} of een groep !!{structure}s beginnen. Dan vragen we welke
+!!{sentence}s daarin waar zijn. Zijn er !!{sentence}s die precies deze
+!!{structure}s \emph{karakteriseren}, dus die in deze structuren en in
+geen andere waar zijn? Dit soort vragen hoort bij de \emph{modeltheorie}.
+Het ligt ook achter de \emph{axiomatische methode}. Daarbij beschrijven
+we een groep !!{structure}s met een verzameling !!{sentence}s: de
+axioma's van een theorie. Dit werkt omdat precies de !!{sentence}s die
+in de eerste-ordelogica uit de axioma's volgen, waar zijn in alle
+modellen van die axioma's.
+
+Neem als eenvoudig voorbeeld preorden. Een preorde is een relatie~$R$
+op een verzameling~$A$ die reflexief én transitief is. Een
+verzameling~$A$ met een tweeplaatsige relatie
+$R \subseteq A \times A$ geeft precies !!a{structure} voor een
+eerste-ordetaal met één tweeplaatsig relatiesymbool~$\Obj P$. We nemen
+dan $\Domain{M} = A$ en $\Assign{\Obj P}{M} = R$. Omdat $R$ een
+preorde is, is zij reflexief en transitief. De volgende verzameling
+$\Gamma$ van !!{sentence}s uit de eerste-ordelogica zegt dat precies:
+\begin{align*}
+  & \lforall[\Obj v_0][\Atom{\Obj P}{\Obj v_0,\Obj v_0}]\\
+  & \lforall[\Obj v_0][\lforall[\Obj v_1][\lforall[\Obj v_2][((\Atom{\Obj P}{\Obj v_0,\Obj v_1} \land \Atom{\Obj P}{\Obj v_1,\Obj v_2}) \lif \Atom{\Obj P}{\Obj v_0,\Obj v_2})]]]
+\end{align*}
+Deze !!{sentence}s schrijven met symbolen: ``voor iedere~$x$ geldt
+$Rxx$'' ($R$ is reflexief) en ``als $Rxy$ en $Ryz$, dan ook $Rxz$''
+($R$ is transitief). !!^a{structure}~$\Struct{M}$ is dus precies dan
+een model van deze twee !!{sentence}s~$\Gamma$ als $R$ (oftewel
+$\Assign{\Obj P}{M}$) een preorde is op~$A$ (oftewel $\Domain{M}$).
+De modellen van~$\Gamma$ zijn dus precies de preorden. Stel dat alle
+preorden een eigenschap hebben en dat die eigenschap in de
+eerste-ordetaal met alleen~$\Obj P$ als !!{predicate} kan worden
+uitgedrukt. Dan volgt zij uit de twee !!{sentence}s in~$\Gamma$. Dit
+werkt ook omgekeerd. Wat we over de modellen van~$\Gamma$ bewijzen,
+hebben we daarom over alle preorden bewezen.
+
+Bij een theorie en een groep modellen, zoals $\Gamma$ en alle
+preorden, kunnen we vragen wat de bijbehorende eerste-ordetaal wel en
+niet kan uitdrukken. Eén soort eigenschap is bij elke taal en elke
+groep modellen belangrijk: de grootte van het !!{domain}. We kunnen
+zeggen dat het !!{domain} precies $n$~!!{element}s heeft, voor
+iedere~$n \in \PosInt$. Met een oneindige verzameling !!{sentence}s
+kunnen we ook zeggen dat het !!{domain} oneindig is. Maar we kunnen
+niet zeggen dat het domein eindig is. We kunnen ook niet zeggen dat het
+domein !!{nonenumerable} is. Dat zijn beperkingen van eerste-ordetalen.
+Ze volgen uit de compactheidsstelling en de stelling van
+L\"owenheim--Skolem.
+
+\end{document}

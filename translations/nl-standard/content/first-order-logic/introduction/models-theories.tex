@@ -1,0 +1,73 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: models-theories
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{mod}
+
+\olsection{Modellen en theorieën}
+
+Zodra we de syntaxis en semantiek van de eerste-ordelogica hebben
+gedefinieerd, kunnen we de eigenschappen van !!{structure}s en de
+semantische begrippen onderzoeken. We kunnen ook
+!!{derivation}ssystemen definiëren en bestuderen. Bij een verzameling
+!!{sentence}s kunnen we vragen welke !!{structure}s alle !!{sentence}s
+uit die verzameling waar maken. Gegeven een verzameling
+!!{sentence}s~$\Gamma$ heet !!a{structure}~$\Struct{M}$ die ze vervult
+een \emph{model van~$\Gamma$}. We kunnen uitgaan van~$\Gamma$ en haar
+modellen proberen te vinden: hoe zien ze eruit en hoe groot of klein
+moeten ze zijn? We kunnen daarentegen ook uitgaan van één !!{structure}
+of een klasse van !!{structure}s en vragen welke !!{sentence}s daarin
+waar zijn. Bestaan er !!{sentence}s die deze !!{structure}s
+\emph{karakteriseren}, in die zin dat zij daarin en uitsluitend daarin
+waar zijn? Zulke vragen behoren tot de \emph{modeltheorie}. Zij liggen
+ook ten grondslag aan de \emph{axiomatische methode}: een klasse van
+!!{structure}s beschrijven door middel van een verzameling
+!!{sentence}s, de axioma's van een theorie. Dit is mogelijk doordat
+precies de !!{sentence}s die in de eerste-ordelogica semantisch uit de
+axioma's volgen, waar zijn in alle modellen van die axioma's.
+
+Beschouw als zeer eenvoudig voorbeeld preorden. Een preorde is een
+relatie~$R$ op een verzameling~$A$ die zowel reflexief als transitief
+is. Een verzameling~$A$ met daarop een tweeplaatsige relatie
+$R \subseteq A \times A$ is precies wat nodig is voor !!a{structure}
+voor een eerste-ordetaal met één tweeplaatsig relatiesymbool~$\Obj P$:
+we stellen $\Domain{M} = A$ en $\Assign{\Obj P}{M} = R$. Omdat $R$ een
+preorde is, is zij reflexief en transitief. We kunnen een
+verzameling~$\Gamma$ van !!{sentence}s van de eerste-ordelogica geven
+die dit uitdrukken:
+\begin{align*}
+  & \lforall[\Obj v_0][\Atom{\Obj P}{\Obj v_0,\Obj v_0}]\\
+  & \lforall[\Obj v_0][\lforall[\Obj v_1][\lforall[\Obj v_2][((\Atom{\Obj P}{\Obj v_0,\Obj v_1} \land \Atom{\Obj P}{\Obj v_1,\Obj v_2}) \lif \Atom{\Obj P}{\Obj v_0,\Obj v_2})]]]
+\end{align*}
+Deze !!{sentence}s zijn eenvoudigweg de symboliseringen van ``voor
+iedere~$x$ geldt $Rxx$'' ($R$ is reflexief) en ``als $Rxy$ en $Ryz$,
+dan ook $Rxz$'' ($R$ is transitief). We zien dat
+!!a{structure}~$\Struct{M}$ een model van deze twee
+!!{sentence}s~$\Gamma$ is dan en slechts dan als $R$ (dus
+$\Assign{\Obj P}{M}$) een preorde op~$A$ (dus $\Domain{M}$) is. De
+modellen van~$\Gamma$ zijn met andere woorden precies de preorden.
+Iedere eigenschap van alle preorden die kan worden uitgedrukt in de
+eerste-ordetaal met alleen~$\Obj P$ als !!{predicate} (zoals de
+reflexiviteit en transitiviteit hierboven), volgt semantisch uit de
+twee !!{sentence}s in~$\Gamma$, en omgekeerd. Wat we over de modellen
+van~$\Gamma$ bewijzen, hebben we dus over alle preorden bewezen.
+
+Bij iedere specifieke theorie en klasse van modellen, zoals $\Gamma$
+en alle preorden, rijzen interessante vragen over wat wel en niet in de
+bijbehorende eerste-ordetaal kan worden uitgedrukt. Sommige
+eigenschappen van !!{structure}s zijn voor alle talen en klassen van
+modellen van belang, namelijk de eigenschappen die de grootte van het
+!!{domain} betreffen. Men kan bijvoorbeeld uitdrukken dat het
+!!{domain} precies $n$~!!{element}s bevat, voor iedere~$n \in \PosInt$.
+Met een
+oneindige verzameling !!{sentence}s kan men ook uitdrukken dat het
+!!{domain} oneindig is. Men kan echter niet uitdrukken dat het domein
+eindig of !!{nonenumerable} is. Deze resultaten over de beperkingen van
+eerste-ordetalen zijn gevolgen van de compactheidsstelling en de
+stelling van L\"owenheim--Skolem.
+
+\end{document}

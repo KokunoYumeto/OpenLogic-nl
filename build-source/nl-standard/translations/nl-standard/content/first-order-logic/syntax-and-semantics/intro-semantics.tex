@@ -1,0 +1,50 @@
+% Part: first-order-logic
+% Chapter: semantics
+% Section: intro-semantics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{its}
+
+\olsection{Inleiding}
+
+De semantiek houdt zich bezig met de betekenis van uitdrukkingen. Het
+centrale semantische begrip is vervulling in !!a{structure}.
+!!^a{structure} legt de betekenis van de bouwstenen van de taal vast:
+!!a{domain} is een niet-lege verzameling objecten. De kwantoren worden
+zo geïnterpreteerd dat zij over dit domein lopen; aan !!{constant}s
+worden elementen van het domein toegekend, aan !!{function}s functies
+van het !!{domain} naar zichzelf en aan !!{predicate}s relaties op het
+!!{domain}. Samen vormen het !!{domain} en deze toekenningen aan de
+basiswoordenschat !!a{structure}. Ook !!^{variable}s kunnen in
+!!{formula}s voorkomen. Om daaraan betekenis te geven, kennen we hun
+eveneens !!{element}s van het !!{domain} toe---dit heet een
+variabelenbedeling. De waarheidsrelatie brengt al deze gegevens ten
+slotte samen. !!^a{formula} kan worden vervuld in
+!!a{structure}~$\Struct{M}$ ten opzichte van !!a{variable} bedeling~$s$,
+genoteerd als $\Sat{M}{!A}[s]$. Ook deze relatie wordt door inductie
+naar de structuur van~$!A$ gedefinieerd. Met de waarheidstafels voor
+de logische connectieven wordt bijvoorbeeld de vervulling van
+$(!A \land !B)$ gedefinieerd aan de hand van het al dan niet vervuld
+worden van $!A$ en ~$!B$. Vervolgens blijkt dat de !!{variable}
+bedeling niet ter zake doet als de !!{formula}~$!A$ !!a{sentence} is,
+dat wil zeggen geen vrije variabelen heeft. We kunnen dan eenvoudig
+spreken van !!{sentence}s die al dan niet in !!{structure}s worden
+vervuld.
+
+Op grond van de waarheidsrelatie $\Sat{M}{!A}$ voor !!{sentence}s
+kunnen we vervolgens de fundamentele semantische begrippen geldigheid,
+semantisch gevolg en vervulbaarheid definiëren. !!^a{sentence} is
+geldig, $\Entails !A$, als iedere !!{structure} haar vervult. Zij is
+een semantisch gevolg van een verzameling !!{sentence}s,
+$\Gamma \Entails !A$, als iedere !!{structure} die alle !!{sentence}s
+in~$\Gamma$ vervult, ook~$!A$ vervult. Een verzameling !!{sentence}s is
+vervulbaar als minstens één !!{structure} al haar !!{sentence}s
+tegelijkertijd vervult. Omdat !!{formula}s inductief zijn gedefinieerd
+en vervulling op haar beurt door inductie naar de structuur van
+!!{formula}s is gedefinieerd, kunnen we met inductie eigenschappen van
+onze semantiek bewijzen en verbanden tussen de gedefinieerde
+semantische begrippen aantonen.
+\end{document}

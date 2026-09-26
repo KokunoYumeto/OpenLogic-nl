@@ -1,0 +1,111 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: subformulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{sbf}
+
+\olsection{\printtoken{P}{subformula}}
+
+\begin{explain}
+Het is vaak nuttig om te spreken over de !!{formula}s waaruit een
+gegeven !!{formula} is ``opgebouwd''. We noemen deze haar
+\emph{!!{subformula}s}. Iedere !!{formula} geldt als !!a{subformula}
+van zichzelf; een subformule van $!A$ die niet $!A$ zelf is, heet een
+\emph{echte !!{subformula}}.
+\end{explain}
+
+\begin{defn}[Onmiddellijk !!^{subformula}]
+Als $!A$ !!a{formula} is, worden de \emph{onmiddellijke
+!!{subformula}s} van $!A$ als volgt inductief gedefinieerd:
+\begin{enumerate}
+\item Atomaire !!{formula}s hebben geen onmiddellijke !!{subformula}s.
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{De enige onmiddellijke
+    !!{subformula} van $\indfrm$ is~$!B$.}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{De onmiddellijke !!{subformula}s van
+  $\indfrm$ zijn $!B$ en $!C$ ($\ast$ is een willekeurig tweeplaatsig
+  connectief).}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{De enige onmiddellijke
+    !!{subformula} van $\indfrm$ is~$!B$.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{De enige onmiddellijke
+    !!{subformula} van $\indfrm$ is~$!B$.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[Echt !!^{subformula}]
+Als $!A$ !!a{formula} is, worden de \emph{echte !!{subformula}s} van
+$!A$ als volgt recursief gedefinieerd:
+\begin{enumerate}
+\item Atomaire !!{formula}s hebben geen echte !!{subformula}s.
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{De echte !!{subformula}s van
+    $\indfrm$ zijn~$!B$ samen met alle echte !!{subformula}s
+    van~$!B$.}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{De echte !!{subformula}s van
+  $\indfrm$ zijn $!B$ en $!C$, samen met alle echte !!{subformula}s
+  van $!B$ en die van~$!C$.}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{De echte
+    !!{subformula}s van $\indfrm$ zijn~$!B$ samen met alle echte
+    !!{subformula}s van~$!B$.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{De echte
+    !!{subformula}s van $\indfrm$ zijn~$!B$ samen met alle echte
+    !!{subformula}s van~$!B$.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[!!^{subformula}]
+De !!{subformula}s van $!A$ zijn $!A$ zelf samen met al haar echte
+!!{subformula}s.
+\end{defn}
+
+\begin{explain}
+Let op het subtiele verschil tussen de definities van onmiddellijke
+!!{subformula}s en echte !!{subformula}s. In het eerste geval hebben
+we voor iedere mogelijke vorm van een formule~$!A$ rechtstreeks de
+onmiddellijke !!{subformula}s van~$!A$ gedefinieerd. Dit is een
+expliciete definitie door gevallen; de gevallen weerspiegelen de
+inductieve definitie van de verzameling !!{formula}s. In het tweede
+geval weerspiegelen we eveneens de definitie van de verzameling van
+alle !!{formula}s, maar nemen we naast de kleinere !!{formula}s $!B$,
+$!C$ zelf ook telkens hun echte !!{subformula}s op. Daardoor is de
+definitie \emph{recursief}. In het algemeen is een definitie van een
+functie op een inductief gedefinieerde verzameling (hier de
+!!{formula}s) recursief als de gevallen in de functiedefinitie de
+functie zelf gebruiken. Voor een welgedefinieerde functie mogen we
+daarbij alleen functiewaarden gebruiken voor argumenten die ``vóór''
+het argument komen dat we definiëren. Bij de definitie van ``echt
+!!{subformula}'' voor $(!B \ast !C)$ gebruiken we dus alleen de echte
+!!{subformula}s van de ``eerdere'' !!{formula}s $!B$ en $!C$.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:subfrm-trans}
+Stel dat $!B$ een subformule van $!A$ is en $!C$ een subformule van
+$!B$. Dan is $!C$ een subformule van $!A$. Met andere woorden: de
+subformulerelatie is transitief.
+\end{prop}
+
+\begin{prob}
+Bewijs \olref[fol][syn][sbf]{prop:subfrm-trans}.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:count-subfrms}
+Stel dat $!A$ een formule met $n$ connectieven en kwantoren is. Dan
+heeft $!A$ ten hoogste $2n+1$ subformules.
+\end{prop}
+
+\begin{prob}
+Bewijs \olref[fol][syn][sbf]{prop:count-subfrms}.
+\end{prob}
+\end{document}

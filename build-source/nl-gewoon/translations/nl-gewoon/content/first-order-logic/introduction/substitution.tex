@@ -1,0 +1,45 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{sub}
+
+\olsection{Substitutie}
+
+Een voorbeeld laat zien hoe alles samenhangt. Het laat ook zien waarom
+we syntaxis en semantiek zo precies opbouwen: die vormen de basis voor
+het verdere onderzoek. Met onze !!{derivation}ssystemen moeten we de
+formule $\Atom{\Obj P}{\Obj a}$ uit
+$\lforall[\Obj v_0][\Atom{\Obj P}]{\Obj v_0}$ kunnen !!{derive}. Misschien willen we daar zelfs een
+afleidingsregel van maken. Dan moet de regel wel algemeen gelden. Hij
+mag niet alleen over $\Obj P$, $\Obj a$ en $\Obj v_0$ gaan, maar moet
+werken voor iedere !!{formula}~$!A$, iedere term~$t$ en iedere
+!!{variable}~$x$. (Een !!{constant} is een term. We bekijken later ook
+ingewikkeldere termen die zijn opgebouwd uit !!{constant}s en
+!!{function}s.) We willen dus kunnen zeggen: ``Kun je
+$\lforall[x][!A(x)]$ !!{derive}, dan mag je~$!A(t)$ afleiden. Je haalt
+$\lforall[x]$ weg en vervangt $x$ door~$t$.'' Maar wat houdt
+``$x$ door~$t$ vervangen'' precies in? Hoe hangen $!A(x)$ en~$!A(t)$
+samen? En werkt dit altijd?
+
+We maken dit precies met de bewerking \emph{substitutie}. Die bewerking
+is lastiger dan zij lijkt. We mogen niet zomaar alle voorkomens van~$x$
+in~$!A$ door~$t$ vervangen. Ook mag niet iedere~$t$ voor iedere~$x$
+worden ingevuld. We lossen dit opnieuw op met inductieve definities.
+Daarna is de regel ``leid $!A(t)$ af uit $\lforall[x][!A(x)]$'' wel
+precies bepaald. We kunnen dan ook bewijzen dat het een goede regel is:
+$\lforall[x][!A(x)]$ heeft~$!A(t)$ als semantisch gevolg.
+Om te bewijzen dat $\lforall[x][!A(x)]$ semantisch~$!A(t)$ tot gevolg
+heeft, is nog een feit nodig waarvan het nut niet meteen duidelijk
+hoeft te zijn. Of $\Sat{M}{!A(t)}$ geldt, hangt alleen af van
+de waarde van de term~$t$. Laat $m$ het !!{element} van~$\Domain{M}$
+zijn dat $t$ aanwijst. Dan geldt $\Sat{M}{!A(t)}[s]$ precies als
+$\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$. Dit blijft gelden wanneer $t$
+!!{variable}s bevat. We moeten dan wel heel precies zeggen wat de
+stelling beweert.
+
+\end{document}

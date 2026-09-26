@@ -1,0 +1,51 @@
+% Part: first-order-logic
+% Chapter: semantics
+% Section: intro-semantics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{its}
+
+\olsection{Inleiding}
+
+De regels waarmee uitdrukkingen betekenis krijgen, noemen we
+semantiek. Centraal staat de vraag wanneer een formule waar is in
+!!a{structure}. !!^a{structure} legt vast wat de bouwstenen van de taal
+betekenen. !!a{domain} is een niet-lege verzameling objecten. De
+kwantoren gaan over de objecten in dit domein. Aan !!{constant}s worden
+elementen uit het domein gekoppeld. De !!{function}s worden gekoppeld
+aan functies die objecten uit het !!{domain} weer aan objecten uit
+datzelfde domein koppelen. De !!{predicate}s worden gekoppeld aan
+relaties op de objecten van het !!{domain}. Samen vormen het
+!!{domain} en al deze koppelingen aan de basiswoordenschat
+!!a{structure}. Ook !!^{variable}s kunnen in !!{formula}s staan. Om de
+betekenis vast te leggen, koppelen we daarom ook aan die variabelen
+!!{element}s van het !!{domain}. Dat heet een toekenning aan
+variabelen. De relatie ``waar in/onder'' brengt al deze gegevens bij
+elkaar. !!^a{formula} kan waar zijn in !!a{structure}~$\Struct{M}$ bij
+!!a{variable} toekenning~$s$. We schrijven dat als
+$\Sat{M}{!A}[s]$. Die relatie leggen we met inductie stap voor stap
+vast volgens de opbouw van~$!A$. Bij $(!A \land !B)$ gebruiken we
+bijvoorbeeld de tabellen met waarheidswaarden: of de samengestelde
+formule waar is, hangt af van de vraag of $!A$ en ~$!B$ wel of niet
+waar zijn. De !!{variable} toekenning maakt niet uit als de
+!!{formula}~$!A$ !!a{sentence} is, dus zonder vrije variabelen. We
+kunnen dan gewoon zeggen dat !!{sentence}s in !!{structure}s waar zijn
+of niet.
+
+Met de relatie $\Sat{M}{!A}$ voor !!{sentence}s kunnen we drie
+basisbegrippen precies definiëren: geldigheid, semantisch gevolg en
+vervulbaarheid. !!^a{sentence} is geldig, $\Entails !A$, als zij in
+iedere !!{structure} waar is. We schrijven voor een verzameling
+!!{sentence}s $\Gamma \Entails !A$ als iedere !!{structure} die alle
+!!{sentence}s in~$\Gamma$ waar maakt, ook~$!A$ waar maakt. Dan volgt de
+laatste zin semantisch uit die verzameling. Een verzameling
+!!{sentence}s is vervulbaar als minstens één !!{structure} alle
+!!{sentence}s erin tegelijk waar maakt. !!{formula}s zijn stap voor
+stap opgebouwd. De regels die bepalen wanneer ze waar zijn, volgen op
+hun beurt de opbouw van !!{formula}s. Daarom kunnen we met inductie
+eigenschappen van de semantiek bewijzen en verbanden tussen deze
+begrippen aantonen.
+\end{document}

@@ -1,0 +1,46 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{sem}
+
+\olsection{Semantische begrippen}
+
+Wanneer we kijken of $\Sat{M}{!A}[s]$ geldt, laat de toekenning~$s$
+voor het gemak alle !!{variable}s een waarde krijgen. We gebruiken
+echter alleen de waarden van de !!{variable}s die in~$!A$ staan. Nog
+preciezer: alleen de waarden van de \emph{vrije} variabelen in~$!A$
+doen ertoe. Dat zullen we bewijzen. !!^a{sentence} heeft geen vrije
+variabelen. Daarom hangt de vraag of een structuur haar vervult niet
+af van~$s$. Als $!A$ !!a{sentence} is, spreken we af dat
+$\Sat{M}{!A}$ betekent: ``$\Sat{M}{!A}[s]$ voor alle~$s$.'' Dit geldt
+precies als $\Sat{M}{!A}[s]$ voor minstens één~$s$ geldt. Voor
+!!{formula}s hebben we toekenningen aan variabelen dus nodig. Voor
+!!{sentence}s maakt de gekozen toekenning geen verschil.
+
+Nu ``$\Sat{M}{!A}$'' is vastgelegd, weten we precies wat ``het geval''
+en ``waar in'' bij !!{sentence}s van de eerste-ordelogica betekenen.
+Uit deze definitie van $\Sat{M}{!A}$ kunnen we drie belangrijke
+begrippen afleiden: geldigheid, semantisch gevolg en vervulbaarheid. !!^a{sentence} is geldig,
+$\Entails !A$, als iedere !!{structure} haar waar maakt. We schrijven
+$\Gamma \Entails !A$ als iedere !!{structure} die alle !!{sentence}s
+uit~$\Gamma$ waar maakt, ook~$!A$ waar maakt. Dan is de conclusie een
+semantisch gevolg van die verzameling. Een verzameling !!{sentence}s is
+vervulbaar als er één !!{structure} is die alle zinnen in die
+verzameling tegelijk waar maakt.
+
+!!{formula}s zijn met inductie gedefinieerd. Ook de regels die bepalen
+wanneer een formule waar is, volgen haar opbouw stap voor stap. Daarom
+kunnen we inductie gebruiken om eigenschappen van de semantiek te
+bewijzen en om de begrippen hierboven met elkaar te verbinden. We gaan
+enkele van die eigenschappen verzamelen en bewijzen. Ze zijn op zichzelf interessant,
+maar we hebben ze vooral later nodig wanneer we semantiek met
+!!{derivation}ssystemen vergelijken. Eerst moeten we ook nog enkele
+syntactische begrippen en bewerkingen precies definiëren. Ook dat doen
+we met inductie.
+
+\end{document}

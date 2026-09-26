@@ -1,0 +1,101 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: main-operator
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{mai}
+
+\olsection{\printtoken{S}{main operator} van een formule}
+
+\begin{explain}
+Het is vaak nuttig om te spreken over de laatste operator die bij de
+constructie van !!a{formula}~$!A$ is gebruikt. Deze operator heet de
+\emph{hoofdoperator} van~$!A$. Intuïtief is dit de ``buitenste''
+operator van $!A$. De hoofdoperator van $\lnot !A$ is bijvoorbeeld
+$\lnot$, die van $(!A \lor !B)$ is $\lor$, enzovoort.
+\end{explain}
+
+
+\begin{defn}[!!^{main operator}]
+\ollabel{def:main-op}
+De \emph{!!{main operator}} van !!a{formula}~$!A$ wordt als volgt
+gedefinieerd:
+\begin{enumerate}
+\item \indcase*{!A}{!A}{$\indfrm$ heeft geen !!{main operator}.}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{de !!{main operator} van $\indfrm$
+  is~$\lnot$.}}{}
+
+\tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{de !!{main operator} van
+  $\indfrm$ is~$\land$.}}{}
+
+\tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{de !!{main operator} van
+  $\indfrm$ is~$\lor$.}}{}
+
+\tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{de !!{main operator} van
+  $\indfrm$ is~$\lif$.}}{}
+
+\tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{de !!{main operator} van
+  $\indfrm$ is~$\liff$.}}{}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{de !!{main operator}
+  van $\indfrm$ is~$\lforall$.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{de !!{main operator} van
+  $\indfrm$ is~$\lexists$.}}{}
+\end{enumerate}
+\end{defn}
+
+In elk geval bedoelen we het specifiek aangegeven \emph{voorkomen} van
+de !!{main operator} in de formule. De formule
+$((!D \lif !E) \lif (!E \lif !D))$ heeft bijvoorbeeld de vorm $(!B \lif !C)$,
+waarbij $!B$ gelijk is aan $(!D \lif !E)$ en $!C$ aan $(!E \lif !D)$.
+Het tweede voorkomen van $\lif$ is dus de !!{main operator}.
+
+\begin{explain}
+Dit is een \emph{recursieve} definitie van een functie die iedere
+niet-atomaire !!{formula} afbeeldt op het voorkomen van haar !!{main
+  operator}. Doordat !!{formula}s inductief zijn gedefinieerd, voldoet
+iedere !!{formula}~$!A$ aan een van de gevallen in
+\olref{def:main-op}. Dit garandeert dat voor iedere niet-atomaire
+!!{formula}~$!A$ !!a{main operator} bestaat. Iedere !!{formula} voldoet
+aan slechts één van deze voorwaarden en de kleinere !!{formula}s
+waaruit $!A$ is geconstrueerd zijn in ieder geval eenduidig bepaald.
+Daarom is het voorkomen van de !!{main operator} van~$!A$ uniek en
+hebben we dus een functie gedefinieerd.
+\end{explain}
+
+We benoemen !!{formula}s zoals in \olref{tab:main-op}, afhankelijk van
+het symbool dat hun !!{main operator}
+is.\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+{ Merk echter op dat gedefinieerde operatoren officieel niet in
+!!{formula}s voorkomen. Het zijn slechts afkortingen en daarom kunnen
+zij officieel niet de hoofdoperator van een formule zijn. In bewijzen
+over alle !!{formula}s hoeven zij dus niet afzonderlijk te worden
+behandeld.}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c | c | c}
+!!^{main operator} & Soort !!{formula} & Voorbeeld\\
+\hline
+geen & atomaire !!{formula} &
+\iftag{prvFalse}{$\lfalse$,}{}
+\iftag{prvTrue}{$\ltrue$,}{}
+$\Atom{R}{t_1, \dots, t_n}$,
+$\eq[t_1][t_2]$\\
+$\lnot$ & negatie & $\lnot !A$ \\
+$\land$ & conjunctie & $(!A \land !B$) \\
+$\lor$ & disjunctie & $(!A \lor !B$) \\
+$\lif$ & !!{conditional} & $(!A \lif !B$) \\
+$\liff$ & !!{biconditional} & $(!A \liff !B)$ \\
+$\lforall[][]$ & universele !!{formula}& $\lforall[x][!A]$ \\
+$\lexists[][]$ & existentiële !!{formula}& $\lexists[x][!A]$
+\end{tabular}
+\caption{Hoofdoperator en benamingen van !!{formula}s}
+\ollabel{tab:main-op}
+\end{table}
+\end{document}

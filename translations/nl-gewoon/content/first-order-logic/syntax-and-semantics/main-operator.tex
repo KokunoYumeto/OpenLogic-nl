@@ -1,0 +1,98 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: main-operator
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{mai}
+
+\olsection{\printtoken{S}{main operator} van een formule}
+
+\begin{explain}
+Vaak willen we weten welk logisch teken als laatste is gebruikt om
+!!a{formula}~$!A$ op te bouwen. Dat teken heet het \emph{buitenste
+  logische teken} van~$!A$: het staat als het ware om de rest van
+$!A$ heen. Het buitenste logische teken van $\lnot !A$ is bijvoorbeeld
+$\lnot$. Bij $(!A \lor !B)$ is het $\lor$, enzovoort.
+\end{explain}
+
+
+\begin{defn}[!!^{main operator}]
+\ollabel{def:main-op}
+Zo bepalen we het \emph{!!{main operator}} van !!a{formula}~$!A$:
+\begin{enumerate}
+\item \indcase*{!A}{!A}{$\indfrm$ heeft geen !!{main operator}.}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{het !!{main operator} van $\indfrm$
+  is~$\lnot$.}}{}
+
+\tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{het !!{main operator} van
+  $\indfrm$ is~$\land$.}}{}
+
+\tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{het !!{main operator} van
+  $\indfrm$ is~$\lor$.}}{}
+
+\tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{het !!{main operator} van
+  $\indfrm$ is~$\lif$.}}{}
+
+\tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{het !!{main operator} van
+  $\indfrm$ is~$\liff$.}}{}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{het !!{main operator}
+  van $\indfrm$ is~$\lforall$.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{het !!{main operator} van
+  $\indfrm$ is~$\lexists$.}}{}
+\end{enumerate}
+\end{defn}
+
+We bedoelen telkens precies de aangegeven \emph{plaats waar het teken
+voorkomt} in de formule. Kijk bijvoorbeeld naar de formule
+$((!D \lif !E) \lif (!E \lif !D))$. Zij heeft de vorm $(!B \lif !C)$,
+met $!B$ gelijk aan $(!D \lif !E)$ en $!C$ gelijk aan $(!E \lif !D)$.
+Daarom is het tweede voorkomen van $\lif$ het !!{main operator}.
+
+\begin{explain}
+Dit is een \emph{recursieve} definitie: zij koppelt iedere niet-atomaire
+!!{formula} aan de plaats waar haar !!{main operator} voorkomt. De
+regels bouwen !!{formula}s stap voor stap op. Daarom valt iedere
+!!{formula}~$!A$ onder een van de gevallen in \olref{def:main-op}.
+Iedere niet-atomaire !!{formula}~$!A$ heeft dus !!a{main operator}.
+Verder valt iedere !!{formula} onder maar één geval. Ook liggen de
+kleinere !!{formula}s waaruit $!A$ is opgebouwd precies vast. Er is dus
+maar één plaats die het !!{main operator} van~$!A$ kan zijn. Daarmee
+hebben we inderdaad een functie bepaald.
+\end{explain}
+
+De naam van !!{formula}s hangt af van het symbool dat hun !!{main
+operator} is. \olref{tab:main-op} geeft de namen.
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+{ Gedefinieerde operatoren staan officieel niet in !!{formula}s. Het
+zijn alleen afkortingen. Daarom kunnen zij officieel niet het buitenste
+logische teken van een formule zijn. In bewijzen over alle !!{formula}s
+hoeven we ze dus niet als aparte gevallen te behandelen.}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c | c | c}
+!!^{main operator} & Soort !!{formula} & Voorbeeld\\
+\hline
+geen & !!{formula} zonder logische deelopbouw &
+\iftag{prvFalse}{$\lfalse$,}{}
+\iftag{prvTrue}{$\ltrue$,}{}
+$\Atom{R}{t_1, \dots, t_n}$,
+$\eq[t_1][t_2]$\\
+$\lnot$ & ontkenning & $\lnot !A$ \\
+$\land$ & en-verbinding & $(!A \land !B$) \\
+$\lor$ & of-verbinding & $(!A \lor !B$) \\
+$\lif$ & !!{conditional} & $(!A \lif !B$) \\
+$\liff$ & !!{biconditional} & $(!A \liff !B)$ \\
+$\lforall[][]$ & !!{formula} met ``voor alle''& $\lforall[x][!A]$ \\
+$\lexists[][]$ & !!{formula} met ``er bestaat''& $\lexists[x][!A]$
+\end{tabular}
+\caption{Buitenste logische teken en namen van !!{formula}s}
+\ollabel{tab:main-op}
+\end{table}
+\end{document}

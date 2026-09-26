@@ -1,0 +1,140 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{sub}
+
+\olsection{Een term invullen voor een variabele (substitutie)}
+
+\begin{defn}[Een term invullen in een term]
+We schrijven $\Subst{s}{t}{x}$ voor het resultaat van het
+\emph{invullen} van $t$ voor ieder voorkomen van~$x$ in $s$. Dat
+resultaat wordt stap voor stap bepaald door de opbouw van de oorspronkelijke term:
+\begin{enumerate}
+\item \indcase{s}{c}{$\Subst{\indfrm}{t}{x}$ gewoon $s$ blijft.}
+
+\item \indcase{s}{y}{$\Subst{\indfrm}{t}{x}$ ook gewoon~$s$ blijft,
+  als $y$ een variabele is en $y \not\ident x$.}
+
+\item \indcase{s}{x}{$\Subst{\indfrm}{t}{x}$ de term~$t$ wordt.}
+
+\item\indcase{s}{\Atom{f}{t_1, \dots, t_n}}{we in elk onderdeel
+  dezelfde vervanging uitvoeren, zodat $\Subst{\indfrmp}{t}{x}$ gelijk is aan
+  $\Atom{f}{\Subst{t_1}{t}{x}, \dots, \Subst{t_n}{t}{x}}$.}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+Een term~$t$ kan veilig voor $x$ in $!A$ worden ingevuld — in de vaste
+vakterm is hij dan \emph{!!{free for}} — als geen vrij voorkomen van~$x$
+in $!A$ binnen het bereik ligt van een kwantor die een variabele bindt
+die in~$t$ voorkomt. Dat betekent dat het invullen geen nieuwe binding maakt.
+\end{defn}
+
+\begin{ex} ~
+\begin{enumerate}
+\item $\Obj v_8$ kan zonder nieuwe binding voor $\Obj v_1$ worden
+  ingevuld in $\lexists[\Obj
+  v_3]\Atom{\Obj A^2_4}{\Obj v_3,\Obj v_1}$
+
+\item $\Obj f^2_1(\Obj v_1, \Obj v_2)$ kan \emph{niet} zonder nieuwe
+  binding voor $\Obj v_0$ worden ingevuld in
+  $\lforall[\Obj v_2]\Atom{\Obj A^2_4}{\Obj v_0,\Obj v_2}$
+\end{enumerate}
+\end{ex}
+
+\begin{defn}[Een term invullen in !!a{formula}]
+Laat $!A$ !!a{formula} zijn, laat $x$~!!a{variable} zijn en laat $t$
+een term zijn die !!{free for}~$x$ in~$!A$ is. Dan betekent
+$\Subst{!A}{t}{x}$: vervang $t$ voor alle vrije voorkomens van~$x$
+in~$!A$. Voor elke mogelijke opbouw geldt de volgende regel:
+\begin{enumerate}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\Subst{\indfrm}{t}{x}$
+    gewoon $\lfalse$ blijft.}}{}
+
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\Subst{\indfrm}{t}{x}$
+    gewoon $\ltrue$ blijft.}}{}
+
+\item \indcase{!A}{\Atom{P}{t_1,\dots,
+    t_n}}{we de vervanging in elke term uitvoeren, zodat
+    $\Subst{\indfrm}{t}{x}$ gelijk is aan $\Atom{P}{\Subst{t_1}{t}{x},
+    \dots, \Subst{t_n}{t}{x}}$.}
+
+\item \indcase{!A}{\eq[t_1][t_2]}{we de vervanging aan beide kanten
+  uitvoeren, zodat $\Subst{\indfrmp}{t}{x}$ gelijk is aan
+  $\Subst{t_1}{t}{x} = \Subst{t_2}{t}{x}$.}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{we de vervanging in de deelformule
+    uitvoeren, zodat $\Subst{\indfrmp}{t}{x}$ gelijk is aan
+    $\lnot \Subst{!B}{t}{x}$.}}{}
+
+\tagitem{prvAnd}{\indcase{!A}{(!B \land
+    !C)}{we de vervanging in beide deelformules uitvoeren, zodat
+    $\Subst{\indfrmp}{t}{x}$ gelijk is aan $(\Subst{!B}{t}{x} \land
+    \Subst{!C}{t}{x})$.}}{}
+
+\tagitem{prvOr}{\indcase{!A}{(!B \lor
+    !C)}{we de vervanging in beide deelformules uitvoeren, zodat
+    $\Subst{\indfrmp}{t}{x}$ gelijk is aan $(\Subst{!B}{t}{x} \lor
+    \Subst{!C}{t}{x})$.}}{}
+
+\tagitem{prvIf}{\indcase{!A}{(!B \lif
+    !C)}{we de vervanging in beide deelformules uitvoeren, zodat
+    $\Subst{\indfrmp}{t}{x}$ gelijk is aan $(\Subst{!B}{t}{x} \lif
+    \Subst{!C}{t}{x})$.}}{}
+
+\tagitem{prvIff}{\indcase{!A}{(!B \liff
+    !C)}{we de vervanging in beide deelformules uitvoeren, zodat
+    $\Subst{\indfrmp}{t}{x}$ gelijk is aan $(\Subst{!B}{t}{x} \liff
+    \Subst{!C}{t}{x})$.}}{}
+
+\tagitem{prvAll}{
+\indcase{!A}{\lforall[y][!B]}{$\Subst{\indfrmp}{t}{x}$
+    gelijk is aan $\lforall[y][\Subst{!B}{t}{x}]$ als $y$ een andere
+    variabele dan $x$ is. Zijn die twee variabelen juist gelijk, dan verandert er niets en
+    blijft $\Subst{\indfrmp}{t}{x}$ gelijk aan $\indfrm$.}}{}
+
+\tagitem{prvEx}{
+\indcase{!A}{\lexists[y][!B]}{$\Subst{\indfrmp}{t}{x}$
+    gelijk is aan $\lexists[y][\Subst{!B}{t}{x}]$ als $y$ een andere
+    variabele dan $x$ is. Zijn die twee variabelen juist gelijk, dan verandert er niets en
+    blijft $\Subst{\indfrmp}{t}{x}$ gelijk aan $\indfrm$.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Soms verandert de vervanging niets. Als $x$ helemaal niet in $!A$
+voorkomt, dan blijft $\Subst{!A}{t}{x}$ gewoon~$!A$.
+
+Waarom moet $t$ !!{free for}~$x$ in~$!A$ zijn? Neem
+$!A \ident \lexists[y][x < y]$ en $t \ident y$. Dan zou
+$\Subst{!A}{t}{x}$ uitkomen op $\lexists[y][y < y]$. De vrije variabele
+$y$ wordt bij het invullen door de kwantor $\lexists[y]$ gebonden. Zo
+wordt dat voorkomen als het ware ``gevangen''. Dat willen we voorkomen.
+De reden wordt zichtbaar in het volgende geval. Als
+$\lforall[x][!B]$ geldt, willen we dat ook $\Subst{!B}{t}{x}$ geldt.
+Kijk nu naar $\lforall[x][\lexists[y][x < y]]$; hier is $!B$ gelijk
+aan $\lexists[y][x < y]$. Deze zin is bijvoorbeeld waar voor de
+natuurlijke getallen: bij ieder getal~$x$ bestaat een groter getal~$y$.
+Als we toch $y$ voor~$x$ mochten invullen, kregen we
+$\Subst{!B}{y}{x} \ident \lexists[y][y < y]$. Die formule is onwaar.
+Daarom eisen we dat geen vrije variabele uit~$t$ bij het invullen onder
+een kwantor in~$!A$ terechtkomt en zo gebonden raakt.
+\end{explain}
+
+We gebruiken vaak een kortere schrijfwijze. Als $!A$ !!a{formula} is
+waarin de !!{variable}~$x$ vrij kan voorkomen, schrijven we ook
+$!A(x)$. Zodra duidelijk is welke $!A$ en welke $x$ we bedoelen, en
+$t$ een term is die zonder nieuwe binding voor $x$ in $!A(x)$ kan
+worden ingevuld, schrijven we $!A(t)$ als afkorting voor
+$\Subst{!A}{t}{x}$.
+We kunnen dan zeggen: ``$!A(t)$ is een instantie, dus een ingevuld
+geval, van~$\lforall[x][!A(x)]$.'' Voluit betekent dit: neem een
+willekeurige !!{formula}~$!A$, !!a{variable}~$x$ en een term~$t$ die
+vrij voor~$x$ in~$!A$ is. Dan is $\Subst{!A}{t}{x}$ een instantie van
+$\lforall[x][!A]$.
+\end{document}

@@ -3,15 +3,15 @@
   "register": "nl-standard",
   "scope": {
     "first": "OLP-0001",
-    "last": "OLP-0144",
-    "units": 144
+    "last": "OLP-0160",
+    "units": 160
   },
   "manifest_excludes_itself": true,
   "records": [
     {
       "path": "BUILD.md",
       "bytes": 2237,
-      "sha256": "215902c1484a5528cf416470a1b7520d0f04ba7342db8011fca7d94fd66a961e"
+      "sha256": "65ecf04d85b84f98450999aa008b4ce8ae614d07ddcfad037e5de44dd72de8e0"
     },
     {
       "path": "LICENSE.md",
@@ -19,34 +19,34 @@
       "sha256": "bb5e0179a1e9bdb55634a4303784cf73c297a1dcee27b92cd546bf398075531c"
     },
     {
-      "path": "OpenLogic-NL-Standard-Partial-OLP-0001--OLP-0144.tex",
-      "bytes": 728800,
-      "sha256": "97d966a964530972678aea3780f8983d82469ce4972dc8896b3d3caca78e65f5"
+      "path": "OpenLogic-NL-Standard-Partial-OLP-0001--OLP-0160.tex",
+      "bytes": 803777,
+      "sha256": "4eaf4d66204feddb4db0691541330badb6908812ee6d23332c3c02d8dc19d936"
     },
     {
       "path": "PDF-REBUILD.json",
       "bytes": 1987,
-      "sha256": "dc96653e346fdd7f9fdd74fd8b48c200fd7858174b6a35231bdd3519e541743a"
+      "sha256": "4d7531319da0c317d0a32a04a39dbe005b7aff480425165235e25982b6f7302b"
     },
     {
       "path": "PUBLICATIESTATUS.json",
       "bytes": 201,
-      "sha256": "6301740391459719111ddcbd10c751f29b66d96b84013c389137f747ba938107"
+      "sha256": "b5578b325efa9f410062a4b5ef2607fbddbf828fed4eda9e57c413619e7d905f"
     },
     {
       "path": "alignment/ACCEPTED_PREFIX.jsonl",
-      "bytes": 163307,
-      "sha256": "acecadbf3925e2dcc5555583d8a208cb8733066c1c94580838459b6d8c5bae6b"
+      "bytes": 181595,
+      "sha256": "3287eb96f97d1ce63ea85b3c8c266679e27bb49330714aaae6e9e59b656b9a8f"
     },
     {
       "path": "alignment/AUTHORITY.json",
       "bytes": 458,
-      "sha256": "c15393d6af0eedfbf6bd53521235dbb69a343a32deba84efba6fc20b309dd4f8"
+      "sha256": "c38f78784d843db973ae025552e00a854a0d7e68470a7d8867141b37193668c5"
     },
     {
       "path": "alignment/UNITS.jsonl",
-      "bytes": 737272,
-      "sha256": "5891a8f91b52127a89c37ec579822e55dc75571988624143d5abb79f06977eec"
+      "bytes": 739302,
+      "sha256": "8ccdce17d2b77e683b550c8575872ea1ae0dbb6da11eae16eaea8f2b046c4113"
     },
     {
       "path": "editions/nl-standard/support/open-logic-reader-locale.tex",
@@ -219,14 +219,34 @@
       "sha256": "0d7df61c89944f2ef75c37382b2b3dbee3e7e5efb3bac7db0ca62d7220c09d28"
     },
     {
+      "path": "translations/nl-standard/content/first-order-logic/introduction/models-theories.tex",
+      "bytes": 3881,
+      "sha256": "63caeeb11a1afbbb5dd95776e3f277d543dcf83f4963b244671417a7fd2adc60"
+    },
+    {
       "path": "translations/nl-standard/content/first-order-logic/introduction/satisfaction.tex",
       "bytes": 6221,
       "sha256": "bbaa72f83ac0ea06aa020cc2d680431617201f3422119bf4d2a2ea2b50557440"
     },
     {
+      "path": "translations/nl-standard/content/first-order-logic/introduction/semantic-notions.tex",
+      "bytes": 2465,
+      "sha256": "b42ad3b21e2359b617e24d4c2c1c2440beaf1ea0a049642e03050a786f6c92cf"
+    },
+    {
       "path": "translations/nl-standard/content/first-order-logic/introduction/sentences.tex",
       "bytes": 2836,
       "sha256": "950a46844a55cdb1b76b45a48fed53f13d9778c3c73442ba081f7cfcfcc66c17"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/introduction/soundness-completeness.tex",
+      "bytes": 3622,
+      "sha256": "33b1204c4ab6ee9cb67d0dc41678a3a0db12777cd1b4238a6039f7ea0c2471fb"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/introduction/substitution.tex",
+      "bytes": 2441,
+      "sha256": "88f7924f17a2c3c5d43596d7f22e898367ee013bb1e20eb3cdf2e0f57ce87d36"
     },
     {
       "path": "translations/nl-standard/content/first-order-logic/introduction/syntax.tex",
@@ -407,6 +427,66 @@
       "path": "translations/nl-standard/content/first-order-logic/sequent-calculus/structural-rules.tex",
       "bytes": 2210,
       "sha256": "003e23c886e644d1b3a1da5f08aeb17fd8ea341e425254de1ffd9ced5c824443"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/syntax-and-semantics/first-order-languages.tex",
+      "bytes": 6817,
+      "sha256": "59b229c3a1403fb0617c9f96f3a54f9fbbe17767bbfd49c27c3285d7b60b42dc"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/syntax-and-semantics/formation-sequences.tex",
+      "bytes": 10332,
+      "sha256": "a18c85e67b542cd772252fbceeb2e2bdc30e28c599d68da318f11a522353b032"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/syntax-and-semantics/free-vars-sentences.tex",
+      "bytes": 3837,
+      "sha256": "515cf8407ffc2803607a12572e16f66aa12828465f7ec0ee3ef9ad2fb3ef7505"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/syntax-and-semantics/intro-semantics.tex",
+      "bytes": 2538,
+      "sha256": "97060785187dfa28bd61aca0497b6d2316b0811999eaa39eb96249b073ed992d"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/syntax-and-semantics/intro-syntax.tex",
+      "bytes": 1505,
+      "sha256": "7cd9aa72d54ffa9c82fca23d758acb77bd97eca1916b3fd4ad7a1e4b26f5c257"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/syntax-and-semantics/main-operator.tex",
+      "bytes": 3712,
+      "sha256": "f11243980e2c393b459b74089442d643ab2da85550b69368a0a2dc3892f81b88"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/syntax-and-semantics/semantics.tex",
+      "bytes": 407,
+      "sha256": "dd005bf0181b01e6e26f42720d77d5cae9db84f095ab125ba7de5ef911d3b99c"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/syntax-and-semantics/subformulas.tex",
+      "bytes": 4043,
+      "sha256": "ef90b3ede3504433f8e9fe435689f073f4eab15586a59207a60e7d4f1ad34bf2"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/syntax-and-semantics/substitution.tex",
+      "bytes": 5021,
+      "sha256": "64b72cacf1baa8b6fb1fa7e58e51f501837e4abbf40796ca4091fb0978a9a315"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/syntax-and-semantics/syntax.tex",
+      "bytes": 472,
+      "sha256": "c830cd28d43760a121ce80f2d1e8acbbab4793e65ad2aaa4752cf59531bbaaa7"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/syntax-and-semantics/terms-formulas.tex",
+      "bytes": 9229,
+      "sha256": "e3d4e38b9f4805f470e734df70e692e4a29d4bd140195b0073f38fbadd684036"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/syntax-and-semantics/unique-readability.tex",
+      "bytes": 7782,
+      "sha256": "8e62e590b18dbe5e7447f8be5bb2ade3c38a5bb3ccaf47a95f8a1b2c270acabd"
     },
     {
       "path": "translations/nl-standard/content/first-order-logic/tableaux/derivations.tex",
@@ -1019,5 +1099,5 @@
       "sha256": "7a2f80ae1bab40570502fb17516b2ad02610201f4da203c2304fc5b6343a924e"
     }
   ],
-  "tree_sha256": "612494dfd3eca1a4aebd4eee3c4a548448848cab1a15781357222ccb3a7d2d51"
+  "tree_sha256": "cb299cf19f245a4b2771aab82b812fbc6a79c457be016d7dec308f9897724779"
 }

@@ -1,24 +1,24 @@
 # Open Logic Project — twee Nederlandse registers
 
-Dit is een gedeeltelijke bronuitgave: 144 van 722 broneenheden in twee Nederlandse registers. De volledige oorspronkelijke wiskundige inhoud van deze eenheden is behouden; de laatste hoofdstukgrens kan midden in een hoofdstuk vallen. Er is nog geen gepubliceerde PDF of EPUB. De aangeboden samengestelde LaTeX is inhoudelijk samengesteld en bytegewijs gecontroleerd, maar in deze uitgave niet gecompileerd. Een eerdere bouwpoging kon de gedeelde TeX-vergrendeling niet verkrijgen en startte geen TeX-proces. De termen “geaccepteerd” en “gecontroleerd” verwijzen naar de vastgelegde AI-productiecontroles, niet naar onafhankelijk deskundigenonderzoek.
+Dit is een gedeeltelijke bronuitgave: 160 van 722 broneenheden in twee Nederlandse registers. De volledige oorspronkelijke wiskundige inhoud van deze eenheden is behouden; de laatste hoofdstukgrens kan midden in een hoofdstuk vallen. Er is nog geen gepubliceerde PDF of EPUB. De aangeboden samengestelde LaTeX is inhoudelijk samengesteld en bytegewijs gecontroleerd, maar in deze uitgave niet gecompileerd. Een eerdere bouwpoging kon de gedeelde TeX-vergrendeling niet verkrijgen en startte geen TeX-proces. De termen “geaccepteerd” en “gecontroleerd” verwijzen naar de vastgelegde AI-productiecontroles, niet naar onafhankelijk deskundigenonderzoek.
 
 ## Lezen en downloaden
 
 - [Nederlandse bronteksten naast elkaar](https://kokunoyumeto.github.io/OpenLogic-nl/)
-- [Wetenschappelijk Nederlands — TEX](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.2.0-paired-144-of-722-source/00-openlogic-nl-standaard-144.tex)
-- [Wetenschappelijk Nederlands — ZIP](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.2.0-paired-144-of-722-source/01-openlogic-nl-standaard-144-bronnen.zip)
-- [Gewone mensentaal — TEX](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.2.0-paired-144-of-722-source/02-openlogic-nl-gewone-mensentaal-144.tex)
-- [Gewone mensentaal — ZIP](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.2.0-paired-144-of-722-source/03-openlogic-nl-gewone-mensentaal-144-bronnen.zip)
+- [Wetenschappelijk Nederlands — TEX](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.3.0-paired-160-of-722-source/00-openlogic-nl-standaard-160.tex)
+- [Wetenschappelijk Nederlands — ZIP](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.3.0-paired-160-of-722-source/01-openlogic-nl-standaard-160-bronnen.zip)
+- [Gewone mensentaal — TEX](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.3.0-paired-160-of-722-source/02-openlogic-nl-gewone-mensentaal-160.tex)
+- [Gewone mensentaal — ZIP](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.3.0-paired-160-of-722-source/03-openlogic-nl-gewone-mensentaal-160-bronnen.zip)
 
 ## Twee registers, dezelfde wiskunde
 
-Het wetenschappelijke register en de gewone mensentaal zijn afzonderlijke formuleringen van dezelfde inhoud. De gewone versie is bedoeld voor volwassenen en is geen samenvatting, kinderversie of wiskundige vereenvoudiging. Er zijn 144 corresponderende bronbestanden per register; 578 eenheden ontbreken nog.
+Het wetenschappelijke register en de gewone mensentaal zijn afzonderlijke formuleringen van dezelfde inhoud. De gewone versie is bedoeld voor volwassenen en is geen samenvatting, kinderversie of wiskundige vereenvoudiging. Er zijn 160 corresponderende bronbestanden per register; 562 eenheden ontbreken nog.
 
 ## Bronnen, controles en bespreekbare keuzes
 
 `alignment/` koppelt de oorspronkelijke Engelse eenheden en beide vertalingen aan controleerbare hashes en segmentlocaties. `canon/` vermeldt de werkelijk gekoppelde bronlocaties en passage-identiteiten; beschermde boeken, artikelen en gesproken corpora zijn niet heruitgegeven. Dit controleert de herkomstverwijzingen, niet zelfstandig de juistheid van iedere taalkundige keuze. De volledige historische keuzeverantwoording wordt in het productiearchief bewaard; deze bronuitgave bevat de segmentkoppelingen, nog niet een volledig Nederlandstalig deskundigenlogboek.
 
-De manager heeft alle 432 bron-/doelbestanden en 4.908 segmentverwijzingen opnieuw op byte-identiteit gecontroleerd. Iedere cumulatieve LaTeX bevat precies 144 gecontroleerde tekstlichamen. Een nieuwe integrale taalkundige beoordeling of geslaagde PDF/EPUB-bouw wordt niet geclaimd.
+De manager heeft alle 480 bron-/doelbestanden en 5.637 segmentverwijzingen opnieuw op byte-identiteit gecontroleerd. Iedere cumulatieve LaTeX bevat precies 160 gecontroleerde tekstlichamen. Een nieuwe integrale taalkundige beoordeling of geslaagde PDF/EPUB-bouw wordt niet geclaimd.
 
 ## Bouwbestanden
 

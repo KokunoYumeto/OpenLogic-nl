@@ -1,0 +1,50 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{sem}
+
+\olsection{Semantische begrippen}
+
+Hierboven merkten we op dat wanneer we nagaan of $\Sat{M}{!A}[s]$
+geldt, we $s$ gemakshalve waarden aan alle !!{variable}s laten
+toekennen, maar alleen de waarden gebruiken die het toekent aan de
+!!{variable}s in~$!A$. In feite doen alleen de waarden van de
+\emph{vrije} variabelen in~$!A$ ertoe. Omdat we zorgvuldig te werk
+gaan, zullen we dit uiteraard bewijzen. !!^a{sentence} heeft geen vrije
+variabelen; daarom maakt $s$ voor de vraag of zij in !!a{structure}
+wordt vervuld helemaal niets uit. Als $!A$ !!a{sentence} is, kunnen we
+$\Sat{M}{!A}$ dus definiëren als ``$\Sat{M}{!A}[s]$ voor alle~$s$''.
+Dit blijkt waar te zijn dan en slechts dan als $\Sat{M}{!A}[s]$ voor
+ten minste één~$s$ waar is. Voor een bruikbare definitie van vervulling
+voor !!{formula}s moeten we variabelenbedelingen invoeren, maar voor
+!!{sentence}s is vervulling onafhankelijk van die bedelingen.
+
+Zodra ``$\Sat{M}{!A}$'' is gedefinieerd, weten we wat ``het geval'' en
+``waar in'' betekenen voor !!{sentence}s van de eerste-ordelogica. Op
+grond van de definitie van $\Sat{M}{!A}$ voor !!{sentence}s kunnen we
+vervolgens de fundamentele semantische begrippen geldigheid, semantisch
+gevolg en vervulbaarheid definiëren. !!^a{sentence} is geldig,
+$\Entails !A$, als iedere !!{structure} haar vervult. Zij is een
+semantisch gevolg van een verzameling !!{sentence}s,
+$\Gamma \Entails !A$, als iedere !!{structure} die alle !!{sentence}s
+in~$\Gamma$ vervult, ook~$!A$ vervult. Een verzameling !!{sentence}s is
+vervulbaar als er !!a{structure} is die al haar !!{sentence}s
+tegelijkertijd vervult.
+
+Omdat !!{formula}s inductief zijn gedefinieerd en vervulling op haar
+beurt door inductie naar de structuur van !!{formula}s is gedefinieerd,
+kunnen we met inductie eigenschappen van onze semantiek bewijzen en de
+gedefinieerde semantische begrippen met elkaar in verband brengen. We
+zullen enkele van die eigenschappen formuleren en bewijzen. Dat doen we
+deels omdat zij op zichzelf interessant zijn, maar vooral omdat veel
+ervan van pas komen wanneer we het verband tussen semantiek en
+!!{derivation}ssystemen onderzoeken. Daarvoor moeten we bovendien enkele
+nog niet besproken syntactische begrippen en bewerkingen precies, dus
+inductief, definiëren.
+
+\end{document}

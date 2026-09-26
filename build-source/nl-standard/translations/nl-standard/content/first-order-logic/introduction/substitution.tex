@@ -1,0 +1,50 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{sub}
+
+\olsection{Substitutie}
+
+We bespreken een voorbeeld om te laten zien hoe de onderdelen
+samenhangen en hoe de ontwikkeling van syntaxis en semantiek de basis
+legt voor ons latere, verdergaande onderzoek. Onze
+!!{derivation}ssystemen moeten ons in staat stellen de formule
+$\Atom{\Obj P}{\Obj a}$ uit $\lforall[\Obj
+v_0][\Atom{\Obj P}]{\Obj v_0}$ te !!{derive}. Misschien willen we dit zelfs als
+afleidingsregel formuleren. Daarvoor moeten we de regel echter in de
+grootst mogelijke algemeenheid kunnen formuleren: niet alleen voor
+$\Obj P$, $\Obj a$ en $\Obj v_0$, maar voor iedere !!{formula}~$!A$,
+term~$t$ en !!{variable}~$x$. (Bedenk dat !!{constant}s termen zijn;
+we zullen echter ook ingewikkeldere termen beschouwen die uit
+!!{constant}s en !!{function}s zijn opgebouwd.) We willen dus iets van
+de volgende strekking kunnen zeggen: ``Als men
+$\lforall[x][!A(x)]$ kan !!{derive}, mag men~$!A(t)$ afleiden---het
+resultaat van het verwijderen van $\lforall[x]$ en het vervangen van
+$x$ door~$t$.'' Maar wat betekent ``$x$ door~$t$ vervangen'' precies?
+Wat is het verband tussen $!A(x)$ en~$!A(t)$? Werkt dit altijd?
+
+Om dit precies te maken definiëren we de bewerking
+\emph{substitutie}. Substitutie is in feite lastig: we kunnen niet
+zonder meer alle voorkomens van~$x$ in~$!A$ door~$t$ vervangen, en niet
+iedere~$t$ mag voor om het even welke~$x$ worden gesubstitueerd. Ook dit
+behandelen we met inductieve definities. Zodra dat is gebeurd, wordt de
+afleidingsregel ``leid $!A(t)$ af uit $\lforall[x][!A(x)]$'' een
+precieze definitie. Bovendien kunnen we aantonen dat dit een goede
+afleidingsregel is, in die zin dat $\lforall[x][!A(x)]$ semantisch
+$!A(t)$ tot gevolg heeft. Om dat te bewijzen moeten we wederom iets
+aantonen waarbij men zich op het eerste gezicht kan afvragen waarom het
+nodig is. Dat $\lforall[x][!A(x)]$ semantisch $!A(t)$ tot gevolg heeft,
+berust op het feit dat de vraag of $\Sat{M}{!A(t)}$ geldt uitsluitend
+afhangt van de waarde van de term~$t$. Als $m$ het !!{element}
+van~$\Domain{M}$ is dat door~$t$ wordt aangeduid, dan geldt dus
+$\Sat{M}{!A(t)}[s]$ dan en slechts dan als
+$\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$. Dit geldt zelfs wanneer $t$
+!!{variable}s bevat, maar we moeten het resultaat zorgvuldig
+formuleren.
+
+\end{document}

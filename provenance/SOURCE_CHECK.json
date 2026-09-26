@@ -1,36 +1,36 @@
 {
   "schema": "openlogic-nl-public-source-check/1",
-  "checked_utc": "2026-09-26T17:56:30.676640+00:00",
+  "checked_utc": "2026-09-26T20:29:50.510922+00:00",
   "source_revision": "9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
-  "alignment_sha256": "5891a8f91b52127a89c37ec579822e55dc75571988624143d5abb79f06977eec",
-  "source_units": 144,
+  "alignment_sha256": "8ccdce17d2b77e683b550c8575872ea1ae0dbb6da11eae16eaea8f2b046c4113",
+  "source_units": 160,
   "total_units": 722,
   "registers": [
     "nl-standard",
     "nl-gewoon"
   ],
-  "source_and_target_files_checked": 432,
-  "segments": 1636,
-  "segment_spans_checked": 4908,
-  "linguistic_segments": 1328,
-  "cited_canon_passages": 203,
+  "source_and_target_files_checked": 480,
+  "segments": 1879,
+  "segment_spans_checked": 5637,
+  "linguistic_segments": 1536,
+  "cited_canon_passages": 225,
   "canon_mapping_resolves": true,
   "cumulative_body_audits": [
     {
       "schema": "openlogic-partial-cumulative-tex-audit-v1",
       "status": "PASS",
       "register": "nl-standard",
-      "accepted_unit_bodies_replayed": 144,
-      "bytes": 728800,
-      "sha256": "97d966a964530972678aea3780f8983d82469ce4972dc8896b3d3caca78e65f5"
+      "accepted_unit_bodies_replayed": 160,
+      "bytes": 803777,
+      "sha256": "4eaf4d66204feddb4db0691541330badb6908812ee6d23332c3c02d8dc19d936"
     },
     {
       "schema": "openlogic-partial-cumulative-tex-audit-v1",
       "status": "PASS",
       "register": "nl-gewoon",
-      "accepted_unit_bodies_replayed": 144,
-      "bytes": 731929,
-      "sha256": "00a60d57342c46f178df2f22c30a74f1170be16c9ddde5b01a473aa64ff7783a"
+      "accepted_unit_bodies_replayed": 160,
+      "bytes": 808348,
+      "sha256": "2ec1f51a10d1dd04da42942dfc6922481af6508f544d87f8616919fa81806116"
     }
   ],
   "tex_launched": false,
@@ -2630,6 +2630,294 @@
       "layer": "ordinary",
       "bytes": 2677,
       "sha256": "d8f3dfa53a9af3d98e6a8e8bf91e1ac8669c1a5e877b2cfbcd5ff55f7715e5bf"
+    },
+    {
+      "unit_id": "OLP-0145",
+      "layer": "source",
+      "bytes": 2354,
+      "sha256": "9d04bf200004bd09dead1b4fcd8a97eca4c9e2d7886c07cb99122d0426d60aae"
+    },
+    {
+      "unit_id": "OLP-0145",
+      "layer": "standard",
+      "bytes": 2465,
+      "sha256": "b42ad3b21e2359b617e24d4c2c1c2440beaf1ea0a049642e03050a786f6c92cf"
+    },
+    {
+      "unit_id": "OLP-0145",
+      "layer": "ordinary",
+      "bytes": 2225,
+      "sha256": "2cde3d0e81eec8590742f0e7db3297721beb8778cafd26ae0068e765b1f729dc"
+    },
+    {
+      "unit_id": "OLP-0146",
+      "layer": "source",
+      "bytes": 2288,
+      "sha256": "a874a9c9150455531a7d563ddf3e6bf35c86fc2134c324f9bf78135213d912f1"
+    },
+    {
+      "unit_id": "OLP-0146",
+      "layer": "standard",
+      "bytes": 2441,
+      "sha256": "88f7924f17a2c3c5d43596d7f22e898367ee013bb1e20eb3cdf2e0f57ce87d36"
+    },
+    {
+      "unit_id": "OLP-0146",
+      "layer": "ordinary",
+      "bytes": 2151,
+      "sha256": "d0833e3fed98d206d26df7d4445d18bffc1f0bdc699ed602f0d54f4fcea7faa9"
+    },
+    {
+      "unit_id": "OLP-0147",
+      "layer": "source",
+      "bytes": 3760,
+      "sha256": "36ee284caf12899709c6527a5e97cc191bb07fa6701d9b457a7191a1e803c59f"
+    },
+    {
+      "unit_id": "OLP-0147",
+      "layer": "standard",
+      "bytes": 3881,
+      "sha256": "63caeeb11a1afbbb5dd95776e3f277d543dcf83f4963b244671417a7fd2adc60"
+    },
+    {
+      "unit_id": "OLP-0147",
+      "layer": "ordinary",
+      "bytes": 3577,
+      "sha256": "04fe5139b2b2fb1240dc824d5938bace4ed5442bd06a46e15b57c2e584f4ffe5"
+    },
+    {
+      "unit_id": "OLP-0148",
+      "layer": "source",
+      "bytes": 3476,
+      "sha256": "05f6726f7479e800c0bba936fc241ba48814425b161a53c67b4cc5bf43aed773"
+    },
+    {
+      "unit_id": "OLP-0148",
+      "layer": "standard",
+      "bytes": 3622,
+      "sha256": "33b1204c4ab6ee9cb67d0dc41678a3a0db12777cd1b4238a6039f7ea0c2471fb"
+    },
+    {
+      "unit_id": "OLP-0148",
+      "layer": "ordinary",
+      "bytes": 3454,
+      "sha256": "7327ed40a80fab206a30d729f81ed8c27f23d5b3d6fe12d303f4e6115f1056ed"
+    },
+    {
+      "unit_id": "OLP-0149",
+      "layer": "source",
+      "bytes": 467,
+      "sha256": "473e66c94338b8f5f597ded8a099bc240a6a5e7e2c47ff05faf7235b0055cbdb"
+    },
+    {
+      "unit_id": "OLP-0149",
+      "layer": "standard",
+      "bytes": 472,
+      "sha256": "c830cd28d43760a121ce80f2d1e8acbbab4793e65ad2aaa4752cf59531bbaaa7"
+    },
+    {
+      "unit_id": "OLP-0149",
+      "layer": "ordinary",
+      "bytes": 493,
+      "sha256": "7737e09488e00e8de8e9d75ebf4acc3755bf37d1fa742ace94f3754bae32fb4e"
+    },
+    {
+      "unit_id": "OLP-0150",
+      "layer": "source",
+      "bytes": 1440,
+      "sha256": "471a1c986e2c701856bc6bec91cfe741242434d9a933420e279002792e2da1ec"
+    },
+    {
+      "unit_id": "OLP-0150",
+      "layer": "standard",
+      "bytes": 1505,
+      "sha256": "7cd9aa72d54ffa9c82fca23d758acb77bd97eca1916b3fd4ad7a1e4b26f5c257"
+    },
+    {
+      "unit_id": "OLP-0150",
+      "layer": "ordinary",
+      "bytes": 1571,
+      "sha256": "39508b58c73fcd5b6e3760cc1d22d4a2c5595c89696aa647b3a8d6d26a1160da"
+    },
+    {
+      "unit_id": "OLP-0151",
+      "layer": "source",
+      "bytes": 6720,
+      "sha256": "12389cc260a1209a3b4db95aa795df350026c94576bb0e62653229438ada136d"
+    },
+    {
+      "unit_id": "OLP-0151",
+      "layer": "standard",
+      "bytes": 6817,
+      "sha256": "59b229c3a1403fb0617c9f96f3a54f9fbbe17767bbfd49c27c3285d7b60b42dc"
+    },
+    {
+      "unit_id": "OLP-0151",
+      "layer": "ordinary",
+      "bytes": 6971,
+      "sha256": "c9aad1108fd8e66d3dee4cfe167cad7d37a451ae9731f2773ff1ea3e59e99b90"
+    },
+    {
+      "unit_id": "OLP-0152",
+      "layer": "source",
+      "bytes": 8909,
+      "sha256": "8a31bcb40fff1de629e4bb540c781a6b49d32c412cb87cb2bc5a29efd32461e3"
+    },
+    {
+      "unit_id": "OLP-0152",
+      "layer": "standard",
+      "bytes": 9229,
+      "sha256": "e3d4e38b9f4805f470e734df70e692e4a29d4bd140195b0073f38fbadd684036"
+    },
+    {
+      "unit_id": "OLP-0152",
+      "layer": "ordinary",
+      "bytes": 9158,
+      "sha256": "17239b5acac8290fe31d019a31f3348424fb82f1aa3b1b5bcd41b54c200275bc"
+    },
+    {
+      "unit_id": "OLP-0153",
+      "layer": "source",
+      "bytes": 7664,
+      "sha256": "6965d26327ea625a4697236ead340f76d3d83acdd087dc6cbe2bde3eebe33833"
+    },
+    {
+      "unit_id": "OLP-0153",
+      "layer": "standard",
+      "bytes": 7782,
+      "sha256": "8e62e590b18dbe5e7447f8be5bb2ade3c38a5bb3ccaf47a95f8a1b2c270acabd"
+    },
+    {
+      "unit_id": "OLP-0153",
+      "layer": "ordinary",
+      "bytes": 7858,
+      "sha256": "a363373613d724ba54951d790ca1db5bf1e5b99170613ef98074bf402a3ab1c4"
+    },
+    {
+      "unit_id": "OLP-0154",
+      "layer": "source",
+      "bytes": 3627,
+      "sha256": "788d271215826c823cfcc63c0b54ab7ef65a42a50cde27b27542f2072de2d786"
+    },
+    {
+      "unit_id": "OLP-0154",
+      "layer": "standard",
+      "bytes": 3712,
+      "sha256": "f11243980e2c393b459b74089442d643ab2da85550b69368a0a2dc3892f81b88"
+    },
+    {
+      "unit_id": "OLP-0154",
+      "layer": "ordinary",
+      "bytes": 3705,
+      "sha256": "0d5f30e3cb91189ee8e4a051da967f28f86b2592f37e4e7b0e4b6c01ac3b98f4"
+    },
+    {
+      "unit_id": "OLP-0155",
+      "layer": "source",
+      "bytes": 3967,
+      "sha256": "6e287a941dee45c936517925a0db269918b5020ac24892a03342dc7678f6c938"
+    },
+    {
+      "unit_id": "OLP-0155",
+      "layer": "standard",
+      "bytes": 4043,
+      "sha256": "ef90b3ede3504433f8e9fe435689f073f4eab15586a59207a60e7d4f1ad34bf2"
+    },
+    {
+      "unit_id": "OLP-0155",
+      "layer": "ordinary",
+      "bytes": 3995,
+      "sha256": "3061e3d0eee316099e05cb695da9bb9c794862c52ae2361d409274fae3a73829"
+    },
+    {
+      "unit_id": "OLP-0156",
+      "layer": "source",
+      "bytes": 10074,
+      "sha256": "b691c379c8dbebebf080199aa11279ab2666880334bf6b7818f385c4855eea01"
+    },
+    {
+      "unit_id": "OLP-0156",
+      "layer": "standard",
+      "bytes": 10332,
+      "sha256": "a18c85e67b542cd772252fbceeb2e2bdc30e28c599d68da318f11a522353b032"
+    },
+    {
+      "unit_id": "OLP-0156",
+      "layer": "ordinary",
+      "bytes": 11282,
+      "sha256": "000f4aaf6e4b05ea477fe8f383e5a21d5375115ed4599065a266730cbb19627c"
+    },
+    {
+      "unit_id": "OLP-0157",
+      "layer": "source",
+      "bytes": 3733,
+      "sha256": "b04a358a03907e8e42caa4b1cee49c217db77e1ca2c742da21c6eb6d7051edde"
+    },
+    {
+      "unit_id": "OLP-0157",
+      "layer": "standard",
+      "bytes": 3837,
+      "sha256": "515cf8407ffc2803607a12572e16f66aa12828465f7ec0ee3ef9ad2fb3ef7505"
+    },
+    {
+      "unit_id": "OLP-0157",
+      "layer": "ordinary",
+      "bytes": 4269,
+      "sha256": "49d2d438b08ad2d8c7506cfaa7d6751b991c83fc6b968dad12a9bd11f00f43d7"
+    },
+    {
+      "unit_id": "OLP-0158",
+      "layer": "source",
+      "bytes": 4709,
+      "sha256": "3db5cd0e374edb0ba4cff9f6f849272190d5fc5420e5132e1237adcd64619fae"
+    },
+    {
+      "unit_id": "OLP-0158",
+      "layer": "standard",
+      "bytes": 5021,
+      "sha256": "64b72cacf1baa8b6fb1fa7e58e51f501837e4abbf40796ca4091fb0978a9a315"
+    },
+    {
+      "unit_id": "OLP-0158",
+      "layer": "ordinary",
+      "bytes": 5869,
+      "sha256": "a7b83e79a063364d59b8527f29c4bfc29608bcd35af731b8a12621d1ca084656"
+    },
+    {
+      "unit_id": "OLP-0159",
+      "layer": "source",
+      "bytes": 404,
+      "sha256": "9ece0259134346fe5dad884d12bfe4aaa88dab579e7d821a156115ee904e8f3b"
+    },
+    {
+      "unit_id": "OLP-0159",
+      "layer": "standard",
+      "bytes": 407,
+      "sha256": "dd005bf0181b01e6e26f42720d77d5cae9db84f095ab125ba7de5ef911d3b99c"
+    },
+    {
+      "unit_id": "OLP-0159",
+      "layer": "ordinary",
+      "bytes": 431,
+      "sha256": "8e0502932efea5edf6e6079f50d8d611258146aa8977bc377bd788de7c8868d2"
+    },
+    {
+      "unit_id": "OLP-0160",
+      "layer": "source",
+      "bytes": 2368,
+      "sha256": "0c17fd8bd7b0a2218229c8f217581bf09cde11ec08a602019f46b20f174a4722"
+    },
+    {
+      "unit_id": "OLP-0160",
+      "layer": "standard",
+      "bytes": 2538,
+      "sha256": "97060785187dfa28bd61aca0497b6d2316b0811999eaa39eb96249b073ed992d"
+    },
+    {
+      "unit_id": "OLP-0160",
+      "layer": "ordinary",
+      "bytes": 2569,
+      "sha256": "8d9bd983460f3d7584e7ba45c490ba28d849ce25a82ed043031159d494a9b593"
     }
   ]
 }

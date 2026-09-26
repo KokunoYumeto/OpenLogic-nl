@@ -1,0 +1,110 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: subformulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{sbf}
+
+\olsection{\printtoken{P}{subformula}: formuledelen}
+
+\begin{explain}
+Vaak willen we praten over de !!{formula}s waaruit een andere
+!!{formula} is opgebouwd. We noemen die haar \emph{!!{subformula}s}:
+het zijn formuledelen die zelf ook formules zijn. Iedere !!{formula}
+telt als !!a{subformula} van zichzelf. Een subformule van $!A$ die niet
+$!A$ zelf is, heet een \emph{echte !!{subformula}}.
+\end{explain}
+
+\begin{defn}[Direct !!^{subformula}]
+Als $!A$ !!a{formula} is, noemen we de \emph{directe
+!!{subformula}s} van $!A$ de formuledelen die één bouwstap lager
+liggen. Dit zijn ze:
+\begin{enumerate}
+\item Atomaire !!{formula}s hebben geen directe !!{subformula}s.
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{De enige directe
+    !!{subformula} van $\indfrm$ is~$!B$.}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{De directe !!{subformula}s van
+  $\indfrm$ zijn $!B$ en $!C$ ($\ast$ mag elk logisch verbindingsteken
+  met twee plaatsen zijn).}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{De enige directe
+    !!{subformula} van $\indfrm$ is~$!B$.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{De enige directe
+    !!{subformula} van $\indfrm$ is~$!B$.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[Echt !!^{subformula}]
+Als $!A$ !!a{formula} is, vinden we de \emph{echte !!{subformula}s}
+van $!A$ met de volgende regels. De regels gebruiken zichzelf opnieuw:
+\begin{enumerate}
+\item Atomaire !!{formula}s hebben geen echte !!{subformula}s.
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{De echte !!{subformula}s van
+    $\indfrm$ zijn~$!B$ en alle echte !!{subformula}s van~$!B$.}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{De echte !!{subformula}s van
+  $\indfrm$ zijn $!B$ en $!C$. Daarbij komen alle echte
+  !!{subformula}s van $!B$ en alle echte !!{subformula}s van~$!C$.}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{De echte
+    !!{subformula}s van $\indfrm$ zijn~$!B$ en alle echte
+    !!{subformula}s van~$!B$.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{De echte
+    !!{subformula}s van $\indfrm$ zijn~$!B$ en alle echte
+    !!{subformula}s van~$!B$.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[!!^{subformula}]
+De !!{subformula}s van $!A$ zijn $!A$ zelf en al haar echte
+!!{subformula}s.
+\end{defn}
+
+\begin{explain}
+De twee definities doen niet precies hetzelfde. Bij directe
+!!{subformula}s kijken we alleen één bouwstap omlaag. Voor iedere
+mogelijke vorm van een formule~$!A$ staat er rechtstreeks welke
+directe !!{subformula}s bij~$!A$ horen. Het is dus een lijst van
+gevallen. Die gevallen volgen dezelfde bouwregels als de verzameling
+!!{formula}s. Bij echte !!{subformula}s volgen we die bouwregels ook,
+maar gaan we verder omlaag. Naast de kleinere !!{formula}s $!B$ en
+$!C$ nemen we ook alle echte !!{subformula}s die zij zelf hebben. De
+definitie gebruikt zichzelf dus opnieuw; daarom heet zij
+\emph{recursief}. Algemeen werkt dit zo voor een functie op een
+verzameling die stap voor stap is opgebouwd (hier de !!{formula}s): in
+een geval van de definitie mag de functie zichzelf gebruiken. Dat mag
+alleen voor invoer die al ``eerder'' aan bod kwam. Bij $(!B \ast !C)$
+gebruiken we daarom alleen de echte !!{subformula}s van de ``eerdere''
+!!{formula}s $!B$ en $!C$.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:subfrm-trans}
+Stel dat $!B$ een subformule van $!A$ is en $!C$ een subformule van
+$!B$. Dan is $!C$ ook een subformule van $!A$. De relatie ``is een
+subformule van'' is dus transitief.
+\end{prop}
+
+\begin{prob}
+Bewijs \olref[fol][syn][sbf]{prop:subfrm-trans}.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:count-subfrms}
+Stel dat $!A$ een formule met $n$ logische verbindingstekens en tekens
+voor ``voor alle'' of ``er bestaat'' is. Dan heeft $!A$ op zijn meest
+$2n+1$ subformules.
+\end{prop}
+
+\begin{prob}
+Bewijs \olref[fol][syn][sbf]{prop:count-subfrms}.
+\end{prob}
+\end{document}

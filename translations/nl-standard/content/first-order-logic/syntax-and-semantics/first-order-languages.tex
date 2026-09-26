@@ -1,0 +1,159 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: first-order-languages
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{fol}
+
+\olsection{Eerste-ordetalen}
+
+
+Uitdrukkingen van de eerste-ordelogica worden opgebouwd uit een
+basisvocabulaire met \emph{!!{variable}s}, \emph{!!{constant}s},
+\emph{!!{predicate}s} en soms \emph{!!{function}s}. Daaruit worden,
+samen met logische connectieven, kwantoren en leestekens zoals haakjes
+en komma's, \emph{termen} en \emph{!!{formula}s} gevormd.
+
+\begin{explain}
+Informeel zijn !!{predicate}s namen voor eigenschappen en relaties,
+!!{constant}s namen voor afzonderlijke objecten en !!{function}s namen
+voor functies. Deze tekens vormen, met uitzondering van de
+!!{identity}~$\eq$, de \emph{niet-logische symbolen} en bepalen samen
+een taal. Iedere eerste-ordetaal~$\Lang L$ wordt door haar
+niet-logische symbolen bepaald. In het algemeenste geval bevat
+$\Lang L$ van elke soort oneindig veel symbolen.
+\end{explain}
+
+In het algemene geval gebruiken we in de eerste-ordelogica de volgende
+symbolen:
+
+\begin{enumerate}
+\item Logische symbolen
+\begin{enumerate}
+\item Logische connectieven:
+  \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (negatie)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (conjunctie)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (disjunctie)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{prvAll}{\ycomma $\lforall$ (universele kwantor)}{}%
+  \iftag{prvEx}{\ycomma $\lexists$ (existentiële kwantor)}{}.
+\tagitem{prvFalse}{De propositionele constante voor !!{falsity}~$\lfalse$.}{}
+\tagitem{prvTrue}{De propositionele constante voor !!{truth}~$\ltrue$.}{}
+\item De tweeplaatsige !!{identity}~$\eq$.
+\item Een !!{denumerable}s verzameling !!{variable}s: $\Obj v_0$, $\Obj v_1$, $\Obj
+  v_2$, \dots
+\end{enumerate}
+\item Niet-logische symbolen, die de \emph{standaardtaal} van de
+  eerste-ordelogica vormen
+\begin{enumerate}
+\item Een !!{denumerable}s verzameling $n$-plaatsige !!{predicate}s voor elke $n>0$: $\Obj
+  A^n_0$, $\Obj A^n_1$, $\Obj A^n_2$, \dots
+\item Een !!{denumerable}s verzameling !!{constant}s: $\Obj c_0$, $\Obj c_1$, $\Obj
+  c_2$, \dots.
+\item Een !!{denumerable}s verzameling $n$-plaatsige !!{function}s voor elke $n>0$:
+  $\Obj f^n_0$, $\Obj f^n_1$, $\Obj f^n_2$, \dots
+\end{enumerate}
+\item Leestekens: (, ) en de komma.
+\end{enumerate}
+
+De meeste definities en resultaten formuleren we voor de volledige
+standaardtaal van de eerste-ordelogica. Afhankelijk van de toepassing
+kunnen we de taal echter ook beperken tot slechts enkele
+!!{predicate}s, !!{constant}s en !!{function}s.
+
+\begin{ex}
+De taal~$\Lang L_A$ van de rekenkunde bevat één tweeplaatsig
+!!{predicate}~$<$, één !!{constant}~$\Obj 0$, één eenplaatsige
+!!{function}~$\prime$ en twee tweeplaatsige !!{function}s~$+$ en~$\times$.
+\end{ex}
+
+\begin{ex}
+De taal van de verzamelingenleer~$\Lang L_Z$ bevat uitsluitend het ene
+tweeplaatsige !!{predicate}~$\in$.
+\end{ex}
+
+\begin{ex}
+De taal van ordeningen~$\Lang L_\le$ bevat uitsluitend het
+tweeplaatsige !!{predicate}~$\le$.
+\end{ex}
+
+Ook dit zijn conventies: formeel zijn het slechts alternatieve namen.
+Zo zijn $<$, $\in$ en $\le$ alternatieve namen voor $\Obj A^2_0$, staat
+$\Obj 0$ voor $\Obj c_0$, $\prime$ voor $\Obj f^1_0$, $+$ voor
+$\Obj f^2_0$ en $\times$ voor $\Obj f^2_1$.
+
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
+Naast de hierboven ingevoerde primitieve connectieven en
+\iftag{notprvEx,notprvAll}{kwantor}{kwantoren} gebruiken we ook de
+volgende \emph{gedefinieerde} symbolen:
+\startycommalist
+  \iftag{defNot}{\ycomma $\lnot$ (negatie)}{}%
+  \iftag{defAnd}{\ycomma $\land$ (conjunctie)}{}%
+  \iftag{defOr}{\ycomma $\lor$ (disjunctie)}{}%
+  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{defAll}{\ycomma $\lforall$ (universele kwantor)}{}%
+  \iftag{defEx}{\ycomma $\lexists$ (existentiële kwantor)}{}%
+  \iftag{defFalse}{\ycomma !!{falsity}~$\lfalse$}{}%
+  \iftag{defTrue}{\ycomma !!{truth}~$\ltrue$}}{}.
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{explain}
+Een gedefinieerd symbool behoort formeel niet tot de taal, maar wordt
+als informele afkorting ingevoerd. Daarmee kunnen we formules afkorten
+die met uitsluitend primitieve symbolen tamelijk lang zouden worden.
+Dat is een duidelijk voordeel. Het grotere voordeel is echter dat
+bewijzen korter worden. Ieder primitief symbool moet in bewijzen
+afzonderlijk worden behandeld; hoe meer primitieve symbolen, des te
+langer onze bewijzen.
+\end{explain}
+\end{tagblock}
+
+% Alternate symbols
+
+\begin{intro}
+Mogelijk kent u andere termen en symbolen dan de bovenstaande. In
+logicaboeken en in het onderwijs gebruikt men vaak $\sim$, $\neg$ of~!\ voor
+``negatie'', en $\wedge$, $\cdot$ of $\&$ voor ``conjunctie''.
+Veelgebruikte symbolen voor de ``conditionele verbinding'' of
+``implicatie'' zijn $\rightarrow$, $\Rightarrow$ en $\supset$.
+\iftag{prvIff,defIff}{Symbolen voor ``biconditionele verbinding'', ``bi-implicatie''
+  of ``(materiële) equivalentie'' zijn $\leftrightarrow$,
+  $\Leftrightarrow$ en $\equiv$.}{}
+\iftag{prvFalse,defFalse}{Het symbool $\lfalse$ heet ook wel
+  ``onwaarheid'', ``falsum'', ``absurdum'' of ``bottom''.}{}
+\iftag{prvTrue,defTrue}{Het symbool $\ltrue$ heet ook wel
+  ``waarheid'', ``verum'' of ``top''.}{}
+
+Gewoonlijk gebruikt men kleine letters aan het begin van het Latijnse
+alfabet (bijvoorbeeld $a$, $b$, $c$) voor !!{constant}s, die soms namen
+heten, en kleine letters aan het einde (bijvoorbeeld $x$, $y$, $z$)
+voor !!{variable}s. Kwantoren worden met !!{variable}s gecombineerd,
+bijvoorbeeld met $x$. Notatievarianten voor de universele kwantor zijn
+$\forall x$, $(\forall x)$, $(x)$, $\Pi x$, $\bigwedge_x$; voor de
+existentiële kwantor zijn dat $\exists x$, $(\exists x)$, $(Ex)$,
+$\Sigma x$, $\bigvee_x$.
+\end{intro}
+
+\begin{explain}
+We kunnen alle propositionele operatoren en beide kwantoren als
+primitieve symbolen van de taal behandelen. We kunnen ook een kleinere
+voorraad primitieve symbolen kiezen en de overige !!{operator}s als
+gedefinieerd behandelen. Functioneel volledige verzamelingen van
+Booleaanse operatoren zijn onder meer $\{ \lnot, \lor \}$,
+$\{ \lnot, \land \}$ en $\{ \lnot, \lif\}$. Elk daarvan kan met een
+van beide kwantoren worden gecombineerd tot een expressief volledige
+eerste-ordetaal.
+
+Mogelijk kent u nog twee andere !!{operator}s: de Sheffer-streep~$|$,
+genoemd naar Henry Sheffer, en de pijl van Peirce~$\downarrow$, ook
+bekend als de dolk van Quine. Met hun gebruikelijke lezingen ``nand''
+respectievelijk ``nor'' zijn deze operatoren elk afzonderlijk
+functioneel volledig.
+\end{explain}
+\end{document}

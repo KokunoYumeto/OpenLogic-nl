@@ -1,0 +1,69 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: soundness-completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{scp}
+
+\olsection{Correctheid en volledigheid}
+
+We voeren ook !!{derivation}ssystemen voor de eerste-ordelogica in.
+Logici hebben veel verschillende !!{derivation}ssystemen bedacht. Toch
+geven ze allemaal dezelfde !!{derivability}srelatie tussen
+!!{sentence}s. We zeggen dat uit~$\Gamma$ de formule~$!A$ valt te
+\emph{!!{derive}}, en schrijven $\Gamma \Proves !A$, als er een
+!!a{derivation} van een precies omschreven soort bestaat.
+!!^{derivation}s zijn altijd eindige patronen van symbolen. Zo'n
+patroon kan een lijst !!{sentence}s zijn, maar ook iets ingewikkelders.
+Een !!{derivation}ssysteem moet ons helpen bepalen of !!a{sentence} uit
+een verzameling~$\Gamma$ volgt. Daarom moet gelden:
+$\Gamma \Entails !A$ precies als $\Gamma \Proves !A$.
+
+Stel dat $\Gamma \Proves !A$ wel geldt, maar $\Gamma \Entails !A$
+niet. Dan is ons !!{derivation}ssysteem te sterk: het bewijst te veel.
+Een systeem is \emph{correct} als uit $\Gamma \Proves !A$ altijd
+$\Gamma \Entails !A$ volgt. Dat is de minste eis waaraan een goed
+!!{derivation}ssysteem moet voldoen. Stel nu dat $\Gamma \Entails !A$
+wel geldt, maar $\Gamma \Proves !A$ niet. Dan is het systeem te zwak:
+het bewijst te weinig. Een systeem is \emph{volledig} als uit
+$\Gamma \Entails !A$ altijd $\Gamma \Proves !A$ volgt. Correctheid is
+meestal vrij eenvoudig te bewijzen. We gebruiken inductie naar de
+opbouw van de inductief gedefinieerde !!{derivation}s. Volledigheid is
+moeilijker.
+
+Correctheid en volledigheid hebben belangrijke gevolgen. Als uit een
+verzameling !!{sentence}s~$\Gamma$ een tegenspraak, zoals
+$!A \land \lnot !A$, valt te !!{derive}, heet~$\Gamma$
+\emph{inconsistent}. Een inconsistente verzameling kan geen model
+hebben en is dus onvervulbaar. Uit volledigheid volgt ook het omgekeerde.
+Iedere~$\Gamma$ die niet inconsistent is---we noemen haar dan
+\emph{consistent}---heeft een model. Dit is zelfs een andere,
+gelijkwaardige vorm van volledigheid. Die vorm gaan we bewijzen.
+Het resultaat is diep en misschien verrassend. Kun je de formule
+$!A \land \lnot !A$ niet uit~$\Gamma$ bewijzen, dan moet er
+!!a{structure} bestaan die is zoals~$\Gamma$ haar beschrijft. De vraag
+welke verzamelingen !!{sentence}s modellen hebben, heeft dus een kort
+antwoord: precies de consistente verzamelingen.
+
+De correctheids- en volledigheidsstelling hebben op hun beurt twee
+belangrijke gevolgen: de compactheidsstelling en de stelling van
+L\"owenheim--Skolem. Met deze resultaten uit de modeltheorie kunnen we
+weer veel andere zaken bewijzen. Twee voorbeelden kwamen al voorbij.
+De eerste-ordelogica kan niet zeggen dat het !!{domain} van
+!!a{structure} eindig is. Zij kan ook niet zeggen dat het
+!!{nonenumerable} is.
+
+Historisch kostte het veel tijd om dit allemaal goed uit te werken:
+de syntaxis en semantiek van de eerste-ordelogica, goede
+!!{derivation}ssystemen, bewijzen van correctheid en volledigheid en de
+grens tussen wat eerste-ordetalen wel en niet kunnen uitdrukken. Nu
+weten we hoe het moet. Toch kan het nog steeds verwarrend en taai zijn
+om alle details door te nemen. Die details zijn wel belangrijk. De
+methoden voor de formele taal van de eerste-ordelogica worden overal
+gebruikt: in de logica, informatica en taalkunde. Wie ze nu doorwerkt,
+heeft daar later voordeel van.
+
+\end{document}
