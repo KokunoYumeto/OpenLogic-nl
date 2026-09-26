@@ -1,0 +1,118 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: satisfaction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{sat}
+
+\olsection{Vervulling}
+
+Zodra we weten wat !!{formula}s zijn, kunnen we reeds vooruitlopen op
+de semantiek van de eerste-ordelogica. De fundamentele definitie is
+hier die van !!a{structure}. Voor onze eenvoudige taal heeft
+!!a{structure}~$\Struct M$ slechts drie componenten: een niet-lege
+verzameling $\Domain{M}$, het \emph{!!{domain}} geheten; het object dat
+$\Obj a$ in~$\Struct M$ aanduidt; en de objecten waarvoor $\Obj P$ in
+$\Struct M$ waar is. Het door~$\Obj a$ aangeduide object noteren we als
+$\Assign{\Obj a}{M}$ en de verzameling objecten waarvoor $\Obj P$ waar
+is als~$\Assign{\Obj P}{M}$. !!^a{structure}~$\Struct{M}$ bestaat dus
+precies uit deze drie zaken: $\Domain{M}$,
+$\Assign{\Obj a}{M} \in \Domain{M}$ en
+$\Assign{\Obj P}{M} \subseteq \Domain{M}$. Het algemene geval is
+ingewikkelder, want dan zijn er vele !!{predicate}s en !!{constant}s,
+kunnen de !!{constant}s meer dan één plaats hebben en zijn er ook
+!!{function}s.
+
+Dit volstaat voor een definitie van vervulling voor !!{formula}s die
+geen !!{variable}s bevatten. We geven een inductieve definitie die de
+wijze weerspiegelt waarop we !!{formula}s hebben gedefinieerd. Eerst
+bepalen we wanneer een atomaire formule in~$\Struct{M}$ wordt vervuld.
+Vervolgens bepalen we bijvoorbeeld wanneer $\lnot !A$ in~$\Struct{M}$
+wordt vervuld op grond van de vraag of $!A$ in~$\Struct{M}$ wordt
+vervuld. We zouden het volgende kunnen definiëren:
+\begin{enumerate}
+  \item $\Atom{\Obj P}{\Obj a}$ wordt in~$\Struct{M}$ vervuld dan en slechts dan als
+  $\Assign{\Obj a}{M} \in \Assign{\Obj P}{M}$.
+  \item $\lnot !A$ wordt in~$\Struct{M}$ vervuld dan en slechts dan als $!A$ niet
+  in~$\Struct{M}$ wordt vervuld.
+  \item $(!A \land !B)$ wordt in~$\Struct{M}$ vervuld dan en slechts dan als $!A$
+  in~$\Struct{M}$ wordt vervuld en ook $!B$ in~$\Struct{M}$ wordt vervuld.
+\end{enumerate}
+Neem $\Domain{M} = \{0, 1, 2\}$, $\Assign{\Obj a}{M} = 1$ en
+$\Assign{\Obj P}{M} = \{1, 2\}$. Volgens deze definitie wordt
+$\Atom{\Obj P}{\Obj a}$ in~$\Struct{M}$ vervuld, want
+$\Assign{\Obj a}{M} =  1 \in \{1,2\} = \Assign{\Obj P}{M}$. Verder
+wordt $\lnot \Atom{\Obj P}{\Obj a}$ niet in~$\Struct{M}$ vervuld,
+$\lnot\lnot \Atom{\Obj P}{\Obj a}$ wel en
+$(\lnot \Atom{\Obj P}{\Obj a} \land \Atom{\Obj P}{\Obj a})$ niet,
+enzovoort.
+
+Het probleem ontstaat bij de definitie voor kwantoren. We zouden
+willen zeggen: ``$\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]$ wordt
+vervuld dan en slechts dan als $\Atom{\Obj P}{\Obj v_0}$ wordt
+vervuld.'' De !!{structure}~$\Struct{M}$ zegt echter niet hoe we met
+!!{variable}s moeten omgaan. We bedoelen eigenlijk dat
+$\Atom{\Obj P}{\Obj v_0}$ wordt vervuld \emph{voor een of andere waarde
+van~$\Obj v_0$}. Om dit precies te maken, moeten we !!{element}s
+van~$\Domain{M}$ niet alleen aan $\Obj a$, maar ook aan~$\Obj v_0$
+kunnen toekennen. Daartoe voeren we \emph{bedelingen} voor
+!!{variable}s in.
+!!^a{variable} bedeling is eenvoudigweg een functie~$s$ die
+!!{variable}s naar !!{element}s van~$\Domain{M}$ afbeeldt (in ons
+voorbeeld naar een van $1$, $2$ of~$3$). Omdat we niet vooraf weten
+welke !!{variable}s in !!a{formula} zullen voorkomen, kunnen we de
+!!{variable}s waaraan $s$ een waarde toekent niet beperken. De
+eenvoudige oplossing is te eisen dat $s$ aan \emph{alle}
+!!{variable}s~$\Obj v_0$, $\Obj v_1$, \dots\@ een waarde toekent. We
+gebruiken vervolgens alleen de benodigde waarden.
+
+We definiëren de vervulling van !!{formula}s niet alleen ten opzichte
+van !!a{structure}, maar ten opzichte van !!a{structure}~$\Struct{M}$
+\emph{en} !!a{variable} bedeling~$s$. Kortheidshalve schrijven we
+$\Sat{M}{!A}[s]$. Onze definitie bevat nu een extra clausule voor
+atomaire !!{formula}s met !!{variable}s:
+\begin{enumerate}
+  \item $\Sat{M}{\Atom{\Obj P}{\Obj a}}[s]$ dan en slechts dan als
+  $\Assign{\Obj a}{M} \in \Assign{\Obj P}{M}$.
+  \item $\Sat{M}{\Atom{\Obj P}{\Obj v_i}}[s]$ dan en slechts dan als
+  $s(\Obj v_i) \in \Assign{\Obj P}{M}$.
+  \item $\Sat{M}{\lnot !A}[s]$ dan en slechts dan als niet $\Sat{M}{!A}[s]$.
+  \item $\Sat{M}{(!A \land !B)}[s]$ dan en slechts dan als $\Sat{M}{!A}[s]$ en $\Sat{M}{!B}[s]$.
+\end{enumerate}
+Dit lost één probleem op: we kunnen nu zeggen wanneer $\Struct{M}$ de
+formule $\Atom{\Obj P}{\Obj v_0}$ bij de waarde~$s(\Obj v_0)$ vervult.
+Voor een juiste definitie van $\lexists[\Obj v_0][\Atom{\Obj P}{\Obj
+v_0}]$ is nog één stap nodig. We willen dat
+$\Sat{M}{\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]}[s]$ dan en slechts
+dan als $\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[s']$ voor \emph{een of andere}
+wijze~$s'$ om aan~$\Obj v_0$ een waarde toe te kennen. De aan~$\Obj v_0$
+toegekende waarde hoeft echter niet gelijk te zijn aan de waarde die
+$s(\Obj v_0)$ aanduidt.
+Daarom voeren we een notatie in. Als $m \in \Domain{M}$, is
+$\Subst{s}{m}{\Obj v_0}$ de bedeling die gelijk is aan~$s$ (voor alle
+!!{variable}s behalve~$\Obj v_0$), maar aan $\Obj v_0$ de waarde~$m$
+toekent. Onze definitie luidt nu:
+\begin{enumerate}\setcounter{enumi}{4}
+  \item $\Sat{M}{\lexists[\Obj v_i][!A]}[s]$ dan en slechts dan als
+  $\Sat{M}{!A}[\Subst{s}{m}{\Obj v_i}]$ voor een zekere~$m \in \Domain{M}$.
+\end{enumerate}
+Werkt dit? Stel dat $s(\Obj v_i) = 0$ voor alle~$i \in \Nat$. Dan
+geldt $\Sat{M}{\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]}[s]$ dan en
+slechts dan als er een $m \in \Domain{M}$ bestaat waarvoor
+$\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[\Subst{s}{m}{\Obj v_0}]$. Zo'n waarde
+bestaat: we kunnen $m = 1$ of $m = 2$ kiezen. Dit blijft waar wanneer
+de waarde~$s(\Obj v_0)$ die aan~$\Obj v_0$ wordt toegekend door~$s$
+zelf---hier $0$---niet voldoet. We hebben immers
+$\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[\Subst{s}{1}{\Obj v_0}]$, maar niet
+$\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[s]$.
+
+Dit is inderdaad verwarrend en omslachtig. De extra complexiteit is
+echter nodig voor een precieze, inductieve definitie van vervulling
+voor alle !!{formula}s. Een dergelijke definitie is op haar beurt
+nodig om de semantische begrippen precies te definiëren. Er bestaan
+andere werkwijzen, maar die zijn alle even (on)elegant.
+
+\end{document}

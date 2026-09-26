@@ -1,10 +1,10 @@
 # Bronpakket — Gewone mensentaal
 
-Dit is een gedeeltelijke bronuitgave: 128 van 722 broneenheden in twee Nederlandse registers. De volledige oorspronkelijke wiskundige inhoud van deze eenheden is behouden; de laatste hoofdstukgrens kan midden in een hoofdstuk vallen. Er is nog geen gepubliceerde PDF of EPUB. De aangeboden samengestelde LaTeX is inhoudelijk samengesteld en bytegewijs gecontroleerd, maar in deze uitgave niet gecompileerd. Een eerdere bouwpoging kon de gedeelde TeX-vergrendeling niet verkrijgen en startte geen TeX-proces. De termen “geaccepteerd” en “gecontroleerd” verwijzen naar de vastgelegde AI-productiecontroles, niet naar onafhankelijk deskundigenonderzoek.
+Dit is een gedeeltelijke bronuitgave: 144 van 722 broneenheden in twee Nederlandse registers. De volledige oorspronkelijke wiskundige inhoud van deze eenheden is behouden; de laatste hoofdstukgrens kan midden in een hoofdstuk vallen. Er is nog geen gepubliceerde PDF of EPUB. De aangeboden samengestelde LaTeX is inhoudelijk samengesteld en bytegewijs gecontroleerd, maar in deze uitgave niet gecompileerd. Een eerdere bouwpoging kon de gedeelde TeX-vergrendeling niet verkrijgen en startte geen TeX-proces. De termen “geaccepteerd” en “gecontroleerd” verwijzen naar de vastgelegde AI-productiecontroles, niet naar onafhankelijk deskundigenonderzoek.
 
 ## Inhoud en gebruik
 
-Het bestand `OpenLogic-NL-Gewoon-Partial-OLP-0001--OLP-0128.tex` bevat alle 128 opgenomen tekstbestanden. De oorspronkelijke modulaire vertalingen, stijlen, bibliografie, figuren en Nederlandse labels staan in dit pakket. De volledige `alignment/UNITS.jsonl` bewaart alleen de broninventaris en grensinformatie; latere vertaalbestanden zijn niet opgenomen.
+Het bestand `OpenLogic-NL-Gewoon-Partial-OLP-0001--OLP-0144.tex` bevat alle 144 opgenomen tekstbestanden. De oorspronkelijke modulaire vertalingen, stijlen, bibliografie, figuren en Nederlandse labels staan in dit pakket. De volledige `alignment/UNITS.jsonl` bewaart alleen de broninventaris en grensinformatie; latere vertaalbestanden zijn niet opgenomen.
 
 Vereisten: Python 3.11 of nieuwer met lxml en pypdf, een volledige TeX-installatie, latexmk, pdfLaTeX, BibTeX, make4ht/TeX4ht, Java en EPUBCheck 5.3.0. Het bestand `PDF-REBUILD.json` beschrijft de bouwopdrachten. De meegeleverde bouwer gebruikt op Windows de globale TeX-vergrendeling; start geen parallelle TeX-processen. Het bouwresultaat is nog niet voor deze bronuitgave vastgesteld.
 

@@ -1,0 +1,161 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: compactness-direct
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{com}{cpd}}
+      {\olfileid{pl}{com}{cpd}}
+
+\olsection{Een rechtstreeks bewijs van de compactheidsstelling}
+
+We kunnen de compactheidsstelling ook rechtstreeks bewijzen. Dan hoeven
+we de volledigheidsstelling niet te gebruiken, al gebruiken we wel
+dezelfde ideeën als in haar bewijs. Dat bewijs begon met een consistente
+verzameling~$\Gamma$ van !!{sentence}s. We breidden die uit tot een
+consistente\iftag{FOL}{, verzadigde}{} en !!{complete}
+verzameling~$\Gamma^*$ van !!{sentence}s. Vervolgens bouwden we
+\iftag{FOL}{het termmodel~$\Struct{M(\Gamma^*)}$}{de !!{valuation}~$\pAssign{v(\Gamma^*)}$}
+uit $\Gamma^*$. Daarin zijn alle !!{sentence}s van~$\Gamma$ waar. De
+verzameling $\Gamma$ is dus vervulbaar.
+
+Dezelfde methode werkt voor een eindig vervulbare verzameling zinnen. Om
+te bewijzen dat zo'n verzameling vervulbaar is, hebben we nieuwe versies
+nodig van de resultaten vóór het waarheidslemma. In die versies vervangen
+we ``consistent'' door ``eindig vervulbaar''.
+
+\begin{prop}
+\ollabel{prop:fsat-ccs}
+Stel dat $\Gamma$ !!{complete} en eindig vervulbaar is. Dan geldt:
+\begin{enumerate}
+\tagitem{prvAnd}{$(!A \land !B) \in \Gamma$
+  precies als zowel $!A \in \Gamma$ als $!B \in \Gamma$.}{}
+
+\tagitem{prvOr}{$(!A \lor !B) \in \Gamma$ precies als
+  $!A \in \Gamma$ of $!B \in \Gamma$.}{}
+
+\tagitem{prvIf}{$(!A \lif !B) \in \Gamma$ precies als
+  $!A \notin \Gamma$ of $!B \in \Gamma$.}{}
+\end{enumerate}
+\end{prop}
+
+\tagprob{FOL}
+\begin{prob}
+Bewijs \olref[fol][com][cpd]{prop:fsat-ccs}. Gebruik $\Proves$ niet.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Bewijs \olref[pl][com][cpd]{prop:fsat-ccs}. Gebruik $\Proves$ niet.
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{%
+\begin{lem}
+\ollabel{lem:fsat-henkin} Elke eindig vervulbare verzameling~$\Gamma$ kan
+worden uitgebreid tot een verzadigde eindig vervulbare verzameling~$\Gamma'$.
+\end{lem}
+}{}
+
+\tagprob{FOL}
+\begin{prob}
+Bewijs \olref[fol][com][cpd]{lem:fsat-henkin}. (Aanwijzing: dit is de
+kern. Als $\Gamma_n$ eindig vervulbaar is, bewijs dan dat $\Gamma_n
+\cup \{!D_n\}$ dat ook is. Gebruik daarbij geen !!{derivation}s en geen
+consistentie.)
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{
+\begin{prop}\ollabel{prop:fsat-instances}
+Stel dat $\Gamma$ volledig, eindig vervulbaar en verzadigd is.
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\lexists[x][!A(x)] \in \Gamma$ precies als $!A(t) \in \Gamma$
+  voor ten minste één gesloten term~$t$.}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \in \Gamma$ precies als $!A(t) \in \Gamma$
+  voor alle gesloten termen~$t$.}{}
+\end{tagenumerate}
+\end{prop}
+}{}
+
+\tagprob{FOL}
+\begin{prob}
+Bewijs \olref[fol][com][cpd]{prop:fsat-instances}.
+\end{prob}
+\tagendprob
+
+\begin{lem}
+\ollabel{lem:fsat-lindenbaum} Elke eindig vervulbare verzameling~$\Gamma$
+kan worden uitgebreid tot !!a{complete} en eindig vervulbare
+verzameling~$\Gamma^*$.
+\end{lem}
+
+\tagprob{FOL}
+\begin{prob}
+Bewijs \olref[fol][com][cpd]{lem:fsat-lindenbaum}. (Aanwijzing: dit is de
+kern. Als $\Gamma_n$ eindig vervulbaar is, bewijs dan dat
+$\Gamma_n \cup \{!A_n\}$ of $\Gamma_n \cup \{\lnot !A_n\}$ eindig
+vervulbaar is.)
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Bewijs \olref[pl][com][cpd]{lem:fsat-lindenbaum}. (Aanwijzing: dit is de
+kern. Als $\Gamma_n$ eindig vervulbaar is, bewijs dan dat
+$\Gamma_n \cup \{!A_n\}$ of $\Gamma_n \cup \{\lnot !A_n\}$ eindig
+vervulbaar is.)
+\end{prob}
+\tagendprob
+
+\begin{thm}[Compactheid]
+\ollabel{thm:compactness-direct} $\Gamma$ is vervulbaar precies als zij
+eindig vervulbaar is.
+\end{thm}
+
+\begin{proof}
+Stel eerst dat $\Gamma$ vervulbaar is. Dan bestaat er
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+waarvoor $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ voor elke $!A \in \Gamma$.
+Dezelfde \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} vervult natuurlijk ook
+elke eindige deelverzameling van~$\Gamma$. De verzameling $\Gamma$ is dus
+eindig vervulbaar.
+
+Stel nu omgekeerd dat $\Gamma$ eindig vervulbaar is.\iftag{FOL}{ Volgens
+  \olref{lem:fsat-henkin} bestaat er dan een eindig vervulbare,
+  verzadigde verzameling $\Gamma' \supseteq \Gamma$.}{} Volgens
+\olref{lem:fsat-lindenbaum} kunnen we $\iftag{FOL}{\Gamma'}{\Gamma}$
+uitbreiden tot !!a{complete} en eindig vervulbare verzameling~$\Gamma^*$
+\iftag{FOL}{. De verzameling $\Gamma^*$ blijft daarbij verzadigd}{}.
+Bouw nu \iftag{FOL}{het termmodel~$\Struct{M(\Gamma^*)}$}{de !!{valuation}~$\pAssign{v(\Gamma^*)}$}
+zoals in \olref[mod]{defn:termmodel}.\iftag{FOL}{ Voor
+\olref[mod]{prop:quant-termmodel} was niet nodig dat $\Gamma^*$
+consistent, !!{complete} of verzadigd is. Nodig was alleen dat
+$\Struct{M(\Gamma^*)}$ overdekt is.}{} Het bewijs van het waarheidslemma
+(\olref[mod]{lem:truth}) werkt nu nog steeds. Vervang daarin de
+verwijzingen naar \olref[ccs]{prop:ccs}\iftag{FOL}{ en
+\olref[hen]{prop:saturated-instances} door verwijzingen naar
+\olref{prop:fsat-ccs} en \olref{prop:fsat-instances}}.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Schrijf het volledige bewijs van het waarheidslemma
+(\olref[fol][com][mod]{lem:truth}) uit in de versie die nodig is voor
+het bewijs van \olref[fol][com][cpd]{thm:compactness-direct}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Schrijf het volledige bewijs van het waarheidslemma
+(\olref[pl][com][mod]{lem:truth}) uit in de versie die nodig is voor
+het bewijs van \olref[pl][com][cpd]{thm:compactness-direct}.
+\end{prob}
+\tagendprob
+
+\end{document}

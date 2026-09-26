@@ -1,0 +1,90 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{fml}
+
+\section{\usetoken{P}{formula}}
+
+We zullen !!{sentence}s van de eerste-ordelogica op de volgende wijze
+rigoureus specificeren en de problemen behandelen die uit het gebruik
+van !!{variable}s voortkomen. Eerst definiëren we een \emph{andere}
+verzameling uitdrukkingen: !!{formula}s. Daarna kunnen we de rol van
+!!{variable}s daarin onderzoeken. Met behulp van de begrippen
+``vrije'' en ``gebonden'' !!{variable}s kunnen we vervolgens definiëren
+wat !!a{sentence} is, namelijk !!a{formula} zonder vrije
+!!{variable}s. Dit maakt niet alleen de definitie van ``!!{sentence}''
+hanteerbaarder, maar is ook wezenlijk voor onze definitie van het
+semantische begrip vervulling.
+
+We definiëren ``!!{formula}'' eerst voor een eenvoudige taal van de
+eerste orde. Deze bevat slechts één !!{predicate}~$\Obj P$, één
+!!{constant}~$\Obj a$ en de logische symbolen $\lnot$, $\land$
+en~$\lexists$. Onze volledige definities zullen veel algemener zijn:
+we zullen oneindig veel !!{predicate}s en !!{constant}s toelaten. We
+zullen bovendien !!{function}s beschouwen die met !!{constant}s en
+!!{variable}s tot ``termen'' kunnen worden gecombineerd. Voorlopig zijn
+$\Obj a$ en de variabelen onze enige termen. We hebben wel oneindig
+veel !!{variable}s nodig. Officieel gebruiken we de symbolen
+$\Obj v_0$, $\Obj v_1$, \dots, als variabelen.
+
+\begin{defn}
+De verzameling \emph{!!{formula}s}~$\Frm$ wordt als volgt gedefinieerd:
+\begin{enumerate}
+\item\ollabel{fmls-atom} $\Atom{\Obj P}{\Obj a}$ en $\Atom{\Obj
+  P}{\Obj v_i}$ zijn !!{formula}s ($i \in \Nat$).
+
+\tagitem{prvNot}{\ollabel{fmls-not}Als $!A$ !!a{formula} is, dan is $\lnot !A$
+  !!{formula}.}{}
+
+\tagitem{prvAnd}{Als $!A$ en $!B$ !!{formula}s zijn, dan is $(!A \land
+  !B)$ !!a{formula}.}{}
+
+\tagitem{prvEx}{\ollabel{fmls-ex}Als $!A$ !!a{formula} is en $x$ !!a{variable},
+  dan is $\lexists[x][!A]$ !!a{formula}.}{}
+
+\tagitem{limitClause}{\ollabel{fmls-limit}Niets anders is !!a{formula}.}{}
+\end{enumerate}
+\end{defn}
+
+Uit \olref{fmls-atom} volgt dat $\Atom{\Obj P}{\Obj a}$ en
+$\Atom{\Obj P}{\Obj v_i}$ voor elke $i \in \Nat$ !!{formula}s zijn.
+Dit zijn de zogeheten \emph{atomaire} !!{formula}s. Zij vormen het
+uitgangspunt. De overige clausules geven aan hoe uit reeds gevormde
+!!{formula}s nieuwe !!{formula}s kunnen worden gevormd. Uit
+\olref{fmls-not} volgt bijvoorbeeld dat $\lnot \Atom{\Obj P}{\Obj v_2}$
+!!a{formula} is, omdat $\Atom{\Obj P}{\Obj v_2}$ volgens
+\olref{fmls-atom} al !!a{formula} is. Vervolgens volgt uit
+\olref{fmls-ex} dat $\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj
+v_2}]$ eveneens !!{formula} is, enzovoort. \olref{fmls-limit} bepaalt
+dat \emph{alleen} de op deze wijze gevormde tekenreeksen als
+!!{formula}s gelden. In het bijzonder gelden $\lexists[\Obj
+v_0][\Atom{\Obj P}{\Obj a}]$ en $\lexists[\Obj v_0][\lexists[\Obj
+v_0][\Atom{\Obj P}{\Obj a}]]$ \emph{wel} als !!{formula}s, maar
+$(\lnot \Atom{\Obj P}{\Obj a})$ niet, vanwege de overtollige buitenste
+haakjes.
+
+Deze wijze van definiëren van !!{formula}s heet een \emph{inductieve
+definitie}. Zij maakt het mogelijk eigenschappen van !!{formula}s te
+bewijzen met een vorm van inductiebewijs die \emph{structurele inductie}
+heet. Beide begrippen worden algemeen besproken in
+\olref[mth][ind][idf]{sec} en \olref[mth][ind][sti]{sec}; men dient die
+paragrafen door te nemen voordat men zich in de latere bewijzen
+verdiept. Het grondidee is als volgt. Wil men bewijzen dat iets voor
+alle !!{formula}s geldt, dan toont men eerst aan dat het voor de
+atomaire !!{formula}s geldt. Vervolgens toont men aan dat, \emph{als}
+het voor willekeurige !!{formula}~$!A$ (en~$!B$) geldt, het \emph{ook}
+geldt voor $\lnot !A$, $(!A \land !B)$ en $\lexists[x][!A]$. Hiermee
+wordt bijvoorbeeld bewezen dat het voor $\lexists[\Obj v_2][\lnot
+\Atom{\Obj P}{\Obj v_2}]$ geldt. Uit het eerste deel weten we dat het
+voor de atomaire !!{formula}~$\Atom{\Obj P}{\Obj v_2}$ geldt. Uit het
+tweede deel volgt dan dat het voor $\lnot \Atom{\Obj P}{\Obj v_2}$
+geldt, en vervolgens ook voor $\lexists[\Obj v_2][\lnot \Atom{\Obj
+P}{\Obj v_2}]$ zelf. Omdat alle !!{formula}s inductief uit atomaire
+!!{formula}s worden voortgebracht, werkt dit voor elke formule.
+
+\end{document}

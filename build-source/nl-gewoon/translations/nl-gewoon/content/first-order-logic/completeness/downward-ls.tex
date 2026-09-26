@@ -1,0 +1,64 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: downward-ls
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{com}{dls}
+\olsection{De stelling van L\"owenheim--Skolem}
+
+De stelling van L\"owenheim--Skolem zegt het volgende. Heeft een theorie
+een oneindig model, dan heeft zij ook een model dat eindig of
+!!{denumerable} is. Daaruit volgt meteen een grens van de
+eerste-ordelogica: zij kan niet zeggen dat !!a{structure} een
+!!{nonenumerable} grootte moet hebben. Neem namelijk !!a{sentence} of een
+verzameling !!{sentence}s die in alle !!{nonenumerable} !!{structure}s
+wordt vervuld. Die wordt ook in een !!{enumerable} structuur vervuld.
+
+\begin{thm} 
+\ollabel{thm:downward-ls} Als $\Gamma$ consistent is, heeft zij
+!!a{enumerable} model. De verzameling is dus vervulbaar in !!a{structure}
+waarvan het domein eindig of !!{denumerable} is.
+\end{thm}
+
+\begin{proof}
+Stel dat $\Gamma$ consistent is. Het bewijs van de volledigheidsstelling
+levert dan de !!{structure}~$\Struct M$. Haar domein $\Domain{M}$ is niet
+groter dan de verzameling termen van de taal~$\Lang L$. De structuur
+$\Struct M$ is dus hoogstens !!{denumerable}.
+\end{proof}
+
+\begin{thm}
+\ollabel{noidentity-ls} Stel dat $\Gamma$ een consistente verzameling
+!!{sentence}s is in de taal van de eerste-ordelogica zonder identiteit.
+Dan heeft zij !!a{denumerable} model. Zij is dus vervulbaar in
+!!a{structure} waarvan het domein oneindig en !!{enumerable} is.
+\end{thm}
+
+\begin{proof}
+Stel dat $\Gamma$ consistent is en geen zinnen met identiteit bevat. Het
+bewijs van de volledigheidsstelling levert dan de !!{structure}~$\Struct M$.
+Haar domein $\Domain{M}$ is precies de verzameling termen van de
+taal~$\Lang L'$. De structuur $\Struct{M}$ is dus !!{denumerable}, want
+$\Trm[L']$ is dat ook.
+\end{proof}
+
+\begin{ex}[De paradox van Skolem]
+De verzamelingenleer van Zermelo--Fraenkel~$\Log{ZFC}$ is een krachtig
+raamwerk. We kunnen er vrijwel alle wiskundige uitspraken in doen, ook
+over de grootte van verzamelingen. Zo bewijst $\Log{ZFC}$ dat de
+verzameling~$\Real$ van reële getallen !!{nonenumerable} is. De theorie
+bewijst ook de stelling van Cantor: de machtsverzameling van een
+verzameling is groter dan die verzameling zelf. Als $\Log{ZFC}$
+consistent is, zijn al haar modellen oneindig. Elk model bevat bovendien
+!!{element}s waarvan de theorie zegt dat ze !!{nonenumerable} zijn. Een
+voorbeeld is het element dat de stelling van~$\Log{ZFC}$ waar maakt dat
+de machtsverzameling van de natuurlijke getallen bestaat. Toch heeft
+$\Log{ZFC}$ volgens de stelling van L\"owenheim--Skolem ook
+!!{enumerable} modellen. Zo'n model bevat ``!!{nonenumerable}''
+verzamelingen, terwijl het model zelf !!{enumerable} is.
+\end{ex}
+
+\end{document}

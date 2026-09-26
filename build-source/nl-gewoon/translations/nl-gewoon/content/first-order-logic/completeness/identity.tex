@@ -1,0 +1,205 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{com}{ide}
+\olsection{Identiteit}
+
+\begin{explain}
+Met het termmodel uit de vorige paragraaf kunnen we de volledigheid van
+de predicatenlogica bewijzen voor verzamelingen~$\Gamma$ zonder~$\eq$.
+Dat model vervult elke $!A \in \Gamma^*$ zonder~$\eq$, en dus ook elke
+$!A \in \Gamma$. Zodra~$\eq$ wel voorkomt, ontstaat een probleem.
+De verzameling $\Gamma^*$ kan dan !!a{sentence}~$\eq[t][t']$ bevatten.
+Maar in het termmodel is de waarde van een term gewoon die term zelf.
+Zijn $t$ en $t'$ verschillende termen, dan zijn hun waarden dus ook
+verschillend: respectievelijk $t$ en $t'$. Daardoor is $\eq[t][t']$
+onwaar. We lossen dit op met ``quotiëntvorming'': termen die volgens de
+verzameling gelijk zijn, behandelen we als één object.
+\end{explain}
+
+\begin{defn}
+  Neem een consistente en !!{complete} verzameling zinnen $\Gamma^*$ in
+  $\Lang L$. We definiëren de relatie $\approx$ op de gesloten termen
+  van~$\Lang L$ door
+  \[
+  t \approx t' \text{\quad precies als \quad} \eq[t][t'] \in \Gamma^*
+  \]
+\end{defn}
+
+\begin{prop}
+\ollabel{prop:approx-equiv}
+De relatie $\approx$ heeft deze eigenschappen:
+\begin{enumerate}
+\item $\approx$ is reflexief.
+\item $\approx$ is symmetrisch.
+\item  $\approx$ is transitief.
+\item Als $t \approx t'$, als $f$ !!a{function} is en als $t_1$, \dots,
+  $t_{i-1}$, $t_{i+1}$, \dots, $t_n$ gesloten termen zijn, dan
+\[
+\Atom{f}{t_1,\dots, t_{i-1}, t, t_{i+1}, \dots, t_n} \approx
+\Atom{f}{t_1,\dots, t_{i-1}, t', t_{i+1}, \dots, t_n}.
+\]
+\item Als $t \approx t'$, als $R$ !!a{predicate} is en als $t_1$, \dots,
+  $t_{i-1}$, $t_{i+1}$, \dots, $t_n$ gesloten termen zijn, dan
+\begin{multline*}
+\Atom{R}{t_1,\dots, t_{i-1}, t, t_{i+1}, \dots, t_n} \in \Gamma^* \text{ precies als } \\
+\Atom{R}{t_1,\dots, t_{i-1}, t', t_{i+1}, \dots, t_n} \in \Gamma^*.
+\end{multline*}
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+De verzameling $\Gamma^*$ is consistent en !!{complete}. Daarom geldt
+$\eq[t][t'] \in \Gamma^*$ precies als
+$\Gamma^* \Proves \eq[t][t']$. We hoeven dus alleen het volgende te bewijzen:
+\begin{enumerate}
+\item $\Gamma^* \Proves \eq[t][t]$ voor elke gesloten term~$t$.
+\item Als $\Gamma^* \Proves \eq[t][t']$, dan $\Gamma^* \Proves \eq[t'][t]$.
+\item Als $\Gamma^* \Proves \eq[t][t']$ en $\Gamma^* \Proves
+  \eq[t'][t'']$, dan $\Gamma^* \Proves \eq[t][t'']$.
+\item Als $\Gamma^* \Proves \eq[t][t']$, dan
+\[
+\Gamma^* \Proves
+\eq[\Atom{f}{t_1,\dots,t_{i-1},t,t_{i+1},,\dots,t_n}][\Atom{f}{t_1,\dots,t_{i-1},t',t_{i+1},\dots,t_n}]
+\]
+voor elke $n$-plaatsige !!{function}~$f$ en gesloten termen $t_1$, \dots,
+$t_{i-1}$, $t_{i+1}$, \dots,~$t_n$.
+\item Als $\Gamma^* \Proves \eq[t][t']$ en
+$\Gamma^* \Proves
+\Atom{R}{t_1,\dots,t_{i-1},t,t_{i+1},\dots,t_n}$, then
+$\Gamma^* \Proves \Atom{R}{t_1,\dots,t_{i-1},t',t_{i+1},\dots,t_n}$
+voor elk $n$-plaatsig !!{predicate}~$R$ en gesloten termen $t_1$, \dots,
+$t_{i-1}$, $t_{i+1}$, \dots,~$t_n$.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+Maak het bewijs van~\olref[fol][com][ide]{prop:approx-equiv} af.
+\end{prob}
+
+\begin{defn}
+Neem een consistente en !!{complete} verzameling $\Gamma^*$ in een
+taal~$\Lang L$, een gesloten term $t$ en de relatie $\approx$ uit de
+vorige definitie. Dan:
+\[
+\equivrep{t}{\approx} = \Setabs{t'}{t'\in \Trm[L], t \approx t'}
+\]
+and $\equivclass{\Trm[L]}{\approx} = \Setabs{\equivrep{t}{\approx}}{t \in \Trm[L]}$.
+\end{defn}
+
+\begin{defn}
+\ollabel{defn:term-model-factor}
+Neem het termmodel $\Struct M = \Struct M(\Gamma^*)$ voor~$\Gamma^*$ uit
+\olref[mod]{defn:termmodel}. De !!{structure}
+$\Struct{\equivclass{M}{\approx}}$ wordt dan als volgt opgebouwd:
+\begin{enumerate}
+\item $\Domain{\equivclass{M}{\approx}} = \equivclass{\Trm[L]}{\approx}$.
+\item $\Assign{c}{\equivclass{M}{\approx}} = \equivrep{c}{\approx}$
+\item $\Assign{f}{\equivclass{M}{\approx}}(\equivrep{t_1}{\approx}, \dots,
+  \equivrep{t_n}{\approx}) = \equivrep{\Atom{f}{t_1,\dots, t_n}}{\approx}$
+\item $\tuple{\equivrep{t_1}{\approx}, \dots, \equivrep{t_n}{\approx}} \in
+  \Assign{R}{\equivclass{M}{\approx}}$ precies als
+  $\Sat{M}{\Atom{R}{t_1,\dots, t_n}}$, en dus precies als
+  $\Atom{R}{t_1,\dots,
+  t_n} \in \Gamma^*$.
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Bij de definities van $\Assign{f}{\equivclass{M}{\approx}}$ en
+$\Assign{R}{\equivclass{M}{\approx}}$ schrijven we de elementen van
+$\equivclass{\Trm[L]}{\approx}$ als $\equivrep{t}{\approx}$. We kiezen
+dus een \emph{representant}~$t \in \equivrep{t}{\approx}$. De uitkomst
+mag niet afhangen van die keuze. Kiezen we een andere term~$t'$ uit
+dezelfde equivalentieklasse
+($\equivrep{t}{\approx} = \equivrep{t'}{\approx}$), dan moeten de
+definities hetzelfde resultaat geven. Neem bijvoorbeeld een eenplaatsig
+!!{predicate}~$R$. De laatste regel van de definitie zegt dat
+$\equivrep{t}{\approx} \in \Assign{R}{\equivclass{M}{\approx}}$ precies
+als $\Sat{M}{\Atom{R}{t}}$. Stel nu dat voor een andere term~$t'$ met
+$t \approx t'$ juist $\Sat/{M}{\Atom{R}{t}}$. Dan zou de definitie eisen
+dat $\equivrep{t'}{\approx} \notin
+\Assign{R}{\equivclass{M}{\approx}}$. Maar uit $t \approx t'$ volgt
+$\equivrep{t}{\approx} = \equivrep{t'}{\approx}$. Hetzelfde element zou
+dan zowel $\equivrep{t}{\approx} \in
+\Assign{R}{\equivclass{M}{\approx}}$ als $\equivrep{t}{\approx} \notin
+\Assign{R}{\equivclass{M}{\approx}}$ moeten opleveren. Dat kan niet.
+Volgens \olref{prop:approx-equiv} ontstaat deze situatie ook werkelijk
+niet.
+\end{explain}
+
+\begin{prop}
+$\Struct{\equivclass{M}{\approx}}$ is goed gedefinieerd. Dat betekent het
+volgende. Zijn $t_1$, \dots, $t_n$, $t_1'$, \dots, $t_n'$ gesloten termen
+en geldt $t_i \approx t_i'$, dan
+\begin{enumerate}
+\item $\equivrep{\Atom{f}{t_1,\dots, t_n}}{\approx} =
+    \equivrep{\Atom{f}{t_1',\dots, t_n'}}{\approx}$, dus
+  \[
+  \Atom{f}{t_1,\dots, t_n} \approx \Atom{f}{t_1',\dots, t_n'}
+  \]
+  en
+\item $\Sat{M}{\Atom{R}{t_1,\dots, t_n}}$ precies als
+  $\Sat{M}{\Atom{R}{t_1',\dots, t_n'}}$, dus
+  \[
+    \Atom{R}{t_1,\dots, t_n} \in \Gamma^* \text{ precies als }
+    \Atom{R}{t_1',\dots, t_n'} \in \Gamma^*.
+  \]
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Dit volgt uit \olref{prop:approx-equiv} met inductie naar~$n$.
+\end{proof}
+
+Net als bij het termmodel hebben we eerst het volgende lemma nodig. Daarna
+kunnen we het waarheidslemma bewijzen.
+
+\begin{lem} 
+\ollabel{lem:val-in-termmodel-factored} Neem $\Struct M = \Struct M
+ (\Gamma^*)$. Dan geldt $\Value{t}{\equivclass{M}{\approx}} = \equivrep{t}
+ {\approx}$.
+\end{lem}
+\begin{proof} 
+Dit bewijs werkt net als dat van \olref[mod]{lem:val-in-termmodel}.
+\end{proof}
+
+\begin{prob}
+Maak het bewijs van~\olref[fol][com][ide]{lem:val-in-termmodel-factored} af.
+\end{prob}
+
+\begin{lem}
+\ollabel{lem:truth}
+$\Sat{\equivclass{M}{\approx}}{!A}$ precies als $!A \in \Gamma^*$, voor
+elke zin~$!A$.
+\end{lem}
+
+\begin{proof}
+We gebruiken inductie naar~$!A$, net als in het bewijs van
+\olref[mod]{lem:truth}. Alleen het geval $!A \ident \eq[t][t']$ vraagt
+extra aandacht.
+\begin{align*}
+\Sat{\equivclass{M}{\approx}}{\eq[t][t']} & \text{ precies als } \equivrep{t}{\approx} = \equivrep{t'}{\approx}
+\text{ (volgens de definitie van $\Struct{\equivclass{M}{\approx}}$)}\\
+& \text{ precies als } t \approx t' \text{ (volgens de definitie van $\equivrep{t}{\approx}$)}\\
+& \text{ precies als } \eq[t][t'] \in \Gamma^* \text{ (volgens de definitie van $\approx$).}
+\end{align*}
+\end{proof}
+
+\begin{digress}
+Het model $\Struct{M(\Gamma^*)}$ is altijd !!{enumerable} en oneindig.
+Het quotiëntmodel $\Struct{\equivclass{M}{\approx}}$ kan toch eindig zijn,
+want er kunnen maar eindig veel klassen $\equivrep{t}{\approx}$ zijn.
+Dat is niet vreemd. De verzameling $\Gamma$ kan !!{sentence}s bevatten
+die alleen waar kunnen zijn in een eindige !!{structure}. Een voorbeeld
+is $\lforall[x][\lforall[y][x = y]]$. Deze !!{sentence} is consistent,
+maar wordt alleen vervuld in !!{structure}s waarvan het !!{domain}
+precies één !!{element} bevat.
+\end{digress}
+
+\end{document}

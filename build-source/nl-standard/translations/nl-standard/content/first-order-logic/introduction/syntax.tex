@@ -1,0 +1,58 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: syntax
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{syn}
+
+\olsection{Syntaxis}
+
+We moeten eerst precies vastleggen welke reeksen symbolen als
+!!{sentence}s van de eerste-ordelogica gelden. Dat doen we later;
+voorlopig werken we met voorbeelden. De basiselementen---de
+woordenschat---van de eerste-ordelogica vallen in twee delen uiteen.
+Het eerste deel bestaat uit de symbolen waarmee we bepaalde dingen
+aanduiden of er iets bepaalds over zeggen. We duiden dingen aan met
+!!{constant}s en zeggen iets over de aangeduide dingen met
+!!{predicate}s. Zo kunnen we $\Obj a$ als !!a{constant} gebruiken om
+één ding aan te duiden en daar vervolgens met de
+!!{sentence}~$\Atom{\Obj P}{\Obj a}$ iets over zeggen. Als men een
+betekenis voor ``$\Obj a$'' en ``$\Obj P$'' voor ogen heeft, kan men
+$\Atom{\Obj P}{\Obj a}$ als een Nederlandse zin lezen (en dat heeft
+men waarschijnlijk gedaan toen men voor het eerst formele logica
+leerde). Zodra men zulke eenvoudige !!{sentence}s van de
+eerste-ordelogica heeft, kan men met het tweede deel van de
+woordenschat---de logische symbolen (connectieven en kwantoren)---
+complexere zinnen vormen. Zo kunnen we bijvoorbeeld uitdrukkingen
+vormen als $(\Atom{\Obj P}{\Obj a} \land \Atom{\Obj Q}{\Obj b})$
+of~$\lexists[\Obj x][\Atom{\Obj P}{\Obj x}]$.
+
+Om de precieze definities van de semantiek en de regels van onze
+systemen voor !!{derivation} te kunnen geven die voor rigoureus
+metalogisch onderzoek nodig zijn, moeten we allereerst precies
+definiëren wat als !!a{sentence} van de eerste-ordelogica geldt. Het
+grondidee is eenvoudig: sommige eenvoudige !!{sentence}s, zoals
+$\Atom{\Obj P}{\Obj a}$, kunnen we alleen uit !!{predicate}s en
+!!{constant}s vormen. Daaruit vormen we met de connectieven en
+kwantoren complexere zinnen. Maar volgens welke regels mogen we
+precies complexere !!{sentence}s vormen? Die regels moeten worden
+vastgelegd; anders is ``!!{sentence} van de eerste-ordelogica'' niet
+nauwkeurig genoeg gedefinieerd. Daarbij doen zich enkele kwesties
+voor. Ten eerste moeten precies de juiste reeksen symbolen als
+!!{sentence}s gelden. Ten tweede moet de definitie zo zijn opgezet dat
+we wiskundige bewijzen over \emph{alle} !!{sentence}s kunnen geven.
+Ten slotte moeten we ook enkele elementaire bewerkingen op
+!!{sentence}s precies definiëren, zoals ``vervang elke $\Obj x$ in~$!A$
+door~$\Obj b$.'' Door de kwantoren en !!{variable}s van de
+eerste-ordelogica is niet zonder meer duidelijk hoe dat moet gebeuren.
+Moet bijvoorbeeld $\lexists[\Obj x][\Atom{\Obj P}{\Obj a}]$ als
+!!a{sentence} gelden? En
+$\lexists[\Obj x][\lexists[\Obj x][\Atom{\Obj P}{\Obj x}]]$? Wat moet
+het resultaat zijn van ``vervang $\Obj x$ door~$\Obj b$ in
+$(\Atom{\Obj P}{\Obj x} \land \lexists[\Obj x][\Atom{\Obj P}{\Obj
+x}])$''?
+
+\end{document}

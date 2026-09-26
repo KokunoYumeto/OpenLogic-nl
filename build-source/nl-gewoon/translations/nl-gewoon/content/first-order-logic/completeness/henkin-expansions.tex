@@ -1,0 +1,220 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: henkin-expansion
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{com}{hen}
+
+\olsection{De Henkin-uitbreiding}
+
+\begin{explain}
+Een lastig deel van het volledigheidsbewijs is dit: het model dat we uit
+een volledige consistente verzameling~$\Gamma$ bouwen, moet alle
+gekwantificeerde !!{formula}s in~$\Gamma$ waar maken. Een truc van Leon
+Henkin zorgt daarvoor. We breiden eerst de taal uit met oneindig veel
+nieuwe !!{constant}s. Daarna voegen we voor elke !!{formula} met één
+vrije !!{variable} $!A(x)$ een formule toe van de vorm
+\iftag{prvEx}
+      {$\lexists[x][!A(x)] \lif !A(c)$}
+      {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c)$},
+waarbij $c$ een van de nieuwe !!{constant}s is. Later bouwen we de
+!!{structure} die~$\Gamma$ waar maakt. De toegevoegde formules zorgen er
+dan voor dat elke
+\iftag{prvEx}
+{ware existentiële zin een getuige heeft}
+{onware universele zin een tegenvoorbeeld heeft}
+onder de nieuwe constanten.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:lang-exp}
+Stel dat $\Gamma$ consistent is in $\Lang L$. Stel ook dat we $\Lang L'$
+uit $\Lang L$ maken door !!a{denumerable} verzameling nieuwe
+!!{constant}s $\Obj d_0$, $\Obj d_1$, \dots toe te voegen. Dan blijft
+$\Gamma$ consistent in~$\Lang L'$.
+\end{prop}
+
+\begin{defn}[Verzadigde verzameling]
+Een verzameling $\Gamma$ van !!{formula}s van een taal $\Lang {L}$ heet
+\emph{verzadigd} precies als aan de volgende voorwaarde is voldaan. Neem
+een willekeurige !!{formula}~$!A(x) \in \Frm[L]$ met één vrije
+!!{variable}~$x$. Er moet dan een !!{constant}~$c \in \Lang{L}$ zijn
+waarvoor
+\iftag{prvEx}
+      {$\lexists[x][!A(x)] \lif !A(c) \in \Gamma$}
+      {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c) \in \Gamma$}.
+\end{defn}
+
+We hebben de volgende definitie nodig in het bewijs van de volgende
+stelling.
+
+\begin{defn}
+\ollabel{defn:henkin-exp}
+Neem $\Lang L'$ uit \olref{prop:lang-exp}. Zet $!A_0(x_0)$,
+$!A_1(x_1)$, \dots in één lijst. Dit is een opsomming van alle
+!!{formula}s~$!A_i(x_i)$ van~$\Lang L'$ waarin één variabele ($x_i$)
+vrij voorkomt. We definiëren nu de !!{sentence}s~$!D_n$ stap voor stap,
+door inductie naar~$n$.
+
+Laat $c_0$ de eerste !!{constant} onder de $\Obj d_i$ zijn die we aan
+~$\Lang{L}$ hebben toegevoegd en die niet in~$!A_0(x_0)$ voorkomt. Neem
+nu aan dat $!D_0$, \dots,~$!D_{n-1}$ al zijn gedefinieerd. Laat $c_n$
+dan de eerste van de nieuwe !!{constant}s~$\Obj d_i$ zijn die niet in
+$!D_0$, \dots,~$!D_{n-1}$ en ook niet in~$!A_n(x_n)$ voorkomt.
+
+Definieer $!D_{n}$ als de volgende !!{formula}: \iftag{prvEx}
+{$\lexists[x_{n}][!A_{n}(x_{n})] \lif
+  !A_{n}(c_{n})$}{$\lnot\lforall[x_{n}][!A_{n}(x_{n})] \lif \lnot
+  !A_{n}(c_{n})$}.
+\end{defn}
+
+\begin{lem}
+\ollabel{lem:henkin}
+Elke consistente verzameling~$\Gamma$ past in een grotere verzameling
+$\Gamma'$ die zowel verzadigd als consistent is.
+\end{lem}
+
+\begin{proof}
+Begin met een consistente verzameling zinnen~$\Gamma$ in een
+taal~$\Lang{L}$. Voeg !!a{denumerable} verzameling nieuwe !!{constant}s
+aan de taal toe. Zo krijgen we~$\Lang{L'}$. Volgens
+\olref{prop:lang-exp} blijft $\Gamma$ consistent in deze ruimere taal.
+Neem verder de formules $!D_i$ uit \olref{defn:henkin-exp}. Definieer
+\begin{align*}
+\Gamma_0 & = \Gamma \\
+\Gamma_{n+1} & = \Gamma_n \cup \{!D_n \}
+\end{align*}
+Dus $\Gamma_{n+1} = \Gamma \cup \{ !D_0, \dots, !D_n \}$. Definieer
+ook $\Gamma' = \bigcup_{n} \Gamma_n$. Door de manier waarop we de
+formules hebben toegevoegd, is $\Gamma'$ verzadigd.
+
+Stel dat $\Gamma'$ inconsistent is. Dan moet er een $n$ zijn waarvoor
+$\Gamma_n$ inconsistent is (Opgave: leg uit waarom). Om te bewijzen dat
+$\Gamma'$ consistent is, hoeven we dus alleen met inductie naar~$n$ aan
+te tonen dat elke verzameling~$\Gamma_n$ consistent is.
+
+De basisstap zegt dat $\Gamma_0 = \Gamma$ consistent is. Dat is precies
+de aanname van de stelling. Voor de inductiestap nemen we aan dat
+$\Gamma_{n}$ consistent is, maar dat $\Gamma_{n+1} =
+\Gamma_n \cup \{!D_n\}$ inconsistent is. De formule $!D_n$ is
+\iftag{prvEx}
+{$\lexists[x_{n}][!A_{n}(x_n)] \lif !A_{n}(c_{n})$}
+{$\lnot\lforall[x_{n}][!A_{n}(x_n)] \lif \lnot !A_{n}(c_{n})$}.
+Hier is $!A_n(x_n)$ !!a{formula} van $\Lang{L'}$ waarin alleen de
+variabele~$x_n$ vrij voorkomt. Kijk nu terug naar de keuze van~$c_n$ in
+\olref{defn:henkin-exp}. Daaruit volgt dat $c_n$ niet in~$!A_n(x_n)$ en
+ook niet in~$\Gamma_n$ voorkomt.
+
+Als $\Gamma_n \cup \{!D_n\}$ inconsistent is, dan $\Gamma_n
+\Proves \lnot !D_n$. Daaruit volgen de twee beweringen hieronder:
+\iftag{prvEx}{
+\[
+\Gamma_n \Proves \lexists[x_n][!A_n(x_n)]
+\qquad
+\Gamma_n \Proves \lnot !A_n(c_n)
+\]}{
+\[
+\Gamma_n \Proves \lnot\lforall[x_n][!A_n(x_n)]
+\qquad
+\Gamma_n \Proves !A_n(c_n)
+\]}
+De constante $c_n$ komt niet voor in
+$\Gamma_n$ of in~$!A_n(x_n)$. Daarom mogen we
+\tagrefs{prfAX/{fol:axd:qpr:thm:strong-generalization},prfSC/{fol:seq:qpr:thm:strong-generalization},prfND/{fol:ntd:qpr:thm:strong-generalization},prfTab/{fol:tab:qpr:thm:strong-generalization}}
+toepassen. Uit \iftag{prvEx}
+{$\Gamma_n \Proves \lnot !A_n(c_n)$}
+{$\Gamma_n \Proves !A_n(c_n)$}
+volgt dan
+\iftag{prvEx}
+{$\Gamma_n \Proves \lforall[x_n][\lnot !A_n(x_n)]$}
+{$\Gamma_n \Proves \lforall[x_n][!A_n(x_n)]$}.
+We hebben dus zowel
+\iftag{prvEx}
+{$\Gamma_n \Proves \lexists[x_n][!A_n(x_n)]$ als
+$\Gamma_n \Proves \lforall[x_n][\lnot !A_n(x_n)]$}
+{$\Gamma_n \Proves \lnot\lforall[x_n][!A_n(x_n)]$ als
+$\Gamma_n \Proves \lforall[x_n][!A_n(x_n)]$}.
+Daarmee is $\Gamma_n$ zelf inconsistent.
+\iftag{prvEx}
+{(Merk op dat
+\iftag{prvAll}
+{$\lforall[x_n][\lnot !A_n(x_n)] \Proves
+  \lnot\lexists[x_n][!A_n(x_n)]$}
+{$\lforall[x_n][\lnot !A_n]$ per definitie gelijk is aan
+  $\lnot\lexists[x_n][\lnot\lnot !A_n(x_n)]$ en dat
+  $\lnot\lexists[x_n][\lnot\lnot !A_n(x_n)] \Proves
+  \lnot\lexists[x_n][!A_n(x_n)]$}.)}{}
+Dat is een tegenspraak: we hadden aangenomen dat $\Gamma_n$ consistent
+was. Dus is $\Gamma_n \cup \{ !D_n\}$ consistent.
+\end{proof}
+
+\begin{explain}
+Nu bekijken we wat verzadiging ons oplevert. Neem een verzameling die
+\emph{volledig}, consistent en verzadigd is. Dan geldt:
+\iftag{prvAll}{zij bevat een universeel gekwantificeerde !!{sentence}
+  precies als zij al haar instanties bevat}{}\iftag{defAll,defEx}{}{
+  en }\iftag{prvAll}{zij bevat een existentieel gekwantificeerde
+  !!{sentence} precies als zij minstens één instantie bevat}{}. We
+gebruiken dit straks om te bewijzen dat de !!{structure} die we uit een
+volledige, consistente, verzadigde verzameling bouwen al haar
+gekwantificeerde zinnen waar maakt.
+\end{explain}
+
+\begin{prop}\ollabel{prop:saturated-instances}
+Stel dat $\Gamma$ volledig, consistent en verzadigd is.
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\lexists[x][!A(x)] \in \Gamma$ precies als
+  $!A(t) \in \Gamma$ voor minstens één gesloten term~$t$.}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \in \Gamma$ precies als
+  $!A(t) \in \Gamma$ voor alle gesloten termen~$t$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{tagenumerate}{prvEx,prvAll}
+  \tagitem{prvEx}{%
+    \iftag{probEx}{Opgave.}{Stel eerst dat $\lexists[x][!A(x)]
+      \in \Gamma$. Omdat $\Gamma$ verzadigd is, geldt
+      $(\lexists[x][!A(x)] \lif !A(c)) \in \Gamma$ voor een
+      !!{constant}~$c$. Uit
+      \tagrefs{prfAX/{fol:axd:ppr:prop:provability-lif},prfSC/{fol:seq:ppr:prop:provability-lif},prfND/{fol:ntd:ppr:prop:provability-lif},prfTab/{fol:tab:ppr:prop:provability-lif}}, onderdeel~(1),
+      en \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-prov-in} volgt dat
+      $!A(c) \in \Gamma$.
+
+    Voor de andere richting hebben we verzadiging niet nodig. Stel dat
+    $!A(t) \in \Gamma$. Dan volgt uit
+      \tagrefs{prfAX/{fol:axd:qpr:prop:provability-quantifiers},prfSC/{fol:seq:qpr:prop:provability-quantifiers},prfND/{fol:ntd:qpr:prop:provability-quantifiers},prfTab/{fol:tab:qpr:prop:provability-quantifiers}}, onderdeel~(1),
+    dat $\Gamma \Proves \lexists[x][!A(x)]$. Volgens
+    \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-prov-in} geldt dan
+    $\lexists[x][!A(x)] \in \Gamma$.}}{}
+  \tagitem{prvAll}{%
+    \iftag{probAll}{Opgave.}{Stel dat $!A(t) \in \Gamma$ voor alle
+      gesloten termen~$t$. Neem voor een tegenspraak aan dat
+      $\lforall[x][!A(x)] \notin \Gamma$. Omdat $\Gamma$ volledig is,
+      geldt $\lnot\lforall[x][!A(x)] \in \Gamma$. Uit verzadiging volgt
+      dat \iftag{prvEx}{$(\lexists[x][\lnot !A(x)] \lif \lnot !A(c)) \in
+        \Gamma$}{$(\lnot\lforall[x][!A(x)] \lif \lnot !A(c)) \in
+        \Gamma$} voor een !!{constant}~$c$. Volgens de aanname geldt,
+      omdat $c$ een gesloten term is, $!A(c) \in \Gamma$. Maar dan zou
+      $\Gamma$ inconsistent zijn. (Opgave: geef de !!{derivation} die
+      laat zien dat
+      \[
+      \lnot \lforall[x][!A(x)],
+      \iftag{prvEx}{\lexists[x][\lnot !A(x)] \lif \lnot
+        !A(c)}{\lnot\lforall[x][!A(x)] \lif \lnot
+        !A(c)}, !A(c)
+      \]
+      inconsistent is.)
+
+      Voor de andere richting hebben we verzadiging niet nodig. Stel dat
+      $\lforall[x][!A(x)] \in \Gamma$. Uit
+      \tagrefs{prfAX/{fol:axd:qpr:prop:provability-quantifiers},prfSC/{fol:seq:qpr:prop:provability-quantifiers},prfND/{fol:ntd:qpr:prop:provability-quantifiers},prfTab/{fol:tab:qpr:prop:provability-quantifiers}},
+      onderdeel~(2), volgt dan $\Gamma \Proves !A(t)$. Volgens
+      \olref[ccs]{prop:ccs} geldt $!A(t) \in \Gamma$.}}{}
+  \end{tagenumerate}
+\end{proof}
+
+\end{document}

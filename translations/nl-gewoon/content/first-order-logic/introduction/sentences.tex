@@ -1,0 +1,57 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: sentences
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{snt}
+
+\olsection{\usetoken{P}{sentence}}
+
+We hebben nu in grote lijnen bepaald wanneer !!{structure}s en
+!!{formula}s elkaar vervullen, dus wanneer een formule ``waar is in''
+een structuur. Daarvoor hadden we wel iets extra's nodig: !!a{variable}
+toekenning. Maar we wilden juist !!{sentence}s definiëren. Hoe komen we
+van die toekenningen af, en wat zijn !!{sentence}s precies?
+
+Uit een eerste cursus formele logica herinner je je misschien het
+verband tussen !!{variable}s en kwantoren. Na een kwantor staat altijd
+!!a{variable}. Die kwantor geldt voor een bepaald deel van de
+!!{sentence}; dat deel heet zijn ``bereik''. Binnen dat bereik is de
+!!{variable} aan de kwantor ``gebonden''. In !!{formula}s hoeft niet
+iedere !!{variable} een bijbehorende kwantor te hebben. !!{variable}s
+zonder zo'n kwantor heten ``vrij'' of ``ongebonden''. We noemen precies
+die !!{formula}s zonder vrije !!{variable}s voortaan !!{sentence}s.
+
+Meestal zie je vrij snel of een voorkomen van !!a{variable} in
+!!a{formula}~$!A$ vrij of gebonden is, en welke kwantor het bindt.
+Misschien heb je geleerd dit te controleren door haakjes te tellen.
+Voor het vervolg hebben we een precieze definitie nodig. We hebben
+!!{formula}s met inductie gedefinieerd. Daarom kunnen we ook met
+inductie vastleggen welke voorkomens van !!a{variable}~$x$ in
+!!a{formula}~$!A$ vrij en gebonden zijn. Voor onze eenvoudige taal
+werkt dat zo:
+\begin{enumerate}
+  \item Is $!A$ atomair, dan zijn alle voorkomens van $x$ daarin vrij.
+  Het voorkomen van $x$ in~$\Atom{\Obj P}{x}$ is dus vrij.
+  \item Heeft $!A$ de vorm $\lnot !B$, dan is een voorkomen van~$x$
+  in~$\lnot !B$ vrij precies als het bijbehorende voorkomen van~$x$
+  vrij is in~$!B$. De vrije voorkomens van variabelen in~$!B$ zijn dus
+  precies de bijbehorende voorkomens in~$\lnot !B$.
+  \item Heeft $!A$ de vorm $(!B \land !C)$, dan is een voorkomen van~$x$
+  in~$(!B \land !C)$ vrij precies als het bijbehorende voorkomen van~$x$
+  vrij is in~$!B$ of in~$!C$.
+  \item Heeft $!A$ de vorm $\lexists[x][!B]$, dan is geen enkel voorkomen
+  van $x$ in~$!A$ vrij. Heeft de formule de vorm $\lexists[y][!B]$ en is $y$
+  een andere !!{variable} dan~$x$, dan is een voorkomen van~$x$ in
+  $\lexists[y][!B]$ vrij precies als het bijbehorende voorkomen van~$x$
+  vrij is in~$!B$.
+\end{enumerate}
+
+Zodra precies vastligt welke voorkomens van variabelen vrij of
+gebonden zijn, is de definitie kort: !!a{sentence} is elke !!{formula}
+zonder vrije voorkomens van !!{variable}s.
+
+\end{document}

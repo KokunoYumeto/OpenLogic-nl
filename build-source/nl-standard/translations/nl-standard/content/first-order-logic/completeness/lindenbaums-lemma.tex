@@ -1,0 +1,102 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: lindenbaums-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{com}{lin}}
+      {\olfileid{pl}{com}{lin}}
+
+\olsection{Lemma van Lindenbaum}
+
+\begin{explain}
+We bewijzen nu een lemma waaruit blijkt dat elke consistente verzameling
+!!{sentence}s opgenomen is in een verzameling zinnen die niet alleen
+consistent, maar ook !!{complete} is. In het bewijs voegen we telkens één
+!!{sentence} toe en garanderen we bij elke stap dat de verzameling
+consistent blijft. We doen dit zo dat voor elke $!A$ in een zeker stadium
+ofwel $!A$ ofwel $\lnot !A$ wordt toegevoegd. De vereniging van alle
+stadia in deze constructie bevat dan $!A$ of haar ontkenning~$\lnot !A$
+en is dus volledig. Zij is ook consistent, omdat we er bij elke stap voor
+zorgen dat we geen inconsistentie invoeren.
+\end{explain}
+
+\begin{lem}[Lemma van Lindenbaum]
+\ollabel{lem:lindenbaum} Elke consistente verzameling~$\Gamma$ in een
+taal~$\Lang{L}$ kan worden uitgebreid tot !!a{complete} en consistente
+verzameling~$\Gamma^*$.
+\end{lem}
+
+\begin{proof}
+Laat $\Gamma$ consistent zijn. Laat $!A_0$, $!A_1$, \dots{} een
+opsomming zijn van alle !!{sentence}s van~$\Lang L$. Definieer
+$\Gamma_0 = \Gamma$ en
+\[
+\Gamma_{n+1} =
+\begin{cases}
+\Gamma_n \cup \{ !A_n \} & \textrm{als $\Gamma_n \cup \{!A_n\}$
+  consistent is;} \\
+\Gamma_n \cup \{ \lnot !A_n \} & \textrm{anders.}
+\end{cases}
+\]
+Stel $\Gamma^* = \bigcup_{n \geq 0} \Gamma_n$.
+
+Elke $\Gamma_n$ is consistent: $\Gamma_0$ is per definitie consistent.
+Als $\Gamma_{n+1} = \Gamma_n \cup \{!A_n\}$, dan is dit omdat de
+laatstgenoemde verzameling consistent is. Als zij dat niet is, dan
+$\Gamma_{n+1} = \Gamma_n \cup \{\lnot !A_n\}$. We moeten verifiëren dat
+$\Gamma_n \cup \{\lnot !A_n\}$ consistent is. Veronderstel dat dit niet
+zo is. Dan zijn \emph{zowel} $\Gamma_n \cup \{!A_n\}$ als
+$\Gamma_n \cup \{\lnot !A_n\}$ inconsistent. Volgens
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:prv:prop:provability-exhaustive},
+    prfSC/{fol:seq:prv:prop:provability-exhaustive},
+    prfND/{fol:ntd:prv:prop:provability-exhaustive},
+    prfTab/{fol:tab:prv:prop:provability-exhaustive}}}{%
+  \tagrefs{prfAX/{pl:axd:prv:prop:provability-exhaustive},
+    prfSC/{pl:seq:prv:prop:provability-exhaustive},
+    prfND/{pl:ntd:prv:prop:provability-exhaustive},
+    prfTab/{pl:tab:prv:prop:provability-exhaustive}}}
+zou $\Gamma_n$ dan inconsistent zijn, in tegenspraak met de
+inductiehypothese.
+
+Voor elke~$n$ en elke $i < n$ geldt $\Gamma_i \subseteq \Gamma_n$. Dit
+volgt door een eenvoudige inductie naar~$n$. Voor $n=0$ bestaan er geen
+$i < 0$, zodat de bewering automatisch geldt. Veronderstel voor de
+inductiestap dat zij geldt voor~$n$. We tonen aan dat uit $i < n+1$
+volgt dat $\Gamma_i \subseteq \Gamma_{n+1}$. Volgens de constructie is
+$\Gamma_{n+1} = \Gamma_n \cup \{!A_n\}$ of $= \Gamma_n \cup \{\lnot
+!A_n\}$. Dus $\Gamma_n \subseteq \Gamma_{n+1}$. Als $i < n+1$, dan
+geldt volgens de inductiehypothese $\Gamma_i \subseteq \Gamma_n$ (als
+$i < n$), of geldt het triviale feit $\Gamma_n \subseteq \Gamma_n$ (als
+$i = n$). We verkrijgen dan $\Gamma_i \subseteq \Gamma_{n+1}$ door de
+transitiviteit van~$\subseteq$.
+
+Hieruit volgt dat $\Gamma^*$ consistent is. Dit kan als volgt worden
+ingezien. Laat $\Gamma' \subseteq \Gamma^*$ eindig zijn. Elk
+$!B \in \Gamma'$ behoort dan ook tot~$\Gamma_i$ voor een zekere~$i$.
+Laat $n$ de grootste van deze indices zijn. Omdat
+$\Gamma_i \subseteq \Gamma_n$ als $i \le n$, geldt voor elk
+$!B \in \Gamma'$ ook $\in \Gamma_n$; met andere woorden,
+$\Gamma' \subseteq \Gamma_n$. Bovendien is $\Gamma_n$ consistent. Elke
+eindige deelverzameling $\Gamma' \subseteq \Gamma^*$ is dus consistent.
+Volgens \iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:ptn:prop:proves-compact},
+    prfSC/{fol:seq:ptn:prop:proves-compact},
+    prfND/{fol:ntd:ptn:prop:proves-compact},
+    prfTab/{fol:tab:ptn:prop:proves-compact}}}{%
+  \tagrefs{prfAX/{pl:axd:ptn:prop:proves-compact},
+    prfSC/{pl:seq:ptn:prop:proves-compact},
+    prfND/{pl:ntd:ptn:prop:proves-compact},
+    prfTab/{pl:tab:ptn:prop:proves-compact}}} is $\Gamma^*$ consistent.
+
+Elke !!{sentence} van $\Frm[L]$ komt voor in de opsomming waarmee
+~$\Gamma^*$ is gedefinieerd. Als $!A_n \notin \Gamma^*$, dan komt dit
+doordat $\Gamma_n \cup \{!A_n\}$ inconsistent was. Maar dan geldt
+$\lnot !A_n \in \Gamma^*$, zodat $\Gamma^*$ !!{complete} is.
+\end{proof}
+
+\end{document}

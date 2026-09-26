@@ -1,0 +1,84 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: first-order-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{fol}
+
+\olsection{Eerste-ordelogica}
+
+Waarschijnlijk ken je de eerste-ordelogica al uit een eerste inleiding
+tot de formele logica.\footnote{Daar gaan we eigenlijk min of meer van
+uit!{} Is dat niet zo, dan kun je eerst een eenvoudiger leerboek
+bekijken, zoals \emph{forall x} \citep{Magnus2021}.} Misschien ken je
+haar als ``kwantorlogica'' of ``predicatenlogica''. De eerste-ordelogica
+is om te beginnen een formele taal. Zo'n taal heeft een vaste
+woordenschat. Haar uitdrukkingen zijn reeksen symbolen uit die
+woordenschat, maar niet iedere reeks is toegestaan. Er zijn verschillende
+soorten toegestane uitdrukkingen: termen, !!{formula}s en !!{sentence}s.
+Het gaat ons vooral om !!{sentence}s van de eerste-ordelogica. Ze zijn de
+formele tegenhangers van gewone Nederlandse zinnen. We kunnen er de
+vragen over stellen die voor een logicus belangrijk zijn. Bijvoorbeeld:
+\begin{itemize}
+    \item Volgt $!B$ logisch uit~$!A$?
+    \item Is $!A$ logisch waar, logisch onwaar of
+contingent?
+    \item Zijn $!A$ en $!B$ gelijkwaardig?
+\end{itemize}
+
+Deze vragen gaan vooral over de ``betekenis'' van !!{sentence}s in de
+eerste-ordelogica. Neem de vraag of $!B$ logisch uit~$!A$ volgt. Een
+filosoof vraagt dan: bestaat er een geval waarin $!A$ waar is maar $!B$
+onwaar ($!B$ volgt dan niet uit~$!A$)? Of maakt ieder geval dat $!A$ waar
+maakt ook $!B$ waar ($!B$ volgt dan wel uit~$!A$)? We weten alleen nog
+niet wat zo'n ``geval'' precies is. Daarvoor dient de \emph{semantiek}:
+de betekenisregels. De semantiek van de eerste-ordelogica maakt het idee
+van een ``geval'' wiskundig precies. Ook maakt zij precies wat het
+betekent dat !!a{sentence}~$!A$ \emph{waar is in} zo'n geval. Het
+wiskundige model van een geval dat we gaan maken, noemen we
+!!a{structure}. De relatie die ``waar in'' precies maakt, heet
+\emph{vervulling}. We gaan dus vastleggen wat ``$!A$ wordt vervuld
+in~$\Struct{M}$'' betekent (in symbolen: $\Sat{M}{!A}$), voor
+!!{sentence}s~$!A$ en !!{structure}s~$\Struct{M}$. Daarna kunnen we ook
+``volgt uit'' en ``is logisch waar'' precies definiëren. Met die
+definities kunnen we
+wiskundig precies bepalen of bijvoorbeeld
+$\lforall[x][(!A(x) \lif !B(x)),
+\lexists[x][!A(x)] \Entails \lexists[x][!B(x)]]$. Het antwoord is
+natuurlijk ``ja''. Als je al hebt geleerd gewone zinnen in
+eerste-ordelogica te zetten, herken je hierin bijvoorbeeld: ``Alle
+mieren zijn insecten; er zijn mieren; dus zijn er insecten.'' Dat is
+duidelijk een geldig argument. Ons wiskundige model van ``volgt uit''
+voor de formele taal moet daarom hetzelfde antwoord geven.
+
+Uit een eerste cursus formele logica ken je waarschijnlijk ook
+\emph{!!{derivation}s}. Daar heb je vermoedelijk geoefend om zulke
+!!{derivation}s te vinden. Misschien heb je zelfs !!a{derivation} gemaakt
+voor de gevolgtrekking hierboven. Een !!{derivation} kan op veel manieren
+worden gegeven. Je hebt misschien gewerkt met ``natuurlijke deductie''
+of ``semantische tableaus'', maar er bestaan nog veel andere systemen.
+Met systemen voor formele !!{derivation} kunnen we de vragen hierboven beantwoorden.
+Neem bijvoorbeeld !!a{derivation} in natuurlijke deductie waarin
+$\lforall[x][(!A(x) \lif !B(x))$ en $\lexists[x][!A(x)]$ de premissen
+zijn en $\lexists[x][!B(x)]]$ de conclusie, dus de laatste regel, is.
+Deze afleiding \emph{controleert} dat $\lexists[x][!B(x)]$ logisch volgt
+uit $\lforall[x][(!A(x) \lif !B(x))]$ en $\lexists[x][!A(x)]$.
+
+Maar waarom bewijst zo'n afleiding dat? Op het eerste gezicht hebben
+systemen voor formele !!{derivation} niets met semantiek te maken. Bij een formele
+!!{derivation} zet je symbolen volgens bepaalde regels neer. Over
+``gevallen'' of ``waar in'' gaat dat niet. We moeten dus apart, op het
+niveau van de logica zelf, bewijzen hoe systemen voor formele !!{derivation} en
+semantiek samenhangen. We hebben bijvoorbeeld een wiskundig bewijs nodig
+van het volgende. Een formele !!{derivation} van $\lexists[x][!B(x)]$
+uit de premissen $\lforall[x][(!A(x) \lif !B(x))]$ en
+$\lexists[x][!A(x)]$ is mogelijk precies als
+$\lforall[x][(!A(x) \lif !B(x))$ en $\lexists[x][!A(x)]$ samen
+$\lexists[x][!B(x)]]$ impliceren. Voordat we dat kunnen bewijzen, moeten
+we eerst veel precies werk doen: de syntaxis, dus de vormregels, en de
+semantiek, dus de betekenisregels, moeten goed zijn gedefinieerd.
+
+\end{document}

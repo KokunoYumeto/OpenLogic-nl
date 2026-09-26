@@ -1,0 +1,85 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: first-order-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{fol}
+
+\olsection{Eerste-ordelogica}
+
+U kent de eerste-ordelogica waarschijnlijk uit een eerste inleiding tot
+de formele logica.\footnote{We nemen dit min of meer aan!{} Zo niet, dan
+kunt u een elementairder leerboek raadplegen, zoals \emph{forall x}
+\citep{Magnus2021}.} Mogelijk kent u haar als ``kwantorlogica'' of
+``predicatenlogica''. De eerste-ordelogica is om te beginnen een formele
+taal. Zij heeft dus een bepaalde woordenschat en haar uitdrukkingen zijn
+rijen symbolen uit die woordenschat. Niet iedere rij is echter
+toegestaan. Er zijn verschillende soorten toegestane uitdrukkingen:
+termen, !!{formula}s en !!{sentence}s. Onze belangstelling gaat vooral
+uit naar !!{sentence}s van de eerste-ordelogica. Zij vormen een formele
+tegenhanger van zinnen in het Nederlands, en we kunnen er de vragen over
+stellen waarin een logicus doorgaans geïnteresseerd is. Bijvoorbeeld:
+\begin{itemize}
+    \item Volgt $!B$ logisch uit~$!A$?
+    \item Is $!A$ logisch waar, logisch onwaar of
+contingent?
+    \item Zijn $!A$ en $!B$ equivalent?
+\end{itemize}
+
+Deze vragen betreffen primair de ``betekenis'' van !!{sentence}s van de
+eerste-ordelogica. Een filosoof analyseert de vraag of $!B$ logisch uit
+$!A$ volgt bijvoorbeeld als volgt: bestaat er een geval waarin $!A$
+waar en $!B$ onwaar is ($!B$ volgt niet uit~$!A$), of maakt elk geval
+dat $!A$ waar maakt ook $!B$ waar ($!B$ volgt wel uit~$!A$)? We hebben
+echter nog niet bepaald wat een ``geval'' is; dat is de taak van de
+\emph{semantiek}. De semantiek van de eerste-ordelogica geeft een
+wiskundig precies model van het intuïtieve filosofische begrip ``geval''
+en, even belangrijk, van wat het betekent dat !!a{sentence}~$!A$
+\emph{waar is in} een geval. Het wiskundig precieze model dat we zullen
+ontwikkelen heet !!a{structure}. De relatie die ``waar in'' preciseert,
+heet de relatie van \emph{vervulling}. We zullen dus definiëren wat
+``$!A$ wordt vervuld in~$\Struct{M}$'' betekent (in symbolen:
+$\Sat{M}{!A}$), voor !!{sentence}s~$!A$ en !!{structure}s~$\Struct{M}$.
+Daarna kunnen we ook andere semantische termen, zoals ``volgt uit'' en
+``is logisch waar'', precies definiëren. Met die definities kunnen we
+wederom wiskundig precies
+vaststellen of bijvoorbeeld $\lforall[x][(!A(x) \lif !B(x)),
+\lexists[x][!A(x)] \Entails \lexists[x][!B(x)]]$. Het antwoord is
+uiteraard ``ja''. Wie al heeft geleerd Nederlandse zinnen in
+eerste-ordelogica te symboliseren, herkent hierin bijvoorbeeld de
+symbolisering van: ``Alle mieren zijn insecten; er zijn mieren; dus zijn
+er insecten.'' Dit argument is duidelijk geldig. Ons wiskundige model
+van ``volgt uit'' voor de formele taal moet daarom hetzelfde antwoord
+geven.
+
+Een ander onderwerp dat u waarschijnlijk uit een eerste inleiding tot
+de formele logica kent, zijn \emph{!!{derivation}s}. In een eerste cursus
+formele logica hebt u vermoedelijk geoefend zulke !!{derivation}s te
+vinden, wellicht zelfs !!a{derivation} die de bovenstaande
+gevolgtrekking aantoont. Er bestaan veel verschillende vormen van
+!!{derivation}s. Mogelijk hebt u gewerkt met ``natuurlijke deductie'' of
+``semantische tableaus'', maar er zijn vele andere. Systemen voor formele
+!!{derivation} verschaffen hulpmiddelen om de bovenstaande vragen van logici
+te beantwoorden. Zo \emph{verifieert} een !!{derivation} in natuurlijke
+deductie waarin $\lforall[x][(!A(x) \lif !B(x))$ en
+$\lexists[x][!A(x)]$ premissen zijn en $\lexists[x][!B(x)]]$ de conclusie
+(laatste regel) is, dat $\lexists[x][!B(x)]$ logisch volgt uit
+$\lforall[x][(!A(x) \lif !B(x))]$ en $\lexists[x][!A(x)]$.
+
+Waarom is dat zo? Op het eerste gezicht staan systemen voor formele !!{derivation}
+los van de semantiek: een formele !!{derivation} rangschikt slechts
+symbolen volgens bepaalde regels en vermeldt geen ``gevallen'' of ``waar
+in''. Het verband tussen systemen voor formele !!{derivation} en semantiek moet door
+metalogisch onderzoek worden vastgesteld. Daarvoor is bijvoorbeeld een
+wiskundig bewijs nodig dat een formele !!{derivation} van
+$\lexists[x][!B(x)]$ uit de premissen
+$\lforall[x][(!A(x) \lif !B(x))]$ en $\lexists[x][!A(x)]$ mogelijk is dan
+en slechts dan als $\lforall[x][(!A(x) \lif !B(x))$ en
+$\lexists[x][!A(x)]$ samen $\lexists[x][!B(x)]]$ impliceren. Voordat we
+dit kunnen bewijzen, is echter veel zorgvuldig werk nodig om de
+definities van syntaxis en semantiek correct te formuleren.
+
+\end{document}

@@ -1,0 +1,115 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: satisfaction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{sat}
+
+\olsection{Wanneer een formule waar is (vervulling)}
+
+Nu we weten wat !!{formula}s zijn, kunnen we alvast naar de semantiek
+van de eerste-ordelogica kijken. Daarvoor moeten we eerst !!a{structure}
+definiëren. In onze eenvoudige taal heeft !!a{structure}~$\Struct M$
+drie delen. Het eerste is een niet-lege verzameling $\Domain{M}$, het
+\emph{!!{domain}}. Het tweede is het object dat $\Obj a$ in~$\Struct M$
+aanwijst. Het derde is de verzameling objecten waarvoor $\Obj P$ in
+$\Struct M$ waar is. Het door~$\Obj a$ aangewezen object schrijven we
+als $\Assign{\Obj a}{M}$ en de verzameling waarvoor $\Obj P$ waar is
+als $\Assign{\Obj P}{M}$. !!^a{structure}~$\Struct{M}$ bestaat dus uit
+precies $\Domain{M}$, $\Assign{\Obj a}{M} \in \Domain{M}$ en
+$\Assign{\Obj P}{M} \subseteq \Domain{M}$. In de algemene situatie
+zijn er veel !!{predicate}s en !!{constant}s, kunnen de !!{constant}s
+meer dan één plaats hebben en zijn er ook !!{function}s. Daarom wordt
+die situatie ingewikkelder.
+
+Hiermee kunnen we al bepalen wanneer !!{formula}s zonder
+!!{variable}s waar zijn. We gebruiken een inductieve definitie die op
+de definitie van !!{formula}s lijkt. Eerst leggen we vast wanneer een
+atomaire formule waar is in~$\Struct{M}$. Daarna leggen we bijvoorbeeld
+vast wanneer $\lnot !A$ waar is in~$\Struct{M}$ door te kijken of $!A$
+waar is in~$\Struct{M}$. Dat kan zo:
+\begin{enumerate}
+  \item $\Atom{\Obj P}{\Obj a}$ is waar in~$\Struct{M}$ precies als
+  $\Assign{\Obj a}{M} \in \Assign{\Obj P}{M}$.
+  \item $\lnot !A$ is waar in~$\Struct{M}$ precies als $!A$ niet waar
+  is in~$\Struct{M}$.
+  \item $(!A \land !B)$ is waar in~$\Struct{M}$ precies als $!A$ waar
+  is in~$\Struct{M}$ en $!B$ ook waar is in~$\Struct{M}$.
+\end{enumerate}
+Neem $\Domain{M} = \{0, 1, 2\}$, $\Assign{\Obj a}{M} = 1$ en
+$\Assign{\Obj P}{M} = \{1, 2\}$. Dan is
+$\Atom{\Obj P}{\Obj a}$ waar in~$\Struct{M}$, want
+$\Assign{\Obj a}{M} =  1 \in \{1,2\} = \Assign{\Obj P}{M}$. Daarom is
+$\lnot \Atom{\Obj P}{\Obj a}$ niet waar in~$\Struct{M}$. De formule
+$\lnot\lnot \Atom{\Obj P}{\Obj a}$ is er wel waar en
+$(\lnot \Atom{\Obj P}{\Obj a} \land \Atom{\Obj P}{\Obj a})$ niet.
+Zo kunnen we doorgaan.
+
+Bij de kwantoren ontstaat een probleem. We zouden willen zeggen:
+``$\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]$ is waar precies als
+$\Atom{\Obj P}{\Obj v_0}$ waar is.'' Maar de
+!!{structure}~$\Struct{M}$ zegt niet welke waarde de !!{variable}s
+hebben. We willen eigenlijk zeggen dat $\Atom{\Obj P}{\Obj v_0}$ waar
+is \emph{voor een of andere waarde van~$\Obj v_0$}. Daarom moeten we
+!!{element}s van~$\Domain{M}$ niet alleen aan $\Obj a$, maar ook
+aan~$\Obj v_0$ kunnen toekennen. We voeren daarvoor \emph{toekenningen}
+aan !!{variable}s in. !!^a{variable} toekenning is een functie~$s$ die
+iedere !!{variable} koppelt aan !!a{element} van~$\Domain{M}$, in ons
+voorbeeld aan een van $1$, $2$ of~$3$. We weten vooraf niet welke
+!!{variable}s in !!a{formula} zullen staan. Daarom kunnen we niet
+beperken aan welke !!{variable}s $s$ een waarde geeft. De eenvoudige
+oplossing is dat $s$ aan \emph{alle} !!{variable}s~$\Obj v_0$,
+$\Obj v_1$, \dots\@ een waarde toekent. We gebruiken later alleen de
+waarden die nodig zijn.
+
+Of !!{formula}s waar zijn, hangt nu niet alleen af van
+!!a{structure}. Het hangt af van !!a{structure}~$\Struct{M}$ \emph{en}
+!!a{variable} toekenning~$s$. We schrijven dit kort als
+$\Sat{M}{!A}[s]$. Voor atomaire !!{formula}s met !!{variable}s komt er
+een extra regel bij:
+\begin{enumerate}
+  \item $\Sat{M}{\Atom{\Obj P}{\Obj a}}[s]$ precies als
+  $\Assign{\Obj a}{M} \in \Assign{\Obj P}{M}$.
+  \item $\Sat{M}{\Atom{\Obj P}{\Obj v_i}}[s]$ precies als
+  $s(\Obj v_i) \in \Assign{\Obj P}{M}$.
+  \item $\Sat{M}{\lnot !A}[s]$ precies als niet $\Sat{M}{!A}[s]$.
+  \item $\Sat{M}{(!A \land !B)}[s]$ precies als $\Sat{M}{!A}[s]$ en $\Sat{M}{!B}[s]$.
+\end{enumerate}
+Hiermee kunnen we zeggen wanneer $\Struct{M}$ de formule
+$\Atom{\Obj P}{\Obj v_0}$ waar maakt bij de waarde~$s(\Obj v_0)$. Voor
+$\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]$ is nog één stap nodig.
+We willen dat $\Sat{M}{\lexists[\Obj v_0][\Atom{\Obj P}{\Obj
+v_0}]}[s]$ precies als $\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[s']$ voor
+\emph{een of andere} manier~$s'$ om aan~$\Obj v_0$ een waarde toe te
+kennen. De aan~$\Obj v_0$ toegekende waarde hoeft niet de waarde te zijn
+die $s(\Obj v_0)$ aanwijst. We gebruiken daarom een nieuwe notatie. Als
+$m \in \Domain{M}$, dan is $\Subst{s}{m}{\Obj v_0}$ bijna dezelfde
+toekenning als~$s$. Voor alle !!{variable}s behalve~$\Obj v_0$ zijn ze
+gelijk, maar aan $\Obj v_0$ kent de nieuwe toekenning~$m$ toe. De regel
+wordt dan:
+\begin{enumerate}\setcounter{enumi}{4}
+  \item $\Sat{M}{\lexists[\Obj v_i][!A]}[s]$ precies als
+  $\Sat{M}{!A}[\Subst{s}{m}{\Obj v_i}]$ voor een~$m \in \Domain{M}$.
+\end{enumerate}
+Werkt dit? Neem $s(\Obj v_i) = 0$ voor alle~$i \in \Nat$. Dan geldt
+$\Sat{M}{\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]}[s]$ precies als
+er een $m \in \Domain{M}$ is waarvoor
+$\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[\Subst{s}{m}{\Obj v_0}]$. Zo'n waarde
+is er: we kunnen $m = 1$ of $m = 2$ kiezen. De waarde~$s(\Obj v_0)$
+die aan~$\Obj v_0$ wordt toegekend door~$s$ zelf is hier $0$, en die
+werkt niet. Toch is de formule
+waar, want
+$\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[\Subst{s}{1}{\Obj v_0}]$ geldt,
+maar $\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[s]$ niet.
+
+Dit ziet er verwarrend en omslachtig uit omdat het dat ook is. Toch is
+de extra uitwerking nodig. Alleen zo krijgen we een precieze,
+inductieve definitie van wanneer alle !!{formula}s waar zijn. Zo'n
+definitie hebben we weer nodig om de semantische begrippen precies
+vast te leggen. Andere werkwijzen bestaan, maar die zijn allemaal even
+(on)elegant.
+
+\end{document}

@@ -1,0 +1,208 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: compactness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{com}{com}}
+      {\olfileid{pl}{com}{com}}
+
+\olsection{De compactheidsstelling}
+
+Een belangrijk gevolg van de volledigheidsstelling is de
+compactheidsstelling. Deze stelt dat een verzameling !!{sentence}s
+vervulbaar is zodra elke \emph{eindige} deelverzameling ervan vervulbaar
+is, ook wanneer de verzameling zelf oneindig is. Dit is geenszins
+vanzelfsprekend. Op het eerste gezicht lijkt niets de mogelijkheid uit
+te sluiten dat een oneindige verzameling !!{sentence}s tegenstrijdig is,
+terwijl de tegenspraak als het ware pas door het oneindige aantal
+ontstaat. De compactheidsstelling sluit dit scenario uit: er bestaan
+geen onvervulbare oneindige verzamelingen !!{sentence}s waarvan elke
+eindige deelverzameling vervulbaar is. Net als de volledigheidsstelling
+heeft zij een formulering voor semantisch gevolg: als een oneindige
+verzameling !!{sentence}s iets impliceert, doet een eindige
+deelverzameling dat reeds.
+
+\begin{defn}
+  Een verzameling $\Gamma$ van !!{formula}s heet \emph{eindig
+  vervulbaar} dan en slechts dan als elke eindige
+  $\Gamma_0 \subseteq \Gamma$ vervulbaar is.
+\end{defn}
+
+\begin{thm}[Compactheidsstelling]
+\ollabel{thm:compactness}
+Voor elke verzameling zinnen $\Gamma$ en elke zin $!A$ geldt:
+\begin{enumerate}
+  \item $\Gamma \Entails !A$ dan en slechts dan als er een eindige
+    $\Gamma_0 \subseteq \Gamma$ bestaat waarvoor
+    $\Gamma_0 \Entails !A$.
+  \item $\Gamma$ is vervulbaar dan en slechts dan als zij eindig
+    vervulbaar is.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+We bewijzen (2). Als $\Gamma$ vervulbaar is, bestaat er
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+zodat $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ voor alle $!A \in \Gamma$.
+Deze $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ vervult vanzelfsprekend ook
+elke eindige deelverzameling van~$\Gamma$, zodat $\Gamma$ eindig
+vervulbaar is.
+
+Veronderstel nu dat $\Gamma$ eindig vervulbaar is. Dan is elke eindige
+deelverzameling~$\Gamma_0 \subseteq \Gamma$ vervulbaar. Uit correctheid
+(\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:sou:cor:consistency-soundness},
+    prfSC/{fol:seq:sou:cor:consistency-soundness},
+    prfND/{fol:ntd:sou:cor:consistency-soundness},
+    prfTab/{fol:tab:sou:cor:consistency-soundness}}}{%
+  \tagrefs{prfAX/{pl:axd:sou:cor:consistency-soundness},
+    prfSC/{pl:seq:sou:cor:consistency-soundness},
+    prfND/{pl:ntd:sou:cor:consistency-soundness},
+    prfTab/{pl:tab:sou:cor:consistency-soundness}}}),
+volgt dat elke eindige deelverzameling consistent is. Dan is $\Gamma$
+zelf consistent volgens
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:ptn:prop:proves-compact},
+    prfSC/{fol:seq:ptn:prop:proves-compact},
+    prfND/{fol:ntd:ptn:prop:proves-compact},
+    prfTab/{fol:tab:ptn:prop:proves-compact}}}{%
+  \tagrefs{prfAX/{pl:axd:ptn:prop:proves-compact},
+    prfSC/{pl:seq:ptn:prop:proves-compact},
+    prfND/{pl:ntd:ptn:prop:proves-compact},
+    prfTab/{pl:tab:ptn:prop:proves-compact}}}.
+Omdat $\Gamma$ consistent is, volgt uit de volledigheid
+(\olref[cth]{thm:completeness}) dat zij vervulbaar is.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Bewijs (1) van \olref[fol][com][com]{thm:compactness}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Bewijs (1) van \olref[pl][com][com]{thm:compactness}.
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{%
+\begin{ex}
+In elk model~$\Struct{M}$ van een theorie~$\Gamma$ duidt elke term~$t$
+vanzelfsprekend !!a{element} van~$\Domain{M}$ aan. Kunnen we ook
+garanderen dat elk !!{element} van~$\Domain{M}$ door een of andere term
+wordt aangeduid? Zijn er met andere woorden theorieën~$\Gamma$ waarvan
+alle modellen overdekt zijn? De compactheidsstelling toont aan dat dit
+niet het geval is wanneer $\Gamma$ oneindige modellen heeft. Dit zien we
+als volgt. Laat $\Struct{M}$ een oneindig model van~$\Gamma$ zijn en laat
+$c$ !!a{constant} zijn die niet in de taal van~$\Gamma$ voorkomt. Laat
+$\Delta$ de verzameling zijn van alle zinnen $\eq/[c][t]$, waarbij $t$
+een term is in de taal~$\Lang{L}$ van~$\Gamma$, dus
+  \[
+  \Delta = \Setabs{\eq/[c][t]}{t \in \Trm[L]}.
+  \]
+Een eindige deelverzameling van $\Gamma \cup \Delta$ kan worden
+geschreven als $\Gamma' \cup \Delta'$, waarbij
+$\Gamma' \subseteq \Gamma$ en $\Delta' \subseteq \Delta$. Omdat
+$\Delta'$ eindig is, kan zij slechts eindig veel termen bevatten. Laat
+$a \in \Domain{M}$ !!a{element} van $\Domain{M}$ zijn dat door geen van
+die termen wordt aangeduid, en laat $\Struct{M'}$ de !!{structure} zijn
+die gelijk is aan $\Struct{M}$, maar bovendien
+$\Assign{c}{M'} = a$ heeft. Omdat $a \neq \Value{t}{M}$ voor alle~$t$
+die in~$\Delta'$ voorkomen, geldt $\Sat{M'}{\Delta'}$. Omdat
+$\Sat{M}{\Gamma}$, $\Gamma' \subseteq \Gamma$ en $c$ niet in~$\Gamma$
+voorkomt, geldt ook $\Sat{M'}{\Gamma'}$. Samen levert dit
+$\Sat{M'}{\Gamma' \cup \Delta'}$ voor elke eindige deelverzameling
+$\Gamma' \cup \Delta'$ van $\Gamma \cup \Delta$. Elke eindige
+deelverzameling van $\Gamma \cup \Delta$ is dus vervulbaar. Volgens de
+compactheidsstelling is $\Gamma \cup \Delta$ zelf vervulbaar. Er bestaan
+dus modellen~$\Sat{M}{\Gamma \cup \Delta}$. Elk dergelijk
+$\Struct{M}$ is een model van~$\Gamma$, maar is niet overdekt, want
+$\Value{c}{M} \neq \Value{t}{M}$ voor alle termen~$t$ van~$\Lang{L}$.
+\end{ex}
+
+\begin{ex}
+Beschouw !!a{language} $\Lang{L}$ met het !!{predicate}~$<$, de
+!!{constant}s $\Obj{0}$ en $\Obj{1}$, en de !!{function}s $+$, $\times$
+en $-$. Laat $\Gamma$ de verzameling zijn van alle !!{sentence}s in deze
+!!{language} die waar zijn in de !!{structure}~$\Struct{Q}$ met
+domein~$\Rat$ en de voor de hand liggende interpretaties. De verzameling
+$\Gamma$ bestaat dus uit alle !!{sentence}s van~$\Lang{L}$ die waar zijn
+over de rationale getallen. In~$\Rat$ (en zelfs in~$\Real$) bestaat
+uiteraard geen getal~$r$ dat groter is dan~$0$ maar kleiner dan $1/k$
+voor alle $k \in \PosInt$. Zo'n getal zou, als het bestond, een
+\emph{infinitesimaal} zijn: niet nul, maar oneindig klein. Met de
+compactheidsstelling kunnen we aantonen dat er modellen van~$\Gamma$
+bestaan waarin infinitesimalen voorkomen. Onze taal bevat geen
+!!a{function} voor deling (deling door nul is niet gedefinieerd en
+!!{function}s moeten door totale functies worden geïnterpreteerd). We
+kunnen $r < 1/k$ echter toch uitdrukken, want dit geldt dan en slechts
+dan als $r \cdot k < 1$. Laat nu $c$ een nieuwe !!{constant} zijn en
+laat $\Delta$ gelijk zijn aan
+\[
+\{\Obj{0} < c\}
+\cup \Setabs{ c \times \num k < \Obj{1} }{k \in \PosInt}
+\]
+(waarbij $\num{k} = (\Obj{1} + (\Obj{1} + \dots + (\Obj{1} +
+\Obj{1})\dots))$ met $k$ keer~$\Obj{1}$). Voor elke eindige
+deelverzameling~$\Delta_0$ van~$\Delta$ bestaat er een~$K$ zodat voor
+alle !!{sentence}s $c \times \num{k} < \Obj{1}$ in~$\Delta_0$ geldt
+$k < K$. Als we $\Struct{Q}$ uitbreiden tot~$\Struct{Q'}$ met
+$\Assign{c}{Q'} = 1/K$, dan geldt $\Sat{Q'}{\Gamma_0 \cup \Delta_0}$
+voor elke eindige $\Gamma_0 \subseteq \Gamma$. De verzameling
+$\Gamma \cup \Delta$ is dus eindig vervulbaar (opgave: bewijs dit in
+detail). Volgens de compactheidsstelling is $\Gamma \cup \Delta$
+vervulbaar. Elk model~$\Struct{S}$ van $\Gamma \cup \Delta$ bevat een
+infinitesimaal, namelijk~$\Assign{c}{S}$.
+\end{ex}
+}{}
+
+\tagprob{FOL}
+\begin{prob}
+In het standaardmodel van de rekenkunde~$\Struct{N}$ bestaat geen
+!!{element}~$k \in \Domain{N}$ dat elke formule~$\num{n} < x$ vervult
+(waarbij $\num{n}$ gelijk is aan $\Obj{0}^{\prime\dots\prime}$ met $n$
+keer~$\prime$). Gebruik de compactheidsstelling om aan te tonen dat de
+verzameling !!{sentence}s in de taal van de rekenkunde die waar zijn in
+het standaardmodel $\Struct{N}$, ook waar zijn in !!a{structure}
+$\Struct{N'}$ die !!a{element} bevat dat \emph{wél} elke formule
+$\num{n} < x$ vervult.
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{
+\begin{ex}
+We weten dat de eerste-ordelogica met !!{identity} kan uitdrukken dat de
+grootte van het !!{domain} ten minste een bepaalde waarde heeft. De
+zin~$!A_{\ge n}$ (die zegt: ``er zijn ten minste $n$ verschillende
+objecten'') is alleen waar in structuren waarin $\Domain{M}$ ten
+minste~$n$ objecten bevat. Als we dus nemen
+  \[
+  \Delta = \Setabs{!A_{\ge n}}{n \ge 1}
+  \]
+dan moet elk model van $\Delta$ oneindig zijn. We kunnen dus garanderen
+dat een theorie uitsluitend oneindige modellen heeft door~$\Delta$ eraan
+toe te voegen: de modellen van $\Gamma \cup \Delta$ zijn precies de
+oneindige modellen van~$\Gamma$.
+
+De eerste-ordelogica kan dus oneindigheid uitdrukken. De
+compactheidsstelling toont echter aan dat zij eindigheid niet kan
+uitdrukken. Veronderstel namelijk dat een verzameling zinnen $\Lambda$
+precies in alle eindige !!{structure}s wordt vervuld. Dan is
+$\Delta \cup \Lambda$ eindig vervulbaar. Waarom? Veronderstel dat
+$\Delta' \cup \Lambda' \subseteq \Delta \cup \Lambda$ eindig is, met
+$\Delta' \subseteq \Delta$ en $\Lambda' \subseteq \Lambda$. Laat $n$
+het grootste getal zijn waarvoor $!A_{\ge n} \in \Delta'$. Omdat
+$\Lambda$ in alle eindige structuren wordt vervuld, heeft zij een
+  model~$\Struct{M}$ met eindig veel, maar $\ge n$ !!{element}s.
+Dan geldt $\Sat{M}{\Delta' \cup \Lambda'}$. Volgens de compactheid heeft
+$\Delta \cup \Lambda$ een oneindig model. Dit weerspreekt de aanname dat
+$\Lambda$ alleen in eindige !!{structure}s wordt vervuld.
+\end{ex}
+}{}
+
+\end{document}

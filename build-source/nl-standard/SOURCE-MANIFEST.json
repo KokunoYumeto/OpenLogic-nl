@@ -3,15 +3,15 @@
   "register": "nl-standard",
   "scope": {
     "first": "OLP-0001",
-    "last": "OLP-0128",
-    "units": 128
+    "last": "OLP-0144",
+    "units": 144
   },
   "manifest_excludes_itself": true,
   "records": [
     {
       "path": "BUILD.md",
       "bytes": 2237,
-      "sha256": "1e5293ca89b1fe4c4af4fe9c5f84302b1f172db0f98033e53170e80c67f4f2c2"
+      "sha256": "215902c1484a5528cf416470a1b7520d0f04ba7342db8011fca7d94fd66a961e"
     },
     {
       "path": "LICENSE.md",
@@ -19,34 +19,34 @@
       "sha256": "bb5e0179a1e9bdb55634a4303784cf73c297a1dcee27b92cd546bf398075531c"
     },
     {
-      "path": "OpenLogic-NL-Standard-Partial-OLP-0001--OLP-0128.tex",
-      "bytes": 632766,
-      "sha256": "5965d7e4b685e82c05e5940907392fca740de16230a5613c2c14c89d249bfd45"
+      "path": "OpenLogic-NL-Standard-Partial-OLP-0001--OLP-0144.tex",
+      "bytes": 728800,
+      "sha256": "97d966a964530972678aea3780f8983d82469ce4972dc8896b3d3caca78e65f5"
     },
     {
       "path": "PDF-REBUILD.json",
       "bytes": 1987,
-      "sha256": "5ce00749e3dcc839d4a63354a5a0b77b455578b39164da6b91c340f577f4415e"
+      "sha256": "dc96653e346fdd7f9fdd74fd8b48c200fd7858174b6a35231bdd3519e541743a"
     },
     {
       "path": "PUBLICATIESTATUS.json",
       "bytes": 201,
-      "sha256": "25c6cb23827dd9b0f3274855db07549c7fd7fa1ad74a015c5fa710826a52cf27"
+      "sha256": "6301740391459719111ddcbd10c751f29b66d96b84013c389137f747ba938107"
     },
     {
       "path": "alignment/ACCEPTED_PREFIX.jsonl",
-      "bytes": 145373,
-      "sha256": "36a48ebf3241744cdc31c1f289d27a17be59b246b214418894b374c9f434354f"
+      "bytes": 163307,
+      "sha256": "acecadbf3925e2dcc5555583d8a208cb8733066c1c94580838459b6d8c5bae6b"
     },
     {
       "path": "alignment/AUTHORITY.json",
       "bytes": 458,
-      "sha256": "27d3dbad03141efab244cd4348a331e0b536ec64ff8687bedf8a6b895b0b1d8c"
+      "sha256": "c15393d6af0eedfbf6bd53521235dbb69a343a32deba84efba6fc20b309dd4f8"
     },
     {
       "path": "alignment/UNITS.jsonl",
-      "bytes": 735240,
-      "sha256": "ba823eec3c63b9c9574df70134f3d98e38cd8bfd532a52f69bd92d82d8f2aea8"
+      "bytes": 737272,
+      "sha256": "5891a8f91b52127a89c37ec579822e55dc75571988624143d5abb79f06977eec"
     },
     {
       "path": "editions/nl-standard/support/open-logic-reader-locale.tex",
@@ -139,9 +139,49 @@
       "sha256": "8fb974b83fb8c1ccf1b8b6b75ea8227809e371f8bd4f420979148927d1e3f62e"
     },
     {
+      "path": "translations/nl-standard/content/first-order-logic/completeness/compactness-direct.tex",
+      "bytes": 5762,
+      "sha256": "7aa168947c23036a110ac55a10c3ab4849717894103c6dfa9b1952ad3712cd5d"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/completeness/compactness.tex",
+      "bytes": 9416,
+      "sha256": "4ffc3370c4a5540a2b566303bedcc137b83d8bf1b4f0dd40a88b44ef0027a6bc"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/completeness/complete-consistent-sets.tex",
+      "bytes": 9514,
+      "sha256": "b2cc6f4bae9a59be750652320ae8223f46e0572c84f57125d838a890012814c1"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/completeness/completeness-thm.tex",
+      "bytes": 4915,
+      "sha256": "a36b58f65e6dd41594e91fb9e2f99f45a5b3c3e47c2f5890e712b12566c5b8a6"
+    },
+    {
       "path": "translations/nl-standard/content/first-order-logic/completeness/completeness.tex",
       "bytes": 653,
       "sha256": "6e55ef3ae2ba33ef11d895af18753ebb63d524c6a2bd94ae1627d5fa1a70b71c"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/completeness/construction-of-model.tex",
+      "bytes": 12200,
+      "sha256": "2f3d22831a0ae309a6ff137e11236beb7733088d57a5734b337b19247b3aea5e"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/completeness/downward-ls.tex",
+      "bytes": 2797,
+      "sha256": "d2b20046cfabd7a1f99ff18521f86047f9f45093a8045d4f70cd7a0529f14e15"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/completeness/henkin-expansions.tex",
+      "bytes": 9429,
+      "sha256": "f975dff18f9635ad2224554423ed9765844b5e2298fe6e3284e67ff5d63d4d34"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/completeness/identity.tex",
+      "bytes": 8177,
+      "sha256": "c3a268cccc4f56ea816eb965dd1024fc61f81e677b33e55e2c8c33a58451a265"
     },
     {
       "path": "translations/nl-standard/content/first-order-logic/completeness/introduction.tex",
@@ -149,9 +189,49 @@
       "sha256": "402e75cfcf169b5a1dd250aef2fc06da1a058b8856509609b7f8e8737a1acef8"
     },
     {
+      "path": "translations/nl-standard/content/first-order-logic/completeness/lindenbaums-lemma.tex",
+      "bytes": 4473,
+      "sha256": "603f5e729752964beeefd1b56d2d2ba33b065daed096f44c584a605698975712"
+    },
+    {
       "path": "translations/nl-standard/content/first-order-logic/completeness/outline.tex",
       "bytes": 10020,
       "sha256": "190a4b8c744e4072bf24f861b5af32a5f4ca84cbe4eae79f0b4f11514902e3e4"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/first-order-logic.tex",
+      "bytes": 1650,
+      "sha256": "9b8c602a80ea8c0da39b086822d11020514c19be2cbdd274f7bb362db3624ae7"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/introduction/first-order-logic.tex",
+      "bytes": 4550,
+      "sha256": "8f8aef73be97b2a1449c056f645244fa4cf8b06b16d8404372dfa55e9dc63f6a"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/introduction/formulas.tex",
+      "bytes": 4352,
+      "sha256": "c7413efa769283eb6dae3c129e644f942bf8e648ec3871ae2cd7ede43096b6f3"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/introduction/introduction.tex",
+      "bytes": 458,
+      "sha256": "0d7df61c89944f2ef75c37382b2b3dbee3e7e5efb3bac7db0ca62d7220c09d28"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/introduction/satisfaction.tex",
+      "bytes": 6221,
+      "sha256": "bbaa72f83ac0ea06aa020cc2d680431617201f3422119bf4d2a2ea2b50557440"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/introduction/sentences.tex",
+      "bytes": 2836,
+      "sha256": "950a46844a55cdb1b76b45a48fed53f13d9778c3c73442ba081f7cfcfcc66c17"
+    },
+    {
+      "path": "translations/nl-standard/content/first-order-logic/introduction/syntax.tex",
+      "bytes": 2891,
+      "sha256": "40dc7a0ed0e852e1130e861e26e7194c0c614222b0f2fd5554ef4681b3fb1100"
     },
     {
       "path": "translations/nl-standard/content/first-order-logic/natural-deduction/derivations.tex",
@@ -939,5 +1019,5 @@
       "sha256": "7a2f80ae1bab40570502fb17516b2ad02610201f4da203c2304fc5b6343a924e"
     }
   ],
-  "tree_sha256": "bdba51c39a3f6fcb6d682fa3a92e4ceb227e4ff91cbcd8580d8e1ef731011894"
+  "tree_sha256": "612494dfd3eca1a4aebd4eee3c4a548448848cab1a15781357222ccb3a7d2d51"
 }

@@ -1,0 +1,296 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: construction-of-model
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{com}{mod}}
+      {\olfileid{pl}{com}{mod}}
+
+\olsection{Constructie van een model}
+
+\begin{explain}
+\iftag{FOL}{Voorlopig houden we ons niet bezig met~$\eq$: we willen
+  alleen aantonen dat een consistente verzameling~$\Gamma$ van
+  !!{sentence}s die~$\eq$ niet bevatten vervulbaar is. Eerst breiden we
+  $\Gamma$ uit tot een consistente, !!{complete} en verzadigde
+  verzameling~$\Gamma^*$. In dit geval is de definitie van een
+  model~$\Struct{M(\Gamma^*)}$ eenvoudig. We nemen de verzameling gesloten
+  termen van~$\Lang{L'}$ als domein. Aan elke !!{constant} kennen we
+  zichzelf toe en, meer algemeen, zorgen we er voor elke gesloten term~$t$
+  voor dat $\Value{t}{M(\Gamma^*)} = t$. Aan de !!{predicate}s kennen we
+  extensies toe zodat een atomaire !!{sentence} waar is in
+  $\Struct{M(\Gamma^*)}$ dan en slechts dan als zij tot~$\Gamma^*$ behoort.
+  Daardoor zijn alle atomaire !!{sentence}s in~$\Gamma^*$ waar in
+  $\Struct{M(\Gamma^*)}$. De overige zinnen zijn waar mits de
+  verzameling~$\Gamma^*$ waarvan we uitgaan consistent, volledig en
+  verzadigd is.}{We kunnen nu !!a{valuation} definiëren die alle
+  $!A \in \Gamma$ waar maakt. Daartoe passen we eerst het lemma van
+  Lindenbaum toe: we verkrijgen een volledige consistente
+  $\Gamma^* \supseteq \Gamma$. De !!{propositional variable}s
+  in~$\Gamma^*$ laten we~$\pAssign v(\Gamma^*)$ bepalen.}
+\end{explain}
+
+\iftag{FOL}{%
+\begin{defn}[Termmodel]
+\ollabel{defn:termmodel}
+Laat $\Gamma^*$ !!a{complete}, consistente en verzadigde verzameling
+!!{sentence}s zijn in een taal~$\Lang L$. Het \emph{termmodel}~$\Struct
+M(\Gamma^*)$ van $\Gamma^*$ is de !!{structure} die als volgt wordt
+gedefinieerd:
+\begin{enumerate}
+\item Het !!{domain}~$\Domain{M(\Gamma^*)}$ is de verzameling van alle
+  gesloten termen van~$\Lang L$.
+\item De interpretatie van !!a{constant} $c$ is $c$ zelf:
+  $\Assign{c}{M(\Gamma^*)} = c$.
+\item Aan de !!{function}~$f$ wordt de functie toegekend die bij de
+  gesloten termen $t_1$, \dots, $t_n$ als argumenten de gesloten term
+  $f(t_1, \dots, t_n)$ als waarde heeft:
+\[
+\Assign{f}{M(\Gamma^*)}(t_1, \dots, t_n) = f(t_1,\dots, t_n)
+\]
+\item Als $R$ een $n$-plaatsig !!{predicate} is, dan
+  \[
+  \tuple{t_1, \dots,
+  t_n} \in \Assign{R}{M(\Gamma^*)} \text{ dan en slechts dan als } \Atom{R}{t_1, \dots,
+    t_n} \in \Gamma^*.
+  \]
+\end{enumerate}
+\end{defn}
+}{%
+\begin{defn}
+\ollabel{defn:termmodel}
+Veronderstel dat $\Gamma^*$ een volledige consistente verzameling
+!!{formula}s is. Dan stellen we
+\[
+\pAssign v(\Gamma^*)(p) = \begin{cases}
+  \True & \text{als $p \in \Gamma^*$}\\
+  \False & \text{als $p \notin \Gamma^*$}
+  \end{cases}
+\]
+\end{defn}
+}
+
+\iftag{FOL}{%
+We gaan nu na dat inderdaad $\Value{t}{M(\Gamma^*)} = t$ geldt.
+
+\begin{lem} 
+\ollabel{lem:val-in-termmodel} Laat $\Struct M(\Gamma^*)$ het termmodel
+uit \olref{defn:termmodel} zijn. Dan geldt $\Value{t}{M(\Gamma^*)} = t$.
+\end{lem}
+\begin{proof} 
+ Het bewijs verloopt door inductie naar $t$. Het basisgeval, waarin $t$
+ !!a{constant} is, volgt rechtstreeks uit de definitie van het termmodel.
+ Veronderstel voor de inductiestap dat $t_1, \ldots, t_n$ gesloten termen
+ zijn waarvoor $\Value{t_i}{M(\Gamma^*)} = t_i$ en dat $f$ een $n$-aire
+ !!{function} is. Dan
+\begin{align*}
+\Value{f(t_1,\ldots,t_n)}{M(\Gamma^*)} &= \Assign{f}{M(\Gamma^*)}(\Value{t_1}
+ {M(\Gamma^*)}, 
+\ldots, \Value{t_n}{M(\Gamma^*)}) \\
+&= \Assign{f}{M(\Gamma^*)}(t_1, \dots, t_n) \\
+&= f(t_1,\dots, t_n),
+\end{align*} 
+en dus geldt de bewering door inductie voor elke gesloten term~$t$.
+\end{proof}
+}
+
+\iftag{FOL}{%
+\begin{explain}
+  \iftag{prvEx}{!!^a{structure}~$\Struct{M}$ kan een existentieel
+    gekwantificeerde !!{sentence}~$\lexists[x][!A(x)]$ waar maken zonder
+    dat zij een instantie~$!A(t)$ waar maakt.}{}
+  \iftag{prvAll}{!!^a{structure}~$\Struct{M}$ kan alle instanties~$!A(t)$
+    van een universeel gekwantificeerde
+    !!{sentence}~$\lforall[x][!A(x)]$ waar maken zonder
+    $\lforall[x][!A(x)]$ waar te maken.}{} Dit komt doordat in het algemeen
+  niet elk !!{element} van~$\Domain{M}$ de waarde van een gesloten term is
+  ($\Struct{M}$ hoeft niet overdekt te zijn). Daarom is de
+  vervulbaarheidsrelatie via variabelenbedelingen gedefinieerd. Voor ons
+  termmodel~$\Struct{M(\Gamma^*)}$ zou dat echter niet nodig zijn, want dit
+  model is overdekt. Dat is de inhoud van het volgende resultaat.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:quant-termmodel}
+Laat $\Struct M(\Gamma^*)$ het termmodel uit \olref{defn:termmodel} zijn.
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\Sat{M(\Gamma^*)}{\lexists[x][!A(x)]}$ dan en slechts dan
+  als $\Sat{M(\Gamma^*)}{!A(t)}$ voor ten minste één gesloten term~$t$.}{}
+\tagitem{prvAll}{$\Sat{M(\Gamma^*)}{\lforall[x][!A(x)]}$ dan en slechts dan
+  als $\Sat{M(\Gamma^*)}{!A(t)}$ voor alle gesloten termen~$t$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{%
+  \iftag{probEx}{Opgave.}{Volgens \olref[syn][ass]{prop:sat-quant} geldt
+    $\Sat{M(\Gamma^*)}{\lexists[x][!A(x)]}$ dan en slechts dan als voor
+    ten minste één variabelenbedeling~$s$,
+    $\Sat{M(\Gamma^*)}{!A(x)}[s]$. Omdat $\Domain{M(\Gamma^*)}$ uit de
+    gesloten termen van~$\Lang{L}$ bestaat, geldt dit dan en slechts dan
+    als er ten minste één gesloten term~$t$ is waarvoor $s(x) = t$ en
+    $\Sat{M(\Gamma^*)}{!A(x)}[s]$. Volgens
+    \olref[fol][syn][ext]{prop:ext-formulas},
+    geldt $\Sat{M(\Gamma^*)}{!A(x)}[s]$ dan en slechts dan als
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$, waarbij $s(x) = t$. Volgens
+    \olref[fol][syn][ass]{prop:sentence-sat-true} geldt
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$ dan en slechts dan als
+    $\Sat{M(\Gamma^*)}{!A(t)}$, omdat $!A(t)$ een zin is.}}{}
+\tagitem{prvAll}{%
+  \iftag{probAll}{Opgave.}{Volgens \olref[syn][ass]{prop:sat-quant} geldt
+    $\Sat{M(\Gamma^*)}{\lforall[x][!A(x)]}$ dan en slechts dan als voor
+    elke variabelenbedeling $s$, $\Sat{M(\Gamma^*)}{!A(x)}[s]$. Bedenk
+    dat $\Domain{M(\Gamma^*)}$ uit de gesloten termen van~$\Lang{L}$
+    bestaat. Voor elke gesloten term~$t$ is $s(x) = t$ dus zo'n
+    variabelenbedeling, en bij elke variabelenbedeling is $s(x)$ een
+    zekere gesloten term~$t$. Volgens
+    \olref[fol][syn][ext]{prop:ext-formulas} geldt
+    $\Sat{M(\Gamma^*)}{!A(x)}[s]$ dan en slechts dan als
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$, waarbij $s(x) = t$. Volgens
+    \olref[fol][syn][ass]{prop:sentence-sat-true} geldt
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$ dan en slechts dan als
+    $\Sat{M(\Gamma^*)}{!A(t)}$, omdat $!A(t)$ een zin is.}}{}
+\end{tagenumerate}
+\end{proof}
+}{}
+
+\tagprob[FOL]{probEx,probAll}
+\begin{prob}
+Voltooi het bewijs van \olref[fol][com][mod]{prop:quant-termmodel}.
+\end{prob}
+\tagendprob
+
+\begin{lem}[Waarheidslemma]
+\ollabel{lem:truth} \iftag{FOL}{Veronderstel dat $!A$ geen~$\eq$ bevat. Dan}{}
+geldt $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ dan en slechts
+dan als $!A \in \Gamma^*$.
+\end{lem}
+
+\begin{proof}
+We bewijzen beide richtingen gelijktijdig door inductie naar $!A$.
+\begin{enumerate}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}
+  {$\iftag{FOL}{\Sat/{M(\Gamma^*)}{\lfalse}}{\pSat/{v(\Gamma^*)}{\lfalse}}$
+    volgens de definitie van vervulling. Daarentegen is $\lfalse \notin
+    \Gamma^*$, omdat $\Gamma^*$ consistent is.}}{}
+
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}
+  {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\ltrue}$
+    volgens de definitie van vervulling. Anderzijds is $\ltrue \in
+    \Gamma^*$, omdat $\Gamma^*$ consistent en !!{complete} is en
+    $\Gamma^* \Proves \ltrue$.}}{}
+
+\tagitem{FOL}{\indcase{!A}{R(t_1, \dots, t_n)}
+  {$\Sat{M(\Gamma^*)}{\Atom{R}{t_1, \dots, t_n}}$ geldt dan en slechts dan
+    als $\tuple{t_1, \dots, t_n} \in \Assign{R}{M(\Gamma^*)}$ (volgens de
+    definitie van vervulling), en dat geldt dan en slechts dan als
+    $R(t_1, \dots, t_n) \in \Gamma^*$ (volgens de constructie van
+    $\Struct M(\Gamma^*)$).}}{\indcase{!A}{p}{$\pSat{v(\Gamma^*)}{p}$ geldt
+    dan en slechts dan als $\pAssign v(\Gamma^*)(p) = \True$ (volgens de
+    definitie van vervulling), en dat geldt dan en slechts dan als
+    $p \in \Gamma^*$ (volgens de constructie van
+    $\pAssign v(\Gamma^*)$).}}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$ geldt
+    dan en slechts dan als
+    $\iftag{FOL}{\Sat/{M(\Gamma^*)}{!B}}{\pSat/{v(\Gamma^*)}{!B}}$
+    (volgens de definitie van vervulling). Volgens de inductiehypothese
+    geldt $\iftag{FOL}{\Sat/{M(\Gamma^*)}{!B}}{\pSat/{v(\Gamma^*)}{!B}}$
+    dan en slechts dan als $!B \notin \Gamma^*$. Omdat
+    $\Gamma^*$ consistent en !!{complete} is, geldt
+    $!B \notin \Gamma^*$ dan en slechts dan als
+    $\lnot !B \in \Gamma^*$.}}{}
+
+\tagitem{prvAnd}{%
+\iftag{probAnd}{%
+  \indcase!{!A}{!B \land !C}{}}{%
+  \indcase{!A}{!B \land
+    !C}{$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+    geldt dan en slechts dan als zowel
+    $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!B}$ and
+    $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!C}$ gelden
+    (volgens de definitie van vervulling), en dat geldt dan en slechts dan
+    als zowel $!B \in \Gamma^*$ als $!C \in \Gamma^*$ (volgens de
+    inductiehypothese). Volgens
+    \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-and} geldt dit dan en slechts
+    dan als $(!B \land !C) \in \Gamma^*$.}}}{}
+
+\tagitem{prvOr}{%
+\iftag{probOr}{%
+  \indcase!{!A}{!B \lor !C}{}}{%
+  \indcase{!A}{!B \lor !C}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+     geldt dan en slechts dan als
+     $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!B}$ of
+     $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!C}$ geldt
+     (volgens de definitie van vervulling). Volgens de inductiehypothese
+     geldt dit dan en slechts dan als $!B \in \Gamma^*$ of
+     $!C \in \Gamma^*$. Volgens
+     \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-or} geldt dat dan en slechts
+     dan als $(!B \lor !C) \in \Gamma^*$.}}}{}
+  
+\tagitem{prvIf}{%
+\iftag{probIf}{%
+  \indcase!{!A}{!B \lif !C}{}}{%
+  \indcase{!A}{!B \lif !C}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+     geldt dan en slechts dan als
+     $\iftag{FOL}{\Sat/{M(\Gamma^*)}}{\pSat/{v(\Gamma^*)}}{!B}$ of
+     $\iftag{FOL}{\Sat{M (\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!C}$ geldt
+     (volgens de definitie van vervulling). Volgens de inductiehypothese
+     geldt dit dan en slechts dan als $!B \notin \Gamma^*$ of
+     $!C \in \Gamma^*$. Volgens
+     \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-if} geldt dat dan en slechts
+     dan als $(!B \lif !C) \in \Gamma^*$.}}}{}
+
+\iftag{FOL}{%
+\tagitem{prvAll}{%
+  \iftag{probAll}{%
+    \indcase!{!A}{\lforall[x][!B(x)]}{}}{%
+    \indcase{!A}{\lforall[x][!B(x)]}{$\Sat{M(\Gamma^*)}{\indfrm}$ geldt
+      dan en slechts dan als $\Sat{M(\Gamma^*)}{!B(t)}$ voor alle
+      termen~$t$ (\olref{prop:quant-termmodel}). Volgens de
+      inductiehypothese geldt dit dan en slechts dan als
+      $!B(t) \in \Gamma^*$ voor alle termen~$t$. Volgens
+      \olref[hen]{prop:saturated-instances} geldt dit op zijn beurt dan en
+      slechts dan als $\lforall[x][!A(x)] \in \Gamma^*$.}}}{}
+
+\tagitem{prvEx}{%
+  \iftag{probEx}{%
+    \indcase!{!A}{\lexists[x][!B(x)]}{}}{%
+    \indcase{!A}{\lexists[x][!B(x)]}{$\Sat{M(\Gamma^*)}{\indfrm}$ geldt
+      dan en slechts dan als $\Sat{M(\Gamma^*)}{!B(t)}$ voor ten minste
+      één term~$t$ (\olref{prop:quant-termmodel}). Volgens de
+      inductiehypothese geldt dit dan en slechts dan als
+      $!B(t) \in \Gamma^*$ voor ten minste één term~$t$. Volgens
+      \olref[hen]{prop:saturated-instances} geldt dit op zijn beurt dan en
+      slechts dan als $\lexists[x][!B(x)] \in \Gamma^*$.}}}{}
+}{}
+\end{enumerate}
+\end{proof}
+
+
+\tagprob[FOL]{probOr,probAnd,probIf,probEx,probAll}
+
+\begin{prob}
+Voltooi het bewijs van \olref[fol][com][mod]{lem:truth}.
+\end{prob}
+
+\tagendprob
+
+\tagprob[notFOL]{probOr,probAnd,probIf}
+
+\begin{prob}
+Voltooi het bewijs van \olref[pl][com][mod]{lem:truth}.
+\end{prob}
+
+\tagendprob
+
+\end{document}

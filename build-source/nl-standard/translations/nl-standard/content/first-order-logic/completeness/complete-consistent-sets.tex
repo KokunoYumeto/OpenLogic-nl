@@ -1,0 +1,231 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: complete-sets
+
+% Definition of complete consistent sets. Properties of complete sets required
+% for completeness proved are in provability.tex in the
+% chapter on the proof system used.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{com}{ccs}}
+      {\olfileid{pl}{com}{ccs}}
+      
+\olsection{Volledige consistente verzamelingen van \usetoken{P}{sentence}}
+
+\begin{defn}[Volledige verzameling]
+\ollabel{def:complete-set} Een verzameling~$\Gamma$ van !!{sentence}s is
+\emph{!!{complete}} dan en slechts dan als voor elke !!{sentence}~$!A$
+geldt dat $!A \in \Gamma$ of $\lnot !A \in \Gamma$.
+\end{defn}
+
+\begin{explain}
+!!^{complete} verzamelingen zinnen laten geen vragen onbeantwoord. Voor
+elke !!{sentence}~$!A$ ``zegt'' $\Gamma$ of $!A$ waar dan wel onwaar is.
+Het belang van !!{complete} verzamelingen reikt verder dan het bewijs van
+de volledigheidsstelling. Een theorie die !!{complete} en axiomatiseerbaar
+is, is bijvoorbeeld altijd beslisbaar.
+\end{explain}
+
+\begin{explain}
+!!^{complete} consistente verzamelingen zijn van belang voor het
+volledigheidsbewijs, omdat we kunnen garanderen dat elke consistente
+verzameling !!{sentence}s~$\Gamma$ opgenomen is in !!a{complete} consistente
+verzameling~$\Gamma^*$. !!^a{complete} consistente verzameling bevat voor
+elke !!{sentence}~$!A$ ofwel $!A$ ofwel haar ontkenning $\lnot !A$, maar
+niet beide. Dit geldt in het bijzonder voor \iftag{FOL}{atomaire
+!!{sentence}s}{propositionele variabelen}. Uit !!a{complete} consistente
+verzameling\iftag{FOL}{ in een taal die op passende wijze met
+!!{constant}s is uitgebreid}{} kunnen we daarom
+\iftag{FOL}{!!a{structure}}{!!a{valuation}} construeren waarin de
+\iftag{FOL}{interpretatie van !!{predicate}s}{waarheidswaarde die aan
+propositionele variabelen wordt toegekend} wordt bepaald door de
+\iftag{FOL}{atomaire !!{sentence}s}{!!{propositional variable}s} die
+tot~$\Gamma^*$ behoren. Vervolgens kan worden aangetoond dat deze
+\iftag{FOL}{!!{structure}}{!!{valuation}} alle !!{sentence}s in~$\Gamma^*$
+waar maakt, en dus ook alle zinnen in~$\Gamma$. Om dit laatste te bewijzen,
+hebben we nodig dat $\lnot !A \in \Gamma^*$ dan en slechts dan als
+$!A \notin \Gamma^*$, dat $(!A \lor !B) \in \Gamma^*$ dan en slechts
+dan als $!A \in \Gamma^*$ of $!B \in \Gamma^*$, enzovoort.
+\end{explain}
+
+In het vervolg zullen we de reflexiviteit, monotonie en transitiviteit
+van~$\Proves$ vaak stilzwijgend gebruiken (zie
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ptn:sec},prfND/{fol:ntd:ptn:sec},prfAX/{fol:axd:ptn:sec},prfTab/{fol:tab:ptn:sec}}}{%
+  \tagrefs{prfSC/{pl:seq:ptn:sec},prfND/{pl:ntd:ptn:sec},prfAX/{pl:axd:ptn:sec},prfTab/{pl:tab:ptn:sec}}}).
+
+\begin{prop}
+\ollabel{prop:ccs}
+Veronderstel dat $\Gamma$ !!{complete} en consistent is. Dan geldt:
+\begin{enumerate}
+\item \ollabel{prop:ccs-prov-in} Als $\Gamma \Proves !A$, dan $!A \in
+  \Gamma$.
+
+\tagitem{prvAnd}{\ollabel{prop:ccs-and} $!A \land !B \in \Gamma$
+  dan en slechts dan als zowel $!A \in \Gamma$ als $!B \in \Gamma$.}{}
+
+\tagitem{prvOr}{\ollabel{prop:ccs-or} $!A \lor !B \in \Gamma$ dan en
+  slechts dan als $!A \in \Gamma$ of $!B \in \Gamma$.}{}
+
+\tagitem{prvIf}{\ollabel{prop:ccs-if} $!A \lif !B \in \Gamma$ dan en
+  slechts dan als $!A \notin \Gamma$ of $!B \in \Gamma$.}{}
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+In het gehele volgende bewijs nemen we aan dat $\Gamma$ !!{complete} en
+consistent is.
+\begin{enumerate}
+\item Als $\Gamma \Proves !A$, dan $!A \in \Gamma$.
+
+Veronderstel dat $\Gamma \Proves !A$. Neem ter tegenspraak aan dat $!A
+\notin \Gamma$. Omdat $\Gamma$ !!{complete} is, geldt dan
+$\lnot !A \in \Gamma$. Volgens
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:prv:prop:explicit-inc},
+    prfND/{fol:ntd:prv:prop:explicit-inc},
+    prfAX/{fol:axd:prv:prop:explicit-inc},
+    prfTab/{fol:tab:prv:prop:explicit-inc}}}{%
+  \tagrefs{prfSC/{pl:seq:prv:prop:explicit-inc},
+    prfND/{pl:ntd:prv:prop:explicit-inc},
+    prfAX/{pl:axd:prv:prop:explicit-inc},
+    prfTab/{pl:tab:prv:prop:explicit-inc}}}
+is $\Gamma$ dan inconsistent. Dit is in tegenspraak met de aanname dat
+$\Gamma$ consistent is. Het kan dus niet zo zijn dat $!A \notin \Gamma$,
+zodat $!A \in \Gamma$.
+
+\tagitem{defAnd}{}{%
+\iftag{probAnd}{Opgave.}{%
+$!A \land !B \in \Gamma$ dan en slechts dan als zowel $!A \in \Gamma$
+als $!B \in \Gamma$:
+
+Voor de voorwaartse richting veronderstellen we dat
+$!A \land !B \in \Gamma$. Dan volgt uit
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-land},
+    prfND/{fol:ntd:ppr:prop:provability-land},
+    prfAX/{fol:axd:ppr:prop:provability-land},
+    prfTab/{fol:tab:ppr:prop:provability-land}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-land},
+    prfND/{pl:ntd:ppr:prop:provability-land},
+    prfAX/{pl:axd:ppr:prop:provability-land},
+    prfTab/{pl:tab:ppr:prop:provability-land}}}, onderdeel~(1),
+dat $\Gamma \Proves !A$ en $\Gamma \Proves !B$. Volgens
+\olref{prop:ccs-prov-in} geldt daarom $!A \in \Gamma$ en
+$!B \in \Gamma$, zoals vereist.
+
+Voor de omgekeerde richting nemen we $!A \in \Gamma$ en
+$!B \in \Gamma$ aan. Uit
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-land},
+    prfND/{fol:ntd:ppr:prop:provability-land},
+    prfAX/{fol:axd:ppr:prop:provability-land},
+    prfTab/{fol:tab:ppr:prop:provability-land}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-land},
+    prfND/{pl:ntd:ppr:prop:provability-land},
+    prfAX/{pl:axd:ppr:prop:provability-land},
+    prfTab/{pl:tab:ppr:prop:provability-land}}}, onderdeel~(2),
+volgt dat $\Gamma \Proves !A \land !B$. Volgens
+\olref{prop:ccs-prov-in} is dus $!A \land !B \in \Gamma$.}}
+
+\tagitem{defOr}{}{%
+\iftag{probOr}{Opgave.}{%
+Eerst tonen we aan dat uit $!A \lor !B \in \Gamma$ volgt dat
+$!A \in \Gamma$ of $!B \in \Gamma$. Veronderstel dat
+$!A \lor !B \in \Gamma$, maar dat $!A \notin \Gamma$ en
+$!B \notin \Gamma$. Omdat $\Gamma$ !!{complete} is, geldt
+$\lnot !A \in \Gamma$ en $\lnot !B \in \Gamma$. Uit
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lor},
+    prfND/{fol:ntd:ppr:prop:provability-lor},
+    prfAX/{fol:axd:ppr:prop:provability-lor},
+    prfTab/{fol:tab:ppr:prop:provability-lor}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lor},
+    prfND/{pl:ntd:ppr:prop:provability-lor},
+    prfAX/{pl:axd:ppr:prop:provability-lor},
+    prfTab/{pl:tab:ppr:prop:provability-lor}}},
+onderdeel~(1), volgt dan dat $\Gamma$ inconsistent is, een tegenspraak.
+Bijgevolg geldt $!A \in \Gamma$ of $!B \in \Gamma$.
+
+Voor de omgekeerde richting veronderstellen we dat $!A \in \Gamma$ of
+$!B \in \Gamma$. Uit
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lor},
+    prfND/{fol:ntd:ppr:prop:provability-lor},
+    prfAX/{fol:axd:ppr:prop:provability-lor},
+    prfTab/{fol:tab:ppr:prop:provability-lor}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lor},
+    prfND/{pl:ntd:ppr:prop:provability-lor},
+    prfAX/{pl:axd:ppr:prop:provability-lor},
+    prfTab/{pl:tab:ppr:prop:provability-lor}}}, onderdeel~(2),
+volgt dat $\Gamma \Proves !A \lor !B$. Volgens
+\olref{prop:ccs-prov-in} is dus $!A \lor !B \in \Gamma$, zoals
+vereist.}}
+
+\tagitem{defIf}{}{%
+\iftag{probIf}{Opgave.}{%
+Voor de voorwaartse richting veronderstellen we dat
+$!A \lif !B \in \Gamma$. Neem ter tegenspraak aan dat
+$!A \in \Gamma$ en $!B \notin \Gamma$. Op grond van deze aannamen
+gelden $!A \lif !B \in \Gamma$ en $!A \in \Gamma$. Uit
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
+    prfND/{fol:ntd:ppr:prop:provability-lif},
+    prfAX/{fol:axd:ppr:prop:provability-lif},
+    prfTab/{fol:tab:ppr:prop:provability-lif}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
+    prfND/{pl:ntd:ppr:prop:provability-lif},
+    prfAX/{pl:axd:ppr:prop:provability-lif},
+    prfTab/{pl:tab:ppr:prop:provability-lif}}}, onderdeel~(1),
+volgt dat $\Gamma \Proves !B$. Maar volgens
+\olref{prop:ccs-prov-in} geldt dan $!B \in \Gamma$, in tegenspraak met
+de aanname dat $!B \notin \Gamma$.
+
+Voor de omgekeerde richting beschouwen we eerst het geval
+$!A \notin \Gamma$. Omdat $\Gamma$ !!{complete} is, geldt
+$\lnot !A \in \Gamma$. Uit
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
+    prfND/{fol:ntd:ppr:prop:provability-lif},
+    prfAX/{fol:axd:ppr:prop:provability-lif},
+    prfTab/{fol:tab:ppr:prop:provability-lif}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
+    prfND/{pl:ntd:ppr:prop:provability-lif},
+    prfAX/{pl:axd:ppr:prop:provability-lif},
+    prfTab/{pl:tab:ppr:prop:provability-lif}}}, onderdeel~(2),
+volgt dat $\Gamma \Proves !A \lif !B$. Opnieuw volgens
+\olref{prop:ccs-prov-in} verkrijgen we $!A \lif !B \in \Gamma$, zoals
+vereist.
+
+Beschouw nu het geval $!B \in \Gamma$. Uit
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
+    prfND/{fol:ntd:ppr:prop:provability-lif},
+    prfTab/{fol:tab:ppr:prop:provability-lif},
+    prfAX/{fol:axd:ppr:prop:provability-lif}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
+    prfND/{pl:ntd:ppr:prop:provability-lif},
+    prfTab/{pl:tab:ppr:prop:provability-lif},
+    prfAX/{pl:axd:ppr:prop:provability-lif}}},
+opnieuw onderdeel~(2), volgt dat $\Gamma \Proves !A \lif !B$. Volgens
+\olref{prop:ccs-prov-in} is dus $!A \lif !B \in \Gamma$.}}
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Voltooi het bewijs van \olref[fol][com][ccs]{prop:ccs}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Voltooi het bewijs van \olref[pl][com][ccs]{prop:ccs}.
+\end{prob}
+\tagendprob
+
+\end{document}

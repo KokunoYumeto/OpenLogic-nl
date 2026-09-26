@@ -1,10 +1,10 @@
 {
   "accepted_prefix_first": "OLP-0001",
-  "accepted_prefix_last": "OLP-0128",
-  "accepted_units": 128,
+  "accepted_prefix_last": "OLP-0144",
+  "accepted_units": 144,
   "authoritative_path": "alignment/UNITS.jsonl",
-  "first_excluded_unit": "OLP-0129",
-  "original_alignment_sha256": "ba823eec3c63b9c9574df70134f3d98e38cd8bfd532a52f69bd92d82d8f2aea8",
+  "first_excluded_unit": "OLP-0145",
+  "original_alignment_sha256": "5891a8f91b52127a89c37ec579822e55dc75571988624143d5abb79f06977eec",
   "register": "nl-standard",
   "schema": "openlogic-partial-reader-alignment-authority-v1",
   "source_revisions": [

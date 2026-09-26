@@ -1,0 +1,86 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{int}{fml}
+
+\section{\usetoken{P}{formula}}
+
+We pakken het als volgt aan. We willen precies vastleggen wat de
+!!{sentence}s van de eerste-ordelogica zijn. Daarbij moeten we ook de
+problemen met !!{variable}s oplossen. Daarom definiëren we eerst een
+\emph{andere} soort uitdrukking: !!{formula}s. Daarna bekijken we welke
+rol !!{variable}s daarin spelen. We onderscheiden dan ``vrije'' en
+``gebonden'' !!{variable}s. Daarmee kunnen we uitleggen wat
+!!a{sentence} is: !!a{formula} zonder vrije !!{variable}s. Deze route
+maakt de definitie van ``!!{sentence}'' overzichtelijker. We hebben
+haar ook nodig om het semantische begrip vervulling te definiëren.
+
+Eerst definiëren we ``!!{formula}'' voor een heel eenvoudige taal van
+de eerste orde. Die heeft maar één !!{predicate}, namelijk~$\Obj P$,
+en één !!{constant}, namelijk~$\Obj a$. De enige logische symbolen zijn
+$\lnot$, $\land$ en~$\lexists$. De volledige definities worden veel
+algemener. Daarin staan oneindig veel !!{predicate}s en
+!!{constant}s. We nemen ook !!{function}s op. Samen met !!{constant}s
+en !!{variable}s kunnen die ``termen'' vormen. Voorlopig zijn alleen
+$\Obj a$ en de variabelen termen. We hebben wel oneindig veel
+!!{variable}s nodig. Als officiële variabelen gebruiken we de symbolen
+$\Obj v_0$, $\Obj v_1$, \dots.
+
+\begin{defn}
+De verzameling \emph{!!{formula}s}~$\Frm$ wordt als volgt gedefinieerd:
+\begin{enumerate}
+\item\ollabel{fmls-atom} $\Atom{\Obj P}{\Obj a}$ en $\Atom{\Obj
+  P}{\Obj v_i}$ zijn !!{formula}s ($i \in \Nat$).
+
+\tagitem{prvNot}{\ollabel{fmls-not}Als $!A$ !!a{formula} is, dan is $\lnot !A$
+  !!{formula}.}{}
+
+\tagitem{prvAnd}{Als $!A$ en $!B$ !!{formula}s zijn, dan is $(!A \land
+  !B)$ !!a{formula}.}{}
+
+\tagitem{prvEx}{\ollabel{fmls-ex}Als $!A$ !!a{formula} is en $x$ !!a{variable},
+  dan is $\lexists[x][!A]$ !!a{formula}.}{}
+
+\tagitem{limitClause}{\ollabel{fmls-limit}Niets anders is !!a{formula}.}{}
+\end{enumerate}
+\end{defn}
+
+Volgens \olref{fmls-atom} zijn $\Atom{\Obj P}{\Obj a}$ en
+$\Atom{\Obj P}{\Obj v_i}$ voor iedere $i \in \Nat$ !!{formula}s. Dit
+zijn de \emph{atomaire} !!{formula}s. Daarmee beginnen we. De andere
+regels vertellen hoe we uit bestaande !!{formula}s nieuwe
+!!{formula}s maken. Uit \olref{fmls-not} volgt bijvoorbeeld dat
+$\lnot \Atom{\Obj P}{\Obj v_2}$ !!a{formula} is. We weten namelijk al
+door \olref{fmls-atom} dat $\Atom{\Obj P}{\Obj v_2}$ !!a{formula} is.
+Daarna geeft \olref{fmls-ex} ons nog een !!{formula}:
+$\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$. Zo kunnen we
+doorgaan. \olref{fmls-limit} zegt dat \emph{alleen} tekenreeksen die
+we op deze manier maken als !!{formula}s tellen. Daarom tellen
+$\lexists[\Obj v_0][\Atom{\Obj P}{\Obj a}]$ en $\lexists[\Obj
+v_0][\lexists[\Obj v_0][\Atom{\Obj P}{\Obj a}]]$ \emph{wel} als
+!!{formula}s. $(\lnot \Atom{\Obj P}{\Obj a})$ telt niet: de buitenste
+haakjes staan er te veel.
+
+Zo'n definitie van !!{formula}s heet een \emph{inductieve definitie}.
+Daardoor kunnen we iets over alle !!{formula}s bewijzen met een vorm
+van inductie die \emph{structurele inductie} heet. De algemene uitleg
+staat in \olref[mth][ind][idf]{sec} en \olref[mth][ind][sti]{sec}.
+Lees die delen voordat je aan de latere bewijzen begint. De werkwijze
+is deze. Wil je bewijzen dat iets voor alle !!{formula}s geldt, bewijs
+het dan eerst voor de atomaire !!{formula}s. Bewijs daarna: \emph{als}
+het voor een willekeurige !!{formula}~$!A$ (en~$!B$) geldt, dan geldt
+het \emph{ook} voor $\lnot !A$, $(!A \land !B)$ en
+$\lexists[x][!A]$. Zo bereik je bijvoorbeeld de formule
+$\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$. Het eerste deel
+geeft de atomaire !!{formula}~$\Atom{\Obj P}{\Obj v_2}$. Met het
+tweede deel ga je eerst naar $\lnot \Atom{\Obj P}{\Obj v_2}$ en daarna
+naar $\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$ zelf. Alle
+!!{formula}s worden op deze inductieve manier uit atomaire
+!!{formula}s gemaakt. Daarom werkt de werkwijze voor iedere formule.
+
+\end{document}

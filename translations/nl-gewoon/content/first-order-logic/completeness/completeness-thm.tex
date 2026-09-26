@@ -1,0 +1,126 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: completeness-theorem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid{fol}{com}{cth}}
+      {\olfileid{pl}{com}{cth}}
+
+\olsection{De volledigheidsstelling}
+
+\begin{explain}
+Nu voegen we de eerdere resultaten samen. Dat levert de
+volledigheidsstelling op.
+\end{explain}
+
+\begin{thm}[Volledigheidsstelling]
+\ollabel{thm:completeness}
+Neem een verzameling !!{sentence}s~$\Gamma$. Als $\Gamma$ consistent is,
+dan is de verzameling vervulbaar.
+\end{thm}
+
+\begin{proof}
+Neem aan dat $\Gamma$ consistent is.\iftag{FOL}{ Volgens
+  \olref[hen]{lem:henkin} bestaat er een verzadigde consistente
+  verzameling $\Gamma' \supseteq \Gamma$.}{} Het lemma van Lindenbaum,
+\olref[lin]{lem:lindenbaum}, geeft vervolgens een
+$\Gamma^* \supseteq \iftag{FOL}{\Gamma'}{\Gamma}$ die consistent en
+!!{complete} is.
+\iftag{FOL}{
+  Omdat $\Gamma' \subseteq \Gamma^*$, geldt voor elke
+  !!{formula}~$!A(x)$ dat $\Gamma^*$ !!a{sentence} van deze vorm bevat:
+  \iftag{prvEx}
+        {$\lexists[x][!A(x)] \lif !A(c)$}
+        {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c)$}
+  en daarom is $\Gamma^*$ verzadigd. Bevat $\Gamma$ geen~$\eq$, dan zegt}{Dan zegt}
+\olref[mod]{lem:truth},
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ precies als
+$!A \in \Gamma^*$, volgens \olref[mod]{lem:truth}. Dus geldt voor elke
+$!A \in \Gamma$ dat
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$. Daarmee is
+$\Gamma$ vervulbaar.\iftag{FOL}{ Bevat $\Gamma$ wel~$\eq$, dan zegt
+  \olref[ide]{lem:truth} voor elke !!{sentence}~$!A$ dat
+  $\Sat{\equivclass{M}{\approx}}{!A}$ precies als
+  $!A \in \Gamma^*$. Dus geldt $\Sat{\equivclass{M}{\approx}}{!A}$ voor
+  elke $!A \in \Gamma$. Ook in dit geval is $\Gamma$ vervulbaar.}{}
+\end{proof}
+
+\begin{cor}[Volledigheidsstelling, tweede formulering]
+\ollabel{cor:completeness}
+Voor elke $\Gamma$ en elke !!{sentence}~$!A$ geldt: als
+$\Gamma \Entails !A$, dan $\Gamma \Proves !A$.
+\end{cor}
+
+\begin{proof}
+De $\Gamma$ in \olref{cor:completeness} en die in
+\olref{thm:completeness} zijn beide universeel gekwantificeerd. Om ze
+niet door elkaar te halen, schrijven we de eerdere stelling met een
+andere letter. Voor elke verzameling !!{sentence}s~$\Delta$ geldt: als
+$\Delta$ consistent is, dan is zij vervulbaar. De contrapositie zegt:
+als $\Delta$ niet vervulbaar is, dan is $\Delta$ inconsistent. Met die vorm
+bewijzen we het corollarium.
+
+Neem aan dat $\Gamma \Entails !A$. Volgens
+\olref[syn][sem]{prop:entails-unsat} is $\Gamma \cup \{\lnot !A\}$ dan
+onvervulbaar. Neem nu $\Gamma \cup \{\lnot !A\}$ als $\Delta$. De vorige
+vorm van \olref{thm:completeness} zegt dan dat
+$\Gamma \cup \{\lnot !A\}$ inconsistent is. Volgens
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:prv:prop:prov-incons},
+    prfSC/{fol:seq:prv:prop:prov-incons},
+    prfND/{fol:ntd:prv:prop:prov-incons},
+    prfTab/{fol:tab:prv:prop:prov-incons}}}{%
+  \tagrefs{prfAX/{pl:axd:prv:prop:prov-incons},
+    prfSC/{pl:seq:prv:prop:prov-incons},
+    prfND/{pl:ntd:prv:prop:prov-incons},
+    prfTab/{pl:tab:prv:prop:prov-incons}}},
+$\Gamma \Proves !A$.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Gebruik \olref[fol][com][cth]{cor:completeness} om
+\olref[fol][com][cth]{thm:completeness} te bewijzen. Laat zo zien dat de
+twee formuleringen van de volledigheidsstelling hetzelfde zeggen.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Gebruik \olref[pl][com][cth]{cor:completeness} om
+\olref[pl][com][cth]{thm:completeness} te bewijzen. Laat zo zien dat de
+twee formuleringen van de volledigheidsstelling hetzelfde zeggen.
+\end{prob}
+\tagendprob
+
+\tagprob{FOL}
+\begin{prob}
+Een volledig !!{derivation}ssysteem moet sterk genoeg zijn om van elke
+onvervulbare verzameling te bewijzen dat zij inconsistent is. Welke
+regels van !!{derivation} waren nodig voor het volledigheidsbewijs? Zijn
+er regels die nergens in dat bewijs worden gebruikt? Maak een lijst of
+diagram. Geef daarin voor elke regel van !!{derivation} aan in welke
+voorafgaande resultaten zij wordt gebruikt op weg naar
+\olref[fol][com][cth]{thm:completeness}. Noteer ook regels die in deze
+bewijzen stilzwijgend worden gebruikt.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Een volledig !!{derivation}ssysteem moet sterk genoeg zijn om van elke
+onvervulbare verzameling te bewijzen dat zij inconsistent is. Welke
+regels van !!{derivation} waren nodig voor het volledigheidsbewijs? Zijn
+er regels die nergens in dat bewijs worden gebruikt? Maak een lijst of
+diagram. Geef daarin voor elke regel van !!{derivation} aan in welke
+voorafgaande resultaten zij wordt gebruikt op weg naar
+\olref[pl][com][cth]{thm:completeness}. Noteer ook regels die in deze
+bewijzen stilzwijgend worden gebruikt.
+\end{prob}
+\tagendprob
+
+\end{document}

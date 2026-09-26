@@ -1,0 +1,58 @@
+% Part: first-order logic
+
+\documentclass[../../include/open-logic-part]{subfiles}
+
+\begin{document}
+
+\olpart{fol}{Eerste-ordelogica}
+
+\begin{editorial}
+  Dit deel behandelt de metatheorie van de eerste-ordelogica tot en met
+  volledigheid. Momenteel steunt het niet op een afzonderlijke
+  behandeling van de propositionele logica; alles wordt bewezen. Als de
+  tag ``FOL'' onwaar is, laten de bronbestanden het materiaal over
+  kwantoren weg en vervangen zij onder meer ``!!{structure}'' door
+  ``!!{valuation}'' en $\Struct{M}$ door $\pAssign{v}$. Het meeste
+  materiaal in het deel over propositionele logica is feitelijk het
+  materiaal over eerste-ordelogica met de tag ``FOL'' uitgeschakeld.
+
+  Als het deel over propositionele logica wordt opgenomen, ontstaat veel
+  herhaling. Het plan is echter om dit deel rekening te laten houden met
+  het materiaal over propositionele logica. Reeds behandeld materiaal
+  kan dan worden weggelaten en bewijzen kunnen worden verkort door naar
+  de desbetreffende plaatsen in het propositionele deel te verwijzen.
+\end{editorial}
+
+\olimport[introduction]{introduction}
+
+\olimport[syntax-and-semantics]{syntax}
+
+\olimport[syntax-and-semantics]{semantics}
+
+\olimport[models-theories]{models-theories}
+
+\olimport[proof-systems]{proof-systems}
+
+\iftag{prfSC}{%
+  \olimport[sequent-calculus]{sequent-calculus}
+}{}
+
+\iftag{prfND}{%
+  \olimport[natural-deduction]{natural-deduction}
+}{}
+
+\iftag{prfTab}{%
+  \olimport[tableaux]{tableaux}
+}{}
+
+\iftag{prfAX}{%
+  \olimport[axiomatic-deduction]{axiomatic-deduction}
+}{}
+
+\olimport[completeness]{completeness}
+
+\olimport[beyond]{beyond}
+
+\OLEndPartHook
+
+\end{document}
