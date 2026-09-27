@@ -1,33 +1,36 @@
-# Open Logic Project — twee Nederlandse registers
+# Open Logic in twee Nederlandse registers
 
-Dit is een gedeeltelijke bronuitgave: 160 van 722 broneenheden in twee Nederlandse registers. De volledige oorspronkelijke wiskundige inhoud van deze eenheden is behouden; de laatste hoofdstukgrens kan midden in een hoofdstuk vallen. Er is nog geen gepubliceerde PDF of EPUB. De aangeboden samengestelde LaTeX is inhoudelijk samengesteld en bytegewijs gecontroleerd, maar in deze uitgave niet gecompileerd. Een eerdere bouwpoging kon de gedeelde TeX-vergrendeling niet verkrijgen en startte geen TeX-proces. De termen “geaccepteerd” en “gecontroleerd” verwijzen naar de vastgelegde AI-productiecontroles, niet naar onafhankelijk deskundigenonderzoek.
+**Gedeeltelijke leesuitgave: 160 van 722 broneenheden per register.**
 
-## Lezen en downloaden
+Lees dezelfde inhoud in wetenschappelijk Nederlands of in gewone mensentaal voor volwassenen. De gewone versie is geen samenvatting en verlaagt het wiskundige niveau niet. De vertaling blijft in uitvoering; 562 broneenheden ontbreken nog.
 
-- [Nederlandse bronteksten naast elkaar](https://kokunoyumeto.github.io/OpenLogic-nl/)
-- [Wetenschappelijk Nederlands — TEX](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.3.0-paired-160-of-722-source/00-openlogic-nl-standaard-160.tex)
-- [Wetenschappelijk Nederlands — ZIP](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.3.0-paired-160-of-722-source/01-openlogic-nl-standaard-160-bronnen.zip)
-- [Gewone mensentaal — TEX](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.3.0-paired-160-of-722-source/02-openlogic-nl-gewone-mensentaal-160.tex)
-- [Gewone mensentaal — ZIP](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.3.0-paired-160-of-722-source/03-openlogic-nl-gewone-mensentaal-160-bronnen.zip)
+## Online lezen
 
-## Twee registers, dezelfde wiskunde
+- [Wetenschappelijk Nederlands](https://kokunoyumeto.github.io/OpenLogic-nl/readers/160-r5/nl-standard/OEBPS/generated/book.xhtml)
+- [Gewone mensentaal](https://kokunoyumeto.github.io/OpenLogic-nl/readers/160-r5/nl-gewoon/OEBPS/generated/book.xhtml)
+- [Beide edities kiezen](https://kokunoyumeto.github.io/OpenLogic-nl/readers/160-r5/)
 
-Het wetenschappelijke register en de gewone mensentaal zijn afzonderlijke formuleringen van dezelfde inhoud. De gewone versie is bedoeld voor volwassenen en is geen samenvatting, kinderversie of wiskundige vereenvoudiging. Er zijn 160 corresponderende bronbestanden per register; 562 eenheden ontbreken nog.
+## Downloaden
 
-## Bronnen, controles en bespreekbare keuzes
+- [Wetenschappelijk Nederlands — volledige LaTeX](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.4.0-paired-160-of-722-readers/00-00-openlogic-nl-standaard-160-r5.tex)
+- [Wetenschappelijk Nederlands — volledige bronboom (ZIP)](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.4.0-paired-160-of-722-readers/00-01-openlogic-nl-standaard-160-r5-bronnen.zip)
+- [Wetenschappelijk Nederlands — EPUB](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.4.0-paired-160-of-722-readers/00-02-openlogic-nl-standaard-160-r5.epub)
+- [Gewone mensentaal — volledige LaTeX](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.4.0-paired-160-of-722-readers/00-03-openlogic-nl-gewone-mensentaal-160-r5.tex)
+- [Gewone mensentaal — volledige bronboom (ZIP)](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.4.0-paired-160-of-722-readers/00-04-openlogic-nl-gewone-mensentaal-160-r5-bronnen.zip)
+- [Gewone mensentaal — EPUB](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.4.0-paired-160-of-722-readers/00-05-openlogic-nl-gewone-mensentaal-160-r5.epub)
 
-`alignment/` koppelt de oorspronkelijke Engelse eenheden en beide vertalingen aan controleerbare hashes en segmentlocaties. `canon/` vermeldt de werkelijk gekoppelde bronlocaties en passage-identiteiten; beschermde boeken, artikelen en gesproken corpora zijn niet heruitgegeven. Dit controleert de herkomstverwijzingen, niet zelfstandig de juistheid van iedere taalkundige keuze. De volledige historische keuzeverantwoording wordt in het productiearchief bewaard; deze bronuitgave bevat de segmentkoppelingen, nog niet een volledig Nederlandstalig deskundigenlogboek.
+## Wat is gecontroleerd?
 
-De manager heeft alle 480 bron-/doelbestanden en 5.637 segmentverwijzingen opnieuw op byte-identiteit gecontroleerd. Iedere cumulatieve LaTeX bevat precies 160 gecontroleerde tekstlichamen. Een nieuwe integrale taalkundige beoordeling of geslaagde PDF/EPUB-bouw wordt niet geclaimd.
+Beide EPUBs bevatten precies de eerste 160 geaccepteerde broneenheden en native MathML. EPUBCheck 5.3.0 meldt geen fouten of waarschuwingen. De eigenaar heeft de conversie tweemaal bytegelijk herhaald en veertien representatieve schermweergaven gecontroleerd. De manager controleerde opnieuw de archiefmanifesten, bronbestanden, EPUB-identiteit en exacte web-extractie. Dit is geen menselijke beoordeling of nieuwe volledige taalkundige certificering. Brede formules blijven plaatselijk horizontaal verschuifbaar. De volledige Nederlandstalige keuzeverantwoording is nog niet als één deskundigenlogboek meegeleverd.
 
-## Bouwbestanden
+## Bronnen en herbouw
 
-In `build-source/nl-standard/` en `build-source/nl-gewoon/` staan de afzonderlijke bronbomen, inclusief cumulatieve LaTeX, stijlen, figuren, bibliografie, bouwer en instructies. Gebruik het bijbehorende ZIP-bestand om één register te reconstrueren.
+Iedere EPUB heeft een rechtstreeks downloadbare cumulatieve LaTeX en een complete bron-ZIP met 160 doelbestanden, stijlen, figuren, bibliografie en bouwinstructies. LaTeX is de bewerkbare hoofdbron. Er is geen PDF: de afzonderlijke PDF-bouw mislukte; de gecontroleerde EPUB en online lezer zijn daarom de leesversies. Eerdere bronuitgaven blijven beschikbaar.
 
-## Herkomst en licentie
+## Herkomst en AI-verantwoording
 
-Gebaseerd op [Open Logic Project](https://openlogicproject.org/), bronrevisie `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`. CC BY 4.0 en de oorspronkelijke componentvermeldingen blijven van toepassing; zie `LICENSE.md`. Dit is een onafhankelijke AI-vertaling, geen officiële uitgave of aanbeveling van het Open Logic Project. [Alle talen](https://kokunoyumeto.github.io/OpenLogic-translations/).
+Gebaseerd op het [Open Logic Project](https://openlogicproject.org/), onder CC BY 4.0 met behoud van de oorspronkelijke componentlicenties. Dit is een onafhankelijke AI-vertaling, geen officiële uitgave of aanbeveling van het bronproject.
 
-## AI-verantwoording
+EPUB-conversie, correcties en bouwcontroles: OpenAI Codex — GPT-5.6 Sol, Ultra-inspanning. De exacte modelinstelling van iedere oudere vertaalpassage is niet afzonderlijk vastgesteld. Verpakking, publicatie en downloadcontrole: OpenAI Codex — GPT-6 Astra, Ultra-inspanning. Geen menselijke redactie of goedkeuring wordt geclaimd.
 
-Vertaling en eerdere controles: OpenAI Codex; de huidige eigenaar gebruikt GPT-5.6 Sol, Ultra effort. De exacte historische model- en inspanningsinstelling van ieder tekstgedeelte zijn nog niet afzonderlijk bewezen; de huidige instelling wordt daarom niet aan alle eerdere vertaalbytes toegeschreven. Bronselectie, verpakking en publicatiecontrole voor deze uitgave: OpenAI Codex — GPT-6 Astra, Ultra effort. Geen menselijke redactie of beoordeling wordt geclaimd.
+[Alle talen](https://kokunoyumeto.github.io/OpenLogic-translations/) · [Blijvende Zenodo-reeks](https://doi.org/10.5281/zenodo.22969983) · [Eerdere bronuitgave](https://github.com/KokunoYumeto/OpenLogic-nl/releases/tag/v0.3.0-paired-160-of-722-source).

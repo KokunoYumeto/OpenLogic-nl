@@ -1,0 +1,153 @@
+{
+  "schema": "openlogic-nl-reader-publication/1",
+  "datum": "2026-09-27",
+  "status": "PASS",
+  "reikwijdte": "Twee gedeeltelijke readers: OLP-0001–OLP-0160, 160 van 722 eenheden. Geen nieuwe volledige taalkundige certificering.",
+  "registers": {
+    "nl-standard": {
+      "eenheden": 160,
+      "epubcheck": {
+        "checked_epub": {
+          "bytes": 289049,
+          "sha256": "7ab9f724a393f929442d98265a3cff5a90ef64f2d3a50579c144ea73305a3603"
+        },
+        "invocation": {
+          "fail_on_warnings": true,
+          "launch_capture": [
+            "CREATE_SUSPENDED",
+            "AssignProcessToJobObject",
+            "ResumeThread"
+          ],
+          "locale": "en",
+          "process_tree_guard": "Windows job object, kill on close",
+          "profile": "default",
+          "quiet": true,
+          "timeout_seconds": 600.0
+        },
+        "result": {
+          "error": 0,
+          "fatal": 0,
+          "messages": 0,
+          "warning": 0
+        },
+        "schema": "openlogic-partial-epubcheck-receipt-v1",
+        "status": "PASS",
+        "validator": {
+          "jar_bytes": 1223671,
+          "jar_sha256": "f7f96617c929371821609b88c8484d6dc9f24fe916499863c46094c5fb778a65",
+          "name": "EPUBCheck",
+          "runtime_bytes": 36168172,
+          "runtime_files": 40,
+          "runtime_tree_sha256": "f5e057f7b81e1a527c53f8fabe63c17681ddc63919343c05eb945a6a1768face",
+          "version": "5.3.0"
+        }
+      },
+      "controle": {
+        "accepted_unit_anchors": 160,
+        "ai_disclosure_documents": 2,
+        "block_math_roots": 277,
+        "bytes": 289049,
+        "css_links": 0,
+        "fragment_links": 636,
+        "images": 13,
+        "images_with_meaningful_alt": 13,
+        "inline_math_roots": 8720,
+        "local_links": 651,
+        "manifest_items": 16,
+        "mathml_roots": 8997,
+        "register": "nl-standard",
+        "schema": "openlogic-partial-epub3-audit-v1",
+        "scroll_wrapped_block_math": 277,
+        "sha256": "7ab9f724a393f929442d98265a3cff5a90ef64f2d3a50579c144ea73305a3603",
+        "spine_items": 2,
+        "status": "PASS",
+        "svg_descriptions": 13,
+        "svg_links": 0,
+        "svg_titles": 13,
+        "zip_entries": 19
+      },
+      "bronbestanden": 224,
+      "manifestregels": 223,
+      "visuele_controle": "AI-inspectie; 7 opnamen per register op 1280 en 430 pixels; geen menselijke beoordeling",
+      "epub_sha256": "7ab9f724a393f929442d98265a3cff5a90ef64f2d3a50579c144ea73305a3603",
+      "latex_sha256": "ebc27d2b175081577ce5292a876e1a466f73530013a6919349fd754ce200820b",
+      "source_zip_sha256": "3297abb5ac8a348f8336cdc137d6368c13f8a64518d8d83ef628f207af8e055a"
+    },
+    "nl-gewoon": {
+      "eenheden": 160,
+      "epubcheck": {
+        "checked_epub": {
+          "bytes": 294402,
+          "sha256": "2124741160cd11aba84aee3d61b57dfd317a808965de173a2a7952fbcf78859b"
+        },
+        "invocation": {
+          "fail_on_warnings": true,
+          "launch_capture": [
+            "CREATE_SUSPENDED",
+            "AssignProcessToJobObject",
+            "ResumeThread"
+          ],
+          "locale": "en",
+          "process_tree_guard": "Windows job object, kill on close",
+          "profile": "default",
+          "quiet": true,
+          "timeout_seconds": 600.0
+        },
+        "result": {
+          "error": 0,
+          "fatal": 0,
+          "messages": 0,
+          "warning": 0
+        },
+        "schema": "openlogic-partial-epubcheck-receipt-v1",
+        "status": "PASS",
+        "validator": {
+          "jar_bytes": 1223671,
+          "jar_sha256": "f7f96617c929371821609b88c8484d6dc9f24fe916499863c46094c5fb778a65",
+          "name": "EPUBCheck",
+          "runtime_bytes": 36168172,
+          "runtime_files": 40,
+          "runtime_tree_sha256": "f5e057f7b81e1a527c53f8fabe63c17681ddc63919343c05eb945a6a1768face",
+          "version": "5.3.0"
+        }
+      },
+      "controle": {
+        "accepted_unit_anchors": 160,
+        "ai_disclosure_documents": 2,
+        "block_math_roots": 277,
+        "bytes": 294402,
+        "css_links": 0,
+        "fragment_links": 636,
+        "images": 13,
+        "images_with_meaningful_alt": 13,
+        "inline_math_roots": 8722,
+        "local_links": 651,
+        "manifest_items": 16,
+        "mathml_roots": 8999,
+        "register": "nl-gewoon",
+        "schema": "openlogic-partial-epub3-audit-v1",
+        "scroll_wrapped_block_math": 277,
+        "sha256": "2124741160cd11aba84aee3d61b57dfd317a808965de173a2a7952fbcf78859b",
+        "spine_items": 2,
+        "status": "PASS",
+        "svg_descriptions": 13,
+        "svg_links": 0,
+        "svg_titles": 13,
+        "zip_entries": 19
+      },
+      "bronbestanden": 224,
+      "manifestregels": 223,
+      "visuele_controle": "AI-inspectie; 7 opnamen per register op 1280 en 430 pixels; geen menselijke beoordeling",
+      "epub_sha256": "2124741160cd11aba84aee3d61b57dfd317a808965de173a2a7952fbcf78859b",
+      "latex_sha256": "4c63076e0622d1bdd401af60640934641c72ad11ef3daf5d1db58682ae052d49",
+      "source_zip_sha256": "e80528870c5ff984ae5f534f923c7bdeb4998a81b769b6a0349f6a8044b661b8"
+    }
+  },
+  "ai_verantwoording": "EPUB-conversie, correcties en bouwcontroles: OpenAI Codex — GPT-5.6 Sol, Ultra-inspanning. De exacte modelinstelling van iedere oudere vertaalpassage is niet afzonderlijk vastgesteld. Verpakking, publicatie en downloadcontrole: OpenAI Codex — GPT-6 Astra, Ultra-inspanning. Geen menselijke redactie of goedkeuring wordt geclaimd.",
+  "pdf": "Geen PDF in deze uitgave: de afzonderlijke PDF-bouw mislukte. EPUB en online lezer zijn zonder TeX gebouwd en gecontroleerd.",
+  "beperkingen": [
+    "562 broneenheden vallen buiten deze uitgave.",
+    "Brede formules kunnen binnen hun eigen regel horizontaal worden verschoven.",
+    "De volledige Nederlandstalige keuzeverantwoording is nog niet als één deskundigenlogboek meegeleverd; eerdere bron- en segmentkoppelingen blijven beschikbaar."
+  ]
+}
