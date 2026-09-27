@@ -6,8 +6,10 @@ Lees dezelfde inhoud in wetenschappelijk Nederlands of in gewone mensentaal voor
 
 ## Online lezen
 
-- [Wetenschappelijk Nederlands](https://kokunoyumeto.github.io/OpenLogic-nl/readers/160-r5/nl-standard/OEBPS/generated/book.xhtml)
-- [Gewone mensentaal](https://kokunoyumeto.github.io/OpenLogic-nl/readers/160-r5/nl-gewoon/OEBPS/generated/book.xhtml)
+- [Wetenschappelijk Nederlands](https://kokunoyumeto.github.io/OpenLogic-nl/readers/160-r5/nl-standard/OEBPS/generated/book.html)
+- [Gewone mensentaal](https://kokunoyumeto.github.io/OpenLogic-nl/readers/160-r5/nl-gewoon/OEBPS/generated/book.html)
+
+De online HTML-ingangen werken ook in browsers die XHTML blokkeren. Tekst, ankers en formules zijn gelijk aan de EPUB; de oorspronkelijke XHTML-bestanden blijven beschikbaar. [Volledige bewerkbare bronnen en reconstructiescript voor de HTML-ingangen](https://github.com/KokunoYumeto/OpenLogic-nl/releases/download/v0.4.0-paired-160-of-722-readers/09-HTML-bronnen.zip).
 - [Beide edities kiezen](https://kokunoyumeto.github.io/OpenLogic-nl/readers/160-r5/)
 
 ## Downloaden

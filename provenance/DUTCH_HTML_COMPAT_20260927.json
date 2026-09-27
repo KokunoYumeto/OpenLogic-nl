@@ -1,0 +1,52 @@
+{
+  "schema": "openlogic-html-compat/1",
+  "status": "PASS",
+  "scope": "160/722 per register; geen vertaalwijzigingen",
+  "files": [
+    {
+      "path": "docs/readers/160-r5/nl-standard/OEBPS/generated/book.html",
+      "bytes": 3173627,
+      "sha256": "4e8dbc546bff2bc485026a69b303f235640a3d926c2f3607fc198d6fa059e42a",
+      "source_path": "docs/readers/160-r5/nl-standard/OEBPS/generated/book.xhtml",
+      "source_sha256": "bf2e74e829edad349034fd07406ea1245dbfd5bed016e6293b418fa1ddff711e",
+      "text_identical": true,
+      "anchors_identical": true,
+      "math_elements": 8997,
+      "element_count": 92041
+    },
+    {
+      "path": "docs/readers/160-r5/nl-standard/OEBPS/nav.html",
+      "bytes": 22330,
+      "sha256": "e000ab5ab6a4982fcde968871585d517b0b882c48963e9cd85de14ca489f6c0e",
+      "source_path": "docs/readers/160-r5/nl-standard/OEBPS/nav.xhtml",
+      "source_sha256": "71434f57a2817326386f29cac8710809fc853b771dd3149150046a8e3e085d90",
+      "text_identical": true,
+      "anchors_identical": true,
+      "math_elements": 0,
+      "element_count": 338
+    },
+    {
+      "path": "docs/readers/160-r5/nl-gewoon/OEBPS/generated/book.html",
+      "bytes": 3184488,
+      "sha256": "58eb516cdc517b0cc7ea5b02205d1128002ca9e23119b2bd4ccbf3c858e9da8e",
+      "source_path": "docs/readers/160-r5/nl-gewoon/OEBPS/generated/book.xhtml",
+      "source_sha256": "954aced94c500c23093d49038515fdeb693597188eeb5b0264ab66d799c68316",
+      "text_identical": true,
+      "anchors_identical": true,
+      "math_elements": 8999,
+      "element_count": 92049
+    },
+    {
+      "path": "docs/readers/160-r5/nl-gewoon/OEBPS/nav.html",
+      "bytes": 22328,
+      "sha256": "a59ae916a4619068361e0e1f930150b65c7ace88d29be4a4f03c6b7122f2696d",
+      "source_path": "docs/readers/160-r5/nl-gewoon/OEBPS/nav.xhtml",
+      "source_sha256": "f5fc637dc15b0706aad03ba4afff70a8580007ae1defb7c86ccaac6f017bd9b8",
+      "text_identical": true,
+      "anchors_identical": true,
+      "math_elements": 0,
+      "element_count": 338
+    }
+  ],
+  "epub_and_source_archives_changed": false
+}
