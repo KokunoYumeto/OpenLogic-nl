@@ -1,0 +1,141 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{ext}
+
+\olsection{Extensionaliteit}
+
+\begin{explain}
+Extensionaliteit, soms ook relevantie genoemd, kan informeel als
+volgt worden uitgedrukt: de enige factoren die van invloed zijn op de
+vervulling van !!{formula}~$!A$ in !!a{structure}~$\Struct M$ onder
+!!a{variable} bedeling~$s$, zijn de omvang van het !!{domain} en de
+waarden die~$\Struct M$ en~$s$ toekennen aan de taalelementen die
+daadwerkelijk in~$!A$ voorkomen.
+
+Een onmiddellijk gevolg van extensionaliteit is het volgende. Als twee
+!!{structure}s~$\Struct M$ en~$\Struct M'$ overeenstemmen op alle
+taalelementen die in een zin~$!A$ voorkomen en hetzelfde domein hebben,
+dan moeten~$\Struct M$ en~$\Struct M'$ ook overeenstemmen over de vraag
+of~$!A$ zelf waar is.
+\end{explain}
+
+\begin{prop}[Extensionaliteit]
+  \ollabel{prop:extensionality}
+  Zij $!A$ !!a{formula}, en zijn $\Struct M_1$ en $\Struct M_2$
+  !!{structure}s met $\Domain{M_1} = \Domain{M_2}$, en $s$ een
+  bedeling op $\Domain{M_1} = \Domain{M_2}$. Als
+  $\Assign{c}{M_1} = \Assign{c}{M_2}$, $\Assign{R}{M_1}=\Assign{R}{M_2}$,
+  en $\Assign{f}{M_1} = \Assign{f}{M_2}$ voor elke !!{constant}~$c$,
+  elk relatiesymbool~$R$ en elke !!{function}~$f$ die in~$!A$
+  voorkomen, dan geldt $\Sat{M_1}{!A}[s]$ dan en slechts dan als
+  $\Sat{M_2}{!A}[s]$.
+\end{prop}
+
+\begin{proof}
+  Bewijs eerst met inductie naar~$t$ dat voor elke term die in de
+  formule voorkomt, $\Value{t}{M_1}[s] = \Value{t}{M_2}[s]$. Bewijs vervolgens
+  de propositie met inductie naar~$!A$ en gebruik de zojuist bewezen
+  bewering in het basisgeval van de inductie (waarin~$!A$ atomair is).
+\end{proof}
+
+\begin{prob}
+Werk het bewijs van \olref[fol][syn][ext]{prop:extensionality}
+in detail uit.
+\end{prob}
+
+\begin{cor}[Extensionaliteit voor !!^{sentence}s]
+  \ollabel{cor:extensionality-sent}
+  Zij $!A$ !!a{sentence} en zijn $\Struct{M_1}$ en $\Struct{M_2}$ als in
+  \olref{prop:extensionality}. Dan geldt $\Sat{M_1}{!A}$ dan en slechts
+  dan als $\Sat{M_2}{!A}$.
+\end{cor}
+
+\begin{proof}
+Dit volgt uit \olref{prop:extensionality} met
+\olref[ass]{cor:sat-sentence}.
+\end{proof}
+
+Bovendien hangen de waarde van een term en de vraag of !!a{structure}
+!!a{formula} vervult uitsluitend af van de waarden van de deeltermen.
+
+\begin{prop}\ollabel{prop:ext-terms}
+Zij $\Struct M$ !!a{structure}, zijn $t$ en $t'$ termen, en zij $s$ een
+bedeling. Dan geldt $\Value{\Subst{t}{t'}{x}}{M}[s] =
+\Value{t}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+\end{prop}
+
+\begin{proof}
+Met inductie naar~$t$.
+\begin{enumerate}
+\item Als $t$ een constante is, zeg $t\ident c$, dan is
+  $\Subst{t}{t'}{x} = c$, en $\Value{c}{M}[s] = \Assign{c}{M} =
+  \Value{c}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+
+\item Als $t$ een andere variabele dan~$x$ is, zeg $t \ident y$, dan
+  is $\Subst{t}{t'}{x} = y$, en geldt
+  $\Value{y}{M}[s] =
+  \Value{y}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$, omdat
+  $\varAssign{s}{\Subst{s}{\Value{t'}{M}[s]}{x}}{x}$.
+
+\item Als $t \ident x$, dan is $\Subst{t}{t'}{x} = t'$. Maar
+  $\Value{x}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}] = \Value{t'}{M}[s]$
+  volgens de definitie van~$\Subst{s}{\Value{t'}{M}[s]}{x}$.
+
+\item Als $t \ident \Atom{f}{t_1,\dots,t_n}$, dan geldt:
+\begin{multline*}
+  \Value{\Subst{t}{t'}{x}}{M}[s] \\
+  \begin{aligned}[b]
+& = \Value{\Atom{f}{\Subst{t_1}{t'}{x}, \dots, \Subst{t_n}{t'}{x}}}{M}[s]\\
+& \qquad    \text{ volgens de definitie van $\Subst{t}{t'}{x}$}\\
+& = \Assign{f}{M}(\Value{\Subst{t_1}{t'}{x}}{M}[s], \dots,
+    \Value{\Subst{t_n}{t'}{x}}{M}[s])\\
+    & \qquad  \text{ volgens de definitie van $\Value{\Atom{f}{\dots}}{M}[s]$}\\
+& = \Assign{f}{M}(\Value{t_1}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}], \dots,
+   \Value{t_n}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}])\\
+& \qquad    \text{ volgens de inductiehypothese}\\
+& = \Value{t}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]
+    \text{ volgens de definitie van $\Value{\Atom{f}{\dots}}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$}
+  \end{aligned}
+\end{multline*}
+\end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:ext-formulas} Zij $\Struct M$
+!!a{structure}, $!A$ !!a{formula}, $t'$ een term, en $s$ een bedeling.
+Dan geldt $\Sat{M}{\Subst{!A}{t'}{x}}[s]$ dan en slechts dan als
+$\Sat{M}{!A}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+\end{prop}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[fol][syn][ext]{prop:ext-formulas}.
+\end{prob}
+
+\begin{explain}
+  De strekking van
+  \cref{fol:syn:ext:prop:ext-terms,fol:syn:ext:prop:ext-formulas} is
+  als volgt. Stel dat we een term~$t$ of !!a{formula}~$!A$ en een
+  term~$t'$ hebben, en dat we de waarde van $\Subst{t}{t'}{x}$ willen
+  kennen of willen weten of $\Subst{!A}{t'}{x}$ wordt vervuld in
+  !!a{structure}~$\Struct M$ onder !!a{variable} bedeling~$s$.
+  Dan kunnen we eerst de substitutie uitvoeren en vervolgens de
+  waarde of vervulling onder $\Struct{M}$ en~$s$ beschouwen. We kunnen
+  ook eerst de waarde~$m = \Value{t'}{M}[s]$ van~$t'$ in
+  $\Struct{M}$ onder~$s$ bepalen, de !!{variable} bedeling veranderen
+  in~$\Subst{s}{m}{x}$, en vervolgens de waarde van~$t$ in
+  $\Struct{M}$ onder~$\Subst{s}{m}{x}$ beschouwen, of nagaan of
+  $\Sat{M}{!A}[\Subst{s}{m}{x}]$.
+  \Cref{fol:syn:ext:prop:ext-terms,fol:syn:ext:prop:ext-formulas}
+  garanderen dat het antwoord op beide manieren hetzelfde is.
+\end{explain}
+
+\end{document}

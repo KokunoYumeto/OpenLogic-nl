@@ -1,0 +1,58 @@
+{
+  "ai_disclosure": "Vertaling, redactie, correctie en EPUB-productie: OpenAI Codex — GPT-5.6 Sol, Ultra-inspanning. Er heeft geen menselijke redactie of goedkeuring plaatsgevonden.",
+  "content_tree_excluding_this_manifest": {
+    "bytes": 7994260,
+    "files": 40,
+    "tree_sha256": "bf54c13096cc0f49517d43b7af1fa49e9a150799d452dc8102042e6be70ae056"
+  },
+  "entrypoints": {
+    "landing": "index.html",
+    "nl_gewoon": "nl-gewoon/OEBPS/generated/book.xhtml",
+    "nl_gewoon_navigation": "nl-gewoon/OEBPS/nav.xhtml",
+    "nl_standard": "nl-standard/OEBPS/generated/book.xhtml",
+    "nl_standard_navigation": "nl-standard/OEBPS/nav.xhtml"
+  },
+  "language": "nl-NL",
+  "no_pdf_exception": {
+    "active": true,
+    "reason": "Deze begrensde editie gebruikt de toegestane uitgave zonder PDF; de directe LaTeX-bron, het volledige bronpakket, EPUB en de online lezer blijven beschikbaar."
+  },
+  "publication_performed": false,
+  "schema": "openlogic-nl-partial-web-reader-manifest-v1",
+  "scope": {
+    "accepted_units": 192,
+    "complete_edition": false,
+    "first": "OLP-0001",
+    "last": "OLP-0192",
+    "total_units": 722
+  },
+  "source_epubs": {
+    "nl-gewoon": {
+      "bytes": 369965,
+      "extracted_bytes": 4004357,
+      "extracted_files": 19,
+      "extracted_tree_sha256": "e61f4bb74e81fdac865a71a60c03e560bebb3ac0c9b47c1ccbb0b597fcc0387f",
+      "sha256": "394fecfd2103f8aca3f2add968ce180def4d298914dfb583602201aa09d86cbb"
+    },
+    "nl-standard": {
+      "bytes": 360696,
+      "extracted_bytes": 3985453,
+      "extracted_files": 19,
+      "extracted_tree_sha256": "665b0e13bc0225644b91497b705ac2e27ce0332e0a3d70a45995331de39e304d",
+      "sha256": "ed8d5e4131386116b764c96bf55eed4a775ff46a8e41d000f5e969e863bcfcc6"
+    }
+  },
+  "status": "PASS_READY_FOR_EXISTING_LINEAGE_DEPLOYMENT",
+  "validation_receipts": {
+    "source_archive_audit": {
+      "bytes": 6488,
+      "path": "C:\\interlanguage-task-state\\openlogic-nl-registers\\ACCEPTED192_SOURCE_ARCHIVE_AUDIT.json",
+      "sha256": "cc352b2c7f599c4b065deb1216940e254ffc3550d34ae41aee487156cf7f698e"
+    },
+    "visual_qa": {
+      "bytes": 9523,
+      "path": "C:\\interlanguage-task-state\\openlogic-nl-registers\\ACCEPTED192_EPUB_VISUAL_QA.json",
+      "sha256": "2c07012a72c9965513c0913558f3a33ad32d3e7297374d47976ad4ca58214c76"
+    }
+  }
+}

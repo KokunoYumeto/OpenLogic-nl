@@ -1,0 +1,191 @@
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: set-theory
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{mat}{set}
+
+\olsection{Verzamelingenleer}
+
+Vrijwel de gehele wiskunde kan in de verzamelingenleer worden
+ontwikkeld. Daarvoor zijn verschillende zaken nodig. Ten eerste is een
+stelsel van axioma's voor de relatie~$\in$ nodig. Er zijn verscheidene
+axiomasystemen ontwikkeld, die soms onderling strijdige eigenschappen
+van~$\in$ hebben. Eén stelsel neemt een bijzondere plaats in:
+$\Log{ZFC}$, de Zermelo--Fraenkel-verzamelingenleer met het keuzeaxioma.
+Dit is verreweg het meest gebruikte en bestudeerde stelsel, omdat de
+axioma's ervan vrijwel alles blijken te bewijzen wat wiskundigen willen
+kunnen bewijzen. Voordat dit kan worden vastgesteld, moet echter eerst
+duidelijk zijn hoe we alles wat wiskundigen willen zeggen überhaupt
+kunnen \emph{uitdrukken}. De taal bevat om te beginnen geen
+!!{constant}s of !!{function}s. Daardoor is op het eerste gezicht niet
+duidelijk hoe we over bepaalde verzamelingen (zoals $\emptyset$ of
+$\Nat$) of over bewerkingen op verzamelingen (zoals $X \cup Y$ en
+$\Pow{X}$) kunnen spreken, laat staan over constructies die ook andere
+zaken dan verzamelingen omvatten, zoals relaties en functies.
+
+Om te beginnen is ``is een element van'' niet de enige relatie die ons
+interesseert: ``is een deelverzameling van'' lijkt bijna even
+belangrijk. We kunnen ``is een deelverzameling van'' echter
+\emph{definiëren} met behulp van ``is een element van''. Daarvoor
+moeten we in de taal van de verzamelingenleer !!a{formula}~$!A(x, y)$
+vinden waaraan een paar verzamelingen~$\tuple{X, Y}$ dan en slechts dan
+voldoet als $X \subseteq Y$. Nu is $X$ precies dan een deelverzameling
+van $Y$ als alle !!{element}s van~$X$ ook !!{element}s van~$Y$ zijn.
+We kunnen $\subseteq$ dus definiëren met de formule
+\[
+\lforall[z][(z \in x \lif z \in y)]
+\]
+Telkens wanneer we de relatie~$\subseteq$ in een formule willen
+gebruiken, kunnen we haar vervolgens door deze formule vervangen
+(waarbij $x$ en $y$ passend worden vervangen en de gebonden
+variabele~$z$ zo nodig wordt hernoemd). De extensionaliteit van
+verzamelingen houdt bijvoorbeeld in dat verzamelingen~$x$ en $y$ die
+elk in de andere zijn bevat, dezelfde verzameling moeten zijn: $x$ en
+$y$ moeten dan dezelfde verzameling zijn. Dit kan
+worden uitgedrukt door $\lforall[x][\lforall[y][((x \subseteq y \land y
+    \subseteq x) \lif x = y)]]$, of, als we $\subseteq$ door de
+bovenstaande definitie vervangen, door
+\[
+\lforall[x][\lforall[y][((\lforall[z][(z \in x \lif z \in y)] \land
+    \lforall[z][(z \in y \lif z \in x)]) \lif x = y)]].
+\]
+Dit is inderdaad een van de axioma's van $\Log{ZFC}$: het
+``extensionaliteitsaxioma''.
+
+Er is geen !!{constant} voor $\emptyset$, maar we kunnen ``$x$ is
+leeg'' uitdrukken door $\lnot \lexists[y][y \in x]$. De bewering
+``$\emptyset$ bestaat'' wordt dan de !!{sentence}~$\lexists[x][\lnot
+\lexists[y][y \in x]]$. Dit is een ander axioma van~$\Log{ZFC}$.
+(Merk op dat uit het extensionaliteitsaxioma volgt dat er maar één lege
+verzameling is.) Wanneer we in de taal van de verzamelingenleer over
+$\emptyset$ willen spreken, schrijven we dus ``er is een verzameling
+die leeg is en \dots'' Om bijvoorbeeld uit te drukken dat $\emptyset$
+een deelverzameling van iedere verzameling is, kunnen we schrijven
+\[
+\lexists[x][(\lnot\lexists[y][y \in x] \land \lforall[z][x \subseteq
+    z])]
+\]
+waarbij $x \subseteq z$ uiteraard op zijn beurt door zijn definitie
+moet worden vervangen.
+
+Om over bewerkingen op verzamelingen te spreken, zoals $X \cup Y$ en
+$\Pow{X}$, moeten we een vergelijkbare werkwijze volgen. De taal van de
+verzamelingenleer bevat geen functiesymbolen, maar we kunnen de
+functionele relaties $X \cup Y = Z$ en $\Pow{X} = Y$ uitdrukken door
+\begin{align*}
+& \lforall[u][((u \in x \lor u \in y) \liff u \in z)]\\
+& \lforall[u][(u \subseteq x \liff u \in y )]
+\end{align*}
+want de !!{element}s van $X \cup Y$ zijn precies de verzamelingen die
+!!{element}s van~$X$ of !!{element}s van~$Y$ zijn, en de !!{element}s
+van $\Pow{X}$ zijn precies de deelverzamelingen van~$X$. Dit staat ons
+echter niet toe $x \cup y$ of $\Pow{x}$ te gebruiken alsof het termen
+zijn: we kunnen alleen de volledige !!{formula}s gebruiken die de
+relaties $X \cup Y = Z$ en $\Pow{X} = Y$ definiëren. We weten zelfs nog
+niet of ooit aan deze relaties wordt voldaan, dat wil zeggen of
+verenigingen en machtsverzamelingen altijd bestaan. De !!{sentence}
+$\lforall[x][\lexists[y][\Pow{x} = y]]$ is bijvoorbeeld een ander
+axioma van~$\Log{ZFC}$ (het machtsverzamelingsaxioma).
+
+Hoe kunnen we nu over geordende paren of functies spreken? Daarvoor
+moeten we uitleggen hoe geordende paren en functies als bijzondere
+soorten verzamelingen kunnen worden opgevat. Het geordende paar
+$\tuple{x, y}$ kan bijvoorbeeld worden gedefinieerd als de verzameling
+$\{\{x\}, \{x, y\}\}$. Net als hiervoor kunnen we echter geen
+!!a{function} invoeren die deze verzameling benoemt; we kunnen alleen
+de relatie $\tuple{x, y} = z$ definiëren, dat wil zeggen
+$\{\{x\}, \{x, y\}\} = z$:
+\[
+\lforall[u][(u \in z \liff (\lforall[v][(v \in u \liff v = x)] \lor
+  \lforall[v][(v \in u \liff (v = x \lor v = y))]))]
+\]
+Dit zegt dat de !!{element}s~$u$ van~$z$ precies de verzamelingen zijn
+die ofwel alleen $x$ als !!{element} hebben, ofwel alleen $x$ en~$y$ als
+!!{element}s hebben (met andere woorden: de verzamelingen die gelijk
+zijn aan $\{x\}$ of aan $\{x, y\}$). Hiermee kunnen we vervolgens
+andere zaken uitdrukken, bijvoorbeeld dat $X \times Y = Z$:
+\[
+\lforall[z][(z \in Z \liff \lexists[x][\lexists[y][(x \in
+        X \land y \in Y \land \tuple{x, y} = z)]])]
+\]
+
+Een functie $f \colon X \to Y$ kan worden opgevat als de relatie $f(x)
+= y$, dus als de verzameling paren~$\Setabs{\tuple{x,y}}{f(x) = y}$.
+We kunnen dan zeggen dat een verzameling~$f$ een functie van $X$ naar
+$Y$ is als (a) zij een relatie $\subseteq X \times Y$ is, (b) zij
+totaal is, dat wil zeggen dat er voor iedere $x \in X$ een $y \in Y$
+bestaat waarvoor $\tuple{x, y} \in f$, en (c) zij functioneel is, dat
+wil zeggen dat telkens wanneer $\tuple{x, y}, \tuple{x, y'} \in f$,
+$y = y'$ (want functiewaarden moeten uniek zijn). De bewering ``$f$ is
+een functie van $X$ naar $Y$'' kan dus als volgt worden geschreven:
+\begin{align*}
+ \lforall[u][(u \in f \lif {}] & \lexists[x][\lexists[y][(x \in X \land y \in
+      Y \land \tuple{x, y} = u)]]) \land {}\\
+ \lforall[x][(x \in X \lif {}] &
+      (\lexists[y][(y \in Y \land \mathrm{maps}(f, x, y))] \land {}\\
+& (\lforall[y][\lforall[y'][((\mathrm{maps}(f, x, y) \land
+    \mathrm{maps}(f, x, y')) \lif y = y')]]))
+\end{align*}
+waarbij $\mathrm{maps}(f, x, y)$ een afkorting is voor
+$\lexists[v][(v \in f \land \tuple{x, y} = v)]$ (deze !!{formula}
+drukt ``$f(x) = y$'' uit).
+
+Nu is het evenmin moeilijk om bijvoorbeeld uit te drukken dat
+$f\colon X \to Y$ !!{injective} is:
+\begin{multline*}
+ f \colon X \to Y \land \lforall[x][\lforall[x'][((x \in X \land x' \in
+     X \land {}]] \\
+ \lexists[y][(\mathrm{maps}(f, x, y) \land \mathrm{maps}(f,
+        x', y))]) \lif x = x')
+\end{multline*}
+Een functie~$f\colon X \to Y$ is !!{injective} dan en slechts dan als,
+wanneer $f$ de elementen $x, x' \in X$ op eenzelfde~$y$ afbeeldt,
+$x = x'$. Als we deze formule afkorten als $\mathrm{inj}(f, X, Y)$,
+kunnen we in de taal van de verzamelingenleer reeds een niet-triviale
+uitspraak als de stelling van Cantor formuleren: er bestaat geen
+!!{injective} functie van $\Pow{X}$ naar $X$:
+\[
+\lforall[X][\lforall[Y][(\Pow{X} = Y \lif
+    \lnot\lexists[f][\mathrm{inj}(f, Y, X)])]]
+\]
+
+Men zou kunnen denken dat de verzamelingenleer nog een axioma nodig
+heeft dat voor iedere bepalende eigenschap het bestaan van een
+verzameling waarborgt. Als $!A(x)$ een formule van de
+verzamelingenleer is waarin de variabele~$x$ vrij voorkomt, kunnen we
+de !!{sentence}
+\[
+\lexists[y][\lforall[x][(x \in y \liff !A(x))]].
+\]
+beschouwen. Deze !!{sentence} zegt dat er een verzameling~$y$ bestaat
+waarvan de !!{element}s precies de $x$ zijn die aan~$!A(x)$ voldoen.
+Dit schema heet het ``comprehensieprincipe''. Het lijkt zeer bruikbaar,
+maar is helaas inconsistent. Neem $!A(x) \ident \lnot x \in x$; het
+comprehensieprincipe zegt dan
+\[
+\lexists[y][\lforall[x][(x \in y \liff x \notin x)]],
+\]
+dat wil zeggen: het beweert dat er een verzameling bestaat van alle
+verzamelingen die geen !!{element}s van zichzelf zijn. Zo'n verzameling
+kan niet bestaan---dit is de paradox van Russell. $\Log{ZFC}$ bevat
+dan ook een beperkte---en consistente---versie van dit principe: het
+separatieprincipe:
+\[
+\lforall[z][\lexists[y][\lforall[x][(x \in y \liff (x \in z \land
+      !A(x))]]].
+\]
+
+\begin{prob}
+Toon aan dat het comprehensieprincipe inconsistent is door
+!!a{derivation} te geven die aantoont dat
+\[
+\lexists[y][\lforall[x][(x \in y \liff x \notin x)]] \Proves \lfalse.
+\]
+Het kan helpen om eerst $(A \lif \lnot A) \land (\lnot A \lif A)
+\Proves \lfalse$ aan te tonen.
+\end{prob}
+\end{document}

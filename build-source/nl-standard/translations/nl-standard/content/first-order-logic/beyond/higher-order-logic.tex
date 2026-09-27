@@ -1,0 +1,130 @@
+% Part: first-order-logic
+% Chapter: beyond
+% Section: higher-order-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{byd}{hol}
+
+\olsection{Hogere-ordelogica}
+
+De overgang van eerste- naar tweede-ordelogica stelde ons in staat om binnen
+de formele taal over verzamelingen objecten uit het eerste-orde!!{domain} te
+spreken. Waarom zouden we daar ophouden? Met derde-ordelogica zouden we
+bijvoorbeeld verzamelingen van verzamelingen objecten moeten kunnen
+behandelen, of wellicht zelfs verzamelingen die zowel objecten als
+verzamelingen objecten bevatten. Vierde-ordelogica laat ons vervolgens over
+verzamelingen van zulke objecten spreken. Dit idee kan, zoals te verwachten
+valt, willekeurig vaak worden herhaald.
+
+In de praktijk gebruikt de !!{formula}ring van hogere-ordelogica vaak functies
+in plaats van relaties. (Op de natuurlijke identificaties na is dit verschil
+niet wezenlijk.) Uitgaande van enkele basale ``soorten'' $A$, $B$,
+$C$,~\dots (die we nu ``typen'' zullen noemen) kunnen we nieuwe typen vormen
+door vast te leggen:
+\begin{quote}
+Als $\sigma$ en $\tau$ eindige typen zijn, dan is ook $\sigma \to \tau$ een
+eindig type.
+\end{quote}
+Typen kunnen worden opgevat als syntactische ``labels'' die de objecten
+classificeren die we in ons !!{domain} willen opnemen; $\sigma \to \tau$
+beschrijft de objecten die functies zijn van objecten van type~$\sigma$ naar
+objecten van type~$\tau$. We zouden bijvoorbeeld een type $\Omega$ van de
+waarheidswaarden ``waar'' en ``onwaar'' kunnen invoeren, en een type $\Nat$ van
+de natuurlijke getallen. Objecten van type $\Nat \to \Omega$ kunnen dan worden
+opgevat als unaire relaties, of deelverzamelingen van $\Nat$; objecten van type
+$\Nat \to \Nat$ zijn functies van natuurlijke getallen naar natuurlijke
+getallen; en objecten van type $(\Nat \to \Nat) \to \Nat$ zijn
+``functionalen'', dat wil zeggen functies van een hoger type die functies als
+invoer nemen en getallen als uitvoer geven.
+
+Net als tweede-ordelogica kan hogere-ordelogica worden opgevat als een soort
+meersoortige logica, met een soort voor elk type object dat we willen
+beschouwen. Het is gewoonlijk echter duidelijker om de syntaxis van de logica
+met hogere typen van onderaf op te bouwen. Zo kunnen we de verzameling eindige
+typen als volgt inductief definiëren:
+\begin{enumerate}
+\item $\Nat$ is een eindig type.
+\item Als $\sigma$ en $\tau$ eindige typen zijn, dan is ook $\sigma
+  \to \tau$ een eindig type.
+\item Als $\sigma$ en $\tau$ eindige typen zijn, dan is ook $\sigma \times
+  \tau$ een eindig type.
+\end{enumerate}
+Intuïtief duidt $\Nat$ het type van de natuurlijke getallen aan, duidt
+$\sigma \to \tau$ het type aan van functies van $\sigma$ naar $\tau$, en
+duidt $\sigma \times \tau$ het type aan van paren objecten waarvan het ene uit
+$\sigma$ en het andere uit $\tau$ komt. Vervolgens kunnen we als volgt
+inductief een verzameling termen definiëren:
+\begin{enumerate}
+\item Voor elk type $\sigma$ is er een voorraad variabelen $x$, $y$,
+  $z$, \dots van type $\sigma$
+\item $\Obj 0$ is een term van type $\Nat$
+\item $\Obj S$ (opvolger) is een term van type $\Nat \to \Nat$
+\item Als $s$ een term van type $\sigma$ is en $t$ een term van type
+  $\Nat \to (\sigma \to \sigma)$, dan is $\Obj{R}_{st}$ een term van type
+  $\Nat \to \sigma$
+\item Als $s$ een term van type $\tau \to \sigma$ is en $t$ een
+  term van type~$\tau$, dan is $s(t)$ een term van type $\sigma$
+\item Als $s$ een term van type~$\sigma$ is en $x$ een variabele van
+  type~$\tau$, dan is $\lambd[x][s]$ een term van type $\tau \to \sigma$.
+\item Als $s$ een term van type~$\sigma$ is en $t$ een term van
+  type~$\tau$, dan is $\tuple{s, t}$ een term van type $\sigma \times
+  \tau$.
+\item Als $s$ een term van type~$\sigma \times \tau$ is, dan is $p_1(s)$ een
+  term van type~$\sigma$ en $p_2(s)$ een term van type~$\tau$.
+\end{enumerate}
+Intuïtief duidt $\Obj{R}_{st}$ de recursief gedefinieerde functie aan waarvoor
+\begin{align*}
+\Obj{R}_{st}(0) & = s \\
+\Obj{R}_{st}(x+1) & = t(x, R_{st}(x)),
+\end{align*}
+duidt $\tuple{s, t}$ het paar aan met eerste component~$s$ en tweede
+component~$t$, en duiden $p_1(s)$ en~$p_2(s)$ respectievelijk het eerste en
+tweede element (de ``projecties'') van~$s$ aan. Ten slotte duidt
+$\lambd[x][s]$ de functie~$f$ aan die wordt gedefinieerd door
+\[
+f(x) = s
+\]
+voor elke~$x$ van type~$\sigma$; onderdeel (6) verschaft dus een vorm van
+comprehensie waarmee functies aan de hand van termen kunnen worden
+gedefinieerd. !!^{formula}s worden opgebouwd uit !!{identity}suitspraken
+$\eq[s][t]$ tussen termen van hetzelfde type, de gebruikelijke
+propositionele connectieven en kwantificatie over hogere typen. Als axioma's
+van het systeem kan men vervolgens de basisvergelijkingen nemen die de
+hierboven gedefinieerde termen beheersen, samen met de gebruikelijke
+logicaregels voor kwantoren en !!{identity}.
+
+Als het systeem van eindige typen wordt uitgebreid met een type $\Omega$ van
+waarheidswaarden, moeten ook axioma's worden opgenomen die het gebruik ervan
+regelen. Met een geschikte aanpak kunnen complexe !!{formula}s zelfs geheel
+worden geëlimineerd en vervangen door termen van type $\Omega$!{} Het
+bewijssysteem kan dienovereenkomstig worden aangepast. Het resultaat is in
+wezen de door Alonzo Church in de jaren dertig ontwikkelde
+\emph{eenvoudige typentheorie}.
+
+Net als bij tweede-ordelogica zijn er verschillende versies van de semantiek
+voor hogere typen denkbaar. In de volledige versie lopen variabelen van type
+$\sigma \to \tau$ over de verzameling van
+\emph{alle} functies van de objecten van type~$\sigma$ naar objecten van
+type~$\tau$. Zoals te verwachten is deze semantiek te sterk om een volledig,
+effectief !!{derivation} systeem toe te laten. Men kan echter een zwakkere
+semantiek beschouwen, waarin !!a{structure} bestaat uit verzamelingen elementen
+$T_\tau$ voor elk type $\tau$, samen met passende bewerkingen voor toepassing,
+projectie enzovoort. Als de bijzonderheden correct worden uitgewerkt, kunnen
+voor de hierboven beschreven soorten !!{derivation} systemen
+volledigheidsstellingen worden verkregen.
+
+Logica met hogere typen is aantrekkelijk omdat zij een raamwerk biedt waarin
+een aanzienlijk deel van de wiskunde op natuurlijke wijze kan worden
+ingebed: uitgaande van $\Nat$ kunnen de reële getallen, continue functies
+enzovoort worden gedefinieerd. Het raamwerk is ook bijzonder aantrekkelijk in
+de context van de intuïtionistische logica, omdat de typen duidelijke
+``constructieve'' interpretaties hebben. Er kunnen zelfs constructieve versies
+van de semantiek voor hogere typen worden ontwikkeld (gebaseerd op
+intuïtionistische in plaats van klassieke logica) die deze constructieve
+interpretaties fraai verduidelijken en in veel opzichten interessanter zijn
+dan hun klassieke tegenhangers.
+
+\end{document}

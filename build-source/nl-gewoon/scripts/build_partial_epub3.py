@@ -61,6 +61,16 @@ REGISTER_CONFIG = {
     },
 }
 
+AI_DISCLOSURE_NL = (
+    "Vertaling en eerdere controles: OpenAI Codex; de huidige eigenaar gebruikt "
+    "GPT-5.6 Sol, Ultra effort. De exacte historische model- en inspanningsinstelling "
+    "van ieder tekstgedeelte zijn nog niet afzonderlijk bewezen; de huidige instelling "
+    "wordt daarom niet aan alle eerdere vertaalbytes toegeschreven. Samenstelling van "
+    "deze reader, directe EPUB-conversie en deterministische bouwcontroles: OpenAI "
+    "Codex — GPT-5.6 Sol, Ultra effort. Geen menselijke redactie of beoordeling wordt "
+    "geclaimd."
+)
+
 TEX_MUTEX_NAME = r"Global\InterlanguageTeXSlotV1"
 EPUBCHECK_VERSION = "5.3.0"
 EPUBCHECK_JAR_SHA256 = "f7f96617c929371821609b88c8484d6dc9f24fe916499863c46094c5fb778a65"
@@ -428,7 +438,7 @@ def render_cumulative_tex(plan: AcceptedPlan, register: str, modified: str) -> b
   unicode=true,
   pdflang={{nl-NL}},
   pdftitle={{{title}}},
-  pdfauthor={{The Open Logic Project and credited contributors}},
+  pdfauthor={{The Open Logic Project en vermelde medewerkers}},
   pdfsubject={{Gedeeltelijke reader met uitsluitend de geaccepteerde aaneengesloten prefix {scope}}},
   pdfkeywords={{logica, verzamelingenleer, Nederlandse vertaling, gedeeltelijke editie}}
 }}
@@ -456,6 +466,14 @@ Een vertaalbestand dat al bestaat maar nog niet als geaccepteerd is gemarkeerd,
 maakt uitdrukkelijk geen deel uit van deze editie. Het laatste hoofdstuk kan
 daardoor inhoudelijk onvolledig zijn; dat is een eigenschap van deze begrensde
 editie en geen claim dat het volledige Open Logic Text al vertaald is.
+\chapter*{{Status en verantwoording}}
+\addcontentsline{{toc}}{{chapter}}{{Status en verantwoording}}
+Dit is een gedeeltelijke reader: {len(plan.accepted_units)} van de 722
+broneenheden, in het {_tex_escape_text(str(config['label']))}. De termen
+``geaccepteerd'' en ``gecontroleerd'' verwijzen naar de vastgelegde
+AI-productiecontroles, niet naar onafhankelijk deskundigenonderzoek.
+
+{AI_DISCLOSURE_NL}
 \tableofcontents*
 """
     pieces = [header]
@@ -586,7 +604,12 @@ def _add_tree(entries: dict[str, bytes], source_root: Path, archive_root: str) -
         if path.is_symlink():
             raise BuildError(f"symlink is not permitted in source support tree: {path}")
         if path.is_file():
-            relative = path.relative_to(source_root).as_posix()
+            relative_path = path.relative_to(source_root)
+            if any(part.casefold() == "__pycache__" for part in relative_path.parts):
+                continue
+            if relative_path.suffix.casefold() in {".pyc", ".pyo"}:
+                continue
+            relative = relative_path.as_posix()
             name = f"{archive_root}/{relative}"
             require(safe_archive_name(name), f"unsafe support archive path: {name}")
             entries[name] = path.read_bytes()
@@ -656,6 +679,21 @@ def source_tree_entries(
     tests = builder.with_name("test_build_partial_epub3.py")
     if tests.is_file():
         entries["scripts/test_build_partial_epub3.py"] = tests.read_bytes()
+    source_epub_builder = builder.with_name("build_partial_source_epub3.py")
+    if source_epub_builder.is_file():
+        entries["scripts/build_partial_source_epub3.py"] = source_epub_builder.read_bytes()
+    source_epub_tests = builder.with_name("test_build_partial_source_epub3.py")
+    if source_epub_tests.is_file():
+        entries["scripts/test_build_partial_source_epub3.py"] = source_epub_tests.read_bytes()
+    paired_pdf_builder = builder.with_name("build_partial_pdf_pair.py")
+    if paired_pdf_builder.is_file():
+        entries["scripts/build_partial_pdf_pair.py"] = paired_pdf_builder.read_bytes()
+    paired_pdf_tests = builder.with_name("test_build_partial_pdf_pair.py")
+    if paired_pdf_tests.is_file():
+        entries["scripts/test_build_partial_pdf_pair.py"] = paired_pdf_tests.read_bytes()
+    direct_tests = builder.with_name("test_direct_latex.py")
+    if direct_tests.is_file():
+        entries["scripts/test_direct_latex.py"] = direct_tests.read_bytes()
     support_dir = builder.parent / "epub3"
     if support_dir.is_dir():
         _add_tree(entries, support_dir, "scripts/epub3")
@@ -725,34 +763,49 @@ def source_tree_entries(
         }
     )
 
-    build_command = (
+    source_epub_command = (
+        f"python scripts/build_partial_source_epub3.py --repo-root . --output-dir rebuilt "
+        f"--register {register} --modified {modified}\n"
+    )
+    pdf_command = (
         f"python scripts/build_partial_epub3.py --repo-root . --output-dir rebuilt "
         f"--register {register} --modified {modified}\n"
     )
     entries["BUILD.md"] = (
-        "# Rebuilding this bounded reader\n\n"
-        f"The translated source payload in this tree contains only the accepted contiguous "
-        f"prefix {plan.first_id} through {plan.last_id} for `{register}`. It intentionally "
-        "contains no later translation file. The complete authoritative `UNITS.jsonl` is "
-        "retained as boundary evidence; `ACCEPTED_PREFIX.jsonl` records the selected rows.\n\n"
-        "Requirements: Python 3.11+ with lxml and pypdf, latexmk, pdfTeX/pdflatex, "
-        "make4ht/TeX4ht, BibTeX, and the LaTeX packages required by the bundled "
-        "Open Logic styles; Java; and the byte-pinned EPUBCheck "
-        f"{EPUBCHECK_VERSION} runtime (`epubcheck.jar` plus `lib/*.jar`; tree SHA-256 "
-        f"`{EPUBCHECK_RUNTIME_TREE_SHA256}`). Pass its JAR with `--epubcheck-jar` or "
-        f"set `{EPUBCHECK_ENVIRONMENT_VARIABLE}`. On Windows the builder acquires "
-        f"`{TEX_MUTEX_NAME}` continuously around both PDF replay process trees and "
-        "separately around the complete make4ht process tree, so those TeX lanes "
-        "cannot overlap. Each launcher is created suspended, assigned to the "
-        "kill-on-close Windows job, and only then resumed. `PDF-REBUILD.json` "
-        "records the exact commands, fixed "
-        "environment, bundled dependency roots, and exact-byte replay rule. The "
-        "builder checks the PDF header, trailer, parseability, and page count; its "
-        "receipt deliberately marks raster rendering and visual QA as pending and "
-        "does not claim that such review occurred.\n\n"
-        "Run from the root of this extracted tree:\n\n"
+        "# Deze begrensde reader opnieuw bouwen\n\n"
+        f"De vertaalde bron in deze map bevat alleen de aaneengesloten geaccepteerde "
+        f"reeks {plan.first_id} tot en met {plan.last_id} voor `{register}`. Er staat "
+        "bewust geen later vertaalbestand in. Het volledige gezaghebbende "
+        "`UNITS.jsonl` blijft aanwezig als bewijs van de grens; "
+        "`ACCEPTED_PREFIX.jsonl` bevat de gekozen rijen.\n\n"
+        + AI_DISCLOSURE_NL
+        + "\n\n"
+        "Gebruik voor de rechtstreeks downloadbare samengestelde LaTeX, de volledige "
+        "bron-ZIP en de EPUB de bouwer zonder TeX. Vereisten: Python 3.11+ met lxml, "
+        "Pandoc, Java en de bytevastgelegde EPUBCheck-runtime "
+        f"{EPUBCHECK_VERSION} (`epubcheck.jar` en `lib/*.jar`; boom-SHA-256 "
+        f"`{EPUBCHECK_RUNTIME_TREE_SHA256}`). Geef het JAR-bestand door met "
+        f"`--epubcheck-jar` of stel `{EPUBCHECK_ENVIRONMENT_VARIABLE}` in. Pandoc "
+        "maakt native MathML en wordt tweemaal uitgevoerd; de volledige gegenereerde "
+        "bestandsbomen moeten byte voor byte gelijk zijn. Pandoc en EPUBCheck starten "
+        "geen TeX en gebruiken de TeX-mutex niet. Voer vanuit de hoofdmap van deze "
+        "uitgepakte bronboom uit:\n\n"
         "```text\n"
-        + build_command
+        + source_epub_command
+        + "```\n\n"
+        "Een optionele PDF-herbouw vereist daarnaast Python met pypdf, latexmk, "
+        "pdfTeX/pdflatex, BibTeX en de LaTeX-pakketten die de meegeleverde Open "
+        "Logic-stijlen gebruiken. Onder Windows houdt die PDF-bouwer "
+        f"`{TEX_MUTEX_NAME}` voortdurend vast rond beide PDF-procesbomen en rond de "
+        "afzonderlijke oude make4ht-procesboom. Iedere starter wordt eerst gepauzeerd "
+        "aangemaakt, aan de Windows-job met kill-on-close gekoppeld en pas daarna "
+        "hervat. `PDF-REBUILD.json` bevat de exacte opdrachten, vaste omgeving, "
+        "meegeleverde afhankelijkheden en de regel voor bytegelijke herhaling. De "
+        "bouwer controleert PDF-kop, trailer, leesbaarheid en paginatal; het ontvangstbewijs "
+        "markeert rasterweergave en visuele controle uitdrukkelijk als nog niet uitgevoerd. "
+        "Optionele opdracht voor PDF en de oude EPUB-route:\n\n"
+        "```text\n"
+        + pdf_command
         + "```\n"
     ).encode("utf-8")
 
@@ -1201,8 +1254,14 @@ def run_pdf_build(
     expected_source_tree: Mapping[str, object],
     mutex_timeout_seconds: float,
     pdf_timeout_seconds: float,
+    held_mutex: GlobalTexMutex | None = None,
 ) -> tuple[bytes, dict[str, object]]:
-    """Build twice under one mutex hold and require byte-identical reader PDFs."""
+    """Build twice under a mutex hold and require byte-identical reader PDFs.
+
+    ``held_mutex`` lets a paired caller keep one machine-wide mutex hold across
+    both register builds. The default path still acquires and releases the
+    mutex locally.
+    """
     modified = parse_modified(modified)
     require(pdf_timeout_seconds > 0, "PDF build timeout must be positive")
     relative_tex = safe_relative_path(tex_name, label="cumulative TeX path")
@@ -1277,7 +1336,18 @@ def run_pdf_build(
         "-file-line-error -recorder %S"
     )
     mutex_wait_started = time.monotonic()
-    with GlobalTexMutex(mutex_timeout_seconds) as mutex:
+    if held_mutex is not None:
+        require(
+            held_mutex.owned and held_mutex.name == TEX_MUTEX_NAME,
+            "caller-supplied TeX mutex is not the owned global slot",
+        )
+    mutex_context = (
+        contextlib.nullcontext(held_mutex)
+        if held_mutex is not None
+        else GlobalTexMutex(mutex_timeout_seconds)
+    )
+    with mutex_context as mutex:
+        require(mutex is not None, "TeX mutex context returned no mutex")
         mutex_acquired = time.monotonic()
         driver_version_log = output_root / "latexmk-version.log"
         driver_probe = captured_run(
@@ -1383,8 +1453,13 @@ def run_pdf_build(
             "paths use portable tool names and explicit directory placeholders."
         ),
         "mutex": TEX_MUTEX_NAME,
+        "mutex_scope": "caller-held" if held_mutex is not None else "function-held",
         "mutex_abandoned_recovery": mutex.abandoned,
-        "mutex_wait_seconds": round(mutex_acquired - mutex_wait_started, 3),
+        "mutex_wait_seconds": (
+            0.0
+            if held_mutex is not None
+            else round(mutex_acquired - mutex_wait_started, 3)
+        ),
         "mutex_hold_seconds": mutex_hold_seconds,
         "process_tree_guard": "Windows job object, kill on close",
         "launch_capture": list(WINDOWS_JOB_LAUNCH_CAPTURE),
@@ -1501,14 +1576,24 @@ def run_epubcheck(
     ]
     environment = os.environ.copy()
     environment.update({"TZ": "UTC"})
-    _run_in_windows_job(
-        command,
-        work_root,
-        timeout_seconds,
-        log_path,
-        environment,
-        process_label="EPUBCheck",
-    )
+    try:
+        _run_in_windows_job(
+            command,
+            work_root,
+            timeout_seconds,
+            log_path,
+            environment,
+            process_label="EPUBCheck",
+        )
+    except BuildError as exc:
+        diagnostic_parts: list[str] = []
+        if log_path.is_file():
+            diagnostic_parts.append(log_path.read_text(encoding="utf-8", errors="replace").strip())
+        if report_path.is_file():
+            diagnostic_parts.append(report_path.read_text(encoding="utf-8", errors="replace").strip())
+        diagnostic = " | ".join(part for part in diagnostic_parts if part)
+        suffix = f"; validator output: {diagnostic[:4000]}" if diagnostic else ""
+        raise BuildError(f"{exc}{suffix}") from exc
     require(report_path.is_file(), "EPUBCheck returned success without a JSON report")
     checked_payload = epub_path.read_bytes()
     require(
@@ -1752,6 +1837,33 @@ def serialize_xhtml(root: etree._Element) -> bytes:
     )
 
 
+def wrap_block_math_for_reflow(root: etree._Element) -> int:
+    """Put intrinsically wide display MathML in a bounded horizontal scroller."""
+    wrapped = 0
+    block_math = list(
+        root.xpath(
+            ".//*[namespace-uri()=$ns and local-name()='math' and @display='block']",
+            ns=MATHML_NS,
+        )
+    )
+    for math_node in block_math:
+        parent = math_node.getparent()
+        require(parent is not None, "detached block MathML root")
+        classes = (parent.get("class") or "").split()
+        if _local_name(str(parent.tag)) == "span" and "math-display-scroll" in classes:
+            continue
+        index = parent.index(math_node)
+        tail = math_node.tail
+        math_node.tail = None
+        wrapper = etree.Element(f"{{{XHTML_NS}}}span")
+        wrapper.set("class", "math-display-scroll")
+        wrapper.tail = tail
+        parent.insert(index, wrapper)
+        wrapper.append(math_node)
+        wrapped += 1
+    return wrapped
+
+
 def _output_path_for_generated(relative: PurePosixPath) -> PurePosixPath:
     if relative.suffix.lower() in {".html", ".xhtml", ".htm"}:
         return PurePosixPath("OEBPS/generated") / relative.with_suffix(".xhtml")
@@ -1818,6 +1930,9 @@ nav, header, footer, main, section, article, aside { display: block; }
 a { text-decoration: underline; }
 img, svg, math, table { max-width: 100%; }
 math { overflow-wrap: normal; }
+math[display="inline"] { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; }
+.math-display-scroll { display: block; box-sizing: border-box; width: 100%; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.math-display-scroll > math[display="block"] { display: inline-block; max-width: none; }
 table { border-collapse: collapse; }
 th, td { padding: 0.25em 0.5em; vertical-align: top; }
 pre { white-space: pre-wrap; overflow-wrap: anywhere; }
@@ -1860,6 +1975,8 @@ def make_navigation(
     )
     note = xhtml_element("p", body, **{"class": "scope-note"})
     note.text = "Alleen de aaneengesloten geaccepteerde prefix is opgenomen."
+    disclosure = xhtml_element("p", body, **{"class": "ai-disclosure"})
+    disclosure.text = AI_DISCLOSURE_NL
 
     toc = xhtml_element("nav", body, id="toc")
     toc.set(f"{{{EPUB_NS}}}type", "toc")
@@ -1952,17 +2069,22 @@ def make_package_document(
         f"The Open Logic Text — gedeeltelijke Nederlandstalige editie ({config['label']}, {plan.first_id}–{plan.last_id})",
     )
     dc("language", "nl-NL")
-    dc("creator", "The Open Logic Project and credited contributors")
+    dc("creator", "The Open Logic Project en vermelde medewerkers")
+    dc(
+        "contributor",
+        "Nederlandse vertaling en readerconversie: OpenAI Codex — GPT-5.6 Sol, "
+        "Ultra effort; historische modelinstellingen zijn niet volledig vastgesteld.",
+    )
     dc("publisher", "The Open Logic Project")
     dc("date", modified)
-    dc("type", "Textbook")
+    dc("type", "Leerboek")
     dc("subject", "Wiskundige logica")
     dc(
         "description",
         f"Reflowable EPUB 3 met native MathML; uitsluitend de aaneengesloten geaccepteerde prefix {plan.first_id}–{plan.last_id} ({len(plan.accepted_units)} broneenheden).",
     )
-    dc("source", "The Open Logic Text, frozen source revision(s): " + ", ".join(plan.source_revisions))
-    dc("rights", "Creative Commons Attribution 4.0 International (CC BY 4.0).")
+    dc("source", "The Open Logic Text; vastgelegde bronrevisie(s): " + ", ".join(plan.source_revisions))
+    dc("rights", "Creative Commons Naamsvermelding 4.0 Internationaal (CC BY 4.0).")
     meta("dcterms:modified", f"{modified}T00:00:00Z")
     meta("rendition:layout", "reflowable")
     meta("rendition:orientation", "auto")
@@ -2035,6 +2157,7 @@ def package_make4ht_output(
         )
         _rewrite_document_links(root, source, output, path_map)
         _add_reader_css(root, output)
+        wrap_block_math_for_reflow(root)
         ids = [str(value) for value in root.xpath("//@id") if value]
         require(len(ids) == len(set(ids)), f"duplicate ID in generated document: {source}")
         for identifier in ids:
@@ -2142,6 +2265,14 @@ def audit_epub_bytes(
             len(descriptions) == 1 and plan.first_id in descriptions[0] and plan.last_id in descriptions[0],
             "scope description missing accepted bounds",
         )
+        contributors = package.xpath("./opf:metadata/dc:contributor/text()", namespaces=NS)
+        require(
+            len(contributors) == 1
+            and "OpenAI Codex" in contributors[0]
+            and "GPT-5.6 Sol" in contributors[0]
+            and "Ultra effort" in contributors[0],
+            "EPUB metadata lacks the exact AI/model/effort disclosure",
+        )
         layout = package.xpath(
             "./opf:metadata/opf:meta[@property='rendition:layout']/text()", namespaces=NS
         )
@@ -2185,6 +2316,12 @@ def audit_epub_bytes(
         roots_by_path: dict[PurePosixPath, etree._Element] = {}
         ids_by_path: dict[PurePosixPath, set[str]] = {}
         math_roots = 0
+        block_math_roots = 0
+        inline_math_roots = 0
+        scroll_wrapped_block_math = 0
+        image_nodes = 0
+        meaningful_image_alts = 0
+        disclosure_documents = 0
         for path, item in path_to_item.items():
             if path.suffix.lower() != ".xhtml":
                 continue
@@ -2197,11 +2334,62 @@ def audit_epub_bytes(
             require(len(ids) == len(set(ids)), f"duplicate XHTML ID: {path}")
             ids_by_path[path] = set(ids)
             roots_by_path[path] = root
+            visible_text = " ".join(root.itertext())
+            if (
+                "OpenAI Codex" in visible_text
+                and "GPT-5.6 Sol" in visible_text
+                and "Ultra effort" in visible_text
+            ):
+                disclosure_documents += 1
             count = len(root.xpath(".//*[namespace-uri()=$ns and local-name()='math']", ns=MATHML_NS))
             math_roots += count
+            blocks = root.xpath(
+                ".//*[namespace-uri()=$ns and local-name()='math' and @display='block']",
+                ns=MATHML_NS,
+            )
+            block_math_roots += len(blocks)
+            inline_math_roots += len(
+                root.xpath(
+                    ".//*[namespace-uri()=$ns and local-name()='math' and @display='inline']",
+                    ns=MATHML_NS,
+                )
+            )
+            for math_node in blocks:
+                parent = math_node.getparent()
+                require(parent is not None, f"detached block MathML root: {path}")
+                classes = (parent.get("class") or "").split()
+                require(
+                    _local_name(str(parent.tag)) == "span" and "math-display-scroll" in classes,
+                    f"block MathML lacks a bounded reflow wrapper: {path}",
+                )
+                scroll_wrapped_block_math += 1
+            for image in root.xpath(".//*[local-name()='img']"):
+                image_nodes += 1
+                alt = (image.get("alt") or "").strip()
+                require(
+                    len(alt) >= 12
+                    and alt.lower() not in {"image", "afbeelding", "diagram"},
+                    f"missing or generic image alt text: {path}",
+                )
+                meaningful_image_alts += 1
             properties = (item.get("properties") or "").split()
             require((count > 0) == ("mathml" in properties), f"MathML manifest property drift: {path}")
         require(math_roots > 0, "EPUB contains no native MathML")
+        reader_css = archive.read("OEBPS/styles/reader.css")
+        require(
+            b'math[display="inline"]' in reader_css
+            and b"display: inline-block" in reader_css
+            and b"overflow-x: auto" in reader_css,
+            "reader CSS lacks bounded inline-MathML reflow",
+        )
+        require(
+            block_math_roots == scroll_wrapped_block_math,
+            "not every block MathML root has a bounded reflow wrapper",
+        )
+        require(
+            disclosure_documents > 0,
+            "EPUB content lacks the Dutch AI/model/effort disclosure",
+        )
 
         local_links = 0
         fragment_links = 0
@@ -2224,6 +2412,8 @@ def audit_epub_bytes(
 
         css_links = 0
         svg_links = 0
+        svg_titles = 0
+        svg_descriptions = 0
         for source, item in path_to_item.items():
             media = item.get("media-type")
             if media == "text/css":
@@ -2248,6 +2438,15 @@ def audit_epub_bytes(
                     not svg.xpath(".//*[local-name()='script']"),
                     f"script in SVG resource: {source}",
                 )
+                titles = svg.xpath(".//*[local-name()='title' and normalize-space()]")
+                descriptions = svg.xpath(".//*[local-name()='desc' and normalize-space()]")
+                require(len(titles) == 1, f"SVG lacks exactly one title: {source}")
+                require(
+                    len(descriptions) == 1,
+                    f"SVG lacks exactly one description: {source}",
+                )
+                svg_titles += 1
+                svg_descriptions += 1
                 svg_ids = {str(value) for value in svg.xpath("//@id") if value}
                 for node in svg.iter():
                     if not isinstance(node.tag, str):
@@ -2312,6 +2511,14 @@ def audit_epub_bytes(
             "spine_items": len(spine_paths),
             "accepted_unit_anchors": len(all_unit_anchors),
             "mathml_roots": math_roots,
+            "block_math_roots": block_math_roots,
+            "inline_math_roots": inline_math_roots,
+            "scroll_wrapped_block_math": scroll_wrapped_block_math,
+            "images": image_nodes,
+            "images_with_meaningful_alt": meaningful_image_alts,
+            "svg_titles": svg_titles,
+            "svg_descriptions": svg_descriptions,
+            "ai_disclosure_documents": disclosure_documents,
             "local_links": local_links,
             "fragment_links": fragment_links,
             "css_links": css_links,

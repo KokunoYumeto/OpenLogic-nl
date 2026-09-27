@@ -1,0 +1,208 @@
+% Part: first-order-logic
+% Chapter: beyond
+% Section: intuitionistic-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{byd}{il}
+
+\olsection{Constructief redeneren met intuïtionistische logica}
+
+Tweede-ordelogica en hogere-ordelogica voegen mogelijkheden toe aan de klassieke
+eerste-ordelogica. Intuïtionistische eerste-ordelogica doet juist het omgekeerde:
+zij staat een deel van het klassieke redeneren niet toe. Zo wil deze logica een
+meer ``constructieve'' manier van redeneren weergeven. De volgende voorbeelden
+laten zien wat daarmee wordt bedoeld.
+
+Stel dat iemand op een dag zegt dat die een natuurlijk getal~$x$ heeft bepaald.
+Het getal heeft deze eigenschap: als $x$ een priemgetal is, is de
+Riemann-hypothese waar. Als $x$ samengesteld is, is de Riemann-hypothese onwaar.
+Dat klinkt als geweldig nieuws. De vraag of de Riemann-hypothese waar is, is een
+van de grote open vragen in de wiskunde. Deze persoon lijkt die vraag te hebben
+teruggebracht tot een berekening: we hoeven alleen te bepalen of één vast getal
+een priemgetal is.
+
+Wat is dan de magische waarde van $x$? Het antwoord is: $x$ is het natuurlijke
+getal dat gelijk is aan $7$ als de Riemann-hypothese waar is, en anders aan $9$.
+
+Boos vraag je je geld terug. Volgens de klassieke logica legt deze beschrijving
+inderdaad precies één waarde van $x$ vast. Maar jij wilt de waarde van $x$
+\emph{expliciet} krijgen. Je wilt dus te horen krijgen welk getal het is.
+
+Hier volgt een tweede voorbeeld dat misschien minder gekunsteld is. We weten dat
+we een irrationaal getal tot een rationale macht kunnen verheffen en dan een
+rationaal getal kunnen krijgen. Zo is $\sqrt{2}^2 = 2$. Maar kan een irrationaal
+getal tot een \emph{irrationale} macht ook een rationaal resultaat geven? De
+volgende stelling zegt van wel:
+
+\begin{thm}
+Er bestaan irrationale getallen $a$ en $b$ waarvoor $a^b$ rationaal is.
+\end{thm}
+
+\begin{proof}
+Kijk naar $\sqrt{2}^{\sqrt{2}}$. Als dit getal rationaal is, zijn we klaar: neem
+$a = b = \sqrt{2}$. Als het niet rationaal is, is het irrationaal. Dan geldt
+\[
+(\sqrt{2}^{\sqrt{2}})^{\sqrt{2}} = \sqrt{2}^{\sqrt{2} \cdot
+  \sqrt{2}} = \sqrt{2}^2 = 2,
+\]
+en dit is zeker rationaal. Neem in dit tweede geval dus $a$ gelijk aan
+$\sqrt{2}^{\sqrt{2}}$, en neem $b$ gelijk aan~$\sqrt 2$.
+\end{proof}
+
+Is dit een geldig bewijs? De meeste wiskundigen vinden van wel. Toch ontbreekt er
+iets. We hebben bewezen dat er een paar reële getallen met de gevraagde
+eigenschap bestaat, maar we kunnen niet zeggen \emph{welk} paar het is. Er is ook
+een bewijs dat het paar $a$, $b$ \emph{wel} noemt: neem $a = \sqrt{3}$ en
+$b = \log_3 4$. Dan
+\[
+a^b = \sqrt{3}^{\log_3 4} = 3^{1/2 \cdot \log_3 4} = (3^{\log_3
+  4})^{1/2} = 4^{1/2}= 2,
+\]
+omdat $3^{\log_3 x} = x$.
+
+Intuïtionistische logica is bedoeld voor een manier van redeneren waarin de stap
+uit het eerste bewijs niet mag. Wil je bewijzen dat er een $x$ bestaat die
+aan~$!A(x)$ voldoet, dan moet je een concrete~$x$ geven. Je moet er ook een bewijs
+bij geven dat deze aan $!A$ voldoet, zoals in het tweede bewijs. Wil je bewijzen
+dat $!A$ of $!B$ geldt, dan moet je een van die twee formules kunnen bewijzen.
+
+Formeel krijgen we intuïtionistische eerste-ordelogica door !!a{derivation}
+systeem voor eerste-ordelogica op een bepaalde manier te beperken. Er bestaan
+ook intuïtionistische versies van tweede-ordelogica en hogere-ordelogica.
+Wiskundig gezien zijn dit formele systemen met regels voor bewijzen. Ze zijn
+tegelijk bedoeld als model van een bepaalde manier van wiskundig redeneren. Je
+kunt vinden dat juist deze manier past bij een bepaalde kijk op de wiskunde,
+zoals het intuïtionisme van Brouwer. Je kunt haar ook concreter en
+bevredigender vinden, zoals in het constructivisme van Bishop. En je kunt erover
+twisten of het formele systeem de informele bedoeling goed weergeeft. Welke
+filosofische positie je ook kiest, we kunnen intuïtionistische logica gewoon als
+een precies beschreven formele logica bestuderen. Veel wiskundige logici vinden
+dat om allerlei redenen interessant.
+
+Er is een informele, constructieve uitleg van de intuïtionistische connectieven.
+Die heet de BHK-interpretatie, naar Brouwer, Heyting en Kolmogorov. De uitleg
+zegt telkens wat je als bewijs moet leveren. Een bewijs van $!A \land !B$ bestaat
+uit een bewijs van $!A$ samen met een bewijs van $!B$. Een bewijs van $!A \lor !B$
+bestaat uit een bewijs van $!A$ of een bewijs van $!B$, met de uitdrukkelijke
+informatie welke van de twee je hebt. Een bewijs van $!A \lif !B$ is een
+procedure die elk bewijs van $!A$ omzet in een bewijs van~$!B$. Een bewijs van
+$\lforall[x][!A(x)]$ is een procedure die een bewijs van $!A(x)$ teruggeeft voor
+elke waarde van~$x$. Een bewijs van $\lexists[x][!A(x)]$ bestaat uit een waarde
+van~$x$ en een bewijs dat die waarde aan~$!A$ voldoet. We kunnen dit ook in
+rekentermen uitleggen. Dat heet het ``Curry--Howard-isomorfisme'' of het
+``!!{formula}s-als-typenparadigma''. Zie !!a{formula} als een beschrijving van een
+bepaald gegevenstype. Een bewijs is dan een rekenbaar object van dat type. Het
+bestaan van zo'n object laat zien dat de bijbehorende !!{formula} waar is.
+
+Intuïtionistische logica wordt vaak omschreven als klassieke logica ``zonder''
+het principe van de uitgesloten derde. Dat principe zegt dat A of niet-A geldt.
+De volgende stelling maakt deze omschrijving preciezer.
+\begin{thm}
+Binnen de intuïtionistische logica zijn de volgende axiomaschema's equivalent:
+\begin{enumerate}
+\item $(\lnot !A \lif \lfalse) \lif !A$.
+\item $!A \lor \lnot !A$
+\item $\lnot \lnot !A \lif !A$
+\end{enumerate}
+\end{thm}
+Het is een goede oefening in intuïtionistische logica om uit elk van deze
+schema's de gevallen van de andere twee af te leiden.
+
+Kolmogorov, Glivenko en Heyting gaven onafhankelijk van elkaar de eerste formele
+bewijssystemen voor de intuïtionistische propositielogica. Die systemen moesten
+het intuïtionisme van Brouwer precies vastleggen. Heyting gaf de eerste
+formalisering van de intuïtionistische eerste-ordelogica en van delen van de
+intuïtionistische wiskunde. Sommige schema's die klassiek geldig zijn, zijn
+intuïtionistisch niet geldig. Veel andere schema's zijn dat wel.
+
+De \emph{dubbele-negatievertaling} laat een belangrijk verband zien tussen de
+klassieke en de intuïtionistische logica. We definiëren de vertaling stap voor
+stap volgens de opbouw van formules. Lees $!A^N$ als de ``intuïtionistische''
+vertaling van de klassieke !!{formula}~$!A$:
+\begin{align*}
+!A^N & \ident \lnot\lnot !A \quad \text{voor atomaire !!{formula}s $!A$} \\
+(!A \land !B)^N & \ident (!A^N \land !B^N) \\
+(!A \lor !B)^N & \ident  \lnot\lnot (!A^N \lor !B^N) \\
+(!A \lif !B)^N & \ident (!A^N \lif !B^N) \\
+(\lforall[x][!A])^N & \ident \lforall[x][!A^N] \\
+(\lexists[x][!A])^N & \ident \lnot\lnot\lexists[x][!A^N]
+\end{align*}
+Kolmogorov en Glivenko hadden versies van deze vertaling voor de
+propositielogica. G\"odel en Gentzen gaven, onafhankelijk van elkaar, de
+vertaling voor de predicatenlogica. Er geldt:
+
+\begin{thm}
+\begin{enumerate}
+\item $!A \liff !A^N$ is klassiek bewijsbaar.
+\item Als $!A$ klassiek bewijsbaar is, dan is $!A^N$ intuïtionistisch
+  bewijsbaar.
+\end{enumerate}
+\end{thm}
+
+Stel je nu het volgende gesprek voor. De klassieke wiskundige zegt: ``Ik heb
+$!A$ bewezen!'' De intuïtionistische wiskundige antwoordt: ``Dat bewijs is niet
+geldig. Je hebt eigenlijk $!A^N$ bewezen.'' De klassieke wiskundige zegt: ``Dat
+vind ik ook goed!'' Voor de klassieke wiskundige is het verschil haarkloverij,
+want de twee formules zijn klassiek equivalent. De intuïtionistische wiskundige
+blijft erbij dat er wel een verschil is.
+
+Deze vertaling gaat alleen over de zuivere logica. Zij zegt niet welke
+\emph{niet-logische} axioma's we in de klassieke of de intuïtionistische
+wiskunde moeten aannemen. Zij zegt ook niet hoe die twee groepen axioma's met
+elkaar samenhangen. Een kleine uitbreiding van de vorige stelling geeft wel de
+volgende nuttige informatie:
+
+\begin{thm}
+Als $\Gamma$ klassiek $!A$ bewijst, dan bewijst $\Gamma^N$
+intuïtionistisch $!A^N$.
+\end{thm}
+
+Dus: als $!A$ klassiek uit bepaalde aannamen kan worden bewezen, dan kan
+$!A^N$ uit de dubbele-negatievertalingen van die aannamen worden bewezen.
+
+Om te laten zien dat een zin of propositionele !!{formula} intuïtionistisch
+geldig is, hoef je alleen een bewijs te geven. Maar hoe laat je zien dat zij niet
+geldig is? Daarvoor hebben we een semantiek nodig die correct is en liefst ook
+volledig. De Kripke-semantiek werkt hiervoor goed.
+
+We kunnen nu hetzelfde doen als bij de klassieke logica: eerst de semantiek
+definiëren en daarna correctheid en volledigheid bewijzen. Er is wel een verschil.
+Bij de klassieke logica leek de semantiek vanzelfsprekend. Zij leek al besloten
+te liggen in de betekenis van de connectieven. We kunnen de Kripke-semantiek ook
+intuïtief uitleggen, maar zij voelt minder onvermijdelijk. Bovendien is een
+klassieke !!{structure} op zichzelf een natuurlijk wiskundig object. We kunnen
+!!a{structure} gebruiken om klassieke eerste-ordelogica te bestuderen. We kunnen
+ook andersom klassieke eerste-ordelogica gebruiken om wiskundige !!{structure}s
+te bestuderen. Een Kripke-!!{structure} lijkt alleen een logisch hulpmiddel en
+niet een wiskundig object dat los daarvan interessant is.
+
+Een Kripke-!!{structure}~$\mModel M = \tuple{W, R, V}$ voor een propositionele
+taal heeft drie onderdelen. Ten eerste is er een verzameling~$W$. Ten tweede is
+er een partiële ordening~$R$ op~$W$ met een kleinste !!{element}. Ten derde
+worden propositionele variabelen ``monotoon'' aan de !!{element}s van~$W$
+toegekend. Monotoon betekent hier: wat in een toestand waar is, blijft in elke
+latere toestand waar. De !!{element}s van $W$ stellen ``werelden'' of
+``kennistoestanden'' voor. Een element $v \geq u$ stelt een ``mogelijke
+toekomstige toestand'' van~$u$ voor. De propositionele variabelen die aan~$u$
+zijn toegekend, zijn precies de proposities waarvan we in toestand~$u$ weten dat
+ze waar zijn. De forceringsrelatie $\mSat{M}{!A}[w]$ breidt deze toekenning uit
+naar alle !!{formula}s van de taal. Lees $\mSat{M}{!A}[w]$ als: ``$!A$ is waar
+in toestand~$w$.'' We definiëren de relatie stap voor stap:
+\begin{enumerate}
+\item $\mSat{M}{\Obj p_i}[w]$ desda $\Obj p_i$ een van de propositionele
+  variabelen is die aan~$w$ zijn toegekend.
+\item $\mSat/{M}{\lfalse}[w]$.
+\item $\mSat{M}{(!A \land !B)}[w]$ desda $\mSat{M}{!A}[w]$ en $\mSat{M}{!B}[w]$.
+\item $\mSat{M}{(!A \lor !B)}[w]$ desda $\mSat{M}{!A}[w]$ of $\mSat{M}{!B}[w]$.
+\item $\mSat{M}{(!A \lif !B)}[w]$ desda voor alle $w' \geq w$ geldt: als
+  $\mSat{M}{!A}[w']$, dan $\mSat{M}{!B}[w']$.
+\end{enumerate}
+Probeer als oefening te laten zien dat $\lnot (p \land q) \lif
+(\lnot p \lor \lnot q)$ niet intuïtionistisch geldig is. Maak daarvoor een
+Kripke-!!{structure} waarin deze formule niet geldt. Die structuur is dan een
+tegenvoorbeeld.
+
+\end{document}

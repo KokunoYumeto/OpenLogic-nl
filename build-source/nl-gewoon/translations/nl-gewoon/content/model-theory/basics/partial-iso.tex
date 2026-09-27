@@ -1,0 +1,239 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: partial-iso
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{pis}
+\section{Een isomorfisme dat maar op een eindig deel is ingevuld}
+
+\begin{defn}
+  Neem twee !!{structure}s $\Struct{M}$ en $\Struct{N}$. Een
+  \emph{partieel isomorfisme} van $\Struct{M}$ naar $\Struct{N}$ is
+  een functie $p$ die maar voor eindig veel elementen van $\Domain M$
+  is ingevuld en die waarden in $\Domain N$ geeft. Op dat eindige deel
+  moet de functie zich houden aan de voorwaarden voor een isomorfisme uit
+  \olref[iso]{defn:isomorphism}:
+  \begin{enumerate}
+  \item $p$ is !!{injective}: twee verschillende invoeren krijgen dus
+    nooit dezelfde uitkomst;
+  \item neem een !!{constant}~$c$. Als $p(\Assign{c}{M})$ is
+    gedefinieerd, dan $p(\Assign{c}{M}) = \Assign{c}{N}$;
+  \item neem een $n$-plaatsig !!{predicate} $P$. Als $a_1$, \dots, $a_n$
+    in het domein van $p$ zitten, dan geldt
+    $\langle a_1, \dots, a_n\rangle \in \Assign P M$ precies wanneer
+    $\langle p(a_1), \dots, p(a_n) \rangle \in \Assign P N$;
+  \item neem een $n$-plaatsige !!{function} $f$. Als $a_1$, \dots, $a_n$
+    in het domein van $p$ zitten, dan $p(\Assign f M (a_1, \dots,a_n))
+    = \Assign f N (p(a_1), \dots, p(a_n))$.
+  \end{enumerate}
+  Met ‘$p$ is eindig’ bedoelen we dus dat $\dom{p}$ eindig is.
+\end{defn}
+
+De lege functie~$\emptyset$ is altijd een partieel isomorfisme tussen
+om het even welke twee !!{structure}s. Er hoeft dan immers nog geen
+enkel element te worden vergeleken.
+
+\begin{defn}\ollabel{defn:partialisom}
+  Twee !!{structure}s $\Struct{M}$ en $\Struct{N}$ zijn
+  \emph{partieel isomorf}, geschreven als $\Struct{M} \iso[p]
+  \Struct{N}$, als er een niet-lege verzameling $I$ van partiële
+  isomorfismen tussen $\Struct{M}$ en $\Struct{N}$ is waarmee je aan
+  beide kanten steeds verder kunt gaan. Precies gezegd moet die verzameling aan de
+  \emph{heen-en-weereigenschap} voldoen:
+  \begin{enumerate}
+  \item (\emph{Heen}) Neem een $p \in I$ en een $a \in \Domain M$.
+    Dan is er een $q \in I$ met $p \subseteq q$ waarbij $a$ in het
+    domein van $q$ zit;
+  \item (\emph{Weer}) Neem een $p \in I$ en een $b \in \Domain N$.
+    Dan is er een $q \in I$ met $p \subseteq q$ waarbij $b$ in het
+    bereik van $q$ zit.
+  \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:p-isom1}
+  Als $\Struct{M} \iso[p] \Struct{N}$ en $\Struct{M}$ en
+  $\Struct{N}$ !!{enumerable} zijn, dan $\Struct{M} \iso
+  \Struct{N}$.
+\end{thm}
+
+\begin{proof}
+  Omdat $\Struct{M}$ en $\Struct{N}$ !!{enumerable} zijn, kunnen we hun
+  elementen in rijtjes zetten:
+  $\Domain{M} = \{a_0, a_1, \ldots \}$ en
+  $\Domain{N} = \{b_0, b_1, \ldots \}$. Kies eerst zomaar een
+  $p_0 \in I$. Daarna maken we stap voor stap een steeds grotere rij
+  partiële isomorfismen
+  $p_0 \subseteq p_1 \subseteq p_2 \subseteq \cdots$:
+  \begin{enumerate}
+  \item als $n+1$ oneven is, dus $n = 2r$, gebruiken we de
+    heen-regel. Daarmee kiezen we $p_{n+1} \in I$ zo dat
+    $p_n \subseteq p_{n+1}$ en $a_r$ in het domein van $p_{n+1}$ zit;
+  \item als $n+1$ even is, dus $n+1 =2r$, gebruiken we de
+    weer-regel. Daarmee kiezen we $p_{n+1} \in I$ zo dat
+    $p_n \subseteq p_{n+1}$ en $b_r$ in het bereik van $p_{n+1}$ zit.
+  \end{enumerate}
+Voeg nu alle stappen samen:
+\[
+p = \bigcup_{n\ge 0} p_n,
+\]
+De oneven stappen zorgen dat elk element van de eerste structuur uiteindelijk
+in het domein komt. De even stappen zorgen dat elk element van de tweede
+structuur uiteindelijk in het bereik komt. Zo is $p$ een
+isomorfisme tussen $\Struct{M}$ en $\Struct{N}$.
+\end{proof}
+
+\begin{prob}
+  Werk in detail uit waarom de $p$ uit
+  \olref[mod][bas][pis]{thm:p-isom1} inderdaad een isomorfisme is.
+\end{prob}
+
+\begin{thm}\ollabel{thm:p-isom2}
+  Stel dat $\Struct{M}$ en $\Struct{N}$ !!{structure}s zijn voor een
+  zuiver relationele !!{language}. Dat is hier !!a{language} met
+  alleen !!{predicate}s en zonder !!{function}s of constanten. Als
+  $\Struct{M} \iso[p] \Struct{N}$, dan geldt ook
+  $\Struct{M} \elemequiv \Struct{N}$.
+\end{thm}
+
+\begin{proof}
+  We bewijzen dit met inductie over !!{formula}s. Neem elementen
+  $a_1$, \dots, $a_n$ en $b_1$, \dots, $b_n$. Stel dat een partieel
+  isomorfisme $p$ elk $a_i$ op $b_i$ afbeeldt. Neem verder bedelingen
+  met $s_1(x_i) =a_i$ en $s_2(x_i) =b_i$ (voor
+  $i =1$, \dots,~$n$). De inductie laat dan zien dat
+  $\Sat{M}{!A}[s_1]$ precies wanneer $\Sat{N}{!A}[s_2]$. Bij $n=0$
+  hebben we geen gekozen elementen meer. Dan volgt
+  $\Struct{M} \elemequiv \Struct{N}$.
+\end{proof}
+
+\begin{rem}
+Als de taal wel !!{function}s heeft, blijft het vorige resultaat waar.
+Dan moet je kijken naar het isomorfisme dat $p$ geeft tussen de
+sub!!{structure} van $\Struct{M}$ die door $a_1$, \dots, $a_n$ wordt
+voortgebracht en de sub!!{structure} van $\Struct{N}$ die door
+$b_1$, \dots, $b_n$ wordt voortgebracht.
+\end{rem}
+
+We kunnen het vorige resultaat in stappen opdelen. Het aantal kwantoren
+dat in !!a{formula} in elkaar staat, bepaalt hoe vaak we de bijbehorende
+partiële isomorfismen moeten kunnen uitbreiden.
+
+\begin{defn}
+  Neem een !!{formula}~$!A$. De \emph{kwantordiepte} van $!A$,
+  geschreven als $\QuantRank{!A} \in \Nat$, is het grootste aantal
+  kwantoren dat in $!A$ in elkaar staat. We bepalen dat aantal stap
+  voor stap uit de opbouw van de formule. Twee !!{structure}s
+  $\Struct{M}$ en $\Struct{N}$ zijn \emph{$n$-equivalent}, geschreven
+  als $\Struct{M} \elemequiv[n] \Struct{N}$, als zij dezelfde zinnen
+  waar maken zolang de kwantordiepte kleiner dan of gelijk aan~$n$ is.
+\end{defn}
+
+\begin{prop}\ollabel{prop:qr-finite}
+  Neem een eindige zuiver relationele !!{language} $\Lang{L}$. Daarmee
+  bedoelen we hier !!a{language} met eindig veel !!{predicate}s en
+  !!{constant}s, maar zonder !!{function}s. Voor elke $n \in \Nat$
+  zijn er, als logisch equivalente zinnen als hetzelfde tellen, maar
+  eindig veel eerste-orde!!{sentence}s in de !!{language} $\Lang{L}$
+  waarvan de kwantordiepte op zijn meest $n$ is.
+\end{prop}
+
+\begin{proof}
+  Met inductie over $n$.
+\end{proof}
+
+\begin{defn}
+  Neem !!a{structure}~$\Struct{M}$. De verzameling
+  $\Domain M^{<\omega}$ bestaat uit alle eindige rijtjes van elementen
+  van $\Domain{M}$. Met $\mathbf{a}, \mathbf{b}, \mathbf{c}, \ldots$
+  bedoelen we zulke rijtjes. Als
+  $\mathbf{a} \in \Domain{M}^{<\omega}$ en $a \in \Domain{M}$, dan
+  betekent $\mathbf{a}a$ de \emph{concatenatie} van $\mathbf{a}$ met
+  $a$: we zetten het laatste element dus achter het rijtje.
+\end{defn}
+
+\begin{defn}
+  Neem !!{structure}s $\Struct{M}$ en $\Struct{N}$. We maken relaties
+  $I_n \subseteq \Domain M^{<\omega} \times \Domain N^{<\omega}$
+  tussen rijtjes die even lang zijn. Voor elke $n$ doen we dat als volgt:
+   \begin{enumerate}
+   \item $I_0(\mathbf{a},\mathbf{b})$ geldt precies wanneer
+     $\mathbf{a}$ en $\mathbf{b}$ in $\Struct{M}$ en $\Struct{N}$
+     aan dezelfde atomaire !!{formula}s voldoen. Anders gezegd: stel
+     $s_1(x_i) = a_i$ en $s_2(x_i) = b_i$. Als $!A$ atomair is en alle
+     !!{variable}s ervan bij $x_1$, \dots,~$x_n$ staan, dan geldt
+     $\Sat{M}{!A}[s_1]$ precies wanneer~$\Sat{N}{!A}[s_2]$;
+   \item $I_{n+1} (\mathbf{a},\mathbf{b})$ geldt precies wanneer je
+     voor elke $a\in \Domain M$ een $b\in \Domain N$ kunt vinden met
+     $I_n(\mathbf{a}a,\mathbf{b}b)$, en ook omgekeerd.
+   \end{enumerate}
+\end{defn}
+
+
+\begin{defn}
+  We schrijven $\Struct{M} \approx_n \Struct{N}$ als
+  $I_n(\emptyseq,\emptyseq)$ geldt voor $\Struct{M}$ en
+  $\Struct{N}$. Hier is $\emptyseq$ het lege rijtje.
+\end{defn}
+
+\begin{thm}\ollabel{thm:b-n-f}
+  Neem een zuiver relationele !!{language} $\Lang{L}$. Als
+  $I_n(\mathbf{a},\mathbf{b})$, dan geldt voor elke $!A$ met
+  $\QuantRank{!A} \le n$ dat $\Sat{M}{!A}[\mathbf{a}]$ precies wanneer
+  $\Sat{N}{!A}[\mathbf{b}]$. Hier zeggen we weer dat $\mathbf{a}$ aan
+  $!A$ voldoet als elke bedeling $s$ met $s(x_i) = a_i$ aan $!A$
+  voldoet. Als $\Lang{L}$ eindig is, geldt de omgekeerde richting ook.
+\end{thm}
+
+\begin{proof}
+  Uit $I_n(\mathbf{a},\mathbf{b})$ volgt dat $\mathbf{a}$ en
+  $\mathbf{b}$ aan dezelfde !!{formula}s met kwantordiepte op zijn
+  meest $n$ voldoen. Dat bewijzen we met een gewone inductie over $!A$.
+  Voor de omgekeerde richting gebruiken we inductie over $n$. Daarbij
+  gebruiken we \olref{prop:qr-finite}: voor elke $n$ zijn er maar
+  eindig veel !!{formula}s van die kwantordiepte die niet logisch
+  equivalent zijn.
+
+  Neem eerst $n=0$. Als $\mathbf{a}$ en $\mathbf{b}$ aan dezelfde
+  kwantorvrije !!{formula}s voldoen, voldoen zij ook aan dezelfde
+  atomaire formules. Dus $I_0(\mathbf{a},\mathbf{b})$.
+
+  Neem nu het geval $n+1$. Stel dat $\mathbf{a}$ en $\mathbf{b}$ aan
+  dezelfde !!{formula}s met kwantordiepte op zijn meest $n+1$ voldoen.
+  Voor $I_{n+1}(\mathbf{a},\mathbf{b})$ moeten we het volgende laten
+  zien: bij elke $a \in \Domain M$ is een $b \in \Domain N$ te vinden
+  waarvoor $I_n(\mathbf{a}a,\mathbf{b}b)$. Door de inductiehypothese is
+  het weer genoeg te laten zien dat er voor elke $a \in \Domain M$ een
+  $b \in \Domain N$ is waarvoor $\mathbf{a}a$ en $\mathbf{b}b$ aan
+  dezelfde !!{formula}s met kwantordiepte op zijn meest $n$ voldoen.
+
+  Kies $a \in \Domain M$. Laat $!T^a_n$ de verzameling zijn van alle
+  !!{formula}s $!B(x,\mathbf{y})$ met kwantordiepte op zijn meest $n$
+  waaraan $\mathbf{a}a$ in $\Struct{M}$ voldoet. Tot op logische
+  equivalentie zijn dat er maar eindig veel. Neem van die eindige
+  verzameling de conjunctie; zo kunnen we $!T^a_n$ als één
+  eerste-orde!!{formula} behandelen. De rij $\mathbf{a}$ voldoet dan
+  aan $\lexists[x][!T^a_n(x,\mathbf{y})]$. Deze formule heeft
+  kwantordiepte op zijn meest $n+1$. Volgens onze aanname voldoet
+  $\mathbf{b}$ in $\Struct{N}$ aan dezelfde !!{formula}. Er is dus een
+  $b \in \Domain N$ waarvoor $\mathbf{b}b$ aan $!T^a_n$ voldoet.
+  Daarmee voldoet $\mathbf{b}b$ aan dezelfde !!{formula}s met
+  kwantordiepte op zijn meest $n$ als $\mathbf{a}a$.
+  Draai nu de rollen om. Dan vinden we voor elke $b \in \Domain N$ een
+  $a\in \Domain M$ waarvoor $\mathbf{a}a$ en $\mathbf{b}b$ aan
+  dezelfde !!{formula}s met kwantordiepte op zijn meest $n$ voldoen.
+  Dat zijn precies de twee richtingen die we nodig hadden.
+\end{proof}
+
+\begin{cor}\ollabel{cor:b-n-f}
+  Als $\Struct{M}$ en $\Struct{N}$ zuiver relationele !!{structure}s
+  in een eindige !!{language} zijn, dan geldt
+  $\Struct{M} \approx_n\Struct{N}$ precies wanneer
+  $\Struct{M} \elemequiv[n] \Struct{N}$. In het bijzonder geldt
+  $\Struct{M} \elemequiv \Struct{N}$ precies wanneer voor elke $n$
+  geldt dat $\Struct{M} \approx_n \Struct{N}$.
+\end{cor}
+
+\end{document}

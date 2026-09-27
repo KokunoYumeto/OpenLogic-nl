@@ -1,0 +1,80 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: covered-structures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{cov}
+
+\olsection{Gedekte \printtoken{P}{structure} voor talen van de eerste orde
+(eerste-ordetalen)}
+
+\begin{explain}
+Een term heet \emph{gesloten} als er geen !!{variable}s in staan.
+\end{explain}
+
+\begin{defn}[De !!^{value} van een gesloten term]
+Neem een gesloten term $t$ van de taal~$\Lang L$ en een
+!!{structure}~$\Struct M$ voor~$\Lang L$. De
+\emph{!!{value}}~$\Value{t}{M}$ is het element van het domein dat de
+term binnen deze structuur aanwijst. Je bepaalt die waarde zo:
+\begin{enumerate}
+\item Bestaat $t$ alleen uit de !!{constant}~$c$, dan is
+  $\Value{c}{M} = \Assign{c}{M}$.
+\item Heeft $t$ de vorm $\Atom{f}{t_1, \ldots, t_n}$, bepaal dan eerst
+  de waarden van de termen binnen de haakjes. Pas daarna de functie toe:
+  \[
+  \Value{t}{M} = \Assign{f}{M}(\Value{t_1}{M}, \ldots,
+  \Value{t_n}{M}).
+  \]
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[Gedekte !!{structure}]
+Een !!{structure} heet \emph{gedekt} als elk element van het domein de
+!!{value} van een gesloten term is. Je kunt dan dus elk domeinelement
+met minstens één term zonder variabelen aanwijzen.
+\end{defn}
+
+\begin{ex}
+Neem de taal~$\Lang L$ met de !!{constant}s $\Obj{zero}$,
+$\Obj{one}$, $\Obj{two}$, \dots. Deze taal bevat ook het binaire
+!!{predicate}~$<$ en de binaire !!{function}s $+$ en $\times$.
+Neem als !!a{structure}~$\Struct M$ voor~$\Lang L$ de volgende. Het
+domein is $\Domain M = \{0, 1, 2, \ldots \}$. De structuur legt het zo
+vast: $\Assign{\Obj{zero}}{M} = 0$, $\Assign{\Obj{one}}{M} = 1$,
+$\Assign{\Obj{two}}{M} = 2$, enzovoort. Voor het binaire
+relatiesymbool $<$ bevat de verzameling $\Assign{<}{M}$ precies de
+paren $\tuple{c_1, c_2} \in \Domain{M}^2$ waarvoor $c_1$ kleiner is
+dan~$c_2$. Zo geldt $\tuple{1, 3} \in \Assign{<}{M}$; daarentegen
+geldt $\tuple{2, 2} \notin \Assign{<}{M}$. Bij de
+binaire !!{function} $+$ is $\Assign{+}{M}$ de gewone optelling. Zo
+levert $\Assign{+}{M}(2,3)$ als uitkomst~$5$. Voor de binaire
+!!{function}~$\times$ gebruiken we op dezelfde manier de gewone
+vermenigvuldiging. Daarom is de !!{value} van $\Obj{four}$ gewoon~$4$.
+De !!{value} van $\times(\Obj{two},
++(\Obj{three},\Obj{zero}))$ (of, met het bewerkingsteken tussen de
+getallen: $\Obj{two} \times (\Obj{three} + \Obj{zero})$) is
+\begin{multline*}
+\Value{\times(\Obj{two}, +(\Obj{three},\Obj{zero}))}{M} =\\
+\begin{aligned}
+& =\Assign{\times}{M}(\Value{\Obj{two}}{M}, \Value{+(\Obj{three}, \Obj{zero})}{M})\\
+& = \Assign{\times}{M}(\Value{\Obj{two}}{M}, \Assign{+}{M}(\Value{\Obj{three}}{M},
+\Value{\Obj{zero}}{M})) \\
+& = \Assign{\times}{M}(\Assign{\Obj{two}}{M}, \Assign{+}{M}(\Assign{\Obj{three}}{M},
+\Assign{\Obj{zero}}{M})) \\
+& = \Assign{\times}{M}(2, \Assign{+}{M}(3, 0)) \\
+& = \Assign{\times}{M}(2, 3) \\
+& = 6
+\end{aligned}
+\end{multline*}
+\end{ex}
+
+\begin{prob}
+Is $\Struct N$, het standaardmodel van de rekenkunde, gedekt? Leg uit
+waarom wel of niet.
+\end{prob}
+
+\end{document}

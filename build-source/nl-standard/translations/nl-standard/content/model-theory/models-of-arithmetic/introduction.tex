@@ -1,0 +1,73 @@
+% Part: model-theory
+% Chapter: models-of-arithmetic
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{mar}{int}
+\section{Inleiding}
+
+Het \emph{standaardmodel} van de rekenkunde is de
+!!{structure}~$\Struct{N}$ met $\Domain{N} = \Nat$, waarin
+$\Obj{0}$, $\prime$, $+$, $\times$ en $<$ op de gebruikelijke wijze
+worden geïnterpreteerd. Dat wil zeggen: $\Obj{0}$ is $0$, $\prime$ is de
+opvolgerfunctie, $+$ wordt geïnterpreteerd als optelling en $\times$ als
+vermenigvuldiging van de getallen in~$\Nat$. Meer bepaald,
+\begin{align*}
+  \Assign{\Obj{0}}{N} & = 0\\
+  \Assign{\prime}{N}(n) & = n + 1\\
+  \Assign{+}{N}(n, m) & = n + m\\
+  \Assign{\times}{N}(n, m) & = nm
+\end{align*}
+Er bestaan uiteraard structuren voor $\Lang{L_A}$ met een ander domein
+dan~$\Nat$. We kunnen bijvoorbeeld $\Struct{M}$ nemen met domein
+$\Domain{M} = \{a\}^*$ (de eindige rijen van het ene
+symbool~$a$, dus $\emptyset$, $a$, $aa$, $aaa$, \dots) en met de
+interpretaties
+\begin{align*}
+  \Assign{\Obj{0}}{M} & = \emptyset\\
+  \Assign{\prime}{M}(s) & = s \concat a\\
+  \Assign{+}{M}(n, m) & = a^{n + m}\\
+  \Assign{\times}{M}(n, m) & = a^{nm}
+\end{align*}
+Deze twee structuren zijn ``in wezen dezelfde'', in die zin dat alleen de
+!!{element}s van de !!{domain}s verschillen, maar niet de wijze waarop de
+!!{element}s van de !!{domain}s door de interpretatiefuncties onderling met
+elkaar in verband staan. We zeggen dat de twee !!{structure}s
+\emph{isomorf} zijn.
+
+Uit de compactheidsstelling volgt eenvoudig dat elke theorie die waar is
+in~$\Struct{N}$, ook modellen heeft die niet isomorf zijn
+met~$\Struct{N}$. Zulke structuren heten \emph{niet-standaard}. Het
+interessante eraan is dat de !!{element}s van een standaardmodel (dus
+$\Struct{N}$, maar ook alle !!{structure}s die daarmee isomorf zijn)
+volledig worden bestreken door de waarden van de
+standaardnummers~$\num{n}$, dat wil zeggen,
+\[
+\Domain{N} = \Setabs{\Value{\num{n}}{N}}{n \in \Nat}
+\]
+terwijl dat bij niet-standaard modellen niet zo is: als $\Struct{M}$
+niet-standaard is, dan bestaat er ten minste één $x \in \Domain{M}$ waarvoor
+$x \neq \Value{\num{n}}{M}$ geldt voor alle~$n$.
+
+Deze niet-standaard elementen zijn bijzonder: het zijn ``oneindige
+natuurlijke getallen''. Hun bestaan verklaart in zekere zin echter ook de
+onvolledigheidsverschijnselen. Beschouw bijvoorbeeld de zin die de
+consistentie van de Peano-rekenkunde uitdrukt, $\OCon[\Th{PA}]$, dat wil
+zeggen $\lnot
+\lexists[x][\OPrf[\Th{PA}](x, \gn{\lfalse})]$. Omdat $\Th{PA}$ noch
+$\OCon[\Th{PA}]$ noch $\lnot \OCon[\Th{PA}]$ bewijst, kan elk van beide
+consistent aan $\Th{PA}$ worden toegevoegd. Omdat $\Th{PA}$ consistent is,
+$\Sat{N}{\OCon[\Th{PA}]}$, en dus $\Sat/{N}{\lnot
+  \OCon[\Th{PA}]}$. Bijgevolg is $\Struct{N}$ \emph{geen} model van
+$\Th{PA} \cup \{\lnot \OCon[\Th{PA}]\}$ en moeten al zijn modellen
+niet-standaard zijn. Modellen van $\Th{PA} \cup \{\lnot
+\OCon[\Th{PA}]\}$ moeten een !!{element} bevatten dat als getuige dient en
+$\lexists[x][\OPrf[\Th{PA}](\gn{\lfalse})]$ waar maakt, dus een G\"odelgetal
+van !!a{derivation} van een tegenspraak uit~$\Th{PA}$. Zo'n !!{element}
+kan niet standaard zijn, aangezien $\Th{PA} \Proves \lnot
+\OPrf[\Th{PA}](\num{n}, \gn{\lfalse})$ voor elke~$n$.
+
+\end{document}

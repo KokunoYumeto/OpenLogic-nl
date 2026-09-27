@@ -1,0 +1,155 @@
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: theories
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{mat}{the}
+
+\olsection{Voorbeelden van eerste-ordetheorieën}
+
+\begin{ex}
+We beginnen met de theorie van strikte lineaire ordeningen. Daarvoor
+gebruiken we de taal~$\Lang L_<$. De volgende verzameling zinnen vormt
+het axiomasysteem:
+\begin{align*}
+\{\quad & \lforall[x][\lnot x < x], \\
+& \lforall[x][\lforall[y][((x < y \lor y <
+    x) \lor x = y)]], \\
+& \lforall[x][\lforall[y][\lforall[z][((x < y
+      \land y < z) \lif x < z)]]] \quad \}
+\end{align*}
+Samen leggen deze axioma's precies vast welke !!{structure}s we
+bedoelen. Iedere strikte lineaire ordening is een model van dit
+axiomasysteem. En omgekeerd: als $R$ een lineaire ordening op een
+verzameling~$X$ is, dan is de !!{structure}~$\Struct M$ met
+$\Domain M = X$ en $\Assign{<}{M} = R$ een model van deze theorie.
+\end{ex}
+
+\begin{ex}
+Voor de theorie van groepen gebruiken we een taal met $\Obj 1$ (een
+!!{constant}) en $\cdot$ (een tweeplaatsige !!{function}). De theorie
+heeft de volgende axioma's:
+\begin{align*}
+& \lforall[x][\eq[(x \cdot \Obj 1)][x]]\\
+& \lforall[x][\lforall[y][\lforall[z][\eq[(x \cdot (y \cdot z))][((x
+          \cdot y) \cdot z)]]]]\\
+& \lforall[x][\lexists[y][\eq[(x \cdot y)][\Obj 1]]]
+\end{align*}
+\end{ex}
+
+\begin{ex}
+De Peano-rekenkunde---de theorie over de natuurlijke getallen---krijgt
+de volgende axioma's in de taal van de rekenkunde~$\Lang L_A$.
+\begin{align*}
+& \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]]\\
+& \lforall[x][\eq/[\Obj 0][x']]\\
+& \lforall[x][\eq[(x + \Obj 0)][x]]\\
+& \lforall[x][\lforall[y][\eq[(x + y')][(x + y)']]]\\
+& \lforall[x][\eq[(x \times \Obj 0)][\Obj 0]]\\
+& \lforall[x][\lforall[y][\eq[(x \times y')][((x \times y) + x)]]]\\
+& \lforall[x][\lforall[y][(x < y \liff \lexists[z][\eq[(z' + x)][y])]]]\\
+\intertext{en alle zinnen van de volgende vorm}
+& (!A(\Obj 0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif \lforall[x][!A(x)]
+\end{align*}
+Van die laatste vorm zijn er oneindig veel zinnen. Het axiomasysteem
+is dus ook oneindig. Het vaste patroon dat voor iedere formule zo'n
+axioma oplevert, heet het \emph{inductieschema}. (Het volledige
+inductieschema is eigenlijk iets ingewikkelder dan we hier laten
+zien.)
+
+Het laatste axioma is dus een \emph{expliciete definitie} van~$<$: het
+legt vast wat dit teken betekent.
+\end{ex}
+
+\begin{ex}
+De theorie van zuivere verzamelingen is belangrijk voor de grondslagen
+en de filosofie van de wiskunde. Een verzameling is zuiver als al haar
+!!{element}s zelf ook zuivere verzamelingen zijn. De lege verzameling
+is daarom zuiver. Maar zodra een verzameling iets als !!a{element}
+heeft dat zelf geen verzameling is, is ze niet zuiver. Je kunt het ook
+zo zeggen: je begint met de lege verzameling en bouwt daar alleen
+andere verzamelingen uit. Er komen geen ``oerelementen'' in voor, dus
+geen objecten die zelf geen verzameling zijn.
+
+Je kunt de volgende zinnen als axioma's voor een theorie van zuivere
+verzamelingen nemen:
+\begin{align*}
+& \lexists[x][\lnot \lexists[y][y \in x]]\\
+& \lforall[x][\lforall[y][(\lforall[z](z \in x \liff z \in y) \lif 
+\eq[x][y])]]\\
+& \lforall[x][\lforall[y][\lexists[z][\lforall[u][(u \in z \liff
+(\eq[u][x] \lor \eq[u][y]))]]]]\\
+& \lforall[x][\lexists[y][\lforall[z][(z \in y \liff \lexists[u][(z \in
+        u \land u \in x)])]]]\\
+\intertext{en alle zinnen van de volgende vorm} &
+\lexists[x][\lforall[y][(y \in x \liff !A(y))]]
+\end{align*}
+Het eerste axioma zegt dat er een verzameling zonder !!{element}s is:
+$\emptyset$ bestaat. Het tweede zegt dat twee verzamelingen met precies
+dezelfde elementen gelijk zijn; dit heet extensionaliteit. Het derde
+zegt dat voor iedere twee verzamelingen $X$ en $Y$ ook de verzameling
+$\{X, Y\}$ bestaat. Het vierde zegt dat voor iedere verzameling $X$ de
+verzameling $\cup X$ bestaat. Die $\cup X$ krijg je door alle elementen
+van de verzamelingen in $X$ bij elkaar te nemen.
+
+De !!{sentence}s van de laatste soort heten samen het
+\emph{naïeve comprehensieschema}. Voor iedere formule $!A(x)$ zegt dit
+patroon dat de verzameling $\Setabs{x}{!A(x)}$ bestaat: de verzameling
+van precies de dingen waarvoor die formule geldt. Op het eerste gezicht
+lijkt dat waar, nuttig en misschien zelfs noodzakelijk. Maar juist
+daarom heet het ``naïef'': met dit schema kan de theorie geen model
+hebben. Neem voor $!A(y)$ namelijk $\lnot y \in y$. Dan krijg je de
+!!{sentence}
+\[
+\lexists[x][\lforall[y][(y \in x \liff \lnot y \in y)]]
+\]
+en die !!{sentence} wordt in geen enkele !!{structure} vervuld.
+\end{ex}
+
+\begin{ex}
+\emph{Mereologie} is de leer van delen en gehelen. De relatie
+\emph{is een deel van} staat daarin centraal. Net zoals er
+verschillende theorieën over verzamelingen zijn, zijn er ook
+verschillende theorieën over deze deel-geheelrelatie. Hun axioma's
+leggen verschillende, soms botsende, opvattingen ervan vast.
+
+De taal van de mereologie heeft maar één tweeplaatsig
+predicaatsymbool:~$\Obj P$. De formule $\Atom{\Obj P}{x, y}$
+``betekent'' dat $x$ een deel van~$y$ is. Als we dit symbool zo lezen,
+noemen we !!a{structure} voor deze taal een
+\emph{deel-geheelstructuur}. Niet iedere structuur met één
+tweeplaatsig predicaat verdient die naam. De relatie
+$\Assign{\Obj P}{M}$ moet eerst aan bepaalde voorwaarden voldoen. Die
+voorwaarden kunnen we als axioma's opschrijven. Zo moet ``is een deel
+van'' een partiële ordening zijn. Ieder object is een deel van
+zichzelf; dat is dan een \emph{oneigenlijk} deel. Twee verschillende
+objecten kunnen niet elk een deel van het andere zijn. En als iets een
+deel is van een deel van een object, dan is het ook een deel van dat
+object zelf. In deze betekenis lijkt ``is een deel van'' dus op ``is
+een deelverzameling van''. Het lijkt niet op ``is een element van'',
+want die laatste relatie is niet reflexief en ook niet transitief.
+\begin{align*}
+& \lforall[x][\Atom{\Obj P}{x,x}] \\
+& \lforall[x][\lforall[y][((\Part{x}{y} \land \Part{y}{x})
+      \lif \eq[x][y])]] \\
+& \lforall[x][\lforall[y][\lforall[z][((\Part{x}{y} \land
+        \Part{y}{z}) \lif \Part{x}{z})]]]\\
+\intertext{Bovendien hebben elke twee objecten een mereologische som: een object
+  dat beide als deel heeft en in dat opzicht zo klein mogelijk is.}  &
+\lforall[x][\lforall[y][\lexists[z][\lforall[u][(\Part{z}{u} \liff
+        (\Part{x}{u} \land \Part{y}{u}))]]]]
+\end{align*}
+Dit zijn maar enkele basisregels voor delen en gehelen die metafysici
+bestuderen. Andere regels zijn al snel lastig precies op te schrijven
+als je niet eerst een paar extra relaties definieert. De meeste
+metafysici die mereologie bestuderen, vinden bijvoorbeeld ook het
+volgende geldig. Stel dat een object~$x$ een strikt deel~$y$ heeft,
+dus een deel dat niet het hele object is. Dan heeft het ook een deel~$z$
+dat geen enkel deel met~$y$ gemeen heeft. De fusie van $y$ en $z$---hun
+mereologische som---is dan precies~$x$.
+\end{ex}
+
+\end{document}

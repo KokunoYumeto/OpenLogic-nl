@@ -1,0 +1,108 @@
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{mat}{int}
+\olsection{Inleiding}
+
+\begin{explain}
+De ontwikkeling van de axiomatische methode is een belangrijke
+prestatie in de geschiedenis van de wetenschap en is van bijzonder
+belang in de geschiedenis van de wiskunde. Bij de axiomatische opbouw
+van een vakgebied moeten tal van vragen worden opgehelderd: Waarover
+gaat het vakgebied? Wat zijn de meest fundamentele begrippen? Hoe
+hangen ze samen? Kunnen alle begrippen van het vakgebied in termen van
+deze fundamentele begrippen worden gedefinieerd? Welke wetten gelden
+ervoor, en aan welke wetten moeten deze begrippen voldoen?
+
+De axiomatische methode en de logica zijn voor elkaar gemaakt. De
+formele logica biedt de middelen om axiomatische theorieën te
+formuleren, om stellingen op nauwkeurig vastgelegde wijze uit de
+axioma's van de theorie te bewijzen en om de eigenschappen van alle
+systemen die aan de axioma's voldoen systematisch te bestuderen.
+\end{explain}
+
+\begin{defn}
+Een verzameling !!{sentence}s~$\Gamma$ is \emph{gesloten} dan en
+slechts dan als uit $\Gamma \Entails !A$ steeds $!A \in \Gamma$
+volgt. De \emph{afsluiting} van een verzameling !!{sentence}s~$\Gamma$
+is $\Setabs{!A}{\Gamma \Entails !A}$.
+
+We zeggen dat~$\Gamma$ \emph{wordt geaxiomatiseerd door} een
+verzameling zinnen~$\Delta$ als $\Gamma$ de afsluiting van~$\Delta$ is.
+\end{defn}
+
+\begin{explain}
+Een axiomatische theorie kunnen we opvatten als de verzameling zinnen
+die door haar verzameling axioma's~$\Delta$ wordt geaxiomatiseerd. Met
+andere woorden: neem een eerste-ordetaal met niet-logische symbolen
+voor de primitieve begrippen van de axiomatisch ontwikkelde wetenschap
+die we willen bestuderen, en daarnaast een verzameling !!{sentence}s
+die de fundamentele wetten van die wetenschap uitdrukken. Dan kunnen
+we de theorie weergeven door alle !!{sentence}s in deze taal die
+semantisch uit de axioma's volgen. Dit loopt uiteen van eenvoudige
+voorbeelden met slechts één primitief begrip en eenvoudige axioma's,
+zoals de theorie van partiële ordeningen, tot complexe theorieën zoals
+de Newtoniaanse mechanica.
+
+De volgende belangrijke logische feiten maken deze formele benadering
+van de axiomatische methode zo belangrijk. Stel dat $\Gamma$ een
+axiomasysteem voor een theorie is, dus een verzameling zinnen.
+\begin{enumerate}
+\item We kunnen precies aangeven wanneer een axiomasysteem een beoogde
+  klasse !!{structure}s karakteriseert. Als we geïnteresseerd zijn in
+  een bepaalde klasse !!{structure}s, karakteriseert een
+  axiomasysteem~$\Gamma$ die klasse precies dan en slechts dan als de
+  !!{structure}s in die klasse precies de~$\Struct M$ zijn waarvoor
+  $\Sat{M}{\Gamma}$.
+\item Dit kan mislukken doordat er een~$\Struct M$ bestaat waarvoor
+  $\Sat{M}{\Gamma}$, terwijl~$\Struct M$ niet een van de beoogde
+  !!{structure}s is. Dit kan aanleiding geven om axioma's toe te
+  voegen die in~$\Struct M$ niet waar zijn.
+\item Als we er ten minste in slagen dat~$\Gamma$ in alle beoogde
+  !!{structure}s waar is, dan is een zin~$!A$ in alle beoogde
+  !!{structure}s waar wanneer $\Gamma \Entails !A$. We kunnen dus
+  logische middelen (zoals methoden voor formele !!{derivation})
+  gebruiken om aan te tonen dat zinnen in alle beoogde !!{structure}s
+  waar zijn: we hoeven slechts aan te tonen dat ze semantisch uit de
+  axioma's volgen.
+\item Soms hebben we geen beoogde !!{structure}s voor ogen, maar
+  vertrekken we van de axioma's zelf. We beginnen dan met enkele
+  primitieve begrippen die aan bepaalde wetten moeten voldoen, en
+  leggen die wetten vast in een axiomasysteem. We willen meteen nagaan
+  of de axioma's elkaar niet tegenspreken. Als ze dat wel doen, bestaat
+  er geen interpretatie van de begrippen die aan al die wetten voldoet
+  en hebben we een incoherente theorie opgezet. Dat dit niet gebeurt,
+  kunnen we verifiëren door een model van~$\Gamma$ te vinden. Als onze
+  theorie modellen heeft, kunnen we die bovendien met logische methoden
+  onderzoeken en construeren.
+\item Ook de onafhankelijkheid van de axioma's is een belangrijke
+  vraag. Het kan gebeuren dat een van de axioma's eigenlijk een gevolg
+  van de andere is en dus redundant is. We kunnen bewijzen dat een
+  axioma~$!A$ in~$\Gamma$ redundant is door
+  $\Gamma \setminus \{!A\} \Entails !A$ te bewijzen. We kunnen ook
+  bewijzen dat een axioma niet redundant is door aan te tonen dat
+  $(\Gamma \setminus \{!A\}) \cup \{\lnot !A\}$ vervulbaar is. Zo
+  werd bijvoorbeeld aangetoond dat het parallellenaxioma onafhankelijk
+  is van de overige axioma's van de meetkunde.
+\item Een andere belangrijke vraag betreft de definieerbaarheid van
+  begrippen in een theorie. De keuze van de taal bepaalt waaruit de
+  modellen van een theorie bestaan. Niet elk aspect van een theorie
+  hoeft echter afzonderlijk in haar modellen te worden weergegeven.
+  Iedere ordening~$\le$ bepaalt bijvoorbeeld een bijbehorende strikte
+  ordening~$<$---wanneer de ene is gegeven, kunnen we de andere
+  definiëren. Een model van een theorie met zo'n ordening hoeft de
+  bijbehorende strikte ordening dus niet \emph{ook} als afzonderlijke
+  relatie te bevatten. Wanneer kan een relatie in het algemeen in
+  termen van andere relaties worden gedefinieerd? Wanneer is dat
+  onmogelijk en moeten we haar dus aan de primitieve begrippen van de
+  taal toevoegen?
+\end{enumerate}
+\end{explain}
+
+
+\end{document}

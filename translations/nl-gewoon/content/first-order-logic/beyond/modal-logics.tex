@@ -1,0 +1,86 @@
+% Part: first-order-logic
+% Chapter: beyond
+% Section: modal-logics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{byd}{mod}
+
+\olsection{Logica over wat kan en wat moet (modale logica)}
+
+Bekijk deze voorwaardelijke zin:
+\begin{quote}
+  Als Jeremy alleen in die kamer is, dan is hij dronken en naakt en
+  danst hij op de stoelen.
+\end{quote}
+Deze zin kan volgens de regels voor materiële implicatie waar zijn en toch
+misleidend zijn. Hij lijkt namelijk te zeggen dat er méér verband is tussen de
+voorwaarde en het gevolg dan alleen dit: de voorwaarde is onwaar, of het gevolg
+is waar. De formulering wekt de indruk dat de zin niet alleen in deze ene wereld
+waar is. In deze wereld kan hij al vanzelf waar zijn doordat Jeremy niet alleen
+in de kamer is. Er lijkt ook te staan dat het gevolg \emph{waar zou zijn geweest}
+\emph{als} de voorwaarde waar was geweest. Je kunt de zin dus zo lezen: hij is
+niet alleen in deze wereld waar, maar in elke ``mogelijke'' wereld. Dan is hij
+\emph{noodzakelijk} waar en niet toevallig alleen in deze wereld.
+
+Modale logica is bedoeld om precies over zulke noodzakelijkheid te kunnen
+redeneren. We krijgen modale propositielogica door aan de gewone
+propositielogica een boxoperator toe te voegen. Als $!A$ !!a{formula} is, dan is
+$\Box !A$ dus ook een formule. $\Box !A$ zegt intuïtief dat $!A$
+\emph{noodzakelijk} waar is: dat is waar in elke mogelijke wereld. We gebruiken
+$\Diamond !A$ meestal als afkorting van $\lnot \Box \lnot !A$. Die formule zegt
+dat $!A$ \emph{mogelijk} waar is. We kunnen zulke modaliteit ook aan de
+predicatenlogica toevoegen.
+
+Met Kripke-!!{structure}s kunnen we een semantiek voor modale logica geven.
+Kripke heeft deze semantiek oorspronkelijk zelfs met modale logica in gedachten
+ontworpen. We beperken ons nu niet tot partiële ordeningen. Algemeen nemen we
+een verzameling ``mogelijke werelden'' $P$ en een binaire
+``toegankelijkheidsrelatie'' $\Atom{R}{x,y}$ tussen die werelden. De formule
+$\Atom{R}{p,q}$ zegt intuïtief dat wereld~$q$ verenigbaar is met wereld~$p$.
+Als we ons in wereld~$p$ ``bevinden'', moeten we dus nog rekening houden met de
+mogelijkheid dat de wereld eruit had kunnen zien als wereld~$q$.
+
+Modale logica heet soms ``intensionele'' logica, tegenover ``extensionele''
+logica. De bedoelde semantiek van een extensionele logica, zoals de klassieke
+logica, verwijst maar naar één wereld: de ``werkelijke'' wereld. De semantiek van
+een intensionele logica gebruikt meer soorten objecten, waaronder verschillende
+mogelijke werelden. Met modaliteit kunnen we niet alleen noodzakelijkheid
+!!{structure}ren. We kunnen er ook andere talige constructies mee
+!!{structure}ren. Daarbij geven we $\Box$ en $\Diamond$ per toepassing een
+andere lezing. Bijvoorbeeld:
+\begin{enumerate}
+\item In bewijsbaarheidslogica lezen we $\Box !A$ als ``$!A$ is bewijsbaar''
+  en $\Diamond !A$ als ``$!A$ is consistent.''
+\item In epistemische logica, de logica over kennis en overtuigingen, kunnen we
+  $\Box !A$ lezen als ``ik weet $!A$'' of ``ik geloof $!A$.''
+\item In tijdslogica kunnen we $\Box !A$ lezen als ``$!A$ is altijd waar'' en
+  $\Diamond !A$ als ``$!A$ is soms waar.''
+\end{enumerate}
+
+We willen de logica uitbreiden met regels en axioma's voor modaliteit. Het
+systeem $\Log{S4}$ bestaat bijvoorbeeld uit de gewone axioma's en regels van de
+propositielogica, plus deze axioma's:
+\begin{align*}
+& \Box (!A \lif !B) \lif (\Box !A \lif \Box !B)\\
+& \Box !A \lif !A \\
+& \Box !A \lif \Box \Box !A
+\intertext{Daarnaast geldt de regel: ``concludeer uit $!A$ de formule
+  $\Box !A$.'' Het systeem $\Log{S5}$ voegt daar dit axioma aan toe:}
+& \Diamond !A \lif \Box \Diamond !A
+\end{align*}
+Voor verschillende toepassingen kunnen varianten van deze axioma's geschikt
+zijn. Men neemt bijvoorbeeld meestal aan dat S5 het begrip logische
+noodzakelijkheid weergeeft. Het handige is dat we gewoonlijk een semantiek
+kunnen vinden waarvoor het !!{derivation} systeem correct en volledig is. Dat
+doen we door natuurlijke eisen aan de toegankelijkheidsrelatie in de
+Kripke-!!{structure}s te stellen. $\Log{S4}$ hoort bijvoorbeeld bij de klasse
+van Kripke-!!{structure}s waarin de toegankelijkheidsrelatie reflexief en
+transitief is. $\Log{S5}$ hoort bij de klasse van Kripke-!!{structure}s waarin
+de toegankelijkheidsrelatie {\em universeel} is. Dat betekent dat elke wereld
+vanuit elke andere wereld toegankelijk is. Daardoor geldt $\Box !A$ precies
+dan wanneer $!A$ in elke wereld geldt.
+
+\end{document}

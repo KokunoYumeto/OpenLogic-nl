@@ -1,0 +1,133 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: isomorphism
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{iso}
+\olsection{Isomorfe structuren}
+
+!!{structure}s van de eerste orde kunnen op twee manieren op elkaar
+lijken. Ten eerste kunnen in beide dezelfde !!{sentence}s waar zijn.
+Zulke !!{structure}s noemen we \emph{elementair equivalent}. Structuren
+kunnen echter sterk verschillen en toch dezelfde !!{sentence}s waar
+maken: de ene kan bijvoorbeeld !!{enumerable} zijn en de andere niet.
+Dat komt doordat veel eigenschappen van !!a{structure} niet in een taal
+van de eerste orde kunnen worden uitgedrukt. Soms biedt de taal daarvoor
+te weinig uitdrukkingsmiddelen; soms ligt de oorzaak bij fundamentele
+beperkingen van de eerste-ordelogica, zoals de stelling van
+L\"owenheim--Skolem. Er is daarom een tweede, strengere manier waarop
+!!{structure}s op elkaar kunnen lijken: ze zijn fundamenteel hetzelfde
+en verschillen alleen in de objecten waaruit ze bestaan, niet in hun
+structurele kenmerken. Het begrip \emph{isomorfisme} maakt dit precies.
+
+\begin{defn}
+\ollabel{defn:elem-equiv} 
+Gegeven twee !!{structure}s $\Struct{M}$ en $\Struct M'$ voor dezelfde
+!!{language}~$\Lang{L}$ noemen we $\Struct{M}$ \emph{elementair
+  equivalent met} $\Struct M'$, genoteerd als $\Struct{M} \equiv \Struct M'$,
+dan en slechts dan als voor elke !!{sentence}~$!A$ van~$\Lang{L}$ geldt:
+$\Sat{M}{!A}$ dan en slechts dan als $\Sat{M'}{!A}$.
+\end{defn}
+
+\begin{defn}
+\ollabel{defn:isomorphism} Gegeven twee !!{structure}s $\Struct{M}$ en
+$\Struct M'$ voor dezelfde !!{language}~$\Lang L$ noemen we
+$\Struct{M}$ \emph{isomorf met}~$\Struct M'$, genoteerd als $\Struct{M}
+\simeq \Struct M'$, dan en slechts dan als er een functie $h \colon
+\Domain{M} \to \Domain{M'}$ bestaat waarvoor geldt:
+\begin{enumerate}
+\item $h$ is !!{injective}: als $h(x) =
+  h(y)$, dan $x = y$; 
+\item $h$ is !!{surjective}: voor elke $y \in \Domain{M'}$ bestaat
+  er een $x \in \Domain{M}$ waarvoor $h(x) = y$;
+\item \ollabel{defn:iso-const}voor elke !!{constant} $c$:
+  $h(\Assign{c}{M}) = \Assign{c}{M'}$;
+\item \ollabel{defn:iso-pred}voor elk $n$-plaatsig !!{predicate}~$P$:
+  \[
+  \tuple{a_1, \dots, a_n}\in \Assign{P}{M} \quad\text{iff}\quad
+  \tuple{h(a_1), \dots, h(a_n)} \in \Assign{P}{M'};
+  \]
+\item \ollabel{defn:iso-func}voor elke $n$-plaatsige !!{function} $f$:
+  \[
+  h(\Assign{f}{M}(a_1, \dots, a_n)) =
+  \Assign{f}{M'}(h(a_1), \dots, h(a_n)).
+  \]
+\end{enumerate}
+\end{defn}
+
+\begin{thm}
+\ollabel{thm:isom}
+Als $\Struct{M} \iso \Struct M'$, dan $\Struct{M} \elemequiv
+\Struct{M'}$.
+\end{thm}
+
+\begin{proof}
+Zij $h$ een isomorfisme van $\Struct{M}$ op $\Struct M'$. Voor elke
+toekenning~$s$ is $h \circ s$ de samenstelling van $h$ en $s$, dus de
+toekenning in $\Struct{M'}$ waarvoor $(h \circ s)(x) = h(s(x))$.
+Met inductie naar $t$ en $!A$ kunnen de volgende sterkere beweringen
+worden bewezen:
+\begin{enumerate}
+  \item[a.] $h(\Value{t}{M}[s]) = \Value{t}{M'}[h\circ s]$.
+  \item[b.] $\Sat{M}{!A}[s]$ dan en slechts dan als $\Sat{M'}{!A}[h \circ s]$.
+\end{enumerate}
+De eerste bewering volgt met inductie naar de complexiteit van~$t$.
+\begin{enumerate}
+\item Als $t \ident c$, dan $\Value{c}{M}[s] = \Assign{c}{M}$ en
+  $\Value{c}{M'}[h \circ s] = \Assign{c}{M'}$. Bijgevolg
+  $h(\Value{t}{M}[s]) = h(\Assign{c}{M}) = \Assign{c}{M'}$ (volgens
+  \olref{defn:iso-const} van \olref{defn:isomorphism}) $=
+  \Value{t}{M'}[h \circ s]$.
+\item Als $t \ident x$, dan $\Value{x}{M}[s] = s(x)$ en
+  $\Value{x}{M'}[h \circ s] = h(s(x))$. Bijgevolg is $h(\Value{x}{M}[s]) =
+  h(s(x)) = \Value{x}{M'}[h \circ s]$.
+\item Als $t \ident f(t_1, \dots, t_n)$, dan
+  \begin{align*}
+    \Value{t}{M}[s] & = \Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s]) \quad\text{and}\\
+  \Value{t}{M'}[h \circ s] & = \Assign{f}{M}(\Value{t_1}{M'}[h \circ
+    s], \dots, \Value{t_n}{M'}[h \circ s]).
+  \end{align*}
+  De inductiehypothese luidt dat voor elke $i$, $h(\Value{t_i}{M}[s])
+  = \Value{t_i}{M'}[h\circ s]$. Dus
+  \begin{align}
+    h(\Value{t}{M}[s]) 
+    & = h(\Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s]) \notag\\
+    & = \Assign{f}{M'}(h(\Value{t_1}{M}[s]), \dots,
+    h(\Value{t_n}{M}[s])) \ollabel{iso-1}\\
+    & = \Assign{f}{M'}(\Value{t_1}{M'}[h \circ s], \dots,
+    \Value{t_n}{M'}[h \circ s]) \ollabel{iso-2}\\
+    & = \Value{t}{M'}[h\circ s] \notag
+  \end{align}
+  Hierbij volgt \olref{iso-1} uit \olref{defn:iso-func} van
+  \olref{defn:isomorphism} en \olref{iso-2} uit de inductiehypothese.
+\end{enumerate}
+Deel (b) wordt als oefening overgelaten.
+
+Als $!A$ een zin is, zijn de toekenningen~$s$ en $h \circ s$
+irrelevant en geldt $\Sat{M}{!A}$ dan en slechts dan als $\Sat{M'}{!A}$.
+\end{proof}
+
+\begin{prob}
+Werk het bewijs van (b) van \olref[mod][bas][iso]{thm:isom} volledig
+uit. Vermeld daarbij waar elk van de vijf eigenschappen wordt gebruikt
+die de isomorfismen in \olref[mod][bas][iso]{defn:isomorphism}
+karakteriseren.
+\end{prob}
+
+\begin{defn}
+Een \emph{automorfisme} van een structuur $\Struct{M}$ is een isomorfisme
+van $\Struct{M}$ op zichzelf.
+\end{defn}
+
+\begin{prob}
+Toon voor elke structuur $\Struct{M}$ aan dat, als $X$ een definieerbare
+deelverzameling van $\Struct{M}$ is en $h$ een automorfisme van
+$\Struct{M}$, dan $X = \Setabs{h(x)}{x \in X}$ (dat wil zeggen: $X$ is
+invariant onder $h$).
+\end{prob}
+
+
+\end{document}

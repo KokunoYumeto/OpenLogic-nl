@@ -1,0 +1,43 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: overspill
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{ove}
+\olsection{Overloop}
+
+\begin{thm}
+\ollabel{overspill} Als een verzameling $\Gamma$ van zinnen willekeurig
+grote eindige modellen heeft, dan heeft zij een oneindig model.
+\end{thm}
+
+\begin{proof}
+Breid de taal van $\Gamma$ uit met aftelbaar veel nieuwe constanten
+$c_0$, $c_1$, \dots en beschouw de verzameling $\Gamma \cup \{c_i \neq c_j :
+i \neq j\}$. Dat $\Gamma$ willekeurig grote eindige modellen heeft,
+betekent dat er voor elke $m >0$ een $n\ge m$ bestaat zodat $\Gamma$ een
+model van cardinaliteit~$n$ heeft. Hieruit volgt dat $\Gamma \cup \{c_i \neq
+c_j : i \neq j\}$ eindig vervulbaar is. Volgens de compactheidsstelling
+heeft $\Gamma \cup \{c_i \neq c_j : i \neq j\}$ een model $\Struct M$
+waarvan het domein oneindig moet zijn, aangezien het alle ongelijkheden
+$c_i \neq c_j$ vervult.
+\end{proof}
+
+\begin{prop}
+\ollabel{inf-not-fo} 
+Er bestaat geen zin $!A$ van enige taal van de eerste orde die in
+!!a{structure}~$\Struct M$ dan en slechts dan waar is als het domein
+$\Domain{M}$ van de !!{structure} oneindig is.
+\end{prop}
+
+\begin{proof}
+Als zo'n $!A$ bestond, zou de negatie $\lnot !A$ in alle en alleen de
+eindige !!{structure}s waar zijn. Zij zou derhalve willekeurig grote
+eindige modellen hebben, maar geen oneindig model, in tegenspraak met
+\olref{overspill}.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,15 @@
+/* Deterministic reflowable partial-reader styles. */
+html { line-height: 1.55; }
+body { margin: 5%; max-width: 72rem; overflow-wrap: anywhere; }
+nav, header, footer, main, section, article, aside { display: block; }
+a { text-decoration: underline; }
+img, svg, math, table { max-width: 100%; }
+math { overflow-wrap: normal; }
+math[display="inline"] { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; }
+.math-display-scroll { display: block; box-sizing: border-box; width: 100%; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.math-display-scroll > math[display="block"] { display: inline-block; max-width: none; }
+table { border-collapse: collapse; }
+th, td { padding: 0.25em 0.5em; vertical-align: top; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.scope-note { border: 0.08em solid currentColor; padding: 0.75em; margin: 1em 0; }
+@page { margin: 1em; }

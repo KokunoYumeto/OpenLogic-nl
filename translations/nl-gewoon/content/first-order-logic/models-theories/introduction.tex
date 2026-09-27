@@ -1,0 +1,108 @@
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{mat}{int}
+\olsection{Inleiding}
+
+\begin{explain}
+De ontwikkeling van de axiomatische methode---een vakgebied opbouwen
+vanuit basisbegrippen en axioma's---was een grote stap in de
+geschiedenis van de wetenschap, en vooral in die van de wiskunde. Als
+je een vak zo opbouwt, moet je eerst een aantal vragen helder krijgen.
+Waar gaat het vak over? Met welke begrippen begin je? Hoe hangen die
+begrippen samen? Kun je alle andere begrippen daarmee definiëren? En
+aan welke wetten houden die begrippen zich, of moeten ze zich houden?
+
+De axiomatische methode en de logica passen precies bij elkaar. Met
+formele logica kun je een axiomatische theorie nauwkeurig opschrijven.
+Je kunt volgens precies vastgelegde regels bewijzen welke stellingen
+uit de axioma's volgen. En je kunt alle systemen die aan die axioma's
+voldoen op een vaste, geordende manier onderzoeken.
+\end{explain}
+
+\begin{defn}
+Een verzameling !!{sentence}s~$\Gamma$ heet \emph{gesloten} precies
+dan als elk logisch gevolg van die verzameling er al in zit. In
+symbolen: als $\Gamma \Entails !A$, dan $!A \in \Gamma$. De
+\emph{afsluiting} van een verzameling !!{sentence}s~$\Gamma$ krijg je
+door alle logische gevolgen ervan te nemen. Dat is
+$\Setabs{!A}{\Gamma \Entails !A}$.
+
+We zeggen dat~$\Gamma$ \emph{door een verzameling zinnen~$\Delta$
+wordt geaxiomatiseerd} als $\Gamma$ precies de afsluiting van~$\Delta$
+is. Dan zitten alle zinnen die logisch uit die axioma's volgen er al
+in.
+\end{defn}
+
+\begin{explain}
+Een axiomatische theorie kun je zien als de verzameling van alle zinnen
+die logisch uit haar axioma's~$\Delta$ volgen. Anders gezegd: eerst
+kies je een eerste-ordetaal. De niet-logische tekens daarin staan voor
+de basisbegrippen waarmee het vak begint (de primitieve begrippen).
+Daarnaast geef je een verzameling !!{sentence}s die de basiswetten van
+het vak uitdrukken. De theorie wordt dan weergegeven door alle
+!!{sentence}s in die taal die logisch uit de axioma's volgen. Dat kan
+een eenvoudige theorie zijn met maar één basisbegrip en eenvoudige
+axioma's, zoals de theorie van partiële ordeningen, maar ook een
+ingewikkelde theorie zoals de Newtoniaanse mechanica.
+
+De volgende logische feiten laten zien waarom deze formele aanpak van
+de axiomatische methode zo belangrijk is. Neem aan dat~$\Gamma$ het
+axiomasysteem van een theorie is. Dat axiomasysteem is dus een
+verzameling zinnen.
+\begin{enumerate}
+\item Met een axiomasysteem kunnen we precies aangeven welke klasse
+  !!{structure}s we bedoelen. Stel dat we een bepaalde klasse
+  !!{structure}s willen beschrijven. Het axiomasysteem~$\Gamma$
+  beschrijft precies die klasse als de !!{structure}s in de klasse
+  precies alle~$\Struct M$ zijn waarvoor $\Sat{M}{\Gamma}$.
+\item Dat kan misgaan. Er kan een~$\Struct M$ zijn waarvoor
+  $\Sat{M}{\Gamma}$, terwijl~$\Struct M$ niet een van de
+  !!{structure}s is die we bedoelden. Om zo'n~$\Struct M$ uit te
+  sluiten, kunnen we axioma's toevoegen die daarin niet waar zijn.
+\item Stel dat~$\Gamma$ in elk geval waar is in alle bedoelde
+  !!{structure}s. Dan is een zin~$!A$ in al die !!{structure}s waar
+  zodra $\Gamma \Entails !A$. Daarom kunnen we logische hulpmiddelen
+  gebruiken, zoals methoden voor formele !!{derivation}. Om te laten
+  zien dat een zin in alle bedoelde !!{structure}s waar is, hoeven we
+  dan alleen te laten zien dat die zin logisch uit de axioma's volgt.
+\item Soms beginnen we niet met een bepaalde klasse bedoelde
+  !!{structure}s, maar met de axioma's zelf. We kiezen een paar
+  basisbegrippen en leggen in axioma's vast aan welke wetten ze moeten
+  voldoen. Eerst willen we weten of alle axioma's tegelijk waar kunnen
+  zijn. Als ze elkaar tegenspreken, kun je de basisbegrippen niet zo
+  uitleggen dat alle wetten gelden; de theorie hangt dan niet samen.
+  Je kunt laten zien dat dit probleem zich niet voordoet door één model
+  van~$\Gamma$ te vinden. Als de theorie modellen heeft, kunnen we die
+  met logische methoden onderzoeken en ook nieuwe modellen bouwen.
+\item Ook willen we weten of elk axioma echt nodig is. Dat is de vraag
+  naar de onafhankelijkheid van de axioma's. Misschien volgt één
+  axioma al uit de andere axioma's. Dat axioma is dan overbodig
+  (redundant). Een axioma~$!A$ in~$\Gamma$ is overbodig als we kunnen
+  bewijzen dat $\Gamma \setminus \{!A\} \Entails !A$. Om te bewijzen
+  dat het niet overbodig is, laten we zien dat
+  $(\Gamma \setminus \{!A\}) \cup \{\lnot !A\}$ vervulbaar is: alle
+  zinnen in die verzameling kunnen dus tegelijk waar zijn. Zo is
+  aangetoond dat het parallellenaxioma onafhankelijk is van de andere
+  axioma's van de meetkunde.
+\item Ten slotte vragen we welke begrippen je met andere begrippen kunt
+  definiëren. De taal die je kiest, bepaalt wat de modellen van een
+  theorie bevatten. Maar niet elk onderdeel van een theorie hoeft
+  apart in die modellen te staan. Iedere ordening~$\le$ bepaalt
+  bijvoorbeeld een bijbehorende strikte ordening~$<$. Als je de ene
+  hebt, kun je de andere definiëren. Een model met zo'n ordening hoeft
+  de bijbehorende strikte ordening dus niet \emph{ook} als aparte
+  relatie te bevatten. De algemene vraag is: wanneer kun je een
+  relatie met andere relaties definiëren? En wanneer kan dat niet,
+  zodat je die relatie als een van de basisbegrippen (primitieve
+  begrippen) van de taal moet opnemen?
+\end{enumerate}
+\end{explain}
+
+
+\end{document}

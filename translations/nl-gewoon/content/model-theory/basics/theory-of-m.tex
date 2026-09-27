@@ -1,0 +1,69 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: theory-of-m
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{thm}
+
+\section{Alles wat in een \printtoken{S}{structure} waar is: haar theorie}
+
+In elke !!{structure}~$\Struct{M}$ zijn sommige !!{sentence}s waar en
+andere niet. Neem alle !!{sentence}s die erin waar zijn bij elkaar. Die
+verzameling heet de \emph{theorie} van de structuur. Het is ook echt een
+theorie. Alles wat uit die verzameling volgt, is namelijk waar in elk
+model ervan, en dus ook in~$\Struct{M}$ zelf.
+
+\begin{defn}
+  Neem !!a{structure}~$\Struct M$. De \emph{theorie} van
+  $\Struct{M}$ is de verzameling $\Theory{M}$ van alle !!{sentence}s
+  die in $\Struct{M}$ waar zijn. Met symbolen: $\Theory{M} =
+  \Setabs{!A}{\Sat{M}{!A}}$.
+\end{defn}
+
+We gebruiken het woord ``theorie'' ook losser. Dan bedoelen we een
+verzameling !!{sentence}s met een bepaalde bedoelde uitleg. Het maakt
+voor dat losse gebruik niet uit of alles wat eruit volgt al in de
+verzameling staat, dus of zij deductief gesloten is.
+
+\begin{prop}
+Voor elke $\Struct{M}$ is $\Theory{M}$ compleet.
+\end{prop}
+
+\begin{proof}
+Neem een willekeurige !!{sentence}~$!A$. Dan geldt ofwel
+$\Sat{M}{!A}$, ofwel $\Sat{M}{\lnot !A}$. Daarom staat ofwel
+$!A \in \Theory{M}$, ofwel $\lnot !A \in \Theory{M}$. De theorie kiest
+dus voor elke zin de zin zelf of haar ontkenning.
+\end{proof}
+
+\begin{prop}\ollabel{prop:equiv}
+  Als $\Struct{N} \models !A$ voor elke $!A \in \Theory{M}$, dan
+  $\Struct{M} \elemequiv \Struct{N}$.
+\end{prop}
+
+\begin{proof}
+Uit $\Sat{N}{!A}$ voor alle $!A \in \Theory{M}$ volgt
+$\Theory{M} \subseteq \Theory{N}$. Stel nu dat $\Sat{N}{!A}$. Dan
+$\Sat/{N}{\lnot !A}$, zodat $\lnot !A \notin \Theory{M}$. De verzameling
+$\Theory{M}$ is compleet. Daarom moet $!A \in \Theory{M}$. We hebben dus
+$\Theory{N} \subseteq \Theory{M}$, en daarmee
+$\Struct{M} \elemequiv \Struct{N}$.
+\end{proof}
+
+\begin{rem}\ollabel{remark:R}
+  Bekijk $\Struct{R} = \langle\Real, <\rangle$. Dit is de !!{structure}
+  waarvan het domein de verzameling $\Real$ van alle reële getallen is.
+  De !!{language} heeft maar één 2-plaatsig !!{predicate}; dat betekent
+  in deze structuur de relatie $<$ op de reële getallen. De structuur
+  $\Struct{R}$ is duidelijk !!{nonenumerable}. Toch is $\Theory{R}$
+  consistent. Volgens de stelling van L\"owenheim--Skolem heeft die
+  theorie daarom !!a{enumerable} model; noem dat model $\Struct{S}$.
+  Uit \olref{prop:equiv} volgt dan $\Struct{R} \equiv \Struct{S}$.
+  Maar $\Struct{R}$ en $\Struct{S}$ zijn niet isomorf. De omgekeerde
+  richting van \olref[iso]{thm:isom} geldt dus niet altijd.
+\end{rem}
+
+\end{document}

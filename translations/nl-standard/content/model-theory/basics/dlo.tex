@@ -1,0 +1,84 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: partial-iso
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{dlo}
+\section{Dichte lineaire ordeningen}
+
+\begin{defn}
+  Een \emph{dichte lineaire ordening zonder eindpunten} is een !!a{structure}
+  $\Struct{M}$ voor de !!{language} die één tweeplaatsig
+  !!{predicate}~$<$ bevat en aan de volgende zinnen voldoet:
+  \begin{enumerate}
+  \item $\lforall[x][\lnot x < x]$;
+  \item $\lforall[x][\lforall[y][\lforall[z][(x < y \lif (y < z \lif x
+    <z ))]]]$;
+  \item $\lforall[x][\lforall[y][(x< y \lor \eq[x][y] \lor y < x)]]$;
+  \item $\lforall[x][\lexists[y][x < y]]$;
+  \item $\lforall[x][\lexists[y][y < x]]$;
+  \item $\lforall[x][\lforall[y][(x < y \lif \lexists[z][(x < z \land
+        z < y))]]]$.
+ \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:cantorQ}
+  Elk tweetal !!{enumerable} dichte lineaire ordeningen zonder
+  eindpunten is isomorf.
+\end{thm}
+
+\begin{proof}
+  Zij $\Struct{M_1}$ en $\Struct{M_2}$ !!{enumerable} dichte lineaire
+  ordeningen zonder eindpunten, met ${<_1} = \Assign{<}{M_1}$ en ${<_2} =
+  \Assign{<}{M_2}$, en zij $\PIso{I}$ de verzameling van alle partiële
+  isomorfismen tussen beide. $\PIso{I}$ is niet leeg, want in elk geval
+  $\emptyset \in \PIso{I}$. We tonen aan dat $\PIso{I}$ aan de
+  heen-en-weereigenschap voldoet. Dan geldt $\Struct{M_1} \iso[p] \Struct{M_2}$
+  en volgt de stelling uit \olref[pis]{thm:p-isom1}.
+
+  Om aan te tonen dat $\PIso{I}$ aan de heen-eigenschap voldoet, zij $p \in
+  \PIso{I}$ en zij $p(a_i) = b_i$ voor $i = 1$, \dots,~$n$. Neem
+  zonder verlies van algemeenheid aan dat $a_1 <_1 a_2 <_1 \cdots <_1
+  a_n$. Gegeven $a \in \Domain{M_1}$ vinden we als volgt een
+  $b \in \Domain{M_2}$:
+  \begin{enumerate}
+  \item als $a <_1 a_1$, kies $b \in \Domain{M_2}$ zo dat $b <_2
+    b_1$;
+  \item als $a_n <_1 a$, kies $b \in \Domain{M_2}$ zo dat $b_n <_2 b$;
+ \item als $a_i <_1 a <_1 a_{i+1}$ voor zekere $i$, kies dan $b \in
+   \Domain{M_2}$ zo dat $b_i <_2 b <_2 b_{i+1}$.
+  \end{enumerate}
+  Er kan steeds een $b$ met de gewenste eigenschap worden gevonden, want
+  $\Struct{M_2}$ is een dichte lineaire ordening zonder eindpunten. Definieer
+  $q = p \cup \{ \langle a, b \rangle \}$, zodat $q \in \PIso{I}$ de
+  gewenste uitbreiding van $p$ is. Hiermee is de heen-eigenschap
+  bewezen. De weer-eigenschap gaat analoog. Dus $\Struct{M_1} \iso[p]
+  \Struct{M_2}$; volgens \olref[pis]{thm:p-isom1} geldt $\Struct{M_1} \iso
+  \Struct{M_2}$.
+\end{proof}
+
+\begin{prob}
+  Voltooi het bewijs van \olref[mod][bas][dlo]{thm:cantorQ} door
+  te verifiëren dat $\PIso{I}$ aan de weer-eigenschap voldoet.
+\end{prob}
+
+\begin{rem}
+  Zij $\Struct{S}$ een willekeurige !!{enumerable} dichte lineaire ordening zonder
+  eindpunten. Dan geldt (volgens \olref{thm:cantorQ}) $\Struct{S} \iso
+  \Struct{Q}$, waarbij $\Struct{Q} = (\Rat, <)$ de !!{enumerable}
+  dichte lineaire ordening is waarvan de verzameling $\Rat$ van rationale getallen
+  het domein vormt. Beschouw nu opnieuw de !!{structure}~$\Struct{R} =
+  (\Real, <)$ uit \olref[thm]{remark:R}. We hebben gezien dat er
+  !!a{enumerable} !!{structure}~$\Struct{S}$ bestaat waarvoor $\Struct{R}
+  \elemequiv \Struct{S}$. Maar $\Struct{S}$ is !!a{enumerable} dichte
+  lineaire ordening zonder eindpunten en is dus isomorf (en bijgevolg
+  elementair equivalent) met de !!{structure}~$\Struct{Q}$. Uit de
+  transitiviteit van elementaire equivalentie volgt $\Struct{R} \elemequiv
+  \Struct{Q}$. (Dit had ook rechtstreeks kunnen worden aangetoond door met
+  hetzelfde heen-en-weerargument $\Struct{R} \iso[p] \Struct{Q}$ vast te
+  stellen.)
+\end{rem}
+\end{document}

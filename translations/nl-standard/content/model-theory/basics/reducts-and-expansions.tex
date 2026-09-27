@@ -1,0 +1,70 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: reducts-and-expansions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{red}
+\section{Reducten en expansies}
+
+Vaak is het nuttig of noodzakelijk om talen die symbolen gemeen hebben
+met elkaar te vergelijken, evenals de !!{structure}s voor die talen.
+Het meest voorkomende geval is dat alle symbolen van
+!!a{language}~$\Lang{L}$ ook deel uitmaken van
+!!a{language}~$\Lang{L'}$, dat wil zeggen $\Lang{L} \subseteq
+\Lang{L'}$. Een $\Lang{L}$-!!{structure}~$\Struct{M}$ kan dan altijd
+worden uitgebreid tot een $\Lang{L'}$-!!{structure}: we voegen
+interpretaties van de extra symbolen toe en laten de interpretaties van
+de gemeenschappelijke symbolen ongewijzigd. Omgekeerd kunnen we uit een
+$\Lang{L'}$-structuur~$\Struct{M'}$ een $\Lang{L}$-structuur verkrijgen
+door eenvoudigweg de interpretaties van de symbolen die niet
+in~$\Lang{L}$ voorkomen te ``vergeten''.
+
+\begin{defn}
+\ollabel{defn:reduct}
+Stel dat $\Lang L \subseteq \Lang L'$, dat $\Struct M$ een
+$\Lang L$-!!{structure} is en dat $\Struct M'$ een
+$\Lang L'$-!!{structure} is. Dan is $\Struct M$ het \emph{reduct} van
+$\Struct M'$ tot $\Lang L$ en is $\Struct M'$ een \emph{expansie} van
+$\Struct M$ tot $\Lang L'$ precies dan als
+\begin{enumerate}
+\item $\Domain{M} = \Domain{M'}$
+\item voor elke !!{constant}~$c \in \Lang L$ geldt $\Assign{c}{M} =
+  \Assign{c}{M'}$.
+\item voor elke !!{function}~$f \in \Lang L$ geldt $\Assign{f}{M} =
+  \Assign{f}{M'}$.
+\item voor elk !!{predicate}~$P \in \Lang L$ geldt $\Assign{P}{M} =
+  \Assign{P}{M'}$.
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+\ollabel{prop:reduct}
+Als een $\Lang{L}$-!!{structure}~$\Struct{M}$ een reduct is van een
+$\Lang{L'}$-!!{structure}~$\Struct{M'}$, dan geldt voor alle
+$\Lang{L}$-!!{sentence}s~$!A$:
+\[
+\Sat{M}{!A} \text{ iff } \Sat{M'}{!A}.
+\]
+\end{prop}
+
+\begin{proof}
+  Oefening.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[mod][bas][red]{prop:reduct}.
+\end{prob}
+
+\begin{defn}
+Wanneer we een $\Lang{L}$-structuur $\Struct{M}$ hebben en $\Lang{L'} =
+\Lang{L} \cup \{P\}$ de expansie van $\Lang{L}$ is die ontstaat door
+één $n$-plaatsig !!{predicate}~$P$ toe te voegen, en dat
+$R \subseteq \Domain{M}^n$ een $n$-plaatsige relatie is. Dan schrijven
+we $\Expan{M}{R}$ voor de expansie~$\Struct{M'}$ van~$\Struct{M}$
+waarvoor $\Assign{P}{M'} = R$.
+\end{defn}
+
+\end{document}

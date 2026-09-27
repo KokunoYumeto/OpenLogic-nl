@@ -1,0 +1,73 @@
+% Part: first-order-logic
+% Chapter: beyond
+% Section: many-sorted-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{byd}{msl}
+
+\olsection{Meersoortige logica}
+
+In de eerste-ordelogica lopen variabelen en kwantoren over één
+!!{domain}. Vaak is het echter nuttig om meerdere (disjuncte)
+!!{domain}s te hebben: bijvoorbeeld !!a{domain} van getallen,
+!!a{domain} van meetkundige objecten, !!a{domain} van functies van
+getallen naar getallen, !!a{domain} van abelse groepen, enzovoort.
+
+De meersoortige logica biedt zo'n kader. Men begint met een lijst van
+``soorten''; de ``soort'' van een object geeft aan tot welk
+``!!{domain}'' het geacht wordt te behoren. Vervolgens zijn er voor
+elke soort !!{variable}s en kwantoren, en (doorgaans) een
+!!{identity} voor elke soort. Functies en relaties zijn eveneens naar
+soort ``getypeerd'': de typen bepalen welke soorten objecten zij als
+argumenten kunnen aannemen. Verder blijven de gebruikelijke regels
+van de eerste-ordelogica behouden, waarbij voor elke soort een versie
+van de kwantorregels wordt gegeven.
+
+Om bijvoorbeeld internationale betrekkingen te bestuderen, zouden we
+een taal kunnen kiezen met twee soorten objecten: Franse burgers en
+Duitse burgers. Voor objecten van de eerste soort zouden we een unaire
+relatie ``drinkt wijn'' kunnen hebben; voor objecten van de tweede
+soort een andere unaire relatie, ``eet worst''; en daarnaast een
+binaire relatie ``vormen samen een echtpaar met verschillende
+nationaliteiten''. Die laatste relatie heeft twee argumenten: het
+eerste is van de eerste soort en het tweede van de tweede soort. Als
+we de variabelen $a$, $b$, $c$ over Franse burgers laten lopen en $x$, $y$, $z$
+over Duitse burgers, dan
+\[
+\lforall[a][\lforall x][(\Atom{\Obj{MarriedTo}}{a,x} \lif
+(\Atom{\Obj{DrinksWine}}{a} \lor \lnot \Atom{\Obj{EatsWurst}}{x})]]
+\]
+beweert dat, als een Franse burger met een Duitser getrouwd is, de
+Franse burger wijn drinkt of de Duitser geen worst eet.
+
+De meersoortige logica kan op natuurlijke wijze in de
+eerste-ordelogica worden ingebed. Daartoe neemt men alle objecten uit
+de meersoortige !!{domain}s samen in één eerste-orde-!!{domain}, gebruikt
+men unaire !!{predicate}s om de soorten bij te houden en relativiseert
+men de kwantoren. De eerste-ordetaal die bij het voorbeeld hierboven
+hoort, zou naast de andere beschreven relaties bijvoorbeeld de unaire
+!!{predicate}s ``$\Obj{German}$'' en ``$\Obj{French}$'' bevatten, waarbij de
+soortvereisten uit die andere relaties zijn verwijderd. Een
+soortgebonden kwantor $\lforall[x][!A]$, waarbij $x$ !!a{variable} van de
+Duitse soort is, wordt vertaald als
+\[
+\lforall[x][(\Atom{\Obj{German}}{x} \lif !A)].
+\]
+We moeten axioma's toevoegen die verzekeren dat de soorten gescheiden
+zijn---bijvoorbeeld
+$\lforall[x][\lnot (\Atom{\Obj{German}}{x} \land
+  \Atom{\Obj{French}}{x})]$---en ook axioma's die garanderen dat
+``drinkt wijn'' alleen geldt voor objecten die aan het predicaat
+$\Atom{\Obj{French}}{x}$ voldoen, enzovoort. Met deze conventies en
+axioma's kan men gemakkelijk aantonen dat meersoortige !!{sentence}s
+in eerste-orde-!!{sentence}s kunnen worden vertaald, en meersoortige
+!!{derivation}s in eerste-orde-!!{derivation}s. Ook meersoortige
+!!{structure}s kunnen in overeenkomstige eerste-orde-!!{structure}s
+worden ``vertaald'', en omgekeerd. Er geldt dus ook een
+volledigheidsstelling voor de meersoortige logica.
+
+\end{document}
+

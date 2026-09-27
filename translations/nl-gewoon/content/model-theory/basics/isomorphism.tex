@@ -1,0 +1,147 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: isomorphism
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{iso}
+\olsection{Dezelfde structuur met andere objecten (isomorfe structuren)}
+
+!!{structure}s van de eerste orde kunnen op twee verschillende manieren
+hetzelfde lijken. Bij de eerste manier zijn in beide precies dezelfde
+!!{sentence}s waar. Zulke !!{structure}s heten \emph{elementair
+equivalent}. Toch kunnen structuren dan nog heel verschillend zijn. De
+ene kan bijvoorbeeld !!{enumerable} zijn en de andere niet, terwijl ze
+dezelfde !!{sentence}s waar maken. Veel eigenschappen van
+!!a{structure} kun je namelijk niet in een taal van de eerste orde
+uitdrukken. Soms heeft de taal daarvoor niet genoeg middelen. Soms komt
+dat door een grens van de eerste-ordelogica zelf, zoals de stelling van
+L\"owenheim--Skolem. Er is daarom een tweede, strengere manier waarop
+!!{structure}s hetzelfde kunnen zijn. Dan is hun hele structurele
+patroon gelijk en zijn alleen de concrete objecten anders. Een
+\emph{isomorfisme} legt precies vast wat dat betekent.
+
+\begin{defn}
+\ollabel{defn:elem-equiv} 
+Neem twee !!{structure}s $\Struct{M}$ en $\Struct M'$ voor dezelfde
+!!{language}~$\Lang{L}$. We zeggen dat $\Struct{M}$ \emph{elementair
+equivalent} is met $\Struct M'$, geschreven als $\Struct{M} \equiv
+\Struct M'$, als in beide precies dezelfde zinnen waar zijn. Formeel
+betekent dit: voor elke !!{sentence}~$!A$ van~$\Lang{L}$,
+$\Sat{M}{!A}$ dan en slechts dan als $\Sat{M'}{!A}$.
+\end{defn}
+
+\begin{defn}
+\ollabel{defn:isomorphism} Neem twee !!{structure}s $\Struct{M}$ en
+$\Struct M'$ voor dezelfde !!{language}~$\Lang L$. We zeggen dat
+$\Struct{M}$ \emph{isomorf} is met $\Struct M'$, oftewel dat beide
+structureel hetzelfde zijn. We schrijven $\Struct{M}
+\simeq \Struct M'$ als er een functie $h \colon
+\Domain{M} \to \Domain{M'}$ bestaat met de volgende eigenschappen:
+\begin{enumerate}
+\item $h$ is !!{injective}: twee verschillende objecten krijgen nooit
+  hetzelfde beeld; dus als $h(x) = h(y)$, dan $x = y$; 
+\item $h$ is !!{surjective}: elk object aan de andere kant wordt geraakt;
+  voor elke $y \in \Domain{M'}$ is er dus een $x \in \Domain{M}$ waarvoor
+  $h(x) = y$;
+\item \ollabel{defn:iso-const}voor elke !!{constant} $c$ wordt het ene
+  aangewezen object op het andere afgebeeld:
+  $h(\Assign{c}{M}) = \Assign{c}{M'}$;
+\item \ollabel{defn:iso-pred}voor elk $n$-plaatsig !!{predicate}~$P$
+  geldt in beide richtingen dat een rij objecten onder het predicaat valt:
+  \[
+  \tuple{a_1, \dots, a_n}\in \Assign{P}{M} \quad\text{iff}\quad
+  \tuple{h(a_1), \dots, h(a_n)} \in \Assign{P}{M'};
+  \]
+\item \ollabel{defn:iso-func}voor elke $n$-plaatsige !!{function} $f$
+  maakt het niet uit of je eerst de functie in de eerste structuur
+  gebruikt en de uitkomst omzet, of eerst alle invoeren omzet en daarna
+  de functie in de tweede structuur gebruikt:
+  \[
+  h(\Assign{f}{M}(a_1, \dots, a_n)) =
+  \Assign{f}{M'}(h(a_1), \dots, h(a_n)).
+  \]
+\end{enumerate}
+\end{defn}
+
+\begin{thm}
+\ollabel{thm:isom}
+Als $\Struct{M} \iso \Struct M'$, dan $\Struct{M} \elemequiv
+\Struct{M'}$.
+\end{thm}
+
+\begin{proof}
+Neem een isomorfisme $h$ van $\Struct{M}$ op $\Struct M'$. Een
+toekenning~$s$ wijst aan elke variabele een object toe.
+De samenstelling $h \circ s$ combineert $h$ en $s$: eerst wordt de
+toekenning gebruikt en daarna het isomorfisme. Het is dus de toekenning
+in $\Struct{M'}$ waarvoor
+$(h \circ s)(x) = h(s(x))$. Met inductie naar de opbouw van $t$ en $!A$
+kunnen we tegelijk de volgende twee, sterkere uitspraken bewijzen:
+\begin{enumerate}
+  \item[a.] $h(\Value{t}{M}[s]) = \Value{t}{M'}[h\circ s]$.
+  \item[b.] $\Sat{M}{!A}[s]$ dan en slechts dan als $\Sat{M'}{!A}[h \circ s]$.
+\end{enumerate}
+We bewijzen de eerste uitspraak met inductie naar de opbouw van~$t$.
+\begin{enumerate}
+\item Als $t \ident c$, dan $\Value{c}{M}[s] = \Assign{c}{M}$ en
+  $\Value{c}{M'}[h \circ s] = \Assign{c}{M'}$. Daarom geldt
+  $h(\Value{t}{M}[s]) = h(\Assign{c}{M}) = \Assign{c}{M'}$ (volgens
+  \olref{defn:iso-const} van \olref{defn:isomorphism}) $=
+  \Value{t}{M'}[h \circ s]$.
+\item Als $t \ident x$, dan $\Value{x}{M}[s] = s(x)$ en
+  $\Value{x}{M'}[h \circ s] = h(s(x))$. Daarom is $h(\Value{x}{M}[s]) =
+  h(s(x)) = \Value{x}{M'}[h \circ s]$.
+\item Als $t \ident f(t_1, \dots, t_n)$, dan
+  \begin{align*}
+    \Value{t}{M}[s] & = \Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s]) \quad\text{and}\\
+  \Value{t}{M'}[h \circ s] & = \Assign{f}{M}(\Value{t_1}{M'}[h \circ
+    s], \dots, \Value{t_n}{M'}[h \circ s]).
+  \end{align*}
+  De inductiehypothese zegt voor elke $i$ dat
+  $h(\Value{t_i}{M}[s]) = \Value{t_i}{M'}[h\circ s]$. Daarmee krijgen
+  we:
+  \begin{align}
+    h(\Value{t}{M}[s]) 
+    & = h(\Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s]) \notag\\
+    & = \Assign{f}{M'}(h(\Value{t_1}{M}[s]), \dots,
+    h(\Value{t_n}{M}[s])) \ollabel{iso-1}\\
+    & = \Assign{f}{M'}(\Value{t_1}{M'}[h \circ s], \dots,
+    \Value{t_n}{M'}[h \circ s]) \ollabel{iso-2}\\
+    & = \Value{t}{M'}[h\circ s] \notag
+  \end{align}
+  De stap \olref{iso-1} gebruikt \olref{defn:iso-func} uit
+  \olref{defn:isomorphism}. De stap \olref{iso-2} gebruikt de
+  inductiehypothese.
+\end{enumerate}
+Het bewijs van (b) is een oefening.
+
+Als $!A$ een zin is, maakt de keuze van de toekenningen~$s$ en
+$h \circ s$ niet uit. Daarom geldt $\Sat{M}{!A}$ dan en slechts dan als
+$\Sat{M'}{!A}$.
+\end{proof}
+
+\begin{prob}
+Werk het bewijs van (b) van \olref[mod][bas][iso]{thm:isom} stap voor
+stap uit. Geef aan waar je elk van de vijf eigenschappen uit
+\olref[mod][bas][iso]{defn:isomorphism} gebruikt die samen bepalen wat
+een isomorfisme is.
+\end{prob}
+
+\begin{defn}
+Een \emph{automorfisme} van een structuur $\Struct{M}$ is een
+isomorfisme van $\Struct{M}$ naar zichzelf.
+\end{defn}
+
+\begin{prob}
+Toon voor elke structuur $\Struct{M}$ het volgende aan. Stel dat $X$ een
+deelverzameling van $\Struct{M}$ is die met een formule is vastgelegd,
+dus een definieerbare deelverzameling, en dat $h$ een automorfisme van
+$\Struct{M}$ is. Dan $X = \Setabs{h(x)}{x \in X}$ (dat wil zeggen: $X$
+blijft dezelfde verzameling als we $h$ op alle elementen toepassen).
+\end{prob}
+
+
+\end{document}

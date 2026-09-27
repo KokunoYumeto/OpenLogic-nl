@@ -1,0 +1,127 @@
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: expressing-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{mat}{exr}
+
+\olsection{Relaties uitdrukken in \article{structure}
+  \printtoken{S}{structure}}
+
+\begin{explain}
+Een belangrijke toepassing van !!{formula}s is eigenschappen en
+relaties in !!a{structure}~$\Struct M$ uit te drukken met de
+primitieve begrippen van de taal~$\Lang L$ van~$\Struct M$. Daarmee
+bedoelen we het volgende. Het !!{domain} van $\Struct M$ is een
+verzameling objecten. De !!{constant}s, !!{function}s en
+!!{predicate}s worden in~$\Struct M$ geïnterpreteerd door bepaalde
+objecten in~$\Domain M$, functies op~$\Domain M$ en relaties
+op~$\Domain M$. Als bijvoorbeeld $\Obj A^2_0$ in $\Lang L$ voorkomt,
+kent $\Struct M$ daaraan een relatie~$R = \Assign{{\Obj
+  A^2_0}}{M}$ toe. De formule $\Atom{\Obj A^2_0}{\Obj v_1, \Obj v_2}$
+\emph{drukt dan precies die relatie uit} in de volgende zin:
+als een bedeling~$s$ de variabele $\Obj v_1$ op $a \in \Domain{M}$ en
+$\Obj v_2$ op $b \in \Domain M$ afbeeldt, dan
+\[
+Rab \text{\quad iff\quad} \Sat{M}{\Atom{\Obj A^2_0}{\Obj v_1, \Obj v_2}}[s].
+\]
+Merk op dat we hier bedelingen moeten gebruiken: we kunnen niet zonder
+meer zeggen ``$Rab$ dan en slechts dan als
+$\Sat{M}{\Atom{\Obj A^2_0}{a, b}}$'', want $a$ en $b$ zijn geen
+symbolen van onze taal maar !!{element}s van~$\Domain{M}$.
+
+We beschikken niet alleen over atomaire !!{formula}s, maar kunnen ze
+met logische connectieven en kwantoren combineren. Daardoor kunnen
+complexere !!{formula}s andere relaties definiëren die niet
+rechtstreeks in~$\Struct M$ zijn ingebouwd. We onderzoeken hoe dat
+gebeurt en in het bijzonder welke relaties in !!a{structure}
+definieerbaar zijn.
+\end{explain}
+
+\begin{defn}
+Zij $!A(\Obj v_1,\dots, \Obj v_n)$ !!a{formula} van $\Lang L$ waarin
+alleen $\Obj v_1$,\dots, $\Obj v_n$ vrij voorkomen, en zij $\Struct M$
+!!a{structure} voor~$\Lang L$. De formule
+$!A(\Obj v_1,\dots, \Obj v_n)$ drukt de relatie~$R \subseteq
+\Domain M^n$ \emph{uit} dan en slechts dan als
+\[
+Ra_1\dots a_n \text{\quad iff\quad} \Sat{M}{\Atom{!A}{\Obj
+    v_1,\dots, \Obj v_n}}[s]
+\]
+voor iedere bedeling~$s$ waarvoor $s(\Obj v_i) = a_i$ ($i = 1,
+\dots, n$).
+\end{defn}
+
+\begin{ex}
+In het standaardmodel van de rekenkunde~$\Struct N$ drukt de
+!!{formula} $\Obj v_1 < \Obj v_2 \lor \eq[\Obj v_1][\Obj v_2]$ de
+relatie~$\le$ op~$\Nat$ uit. De !!{formula}
+$\eq[\Obj v_2][\Obj v_1']$ drukt de opvolgerrelatie uit, dat wil zeggen
+de relatie $R \subseteq \Nat^2$ waarvoor $Rnm$ geldt als $m$ de
+opvolger van~$n$ is. De formule $\eq[\Obj v_1][\Obj v_2']$ drukt de
+voorgangerrelatie uit. De !!{formula}s
+$\lexists[\Obj v_3][(\eq/[\Obj v_3][\Obj 0] \land
+  \eq[\Obj v_2][(\Obj v_1 + \Obj v_3)])]$ en $\lexists[\Obj
+  v_3][\eq[(\Obj v_1 + {\Obj v_3}')][v_2]]$ drukken beide de relatie
+$\Obj <$ uit. Het predicaatsymbool~$<$ is dus eigenlijk overbodig in
+de taal van de rekenkunde: het kan worden gedefinieerd.
+\end{ex}
+
+\begin{explain}
+Deze gedachte is niet alleen van belang voor afzonderlijke
+!!{structure}s, maar telkens wanneer we met een taal één of meer
+beoogde modellen beschrijven, dus wanneer we theorieën beschouwen.
+Zulke theorieën bevatten vaak slechts enkele !!{predicate}s als
+basissymbolen, terwijl in het beschreven domein veel andere relaties
+een belangrijke rol spelen. Als die andere relaties stelselmatig
+kunnen worden uitgedrukt met de relaties die de basis-!!{predicate}s
+van de taal interpreteren, zeggen we dat ze in de taal kunnen worden
+\emph{gedefinieerd}.
+\end{explain}
+
+\begin{prob}
+Vind !!{formula}s in $\Lang L_A$ die de volgende relaties definiëren:
+\begin{enumerate}
+\item $n$ ligt tussen $i$ en $j$;
+\item $n$ deelt $m$ (dus $m$ is een veelvoud van $n$);
+\item $n$ is een priemgetal (dus geen enkel getal behalve $1$ en $n$
+  deelt~$n$).
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Veronderstel dat de formule $!A(\Obj v_1, \Obj v_2)$ de relatie $R
+\subseteq \Domain M^2$ in !!a{structure}~$\Struct M$ uitdrukt. Vind
+formules die de volgende relaties uitdrukken:
+\begin{enumerate}
+\item de inverse $R^{-1}$ van $R$;
+\item de samenstelling (het relatieve product) $R \mid R$;
+\end{enumerate}
+Kunt u ook $R^+$, de transitieve afsluiting van~$R$, uitdrukken?
+\end{prob}
+
+\begin{prob}
+Zij $\Lang{L}$ de taal die alleen het tweeplaatsige predicaatsymbool
+$<$ bevat (dus geen andere !!{constant}s, !!{function}s of
+!!{predicate}s---behalve uiteraard~$\eq$). Zij $\Struct{N}$ de
+structuur waarvoor $\Domain{N} = \Nat$ en
+$\Assign{<}{N} = \Setabs{\tuple{n,m}}{n < m}$. Bewijs het volgende:
+\begin{enumerate}
+\item $\{ 0 \}$ is definieerbaar in $\Struct{N}$;
+\item $\{ 1 \}$ is definieerbaar in $\Struct{N}$;
+\item $\{ 2 \}$ is definieerbaar in $\Struct{N}$;
+\item voor iedere $n \in \Nat$ is de verzameling $\{ n \}$
+  definieerbaar in $\Struct{N}$;
+\item iedere eindige deelverzameling van $\Domain{N}$ is definieerbaar
+  in $\Struct{N}$;
+\item iedere co-eindige deelverzameling van $\Domain{N}$ is
+  definieerbaar in $\Struct{N}$ (waarbij $X \subseteq \Nat$
+  co-eindig is dan en slechts dan als $\Nat \setminus X$ eindig is).
+\end{enumerate}
+\end{prob}
+
+
+\end{document}

@@ -1,0 +1,419 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: satisfaction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{sat}
+
+\olsection{Vervulling van \article{formula} \printtoken{S}{formula}
+  in \article{structure} \printtoken{S}{structure}}
+
+\begin{explain}
+De grondbegrippen die enerzijds uitdrukkingen zoals termen en
+!!{formula}s en anderzijds !!{structure}s met elkaar verbinden, zijn
+de \emph{!!{value}} van een term en de \emph{vervulling} van
+!!a{formula}. Informeel is de !!{value} van een term een !!{element} van
+!!a{structure}---als de term enkel een constante is, is zijn !!{value}
+het object dat de !!{structure} aan de constante toekent; als de term
+met !!{function}s is opgebouwd, wordt de !!{value} berekend uit de
+!!{value}s van constanten en de functies die aan de functies in de term
+zijn toegekend. !!^a{formula} wordt in !!a{structure} \emph{vervuld} als
+de interpretatie van de predicaten de !!{formula} waar maakt in het
+domein van de !!{structure}. Dit vervullingsbegrip wordt inductief
+vastgelegd: de specificatie van de !!{structure} bepaalt rechtstreeks
+wanneer atomaire !!{formula}s worden vervuld, en voor een samengestelde
+!!{formula} hangt dit af van de hoofdoperator en van de vraag of de
+onmiddellijke !!{subformula}s worden vervuld.
+
+Bij kwantoren ligt dit iets ingewikkelder. De onmiddellijke
+!!{subformula} van een gekwantificeerde !!{formula} heeft namelijk een
+vrije !!{variable}, terwijl !!{structure}s geen !!{value}s voor
+!!{variable}s vastleggen. Om dit probleem op te lossen voeren we ook
+\emph{bedelingen} in. We definiëren vervulling dan niet alleen ten
+opzichte van !!a{structure}, maar ten opzichte van !!a{structure}
+samen met !!a{variable} bedeling.
+\end{explain}
+
+\begin{defn}[Bedeling]
+Een \emph{bedeling}~$s$ voor !!a{structure}~$\Struct{M}$ is een
+functie die elke !!{variable} afbeeldt op !!a{element} van~$\Domain M$,
+dat wil zeggen: $s\colon \Var \to \Domain M$.
+\end{defn}
+
+\begin{explain}
+!!^a{structure} kent aan elke !!{constant} een !!{value} toe, en een
+bedeling aan elke variabele. We willen echter dat ook de daarmee
+opgebouwde termen !!{element}s van het !!{domain} aanduiden. Daarom
+definiëren we de !!{value} van termen inductief. Voor !!{constant}s en
+variabelen is de waarde precies wat de !!{structure} respectievelijk de
+bedeling voorschrijft; bij samengestelde termen wordt zij recursief
+berekend met de functies die de !!{structure} aan de !!{function}s
+toekent.
+\end{explain}
+
+\begin{defn}[!!^{value} van termen]
+Zij $t$ een term van de taal~$\Lang L$, zij $\Struct M$ een
+!!{structure} voor~$\Lang L$, en zij $s$ !!a{variable} bedeling
+voor~$\Struct M$. De \emph{!!{value}}~$\Value{t}{M}[s]$ wordt als
+volgt gedefinieerd:
+\begin{enumerate}
+\item \indcase{t}{c}{$\Value{\indfrm}{M}[s] = \Assign{\indcomplex}{M}$.}
+\item \indcase{t}{x}{$\Value{\indfrm}{M}[s] = s(\indcomplex)$.}
+\item \indcase{t}{\Atom{f}{t_1, \ldots, t_n}}{
+\[
+\Value{\indfrm}{M}[s] = \Assign{f}{M}(\Value{t_1}{M}[s], \ldots,
+\Value{t_n}{M}[s]).
+\]}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[$x$-variant]
+Als $s$ !!a{variable} bedeling is voor !!a{structure}~$\Struct M$, dan heet
+elke !!{variable} bedeling~$s'$ voor~$\Struct M$ die van~$s$ hoogstens
+verschilt in wat zij aan~$x$ toekent, een \emph{$x$-variant} van~$s$. Als
+$s'$ een $x$-variant van~$s$ is, schrijven we $\varAssign{s'}{s}{x}$.
+\end{defn}
+
+\begin{explain}
+Merk op dat een $x$-variant van een bedeling~$s$ \emph{niet} noodzakelijk iets
+anders aan~$x$ toekent. Elke bedeling geldt zelfs als een $x$-variant
+van zichzelf.
+\end{explain}
+
+\begin{defn}
+  Als $s$ !!a{variable} bedeling is voor !!a{structure}~$\Struct M$
+  en $m \in \Domain{M}$, dan is de bedeling~$\Subst{s}{m}{x}$ de
+  variabeletoekenning die wordt gedefinieerd door
+  \[\Subst{s}{m}{x}(y) = \begin{cases}
+    m & \text{als } y \ident x\\
+    s(y) & \text{anders}.
+  \end{cases}\]
+\end{defn}
+
+Met andere woorden: $\Subst{s}{m}{x}$ is de bijzondere $x$-variant van~$s$
+die het !!{element}~$m$ van het domein aan~$x$ toekent en aan andere
+!!{variable}s dan~$x$ hetzelfde toekent als $s$.
+
+\begin{defn}[Vervulling]
+\ollabel{defn:satisfaction}
+!!^a{formula}~$!A$ wordt in !!a{structure}~$\Struct M$ onder
+!!a{variable} bedeling~$s$ vervuld, in symbolen:
+$\Sat{M}{!A}[s]$, volgens de volgende recursieve definitie. (We schrijven
+$\Sat/{M}{!A}[s]$ voor ``niet $\Sat{M}{!A}[s]$.'')
+\begin{enumerate}
+\tagitem{prvFalse}{%
+  \indcase{!A}{\lfalse}{$\Sat/{M}{\indfrm}[s]$.}}{}
+
+\tagitem{prvTrue}{%
+  \indcase{!A}{\ltrue}{$\Sat{M}{\indfrm}[s]$.}}{}
+
+\item \indcase{!A}{\Atom{R}{t_1, \dots, t_n}}{$\Sat{M}{\indfrm}[s]$
+  dan en slechts dan als $\langle \Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s] \rangle \in
+  \Assign{R}{M}$.}
+
+\item \indcase{!A}{\eq[t_1][t_2]}{$\Sat{M}{\indfrm}[s]$ dan en slechts
+  dan als $\Value{t_1}{M}[s] = \Value{t_2}{M}[s]$.}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}{$\Sat{M}{\indfrm}[s]$ dan en slechts dan als
+    $\Sat/{M}{!B}[s]$.}}{}
+
+\tagitem{prvAnd}{%
+  \indcase{!A}{(!B \land !C)}{$\Sat{M}{\indfrm}[s]$ dan en slechts dan als $\Sat{M}{!B}[s]$
+    en $\Sat{M}{!C}[s]$.}}{}
+
+\tagitem{prvOr}{%
+  \indcase{!A}{(!B \lor !C)}{$\Sat{M}{\indfrm}[s]$ dan en slechts dan als
+    $\Sat{M}{!B}[s]$ of $\Sat{M}{!C}[s]$ (of beide).}}{}
+
+\tagitem{prvIf}{%
+  \indcase{!A}{(!B \lif !C)}{$\Sat{M}{\indfrm}[s]$ dan en slechts dan als $\Sat/{M}{!B}[s]$
+    of $\Sat{M}{!C}[s]$ (of beide).}}{}
+
+\tagitem{prvIff}{%
+  \indcase{!A}{(!B \liff !C)}{$\Sat{M}{\indfrm}[s]$ dan en slechts dan als ofwel zowel
+    $\Sat{M}{!B}[s]$ als $\Sat{M}{!C}[s]$, ofwel noch $\Sat{M}{!B}[s]$
+    noch $\Sat{M}{!C}[s]$.}}{}
+
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[x][!B]}{$\Sat{M}{\indfrm}[s]$ dan en slechts dan als voor elk
+    !!{element}~$m \in \Domain M$, $\Sat{M}{!B}[\Subst{s}{m}{x}]$.}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[x][!B]}{$\Sat{M}{\indfrm}[s]$ dan en slechts dan als voor ten minste
+  één !!{element}~$m \in \Domain M$, $\Sat{M}{!B}[\Subst{s}{m}{x}]$.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+De bedelingen zijn van belang in de laatste
+\iftag{notprvEx,notprvAll}{clausule}{twee clausules}.\iftag{prvAll}{ We
+kunnen de vervulling van $\lforall[x][!B(x)]$ niet definiëren met ``voor alle $m \in
+\Domain{M}$, $\Sat{M}{!B(m)}$.''}{}\iftag{prvEx}{ We kunnen de
+vervulling van $\lexists[x][!B(x)]$ niet definiëren met ``voor ten minste één $m \in
+\Domain{M}$, $\Sat{M}{!B(m)}$.''}{} De reden is dat een $m \in
+\Domain M$ geen symbool van de taal is. Daarom is $!B(m)$ geen
+!!a{formula} (dat wil zeggen: $\Subst{!B}{m}{x}$ is ongedefinieerd). We
+kunnen evenmin aannemen dat er !!{constant}s of termen beschikbaar zijn
+die elk !!{element} van~$\Struct{M}$ benoemen, want de definitie van
+!!{structure}s eist dit nergens. In de standaardtaal is de verzameling
+!!{constant}s !!{denumerable}; als $\Domain{M}$ niet !!{enumerable} is,
+zijn er dus niet eens genoeg !!{constant}s om elk object te benoemen.
+
+We lossen dit probleem op met !!{variable} bedelingen, die variabelen
+rechtstreeks met !!{element}s van het domein verbinden. In plaats van
+bijvoorbeeld te zeggen dat
+\iftag{prvEx}{$\lexists[x][!B(x)]$}{$\lforall[x][!B(x)]$} in~$\Struct M$
+wordt vervuld dan en slechts dan als \iftag{prvEx}{voor ten minste één $m \in
+\Domain{M}$ aan de zojuist bedoelde voorwaarde wordt voldaan}{voor alle $m \in \Domain{M}$, $\Sat{M}{!B(m)}$}, zeggen we dat de formule in~$\Struct M$
+\emph{onder}~$s$ wordt vervuld dan en slechts dan als $!B(x)$ onder
+$\Subst{s}{m}{x}$ wordt vervuld \iftag{prvEx}{voor ten minste
+één}{voor elke} $m \in \Domain M$.
+\end{explain}
+
+\begin{ex}
+Zij $\Lang{L} = \{a, b, f, R\}$, waarbij $a$ en $b$ !!{constant}s zijn,
+$f$~een tweeplaatsige !!{function} is en $R$~een tweeplaatsig !!{predicate}.
+Beschouw de !!{structure}~$\Struct{M}$ die als volgt is gedefinieerd:
+\begin{enumerate}
+\item $\Domain M = \{1, 2, 3, 4\}$
+\item $\Assign{a}{M} = 1$
+\item $\Assign{b}{M} = 2$
+\item $\Assign{f}{M}(x, y) = x+y$ als $x+y \le 3$ en anders $= 3$.
+\item $\Assign{R}{M} = \{\tuple{1, 1}, \tuple{1, 2}, \tuple{2, 3}, \tuple{2, 4}\}$
+\end{enumerate}
+De functie $s(x) = 1$, die aan elke !!{variable} het element
+$1 \in \Domain{M}$ toekent, is een bedeling voor~$\Struct{M}$.
+
+Dan geldt
+\begin{align*}
+\Value{f(a,b)}{M}[s] & = \Assign{f}{M}(\Value{a}{M}[s], \Value{b}{M}[s]).
+\intertext{Omdat $a$ en $b$ !!{constant}s zijn, geldt $\Value{a}{M}[s]
+  = \Assign{a}{M} = 1$ en $\Value{b}{M}[s] = \Assign{b}{M} = 2$. Dus}
+\Value{f(a,b)}{M}[s] & = \Assign{f}{M}(1, 2) = 1+2 = 3.
+\intertext{Om de waarde van $f(f(a,b),a)$ te berekenen, beschouwen we}
+\Value{f(f(a,b),a)}{M}[s] & = \Assign{f}{M}(\Value{f(a, b)}{M}[s],
+\Value{a}{M}[s]) = \Assign{f}{M}(3, 1) = 3,
+\intertext{omdat $3+1 > 3$. Omdat $s(x) = 1$ en $\Value{x}{M}[s] =
+  s(x)$, geldt ook}
+\Value{f(f(a,b),x)}{M}[s] & = \Assign{f}{M}(\Value{f(a, b)}{M}[s],
+\Value{x}{M}[s]) = \Assign{f}{M}(3, 1) = 3,
+\end{align*}
+
+Een atomaire !!{formula}~$R(t_1, t_2)$ wordt vervuld als het tupel van
+de waarden van haar argumenten, dus $\tuple{\Value{t_1}{M}[s],
+  \Value{t_2}{M}[s]}$, !!a{element} is van~$\Assign{R}{M}$. Zo geldt
+$\Sat{M}{R(b,f(a,b))}[s]$, omdat $\tuple{\Value{b}{M},
+  \Value{f(a,b)}{M}} = \tuple{2, 3} \in \Assign{R}{M}$, maar
+$\Sat/{M}{R(x, f(a,b))}[s]$, omdat $\tuple{1, 3} \notin \Assign{R}{M}$.
+
+Om vast te stellen of een niet-atomaire formule~$!A$ wordt vervuld, pas
+je de clausule van de inductieve definitie toe die bij haar
+hoofdoperator hoort. De hoofdoperator van $R(a, a) \lif (R(b,
+x) \lor R(x, b))$ is bijvoorbeeld~$\lif$, en
+\begin{align*}
+  & \Sat{M}{R(a, a) \lif (R(b, x) \lor R(x, b))}[s] \text{ dan en slechts dan als }\\
+  & \qquad
+  \Sat/{M}{R(a,a)}[s] \text{ of } \Sat{M}{R(b, x) \lor R(x, b)}[s]
+  \intertext{Omdat $\Sat{M}{R(a,a)}[s]$ (want $\tuple{1,1} \in
+    \Assign{R}{M}$), kunnen we het antwoord nog niet bepalen. Eerst
+    moeten we nagaan of $\Sat{M}{R(b, x) \lor R(x, b)}[s]$:}
+  & \Sat{M}{R(b, x) \lor R(x, b)}[s] \text{ dan en slechts dan als }\\
+  & \qquad \Sat{M}{R(b,x)}[s] \text{ of } \Sat{M}{R(x, b)}[s]
+  \intertext{Dit is inderdaad het geval, want $\Sat{M}{R(x, b)}[s]$
+    (omdat $\tuple{1,2} \in \Assign{R}{M}$).}
+\end{align*}
+
+Een $x$-variant van~$s$ is, zoals gezegd, een bedeling die van $s$
+hoogstens verschilt in wat zij aan~$x$ toekent. Voor elk !!{element} van
+~$\Domain{M}$ bestaat er een $x$-variant van~$s$:
+\begin{align*}
+  s_1 & = \Subst{s}{1}{x}, &
+  s_2 & = \Subst{s}{2}{x},\\
+  s_3 & = \Subst{s}{3}{x}, &
+  s_4 & = \Subst{s}{4}{x}.
+\end{align*}
+Zo is bijvoorbeeld $s_2(x) = 2$ en $s_2(y) = s(y) = 1$ voor alle variabelen~$y$
+behalve~$x$. Dit zijn alle $x$-varianten van~$s$ voor de
+structuur~$\Struct{M}$, want $\Domain{M} = \{1, 2, 3, 4\}$. In het
+bijzonder geldt $s_1 = s$ ($s$~is altijd een $x$-variant van zichzelf).
+
+\iftag{prvEx}{Om vast te stellen of een existentieel gekwantificeerde
+  !!{formula}~$\lexists[x][!A(x)]$ wordt vervuld, moeten we nagaan
+  of $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ voor ten minste één $m \in \Domain
+  M$. Dus
+  \[
+  \Sat{M}{\lexists[x][(R(b,x) \lor R(x,b))]}[s],
+  \]
+  want $\Sat{M}{R(b,x) \lor R(x, b)}[\Subst{s}{1}{x}]$
+  ($\Subst{s}{3}{x}$ zou eveneens volstaan). Daarentegen geldt
+  \[
+  \Sat/{M}{\lexists[x][(R(b,x) \land R(x,b))]}[s]
+  \]
+  want welke $m \in \Domain{M}$ we ook kiezen, $\Sat/{M}{R(b,x) \land R(x,b)}[\Subst{s}{m}{x}]$.}{}
+
+\iftag{prvAll}{Om vast te stellen of een universeel gekwantificeerde
+  !!{formula}~$\lforall[x][!A(x)]$ wordt vervuld, moeten we nagaan
+  of $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ voor alle $m \in \Domain M$. Dus
+  \[
+  \Sat{M}{\lforall[x][(R(x,a) \lif R(a,x))]}[s],
+  \]
+  want $\Sat{M}{R(x,a) \lif R(a,x)}[\Subst{s}{m}{x}]$ voor alle $m \in
+  \Domain M$. Voor $m = 1$ geldt $\Sat{M}{R(a,x)}[\Subst{s}{1}{x}]$,
+  zodat het consequens waar is; voor $m = 2$, $3$ en~$4$ geldt
+  $\Sat/{M}{R(x,a)}[\Subst{s}{m}{x}]$, zodat het antecedens onwaar is.
+  Maar
+  \[
+  \Sat/{M}{\lforall[x][(R(a,x) \lif R(x,a))]}[s]
+  \]
+  want $\Sat/{M}{R(a,x) \lif R(x,a)}[\Subst{s}{2}{x}]$ (omdat
+  $\Sat{M}{R(a, x)}[\Subst{s}{2}{x}]$ en $\Sat/{M}{R(x,
+  a)}[\Subst{s}{2}{x}]$).}{}
+
+\iftag{defEx}{Om vast te stellen of een existentieel gekwantificeerde
+  !!{formula}~$\lexists[x][!A(x)]$ wordt vervuld, moeten we nagaan
+  of $\Sat{M}{\lnot \lforall[x][\lnot !A(x)]}[s]$. Zo geldt
+  \[
+  \Sat{M}{\lexists[x][(R(b,x) \lor R(x,b))]}[s].
+  \]
+  Ten eerste geldt $\Sat{M}{R(b,x) \lor R(x, b)}[\Subst{s}{1}{x}]$
+  ($\Subst{s}{3}{x}$ zou eveneens volstaan). Dus geldt
+  $\Sat/{M}{\lnot(R(b,x) \lor R(x,b))}[\Subst{s}{1}{x}]$, en daarmee
+  $\Sat/{M}{\lforall[x][\lnot(R(b,x) \lor R(x,b))]}[s]$, en
+  bijgevolg $\Sat{M}{\lnot\lforall[x][\lnot(R(b,x) \lor
+  R(x,b))]}[s]$. Daarentegen geldt
+  \[
+  \Sat/{M}{\lexists[x][(R(b,x) \land R(x,b))]}[s].
+  \]
+  Dat komt doordat $\Sat{M}{\lforall[x][\lnot(R(b,x) \land
+  R(x,b))]}[s]$: voor geen enkele $m \in \Domain M$ geldt $\Sat{M}{R(b,x) \land
+  R(x,b)}[\Subst{s}{m}{x}]$. Zoals deze voorbeelden al doen vermoeden,
+  geldt $\Sat{M}{\lexists[x][!A(x)]}[s]$ dan en slechts dan als
+  $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ voor ten minste één $m \in \Domain
+  M$.}{}
+
+\iftag{defAll}{Om vast te stellen of een universeel gekwantificeerde
+  !!{formula}~$\lforall[x][!A(x)]$ wordt vervuld, moeten we nagaan
+  of $\Sat{M}{\lnot\lexists[x][\lnot !A(x)]}[s]$. Zo geldt
+  \[
+  \Sat{M}{\lforall[x][(R(x,a) \lif R(a,x))]}[s],
+  \]
+  Ten eerste geldt $\Sat{M}{R(x,a) \lif R(a,x)}[\Subst{s}{m}{x}]$ voor alle $m \in
+  \Domain M$ ($\Sat{M}{R(a,x)}[\Subst{s}{1}{x}]$ en
+  $\Sat/{M}{R(x,a)}[\Subst{s}{m}{x}]$ voor $m = 2$, $3$ of~$4$).
+  Er is dus geen $m \in \Domain M$ waarvoor
+  $\Sat{M}{\lnot(R(x,a) \lif R(a,x))}[\Subst{s}{m}{x}]$ geldt, en daarom
+  $\Sat/{M}{\lexists[x][\lnot(R(x,a) \lif R(a,x))]}[s]$. Bijgevolg
+  geldt $\Sat{M}{\lnot\lexists[x][\lnot(R(x,a) \lif R(a,x))]}[s]$. Aan de
+  andere kant geldt
+  \[
+  \Sat/{M}{\lforall[x][(R(a,x) \lif R(x,a))]}[s],
+  \]
+  want $\Sat/{M}{R(a,x) \lif R(x,a)}[\Subst{s}{2}{x}]$, en dus
+  $\Sat{M}{\lexists[x][\lnot(R(a,x) \lif R(x,a))]}[s]$. Zoals deze
+  voorbeelden al doen vermoeden, geldt $\Sat{M}{\lforall[x][!A(x)]}[s]$
+  dan en slechts dan als $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ voor elke $m \in \Domain
+  M$.}{}
+
+Beschouw als ingewikkelder geval
+\[
+\lforall[x][(R(a,x) \lif \lexists[y][R(x,y)])].
+\]
+Omdat $\Sat/{M}{R(a,x)}[\Subst{s}{3}{x}]$ en
+$\Sat/{M}{R(a,x)}[\Subst{s}{4}{x}]$, zijn alleen $m = 1$
+en $m = 2$ de relevante gevallen waarin we naar het consequens van de
+implicatie moeten kijken. Geldt $\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{1}{x}]$?
+Dit is zo als er ten minste één $n \in \Domain M$ bestaat waarvoor
+$\Sat{M}{R(x,y)}[\Subst{\Subst{s}{1}{x}}{n}{y}]$. Nemen we inderdaad
+$n = 1$, dan is $\Subst{\Subst{s}{1}{x}}{n}{y} = \Subst{s}{1}{y} =
+s$. Omdat $s(x) = 1$, $s(y) = 1$ en $\tuple{1,1} \in \Assign{R}{M}$,
+is het antwoord bevestigend.
+
+Om te bepalen of $\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{2}{x}]$ geldt,
+moeten we de !!{variable} bedelingen
+$\Subst{\Subst{s}{2}{x}}{n}{y}$ bekijken. Voor $n = 1$ is deze bedeling
+gelijk aan~$s_2 = \Subst{s}{2}{x}$, die $R(x,y)$ niet vervult ($s_2(x) =
+2$, $s_2(y) = 1$ en $\tuple{2,1}\notin \Assign{R}{M}$). Beschouw echter
+$\Subst{\Subst{s}{2}{x}}{3}{y} = \Subst{s_2}{3}{y}$.
+$\Sat{M}{R(x,y)}[\Subst{s_2}{3}{y}]$, want $\tuple{2,3} \in
+\Assign{R}{M}$, en dus $\Sat{M}{\lexists[y][R(x,y)]}[s_2]$.
+
+Voor alle $m \in \Domain M$ geldt dus ofwel
+$\Sat/{M}{R(a,x)}[\Subst{s}{m}{x}]$ (als $m = 3$, $4$), ofwel
+$\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{m}{x}]$ (als $m = 1$, $2$), en daarom
+\[
+\Sat{M}{\lforall[x][(R(a,x) \lif \lexists[y][R(x,y)])]}[s].
+\]
+Daarentegen geldt
+\[
+\Sat/{M}{\lexists[x][(R(a,x) \land \lforall[y][R(x,y)])]}[s].
+\]
+We hebben $\Sat{M}{R(a,x)}[\Subst{s}{m}{x}]$ alleen voor $m = 1$ en $m =
+2$. Voor beide waarden van~$m$ bestaat er op zijn beurt een $n \in
+\Domain M$: voor de eerste is dat $n = 4$; voor de tweede is dat het
+domeinelement 1. In beide gevallen geldt
+$\Sat/{M}{R(x,y)}[\Subst{\Subst{s}{m}{x}}{n}{y}]$ en dus
+$\Sat/{M}{\lforall[y][R(x,y)]}[\Subst{s}{m}{x}]$ voor $m = 1$ en $m =
+2$. Kortom, er is geen $m \in \Domain M$ waarvoor $\Sat{M}{R(a,x)
+\land \lforall[y][R(x,y)]}[\Subst{s}{m}{x}]$.
+\end{ex}
+
+\iftag{defEx}{%
+\begin{prop}\ollabel{prop:sat-ex}
+$\Sat{M}{\lexists[x][!B(x)]}[s]$ dan en slechts dan als er een $x$-variant $s'$ van $s$
+    bestaat waarvoor $\Sat{M}{!B(x)}[s']$.
+\end{prop}
+
+\begin{proof}
+  Oefening.
+\end{proof}
+}{}
+
+\tagprob{defEx}
+\begin{prob}
+  Bewijs \olref[fol][syn][sat]{prop:sat-ex}
+\end{prob}
+\tagendprob
+
+\iftag{defAll}{%
+\begin{prop}\ollabel{prop:sat-all}
+$\Sat{M}{\lforall[x][!B(x)]}[s]$ dan en slechts dan als voor elke $x$-variant~$s'$ van $s$
+  geldt dat $\Sat{M}{!B(x)}[s']$
+\end{prop}
+
+\begin{proof}
+  Oefening.
+\end{proof}
+}{}
+
+\tagprob{defAll}
+\begin{prob}
+  Bewijs \olref[fol][syn][sat]{prop:sat-all}
+\end{prob}
+\tagendprob
+
+\begin{prob}
+Zij $\Lang L = \{c, f, A\}$ met één !!{constant}, één eenplaatsige
+!!{function} en één tweeplaatsig !!{predicate}, en zij de
+!!{structure}~$\Struct{M}$ gegeven door
+\begin{enumerate}
+\item $\Domain M = \{1, 2, 3\}$
+\item $\Assign{c}{M} = 3$
+\item $\Assign{f}{M}(1) = 2, \Assign{f}{M}(2) = 3, \Assign{f}{M}(3) = 2$
+\item $\Assign{A}{M} = \{\tuple{1, 2}, \tuple{2, 3}, \tuple{3, 3}\}$
+\end{enumerate}
+(a) Zij $s(v) = 1$ voor alle !!{variable}s~$v$. Bepaal of
+\[
+\Sat{M}{\lexists[x][(A(f(z), c) \lif \lforall[y][(A(y, x) \lor A(f(y),
+      x))])]}[s]
+\]
+geldt. Licht uw antwoord toe.
+
+(b) Geef een andere structuur en !!a{variable} bedeling waarin de
+!!{formula} niet wordt vervuld.
+\end{prob}
+
+\end{document}

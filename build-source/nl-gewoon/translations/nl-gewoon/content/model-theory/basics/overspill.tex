@@ -1,0 +1,46 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: overspill
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{ove}
+\olsection{Van steeds grotere eindige modellen naar een oneindig model (overloop)}
+
+\begin{thm}
+\ollabel{overspill} Als een verzameling $\Gamma$ eindige modellen heeft
+die zo groot kunnen zijn als je maar wilt, dan heeft die verzameling ook
+een oneindig model.
+\end{thm}
+
+\begin{proof}
+Voeg aan de taal van $\Gamma$ aftelbaar veel nieuwe constanten toe:
+$c_0$, $c_1$, \dots. Kijk nu naar de verzameling $\Gamma \cup \{c_i \neq c_j :
+i \neq j\}$. Dat $\Gamma$ eindige modellen heeft die zo groot kunnen
+zijn als je maar wilt, betekent het volgende. Voor elke $m >0$ bestaat er
+een $n\ge m$ waarvoor $\Gamma$ een model met precies~$n$ elementen heeft.
+Daardoor heeft elke eindige deelverzameling van $\Gamma \cup \{c_i \neq
+c_j : i \neq j\}$ een model: de hele verzameling is eindig vervulbaar.
+Volgens de compactheidsstelling heeft $\Gamma \cup \{c_i \neq c_j : i
+\neq j\}$ dus een model $\Struct M$. Het domein daarvan moet oneindig
+zijn. In dat model gelden namelijk alle ongelijkheden $c_i \neq c_j$,
+zodat de nieuwe constanten onderling verschillende objecten aanwijzen.
+\end{proof}
+
+\begin{prop}
+\ollabel{inf-not-fo} 
+Er bestaat geen zin $!A$ in om het even welke taal van de eerste orde die
+in !!a{structure}~$\Struct M$ precies dan waar is als het domein
+$\Domain{M}$ van de !!{structure} oneindig is.
+\end{prop}
+
+\begin{proof}
+Stel dat zo'n $!A$ wel bestond. De negatie $\lnot !A$ zou dan precies in
+de eindige !!{structure}s waar zijn. Die negatie zou dus eindige modellen
+hebben die zo groot kunnen zijn als je maar wilt, maar geen oneindig
+model. Dat is in tegenspraak met \olref{overspill}.
+\end{proof}
+
+\end{document}

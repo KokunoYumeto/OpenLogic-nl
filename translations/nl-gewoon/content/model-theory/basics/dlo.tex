@@ -1,0 +1,88 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: partial-iso
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{dlo}
+\section{Dichte lineaire ordeningen: altijd ruimte ertussen}
+
+\begin{defn}
+  Een \emph{dichte lineaire ordening zonder eindpunten} is een !!a{structure}
+  $\Struct{M}$ met één manier om twee elementen te vergelijken. De
+  !!{language} heeft daarvoor één tweeplaatsig !!{predicate}~$<$. De
+  structuur moet de volgende zinnen waar maken:
+  \begin{enumerate}
+  \item $\lforall[x][\lnot x < x]$: niets staat vóór zichzelf;
+  \item $\lforall[x][\lforall[y][\lforall[z][(x < y \lif (y < z \lif x
+    <z ))]]]$: de volgorde loopt door;
+  \item $\lforall[x][\lforall[y][(x< y \lor \eq[x][y] \lor y < x)]]$:
+    twee elementen zijn gelijk of het ene staat vóór het andere;
+  \item $\lforall[x][\lexists[y][x < y]]$: na elk element komt nog een element;
+  \item $\lforall[x][\lexists[y][y < x]]$: vóór elk element komt nog een element;
+  \item $\lforall[x][\lforall[y][(x < y \lif \lexists[z][(x < z \land
+        z < y))]]]$: tussen twee elementen die na elkaar staan, zit nog een element.
+ \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:cantorQ}
+  Neem twee !!{enumerable} dichte lineaire ordeningen zonder
+  eindpunten. Ze zijn isomorf: de elementen kunnen zo aan elkaar worden
+  gekoppeld dat de hele ordening hetzelfde blijft.
+\end{thm}
+
+\begin{proof}
+  Neem $\Struct{M_1}$ en $\Struct{M_2}$ als twee !!{enumerable} dichte lineaire
+  ordeningen zonder eindpunten. Schrijf ${<_1} = \Assign{<}{M_1}$ en ${<_2} =
+  \Assign{<}{M_2}$. Laat $\PIso{I}$ de verzameling zijn van alle partiële
+  isomorfismen tussen de twee ordeningen. De verzameling $\PIso{I}$ is niet leeg, want
+  in elk geval $\emptyset \in \PIso{I}$. We laten zien dat je elk van die
+  gedeeltelijk ingevulde koppelingen aan beide kanten kunt uitbreiden: $\PIso{I}$
+  voldoet aan de heen-en-weereigenschap. Dan $\Struct{M_1} \iso[p] \Struct{M_2}$
+  en volgt de stelling uit \olref[pis]{thm:p-isom1}.
+
+  Eerst de heen-regel voor $\PIso{I}$. Neem $p \in
+  \PIso{I}$ en schrijf $p(a_i) = b_i$ voor $i = 1$, \dots,~$n$.
+  We mogen de elementen zo nummeren dat $a_1 <_1 a_2 <_1 \cdots <_1
+  a_n$. Neem nu een $a \in \Domain{M_1}$. We zoeken op de volgende
+  manier een passende $b \in \Domain{M_2}$:
+  \begin{enumerate}
+  \item als $a <_1 a_1$, kies $b \in \Domain{M_2}$ zo dat $b <_2
+    b_1$;
+  \item als $a_n <_1 a$, kies $b \in \Domain{M_2}$ zo dat $b_n <_2 b$;
+ \item als $a_i <_1 a <_1 a_{i+1}$ voor een bepaalde $i$, kies dan $b \in
+   \Domain{M_2}$ zo dat $b_i <_2 b <_2 b_{i+1}$.
+  \end{enumerate}
+  Zo'n $b$ is altijd te vinden. Dat volgt precies uit het feit dat
+  $\Struct{M_2}$ dicht is en geen eerste of laatste element heeft. Neem nu
+  $q = p \cup \{ \langle a, b \rangle \}$. Dan is $q \in \PIso{I}$ de
+  uitbreiding van $p$ die we zochten. Daarmee is de heen-regel bewezen.
+  De weer-regel werkt op dezelfde manier, met de twee ordeningen omgewisseld.
+  Dus $\Struct{M_1} \iso[p] \Struct{M_2}$; volgens
+  \olref[pis]{thm:p-isom1} volgt $\Struct{M_1} \iso \Struct{M_2}$.
+\end{proof}
+
+\begin{prob}
+  Maak het bewijs van \olref[mod][bas][dlo]{thm:cantorQ} af. Controleer
+  daarvoor dat $\PIso{I}$ ook aan de weer-regel voldoet.
+\end{prob}
+
+\begin{rem}
+  Neem om het even welke !!{enumerable} dichte lineaire ordening zonder
+  eindpunten, en noem die $\Struct{S}$. Volgens \olref{thm:cantorQ} geldt
+  $\Struct{S} \iso \Struct{Q}$. Hier is
+  $\Struct{Q} = (\Rat, <)$ de !!{enumerable} dichte lineaire ordening met
+  de verzameling $\Rat$ van de rationale getallen als domein. Kijk nu opnieuw
+  naar de !!{structure}~$\Struct{R} = (\Real, <)$ uit
+  \olref[thm]{remark:R}. We zagen dat er !!a{enumerable}
+  !!{structure}~$\Struct{S}$ bestaat waarvoor $\Struct{R} \elemequiv
+  \Struct{S}$. Die $\Struct{S}$ is !!a{enumerable} dichte lineaire ordening
+  zonder eindpunten. Daarom is zij isomorf (en dus ook elementair equivalent)
+  met de !!{structure}~$\Struct{Q}$. Elementaire equivalentie
+  is transitief. Daarom $\Struct{R} \elemequiv \Struct{Q}$. (We hadden dit
+  ook rechtstreeks kunnen bewijzen: met hetzelfde heen-en-weerargument krijg
+  je $\Struct{R} \iso[p] \Struct{Q}$.)
+\end{rem}
+\end{document}

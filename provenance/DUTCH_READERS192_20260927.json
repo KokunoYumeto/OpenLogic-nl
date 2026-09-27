@@ -1,0 +1,87 @@
+{
+  "schema": "openlogic-nl-reader-publication/2",
+  "datum": "2026-09-27",
+  "status": "PASS",
+  "reikwijdte": "Twee gedeeltelijke readers: OLP-0001–OLP-0192, 192 van 722 eenheden per register.",
+  "ontbrekende_eenheden": 530,
+  "registers": {
+    "nl-standard": {
+      "eenheden": 192,
+      "eerste": "OLP-0001",
+      "laatste": "OLP-0192",
+      "epubcheck": "PASS; EPUBCheck 5.3.0; nul meldingen",
+      "directe_conversie": "tweemaal bytegelijk; elk Pandoc-uitvoerbericht is bouwblokkerend",
+      "native_mathml": 11100,
+      "visuele_controle": "9 brede en smalle browseropnamen; AI-inspectie; geen menselijke beoordeling",
+      "bronarchief_bestanden": 256,
+      "doelbestanden": 192,
+      "bouwcontrole_status": "BUILT_REPRODUCIBLY_STRUCTURALLY_AUDITED_EPUBCHECKED_VISUAL_QA_PENDING",
+      "latex_sha256": "6d0e7c31c0e97216dc483e3f53d8ac9833aa134397d21ebc7608ce27c987ae54",
+      "source_zip_sha256": "6d92755207c47c7be718b766bc9eee11b99fea7fe6dee753dc0dd8ee657a55e8",
+      "epub_sha256": "ed8d5e4131386116b764c96bf55eed4a775ff46a8e41d000f5e969e863bcfcc6"
+    },
+    "nl-gewoon": {
+      "eenheden": 192,
+      "eerste": "OLP-0001",
+      "laatste": "OLP-0192",
+      "epubcheck": "PASS; EPUBCheck 5.3.0; nul meldingen",
+      "directe_conversie": "tweemaal bytegelijk; elk Pandoc-uitvoerbericht is bouwblokkerend",
+      "native_mathml": 11102,
+      "visuele_controle": "9 brede en smalle browseropnamen; AI-inspectie; geen menselijke beoordeling",
+      "bronarchief_bestanden": 256,
+      "doelbestanden": 192,
+      "bouwcontrole_status": "BUILT_REPRODUCIBLY_STRUCTURALLY_AUDITED_EPUBCHECKED_VISUAL_QA_PENDING",
+      "latex_sha256": "95dc8a4fbc3f3a2015a4c431b154067eaf63931cf58b3b7f7736a4d3bbefe91b",
+      "source_zip_sha256": "a64bbb053f10e5a1644da62af7a84bf14757fed1db0d7b382a57bb1bd53c72cb",
+      "epub_sha256": "394fecfd2103f8aca3f2add968ce180def4d298914dfb583602201aa09d86cbb"
+    }
+  },
+  "keuzeregister": {
+    "regels": 643,
+    "status": "volledige huidige geaccepteerde keuze-index; open voor gerichte correcties",
+    "interne_bronindex_sha256": "7418ddc312f3cbad3e7e3295fd90c487438822c7387001dff330b7462839b87e",
+    "interne_reviewstatus_sha256": "6c1d78a8f61d29a31e293946d11db6f87d5d37668569bde2afc4d9fa5bc2691a",
+    "sha256": "54027ee61df1d119b9d01210479ac1add726d65b536bd3248f0ce31c052c7c12",
+    "pdf_paginanummers": "niet beschikbaar, want deze tussenuitgave heeft geen PDF"
+  },
+  "weblezer": {
+    "exacte_epub_extractie_bestanden": 40,
+    "gecontroleerde_lokale_koppelingen": 1602,
+    "gebroken_lokale_koppelingen": 0,
+    "compatibele_html_ingangen": 4
+  },
+  "visuele_controle": {
+    "opnamen": 18,
+    "status": "PASS",
+    "schermbreedten": [
+      1280,
+      430
+    ],
+    "bevinding": "Geen ontbrekende tekens, lege inhoud, overlap, afgesneden diagrammen of paginabrede horizontale overloop."
+  },
+  "ai_verantwoording": "Vertaling en eerdere controles: OpenAI Codex. De huidige eigenaar gebruikt GPT-5.6 Sol, Ultra-inspanning; de exacte historische model- en inspanningsinstelling van ieder ouder tekstgedeelte is niet afzonderlijk bewezen en wordt daarom niet achteraf aan elk vertaalbyte toegeschreven. Samenstelling van deze reader, EPUB-conversie, redactionele correcties, deterministische bouwcontroles, verpakking, publicatie en downloadcontrole: OpenAI Codex — GPT-5.6 Sol, Ultra-inspanning. Geen menselijke redactie, beoordeling of goedkeuring wordt geclaimd.",
+  "pdf": "Geen PDF in deze tussenuitgave. De expliciete no-PDF-route levert rechtstreekse cumulatieve LaTeX, complete bron-ZIP, EPUB en online lezer; voor deze release is geen nieuwe TeX-run gestart.",
+  "bewijsbestanden": {
+    "ACCEPTED192_EPUB_VISUAL_QA.json": {
+      "bytes": 9523,
+      "sha256": "2c07012a72c9965513c0913558f3a33ad32d3e7297374d47976ad4ca58214c76"
+    },
+    "ACCEPTED192_SOURCE_ARCHIVE_AUDIT.json": {
+      "bytes": 6488,
+      "sha256": "cc352b2c7f599c4b065deb1216940e254ffc3550d34ae41aee487156cf7f698e"
+    },
+    "ACCEPTED192_WEB_READER_AUDIT.json": {
+      "bytes": 3359,
+      "sha256": "4505978523c44e7dd0fa0cd2c48460a5c4bac8f8d69e01a8dde8bca735fc4e2f"
+    }
+  },
+  "beperkingen": [
+    "530 broneenheden vallen buiten deze gedeeltelijke uitgave.",
+    "Brede formules kunnen binnen hun eigen regel horizontaal worden verschoven.",
+    "De controles zijn AI-controles; er wordt geen menselijke redactie of goedkeuring geclaimd."
+  ],
+  "tag": "v0.5.0-paired-192-of-722-readers",
+  "online_lezer": "https://kokunoyumeto.github.io/OpenLogic-nl/readers/192-r1/",
+  "github_uitgave": "https://github.com/KokunoYumeto/OpenLogic-nl/releases/tag/v0.5.0-paired-192-of-722-readers",
+  "compatibiliteitsbewijs_sha256": "a9ca450a3e6061b172e756732e07414f319835ac4b1362bb3edc29e28481772f"
+}

@@ -1,0 +1,114 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: Structures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{str}
+
+\olsection{\printtoken{P}{structure} voor eerste-ordetalen}
+
+\begin{explain}
+Eerste-ordetalen zijn op zichzelf \emph{ongeïnterpreteerd}: aan de
+!!{constant}s, !!{function}s en !!{predicate}s is geen specifieke
+betekenis toegekend. Betekenis wordt toegekend door
+\article{structure} \emph{!!{structure}} vast te leggen. Deze bepaalt
+het \emph{domein}, dat wil zeggen de objecten waarnaar de !!{constant}s
+verwijzen, waarop de !!{function}s werken en waarover de kwantoren
+lopen. Daarnaast bepaalt zij welke !!{constant}s naar welke objecten
+verwijzen, hoe !!a{function} objecten op objecten afbeeldt en op welke
+objecten de !!{predicate}s van toepassing zijn. !!^{structure}s vormen
+de grondslag voor \emph{semantische} begrippen in de logica, zoals
+semantisch gevolg, geldigheid en vervulbaarheid. In de literatuur
+worden zij afwisselend ``structuren,'' ``interpretaties'' of
+``modellen'' genoemd.
+\end{explain}
+
+\begin{defn}[!!^{structure}s]
+\Article{structure} \emph{!!{structure}}~$\Struct M$ voor een
+eerste-ordetaal $\Lang{L}$ bestaat uit de volgende onderdelen:
+\begin{enumerate}
+\item \emph{Domein:} een niet-lege verzameling, $\Domain M$
+\item \emph{Interpretatie van !!{constant}s:} voor iedere
+  !!{constant}~$c$ van $\Lang{L}$ !!a{element}
+  $\Assign{c}{M} \in \Domain M$
+\item \emph{Interpretatie van !!{predicate}s:} voor ieder $n$-plaatsig
+  !!{predicate}~$R$ van $\Lang{L}$ (behalve $\eq$) een $n$-plaatsige
+  relatie $\Assign{R}{M} \subseteq \Domain{M}^n$
+\item \emph{Interpretatie van !!{function}s:} voor ieder $n$-plaatsig
+  !!{function}~$f$ van $\Lang{L}$ een $n$-plaatsige functie
+  $\Assign{f}{M} \colon \Domain{M}^n \to \Domain{M}$
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+!!^a{structure}~$\Struct M$ voor de taal van de rekenkunde bestaat uit
+  een verzameling, een element van $\Domain M$, $\Assign{\Obj 0}{M}$,
+  als interpretatie van de !!{constant}~$\Obj 0$, een eenplaatsige functie
+  $\Assign{\Obj \prime}{M} \colon \Domain{M} \to \Domain M$, twee
+  tweeplaatsige functies $\Assign{\Obj +}{M}$ en $\Assign{\Obj
+    \times}{M}$, beide $\Domain M^2 \to \Domain M$, en een
+  tweeplaatsige relatie $\Assign{\Obj <}{M} \subseteq \Domain{M}^2$.
+
+Een voor de hand liggend voorbeeld van zo'n structuur is:
+\begin{enumerate}
+\item $\Domain N = \Nat$
+\item $\Assign{\Obj 0}{N} = 0$
+\item $\Assign{\Obj \prime}{N}(n) = n + 1$ voor alle $n \in \Nat$
+\item $\Assign{\Obj +}{N}(n, m) = n + m$ voor alle $n, m \in \Nat$
+\item $\Assign{\Obj \times}{N}(n, m) = n\cdot m$ voor alle $n, m \in \Nat$
+\item $\Assign{\Obj <}{N} = \Setabs{\tuple{n, m}}{n \in \Nat, m \in
+  \Nat, n < m}$
+\end{enumerate}
+De zo gedefinieerde structuur~$\Struct N$ voor $\Lang L_A$ heet het
+\emph{standaardmodel van de rekenkunde}, omdat zij de niet-logische
+constanten van~$\Lang L_A$ precies interpreteert zoals men verwacht.
+
+Er zijn echter nog veel andere !!{structure}s voor~$\Lang L_A$
+mogelijk. We zouden bijvoorbeeld de verzameling~$\Int$ van gehele
+getallen in plaats van~$\Nat$ als domein kunnen nemen en de
+interpretaties van $\Obj 0$, $\Obj \prime$, $\Obj +$, $\Obj \times$ en
+$\Obj <$ dienovereenkomstig kunnen definiëren. We kunnen voor~$\Lang
+L_A$ evenwel ook structuren definiëren die zelfs in de verste verte
+niets met getallen te maken hebben.
+\end{ex}
+
+\begin{ex}
+Voor een structuur~$\Struct M$ voor de verzamelingenleerstaal~$\Lang
+L_Z$ zijn slechts een verzameling en één tweeplaatsige relatie nodig.
+Technisch gezien zou bijvoorbeeld de verzameling mensen samen met de
+relatie ``$x$ is ouder dan $y$'' als !!a{structure} voor $\Lang L_Z$
+kunnen dienen, evenals $\Nat$ samen met $n \ge m$ voor $n, m \in \Nat$.
+
+Een bijzonder interessante !!{structure} voor $\Lang L_Z$, waarin de
+!!{element}s van het domein zelf verzamelingen zijn en de interpretatie
+van $\Obj \in$ daadwerkelijk de relatie ``$x$ is !!a{element} van~$y$''
+is, is de !!{structure}~$\Struct{{HF}}$ van \emph{erfelijk eindige
+verzamelingen}:
+\begin{enumerate}
+\item $\Domain{{{HF}}} = \emptyset \cup \Pow{\emptyset} \cup
+  \Pow{\Pow{\emptyset}} \cup \Pow{\Pow{\Pow{\emptyset}}} \cup \dots$;
+\item $\Assign{\Obj \in}{{{HF}}} = \Setabs{\tuple{x, y}}{x, y \in
+  \Domain{{{HF}}}, x \in y}$.
+\end{enumerate}
+\end{ex}
+
+\begin{digress}
+De stipulaties die bepalen wat als !!a{structure} geldt, zijn van
+invloed op onze logica. De uitsluiting van lege domeinen garandeert bij
+de gebruikelijke definitie van vervulling (of waarheid) voor
+gekwantificeerde zinnen bijvoorbeeld dat
+$\lexists[x][(!A(x) \lor \lnot !A(x))]$ geldig is---dus een logische
+waarheid. De stipulatie dat alle !!{constant}s naar een object in het
+domein moeten verwijzen, garandeert bovendien dat existentiële
+generalisatie een correct gevolgtrekkingspatroon is: $!A(a)$, dus
+$\lexists[x][!A(x)]$. Als we zouden toestaan dat namen naar iets buiten
+het domein verwijzen of in het geheel niet verwijzen, komen we in de
+richting van een \emph{vrije logica}. Daar vereist existentiële
+generalisatie een aanvullende premisse: $!A(a)$ en
+$\lexists[x][\eq[x][a]]$, dus $\lexists[x][!A(x)]$.
+\end{digress}
+
+\end{document}

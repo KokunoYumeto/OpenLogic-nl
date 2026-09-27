@@ -1,0 +1,64 @@
+{
+  "schema": "openlogic-html-compat/2",
+  "status": "PASS",
+  "scope": "OLP-0001–OLP-0192; 192/722 per register; geen vertaalwijzigingen",
+  "files": [
+    {
+      "path": "docs/readers/192-r1/nl-standard/OEBPS/generated/book.html",
+      "bytes": 3953420,
+      "sha256": "b1025e015d1e13a5108f44117c4a8303375e94b70fc5216bb4b677d20abfe47e",
+      "source_path": "docs/readers/192-r1/nl-standard/OEBPS/generated/book.xhtml",
+      "source_bytes": 3936002,
+      "source_sha256": "e0dadfe84c40cbdb52a84e6339c5418c9e602dcd8378b4bbb46f5ec5563aafba",
+      "text_identical": true,
+      "anchors_identical": true,
+      "math_elements": 11100,
+      "element_count": 114435
+    },
+    {
+      "path": "docs/readers/192-r1/nl-standard/OEBPS/nav.html",
+      "bytes": 26306,
+      "sha256": "36aa26f49d0d66e78a78faa9abab7561eeba9fff6e3d9c7b74e81d39c30c7672",
+      "source_path": "docs/readers/192-r1/nl-standard/OEBPS/nav.xhtml",
+      "source_bytes": 26540,
+      "source_sha256": "dd1e8d2324dea0a42a3270eea1e23ae443643ac990e4782f36e49956479a1809",
+      "text_identical": true,
+      "anchors_identical": true,
+      "math_elements": 0,
+      "element_count": 402
+    },
+    {
+      "path": "docs/readers/192-r1/nl-gewoon/OEBPS/generated/book.html",
+      "bytes": 3972332,
+      "sha256": "5657684b78f1100b76fe908973b87eeefc3964a2a6de261e7629fd44e51fd30f",
+      "source_path": "docs/readers/192-r1/nl-gewoon/OEBPS/generated/book.xhtml",
+      "source_bytes": 3954910,
+      "source_sha256": "4ee5c462424da90f05c34bcce53cc0034d951472a679fd451edc82d8822304f9",
+      "text_identical": true,
+      "anchors_identical": true,
+      "math_elements": 11102,
+      "element_count": 114443
+    },
+    {
+      "path": "docs/readers/192-r1/nl-gewoon/OEBPS/nav.html",
+      "bytes": 26304,
+      "sha256": "239c921f18ea17d9eb3d9bf483d44fddafd3f49ac28eb7740ce70c68f2fed3bc",
+      "source_path": "docs/readers/192-r1/nl-gewoon/OEBPS/nav.xhtml",
+      "source_bytes": 26538,
+      "source_sha256": "f3f35aca5a8093ee0c5488658579e787584228f9fc266071867386e36d20cfe7",
+      "text_identical": true,
+      "anchors_identical": true,
+      "math_elements": 0,
+      "element_count": 402
+    }
+  ],
+  "landing": {
+    "path": "docs/readers/192-r1/index.html",
+    "source_bytes": 3381,
+    "source_sha256": "3aadd588115c796a23fdeea0f2fd95d87a6317ab8fcb5958146275173544bdaf",
+    "published_bytes": 3377,
+    "published_sha256": "736a0234f6cb81f4ae591568a6941a2661d46c095c6f439e07fb6babd8212eb2",
+    "change": "Alleen de vier lokale XHTML-ingangen zijn naar hun inhoudelijk gelijke HTML-ingangen omgezet."
+  },
+  "epub_and_source_archives_changed": false
+}

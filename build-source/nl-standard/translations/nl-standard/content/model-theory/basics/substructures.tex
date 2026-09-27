@@ -1,0 +1,50 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: substructures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{sub}
+\olsection{Sub\printtoken{p}{structure} (deelstructuren)}
+
+Het !!{domain} van !!a{structure}~$\Struct{M}$ kan een deelverzameling
+zijn van dat van een andere~$\Struct{M'}$.  Maar we beschouwen
+$\Struct{M}$ vanzelfsprekend alleen als een ``deel'' van $\Struct{M'}$
+als niet alleen $\Domain{M} \subseteq \Domain{M'}$ geldt, maar
+$\Struct{M}$ en $\Struct{M'}$ ook ten minste op het gedeelde
+deel~$\Domain{M}$ ``overeenkomen'' in de wijze waarop zij de symbolen
+van de taal interpreteren.
+
+\begin{defn}
+\ollabel{defn:substructure}
+Gegeven !!{structure}s $\Struct M$ en $\Struct M'$ voor dezelfde
+taal~$\Lang L$ noemen we $\Struct M$ een \emph{sub!!{structure}} van
+$\Struct M'$ en $\Struct M'$ een \emph{uitbreiding} van $\Struct M$,
+genoteerd als $\Struct M \substruct \Struct M'$, precies dan als
+\begin{enumerate}
+\item $\Domain{M} \subseteq \Domain{M'}$,
+\item voor elke constante $c \in \Lang L$ geldt $\Assign{c}{M} =
+    \Assign{c}{M'}$;
+\item voor elke $n$-plaatsige !!{function} $f \in \Lang L$ geldt
+  $\Assign{f}{M}(a_1, \dots, a_n) = \Assign{f}{M'}(a_1, \dots, a_n)$
+  voor alle $a_1$, \dots, $a_n \in \Domain{M}$.
+\item voor elk $n$-plaatsig !!{predicate} $R \in \Lang L$ geldt $\langle
+  a_1, \dots, a_n\rangle \in \Assign{R}{M}$ iff $\langle a_1, \dots,
+  a_n\rangle \in \Assign{R}{M'}$ voor alle $a_1$, \dots, $a_n \in
+  \Domain{M}$.
+\end{enumerate}
+\end{defn}
+
+\begin{rem}
+\ollabel{rem:substructure}
+Als de taal geen constanten of !!{function}s bevat, bepaalt elke $N
+\subseteq \Domain{M}$ een sub!!{structure}~$\Struct{N}$ van
+$\Struct M$ met !!{domain}~$\Domain{N} = N$ door $\Assign{R}{N} =
+\Assign{R}{M} \cap N^n$ te stellen.
+\end{rem}
+
+% prove something about this? Examples?
+
+\end{document}

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" version="3.0" unique-identifier="pub-id" xml:lang="nl-NL" prefix="rendition: http://www.idpf.org/vocab/rendition/# dcterms: http://purl.org/dc/terms/">
+  <metadata>
+    <dc:identifier id="pub-id">urn:sha256:1df88c70d76e8eb78025e534566c0394beb901a93f3f1a49516c6854f63f99e5</dc:identifier>
+    <dc:title>The Open Logic Text — gedeeltelijke Nederlandstalige editie (standaardregister, OLP-0001–OLP-0192)</dc:title>
+    <dc:language>nl-NL</dc:language>
+    <dc:creator>The Open Logic Project en vermelde medewerkers</dc:creator>
+    <dc:contributor>Nederlandse vertaling en readerconversie: OpenAI Codex — GPT-5.6 Sol, Ultra effort; historische modelinstellingen zijn niet volledig vastgesteld.</dc:contributor>
+    <dc:publisher>The Open Logic Project</dc:publisher>
+    <dc:date>2026-09-27</dc:date>
+    <dc:type>Leerboek</dc:type>
+    <dc:subject>Wiskundige logica</dc:subject>
+    <dc:description>Reflowable EPUB 3 met native MathML; uitsluitend de aaneengesloten geaccepteerde prefix OLP-0001–OLP-0192 (192 broneenheden).</dc:description>
+    <dc:source>The Open Logic Text; vastgelegde bronrevisie(s): 9620cc73f9c8e0ad003c514a5d3748f29611c4c0</dc:source>
+    <dc:rights>Creative Commons Naamsvermelding 4.0 Internationaal (CC BY 4.0).</dc:rights>
+    <meta property="dcterms:modified">2026-09-27T00:00:00Z</meta>
+    <meta property="rendition:layout">reflowable</meta>
+    <meta property="rendition:orientation">auto</meta>
+    <meta property="rendition:spread">auto</meta>
+  </metadata>
+  <manifest>
+    <item id="item-73cf5969299d52fb63d2" href="generated/book.xhtml" media-type="application/xhtml+xml" properties="mathml"/>
+    <item id="item-d68ac43fbe9fc0cfe589" href="generated/diagram-olp-0008-001-union.svg" media-type="image/svg+xml"/>
+    <item id="item-8549b45596d373308096" href="generated/diagram-olp-0008-002-intersection.svg" media-type="image/svg+xml"/>
+    <item id="item-9d76c5bf2e5b932f6cbf" href="generated/diagram-olp-0008-003-difference.svg" media-type="image/svg+xml"/>
+    <item id="item-cc7cee68f416587709f6" href="generated/diagram-olp-0017-001-directed-graph-four.svg" media-type="image/svg+xml"/>
+    <item id="item-46f1a03f5343f8544203" href="generated/diagram-olp-0017-002-directed-graph-three.svg" media-type="image/svg+xml"/>
+    <item id="item-64a08fe03a74d37d3aa6" href="generated/diagram-olp-0018-001-rooted-tree.svg" media-type="image/svg+xml"/>
+    <item id="item-d202df2eb9c60fe9416e" href="generated/diagram-olp-0021-001-function.svg" media-type="image/svg+xml"/>
+    <item id="item-d2811fc1f42484a19f5f" href="generated/diagram-olp-0022-001-surjective.svg" media-type="image/svg+xml"/>
+    <item id="item-30405e834800e7ac5488" href="generated/diagram-olp-0022-002-injective.svg" media-type="image/svg+xml"/>
+    <item id="item-0e61bd47ff7d22701714" href="generated/diagram-olp-0022-003-bijective.svg" media-type="image/svg+xml"/>
+    <item id="item-10089b1efd5e8b877dc2" href="generated/diagram-olp-0025-001-composition.svg" media-type="image/svg+xml"/>
+    <item id="item-bb8983cdc4fdedf6f7ab" href="generated/diagram-olp-0044-001-real-rectangle.svg" media-type="image/svg+xml"/>
+    <item id="item-5455083cef0600679d9c" href="generated/diagram-olp-0050-001-hilbert-hotel.svg" media-type="image/svg+xml"/>
+    <item id="item-52259f26aadbf08d4040" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    <item id="item-9a5d4ee8a6090204d2a6" href="styles/reader.css" media-type="text/css"/>
+  </manifest>
+  <spine>
+    <itemref idref="item-52259f26aadbf08d4040" linear="yes"/>
+    <itemref idref="item-73cf5969299d52fb63d2" linear="yes"/>
+  </spine>
+</package>

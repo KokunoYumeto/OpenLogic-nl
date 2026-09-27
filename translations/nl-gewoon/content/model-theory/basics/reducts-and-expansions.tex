@@ -1,0 +1,78 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: reducts-and-expansions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{red}
+\section{Symbolen weglaten of toevoegen (reducten en expansies)}
+
+Het is vaak handig om talen met gedeelde symbolen te vergelijken, en
+ook de !!{structure}s voor die talen. Meestal gaat het om deze
+situatie: alle symbolen uit !!a{language}~$\Lang{L}$ komen ook voor in
+!!a{language}~$\Lang{L'}$, dus $\Lang{L} \subseteq \Lang{L'}$. Van een
+$\Lang{L}$-!!{structure}~$\Struct{M}$ kun je dan altijd een
+$\Lang{L'}$-!!{structure} maken. Je geeft de extra symbolen een
+interpretatie, dus een betekenis binnen de structuur, en laat de
+interpretaties van de gedeelde symbolen hetzelfde. Andersom kun je van
+een $\Lang{L'}$-structuur~$\Struct{M'}$ weer een
+$\Lang{L}$-structuur maken. Je kijkt dan niet meer naar de
+interpretaties van de symbolen die niet in~$\Lang{L}$ voorkomen.
+
+\begin{defn}
+\ollabel{defn:reduct}
+Stel dat $\Lang L \subseteq \Lang L'$. Laat $\Struct M$ een
+$\Lang L$-!!{structure} zijn en $\Struct M'$ een
+$\Lang L'$-!!{structure}. We noemen $\Struct M$ het
+\emph{reduct} van $\Struct M'$ tot $\Lang L$. Omgekeerd noemen we
+$\Struct M'$ een \emph{expansie} van $\Struct M$ tot $\Lang L'$.
+Dat bedoelen we precies wanneer aan de volgende vier voorwaarden is
+voldaan:
+\begin{enumerate}
+\item De twee structuren hebben hetzelfde domein:
+  $\Domain{M} = \Domain{M'}$
+\item Elke !!{constant}~$c \in \Lang L$ krijgt in beide structuren
+  dezelfde interpretatie: $\Assign{c}{M} =
+  \Assign{c}{M'}$.
+\item Elke !!{function}~$f \in \Lang L$ krijgt in beide structuren
+  dezelfde interpretatie: $\Assign{f}{M} =
+  \Assign{f}{M'}$.
+\item Elk !!{predicate}~$P \in \Lang L$ krijgt in beide structuren
+  dezelfde interpretatie: $\Assign{P}{M} =
+  \Assign{P}{M'}$.
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+\ollabel{prop:reduct}
+Als een $\Lang{L}$-!!{structure}~$\Struct{M}$ een reduct is van een
+$\Lang{L'}$-!!{structure}~$\Struct{M'}$, dan heeft elke
+$\Lang{L}$-!!{sentence}~$!A$ in beide structuren dezelfde
+waarheidswaarde:
+\[
+\Sat{M}{!A} \text{ iff } \Sat{M'}{!A}.
+\]
+\end{prop}
+
+\begin{proof}
+  Oefening.
+\end{proof}
+
+\begin{prob}
+Bewijs de propositie \olref[mod][bas][red]{prop:reduct}.
+\end{prob}
+
+\begin{defn}
+Neem een $\Lang{L}$-structuur $\Struct{M}$. De grotere taal
+$\Lang{L'} = \Lang{L} \cup \{P\}$ is de expansie van $\Lang{L}$ die
+je maakt door precies één $n$-plaatsig !!{predicate}~$P$ toe te voegen.
+Laat
+$R \subseteq \Domain{M}^n$ een $n$-plaatsige relatie zijn. Dan
+schrijven we $\Expan{M}{R}$ voor de expansie~$\Struct{M'}$
+van~$\Struct{M}$. In die expansie interpreteren we het nieuwe predicaat
+als die relatie, dus $\Assign{P}{M'} = R$.
+\end{defn}
+
+\end{document}

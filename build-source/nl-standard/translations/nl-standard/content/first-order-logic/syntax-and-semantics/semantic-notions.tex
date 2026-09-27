@@ -1,0 +1,171 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: Semantic Notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{sem}
+\olsection{Semantische begrippen}
+
+\begin{explain}
+Uit de definitie van !!{structure}s voor eerste-ordetalen kunnen we
+enkele fundamentele semantische eigenschappen van en relaties tussen
+zinnen definiëren. De eenvoudigste daarvan is de \emph{geldigheid} van
+een zin. Een zin is geldig als hij in iedere !!{structure} wordt
+vervuld. Geldige zinnen worden vervuld ongeacht de wijze waarop de
+erin voorkomende niet-logische symbolen worden geïnterpreteerd.
+Daarom heten geldige zinnen ook \emph{logische waarheden}: ze zijn
+waar, dat wil zeggen vervuld, in iedere !!{structure}. Hun waarheid
+hangt dus uitsluitend af van de erin voorkomende logische symbolen en
+hun syntactische !!{structure}, en niet van de niet-logische symbolen
+of hun interpretatie.
+\end{explain}
+
+\begin{defn}[Geldigheid]
+Een zin $!A$ is \emph{geldig}, $\Entails !A$, dan en slechts dan als
+$\Sat{M}{!A}$ voor iedere !!{structure}~$\Struct M$.
+\end{defn}
+
+\begin{defn}[Semantisch gevolg]
+Een verzameling zinnen~$\Gamma$ heeft een zin~$!A$ als
+\emph{semantisch gevolg}, $\Gamma \Entails !A$, dan en slechts dan als
+voor iedere !!{structure}~$\Struct M$ waarvoor $\Sat{M}{\Gamma}$ geldt,
+ook $\Sat{M}{!A}$ geldt.
+\end{defn}
+
+
+\begin{defn}[Vervulbaarheid]
+Een verzameling zinnen~$\Gamma$ is \emph{vervulbaar} als
+$\Sat{M}{\Gamma}$ voor een !!{structure}~$\Struct M$. Als $\Gamma$
+niet vervulbaar is, heet zij \emph{onvervulbaar}.
+\end{defn}
+
+\begin{prop}
+Een zin $!A$ is geldig dan en slechts dan als $\Gamma \Entails !A$
+voor iedere verzameling zinnen~$\Gamma$.
+\end{prop}
+
+\begin{proof}
+Voor de voorwaartse richting zij $!A$ geldig en zij $\Gamma$ een
+verzameling zinnen. Laat $\Struct M$ !!a{structure} zijn waarvoor
+$\Sat{M}{\Gamma}$. Omdat $!A$ geldig is, geldt $\Sat{M}{!A}$, en dus
+$\Gamma \Entails !A$.
+
+Voor de contrapositie van de terugwaartse richting zij $!A$ ongeldig.
+Dan is er !!a{structure}~$\Struct M$ waarvoor $\Sat/{M}{!A}$. Neem
+$\Gamma = \{ \ltrue \}$. Omdat $\ltrue$ geldig is, geldt
+$\Sat{M}{\Gamma}$. Er is dus !!a{structure}~$\Struct M$ waarvoor
+$\Sat{M}{\Gamma}$ maar $\Sat/{M}{!A}$; bijgevolg heeft $\Gamma$ de
+zin~$!A$ niet als semantisch gevolg.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:entails-unsat}
+$\Gamma \Entails !A$ dan en slechts dan als
+$\Gamma \cup \{\lnot !A\}$ onvervulbaar is.
+\end{prop}
+
+\begin{proof}
+Neem voor de voorwaartse richting aan dat $\Gamma \Entails !A$ en
+veronderstel, in tegenspraak daarmee, dat er !!a{structure}~$\Struct M$
+is waarvoor $\Sat{M}{\Gamma \cup \{ \lnot !A \}}$. Uit
+$\Sat{M}{\Gamma}$ en $\Gamma \Entails !A$ volgt $\Sat{M}{!A}$. Omdat
+ook $\Sat{M}{\Gamma\cup \{ \lnot !A \}}$ geldt, geldt bovendien
+$\Sat{M}{\lnot !A}$. We hebben dus zowel $\Sat{M}{!A}$ als
+$\Sat/{M}{!A}$, een tegenspraak. Zo'n !!{structure}~$\Struct M$ kan
+bijgevolg niet bestaan, zodat $\Gamma \cup \{ \lnot !A \}$
+onvervulbaar is.
+
+Neem voor de terugwaartse richting aan dat
+$\Gamma \cup \{ \lnot !A \}$ onvervulbaar is. Voor iedere
+!!{structure}~$\Struct M$ geldt dan $\Sat/{M}{\Gamma}$ of
+$\Sat{M}{!A}$. Voor iedere !!{structure} $\Struct M$ waarvoor
+$\Sat{M}{\Gamma}$ geldt, geldt bijgevolg $\Sat{M}{!A}$; dus
+$\Gamma \Entails !A$.
+\end{proof}
+
+\begin{prob}
+\begin{enumerate}
+\item Toon aan dat $\Gamma \Entails \bot$ dan en slechts dan als
+  $\Gamma$ onvervulbaar is.
+\item Toon aan dat $\Gamma \cup \{!A\} \Entails \bot$ dan en slechts
+  dan als $\Gamma \Entails \lnot !A$.
+\item Veronderstel dat $c$ niet voorkomt in $!A$ of $\Gamma$. Toon aan
+  dat $\Gamma \Entails \lforall[x][!A]$ dan en slechts dan als
+  $\Gamma \Entails
+  \Subst{!A}{c}{x}$.
+\end{enumerate}
+\end{prob}
+
+\begin{prop}
+Als $\Gamma \subseteq \Gamma'$ en $\Gamma \Entails !A$, dan
+$\Gamma' \Entails !A$.
+\end{prop}
+
+\begin{proof}
+Veronderstel dat $\Gamma \subseteq \Gamma'$ en $\Gamma \Entails !A$.
+Laat $\Struct M$ een structuur zijn waarvoor $\Sat{M}{\Gamma'}$.
+Dan geldt $\Sat{M}{\Gamma}$, en uit $\Gamma \Entails !A$ volgt
+$\Sat{M}{!A}$. Dus geldt telkens als $\Sat{M}{\Gamma'}$ dat
+$\Sat{M}{!A}$, zodat $\Gamma' \Entails !A$.
+\end{proof}
+
+
+\begin{thm}[Semantische deductiestelling]
+\ollabel{thm:sem-deduction}
+$\Gamma \cup \{!A\} \Entails !B$ iff $\Gamma \Entails !A \lif !B$.
+\end{thm}
+
+\begin{proof}
+Voor de voorwaartse richting zij
+$\Gamma \cup \{ !A \} \Entails !B$ en zij $\Struct M$
+!!a{structure} waarvoor $\Sat{M}{\Gamma}$. Als $\Sat{M}{!A}$, dan
+$\Sat{M}{\Gamma \cup \{ !A \} }$. Omdat $\Gamma \cup \{ !A \}$ de
+zin~$!B$ als semantisch gevolg heeft, volgt $\Sat{M}{!B}$. Daarom geldt
+$\Sat{M}{!A \lif !B}$, en dus $\Gamma \Entails !A \lif !B$.
+
+Voor de terugwaartse richting zij
+$\Gamma \Entails !A \lif !B$ en zij $\Struct M$ !!a{structure}
+waarvoor $\Sat{M}{\Gamma \cup \{ !A \}}$. Dan geldt
+$\Sat{M}{\Gamma}$, en dus $\Sat{M}{!A \lif !B}$. Omdat
+$\Sat{M}{!A}$, geldt $\Sat{M}{!B}$. Telkens als
+$\Sat{M}{\Gamma \cup \{ !A \} }$, geldt bijgevolg $\Sat{M}{!B}$, zodat
+$\Gamma \cup \{ !A \} \Entails !B$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:quant-terms}
+  Laat $\Struct{M}$ !!a{structure} zijn, $!A(x)$ !!a{formula} met één
+  vrije variabele~$x$, en $t$ een gesloten term. Dan geldt:
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{$!A(t) \Entails \lexists[x][!A(x)]$}{}
+    \tagitem{prvAll}{$\lforall[x][!A(x)] \Entails !A(t)$}{}
+  \end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{%
+      \iftag{probEx}{Opgave.}{Neem aan dat $\Sat{M}{!A(t)}$. Laat $s$
+        een bedeling zijn waarvoor $s(x) = \Value{t}{M}$. Dan geldt
+        $\Sat{M}{!A(t)}[s]$, omdat $!A(t)$ !!a{sentence} is. Volgens
+        \olref[ext]{prop:ext-formulas} geldt $\Sat{M}{!A(x)}[s]$.
+        Volgens \olref[ass]{prop:sat-quant} geldt
+        $\Sat{M}{\lexists[x][!A(x)]}$.}}{}
+    \tagitem{prvAll}{%
+      \iftag{probAll}{Opgave.}{Neem aan dat
+        $\Sat{M}{\lforall[x][!A(x)]}$. Laat $s$ een bedeling zijn
+        waarvoor $s(x) = \Value{t}{M}$. Volgens
+        \olref[ass]{prop:sat-quant} geldt $\Sat{M}{!A(x)}[s]$. Volgens
+        \olref[ext]{prop:ext-formulas} geldt $\Sat{M}{!A(t)}[s]$.
+        Volgens \olref[ass]{prop:sentence-sat-true} geldt
+        $\Sat{M}{!A(t)}$, omdat $!A(t)$ !!a{sentence} is.}}{}
+  \end{tagenumerate}
+\end{proof}
+
+\begin{probtag}{probEx,probAll}
+  Voltooi het bewijs van \olref[fol][syn][sem]{prop:quant-terms}.
+\end{probtag} 
+
+\end{document}

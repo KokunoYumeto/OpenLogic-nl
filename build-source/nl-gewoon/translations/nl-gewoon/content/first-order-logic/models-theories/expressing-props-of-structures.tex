@@ -1,0 +1,74 @@
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: expressing-props-of-structures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{mat}{exs}
+
+\olsection{Eigenschappen van \printtoken{P}{structure} uitdrukken}
+
+\begin{explain}
+Vaak willen we kunnen zeggen aan welke voorwaarden functies en
+relaties moeten voldoen. Nog algemener willen we kunnen zeggen dat de
+functies en relaties in een bepaalde structuur aan die voorwaarden
+voldoen. Daar is een reden voor. Bij een taal hebben we meestal voor
+ogen wat de !!{predicate}s moeten ``betekenen.'' We willen de
+!!{structure}s waarin ze die bedoelde betekenis hebben kunnen
+onderscheiden van de !!{structure}s waarin dat niet zo is.
+Welke !!{structure}s we bedoelen, mogen we natuurlijk zelf kiezen. We
+kunnen bijvoorbeeld zeggen dat de interpretatie van het
+!!{predicate}~$\le$ een ordening moet zijn. Of we kunnen alleen kijken
+naar interpretaties van~$\Lang L$ waarbij het domein uit verzamelingen
+bestaat en $\Obj \in$ de relatie ``is !!a{element} van'' betekent. De
+vraag is of we zo'n keuze ook met !!{sentence}s van de taal kunnen
+vastleggen. Preciezer gezegd: welke voorwaarden aan
+!!a{structure}~$\Struct M$ kunnen we uitdrukken met !!a{sentence} (of
+misschien een verzameling !!{sentence}s) in de taal van~$\Struct M$?
+Dat lukt niet voor elke voorwaarde. Er bestaat bijvoorbeeld geen zin
+van~$\Lang L_A$ die in !!a{structure}~$\Struct M$ alleen waar is als
+$\Domain M = \Nat$. We kunnen dus niet uitdrukken dat ``het domein
+alleen natuurlijke getallen bevat.'' Sommige ``structurele
+eigenschappen'' van !!{structure}s kunnen we misschien wel
+uitdrukken. De vraag is welke eigenschappen van !!{structure}s we met
+!!{sentence}s kunnen vastleggen. Anders gezegd: welke verzamelingen
+!!{structure}s bestaan precies uit de structuren die !!a{sentence} (of
+een verzameling !!{sentence}s) waar maken?
+\end{explain}
+
+\begin{defn}[Model van een verzameling]
+Neem een verzameling !!{sentence}s~$\Gamma$ in een taal~$\Lang L$. We
+noemen !!a{structure}~$\Struct M$ \emph{een model van}~$\Gamma$ als
+$\Sat{M}{!A}$ voor alle $!A \in \Gamma$. Alle zinnen uit de verzameling
+zijn dan dus waar in die structuur.
+\end{defn}
+
+\begin{ex}
+De zin $\lforall[x][x \le x]$ is waar in~$\Struct M$ precies als
+$\Assign{\le}{M}$ reflexief is: elk object staat dus in deze relatie
+tot zichzelf. De zin
+$\lforall[x][\lforall[y][((x \le y \land y \le x) \lif x = y)]]$ is
+waar in~$\Struct M$ precies als $\Assign{\le}{M}$ antisymmetrisch is:
+als twee objecten in beide richtingen in de relatie staan, zijn ze
+hetzelfde. De zin
+$\lforall[x][\lforall[y][\lforall[z][((x \le y \land y \le z)
+      \lif x \le z)]]]$ is waar in~$\Struct M$ precies als
+$\Assign{\le}{M}$ transitief is: als een eerste object in de relatie
+staat tot een tweede, en dat tweede tot een derde, dan staat het eerste
+ook in de relatie tot het derde. De modellen van
+\begin{align*}
+\{\quad &\lforall[x][x \le x], \\
+   & \lforall[x][\lforall[y][((x \le y \land y \le
+    x) \lif x = y)]], \\
+   &\lforall[x][\lforall[y][\lforall[z][((x \le y
+      \land y \le z) \lif x \le z)]]] \quad \}
+\end{align*}
+zijn dus precies de structuren waarin~$\Assign{\le}{M}$ reflexief,
+antisymmetrisch en transitief is. Samen betekent dat dat de relatie een
+partiële ordening is. We kunnen deze zinnen daarom als axioma's nemen
+voor de \emph{eerste-ordetheorie van partiële ordeningen}.
+\end{ex}
+
+\end{document}

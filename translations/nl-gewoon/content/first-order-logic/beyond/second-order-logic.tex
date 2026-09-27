@@ -1,0 +1,241 @@
+% Part: first-order-logic
+% Chapter: beyond
+% Section: second-order-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{byd}{sol}
+
+\olsection{Logica van de tweede orde}
+
+In de logica van de tweede orde mogen we over twee soorten dingen
+kwantificeren. We kunnen niet alleen spreken over de individuen in
+!!a{domain}, maar ook over relaties op dat !!{domain}. We beginnen met een
+eerste-ordetaal $\Lang{L}$. Voor elk getal $k$ voegen we !!{variable}s $R$
+toe. Zo'n variabele kan voor elke $k$-plaatsige relatie staan: een relatie met
+zoveel plaatsen. Over zo'n variabele mogen we dan kwantificeren. Als $R$ voor
+zo'n $k$-plaatsige relatie staat en $t_1$, \dots,~$t_k$ gewone termen van de
+eerste orde zijn,
+dan is $\Atom{R}{t_1,\dots,t_k}$ een atomaire !!{formula}. De overige
+!!{formula}s maken we op dezelfde manier als in de eerste-ordelogica. We
+voegen alleen regels toe voor kwantoren die over de nieuwe variabelen lopen.
+!!{identity} hebben we rechtstreeks alleen voor termen van de eerste orde.
+Zijn $R$ en $S$ allebei variabelen voor een $k$-plaatsige relatie, dan kunnen
+we $\eq[R][S]$ wel gebruiken als afkorting voor
+\[
+\lforall[x_1 \dots][\lforall[x_k][(\Atom{R}{x_1, \dots, x_k} \liff
+  \Atom{S}{x_1, \dots, x_k})]].
+\]
+Deze formule zegt dat de twee relaties voor precies dezelfde rijtjes van
+objecten gelden.
+
+De bewijsregels voor de tweede orde zijn in de eerste plaats de bekende
+kwantorregels, maar dan ook voor de nieuwe tweede-ordevariabelen. We moeten wel
+precies zeggen hoe die variabelen samengaan met de !!{predicate}s van
+~$\Lang{L}$ en, algemener, met de !!{formula}s van~$\Lang{L}$. Om te beginnen tellen relatievariabelen als
+termen. Daardoor mogen we bijvoorbeeld afleiden:
+\[
+!A(R) \Proves \lexists[R][!A(R)]
+\]
+Stel nu dat $\Lang{L}$ de taal van de rekenkunde is en dat $<$ daarin een
+vast relatiesymbool is. Dan verwachten we ook dat deze afleiding geldig is:
+\[
+x < y \Proves \lexists[R][\Atom{R}{x,y}]
+\]
+Voor een gegeven !!{formula}~$!A$ verwachten we net zo goed:
+\[
+!A(x_1, \dots, x_k) \Proves \lexists[R][\Atom{R}{x_1,\dots,x_k}]
+\]
+In het algemeen zouden we de volgende afleidingen kunnen toelaten:
+\[
+\Subst{!A}{\lambd[\vec x][!B(\vec x)]}{R} \Proves
+\lexists[R][!A]
+\]
+De uitdrukking $\Subst{!A}{\lambd[\vec x][!B(\vec x)]}{R}$ krijgen we als
+we elke atomaire !!{formula} van de vorm $\Obj{R}{t_1,\dots,t_k}$ die in
+~$!A$ voorkomt, vervangen door $!B(t_1, \dots, t_k)$. Deze regel
+komt op hetzelfde neer als een {\em comprehensieschema}. Dat is een vast
+patroon voor axioma's van de volgende vorm:
+\[
+\lexists[R][\lforall[x_1, \dots, x_k][(!A(x_1, \dots, x_k) \liff
+\Atom{R}{x_1, \dots, x_k})]],
+\]
+We nemen zo'n axioma op voor elke !!{formula}~$!A$ van de tweede-ordetaal
+waarin $R$ niet vrij voorkomt. (Opgave: laat zien dat dit schema tot een
+tegenspraak leidt als $R$ wel in~$!A$ mag voorkomen.)
+
+Met de ``axioma's van de tweede-ordelogica'' bedoelen logici meestal het
+volgende. Ze nemen de eerste-ordelogica, voegen de kwantorregels voor de
+tweede orde toe en nemen ook het comprehensieschema op. Dat is de minimale
+uitbreiding. We kunnen ook zwakkere delen van deze axioma's en regels
+bestuderen. Het volledige comprehensieschema is bijvoorbeeld
+\emph{impredicatief}. Dat betekent hier het volgende. Een !!{formula} met
+tweede-ordekwantoren mag een relatie $\Atom{R}{x_1, \dots, x_k}$
+``definiëren''. Maar die kwantoren lopen al over de verzameling van alle
+zulke relaties, dus ook over $R$ zelf!{} Rond 1900 reageerden veel mensen op
+de paradox van Russell door juist zulke definities de schuld te geven. Bij de
+opbouw van de grondslagen van de wiskunde probeerden ze deze definities daarom
+te vermijden. Verbieden we tweede-ordekwantoren in de !!{formula}~$!A$, dan
+krijgen we een {\em predicatieve} vorm van comprehensie. Die vorm is iets
+zwakker.
+
+Nu bekijken we de betekenis, dus de semantiek. Een tweede-orde!!{structure}
+bestaat eerst uit een gewone eerste-orde!!{structure} voor de taal. Daar komt
+een verzameling relaties op het !!{domain} bij. De tweede-ordekwantoren lopen
+over die relaties. Preciezer gezegd hebben we voor elke $k$ een verzameling
+$k$-plaatsige relaties. Staat comprehensie in het !!{derivation} systeem, dan
+moet dit tweede deel genoeg relaties bevatten om de comprehensieaxioma's waar
+te maken. Anders is het !!{derivation} systeem niet correct. We kunnen daar
+gemakkelijk voor zorgen door in het tweede deel \emph{alle} relaties op het
+eerste deel op te nemen. Zo'n !!a{structure} heet \emph{volledig}. In zekere
+zin is dit de ``bedoelde !!{structure}'' voor de taal. Als we alleen volledige
+!!{structure}s toelaten, gebruiken we de \emph{volledige semantiek} voor de
+tweede-ordelogica. We hoeven dan alleen het eerste-ordedeel vast te leggen.
+Welke relaties in het tweede-ordedeel zitten, ligt daarna al vast: het zijn ze
+allemaal.
+
+Er zijn dus verschillende dingen die iemand met ``tweede-ordelogica'' kan
+bedoelen. Voor het !!{derivation} systeem zijn er twee mogelijkheden:
+\begin{enumerate}
+\item het ``minimale'' systeem voor de tweede orde, met een aantal
+  comprehensieaxioma's;
+\item het ``standaardsysteem'' voor de tweede orde, met volledige
+  comprehensie.
+\end{enumerate}
+Ook voor de semantiek zijn er twee mogelijkheden:
+\begin{enumerate}
+\item de ``zwakke'' semantiek: de !!{structure} heeft een eerste-ordedeel en
+  daarnaast een tweede-ordedeel dat groot genoeg is voor de gekozen
+  comprehensieaxioma's;
+\item de ``standaardsemantiek'' voor de tweede orde: we laten alleen
+  volledige !!{structure}s toe, dus structuren met alle relaties.
+\end{enumerate}
+Als logici niet zeggen welk systeem of welke semantiek ze bedoelen, bedoelen
+ze meestal de tweede mogelijkheid in beide lijsten. De standaardsemantiek
+heeft een groot voordeel. Daarmee kunnen we veel bekende wiskundige
+structuren categorisch beschrijven: de beschrijving legt de structuur tot op
+isomorfie vast. Het !!{derivation} systeem is bovendien vrij sterk en is
+correct voor deze semantiek. Er staat een nadeel tegenover. Het systeem is
+\emph{niet} volledig voor de semantiek. Er bestaat zelfs \emph{geen}
+effectief gegeven !!{derivation} systeem dat volledig is voor de volledige
+tweede-ordesemantiek. Voor de zwakkere semantiek is het systeem \emph{wel} volledig.
+Als een zin niet bewijsbaar is, bestaat er dus \emph{een} !!{structure}
+waarin die zin onwaar is. Dat hoeft alleen niet de volledige structuur te
+zijn.
+
+Met tweede-ordelogica kunnen we veel uitdrukken. Een eenplaatsige relatie
+kunnen we zien als een deelverzameling van het !!{domain}. Daardoor kunnen we
+over zulke verzamelingen kwantificeren. We kunnen de inductie voor de
+natuurlijke getallen bijvoorbeeld in één axioma zetten:
+\[
+\lforall[R][((\Atom{R}{\Obj{0}} \land \lforall[x][(\Atom{R}{x} \lif
+    \Atom{R}{x'})]) \lif \lforall[x][\Atom{R}{x}])].
+\]
+Neem voor de taal van de rekenkunde de symbolen $\Obj 0, \Obj \prime, +,
+\times$ en $<$. Met de volgende axioma's leggen we hun gedrag vast:
+\begin{enumerate}
+\item $\lforall[x][\lnot x' = \Obj 0]$
+\item $\lforall[x][\lforall[y][(s(x) = s(y) \lif x = y)]]$
+\item $\lforall[x][(x + \Obj 0) = x]$
+\item $\lforall[x][\lforall[y][(x + y') = (x + y)']]$
+\item $\lforall[x][(x \times \Obj 0) = \Obj 0]$
+\item $\lforall[x][\lforall[y][(x \times y') = ((x \times y) + x)]]$
+\item $\lforall[x][\lforall[y][(x < y \liff \lexists[z][y = (x + z')])]]$
+\end{enumerate}
+Gebruiken we de volledige tweede-ordesemantiek, dan beschrijven deze axioma's
+samen met het inductieaxioma precies de !!{structure}~$\Struct{N}$, het
+standaardmodel van de rekenkunde. ``Precies'' betekent hier: op isomorfie na.
+We kunnen dat als volgt laten zien. Neem een willekeurige
+!!{structure}~$\Struct{M}$ waarin de axioma's waar zijn. We definiëren een
+functie~$f$ van $\Nat$ naar het !!{domain} van $\Struct{M}$. Daarvoor
+gebruiken we gewone recursie op~$\Nat$. We zetten
+$f(0) = \Assign{\Obj 0}{M}$ en
+$f(x+1) = \Assign{\prime}{M}(f(x))$. Gewone inductie op~$\Nat$ laat samen
+met het feit dat axioma's (1) en~(2) in~$\Struct M$ gelden, zien dat $f$
+!!{injective} is. Nu moeten we nog laten
+zien dat $f$ !!{surjective} is. Laat~$P$ bestaan uit de elementen van
+$\Domain{M}$ die als waarde van~$f$ voorkomen. Omdat $\Struct M$ volledig is,
+hoort $P$ bij het tweede-orde!!{domain}. Door de manier waarop we $f$ hebben
+gemaakt, ligt $\Assign{\Obj 0}{M}$ in~$P$ en blijft een element in~$P$ als we
+er $\Assign{\prime}{M}$ op toepassen. Het inductieaxioma geldt in $\Struct M$
+en dus ook voor~$P$. Daarom is $P$~het hele eerste-orde!!{domain} van
+$\Struct M$. De functie $f$ is dus !!a{bijection}. We kunnen net zo aantonen
+dat $f$ een homomorfisme is, met herhaalde gewone inductie op $\Nat$.
+
+In de verzamelingenleer is een functie een bijzonder soort relatie. Een
+eenplaatsige functie~$f$ kunnen we bijvoorbeeld weergeven als een
+tweeplaatsige relatie~$R$ waarvoor
+$\lforall[x][\lexists![y][R(x,y)]]$ geldt. We mogen daardoor ook over
+functies kwantificeren. Met de volledige semantiek kunnen we nu de klasse van
+oneindige !!{structure}s $\Struct M$ definiëren. Daarbij moet een injectieve
+functie bestaan van het !!{domain} van $\Struct M$ naar een echte
+deelverzameling van datzelfde !!{domain}:
+\[
+\lexists[f][(\lforall[x][\lforall[y][(\eq[f(x)][f(y)] \lif \eq[x][y])]]
+  \land \lexists[y][\lforall[x][\eq/[f(x)][y]]])].
+\]
+De klasse van eindige !!{structure}s wordt dan juist gedefinieerd door de
+ontkenning van deze zin.
+
+We kunnen ook welordeningen definiëren. Daarvoor voegen we aan de definitie
+van een lineaire ordening de volgende voorwaarde toe:
+\[
+\lforall[P][(\lexists[x][\Atom{P}{x}] \lif \lexists[x][(\Atom{P}{x}
+    \land \lforall[y][(y < x \lif \lnot \Atom{P}{y})])])].
+\]
+Deze formule zegt dat elke niet-lege verzameling een kleinste element heeft.
+We behandelen een ``verzameling'' daarbij als een eenplaatsige relatie. Ook
+de samenhang van een graaf kunnen we uitdrukken. Een samenhangende graaf kan
+niet in twee niet-lege delen worden gesplitst zonder verbinding tussen die
+delen. Dat staat in de volgende formule:
+\[
+\lnot \lexists[A][(\lexists[x][A(x)] \land \lexists[y][\lnot A(y)]
+  \land \lforall[w][\lforall[z][((\Atom{A}{w} \land \lnot \Atom{A}{z})
+      \lif \lnot \Atom{R}{w,z})]])].
+\]
+Als opgave kun je proberen de eindige !!{structure}s te definiëren waarvan
+het !!{domain} een even aantal elementen heeft. Er kan nog meer: we kunnen de
+reële getallen categorisch beschrijven als een volledig geordend lichaam dat
+de rationale getallen bevat.
+
+Tweede-ordelogica kan dus veel meer uitdrukken dan eerste-ordelogica. Dat is
+het goede nieuws. Het slechte nieuws is dat geen effectief !!{derivation}
+systeem volledig is voor de volledige tweede-ordesemantiek. Dat hadden we al
+genoemd. Ook veel andere eigenschappen van de eerste-ordelogica gaan verloren,
+waaronder compactheid en de stellingen van L\"owenheim--Skolem.
+
+We kunnen de volledige tweede-ordesemantiek ook opgeven en de zwakkere
+semantiek gebruiken. Dan is het minimale tweede-orde!!{derivation} systeem
+wel volledig. Lees $\Proves$ als ``bewijsbaar in het minimale systeem'' en
+$\Entails$ als ``volgt logisch in de zwakkere semantiek''. We kunnen dan
+bewijzen dat uit $\Gamma \Entails !A$ steeds $\Gamma \Proves !A$ volgt. Willen we
+bepaalde comprehensieaxioma's aan het !!{derivation} systeem toevoegen, dan
+moeten we alleen structuren toelaten waarin die axioma's waar zijn. Laat
+$\Delta$ bijvoorbeeld een verzameling comprehensieaxioma's zijn, misschien
+zelfs de verzameling van alle comprehensieaxioma's. Dan geldt: als
+$\Gamma \cup \Delta \Entails !A$, dan
+$\Gamma \cup \Delta \Proves !A$. Is $!A$ met de gekozen
+comprehensieaxioma's niet bewijsbaar, dan bestaat er dus een model van
+$\lnot !A$ waarin die comprehensieaxioma's toch allemaal waar zijn.
+
+Waarom geldt de volledigheidsstelling voor de zwakkere semantiek? Dat zien we
+het gemakkelijkst als we tweede-ordelogica behandelen als logica met
+verschillende soorten objecten, oftewel meersoortige logica. Eén soort krijgt
+het gewone ``eerste-orde'' !!{domain}. Voor elke $k$ nemen we daarnaast
+!!a{domain} met ``$k$-plaatsige relaties''. De taal krijgt ingebouwde
+relatiesymbolen ``$\Atom{\Obj{true}_k}{R,x_1,\dots,x_k}$''. Dit symbool zegt
+dat de relatie $R$ geldt voor $x_1$, \dots,~$x_k$. Hier is $R$ een variabele
+van de soort ``$k$-plaatsige relatie''. De objecten $x_1$, \dots,~$x_k$
+horen bij de eerste-ordesoort.
+
+Na deze identificatie is de zwakke tweede-ordesemantiek in feite de gewone
+semantiek voor meersoortige logica. We hebben al gezien dat meersoortige
+logica in eerste-ordelogica kan worden ingebed. Als we de vertalingen heen en
+terug buiten beschouwing laten, blijkt de zwakkere tweede-ordelogica dus
+eerste-ordelogica in vermomming te zijn. Het !!{domain} bevat zowel
+``objecten'' als ``relaties'', met axioma's die regelen hoe die twee soorten
+zich gedragen.
+
+\end{document}

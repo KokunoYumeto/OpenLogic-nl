@@ -1,0 +1,400 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: assignments
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{ass}
+
+\olsection{Toekenningen aan variabelen}
+
+\begin{explain}
+Een toekenning aan variabelen~$s$ geeft \emph{elke} variabele een
+waarde. Er zijn oneindig veel variabelen. Voor één bepaalde term of
+formule hebben we lang niet al die waarden nodig. Toch geven we elke
+variabele een waarde, omdat de regels daardoor eenvoudiger worden.
+De waarde van een term~$t$ en de vraag of !!a{formula}~$!A$ waar is in
+!!a{structure} bij~$s$, hangen alleen af van wat de toekenning~$s$
+geeft aan de !!{variable}s in~$t$ en aan de vrije !!{variable}s
+van~$!A$. De volgende twee uitspraken maken dat precies. Als twee
+toekenningen hetzelfde geven aan alle variabelen in~$t$, komt de term
+bij beide op dezelfde waarde uit. $!A$ is bij de ene toekenning precies
+dan waar als bij de andere wanneer ze hetzelfde geven aan alle vrije
+variabelen van~$!A$.
+\end{explain}
+
+\begin{prop}\ollabel{prop:valindep}
+Staan in een term~$t$ alleen de !!{variable}s $x_1$, \dots,~$x_n$,
+en geldt $s_1(x_i) = s_2(x_i)$ voor $i = 1$, \dots,~$n$, dan geldt
+$\Value{t}{M}[s_1] = \Value{t}{M}[s_2]$.
+\end{prop}
+
+\begin{proof}
+We gebruiken inductie over de opbouw van~$t$. Begin met de eenvoudigste
+termen. Dan is~$t$ !!a{constant} of een van de variabelen~$x_1$,
+\dots,~$x_n$. Als $t = c$, dan
+$\Value{t}{M}[s_1] = \Assign{c}{M} = \Value{t}{M}[s_2]$. Als
+$t = x_i$, dan weten we al dat $s_1(x_i) = s_2(x_i)$. Daarom
+$\Value{t}{M}[s_1] = s_1(x_i) = s_2(x_i) = \Value{t}{M}[s_2]$.
+
+Neem nu een langere term $t = \Atom{f}{t_1, \dots, t_k}$. Neem aan
+dat de uitspraak al klopt voor de onderdelen $t_1$, \dots, $t_k$.
+Dit is de inductiehypothese. Dan
+\begin{align*}
+  \Value{t}{M}[s_1] & = \Value{\Atom{f}{t_1, \dots, t_k}}{M}[s_1] \\
+  & = \Assign{f}{M}(\Value{t_1}{M}[s_1], \dots, \Value{t_k}{M}[s_1]).
+\intertext{Elk onderdeel~$t_j$, met $j = 1$, \dots,~$k$, bevat alleen
+    !!{variable}s uit $x_1$, \dots,~$x_n$. De inductiehypothese geeft
+    dus $\Value{t_j}{M}[s_1] = \Value{t_j}{M}[s_2]$. Daarom}
+\Value{t}{M}[s_1] & = \Value{\Atom{f}{t_1, \dots, t_k}}{M}[s_1] \\
+  & = \Assign{f}{M}(\Value{t_1}{M}[s_1], \dots, \Value{t_k}{M}[s_1]) \\
+  & = \Assign{f}{M}(\Value{t_1}{M}[s_2], \dots, \Value{t_k}{M}[s_2]) \\
+  & = \Value{\Atom{f}{t_1, \dots, t_k}}{M}[s_2] = \Value{t}{M}[s_2].
+\end{align*}
+\end{proof}
+
+\begin{prop}\ollabel{prop:satindep}
+Zijn de vrije !!{variable}s in~$!A$ allemaal een van
+$x_1$, \dots,~$x_n$, en geldt $s_1(x_i) = s_2(x_i)$ voor
+$i = 1$, \dots,~$n$, dan geldt $\Sat{M}{!A}[s_1]$ precies als
+$\Sat{M}{!A}[s_2]$.
+\end{prop}
+
+\begin{proof}
+Ook hier gebruiken we inductie over de opbouw, nu van~$!A$. Begin met
+een atomaire formule. Dan is~$!A$ atomair en kan~$!A$ een van deze
+vormen hebben:
+\iftag{prvTrue}{$\ltrue$,}{}
+\iftag{prvFalse}{$\lfalse$,}{}
+$\Atom{R}{t_1, \dots, t_k}$ met een $k$-plaatsig predicaat~$R$ en de
+termen $t_1$, \dots,~$t_k$, of $\eq[t_1][t_2]$ met de termen $t_1$
+en~$t_2$. Bij de laatste twee gevallen bewijzen we alleen de ene
+richting van de !!{biconditional}. De andere richting werkt op
+dezelfde manier.
+
+\begin{enumerate}
+\tagitem{prvTrue}{%
+  \indcase{!A}{\ltrue}{bij beide toekenningen geldt
+    $\Sat{M}{\indfrm}[s_1]$ en $\Sat{M}{\indfrm}[s_2]$.}}{}
+
+\tagitem{prvFalse}{%
+  \indcase{!A}{\lfalse}{bij beide toekenningen geldt
+    $\Sat/{M}{!A}[s_1]$ en $\Sat/{M}{!A}[s_2]$.}}{}
+
+\item
+  \indcase{!A}{\Atom{R}{t_1, \ldots, t_k}}{neem aan dat
+    $\Sat{M}{\indfrm}[s_1]$. Dan
+    \[
+    \langle \Value{t_1}{M}[s_1], \ldots, \Value{t_k}{M}[s_1] \rangle
+    \in \Assign{R}{M}.
+    \]
+    Voor elk $i = 1$, \dots,~$k$ zegt \olref{prop:valindep} dat
+    $\Value{t_i}{M}[s_1] = \Value{t_i}{M}[s_2]$. We kunnen dus elk
+    onderdeel van de tuple vervangen en krijgen
+    $\langle \Value{t_1}{M}[s_2], \ldots, \Value{t_k}{M}[s_2] \rangle
+    \in \Assign{R}{M}$. Daarom $\Sat{M}{\indfrm}[s_2]$.}
+\item
+  \indcase{!A}{\eq[t_1][t_2]}{neem aan dat
+    $\Sat{M}{\indfrm}[s_1]$. Dan is
+    $\Value{t_1}{M}[s_1] = \Value{t_2}{M}[s_1]$. Nu volgt stap voor stap:
+    \begin{align*}
+      \Value{t_1}{M}[s_2] & = \Value{t_1}{M}[s_1]
+      & \text{(volgens \olref{prop:valindep})} \\
+      & = \Value{t_2}{M}[s_1] 
+      & \text{(omdat $\Sat{M}{\eq[t_1][t_2]}[s_1]$)}\\
+      &= \Value{t_2}{M}[s_2]
+      & \text{(volgens \olref{prop:valindep}).}
+    \end{align*}
+    Dus $\Sat{M}{\eq[t_1][t_2]}[s_2]$.}
+\end{enumerate}
+
+Neem nu aan dat $\Sat{M}{!B}[s_1]$ precies dan geldt als
+$\Sat{M}{!B}[s_2]$ voor elke eenvoudiger !!{formula}~$!B$ dan~$!A$.
+Dat is de inductiehypothese. We kijken naar het buitenste logische
+teken van~$!A$, de hoofdoperator. Bij elk geval bewijzen we alleen de
+ene richting; terug werkt het op dezelfde manier. Behalve bij de
+kwantoren gebruiken we de inductiehypothese voor een kleinere
+!!{formula}~$!B$ in~$!A$. Elke vrije variabele van~$!B$ is ook vrij
+in~$!A$. Als $s_1$ en $s_2$ hetzelfde geven aan de vrije variabelen
+van~$!A$, doen ze dat dus ook aan die van~$!B$, en mogen we de
+inductiehypothese op~$!B$ toepassen.
+
+\begin{enumerate}
+\tagitem{defNot}{}{%
+  \iftag{probNot}{%
+    \indcase!{!A}{\lnot !B}{}}{%
+    \indcase{!A}{\lnot !B}{neem aan dat
+      $\Sat{M}{\indfrm}[s_1]$. Dan is de formule bij die toekenning
+      niet waar: $\Sat/{M}{!B}[s_1]$. Volgens de inductiehypothese is
+      zij ook bij de andere toekenning niet waar:
+      $\Sat/{M}{!B}[s_2]$. Daarom
+      $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defAnd}{}{%
+  \iftag{probAnd}{%
+    \indcase!{!A}{!B \land !C}{}}{%
+    \indcase{!A}{!B \land !C}{neem aan dat
+      $\Sat{M}{\indfrm}[s_1]$. Dan gelden
+      $\Sat{M}{!B}[s_1]$ en $\Sat{M}{!C}[s_1]$. De
+      inductiehypothese geeft
+      $\Sat{M}{!B}[s_2]$ en $\Sat{M}{!C}[s_2]$. Daarom
+      $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defOr}{}{%
+  \iftag{probOr}{%
+    \indcase!{!A}{!B \lor !C}{}}{%
+    \indcase{!A}{!B \lor !C}{neem aan dat
+      $\Sat{M}{\indfrm}[s_1]$. Dan geldt $\Sat{M}{!B}[s_1]$ of
+      $\Sat{M}{!C}[s_1]$. De inductiehypothese geeft
+      $\Sat{M}{!B}[s_2]$ of
+      $\Sat{M}{!C}[s_2]$. Dus $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defIf}{}{%
+  \iftag{probIf}{%
+    \indcase!{!A}{!B \lif !C}{}}{%
+    \indcase{!A}{!B \lif !C}{neem aan dat
+    $\Sat{M}{\indfrm}[s_1]$. Dan is het linkerdeel niet waar of het
+    rechterdeel wel waar: $\Sat/{M}{!B}[s_1]$ of
+    $\Sat{M}{!C}[s_1]$. De inductiehypothese geeft
+    $\Sat/{M}{!B}[s_2]$ of $\Sat{M}{!C}[s_2]$. Daarom
+    $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defIff}{}{%
+  \iftag{probIff}{%
+    \indcase!{!A}{!B \liff !C}{}}{%
+    \indcase{!A}{!B \liff !C}{neem aan dat
+      $\Sat{M}{\indfrm}[s_1]$. Dan zijn beide delen allebei waar of
+      allebei niet waar. In symbolen: óf
+      $\Sat{M}{!B}[s_1]$ en $\Sat{M}{!C}[s_1]$, óf
+      $\Sat/{M}{!B}[s_1]$ en $\Sat/{M}{!C}[s_1]$. De
+      inductiehypothese geeft bij de andere toekenning hetzelfde
+      patroon: óf
+      $\Sat{M}{!B}[s_2]$ en $\Sat{M}{!C}[s_2]$, óf
+      $\Sat/{M}{!B}[s_2]$ en $\Sat/{M}{!C}[s_2]$. In beide gevallen
+      geldt $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defEx}{}{%
+  \iftag{probEx}{%
+    \indcase!{!A}{\lexists[x][!B]}{}}{%
+    \indcase{!A}{\lexists[x][!B]}{neem aan dat
+      $\Sat{M}{\indfrm}[s_1]$. Dan is er minstens één
+      $m \in \Domain{M}$ waarvoor
+      $\Sat{M}{!B}[\Subst{s_1}{m}{x}]$. Noem de aangepaste
+      toekenningen $s_1' = \Subst{s_1}{m}{x}$ en $s_2' =
+      \Subst{s_2}{m}{x}$. De vrije variabelen van~$!B$ zitten tussen
+      $x_1$, \dots, $x_n$ en~$x$. Er geldt
+      $s_1'(x_i) = s_2'(x_i)$, want $s_1'$ en $s_2'$ zijn
+      $x$-varianten van $s_1$ en~$s_2$: ze kunnen alleen bij de
+      genoemde variabele anders zijn. Volgens de aanname is
+      $s_1(x_i) = s_2(x_i)$. Ook geven de twee aangepaste
+      toekenningen dezelfde nieuwe waarde:
+      $s_1'(x) = s_2'(x) = m$. Dat volgt uit de manier waarop
+      $s_1'$ en~$s_2'$ zijn gemaakt. De inductiehypothese geldt dus
+      voor $!B$ bij $s_1'$ en~$s_2'$, en geeft
+      $\Sat{M}{!B}[s_2']$. Omdat $s_2' = \Subst{s_2}{m}{x}$, is er
+      een $m \in \Domain{M}$ waarvoor
+      $\Sat{M}{!B}[\Subst{s_2}{m}{x}]$. Daarom
+      $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defAll}{}{%
+  \iftag{probAll}{%
+    \indcase!{!A}{\lforall[x][!B]}{}}{%
+    \indcase{!A}{\lforall[x][!B]}{neem aan dat
+      $\Sat{M}{\indfrm}[s_1]$. Dan geldt voor elke
+      $m \in \Domain{M}$ dat
+      $\Sat{M}{!B}[\Subst{s_1}{m}{x}]$. We moeten bewijzen dat ook
+      voor elke $m \in \Domain{M}$ geldt:
+      $\Sat{M}{!B}[\Subst{s_2}{m}{x}]$. Kies nu een willekeurige
+      $m \in \Domain{M}$ en maak de twee aangepaste toekenningen
+      $s_1' = \Subst{s_1}{m}{x}$ en $s_2' =
+      \Subst{s_2}{m}{x}$. Voor de eerste geldt
+      $\Sat{M}{!B}[s_1']$. De vrije variabelen van~$!B$ zitten tussen
+      $x_1$, \dots, $x_n$ en~$x$. Er geldt
+      $s_1'(x_i) = s_2'(x_i)$, want $s_1'$ en $s_2'$ zijn
+      $x$-varianten van $s_1$ en~$s_2$. Volgens de aanname is
+      $s_1(x_i) = s_2(x_i)$. Bij de genoemde variabele geven ze
+      allebei dezelfde waarde: $s_1'(x) = s_2'(x) = m$. De aldus
+      gemaakte toekenningen $s_1'$ en~$s_2'$ voldoen dus aan de
+      voorwaarden. De inductiehypothese op~$!B$ met~$s_1'$ en~$s_2'$
+      geeft $\Sat{M}{!B}[s_2']$. Dit geldt voor elke
+      $m \in \Domain{M}$; dat wil zeggen:
+      $\Sat{M}{!B}[\Subst{s_2}{m}{x}]$ voor alle~$m \in
+      \Domain{M}$. Dus $\Sat{M}{\indfrm}[s_2]$.}}}
+\end{enumerate}
+De inductie is daarmee klaar. Dus geldt
+$\Sat{M}{!A}[s_1]$ precies als $\Sat{M}{!A}[s_2]$ wanneer de vrije
+!!{variable}s in~$!A$ allemaal een van $x_1$, \dots, $x_n$ zijn en
+$s_1(x_i)=s_2(x_i)$ voor $i = 1$, \dots,~$n$.
+\end{proof}
+
+\begin{probtag}{probNot,probOr,probAnd,probIf,probIff,probEx,probAll}
+Maak het bewijs van \olref[fol][syn][ass]{prop:satindep} af.
+\end{probtag}
+
+\begin{explain}
+Een !!{sentence} is een formule zonder vrije variabelen. Er zijn dus
+nul vrije variabelen waarover twee toekenningen het oneens kunnen
+zijn. Elke twee toekenningen stemmen daar automatisch op overeen. De
+vorige uitspraak zegt daarom iets eenvoudigs: of een zin waar is in
+een structuur, hangt helemaal niet af van de gekozen toekenning. We
+leggen dat hieronder vast. Daarna kunnen we zeggen dat !!a{sentence}
+waar is in !!a{structure} zonder er steeds een toekenning bij te noemen.
+\end{explain}
+
+\begin{cor}
+\ollabel{cor:sat-sentence}
+Als $!A$ !!a{sentence} is en $s$ een toekenning aan variabelen, dan
+geldt $\Sat{M}{!A}[s]$ precies als $\Sat{M}{!A}[s']$ voor elke andere
+toekenning~$s'$.
+\end{cor}
+
+\begin{proof}
+  Kies een willekeurige toekenning~$s'$. Omdat $!A$ een zin is, heeft
+  zij geen vrije variabelen. Elke toekenning~$s'$ geeft dus vanzelf
+  hetzelfde aan alle vrije variabelen van~$!A$ als~$s$: die zijn er
+  niet. Daarmee is aan de voorwaarde van
+  \olref{prop:satindep} voldaan. Dus geldt $\Sat{M}{!A}[s]$ precies als
+  $\Sat{M}{!A}[s']$.
+\end{proof}
+
+\begin{defn}
+\ollabel{defn:satisfaction}
+Als $!A$ !!a{sentence} is, zeggen we dat !!a{structure}~$\Struct M$
+$!A$ \emph{waar maakt}. We schrijven $\Sat{M}{!A}$. Dit betekent dat
+$\Sat{M}{!A}[s]$ geldt voor elke toekenning aan variabelen~$s$.
+\end{defn}
+
+Als $\Sat{M}{!A}$, zeggen we ook kortweg dat \emph{$!A$ waar is
+in~$\Struct{M}$.} We kunnen hetzelfde idee gebruiken voor een hele
+verzameling !!{sentence}s.
+
+\begin{defn}
+\ollabel{defn:sat}
+Neem een verzameling~$\Gamma$ van !!{sentence}s; dezelfde verzameling
+noemen we verder~$\Gamma$. We zeggen dat !!a{structure}~$\Struct M$
+de verzameling~$\Gamma$ \emph{waar maakt},
+en schrijven $\Sat{M}{\Gamma}$, als $\Sat{M}{!A}$ geldt voor elke
+$!A \in \Gamma$.
+\end{defn}
+
+\begin{prop}\ollabel{prop:sentence-sat-true}
+  Neem !!a{structure}~$\Struct{M}$, !!a{sentence}~$!A$ en een
+  toekenning aan variabelen~$s$. Dan geldt $\Sat{M}{!A}$ precies als
+  $\Sat{M}{!A}[s]$.
+\end{prop}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[fol][syn][ass]{prop:sentence-sat-true}.
+\end{prob}
+
+\begin{prop}\ollabel{prop:sat-quant}
+  Stel dat in~$!A(x)$ alleen $x$ vrij voorkomt, en neem
+  !!a{structure}~$\Struct M$. Dan:
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{$\Sat{M}{\lexists[x][!A(x)]}$ precies als
+      $\Sat{M}{!A(x)}[s]$ voor minstens één toekenning~$s$.}{}
+    \tagitem{prvAll}{$\Sat{M}{\lforall[x][!A(x)]}$ precies als
+      $\Sat{M}{!A(x)}[s]$ voor elke toekenning~$s$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+Opgave.
+\end{proof}
+
+\begin{prob}
+Bewijs \olref[fol][syn][ass]{prop:sat-quant}.
+\end{prob}
+
+\begin{prob}
+\DeclareRobustCommand{\VDash}{\mathrel{||}\joinrel\Relbar}  
+Stel dat de taal~$\Lang L$ geen !!{function}s heeft. Neem een
+!!{structure}~$\Struct M$, !!a{constant}~$c$ en een object
+$a \in \Domain M$. Met $\Struct M[a/c]$ bedoelen we een kopie van
+$\Struct M$ waarin alleen de betekenis van die constante is veranderd:
+$\Assign{c}{M[a/c]} = a$. Voor $\Struct M \VDash !A$, waarbij
+!!a{sentence}~$!A$ is, gelden nu rechtstreeks de volgende regels:
+\begin{enumerate}
+\tagitem{prvFalse}{%
+  \indcase{!A}{\lfalse}{niet $\Struct{M} \VDash \indfrm$.}}{}
+
+\tagitem{prvTrue}{%
+  \indcase{!A}{\ltrue}{$\Struct{M} \VDash \indfrm$.}}{}
+
+\item \indcase{!A}{\Atom{R}{d_1, \dots, d_n}}{$\Struct M \VDash \indfrm$
+  precies als de bijbehorende rij objecten in de juiste relatie staat:
+  $\langle \Assign{d_1}{M}, \dots, \Assign{d_n}{M} \rangle \in
+  \Assign{R}{M}$.}
+
+\item \indcase{!A}{\eq[d_1][d_2]}{$\Struct M \VDash \indfrm$ precies
+  als $\Assign{d_1}{M} = \Assign{d_2}{M}$.}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}{$\Struct{M} \VDash \indfrm$ precies als niet
+    $\Struct{M} \VDash {!B}$.}}{}
+
+\tagitem{prvAnd}{%
+  \indcase{!A}{(!B \land !C)}{$\Struct{M} \VDash
+    \indfrm$ precies als $\Struct{M} \VDash!B$ en
+    $\Struct{M} \VDash !C$.}}{}
+
+\tagitem{prvOr}{%
+  \indcase{!A}{(!B \lor !C)}{$\Struct{M} \VDash \indfrm$ precies als
+    $\Struct{M} \VDash !B$ of $\Struct{M} \VDash !C$ (of beide).}}{}
+
+\tagitem{prvIf}{%
+  \indcase{!A}{(!B \lif !C)}{$\Struct{M} \VDash \indfrm$ precies als
+    niet $\Struct {M} \VDash !B$ of $\Struct M \VDash !C$ (of beide).}}{}
+
+\tagitem{prvIff}{%
+  \indcase{!A}{(!B \liff !C)}{$\Struct{M} \VDash {\indfrm}$ precies
+    als beide delen allebei gelden of allebei niet gelden. Dus: óf
+    $\Struct{M} \VDash {!B}$ en $\Struct{M} \VDash {!C}$, óf noch
+    $\Struct{M} \VDash {!B}$ noch $\Struct{M} \VDash {!C}$.}}{}
+
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[x][!B]}{$\Struct{M} \VDash {\indfrm}$ precies
+    als voor elk $a \in \Domain{M}$ geldt
+    $\Struct{M[a/c]} \VDash \Subst{!B}{c}{x}$, waarbij $c$ niet
+    in~$!B$ mag voorkomen.}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[x][!B]}{$\Struct{M} \VDash
+  {\indfrm}$ precies als er minstens één $a \in \Domain M$ is waarvoor
+  $\Struct{M[a/c]} \VDash \Subst{!B}{c}{x}$, waarbij $c$ niet
+  in~$!B$ mag voorkomen.}}{}
+\end{enumerate}
+Laat $x_1$, \dots, $x_n$ alle vrije !!{variable}s in~$!A$ zijn.
+Kies nieuwe constantsymbolen $c_1$, \dots, $c_n$ die niet in~$!A$
+staan. Kies ook $a_1$, \dots, $a_n \in \Domain M$ en laat
+$s(x_i) = a_i$.
+
+Bewijs dat $\Sat{M}{!A}[s]$ precies als
+$\Struct M[a_1/c_1,\dots,a_n/c_n]
+\VDash \Subst{\Subst{!A}{c_1}{x_1}\dots}{c_n}{x_n}$.
+
+(Deze opgave laat zien dat je de betekenisregels voor eerste-ordelogica
+ook zonder toekenningen aan variabelen kunt formuleren.)
+\end{prob}
+
+\begin{prob}
+Stel dat $f$ een functiesymbool is dat nog niet in~$!A(x,y)$ staat.
+Bewijs dat er !!a{structure}~$\Struct{M}$ bestaat waarvoor
+$\Sat{M}{\lforall[x][\lexists[y][!A(x,y)]]}$, precies als er
+!!a{structure}~$\Struct M'$ bestaat waarvoor
+$\Sat{M'}{\lforall[x][!A(x,f(x))]}$.
+
+(Dit is een bijzonder geval van de stelling van Skolem. De nieuwe
+functie legt voor elke invoer een geschikte getuige vast. De formule
+$\lforall[x][!A(x,f(x))]$ heet een
+\emph{Skolemnormaalvorm} van
+$\lforall[x][\lexists[y][!A(x,y)]]$.)
+\end{prob}
+
+\end{document}

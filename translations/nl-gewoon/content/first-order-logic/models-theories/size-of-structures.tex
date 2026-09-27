@@ -1,0 +1,77 @@
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: size-of-structures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{mat}{siz}
+
+\olsection{Zeggen hoe groot \printtoken{P}{structure} zijn}
+
+\begin{explain}
+Ook zonder de niet-logische symbolen van een taal kunnen we al iets
+over structuren zeggen. Er zijn bijvoorbeeld !!{sentence}s die in
+!!a{structure} precies dan waar zijn als het !!{domain} van de
+!!{structure} minstens, hoogstens of precies een bepaald aantal~$n$
+!!{element}s heeft.
+\end{explain}
+
+\begin{prop}
+De volgende !!{sentence}
+\begin{multline*}
+  !A_{\ge n} \ident \lexists[x_1][\lexists[x_2][\dots\lexists[x_n][{}]]]\\
+  \begin{aligned}
+  (\eq/[x_1][x_2] \land {}
+  \eq/[x_1][x_3] \land \eq/[x_1][x_4] \land \dots \land \eq/[x_1][x_n] \land {}\\
+\eq/[x_2][x_3] \land \eq/[x_2][x_4] \land \dots \land {} \eq/[x_2][x_n] \land {} \\
+\vdots\\
+\eq/[x_{n-1}][x_n])
+\end{aligned}
+\end{multline*}
+verlangt dat de gekozen elementen allemaal verschillend zijn. Hij is
+precies dan waar in !!a{structure}~$\Struct M$ als $\Domain M$
+minstens $n$ !!{element}s heeft. Daarom geldt
+$\Sat{M}{\lnot !A_{\ge n+1}}$ precies dan als $\Domain M$
+hoogstens~$n$ !!{element}s heeft.
+
+\end{prop}
+
+\begin{prop}
+De volgende !!{sentence}
+\begin{multline*}
+!A_{= n} \ident \lexists[x_1][\lexists[x_2][\dots\lexists[x_n][{}]]] \\
+\begin{aligned}
+  (\eq/[x_1][x_2] \land {}
+  \eq/[x_1][x_3] \land \eq/[x_1][x_4] \land \dots \land \eq/[x_1][x_n] \land {}\\
+\eq/[x_2][x_3] \land \eq/[x_2][x_4] \land \dots \land {} \eq/[x_2][x_n] \land {} \\
+\vdots\\
+\eq/[x_{n-1}][x_n] \land {} \\
+\lforall[y][(\eq[y][x_1] \lor \dots \lor \eq[y][x_n]]))
+\end{aligned}
+\end{multline*}
+verlangt in de laatste regel bovendien dat ieder element van het
+domein een van de al gekozen elementen is. De hele zin is precies dan
+waar in !!a{structure}~$\Struct M$ als $\Domain M$ precies $n$
+!!{element}s heeft.
+\end{prop}
+
+\begin{prop}
+!!^a{structure} is precies dan oneindig als zij alle zinnen uit de
+volgende verzameling waar maakt, dus als zij er een model van is:
+\[
+\{!A_{\ge 1}, !A_{\ge 2}, !A_{\ge 3}, \dots \}.
+\]
+\end{prop}
+
+Geen enkele zuiver logische zin is in~$\Struct M$ precies dan waar als
+$\Domain M$ oneindig is. We kunnen wel !!{sentence}s met niet-logische
+!!{predicate}s geven die alleen oneindige modellen hebben. Dat betekent
+niet dat iedere oneindige !!{structure} een model van die zinnen is.
+Zelfs met een oneindige verzameling !!{sentence}s kunnen we niet
+uitdrukken dat een structuur eindig of !!{nonenumerable} is. Dit volgt
+uit de compactheidsstelling en de stelling van
+L\"owenheim--Skolem.
+
+\end{document}

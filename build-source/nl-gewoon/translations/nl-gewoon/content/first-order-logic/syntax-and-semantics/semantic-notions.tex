@@ -1,0 +1,177 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: Semantic Notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{fol}{syn}{sem}
+\olsection{Wat altijd waar is en wat daaruit volgt (semantische begrippen)}
+
+\begin{explain}
+Nu we weten wat !!{structure}s voor eerste-ordetalen zijn, kunnen we
+precies vastleggen hoe zinnen zich gedragen en welke zinnen uit andere
+zinnen volgen. We beginnen met \emph{geldig}. Een zin is geldig als
+hij in iedere !!{structure} waar is. Het maakt dan niet uit welke
+betekenis de niet-logische tekens in die zin krijgen. Zo'n geldige zin
+heet ook een \emph{logische waarheid}: hij is waar in iedere
+!!{structure}. Alleen de logische tekens in de zin en de manier waarop
+de zin is opgebouwd, zijn dan bepalend. De niet-logische tekens en hun
+betekenis zijn dat niet.
+\end{explain}
+
+\begin{defn}[Altijd waar (geldigheid)]
+Een zin $!A$ is \emph{geldig}, $\Entails !A$, precies als
+$\Sat{M}{!A}$ voor iedere !!{structure}~$\Struct M$. De zin is dus in
+elke structuur waar.
+\end{defn}
+
+\begin{defn}[Wat logisch volgt (semantisch gevolg)]
+Een verzameling zinnen~$\Gamma$ heeft een zin~$!A$ als
+\emph{semantisch gevolg}, $\Gamma \Entails !A$, precies als dit voor
+iedere !!{structure}~$\Struct M$ geldt: als $\Sat{M}{\Gamma}$, dan
+$\Sat{M}{!A}$. Iedere structuur die alle zinnen uit de verzameling
+waar maakt, maakt de conclusie dus ook waar.
+\end{defn}
+
+
+\begin{defn}[Samen waar te maken (vervulbaarheid)]
+Een verzameling zinnen~$\Gamma$ is \emph{waar te maken
+(vervulbaar)} als $\Sat{M}{\Gamma}$ voor minstens één
+!!{structure}~$\Struct M$. Als dat niet kan, heet $\Gamma$
+\emph{niet waar te maken (onvervulbaar)}.
+\end{defn}
+
+\begin{prop}
+Een zin $!A$ is geldig precies als $\Gamma \Entails !A$ voor iedere
+verzameling zinnen~$\Gamma$.
+\end{prop}
+
+\begin{proof}
+Eerst de richting van links naar rechts. Stel dat $!A$ geldig is en
+neem een verzameling zinnen~$\Gamma$. Kies !!a{structure}~$\Struct M$
+waarin alle zinnen van die verzameling waar zijn, dus
+$\Sat{M}{\Gamma}$. Omdat $!A$ geldig is, is hij ook in deze structuur
+waar: $\Sat{M}{!A}$. Daarom $\Gamma \Entails !A$.
+
+Voor de andere richting bewijzen we de contrapositie. Stel dat $!A$
+niet geldig is. Dan bestaat er !!a{structure}~$\Struct M$ waarin
+$\Sat/{M}{!A}$. Neem nu $\Gamma = \{ \ltrue \}$. Omdat $\ltrue$
+geldig is, geldt $\Sat{M}{\Gamma}$. Er bestaat dus
+!!a{structure}~$\Struct M$ waarin $\Sat{M}{\Gamma}$ maar
+$\Sat/{M}{!A}$. Daarom geldt voor $\Gamma$ niet dat $!A$ daaruit
+volgt.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:entails-unsat}
+$\Gamma \Entails !A$ precies als
+$\Gamma \cup \{\lnot !A\}$ niet waar te maken is.
+\end{prop}
+
+\begin{proof}
+Eerst van links naar rechts. Stel $\Gamma \Entails !A$. Neem nu voor
+een tegenspraak aan dat er !!a{structure}~$\Struct M$ is waarin
+$\Sat{M}{\Gamma \cup \{ \lnot !A \}}$. Dan geldt
+$\Sat{M}{\Gamma}$, en uit $\Gamma \Entails !A$ volgt
+$\Sat{M}{!A}$. Uit $\Sat{M}{\Gamma\cup \{ \lnot !A \}}$ volgt ook
+$\Sat{M}{\lnot !A}$. In dezelfde structuur hebben we dan zowel
+$\Sat{M}{!A}$ als $\Sat/{M}{!A}$. Dat is een tegenspraak. Zo'n
+!!{structure}~$\Struct M$ bestaat dus niet. De verzameling
+$\Gamma \cup \{ \lnot !A \}$ is daarom niet waar te maken.
+
+Nu van rechts naar links. Stel dat
+$\Gamma \cup \{ \lnot !A \}$ niet waar te maken is. Voor iedere
+!!{structure}~$\Struct M$ geldt dan: $\Sat/{M}{\Gamma}$ of
+$\Sat{M}{!A}$. Neem dus een !!{structure} $\Struct M$ waarvoor
+$\Sat{M}{\Gamma}$. Dan moet $\Sat{M}{!A}$ gelden. Precies daarom
+$\Gamma \Entails !A$.
+\end{proof}
+
+\begin{prob}
+\begin{enumerate}
+\item Laat zien dat $\Gamma \Entails \bot$ precies als $\Gamma$ niet
+  waar te maken is.
+\item Laat zien dat $\Gamma \cup \{!A\} \Entails \bot$ precies als
+  $\Gamma \Entails \lnot !A$.
+\item Stel dat $c$ niet voorkomt in $!A$ of $\Gamma$. Laat zien dat
+  $\Gamma \Entails \lforall[x][!A]$ precies als $\Gamma \Entails
+  \Subst{!A}{c}{x}$.
+\end{enumerate}
+\end{prob}
+
+\begin{prop}
+Als $\Gamma \subseteq \Gamma'$ en $\Gamma \Entails !A$, dan
+$\Gamma' \Entails !A$.
+\end{prop}
+
+\begin{proof}
+Stel dat $\Gamma \subseteq \Gamma'$ en $\Gamma \Entails !A$. Neem een
+structuur~$\Struct M$ waarin $\Sat{M}{\Gamma'}$. Dan zijn ook alle
+zinnen uit de kleinere verzameling waar, dus $\Sat{M}{\Gamma}$. Omdat
+$\Gamma \Entails !A$, volgt $\Sat{M}{!A}$. Iedere keer dat
+$\Sat{M}{\Gamma'}$, geldt dus $\Sat{M}{!A}$. Daarom
+$\Gamma' \Entails !A$.
+\end{proof}
+
+
+\begin{thm}[Een aanname in de als-dan-formule zetten (semantische deductiestelling)]
+\ollabel{thm:sem-deduction}
+$\Gamma \cup \{!A\} \Entails !B$ iff $\Gamma \Entails !A \lif !B$.
+\end{thm}
+
+\begin{proof}
+Eerst van links naar rechts. Stel
+$\Gamma \cup \{ !A \} \Entails !B$ en neem !!a{structure}~$\Struct M$
+waarin $\Sat{M}{\Gamma}$. Als ook $\Sat{M}{!A}$, dan
+$\Sat{M}{\Gamma \cup \{ !A \} }$. Uit
+$\Gamma \cup \{ !A \}$ volgt $!B$, dus $\Sat{M}{!B}$. Daarom
+$\Sat{M}{!A \lif !B}$, en dus
+$\Gamma \Entails !A \lif !B$.
+
+Nu van rechts naar links. Stel $\Gamma \Entails !A \lif !B$ en neem
+!!a{structure}~$\Struct M$ waarin
+$\Sat{M}{\Gamma \cup \{ !A \}}$. Dan geldt $\Sat{M}{\Gamma}$, en dus
+$\Sat{M}{!A \lif !B}$. Ook geldt $\Sat{M}{!A}$, zodat
+$\Sat{M}{!B}$. Iedere keer dat
+$\Sat{M}{\Gamma \cup \{ !A \} }$, geldt dus $\Sat{M}{!B}$. Daarom
+$\Gamma \cup \{ !A \} \Entails !B$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:quant-terms}
+  Neem !!a{structure}~$\Struct{M}$, !!a{formula}~$!A(x)$ met precies
+  één vrije variabele~$x$, en een term~$t$ zonder variabelen (een
+  gesloten term). Dan geldt:
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{$!A(t) \Entails \lexists[x][!A(x)]$}{}
+    \tagitem{prvAll}{$\lforall[x][!A(x)] \Entails !A(t)$}{}
+  \end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{%
+      \iftag{probEx}{Opgave.}{Stel dat $\Sat{M}{!A(t)}$. Kies een
+        toekenning aan variabelen~$s$ met
+        $s(x) = \Value{t}{M}$. Dan geldt $\Sat{M}{!A(t)}[s]$, want
+        $!A(t)$ is !!a{sentence}. Uit
+        \olref[ext]{prop:ext-formulas} volgt $\Sat{M}{!A(x)}[s]$. Uit
+        \olref[ass]{prop:sat-quant} volgt
+        $\Sat{M}{\lexists[x][!A(x)]}$.}}{}
+    \tagitem{prvAll}{%
+      \iftag{probAll}{Opgave.}{Stel dat
+        $\Sat{M}{\lforall[x][!A(x)]}$. Kies een toekenning aan
+        variabelen~$s$ met $s(x) = \Value{t}{M}$. Uit
+        \olref[ass]{prop:sat-quant} volgt $\Sat{M}{!A(x)}[s]$. Uit
+        \olref[ext]{prop:ext-formulas} volgt $\Sat{M}{!A(t)}[s]$. Uit
+        \olref[ass]{prop:sentence-sat-true} volgt
+        $\Sat{M}{!A(t)}$, want $!A(t)$ is !!a{sentence}.}}{}
+  \end{tagenumerate}
+\end{proof}
+
+\begin{probtag}{probEx,probAll}
+  Maak het bewijs van \olref[fol][syn][sem]{prop:quant-terms} af.
+\end{probtag} 
+
+\end{document}

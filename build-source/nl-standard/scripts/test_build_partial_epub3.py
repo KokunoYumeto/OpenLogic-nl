@@ -183,7 +183,8 @@ def generated_book(root: Path, *, broken_fragment: bool = False, math: bool = Tr
     root.mkdir(parents=True)
     target = "missing-anchor" if broken_fragment else "unit-OLP-0002"
     math_markup = (
-        '<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi><mo>=</mo><mi>x</mi></math>'
+        '<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>x</mi><mo>=</mo><mi>x</mi></math>'
+        '<p>Een lange formule <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>x</mi><mo>=</mo><mi>x</mi></math>.</p>'
         if math
         else ""
     )
@@ -267,6 +268,12 @@ class CumulativeSourceTests(unittest.TestCase):
     def test_source_tree_is_allowlisted_complete_and_deterministic(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             fixture = FixtureRepository(Path(temporary))
+            bytecode_cache = fixture.root / "upstream" / "sty" / "__pycache__"
+            bytecode_cache.mkdir()
+            (bytecode_cache / "generated.cpython-313.pyc").write_bytes(b"generated cache")
+            (fixture.root / "upstream" / "assets" / "generated.pyo").write_bytes(
+                b"generated optimized bytecode"
+            )
             plan = fixture.plan(("nl-standard",))
             tex = builder.render_cumulative_tex(plan, "nl-standard", "2026-09-19")
             entries = builder.source_tree_entries(plan, "nl-standard", "2026-09-19", tex)
@@ -290,6 +297,13 @@ class CumulativeSourceTests(unittest.TestCase):
             )
             self.assertIn("upstream/sty/fixture-sty.txt", entries)
             self.assertIn("upstream/assets/fixture-assets.txt", entries)
+            self.assertFalse(
+                any(
+                    "__pycache__" in {part.casefold() for part in PurePosixPath(name).parts}
+                    or PurePosixPath(name).suffix.casefold() in {".pyc", ".pyo"}
+                    for name in entries
+                )
+            )
             locale = entries["upstream/locale/nl/open-logic-locale.sty"].decode("utf-8")
             self.assertIn("{dutch}", locale)
             self.assertIn("\\extrasdutch", locale)
@@ -590,6 +604,52 @@ class PdfBuildTests(unittest.TestCase):
             )
             self.assertFalse(state["inside"])
 
+    def test_pdf_can_borrow_one_outer_pair_mutex_without_reacquiring(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source, identity = self.source_tree(root)
+            expected_pdf = pdf_fixture("borrowed-mutex")
+
+            class BorrowedMutex:
+                name = builder.TEX_MUTEX_NAME
+                owned = True
+                abandoned = False
+
+            borrowed = BorrowedMutex()
+
+            def fake_job(command, cwd, timeout, log, environment, *, process_label):
+                self.assertTrue(borrowed.owned)
+                log.write_bytes(f"{process_label} stable\n".encode())
+                if process_label.startswith("PDF replay"):
+                    output = Path(
+                        next(value.split("=", 1)[1] for value in command if value.startswith("-outdir="))
+                    )
+                    (output / "book.pdf").write_bytes(expected_pdf)
+                return {"exit_code": 0, "seconds": 0.01}
+
+            with mock.patch.object(
+                builder.shutil, "which", side_effect=lambda value: value + ".exe"
+            ), mock.patch.object(
+                builder, "GlobalTexMutex", side_effect=AssertionError("nested acquisition")
+            ) as nested, mock.patch.object(
+                builder, "_run_in_windows_job", side_effect=fake_job
+            ):
+                payload, report = builder.run_pdf_build(
+                    source,
+                    "book.tex",
+                    root / "pdf-borrowed",
+                    modified="2026-09-19",
+                    expected_source_tree=identity,
+                    mutex_timeout_seconds=1,
+                    pdf_timeout_seconds=2,
+                    held_mutex=borrowed,
+                )
+            self.assertEqual(expected_pdf, payload)
+            self.assertEqual("caller-held", report["mutex_scope"])
+            self.assertEqual(0.0, report["mutex_wait_seconds"])
+            self.assertTrue(borrowed.owned)
+            nested.assert_not_called()
+
 
 class EpubPackagingTests(unittest.TestCase):
     def make_epub(self, temporary: str, **book_options):
@@ -608,7 +668,10 @@ class EpubPackagingTests(unittest.TestCase):
             self.assertEqual(first, second)
             self.assertEqual("PASS", first_audit["status"])
             self.assertEqual(first_audit["sha256"], second_audit["sha256"])
-            self.assertEqual(1, first_audit["mathml_roots"])
+            self.assertEqual(2, first_audit["mathml_roots"])
+            self.assertEqual(1, first_audit["block_math_roots"])
+            self.assertEqual(1, first_audit["inline_math_roots"])
+            self.assertEqual(1, first_audit["scroll_wrapped_block_math"])
             self.assertEqual(2, first_audit["accepted_unit_anchors"])
             with zipfile.ZipFile(io.BytesIO(first)) as archive:
                 infos = archive.infolist()
@@ -630,7 +693,15 @@ class EpubPackagingTests(unittest.TestCase):
                 math = content.xpath(
                     ".//*[namespace-uri()=$ns and local-name()='math']", ns=builder.MATHML_NS
                 )
-                self.assertEqual(1, len(math))
+                self.assertEqual(2, len(math))
+                block_math = [node for node in math if node.get("display") == "block"]
+                self.assertEqual(1, len(block_math))
+                self.assertEqual("math-display-scroll", block_math[0].getparent().get("class"))
+                css = archive.read("OEBPS/styles/reader.css")
+                self.assertIn(b".math-display-scroll", css)
+                self.assertIn(b'math[display="inline"]', css)
+                self.assertIn(b"display: inline-block", css)
+                self.assertIn(b"overflow-x: auto", css)
                 nav = etree.fromstring(archive.read("OEBPS/nav.xhtml"))
                 hrefs = nav.xpath(
                     ".//x:nav[@epub:type='toc']//x:a/@href",

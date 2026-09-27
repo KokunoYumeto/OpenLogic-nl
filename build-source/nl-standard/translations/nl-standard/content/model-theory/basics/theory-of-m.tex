@@ -1,0 +1,66 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: theory-of-m
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{thm}
+
+\section{De theorie van een \printtoken{S}{structure}}
+
+In elke !!{structure}~$\Struct{M}$ zijn sommige !!{sentence}s waar en
+andere onwaar. De verzameling van alle !!{sentence}s die zij waar maakt,
+heet haar \emph{theorie}. Die verzameling is inderdaad een theorie: elk
+gevolg ervan moet in al haar modellen waar zijn, dus ook in~$\Struct{M}$.
+
+\begin{defn}
+  Gegeven !!a{structure}~$\Struct M$ is de \emph{theorie} van
+  $\Struct{M}$ de verzameling $\Theory{M}$ van !!{sentence}s
+  die in $\Struct{M}$ waar zijn, dus $\Theory{M} =
+  \Setabs{!A}{\Sat{M}{!A}}$.
+\end{defn}
+
+We gebruiken de term ``theorie'' ook informeel voor verzamelingen
+!!{sentence}s met een bedoelde interpretatie, ongeacht of zij deductief
+gesloten zijn.
+
+\begin{prop}
+Voor elke $\Struct{M}$ is $\Theory{M}$ compleet.
+\end{prop}
+
+\begin{proof}
+Voor elke !!{sentence}~$!A$ geldt ofwel $\Sat{M}{!A}$, ofwel
+$\Sat{M}{\lnot !A}$. Dus geldt ofwel $!A \in \Theory{M}$, ofwel
+$\lnot !A \in \Theory{M}$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:equiv}
+  Als $\Struct{N} \models !A$ voor elke $!A \in \Theory{M}$, dan
+  $\Struct{M} \elemequiv \Struct{N}$.
+\end{prop}
+
+\begin{proof}
+Omdat $\Sat{N}{!A}$ voor alle $!A \in \Theory{M}$, geldt
+$\Theory{M} \subseteq \Theory{N}$. Als $\Sat{N}{!A}$, dan
+$\Sat/{N}{\lnot !A}$, dus $\lnot !A \notin \Theory{M}$. Omdat
+$\Theory{M}$ compleet is, geldt $!A \in \Theory{M}$. Bijgevolg
+$\Theory{N} \subseteq \Theory{M}$ en dus
+$\Struct{M} \elemequiv \Struct{N}$.
+\end{proof}
+
+\begin{rem}\ollabel{remark:R}
+  Beschouw $\Struct{R} = \langle\Real, <\rangle$: de !!{structure} met
+  als domein de verzameling $\Real$ van de reële getallen, in de
+  !!{language} die slechts één 2-plaatsig !!{predicate} bevat, geïnterpreteerd
+  als de relatie $<$ op de reële getallen. De structuur $\Struct{R}$ is
+  duidelijk !!{nonenumerable}. Omdat $\Theory{R}$ echter consistent is,
+  heeft zij volgens de stelling van L\"owenheim--Skolem !!a{enumerable}
+  model, zeg $\Struct{S}$. Volgens \olref{prop:equiv} geldt dan
+  $\Struct{R} \equiv \Struct{S}$. Aangezien $\Struct{R}$ en $\Struct{S}$
+  bovendien niet isomorf zijn, volgt dat de omkering van
+  \olref[iso]{thm:isom} in het algemeen niet geldt.
+\end{rem}
+
+\end{document}
